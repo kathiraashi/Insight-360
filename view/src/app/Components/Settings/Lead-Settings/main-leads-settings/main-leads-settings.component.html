@@ -1,0 +1,31 @@
+<div class="Page_Section">
+  <div class="container-fluid">
+     <div class="Page_Idendity">
+     <div class="Page_Name">
+       <h5>LEAD SETTINGS</h5>
+       </div>
+       <div class="Page_Track">
+          <ul >
+            <li class="color">Settings</li>
+            <li>>></li>
+            <li>Lead Settings</li>
+            </ul>
+          </div>
+    </div>
+     <div class="Page_Content Lead_Settings">
+        <div class="Main_Section">
+           <div class="Left_Section">
+              <ul class="Tabs">
+                <li class="Tab" [ngClass]="{'active':Active_Tab === 'lead_Source'}" (click)="Active_Tab_Change('lead_Source')"><span class="Tab_Content">Lead-Source</span></li>
+              </ul>
+           </div>
+           <div class="Right_Section">
+              <div *ngIf="Active_Tab === 'lead_Source'">
+                <app-lead-source-type-lead-settings></app-lead-source-type-lead-settings>
+              </div>
+           </div>
+        </div>
+     </div>
+  </div>
+</div>
+

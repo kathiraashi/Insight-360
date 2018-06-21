@@ -1,0 +1,101 @@
+<div class="row">
+    <div class="col-sm-6">
+      <span class="Create_Button" (click)="CreateActivitystatus()">Add New</span>
+    </div>
+    <div class="col-sm-6">
+      <div class="Search_Section">
+        <input type="text" placeholder="Search.." name="search">
+        <i class="material-icons">search</i>
+      </div>
+    </div>
+  </div>
+  <br>
+<div class="Table_Section">
+    <table >
+      <thead>
+        <tr>
+          <th>S.no</th>
+          <th>Activity Status</th>
+          <th>Createdby </th>
+          <th>Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <span class="S_no"> 1 </span>
+          </td>
+          <td>
+            <span class="Name_Style">process </span>
+          </td>
+          <td>
+            <span class="Name_Style"> Admin </span>
+          </td>
+          <td>
+            <span class="Name_Style">May 29,2018</span>
+        </td>
+         <td>
+              <span class="Action_Section Bg_Danger">
+                  <i class="material-icons" (click)= "DeleteContactInfo()">delete</i>
+                </span>
+                <span class="Action_Section Bg_Info">
+                  <i class="material-icons" (click)="CreateActivitystatus()">edit</i>
+                </span>
+                <span class="Action_Section Bg_Success">
+                    <i class="material-icons" (click)="ViewActivitystatus()"> remove_red_eye </i>
+                  </span>
+          </td>
+        </tr>
+        <tr>
+            <td>
+              <span class="S_no"> 2 </span>
+            </td>
+            <td>
+              <span class="Name_Style"> process </span>
+            </td>
+            <td>
+              <span class="Name_Style"> Admin </span>
+            </td>
+            <td>
+              <span class="Name_Style">May 29,2018</span>
+          </td>
+           <td>
+                <span class="Action_Section Bg_Danger">
+                    <i class="material-icons" (click)= "DeleteContactInfo()">delete</i>
+                  </span>
+                  <span class="Action_Section Bg_Info">
+                    <i class="material-icons" (click)="CreateActivitystatus()">edit</i>
+                  </span>
+                  <span class="Action_Section Bg_Success">
+                      <i class="material-icons" (click)="ViewActivitystatus()"> remove_red_eye </i>
+                    </span>
+            </td>
+          </tr>
+          <tr>
+              <td>
+                <span class="S_no"> 3</span>
+              </td>
+              <td>
+                <span class="Name_Style"> process</span>
+              </td>
+              <td>
+                <span class="Name_Style"> Admin </span>
+              </td>
+              <td>
+                <span class="Name_Style">May 29,2018</span>
+            </td>
+             <td>
+                  <span class="Action_Section Bg_Danger">
+                      <i class="material-icons" (click)= "DeleteContactInfo()">delete</i>
+                    </span>
+                    <span class="Action_Section Bg_Info">
+                      <i class="material-icons" (click)="CreateActivitystatus()">edit</i>
+                    </span>
+                    <span class="Action_Section Bg_Success">
+                        <i class="material-icons" (click)="ViewActivitystatus()"> remove_red_eye </i>
+                      </span>
+              </td>
+            </tr>
+      </tbody>
+    </table>

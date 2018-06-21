@@ -1,0 +1,32 @@
+
+<div class="Page_Section">
+   <div class="container-fluid">
+      <div class="Page_Idendity">
+      <div class="Page_Name">
+            <h5>PURCHASE SETTINGS</h5>
+            </div>
+            <div class="Page_Track">
+                        <ul >
+                          <li class="color">Settings</li>
+                          <li>>></li>
+                          <li>Purchase Settings</li>
+                          </ul>
+                        </div>
+                  </div>
+           <div class="Page_Content Purchase_Settings">
+         <div class="Main_Section">
+            <div class="Left_Section">
+               <ul class="Tabs">
+                  <li class="Tab" [ngClass]="{'active':Active_Tab === 'Vendor_Quote_Terms'}" (click)="Active_Tab_Change('Vendor_Quote_Terms')"><span class="Tab_Content">Vendor Quote Terms</span></li>                  
+               </ul>
+            </div>
+            <div class="Right_Section">
+               <div *ngIf="Active_Tab === 'Vendor_Quote_Terms'">
+                     <app-vendor-quote-terms-purchase-settings></app-vendor-quote-terms-purchase-settings>
+               </div>                
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+  

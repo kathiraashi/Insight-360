@@ -1,0 +1,49 @@
+.example-card {
+    width: 100%;
+}
+.right_section {
+    transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+    display: block;
+    position: relative;
+    padding: 24px;
+    border-radius: 2px;
+    background: #fff;
+    color: rgba(0,0,0,.87);
+    font-family: Roboto,"Helvetica Neue",sans-serif;
+    margin-top: 30px;
+}
+.text-center {
+    text-align: center!important;
+}
+img {
+    vertical-align: middle;
+    border-style: none;
+}
+b, strong {
+    font-weight: bolder;
+    font-size:15px;
+}
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid rgba(0,0,0,.1);
+    box-sizing: content-box;
+    height: 0;
+    overflow: visible;
+}
+.edit-button{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+.editbutton{
+    background-color: #49b660;
+    color: #ffffff;
+    width: 100%;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+}   
+
+

@@ -1,0 +1,19 @@
+.about_section{
+    margin-left:20px;
+}
+.Customer_Details_Title h5{
+    font-weight: 600;
+    font-size: 16px;
+    margin: 0px;
+    line-height: 45px;
+    color: rgb(57, 66, 74);
+    font-family: 'Open Sans', sans-serif;
+}
+.Customer_Details_Value h5{
+    font-weight: 600;
+    font-size: 14px;
+    margin: 0px;
+    line-height: 45px;
+    color: rgba(82, 105, 121, 0.76);
+    font-family: 'Open Sans', sans-serif;
+}

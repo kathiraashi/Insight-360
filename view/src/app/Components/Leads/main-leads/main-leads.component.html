@@ -1,0 +1,35 @@
+
+<app-header></app-header>
+<div class="Page_Section">
+   <div class="container-fluid">
+      <div class="Page_Idendity">
+         <div class="Page_Name">
+            <h5>Leads</h5>
+         </div>
+      </div>
+      <div class="Page_Content Leads">
+         <div class="Main_Section">
+            <div class="Left_Section">
+               <ul class="Tabs">
+                  <li class="Tab" [ngClass]="{'active':Active_Tab === 'Leads'}" (click)="Active_Tab_Change('Leads')"><span class="Tab_Content">Leads</span></li>     
+                  <li class="Tab" [ngClass]="{'active':Active_Tab === 'Log_Phone_Call'}" (click)="Active_Tab_Change('Log_Phone_Call')"><span class="Tab_Content">Log Phone Call</span></li>  
+                  <li class="Tab" [ngClass]="{'active':Active_Tab === 'Call_Schedule'}" (click)="Active_Tab_Change('Call_Schedule')"><span class="Tab_Content">Call Schedule</span></li>     
+               </ul>
+            </div>
+            <div class="Right_Section">
+               <div *ngIf="Active_Tab === 'Leads'">
+                  <app-leads-componets></app-leads-componets>
+               </div> 
+               <div *ngIf="Active_Tab === 'Log_Phone_Call'">
+                  <app-log-phone-call-leads-componets></app-log-phone-call-leads-componets>
+               </div> 
+               <div *ngIf="Active_Tab === 'Call_Schedule'">
+                  <app-call-schedule-leads-componets></app-call-schedule-leads-componets>
+               </div>   
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+   
+ 

@@ -1,0 +1,131 @@
+ /* .example-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .example-container > * {
+    width: 100%;
+    height: 45px;
+  }
+  .text-style-1{
+    margin-top: 25px;
+    line-height: 30px;
+    font-size: 20px; 
+    font-weight: 700; 
+    color: #6c7986;
+    font-family: 'Rubik', sans-serif;
+    border-bottom: 2px dashed #0464c7;
+  }  */
+  .change_button{
+      background-color:#08a92c;
+      border:1px solid #08a92c;
+      color:#fff;
+      outline:none;
+  }
+  .Form_Input input {
+    padding: 10px;
+    width: 100%;
+    height: 40px;
+    outline: none;
+    margin-bottom: 25px;
+    border: 1px solid gainsboro;
+    color: #484848;
+    font-weight: 500;
+    font-size: 14px;
+}
+.Form_Input input:-moz-placeholder{
+    color: #999999;
+    font-weight: 400;
+}
+.Form_Input input::-moz-placeholder{
+    color: #999999;
+    font-weight: 400;
+}
+.Form_Input input::-webkit-input-placeholder{
+    color: #999999;
+    font-weight: 400;
+}
+.Form_Input input:-ms-input-placeholder{
+    color: #999999;
+    font-weight: 400;
+}
+.Form_Select select{
+    width: 100%;
+    height: 40px;
+    color: #999;
+    outline: none;
+    padding: 0px 10px;
+    border: 1px solid #dcdcdc;
+    margin-bottom: 25px;
+}
+.Form_Select select option{
+    color: #999999;
+    width: 100%;
+}
+.Append_Btn i{
+    color: #484848;
+    line-height: 45px;
+    font-size: 30px;
+    cursor: pointer;
+}
+.Model_Footer {
+    border-top: 1px solid #e8e8e8;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.Model_Footer .Submit_Btn {
+    position: absolute;
+    right: 0px;
+    border: 1px solid #08a92c;
+    padding: 5px 20px;
+    background-color: #08a92c;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.Form_TextArea textarea {
+    padding: 10px;
+    width: 100%;
+    outline: none;
+    margin-bottom: 25px;
+    border: 1px solid gainsboro;
+    color: #484848;
+    font-weight: 500;
+    font-size: 14px;
+}
+.Form_TextArea textarea:-moz-placeholder{
+    color: #999999;
+    font-weight: 400;
+}
+.Form_TextArea textarea::-moz-placeholder{
+    color: #999999;
+    font-weight: 400;
+}
+.Form_TextArea textarea::-webkit-input-placeholder{
+    color: #999999;
+    font-weight: 400;
+}
+.Form_TextArea textarea:-ms-input-placeholder{
+    color: #999999;
+    font-weight: 400;
+}
+.button_cancel{
+    background-color: #FF9D0B;
+    border: 1px solid #FF9D0B;
+    color:#fff;
+    outline: none;
+}
+.button_submit{
+    background-color: #49B660;
+    border: 1px solid #49B660; 
+    color:#fff;
+    outline: none;
+}
+.left_section .Form_Input input{
+width:80%;
+}

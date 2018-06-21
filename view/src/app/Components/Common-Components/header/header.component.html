@@ -1,0 +1,62 @@
+<div class="Header_Page">
+   <div class="Header_One">
+      <img src="assets/images/basic/Insight360.png" alt="Logo" class="Header_Logo"> 
+      <div class="Logout_Btn"> <span> Logout </span></div>
+   </div>
+   <div class="Header_Two">
+      <ul class="Menus">
+         <li class="Menu_List">
+            <span class="Menu">
+               <i class="material-icons">dashboard</i>
+               <span> &nbsp; Dashboard </span> 
+            </span>
+         </li>
+        <li class="Menu_List" >
+            <span class="Menu_Tree">
+               <span class="Menu">
+                  <i class="material-icons">people</i>
+                  <span> &nbsp; CRM </span> 
+               </span>
+               <ul class="Menu_Tree_View">
+                  <li class="Menu_Tree_List"  [routerLink]="['/Crm_Customers_List']"><a> Customers </a></li>
+                  <li class="Menu_Tree_List"  [routerLink]="['/crm_quotations_list']"><a> Quotations </a></li>
+                  <li class="Menu_Tree_List"  [routerLink]="['/crm_saleorder_list']"><a> Sale Order </a></li>
+                  <li class="Menu_Tree_List"  [routerLink]="['/crm_invoice_list']"><a> Invoice  </a></li>
+               </ul>
+            </span>
+         </li>
+         <li class="Menu_List"  [routerLink]="['/main_leads']" style="outline:none;">
+               <span class="Menu">
+                  <i class="material-icons">people</i>
+                  <span > &nbsp; Leads </span> 
+               </span>
+            </li>
+            <li class="Menu_List"  [routerLink]="['/main_hrms']" style="outline:none;">
+                <span class="Menu">
+                   <i class="material-icons">people</i>
+                   <span > &nbsp; HRMS </span> 
+                </span>
+             </li>
+         <li class="Menu_List" >
+            <span class="Menu_Tree">
+               <span class="Menu">
+                  <i class="material-icons">settings</i>
+                  <span> &nbsp; Settings </span> 
+               </span>
+               <ul class="Menu_Tree_View">
+                  <li class="Menu_Tree_List" [routerLink]="['/company_settings']"><a> Company Settings </a></li>
+                  <li class="Menu_Tree_List" [routerLink]="['/CRM_Settings']"><a> CRM Settings </a></li>
+                  <li class="Menu_Tree_List"  [routerLink]="['/lead_settings']"><a> Lead Settings </a></li>
+                  <li class="Menu_Tree_List" [routerLink]="['/purchase_settings']"><a> Purchase Settings  </a></li>
+                  <li class="Menu_Tree_List" [routerLink]="['/Hrms_Settings']" ><a> HRMS Settings  </a></li>
+                  <li class="Menu_Tree_List" [routerLink]="['/Hr_Settings']" ><a> HR Settings </a></li>
+                  <li class="Menu_Tree_List" [routerLink]="['/Inventory_Settings']" ><a> Inventory Settings </a></li>
+                  <li class="Menu_Tree_List" [routerLink]="['/Product_Settings']" ><a> Product Settings </a></li>
+                  <li class="Menu_Tree_List" [routerLink]="['/Account_Settings']"><a> Account Settings </a></li>
+               </ul>
+            </span>
+         </li>
+     </ul>
+   </div>
+</div>
+

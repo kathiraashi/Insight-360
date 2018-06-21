@@ -1,0 +1,155 @@
+<div class="Modal_Content" style="background-color: #F1F4F7;"*ngIf="Type && Type === 'Create'">
+   <div class="Modal_Header">
+      <p>Create Onduty</p>
+      <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+   </div>
+   <div class="Model_Body">
+      <div class="row">
+         <div class="Company_Details">
+            <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Personal <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span></h5><br>
+            <div class="col-sm-12">
+               <div class="row">
+                  <div class="col-sm-4 Form_Input" >
+                     Name:<br>
+                     <input type="text" placeholder="Name">
+                  </div>
+                  <div class="col-sm-4 Form_Input" >
+                        UserName:<br>
+                        <input type="text" placeholder="username">
+                     </div>
+                     <div class="col-sm-4 Form_Input" >
+                           Department:<br>
+                           <input type="text" placeholder="Department">
+                        </div>
+                        <div class="col-sm-4 Form_Input" >
+                           Designation:<br>
+                           <input type="text" placeholder="Designation">
+                        </div>
+                  <div class="col-sm-4 Form_Input" >
+                        Email Id:<br>
+                     <input type="text" placeholder="emailid"> 
+                  </div>
+                  <div class="col-sm-4 Form_Input" >
+                        Contact Number:<br>
+                     <input type="text" placeholder="contactnumber"> 
+                  </div>
+               </div>
+            </div>
+         </div>
+         <br>
+         <div class="Product_Details">
+            <h5 style="color:#49B660;font-size:20px;font-weight: 600;"> Application <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span></h5><br>
+            <div class="col-sm-12">
+               <div class="row">
+                  <div class="col-sm-4 Form_Input" >
+                     Date:<br>
+                     <input type="text" placeholder="Date">
+                  </div>
+                  <div class="col-sm-4 Form_Input" >
+                        OD Date:<br>
+                        <input type="text" placeholder="from">
+                     </div>
+                     <div class="col-sm-4 Form_Input" >
+                           Working Day:<br>
+                           <input type="text" placeholder="Designation">
+                        </div>
+                  <div class="col-sm-4 Form_Input" >
+                        Out Time:<br>
+                     <input type="text" placeholder="out time"> 
+                  </div>
+                  <div class="col-sm-4 Form_Input" >
+                     In Time:<br>
+                  <input type="text" placeholder="in time"> 
+               </div>
+               <div class="col-sm-4 Form_TextArea" >
+                  Purpose:<br>
+                  <textarea class="purpose" rows="3"></textarea>
+            </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="Model_Footer">
+         <button class="Submit_Btn"> Submit </button>
+         <button class="Reset_Btn"> Reset</button>
+      </div>
+   </div>
+</div>
+<div class="Modal_Content" style="background-color: #F1F4F7;" *ngIf=" Type && Type === 'View'">
+   <div class="Modal_Header">
+      <p>View OnDuty</p>
+      <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+   </div>
+   <div class="Model_Body">
+      <div class="row">
+         <div class="Company_Details">
+            <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Personal <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span></h5><br>
+            <div class="col-sm-12">
+               <div class="row">
+                  <div class="col-sm-4 Form_Input" >
+                     Name:<br>
+                     <input type="text" placeholder="Name">
+                  </div>
+                  <div class="col-sm-4 Form_Input" >
+                     UserName:<br>
+                     <input type="text" placeholder="username">
+                  </div>
+                  <div class="col-sm-4 Form_Input" >
+                     Department:<br>
+                     <input type="text" placeholder="Department">
+                  </div>
+                  <div class="col-sm-4 Form_Input" >
+                     Designation:<br>
+                     <input type="text" placeholder="Department">
+                  </div>
+                  <div class="col-sm-4 Form_Input" >
+                     Email Id:<br>
+                     <input type="text" placeholder="emailid"> 
+                  </div>
+                  <div class="col-sm-4 Form_Input" >
+                     Contact Number:<br>
+                     <input type="text" placeholder="contactnumber"> 
+                  </div>
+               </div>
+            </div>
+         </div>
+         <br>
+         <div class="Product_Details">
+            <h5 style="color:#49B660;font-size:20px;font-weight: 600;"> Application <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span></h5><br>
+            <div class="col-sm-12">
+               <div class="row">
+                  <div class="col-sm-4 Form_Input" >
+                     Date:<br>
+                     <input type="text" placeholder="Date">
+                  </div>
+                  <div class="col-sm-4 Form_Input" >
+                     OD Date:<br>
+                     <input type="text" placeholder="from">
+                  </div>
+                  <div class="col-sm-4 Form_Input" >
+                     Working Day:<br>
+                     <input type="text" placeholder="Designation">
+                  </div>
+                  <div class="col-sm-4 Form_Input" >
+                     Out Time:<br>
+                     <input type="text" placeholder="out time"> 
+                  </div>
+                  <div class="col-sm-4 Form_Input" >
+                     In Time:<br>
+                     <input type="text" placeholder="in time"> 
+                  </div>
+                  <div class="col-sm-4 Form_TextArea" >
+                     Purpose:<br>
+                     <textarea class="purpose" rows="3"></textarea>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="Model_Footer">
+         <button class="Submit_Btn"> Submit </button>
+         <button class="Reset_Btn"> Reset</button>
+      </div>
+   </div>
+</div>
+

@@ -1,0 +1,32 @@
+<div class="Page_Section">
+   <div class="container-fluid">
+      <div class="Page_Idendity">
+      <div class="Page_Name">
+        <h5>INVENTORY SETTINGS</h5>
+        </div>
+        <div class="Page_Track">
+            <ul >
+              <li class="color">Settings</li>
+              <li>>></li>
+              <li>Inventory Settings</li>
+              </ul>
+            </div>
+      </div>
+      <div class="Page_Content Inventory_Settings">
+         <div class="Main_Section">
+            <div class="Left_Section">
+               <ul class="Tabs">
+                  <li class="Tab" [ngClass]="{'active':Active_Tab === 'Ware_House'}" (click)="Active_Tab_Change('Ware_House')">
+                     <span class="Tab_Content">Ware House</span>
+                  </li>
+               </ul>
+            </div>
+            <div class="Right_Section">
+               <div *ngIf="Active_Tab === 'Ware_House'">
+                    <app-ware-house-inventory-settings></app-ware-house-inventory-settings>
+               </div>
+           </div>
+         </div>
+      </div>
+   </div>
+</div>
