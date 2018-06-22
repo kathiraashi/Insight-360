@@ -177,7 +177,7 @@ import { HeaderComponent } from './Components/Common-Components/header/header.co
         import { ModelLeadsComponentsComponent } from './models/Leads/model-leads-components/model-leads-components.component';
         import { ModelLogPhoneCallLeadsComponentsComponent } from './models/Leads/model-log-phone-call-leads-components/model-log-phone-call-leads-components.component';
         import { ModelCallScheduleLeadsComponentsComponent } from './models/Leads/model-call-schedule-leads-components/model-call-schedule-leads-components.component';
-    // HRMS
+    // HRMS folder
         // main hrms
             import { MainHrmsComponentsComponent } from './Components/HRMS/main-hrms-components/main-hrms-components.component';
             // SubComponents
@@ -192,6 +192,28 @@ import { HeaderComponent } from './Components/Common-Components/header/header.co
         import { ModelOndutyHrmsComponent } from './models/HRMS/model-onduty-hrms/model-onduty-hrms.component';
         import { ModelPermissionsHrmsComponent } from './models/HRMS/model-permissions-hrms/model-permissions-hrms.component';
         import { ModelAdvanceHrmsComponent } from './models/HRMS/model-advance-hrms/model-advance-hrms.component';
+    // Purchase folder
+        // Purchase_Request
+        import { PurchaseRequestListComponent } from './Components/Purchase/PurchaseRequest/purchase-request-list/purchase-request-list.component';
+        import { PurchaseRequestCreateComponent } from './Components/Purchase/PurchaseRequest/purchase-request-create/purchase-request-create.component';
+        import { PurchaseRequestViewComponent } from './Components/Purchase/PurchaseRequest/purchase-request-view/purchase-request-view.component';
+        // purchase Quotation
+        import { PurchaseQuotationsCreateComponent } from './Components/Purchase/PurchaseQuotation/purchase-quotations-create/purchase-quotations-create.component';
+        import { PurchaseQuotationsListComponent } from './Components/Purchase/PurchaseQuotation/purchase-quotations-list/purchase-quotations-list.component';
+        import { PurchaseQuotationsViewComponent } from './Components/Purchase/PurchaseQuotation/purchase-quotations-view/purchase-quotations-view.component';
+        // Purchase Orders
+        import { PurchaseOrdersListComponent } from './Components/Purchase/PurchaseOrders/purchase-orders-list/purchase-orders-list.component';
+        import { PurchaseOrdersCreateComponent } from './Components/Purchase/PurchaseOrders/purchase-orders-create/purchase-orders-create.component';
+        import { PurchaseOrdersViewComponent } from './Components/Purchase/PurchaseOrders/purchase-orders-view/purchase-orders-view.component';
+        // Vendor Bills
+        import { VendorBillsListComponent } from './Components/Purchase/VendorBills/vendor-bills-list/vendor-bills-list.component';
+        import { VendorBillsCreateComponent } from './Components/Purchase/VendorBills/vendor-bills-create/vendor-bills-create.component';
+        import { VendorBillsViewComponent } from './Components/Purchase/VendorBills/vendor-bills-view/vendor-bills-view.component';
+        // vendor
+        import { VendorListComponent } from './Components/Purchase/Vendor/vendor-list/vendor-list.component';
+        import { VendorCreateComponent } from './Components/Purchase/Vendor/vendor-create/vendor-create.component';
+        import { VendorViewComponent } from './Components/Purchase/Vendor/vendor-view/vendor-view.component';
+
 
 
 
@@ -366,6 +388,35 @@ import { HeaderComponent } from './Components/Common-Components/header/header.co
                 ModelOndutyHrmsComponent,
                 ModelPermissionsHrmsComponent,
                 ModelAdvanceHrmsComponent,
+    // Purchase Folder
+        // Purchase Request
+        PurchaseRequestListComponent,
+        PurchaseRequestCreateComponent,
+        PurchaseRequestViewComponent,
+        // purchase Quotation
+        PurchaseQuotationsCreateComponent,
+        PurchaseQuotationsListComponent,
+        PurchaseQuotationsViewComponent,
+        // Purchase Orders
+        PurchaseOrdersListComponent,
+        PurchaseOrdersCreateComponent,
+        PurchaseOrdersViewComponent,
+        // Vendor Bills
+         VendorBillsListComponent,
+         VendorBillsCreateComponent,
+         VendorBillsViewComponent,
+        // vendor
+         VendorListComponent,
+         VendorCreateComponent,
+         VendorViewComponent,
+
+
+
+
+
+
+
+
    ],
    imports: [
       // Default Modules
@@ -423,7 +474,8 @@ import { HeaderComponent } from './Components/Common-Components/header/header.co
     ModelLeavesHrmsComponent,
     ModelOndutyHrmsComponent,
     ModelPermissionsHrmsComponent,
-    ModelAdvanceHrmsComponent],
+    ModelAdvanceHrmsComponent,
+   ],
    bootstrap: [AppComponent]
 })
 export class AppModule { }

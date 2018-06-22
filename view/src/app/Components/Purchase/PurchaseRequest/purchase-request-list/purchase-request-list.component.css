@@ -1,0 +1,153 @@
+.Main_Section{
+    margin-top: 100px;
+}
+.page-identity .page-name{
+    width: 50%;
+    height: 42px;
+    float: left; 
+}
+.page-identity .page-name h5{
+    line-height: 42px;
+    font-size: 18px;
+    font-weight: 800;
+    color: #6c7986;
+    text-transform: uppercase;
+    font-family: 'Rubik', sans-serif;
+}
+.page-identity .page-track{
+    height: 42px;
+    float: left;
+}
+.page-identity .page-track ul {
+    float: right;
+}
+.page-identity .page-track ul {
+    margin-bottom: 0px;
+    list-style: none;
+    display: inline-block;
+    height: 42px;
+}
+.page-identity .page-track ul li {
+    float: left;
+    height: 42px;
+    margin-right: 10px;
+    line-height: 42px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #61626394;
+    font-family: 'Rubik', sans-serif;
+}
+.Table_Section table {
+    border: 1px solid lightgray;
+    width: 100%;
+ }
+ .Table_Section table thead {
+    border: 1px #49B660;
+    line-height: 40px;
+    text-align: center;
+    background-color: #49B660;
+    color: #ffffff;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+ }
+ .Table_Section table tbody {
+    border: 1px solid #e8e8e8;
+    background-color: #ffffff;
+ }
+ .Table_Section table tbody tr {
+    line-height: 50px;
+    text-align: center;
+    align-items: center;
+    border-bottom: 1px solid #eaeaea;
+ }
+ .Table_Section table tbody tr:nth-child(even) {
+    background-color: #f1f1f185;
+ }
+ .Table_Section table tbody tr:hover {
+    background-color: #4f6a7a40;
+ }
+ .Table_Section table tbody tr td .S_no {
+    font-size: 14px;
+    color: #777;
+ }
+ .Table_Section table tbody tr td .Name_Style {
+    font-size: 14px;
+    color: #484848;
+    display: block;
+    font-weight: 700;
+    cursor: pointer;
+ }
+ .Table_Section table tbody tr td .Name_Style {
+    display: block;
+    line-height: 16px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #888888;
+ }
+ .Table_Section table tbody tr td .Name_Style {
+    display: block;
+    line-height: 16px;
+    font-size: 13px;
+    color: #888888;
+ }
+ .Table_Section table tbody tr td .Name_Style {
+    color: #888888;
+    font-size: 14px;
+    font-weight: 500;
+ }
+ .Table_Section table tbody tr td .Action_Section{
+    color: #ffffff;
+    height: 35px;
+    width: 35px;
+    line-height: 30px;
+    display: flex;
+    border-radius: 5px;
+    cursor: pointer;
+    float: right;
+    margin-right: 10px;
+ }
+ .Table_Section table tbody tr td .Action_Section i {
+    width: 100%;
+    line-height: 35px;
+ }
+ .Create_Button{
+    margin-left: 33px;
+    border-radius: 0px;
+    color: #49B660;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.6px;
+    cursor: pointer;
+    padding: 3px 15px;
+    outline:none;
+ }
+ .Search_Section{
+    position:relative;
+    margin-right: 32px;
+    background-color: #ffffff;
+ }
+ .Search_Section input{
+    width: 100%;
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid #cccccc;
+    background-color: transparent;
+    padding-left: 5px;
+    height: 35px;
+    color: #484848;
+    font-weight: 500;
+    padding-top: 8px;
+    outline:none;
+ }
+ .Search_Section input::placeholder{
+    color:#cccccc; 
+    font-weight:400;
+ }
+ .Search_Section i{
+    position: absolute;
+    right: 0px;
+    padding: 7px 5px;
+    color: #cccccc;
+    font-weight: 600;
+    cursor: pointer;
+ }
