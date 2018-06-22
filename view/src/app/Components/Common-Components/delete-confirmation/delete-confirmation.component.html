@@ -5,7 +5,7 @@
     <div class="Model_Body">
        <p> Are you Sure? <br> You want to delete {{Text}}.</p>
     <div class="Model_Footer">
-        <span class="Cancel_Btn" (click)="bsModalRef.hide()"> No </span>
-        <span class="Submit_Btn" (click)="bsModalRef.hide()"> Yes </span>
+        <button class="Bg_Danger" mat-raised-button color="primary" (click)="bsModalRef.hide()"> No </button>
+        <button mat-raised-button color="primary" (click)="bsModalRef.hide()"> Yes </button>
     </div>
   </div>

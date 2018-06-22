@@ -15,6 +15,7 @@
 // Future Modules
 import { ModalModule, AccordionModule} from 'ngx-bootstrap';
 import {CalendarModule} from 'primeng/calendar';
+import {MatButtonModule, MatFormFieldModule, MatSelectModule} from '@angular/material';
 // Custom Modules
     import { AppRoutingModule } from './app.routing.module';
 
@@ -377,6 +378,9 @@ import { HeaderComponent } from './Components/Common-Components/header/header.co
          ModalModule.forRoot(),
          AccordionModule.forRoot(),
          CalendarModule,
+         MatButtonModule,
+         MatFormFieldModule,
+         MatSelectModule,
       // Custom Modules
           AppRoutingModule,
    ],

@@ -22,7 +22,7 @@ export class CompanyInfoCompanySettingsComponent implements OnInit {
     const initialState = {
       title: 'Modal with component'
     };
-    this.bsModalRef = this.modalService.show(ModelCompanyinfoCompanysettingsComponent, Object.assign({initialState}, { class: 'modal-lg' }));
+    this.bsModalRef = this.modalService.show(ModelCompanyinfoCompanysettingsComponent, Object.assign({initialState}, { class: 'modal-lg max-width-75' }));
   }
 
 }

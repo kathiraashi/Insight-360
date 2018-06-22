@@ -36,7 +36,7 @@ export class ContactInfoCompanySettingsComponent implements OnInit {
     const initialState = {
       Text: 'Contact Info'
     };
-    this.bsModalRef = this.modalService.show(DeleteConfirmationComponent, Object.assign({initialState}, { class: 'modal-sm' }));
+    this.bsModalRef = this.modalService.show(DeleteConfirmationComponent, Object.assign({initialState}, { class: 'modal-sm min-width-350' }));
   }
 
 

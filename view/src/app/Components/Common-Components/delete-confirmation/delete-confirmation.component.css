@@ -12,21 +12,20 @@
 }
 .Modal_Header p {
     margin: 0px;
-    font-weight: 600;
-    font-size: 23px;
-    color: #484848;
+    font-weight: 700;
+    font-size: 24px;
+    color: #4f6a7a;
     letter-spacing: 0.3px;
-    text-align: center;
     width: 100%;
-
+    text-align: center;
 }
 .Model_Body {
     position: relative;
 }
 .Model_Body p{
     font-size: 17px;
-    font-weight: 600;
-    color: #777777;
+    font-weight: 500;
+    color: #4f6a7a;
     text-align: center;
     padding: 25px 0px;
     margin: 0px;
@@ -38,29 +37,7 @@
     align-items: center;
     position: relative;
 }
-.Model_Footer .Submit_Btn {
+.Model_Footer button:last-child {
     position: absolute;
     right: 0px;
-    border: 1px solid #08a92c;
-    padding: 5px 20px;
-    background-color: #08a92c;
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    border-radius: 3px;
-    cursor: pointer;
-}
-.Model_Footer .Cancel_Btn {
-    position: absolute;
-    left: 0px;
-    border: 1px solid orangered;
-    padding: 5px 20px;
-    background-color: orangered;
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    border-radius: 3px;
-    cursor: pointer;
 }
