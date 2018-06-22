@@ -37,6 +37,21 @@
                    <span > &nbsp; HRMS </span> 
                 </span>
              </li>
+             <li class="Menu_List" >
+                    <span class="Menu_Tree">
+                       <span class="Menu">
+                          <i class="material-icons">people</i>
+                          <span> &nbsp; Purchase </span> 
+                       </span>
+                       <ul class="Menu_Tree_View">
+                          <li class="Menu_Tree_List"  [routerLink]="['/purchase_request_list']"><a> PurchaseRequest </a></li>
+                          <li class="Menu_Tree_List"  [routerLink]="['/Purchase_Quotations_List']"><a> PurchaseQuotations </a></li>
+                          <li class="Menu_Tree_List"  [routerLink]="['/Purchase_Orders_List']"><a> PurchaseOrder </a></li>
+                          <li class="Menu_Tree_List"  [routerLink]="['/Vendor_Bills_List']"><a> VendorBills </a></li>
+                          <li class="Menu_Tree_List"  [routerLink]="['/Vendor_List']"><a> Vendor</a></li>
+                       </ul>
+                    </span>
+                 </li>
          <li class="Menu_List" >
             <span class="Menu_Tree">
                <span class="Menu">
