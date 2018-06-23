@@ -33,7 +33,7 @@ export class ESIInfoCompanySettingsComponent implements OnInit {
     };
     this.bsModalRef = this.modalService.show(ModelEsiinfoCompanysettingsComponent, Object.assign({initialState}, { class: 'modal-lg' }));
   }
-  DeleteContactInfo() {
+  DeleteEsiInfo() {
     const initialState = {
       Text: 'Esi Company Settings'
     };

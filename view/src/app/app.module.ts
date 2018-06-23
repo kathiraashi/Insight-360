@@ -98,6 +98,7 @@ import { HeaderComponent } from './Components/Common-Components/header/header.co
             import { ModelPtinfoCompanysettingsComponent } from './models/settings/company_settings/model-ptinfo-companysettings/model-ptinfo-companysettings.component';
             import { ModelItinfoCompanysettingsComponent } from './models/settings/company_settings/model-itinfo-companysettings/model-itinfo-companysettings.component';
             import { ModelRegistrationtypeCompanysettingsComponent } from './models/settings/company_settings/model-registrationtype-companysettings/model-registrationtype-companysettings.component';
+            import { CreateModelContactinfoCompanySettingsComponent } from './models/settings/create-model-contactinfo-company-settings/create-model-contactinfo-company-settings.component';
         // CRM Settings
             import { ModelIndustrytypeCrmsettingsComponent } from './models/settings/crm_settings/model-industrytype-crmsettings/model-industrytype-crmsettings.component';
             import { ModelOwnershipytypeCrmsettingsComponent } from './models/settings/crm_settings/model-ownershipytype-crmsettings/model-ownershipytype-crmsettings.component';
@@ -213,6 +214,7 @@ import { HeaderComponent } from './Components/Common-Components/header/header.co
         import { VendorListComponent } from './Components/Purchase/Vendor/vendor-list/vendor-list.component';
         import { VendorCreateComponent } from './Components/Purchase/Vendor/vendor-create/vendor-create.component';
         import { VendorViewComponent } from './Components/Purchase/Vendor/vendor-view/vendor-view.component';
+
 
 
 
@@ -409,6 +411,7 @@ import { HeaderComponent } from './Components/Common-Components/header/header.co
          VendorListComponent,
          VendorCreateComponent,
          VendorViewComponent,
+         CreateModelContactinfoCompanySettingsComponent,
 
 
 
@@ -475,7 +478,7 @@ import { HeaderComponent } from './Components/Common-Components/header/header.co
     ModelOndutyHrmsComponent,
     ModelPermissionsHrmsComponent,
     ModelAdvanceHrmsComponent,
-   ],
+    CreateModelContactinfoCompanySettingsComponent],
    bootstrap: [AppComponent]
 })
 export class AppModule { }

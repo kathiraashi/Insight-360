@@ -32,7 +32,7 @@ export class QuoteTermsTypeCrmSettingsComponent implements OnInit {
     };
     this.bsModalRef = this.modalService.show(ModelQuotetermsCrmsettingsComponent, Object.assign({initialState}, { class: 'modal-lg' }));
   }
-  DeleteContactInfo() {
+  DeleteQuoteTerms() {
     const initialState = {
       Text: 'Quote Terms'
     };

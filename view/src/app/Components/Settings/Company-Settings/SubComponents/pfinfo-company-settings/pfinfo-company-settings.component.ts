@@ -31,7 +31,7 @@ CreatePfInfo() {
     };
     this.bsModalRef = this.modalService.show(ModelPfinfoCompanysettingsComponent, Object.assign({initialState}, { class: 'modal-lg' }));
   }
-  DeleteContactInfo() {
+  DeletePfInfo() {
     const initialState = {
       Text: 'Pf Info'
     };

@@ -32,7 +32,7 @@ export class IncomeTypeAccountSettingsComponent implements OnInit {
     };
     this.bsModalRef = this.modalService.show(ModelIncometypeAccountsettingsComponent, Object.assign({initialState}, { class: 'modal-lg' }));
   }
-  DeleteContactInfo() {
+  DeleteIncomeType() {
     const initialState = {
       Text: 'Income Type'
     };

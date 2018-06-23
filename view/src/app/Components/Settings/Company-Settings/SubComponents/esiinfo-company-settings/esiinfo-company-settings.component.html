@@ -1,6 +1,6 @@
-<div class="row">
+<div class="row header_part">
   <div class="col-sm-6">
-    <span class="Create_Button" (click)="CreateEsiInfo()">Add new</span>
+    <button class="Create_Button" mat-raised-button (click)="CreateEsiInfo()"> + Create </button>
   </div>
   <div class="col-sm-6">
     <div class="Search_Section">
@@ -9,7 +9,6 @@
     </div>
   </div>
 </div>
-<br>
 <div class="Table_Section">
   <table>
     <thead>
@@ -30,136 +29,136 @@
           <span class="S_no"> 1 </span>
         </td>
         <td>
-          <span class="Name_Style">ESI no one</span>
+          <span class="Style_1">ESI no one</span>
         </td>
         <td>
-          <span class="Name_Style">27-5-2010</span>
+          <span class="Style_1">27-5-2010</span>
         </td>
         <td>
-          <span class="Name_Style">aashi</span>
+          <span class="Style_1">aashi</span>
         </td>
         <td>
-          <span class="Name_Style">aashi</span>
+          <span class="Style_1">aashi</span>
         </td>
         <td>
-          <span class="Name_Style">admin</span>
+          <span class="Style_1">admin</span>
         </td>
         <td>
-          <span class="Name_Style">may 26,2018</span>
+          <span class="Style_1">may 26,2018</span>
         </td>
         <td>
-          <span class="Action_Section Bg_Danger">
-            <i class="material-icons" (click)="  DeleteContactInfo()">delete</i>
-          </span>
-          <span class="Action_Section Bg_Info">
-            <i class="material-icons" (click)="CreateEsiInfo()">edit</i>
-          </span>
-          <span class="Action_Section Bg_Success">
-            <i class="material-icons" (click)="ViewEsiInfo()"> remove_red_eye </i>
-          </span>
-        </td>
+         <button (click)="ViewEsiInfo()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+            <i class="material-icons">zoom_in</i>
+         </button>
+         <button   (click)="CreateEsiInfo()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+            <i class="material-icons">edit</i>
+         </button>
+         <button (click)="  DeleteEsiInfo()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+            <i class="material-icons">delete_forever</i>
+         </button>
+      </td>
       </tr>
       <tr>
         <td>
           <span class="S_no"> 2 </span>
         </td>
         <td>
-          <span class="Name_Style">ESI no one</span>
+          <span class="Style_1">ESI no one</span>
         </td>
         <td>
-          <span class="Name_Style">27-5-2010</span>
+          <span class="Style_1">27-5-2010</span>
         </td>
         <td>
-          <span class="Name_Style">aashi</span>
+          <span class="Style_1">aashi</span>
         </td>
         <td>
-          <span class="Name_Style">aashi</span>
+          <span class="Style_1">aashi</span>
         </td>
         <td>
-          <span class="Name_Style">admin</span>
+          <span class="Style_1">admin</span>
         </td>
         <td>
-          <span class="Name_Style">may 26,2018</span>
+          <span class="Style_1">may 26,2018</span>
         </td>
         <td>
-          <span class="Action_Section Bg_Danger">
-            <i class="material-icons"  (click)="  DeleteContactInfo()">delete</i>
-          </span>
-          <span class="Action_Section Bg_Info">
-            <i class="material-icons" (click)="CreateEsiInfo()">edit</i>
-          </span>
-          <span class="Action_Section Bg_Success">
-            <i class="material-icons" (click)="ViewEsiInfo()" > remove_red_eye </i>
-          </span>
-        </td>
+         <button (click)="ViewEsiInfo()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+            <i class="material-icons">zoom_in</i>
+         </button>
+         <button   (click)="CreateEsiInfo()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+            <i class="material-icons">edit</i>
+         </button>
+         <button (click)="  DeleteEsiInfo()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+            <i class="material-icons">delete_forever</i>
+         </button>
+      </td>
       </tr>
       <tr>
         <td>
           <span class="S_no"> 3 </span>
         </td>
         <td>
-          <span class="Name_Style">ESI no one</span>
+          <span class="Style_1">ESI no one</span>
         </td>
         <td>
-          <span class="Name_Style">27-5-2010</span>
+          <span class="Style_1">27-5-2010</span>
         </td>
         <td>
-          <span class="Name_Style">aashi</span>
+          <span class="Style_1">aashi</span>
         </td>
         <td>
-          <span class="Name_Style">aashi</span>
+          <span class="Style_1">aashi</span>
         </td>
         <td>
-          <span class="Name_Style">admin</span>
+          <span class="Style_1">admin</span>
         </td>
         <td>
-          <span class="Name_Style">may 26,2018</span>
+          <span class="Style_1">may 26,2018</span>
         </td>
         <td>
-          <span class="Action_Section Bg_Danger">
-            <i class="material-icons"  (click)="  DeleteContactInfo()">delete</i> 
-          </span>
-          <span class="Action_Section Bg_Info">
-            <i class="material-icons" (click)="CreateEsiInfo()">edit</i>
-          </span>
-          <span class="Action_Section Bg_Success">
-            <i class="material-icons" (click)="ViewEsiInfo()"> remove_red_eye </i>
-          </span>
-        </td>
+         <button (click)="ViewEsiInfo()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+            <i class="material-icons">zoom_in</i>
+         </button>
+         <button   (click)="CreateEsiInfo()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+            <i class="material-icons">edit</i>
+         </button>
+         <button (click)="  DeleteEsiInfo()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+            <i class="material-icons">delete_forever</i>
+         </button>
+      </td>
       </tr>
       <tr>
         <td>
           <span class="S_no"> 4 </span>
         </td>
         <td>
-          <span class="Name_Style">ESI no one</span>
+          <span class="Style_1">ESI no one</span>
         </td>
         <td>
-          <span class="Name_Style">27-5-2010</span>
+          <span class="Style_1">27-5-2010</span>
         </td>
         <td>
-          <span class="Name_Style">aashi</span>
+          <span class="Style_1">aashi</span>
         </td>
         <td>
-          <span class="Name_Style">aashi</span>
+          <span class="Style_1">aashi</span>
         </td>
         <td>
-          <span class="Name_Style">admin</span>
+          <span class="Style_1">admin</span>
         </td>
         <td>
-          <span class="Name_Style">may 26,2018</span>
+          <span class="Style_1">may 26,2018</span>
         </td>
         <td>
-          <span class="Action_Section Bg_Danger">
-            <i class="material-icons"  (click)="  DeleteContactInfo()">delete</i>
-          </span>
-          <span class="Action_Section Bg_Info">
-            <i class="material-icons" (click)="CreateEsiInfo()">edit</i>
-          </span>
-          <span class="Action_Section Bg_Success">
-            <i class="material-icons" (click)="ViewEsiInfo()"> remove_red_eye </i>
-          </span>
-        </td>
+         <button (click)="ViewEsiInfo()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+            <i class="material-icons">zoom_in</i>
+         </button>
+         <button   (click)="CreateEsiInfo()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+            <i class="material-icons">edit</i>
+         </button>
+         <button (click)="  DeleteEsiInfo()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+            <i class="material-icons">delete_forever</i>
+         </button>
+      </td>
       </tr>
     </tbody>
   </table>

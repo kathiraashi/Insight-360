@@ -1,6 +1,6 @@
-<div class="row">
+<div class="row header_part">
     <div class="col-sm-6">
-      <span class="Create_Button" (click)=" CreateActivitytype()">Add New</span>
+      <button class="Create_Button" mat-raised-button (click)="CreateActivitytype()"> + Create </button>
     </div>
     <div class="col-sm-6">
       <div class="Search_Section">
@@ -9,7 +9,6 @@
       </div>
     </div>
   </div>
-  <br>
 <div class="Table_Section">
     <table >
       <thead>
@@ -27,75 +26,75 @@
             <span class="S_no"> 1 </span>
           </td>
           <td>
-            <span class="Name_Style"> Activity one </span>
+            <span class="Style_1"> Activity one </span>
           </td>
           <td>
-            <span class="Name_Style"> Admin </span>
+            <span class="Style_1"> Admin </span>
           </td>
           <td>
-            <span class="Name_Style">May 29,2018</span>
+            <span class="Style_1">May 29,2018</span>
         </td>
-         <td>
-              <span class="Action_Section Bg_Danger">
-                  <i class="material-icons" (click)="DeleteContactInfo()">delete</i>
-                </span>
-                <span class="Action_Section Bg_Info">
-                  <i class="material-icons" (click)=" CreateActivitytype()">edit</i>
-                </span>
-                <span class="Action_Section Bg_Success">
-                    <i class="material-icons" (click)=" ViewActivitytype()"> remove_red_eye </i>
-                  </span>
-          </td>
+        <td>
+         <button (click)="ViewActivitytype()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+            <i class="material-icons">zoom_in</i>
+         </button>
+         <button  (click)="CreateActivitytype()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+            <i class="material-icons">edit</i>
+         </button>
+         <button (click)=" DeleteActivityType()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+            <i class="material-icons">delete_forever</i>
+         </button>
+      </td>
         </tr>
         <tr>
             <td>
               <span class="S_no"> 2 </span>
             </td>
             <td>
-              <span class="Name_Style"> type t </span>
+              <span class="Style_1"> type t </span>
             </td>
             <td>
-              <span class="Name_Style"> Admin </span>
+              <span class="Style_1"> Admin </span>
             </td>
             <td>
-              <span class="Name_Style">May 29,2018</span>
+              <span class="Style_1">May 29,2018</span>
           </td>
-           <td>
-                <span class="Action_Section Bg_Danger">
-                    <i class="material-icons" (click)="DeleteContactInfo()">delete</i>
-                  </span>
-                  <span class="Action_Section Bg_Info">
-                    <i class="material-icons" (click)=" CreateActivitytype()">edit</i>
-                  </span>
-                  <span class="Action_Section Bg_Success">
-                      <i class="material-icons" (click)=" ViewActivitytype()"> remove_red_eye </i>
-                    </span>
-            </td>
+          <td>
+            <button (click)="ViewActivitytype()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+               <i class="material-icons">zoom_in</i>
+            </button>
+            <button  (click)="CreateActivitytype()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+               <i class="material-icons">edit</i>
+            </button>
+            <button (click)=" DeleteActivityType()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+               <i class="material-icons">delete_forever</i>
+            </button>
+         </td>
           </tr>
           <tr>
               <td>
                 <span class="S_no"> 3</span>
               </td>
               <td>
-                <span class="Name_Style"> type three </span>
+                <span class="Style_1"> type three </span>
               </td>
               <td>
-                <span class="Name_Style"> Admin </span>
+                <span class="Style_1"> Admin </span>
               </td>
               <td>
-                <span class="Name_Style">May 29,2018</span>
+                <span class="Style_1">May 29,2018</span>
             </td>
-             <td>
-                  <span class="Action_Section Bg_Danger">
-                      <i class="material-icons" (click)="DeleteContactInfo()">delete</i>
-                    </span>
-                    <span class="Action_Section Bg_Info">
-                      <i class="material-icons" (click)=" CreateActivitytype()">edit</i>
-                    </span>
-                    <span class="Action_Section Bg_Success">
-                        <i class="material-icons" (click)=" ViewActivitytype()"> remove_red_eye </i>
-                      </span>
-              </td>
+            <td>
+               <button (click)="ViewActivitytype()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                  <i class="material-icons">zoom_in</i>
+               </button>
+               <button  (click)="CreateActivitytype()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                  <i class="material-icons">edit</i>
+               </button>
+               <button (click)=" DeleteActivityType()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                  <i class="material-icons">delete_forever</i>
+               </button>
+            </td>
             </tr>
       </tbody>
     </table>

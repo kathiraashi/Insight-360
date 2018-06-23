@@ -31,7 +31,7 @@ export class AssetTypeAccountSettingsComponent implements OnInit {
     };
     this.bsModalRef = this.modalService.show(ModelAssettypeAccountsettingsComponent, Object.assign({initialState}, { class: 'modal-lg' }));
   }
-  DeleteContactInfo() {
+  DeleteAssetType() {
     const initialState = {
       Text: 'Asset Type'
     };

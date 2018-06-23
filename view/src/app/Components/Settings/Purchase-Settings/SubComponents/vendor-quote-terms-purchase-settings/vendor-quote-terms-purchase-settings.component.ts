@@ -34,7 +34,7 @@ export class VendorQuoteTermsPurchaseSettingsComponent implements OnInit {
     };
     this.bsModalRef = this.modalService.show(ModelVendorquotetermsPurchasesettingsComponent, Object.assign({initialState}, { class: 'modal-lg' }));
   }
-  DeleteContactInfo() {
+  DeleteVendorQuoteTerms() {
     const initialState = {
       Text: 'Vendor Quote Terms'
     };

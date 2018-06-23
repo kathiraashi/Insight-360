@@ -6,16 +6,17 @@
     </div>
     <div class="Model_Body">
       <div class="row">
-        <div class="col-sm-4 Form_Input">
-            Income type:<br>
+        <div class="col-sm-6 Form_Input">
+            <label>Income type:</label>
             <input type="text">
         </div>
      </div>
-      <div class="Model_Footer">
-        <span class="Submit_Btn" > Submit </span>
     </div>
+    <div class="Model_Footer">
+        <button mat-raised-button color="primary" > Submit </button>
+     </div>
     </div>
-  </div>
+
   <div class="Modal_Content" *ngIf=" Type && Type === 'View'">
     <div class="Modal_Header">
        <p>View  Income type</p>

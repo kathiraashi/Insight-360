@@ -32,7 +32,7 @@ export class LeaveTypeHrmsSettingsComponent implements OnInit {
     };
     this.bsModalRef = this.modalService.show(ModelLeavetypeHrmssettingsComponent, Object.assign({initialState}, { class: 'modal-lg' }));
   }
-  DeleteContactInfo() {
+  DeleteLeaveType() {
     const initialState = {
       Text: 'Leave Type'
     };

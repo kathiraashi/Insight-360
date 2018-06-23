@@ -29,7 +29,7 @@ export class ActivityPriorityTypeCrmSettingsComponent implements OnInit {
     };
     this.bsModalRef = this.modalService.show(ModelActivitypriorityCrmsettingsComponent, Object.assign({initialState}, { class: 'modal-lg' }));
   }
-  DeleteContactInfo() {
+  DeleteActivitypriority() {
     const initialState = {
       Text: 'Activity Priority'
     };

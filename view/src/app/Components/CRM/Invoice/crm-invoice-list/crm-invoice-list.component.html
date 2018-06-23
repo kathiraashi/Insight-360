@@ -2,28 +2,31 @@
 <div class="Main_Section">
 <div class="Page_Section">
       <div class="container-fluid">
-            <div class="page-identity" style="display:flex;width:100%;">
-                  <div  class="page-name">
-                    <h5 ></h5>
-                  </div>
-                  <div  class="page-track" style="width:47%">
-                    <ul>
-                      <li > Invoice</li>
-                    </ul>
-                  </div>
-                </div>
-         <div class="row">
-            <div class="col-sm-3">
-               <span class="Create_Button"   [routerLink]="['/crm_invoice_create']">+ Create</span>
-            </div>
-            <div class="col-sm-4"></div>
-            <div class="col-sm-5">
-               <div class="Search_Section">
-                  <input type="text" placeholder="Search.." name="search">
-                  <i class="material-icons">search</i>
+          <div class="Page_Identity">
+              <div class="Page_Name">
+                 <h5>Invoice</h5>
+              </div>
+              <div class="Page_Track">
+                 <ul >
+                   <li class="HeaderName">CRM</li>
+                   <li class="arrow">>></li>
+                   <li class="LinkName">Invoice</li>
+                   <li class="arrow">>></li>
+                   <li>Invoice List</li>
+                 </ul>
+              </div>
+           </div>
+           <div class="row header_part">
+               <div class="col-sm-6">
+                 <button class="Create_Button" mat-raised-button [routerLink]="['/crm_invoice_create']"> + Create </button>
                </div>
-            </div>
-         </div>
+               <div class="col-sm-6">
+                 <div class="Search_Section">
+                   <input type="text" placeholder="Search.." name="search">
+                   <i class="material-icons">search</i>
+                 </div>
+               </div>
+             </div>
         <div class="Table_Section">
             <table>
                <thead>
@@ -43,36 +46,28 @@
                      <span class="S_no"> 1 </span>
                      </td>
                      <td>
-                     <span class="Name_Style">Invoice-ddeb9b10
-                        <h6 class="Name_Style1">Invoice Date : 12/07/2017</h6>
+                     <span class="Style_1">Invoice-ddeb9b10
+                        <h6 class="Style_1">Invoice Date : 12/07/2017</h6>
                      </span>
                      </td>
                      <td>
-                     <span class="Name_Style">SaleOrder-a1653d4d
-                        <h6 class="Name_Style1">Quote-a1653d4d</h6>
+                     <span class="Style_1">SaleOrder-a1653d4d
+                        <h6 class="Style_1">Quote-a1653d4d</h6>
                      </span>
                      </td>
                      <td>
-                     <span class="Name_Style">Customer Name
-                        <h6 class="Name_Style1">ganapathy, coimboture, Tamil Nadu</h6>
+                     <span class="Style_1">Customer Name
+                        <h6 class="Style_1">ganapathy, coimboture, Tamil Nadu</h6>
                      </span>
                      </td>
                      <td>
-                     <span class="Name_Style">Admin Name</span>
+                     <span class="Style_1">Admin Name</span>
                      </td>
                      <td>
-                     <span class="Name_Style">Rs.2500</span>
+                     <span class="Style_1">Rs.2500</span>
                      </td>
                      <td>
-                     <span class="Action_Section Bg_Danger">
-                        <i class="material-icons ">delete</i>
-                     </span>
-                     <span class="Action_Section Bg_Info">
-                        <i class="material-icons">edit</i>
-                     </span>
-                     <span class="Action_Section Bg_Success">
-                        <i class="material-icons"> remove_red_eye </i>
-                     </span>
+                           <button class="Action_Button">Action</button>
                      </td>
                   </tr>
                   <tr>
@@ -80,36 +75,28 @@
                         <span class="S_no"> 2 </span>
                         </td>
                      <td>
-                        <span class="Name_Style"> Invoice-aab227b7
-                           <h6 class="Name_Style1">Invoice Date : 12/07/2017</h6>
+                        <span class="Style_1"> Invoice-aab227b7
+                           <h6 class="Style_1">Invoice Date : 12/07/2017</h6>
                         </span>
                      </td>
                      <td>
-                        <span class="Name_Style">SaleOrder-a1653d4d
-                           <h6 class="Name_Style1">Quote-a1653d4d</h6>
+                        <span class="Style_1">SaleOrder-a1653d4d
+                           <h6 class="Style_1">Quote-a1653d4d</h6>
                         </span>
                      </td>
                      <td>
-                        <span class="Name_Style">Customer Name
-                           <h6 class="Name_Style1">ganapathy, coimboture, Tamil Nadu</h6>
+                        <span class="Style_1">Customer Name
+                           <h6 class="Style_1">ganapathy, coimboture, Tamil Nadu</h6>
                         </span>
                      </td>
                      <td>
-                        <span class="Name_Style">Admin Name</span>
+                        <span class="Style_1">Admin Name</span>
                         </td>
                         <td>
-                        <span class="Name_Style">Rs.2500</span>
+                        <span class="Style_1">Rs.2500</span>
                      </td>
                      <td>
-                        <span class="Action_Section Bg_Danger">
-                           <i class="material-icons">delete</i>
-                        </span>
-                        <span class="Action_Section Bg_Info">
-                           <i class="material-icons">edit</i>
-                        </span>
-                        <span class="Action_Section Bg_Success">
-                           <i class="material-icons"> remove_red_eye </i>
-                        </span>
+                           <button class="Action_Button">Action</button>
                      </td>
                   </tr>
                      <tr>
@@ -117,36 +104,28 @@
                         <span class="S_no"> 3 </span>
                      </td>
                      <td>
-                        <span class="Name_Style">Invoice-ec229a92
-                           <h6 class="Name_Style1">Invoice Date : 12/07/2017</h6>
+                        <span class="Style_1">Invoice-ec229a92
+                           <h6 class="Style_1">Invoice Date : 12/07/2017</h6>
                         </span>
                      </td>
                      <td>
-                        <span class="Name_Style">SaleOrder-a1653d4d
-                           <h6 class="Name_Style1">Quote-a1653d4d</h6>
+                        <span class="Style_1">SaleOrder-a1653d4d
+                           <h6 class="Style_1">Quote-a1653d4d</h6>
                         </span>
                      </td>
                      <td>
-                        <span class="Name_Style">Customer Name
-                           <h6 class="Name_Style1">ganapathy, coimboture, Tamil Nadu</h6>
+                        <span class="Style_1">Customer Name
+                           <h6 class="Style_1">ganapathy, coimboture, Tamil Nadu</h6>
                         </span>
                      </td>
                      <td>
-                        <span class="Name_Style">Admin Name</span>
+                        <span class="Style_1">Admin Name</span>
                      </td>
                      <td>
-                        <span class="Name_Style">Rs.2500</span>
+                        <span class="Style_1">Rs.2500</span>
                      </td>
                      <td>
-                        <span class="Action_Section Bg_Danger">
-                           <i class="material-icons">delete</i>
-                        </span>
-                        <span class="Action_Section Bg_Info">
-                           <i class="material-icons">edit</i>
-                        </span>
-                        <span class="Action_Section Bg_Success">
-                           <i class="material-icons"> remove_red_eye </i>
-                        </span>
+                           <button class="Action_Button">Action</button>
                      </td>
                   </tr>
                   <tr>
@@ -154,36 +133,28 @@
                         <span class="S_no"> 4 </span>
                      </td>
                      <td>
-                        <span class="Name_Style">Invoice-7d2d22b0
-                           <h6 class="Name_Style1">Invoice Date : 12/07/2017</h6>
+                        <span class="Style_1">Invoice-7d2d22b0
+                           <h6 class="Style_1">Invoice Date : 12/07/2017</h6>
                         </span>
                      </td>
                      <td>
-                        <span class="Name_Style">SaleOrder-a1653d4d
-                           <h6 class="Name_Style1">Quote-a1653d4d</h6>
+                        <span class="Style_1">SaleOrder-a1653d4d
+                           <h6 class="Style_1">Quote-a1653d4d</h6>
                         </span>
                      </td>
                      <td>
-                        <span class="Name_Style">Customer Name
-                           <h6 class="Name_Style1">ganapathy, coimboture, Tamil Nadu</h6>
+                        <span class="Style_1">Customer Name
+                           <h6 class="Style_1">ganapathy, coimboture, Tamil Nadu</h6>
                         </span>
                      </td>
                      <td>
-                        <span class="Name_Style">Admin Name</span>
+                        <span class="Style_1">Admin Name</span>
                      </td>
                      <td>
-                        <span class="Name_Style">Rs.2500</span>
+                        <span class="Style_1">Rs.2500</span>
                      </td>
                      <td>
-                        <span class="Action_Section Bg_Danger">
-                           <i class="material-icons">delete</i>
-                        </span>
-                        <span class="Action_Section Bg_Info">
-                           <i class="material-icons">edit</i>
-                        </span>
-                        <span class="Action_Section Bg_Success">
-                           <i class="material-icons"> remove_red_eye </i>
-                        </span>
+                           <button class="Action_Button">Action</button>
                      </td>
                   </tr>
                   <tr>
@@ -191,36 +162,28 @@
                         <span class="S_no"> 5 </span>
                      </td>
                      <td>
-                        <span class="Name_Style">Invoice-ddeb9b10
-                           <h6 class="Name_Style1">Invoice Date : 12/07/2017</h6>
+                        <span class="Style_1">Invoice-ddeb9b10
+                           <h6 class="Style_1">Invoice Date : 12/07/2017</h6>
                         </span>
                      </td>
                      <td>
-                        <span class="Name_Style">SaleOrder-a1653d4d
-                           <h6 class="Name_Style1">Quote-a1653d4d</h6>
+                        <span class="Style_1">SaleOrder-a1653d4d
+                           <h6 class="Style_1">Quote-a1653d4d</h6>
                         </span>
                      </td>
                      <td>
-                        <span class="Name_Style">Customer Name
-                           <h6 class="Name_Style1">ganapathy, coimboture, Tamil Nadu</h6>
+                        <span class="Style_1">Customer Name
+                           <h6 class="Style_1">ganapathy, coimboture, Tamil Nadu</h6>
                         </span>
                      </td>
                      <td>
-                        <span class="Name_Style">Admin Name</span>
+                        <span class="Style_1">Admin Name</span>
                      </td>
                      <td>
-                        <span class="Name_Style">Rs.2500</span>
+                        <span class="Style_1">Rs.2500</span>
                      </td>
                      <td>
-                        <span class="Action_Section Bg_Danger">
-                           <i class="material-icons">delete</i>
-                        </span>
-                        <span class="Action_Section Bg_Info">
-                           <i class="material-icons">edit</i>
-                        </span>
-                        <span class="Action_Section Bg_Success">
-                           <i class="material-icons"> remove_red_eye </i>
-                        </span>
+                           <button class="Action_Button">Action</button>
                      </td>
                   </tr> 
                   <tr>
@@ -228,36 +191,28 @@
                         <span class="S_no"> 6 </span>
                      </td>
                      <td>
-                        <span class="Name_Style">Invoice-ddeb9b10
-                           <h6 class="Name_Style1">Invoice Date : 12/07/2017</h6>
+                        <span class="Style_1">Invoice-ddeb9b10
+                           <h6 class="Style_1">Invoice Date : 12/07/2017</h6>
                         </span>
                      </td>
                      <td>
-                        <span class="Name_Style">SaleOrder-a1653d4d
-                           <h6 class="Name_Style1">Quote-a1653d4d</h6>
+                        <span class="Style_1">SaleOrder-a1653d4d
+                           <h6 class="Style_1">Quote-a1653d4d</h6>
                         </span>
                      </td>
                      <td>
-                        <span class="Name_Style">Customer Name
-                           <h6 class="Name_Style1">ganapathy, coimboture, Tamil Nadu</h6>
+                        <span class="Style_1">Customer Name
+                           <h6 class="Style_1">ganapathy, coimboture, Tamil Nadu</h6>
                         </span>
                      </td>
                      <td>
-                        <span class="Name_Style">Admin Name</span>
+                        <span class="Style_1">Admin Name</span>
                      </td>
                      <td>
-                        <span class="Name_Style">Rs.2500</span>
+                        <span class="Style_1">Rs.2500</span>
                      </td>
                      <td>
-                        <span class="Action_Section Bg_Danger">
-                           <i class="material-icons">delete</i>
-                        </span>
-                        <span class="Action_Section Bg_Info">
-                           <i class="material-icons">edit</i>
-                        </span>
-                        <span class="Action_Section Bg_Success">
-                           <i class="material-icons"> remove_red_eye </i>
-                        </span>
+                           <button class="Action_Button">Action</button>
                      </td>
                   </tr>
                   <tr>
@@ -265,36 +220,28 @@
                         <span class="S_no"> 7 </span>
                      </td>
                      <td>
-                        <span class="Name_Style"> Invoice-a1653d4d
-                           <h6 class="Name_Style1">Invoice Date : 12/07/2017</h6>
+                        <span class="Style_1"> Invoice-a1653d4d
+                           <h6 class="Style_1">Invoice Date : 12/07/2017</h6>
                         </span>
                      </td>
                      <td>
-                     <span class="Name_Style">SaleOrder-a1653d4d
-                        <h6 class="Name_Style1">Quote-a1653d4d</h6>
+                     <span class="Style_1">SaleOrder-a1653d4d
+                        <h6 class="Style_1">Quote-a1653d4d</h6>
                      </span>
                      </td>
                      <td>
-                     <span class="Name_Style">Customer Name
-                        <h6 class="Name_Style1">ganapathy, coimboture, Tamil Nadu</h6>
+                     <span class="Style_1">Customer Name
+                        <h6 class="Style_1">ganapathy, coimboture, Tamil Nadu</h6>
                      </span>
                      </td>
                      <td>
-                     <span class="Name_Style">Admin Name</span>
+                     <span class="Style_1">Admin Name</span>
                      </td>
                      <td>
-                        <span class="Name_Style">Rs.2500</span>
+                        <span class="Style_1">Rs.2500</span>
                      </td>
                      <td>
-                        <span class="Action_Section Bg_Danger">
-                           <i class="material-icons">delete</i>
-                        </span>
-                        <span class="Action_Section Bg_Info">
-                           <i class="material-icons">edit</i>
-                        </span>
-                        <span class="Action_Section Bg_Success">
-                           <i class="material-icons"> remove_red_eye </i>
-                        </span>
+                           <button class="Action_Button">Action</button>
                      </td>
                   </tr> 
                </tbody>

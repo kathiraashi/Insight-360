@@ -1,7 +1,7 @@
 
-<div class="row">
+<div class="row header_part">
    <div class="col-sm-6">
-      <span class="Create_Button" (click)=" CreateLeaveType()">Add New</span>
+    <button class="Create_Button" mat-raised-button (click)="CreateLeaveType()"> + Create </button>
    </div>
    <div class="col-sm-6">
       <div class="Search_Section">
@@ -10,7 +10,6 @@
       </div>
    </div>
 </div>
-<br>
 <div class="Table_Section">
    <table >
       <thead>
@@ -28,24 +27,24 @@
                   <span class="S_no"> 1 </span>
                </td>
                <td>
-                  <span class="Name_Style">Type-11</span>
+                  <span class="Style_1">Type-11</span>
                </td>
                <td>
-                  <span class="Name_Style">admin</span>
+                  <span class="Style_1">admin</span>
                </td>
                <td>
-                  <span class="Name_Style">28-9-2008</span>
+                  <span class="Style_1">28-9-2008</span>
                </td>
                <td>
-                  <span class="Action_Section Bg_Danger">
-                     <i class="material-icons" (click)="DeleteContactInfo()">delete</i>
-                  </span>
-                  <span class="Action_Section Bg_Info">
-                     <i class="material-icons" (click)=" CreateLeaveType()">edit</i>
-                  </span>
-                  <span class="Action_Section Bg_Success">
-                     <i class="material-icons" (click)=" ViewLeaveType()"> remove_red_eye </i>
-                  </span>
+                  <button (click)="ViewLeaveType()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                     <i class="material-icons">zoom_in</i>
+                  </button>
+                  <button  (click)="CreateLeaveType()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                     <i class="material-icons">edit</i>
+                  </button>
+                  <button (click)=" DeleteLeaveType()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                     <i class="material-icons">delete_forever</i>
+                  </button>
                </td>
             </tr>
             <tr>
@@ -53,49 +52,49 @@
                    <span class="S_no"> 2 </span>
                 </td>
                 <td>
-                   <span class="Name_Style">Type-11</span>
+                   <span class="Style_1">Type-11</span>
                 </td>
                 <td>
-                   <span class="Name_Style">admin</span>
+                   <span class="Style_1">admin</span>
                 </td>
                 <td>
-                   <span class="Name_Style">28-9-2008</span>
+                   <span class="Style_1">28-9-2008</span>
                 </td>
                 <td>
-                   <span class="Action_Section Bg_Danger">
-                      <i class="material-icons" (click)="DeleteContactInfo()">delete</i>
-                   </span>
-                   <span class="Action_Section Bg_Info">
-                      <i class="material-icons" (click)=" CreateLeaveType()">edit</i>
-                   </span>
-                   <span class="Action_Section Bg_Success">
-                      <i class="material-icons" (click)=" ViewLeaveType()"> remove_red_eye </i>
-                   </span>
-                </td>
+                  <button (click)="ViewLeaveType()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                     <i class="material-icons">zoom_in</i>
+                  </button>
+                  <button  (click)="CreateLeaveType()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                     <i class="material-icons">edit</i>
+                  </button>
+                  <button (click)=" DeleteLeaveType()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                     <i class="material-icons">delete_forever</i>
+                  </button>
+               </td>
              </tr>
              <tr>
                <td>
                   <span class="S_no"> 3 </span>
                </td>
                <td>
-                  <span class="Name_Style">Type-11</span>
+                  <span class="Style_1">Type-11</span>
                </td>
                <td>
-                  <span class="Name_Style">admin</span>
+                  <span class="Style_1">admin</span>
                </td>
                <td>
-                  <span class="Name_Style">28-9-2008</span>
+                  <span class="Style_1">28-9-2008</span>
                </td>
                <td>
-                  <span class="Action_Section Bg_Danger">
-                     <i class="material-icons" (click)="DeleteContactInfo()">delete</i>
-                  </span>
-                  <span class="Action_Section Bg_Info">
-                     <i class="material-icons" (click)=" CreateLeaveType()">edit</i>
-                  </span>
-                  <span class="Action_Section Bg_Success">
-                     <i class="material-icons" (click)=" ViewLeaveType()"> remove_red_eye </i>
-                  </span>
+                  <button (click)="ViewLeaveType()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                     <i class="material-icons">zoom_in</i>
+                  </button>
+                  <button  (click)="CreateLeaveType()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                     <i class="material-icons">edit</i>
+                  </button>
+                  <button (click)=" DeleteLeaveType()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                     <i class="material-icons">delete_forever</i>
+                  </button>
                </td>
                </tr>
                 <tr>
@@ -103,24 +102,24 @@
                      <span class="S_no"> 4 </span>
                   </td>
                   <td>
-                     <span class="Name_Style">Type-11</span>
+                     <span class="Style_1">Type-11</span>
                   </td>
                   <td>
-                     <span class="Name_Style">admin</span>
+                     <span class="Style_1">admin</span>
                   </td>
                   <td>
-                     <span class="Name_Style">28-9-2008</span>
+                     <span class="Style_1">28-9-2008</span>
                   </td>
                   <td>
-                     <span class="Action_Section Bg_Danger">
-                        <i class="material-icons" (click)="DeleteContactInfo()">delete</i>
-                     </span>
-                     <span class="Action_Section Bg_Info">
-                        <i class="material-icons" (click)=" CreateLeaveType()">edit</i>
-                     </span>
-                     <span class="Action_Section Bg_Success">
-                        <i class="material-icons" (click)=" ViewLeaveType()"> remove_red_eye </i>
-                     </span>
+                     <button (click)="ViewLeaveType()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                        <i class="material-icons">zoom_in</i>
+                     </button>
+                     <button  (click)="CreateLeaveType()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                        <i class="material-icons">edit</i>
+                     </button>
+                     <button (click)=" DeleteLeaveType()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                        <i class="material-icons">delete_forever</i>
+                     </button>
                   </td>
                </tr>
          </tbody>

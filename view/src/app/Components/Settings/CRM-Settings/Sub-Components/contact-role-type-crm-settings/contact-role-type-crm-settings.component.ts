@@ -31,7 +31,7 @@ export class ContactRoleTypeCrmSettingsComponent implements OnInit {
     };
     this.bsModalRef = this.modalService.show(ModelContactroleCrmsettingsComponent, Object.assign({initialState}, { class: 'modal-lg' }));
   }
-  DeleteContactInfo() {
+  DeleteContactRole() {
     const initialState = {
       Text: 'Contact Role'
     };

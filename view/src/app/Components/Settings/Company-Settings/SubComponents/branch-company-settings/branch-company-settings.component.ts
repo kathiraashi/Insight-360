@@ -32,7 +32,7 @@ export class BranchCompanySettingsComponent implements OnInit {
     };
     this.bsModalRef = this.modalService.show(ModelBranchCompanysettingsComponent, Object.assign({initialState}, { class: 'modal-lg' }));
   }
-  DeleteContactInfo() {
+  DeleteBranch() {
     const initialState = {
       Text: 'Branch company settings'
     };

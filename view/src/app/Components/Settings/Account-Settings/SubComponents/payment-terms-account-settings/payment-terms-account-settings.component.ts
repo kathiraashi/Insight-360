@@ -34,7 +34,7 @@ export class PaymentTermsAccountSettingsComponent implements OnInit {
     };
     this.bsModalRef = this.modalService.show(ModelPaymenttermsAccountsettingsComponent, Object.assign({initialState}, { class: 'modal-lg' }));
   }
-  DeleteContactInfo() {
+  DeletePaymentTerm() {
     const initialState = {
       Text: 'Payment Terms'
     };

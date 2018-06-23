@@ -30,7 +30,7 @@ export class BankAccountSettingsComponent implements OnInit {
     };
     this.bsModalRef = this.modalService.show(ModelBankAccountsettingsComponent, Object.assign({initialState}, { class: 'modal-lg' }));
   }
-  DeleteContactInfo() {
+  DeleteBank() {
     const initialState = {
       Text: 'Bank Account Settings'
     };

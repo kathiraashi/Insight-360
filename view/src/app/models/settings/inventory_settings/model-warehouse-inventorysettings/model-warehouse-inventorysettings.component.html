@@ -6,24 +6,25 @@
   </div>
   <div class="Model_Body">
     <div class="row">
-      <div class="col-sm-4 Form_Input">
-        WareHouse Name:<br>
+      <div class="col-sm-6 Form_Input">
+        <label>WareHouse Name:</label>
           <input type="text">
       </div>
-      <div class="col-sm-4 Form_Input">
-        WareHouse Code:<br>
+      <div class="col-sm-6 Form_Input">
+        <label>WareHouse Code:</label>
           <input type="text">
       </div>
-      <div class="col-sm-4 Form_Input">
-        Address:<br>
+      <div class="col-sm-6 Form_Input">
+        <label>Address:</label>
           <input type="text">
       </div>
    </div>
-    <div class="Model_Footer">
-      <span class="Submit_Btn" > Submit </span>
   </div>
+  <div class="Model_Footer">
+    <button mat-raised-button color="primary" > Submit </button>
+ </div>
   </div>
-</div>
+
 <div class="Modal_Content" *ngIf=" Type && Type === 'View'">
   <div class="Modal_Header">
      <p>View  WareHouse</p>

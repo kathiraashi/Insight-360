@@ -31,7 +31,7 @@ export class WareHouseInventorySettingsComponent implements OnInit {
     };
     this.bsModalRef = this.modalService.show(ModelWarehouseInventorysettingsComponent, Object.assign({initialState}, { class: 'modal-lg' }));
   }
-  DeleteContactInfo() {
+  DeleteWareHouse() {
     const initialState = {
       Text: 'WareHouse Inventory'
     };

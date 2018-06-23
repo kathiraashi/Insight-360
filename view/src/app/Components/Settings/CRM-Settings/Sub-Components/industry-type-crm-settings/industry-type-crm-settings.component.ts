@@ -32,7 +32,7 @@ export class IndustryTypeCrmSettingsComponent implements OnInit {
     };
     this.bsModalRef = this.modalService.show(ModelIndustrytypeCrmsettingsComponent, Object.assign({initialState}, { class: 'modal-lg' }));
   }
-  DeleteContactInfo() {
+  DeleteIndustryType() {
     const initialState = {
       Text: 'Industry Type'
     };

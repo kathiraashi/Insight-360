@@ -30,7 +30,7 @@ export class ActivityTypeCrmSettingsComponent implements OnInit {
     };
     this.bsModalRef = this.modalService.show(ModelActivitytypeCrmsettingsComponent, Object.assign({initialState}, { class: 'modal-lg' }));
   }
-  DeleteContactInfo() {
+  DeleteActivityType() {
     const initialState = {
       Text: 'Activity Type'
     };

@@ -31,7 +31,7 @@ export class PTInfoCompanySettingsComponent implements OnInit {
     };
     this.bsModalRef = this.modalService.show(ModelPtinfoCompanysettingsComponent, Object.assign({initialState}, { class: 'modal-lg' }));
   }
-  DeleteContactInfo() {
+  DeletePtInfo() {
     const initialState = {
       Text: 'Pt Info'
     };

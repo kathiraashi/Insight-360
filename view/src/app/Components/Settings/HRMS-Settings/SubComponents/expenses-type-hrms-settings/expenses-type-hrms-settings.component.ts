@@ -33,7 +33,7 @@ export class ExpensesTypeHrmsSettingsComponent implements OnInit {
     };
     this.bsModalRef = this.modalService.show(ModelExpensestypeHrmssettingsComponent, Object.assign({initialState}, { class: 'modal-lg' }));
   }
-  DeleteContactInfo() {
+  DeleteExpensesType() {
     const initialState = {
       Text: 'Expenses Type'
     };

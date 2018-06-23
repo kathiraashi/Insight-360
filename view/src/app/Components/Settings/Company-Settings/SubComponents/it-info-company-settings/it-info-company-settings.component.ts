@@ -32,7 +32,7 @@ export class ItInfoCompanySettingsComponent implements OnInit {
     };
     this.bsModalRef = this.modalService.show(ModelItinfoCompanysettingsComponent, Object.assign({initialState}, { class: 'modal-lg' }));
   }
-  DeleteContactInfo() {
+  DeleteItInfo() {
     const initialState = {
       Text: 'It Info'
     };

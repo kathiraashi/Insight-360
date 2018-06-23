@@ -32,7 +32,7 @@ export class DepartmentsCompanySettingsComponent implements OnInit {
     };
    this.bsModalRef = this.modalService.show(ModelDepartmentsCompanysettingsComponent, Object.assign({initialState}, { class: 'modal-lg' }));
   }
-  DeleteContactInfo() {
+  DeleteDepartmentInfo() {
     const initialState = {
       Text: 'Department Company Settings'
     };

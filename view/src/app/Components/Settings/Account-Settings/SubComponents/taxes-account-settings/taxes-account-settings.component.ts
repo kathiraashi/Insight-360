@@ -32,7 +32,7 @@ export class TaxesAccountSettingsComponent implements OnInit {
     };
     this.bsModalRef = this.modalService.show(ModelTaxesAccountsettingsComponent, Object.assign({initialState}, { class: 'modal-lg' }));
   }
-  DeleteContactInfo() {
+  DeleteTaxes() {
     const initialState = {
       Text: 'Taxes Account Settings'
     };

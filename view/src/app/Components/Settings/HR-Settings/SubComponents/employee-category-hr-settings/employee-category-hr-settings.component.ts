@@ -31,7 +31,7 @@ export class EmployeeCategoryHrSettingsComponent implements OnInit {
     };
     this.bsModalRef = this.modalService.show(ModelEmployeecategoryHrsettingsComponent, Object.assign({initialState}, { class: 'modal-lg' }));
   }
-  DeleteContactInfo() {
+  DeleteEmployeeCategory() {
     const initialState = {
       Text: 'Employee Category'
     };

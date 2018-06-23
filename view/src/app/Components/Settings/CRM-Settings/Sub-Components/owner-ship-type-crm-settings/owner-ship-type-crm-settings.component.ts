@@ -32,7 +32,7 @@ export class OwnerShipTypeCrmSettingsComponent implements OnInit {
     };
     this.bsModalRef = this.modalService.show(ModelOwnershipytypeCrmsettingsComponent, Object.assign({initialState}, { class: 'modal-lg' }));
   }
-  DeleteContactInfo() {
+  DeleteOwnershipType() {
     const initialState = {
       Text: 'Ownership Type'
     };

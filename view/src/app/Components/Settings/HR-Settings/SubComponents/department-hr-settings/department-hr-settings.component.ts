@@ -31,7 +31,7 @@ export class DepartmentHrSettingsComponent implements OnInit {
     };
     this.bsModalRef = this.modalService.show(ModelDepartmentHrsettingsComponent, Object.assign({initialState}, { class: 'modal-lg' }));
   }
-  DeleteContactInfo() {
+  DeleteDepartment() {
     const initialState = {
       Text: 'Department Hr Settings'
     };

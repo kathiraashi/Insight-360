@@ -2,28 +2,29 @@
 <div class="Main_Section">
   <div class="Page_Section">
       <div class="container-fluid">
-        <div class="page-identity" style="display:flex;width:100%;">
-                <div  class="page-name">
-                  <h5 ></h5>
-                </div>
-                <div  class="page-track" style="width:47%">
-                  <ul>
-                    <li> Customers</li>
-                  </ul>
-                </div>
+          <div class="Page_Identity">
+              <div class="Page_Name">
+                 <h5>Customers</h5>
               </div>
-      <div class="row">
-            <div class="col-sm-3">
-               <span class="Create_Button"    [routerLink]="['/crm_customers_create']">+ Create</span>
-            </div>
-            <div class="col-sm-4"></div>
-            <div class="col-sm-5">
-               <div class="Search_Section">
+              <div class="Page_Track">
+                 <ul >
+                   <li class="HeaderName">CRM</li>
+                   <li class="arrow">>></li>
+                   <li>Customers</li>
+                 </ul>
+              </div>
+           </div>
+           <div class="row header_part">
+              <div class="col-sm-6">
+                <button class="Create_Button" mat-raised-button [routerLink]="['/crm_customers_create']"> + Create </button>
+              </div>
+              <div class="col-sm-6">
+                <div class="Search_Section">
                   <input type="text" placeholder="Search.." name="search">
                   <i class="material-icons">search</i>
-               </div>
+                </div>
+              </div>
             </div>
-         </div>
          <div class="row Content_Style">
             <div class="col-sm-3 Page_Content" >
                <div class="Sub_Content"  [routerLink]="['/main_crm_customers_view']">

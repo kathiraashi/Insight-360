@@ -2,29 +2,31 @@
 <div class="Main_Section">
   <div class="Page_Section">
       <div class="container-fluid">
-          <div class="page-identity" style="display:flex;width:100%;">
-              <div  class="page-name">
-                <h5 ></h5>
+          <div class="Page_Identity">
+              <div class="Page_Name">
+                 <h5>Quotations</h5>
               </div>
-              <div  class="page-track" style="width:47%">
-                <ul>
-                  <li> Quotation</li>
-                </ul>
+              <div class="Page_Track">
+                 <ul >
+                   <li class="HeaderName">CRM</li>
+                   <li class="arrow">>></li>
+                   <li class= "LinkName">Quotations</li>
+                   <li class="arrow">>></li>
+                   <li >Quotation List</li>
+                 </ul>
               </div>
-            </div>
-         <div class="row">
-            <div class="col-sm-3">
-               <span class="Create_Button"  [routerLink]="['/crm_quotations_create']">+ Create</span>
-            </div>
-            <div class="col-sm-4"></div>
-            <div class="col-sm-5">
-               <div class="Search_Section">
-                  <input type="text" placeholder="Search.." name="search">
-                  <i class="material-icons">search</i>
+           </div>
+           <div class="row header_part">
+               <div class="col-sm-6">
+                 <button class="Create_Button" mat-raised-button [routerLink]="['/crm_quotations_create']"> + Create </button>
                </div>
-            </div>
-         </div>
-         <br>
+               <div class="col-sm-6">
+                 <div class="Search_Section">
+                   <input type="text" placeholder="Search.." name="search">
+                   <i class="material-icons">search</i>
+                 </div>
+               </div>
+             </div>
          <div class="Table_Section">
             <table>
                <thead>
@@ -44,259 +46,203 @@
                         <span class="S_no"> 1 </span>
                      </td>
                      <td>
-                        <span class="Name_Style">Quote-a1653d4d
-                           <h6 class="Name_Style1">Valid Till : 12/01/1998</h6>
+                        <span class="Style_1">Quote-a1653d4d
+                           <h6 class="Style_1">Valid Till : 12/01/1998</h6>
                         </span>
                      </td>
                      <td>
-                        <span class="Name_Style">Customer Name
-                           <h6 class="Name_Style1">ganapathy, coimboture, Tamil Nadu</h6>
+                        <span class="Style_1">Customer Name
+                           <h6 class="Style_1">ganapathy, coimboture, Tamil Nadu</h6>
                         </span>
                      </td>
                      <td>
-                        <span class="Name_Style">Contact Name
-                           <h6 class="Name_Style1">ContactPerson@gmail.com</h6>
+                        <span class="Style_1">Contact Name
+                           <h6 class="Style_1">ContactPerson@gmail.com</h6>
                         </span>
                      </td>
                      <td>
-                        <span class="Name_Style">Admin Name</span>
+                        <span class="Style_1">Admin Name</span>
                      </td>
                      <td>
-                        <span class="Name_Style">White</span>
+                        <span class="Style_1">White</span>
                      </td>
                      <td>
-                        <span class="Action_Section Bg_Danger">
-                           <i class="material-icons ">delete</i>
-                        </span>
-                        <span class="Action_Section Bg_Info">
-                           <i class="material-icons">edit</i>
-                        </span>
-                        <span class="Action_Section Bg_Success">
-                           <i class="material-icons"> remove_red_eye </i>
-                        </span>
-                     </td>
+                           <button class="Action_Button">Action</button>
+                        </td>
                   </tr>
                   <tr>
                      <td>
                         <span class="S_no"> 2 </span>
                      </td>
                      <td>
-                        <span class="Name_Style">Quote-a1653d4d
-                           <h6 class="Name_Style1">Valid Till : 12/01/1998</h6>
+                        <span class="Style_1">Quote-a1653d4d
+                           <h6 class="Style_11">Valid Till : 12/01/1998</h6>
                         </span>
                      </td>
                      <td>
-                        <span class="Name_Style">Customer Name
-                        <h6 class="Name_Style1">ganapathy, coimboture, Tamil Nadu</h6>
+                        <span class="Style_1">Customer Name
+                        <h6 class="Style_11">ganapathy, coimboture, Tamil Nadu</h6>
                         </span>
                      </td>
                      <td>
-                        <span class="Name_Style">Contact Name
-                           <h6 class="Name_Style1">ContactPerson@gmail.com</h6>
+                        <span class="Style_1">Contact Name
+                           <h6 class="Style_11">ContactPerson@gmail.com</h6>
                         </span>
                      </td>
                      <td>
-                        <span class="Name_Style">Admin Name</span>
+                        <span class="Style_1">Admin Name</span>
                      </td>
                      <td>
-                        <span class="Name_Style">green</span>
+                        <span class="Style_1">green</span>
                      </td>
                      <td>
-                        <span class="Action_Section Bg_Danger">
-                           <i class="material-icons">delete</i>
-                        </span>
-                        <span class="Action_Section Bg_Info">
-                           <i class="material-icons">edit</i>
-                        </span>
-                        <span class="Action_Section Bg_Success">
-                           <i class="material-icons"> remove_red_eye </i>
-                        </span>
-                     </td>
+                           <button class="Action_Button">Action</button>
+                        </td>
                   </tr>
                   <tr>
                      <td>
                         <span class="S_no"> 3 </span>
                      </td>
                      <td>
-                        <span class="Name_Style">Quote-a1653d4d
-                           <h6 class="Name_Style1">Valid Till : 12/01/1998</h6>
+                        <span class="Style_1">Quote-a1653d4d
+                           <h6 class="Style_11">Valid Till : 12/01/1998</h6>
                         </span>
                      </td>
                      <td>
-                        <span class="Name_Style">Customer Name
-                           <h6 class="Name_Style1">ganapathy, coimboture, Tamil Nadu</h6>
+                        <span class="Style_1">Customer Name
+                           <h6 class="Style_11">ganapathy, coimboture, Tamil Nadu</h6>
                         </span>
                      </td>
                      <td>
-                        <span class="Name_Style">Contact Name
-                           <h6 class="Name_Style1">ContactPerson@gmail.com</h6>
+                        <span class="Style_1">Contact Name
+                           <h6 class="Style_11">ContactPerson@gmail.com</h6>
                         </span>
                      </td>
                      <td>
-                        <span class="Name_Style">Admin Name</span>
+                        <span class="Style_1">Admin Name</span>
                      </td>
                      <td>
-                        <span class="Name_Style">red</span>
+                        <span class="Style_1">red</span>
                      </td>
                      <td>
-                        <span class="Action_Section Bg_Danger">
-                           <i class="material-icons">delete</i>
-                        </span>
-                        <span class="Action_Section Bg_Info">
-                           <i class="material-icons">edit</i>
-                        </span>
-                        <span class="Action_Section Bg_Success">
-                           <i class="material-icons"> remove_red_eye </i>
-                        </span>
-                     </td>
+                           <button class="Action_Button">Action</button>
+                        </td>
                   </tr>
                   <tr>
                      <td>
                         <span class="S_no"> 4 </span>
                      </td>
                      <td>
-                        <span class="Name_Style">Quote-a1653d4d
-                           <h6 class="Name_Style1">Valid Till : 12/01/1998</h6>
+                        <span class="Style_1">Quote-a1653d4d
+                           <h6 class="Style_1">Valid Till : 12/01/1998</h6>
                         </span>
                      </td>
                      <td>
-                        <span class="Name_Style">Customer Name
-                           <h6 class="Name_Style1">ganapathy, coimboture, Tamil Nadu</h6>
+                        <span class="Style_1">Customer Name
+                           <h6 class="Style_1">ganapathy, coimboture, Tamil Nadu</h6>
                         </span>
                      </td>
                      <td>
-                        <span class="Name_Style">Contact Name
-                           <h6 class="Name_Style1">ContactPerson@gmail.com</h6>
+                        <span class="Style_1">Contact Name
+                           <h6 class="Style_1">ContactPerson@gmail.com</h6>
                         </span>
                      </td>
                      <td>
-                        <span class="Name_Style">Admin Name</span>
+                        <span class="Style_1">Admin Name</span>
                      </td>
                      <td>
-                        <span class="Name_Style">green</span>
+                        <span class="Style_1">green</span>
                      </td>
                      <td>
-                        <span class="Action_Section Bg_Danger">
-                           <i class="material-icons">delete</i>
-                        </span>
-                        <span class="Action_Section Bg_Info">
-                           <i class="material-icons">edit</i>
-                        </span>
-                        <span class="Action_Section Bg_Success">
-                           <i class="material-icons"> remove_red_eye </i>
-                        </span>
-                     </td>
+                           <button class="Action_Button">Action</button>
+                        </td>
                   </tr>
                   <tr>
                      <td>
                         <span class="S_no"> 5 </span>
                      </td>
                      <td>
-                        <span class="Name_Style">Quote-a1653d4d
-                           <h6 class="Name_Style1">Valid Till : 12/01/1998</h6>
+                        <span class="Style_1">Quote-a1653d4d
+                           <h6 class="Style_1">Valid Till : 12/01/1998</h6>
                         </span>
                      </td>
                      <td>
-                        <span class="Name_Style">Customer Name
-                           <h6 class="Name_Style1">ganapathy, coimboture, Tamil Nadu</h6>
+                        <span class="Style_1">Customer Name
+                           <h6 class="Style_1">ganapathy, coimboture, Tamil Nadu</h6>
                         </span>
                      </td>
                      <td>
-                        <span class="Name_Style">Contact Name
-                           <h6 class="Name_Style1">ContactPerson@gmail.com</h6>
+                        <span class="Style_1">Contact Name
+                           <h6 class="Style_1">ContactPerson@gmail.com</h6>
                         </span>
                      </td>
                      <td>
-                        <span class="Name_Style">Admin Name</span>
+                        <span class="Style_1">Admin Name</span>
                      </td>
                      <td>
-                        <span class="Name_Style">red</span>
+                        <span class="Style_1">red</span>
                      </td>
                      <td>
-                        <span class="Action_Section Bg_Danger">
-                           <i class="material-icons">delete</i>
-                        </span>
-                        <span class="Action_Section Bg_Info">
-                           <i class="material-icons">edit</i>
-                        </span>
-                        <span class="Action_Section Bg_Success">
-                           <i class="material-icons"> remove_red_eye </i>
-                        </span>
-                     </td>
+                           <button class="Action_Button">Action</button>
+                        </td>
                   </tr>
                      <tr>
                         <td>
                            <span class="S_no"> 6 </span>
                         </td>
                         <td>
-                           <span class="Name_Style">Quote-a1653d4d
-                              <h6 class="Name_Style1">Valid Till : 12/01/1998</h6>
+                           <span class="Style_1">Quote-a1653d4d
+                              <h6 class="Style_1">Valid Till : 12/01/1998</h6>
                            </span>
                         </td>
                         <td>
-                           <span class="Name_Style">Customer Name
-                              <h6 class="Name_Style1">ganapathy, coimboture, Tamil Nadu</h6>
+                           <span class="Style_1">Customer Name
+                              <h6 class="Style_1">ganapathy, coimboture, Tamil Nadu</h6>
                            </span>
                         </td>
                         <td>
-                           <span class="Name_Style">Contact Name
-                              <h6 class="Name_Style1">ContactPerson@gmail.com</h6>
+                           <span class="Style_1">Contact Name
+                              <h6 class="Style_1">ContactPerson@gmail.com</h6>
                            </span>
                         </td>
                         <td>
-                           <span class="Name_Style">Admin Name</span>
+                           <span class="Style_1">Admin Name</span>
                         </td>
                         <td>
-                           <span class="Name_Style">blue</span>
+                           <span class="Style_1">blue</span>
                         </td>
                         <td>
-                           <span class="Action_Section Bg_Danger">
-                              <i class="material-icons">delete</i>
-                           </span>
-                           <span class="Action_Section Bg_Info">
-                              <i class="material-icons">edit</i>
-                           </span>
-                           <span class="Action_Section Bg_Success">
-                              <i class="material-icons"> remove_red_eye </i>
-                           </span>
-                        </td>
+                              <button class="Action_Button">Action</button>
+                           </td>
                      </tr>
                      <tr>
                         <td>
                            <span class="S_no"> 7 </span>
                         </td>
                         <td>
-                           <span class="Name_Style">Quote-a1653d4d
-                              <h6 class="Name_Style1">Valid Till : 12/01/1998</h6>
+                           <span class="Style_1">Quote-a1653d4d
+                              <h6 class="Style_1">Valid Till : 12/01/1998</h6>
                            </span>
                         </td>
                         <td>
-                           <span class="Name_Style">Customer Name
-                              <h6 class="Name_Style1">ganapathy, coimboture, Tamil Nadu</h6>
+                           <span class="Style_1">Customer Name
+                              <h6 class="Style_1">ganapathy, coimboture, Tamil Nadu</h6>
                            </span>
                         </td>
                         <td>
-                           <span class="Name_Style">Contact Name
-                              <h6 class="Name_Style1">ContactPerson@gmail.com</h6>
+                           <span class="Style_1">Contact Name
+                              <h6 class="Style_1">ContactPerson@gmail.com</h6>
                            </span>
                         </td>
                         <td>
-                           <span class="Name_Style">Admin Name</span>
+                           <span class="Style_1">Admin Name</span>
                         </td>
                         <td>
-                           <span class="Name_Style">green</span>
+                           <span class="Style_1">green</span>
                         </td>
                         <td>
-                           <span class="Action_Section Bg_Danger">
-                              <i class="material-icons">delete</i>
-                           </span>
-                           <span class="Action_Section Bg_Info">
-                              <i class="material-icons">edit</i>
-                           </span>
-                           <span class="Action_Section Bg_Success">
-                              <i class="material-icons"> remove_red_eye </i>
-                           </span>
-                        </td>
+                              <button class="Action_Button">Action</button>
+                           </td>
                      </tr>
                   </tbody>
                </table>

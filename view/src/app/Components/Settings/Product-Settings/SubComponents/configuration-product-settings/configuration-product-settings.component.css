@@ -9,7 +9,8 @@
     margin-left:5px;
 }
 .right_section{
-    border-top: 5px solid #49B660;
+    width:100%;
+   height:400px;
 }
 .container .container-content .content_gap{
     margin-top:20px;

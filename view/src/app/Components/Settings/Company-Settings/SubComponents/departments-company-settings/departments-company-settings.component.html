@@ -1,6 +1,6 @@
-<div class="row">
+<div class="row header_part">
   <div class="col-sm-6">
-    <span class="Create_Button" (click)="CreateDepartmentInfo()">Add new</span>
+   <button class="Create_Button" mat-raised-button (click)="CreateDepartmentInfo()"> + Create </button>
   </div>
   <div class="col-sm-6">
     <div class="Search_Section">
@@ -9,7 +9,6 @@
     </div>
   </div>
 </div>
-<br>
 <div class="Table_Section">
   <table>
     <thead>
@@ -19,7 +18,7 @@
         <th>Departments Head </th>
         <th>Created By</th>
         <th>Branch</th>
-        <th>Action</th>
+        <th style="width:130px">Action</th>
       </tr>
     </thead>
     <tbody>
@@ -28,112 +27,112 @@
           <span class="S_no"> 1 </span>
         </td>
         <td>
-          <span class="Name_Style">Department one</span>
+          <span class="Style_1">Department one</span>
         </td>
         <td>
-          <span class="Name_Style">Department head one </span>
+          <span class="Style_1">Department head one </span>
         </td>
         <td>
-          <span class="Name_Style">admin</span>
+          <span class="Style_1">admin</span>
         </td>
         <td>
-          <span class="Name_Style">head office</span>
+          <span class="Style_1">head office</span>
         </td>
         <td>
-          <span class="Action_Section Bg_Danger">
-            <i class="material-icons" (click)="  DeleteContactInfo()">delete</i>
-          </span>
-          <span class="Action_Section Bg_Info">
-            <i class="material-icons"  (click)="CreateDepartmentInfo()">edit</i>
-          </span>
-          <span class="Action_Section Bg_Success">
-            <i class="material-icons"  (click)="ViewDepartmentInfo()"> remove_red_eye </i>
-          </span>
-        </td>
+         <button (click)="ViewDepartmentInfo()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+            <i class="material-icons">zoom_in</i>
+         </button>
+         <button   (click)="CreateDepartmentInfo()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+            <i class="material-icons">edit</i>
+         </button>
+         <button (click)="  DeleteDepartmentInfo()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+            <i class="material-icons">delete_forever</i>
+         </button>
+      </td>
       </tr>
       <tr>
         <td>
           <span class="S_no"> 2 </span>
         </td>
         <td>
-          <span class="Name_Style">Department three</span>
+          <span class="Style_1">Department three</span>
         </td>
         <td>
-          <span class="Name_Style">Department head two </span>
+          <span class="Style_1">Department head two </span>
         </td>
         <td>
-          <span class="Name_Style">admin</span>
+          <span class="Style_1">admin</span>
         </td>
         <td>
-          <span class="Name_Style">admin</span>
+          <span class="Style_1">admin</span>
         </td>
         <td>
-          <span class="Action_Section Bg_Danger">
-            <i class="material-icons" (click)="  DeleteContactInfo()">delete</i>
-          </span>
-          <span class="Action_Section Bg_Info">
-            <i class="material-icons"  (click)="CreateDepartmentInfo()">edit</i>
-          </span>
-          <span class="Action_Section Bg_Success">
-            <i class="material-icons"  (click)="ViewDepartmentInfo()"> remove_red_eye </i>
-          </span>
-        </td>
+         <button (click)="ViewDepartmentInfo()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+            <i class="material-icons">zoom_in</i>
+         </button>
+         <button   (click)="CreateDepartmentInfo()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+            <i class="material-icons">edit</i>
+         </button>
+         <button (click)="  DeleteDepartmentInfo()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+            <i class="material-icons">delete_forever</i>
+         </button>
+      </td>
       </tr>
       <tr>
         <td>
-          <span class="S_no"> 1 </span>
+          <span class="S_no"> 3 </span>
         </td>
         <td>
-          <span class="Name_Style">Department two</span>
+          <span class="Style_1">Department two</span>
         </td>
         <td>
-          <span class="Name_Style">Department head one </span>
+          <span class="Style_1">Department head one </span>
         </td>
         <td>
-          <span class="Name_Style">admin</span>
+          <span class="Style_1">admin</span>
         </td>
         <td>
-          <span class="Name_Style">head office</span>
+          <span class="Style_1">head office</span>
         </td>
         <td>
-          <span class="Action_Section Bg_Danger">
-            <i class="material-icons" (click)="  DeleteContactInfo()">delete</i>
-          </span>
-          <span class="Action_Section Bg_Info">
-            <i class="material-icons"  (click)="CreateDepartmentInfo()">edit</i>
-          </span>
-          <span class="Action_Section Bg_Success">
-            <i class="material-icons"  (click)="ViewDepartmentInfo()"> remove_red_eye </i>
-          </span>
-        </td>
+         <button (click)="ViewDepartmentInfo()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+            <i class="material-icons">zoom_in</i>
+         </button>
+         <button   (click)="CreateDepartmentInfo()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+            <i class="material-icons">edit</i>
+         </button>
+         <button (click)="  DeleteDepartmentInfo()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+            <i class="material-icons">delete_forever</i>
+         </button>
+      </td>
       </tr>
       <tr>
         <td>
-          <span class="S_no"> 1 </span>
+          <span class="S_no"> 4 </span>
         </td>
         <td>
-          <span class="Name_Style">Department three</span>
+          <span class="Style_1">Department three</span>
         </td>
         <td>
-          <span class="Name_Style">Department head three </span>
+          <span class="Style_1">Department head three </span>
         </td>
         <td>
-          <span class="Name_Style">admin</span>
+          <span class="Style_1">admin</span>
         </td>
         <td>
-          <span class="Name_Style">admin</span>
+          <span class="Style_1">admin</span>
         </td>
         <td>
-          <span class="Action_Section Bg_Danger">
-            <i class="material-icons" (click)="  DeleteContactInfo()">delete</i>
-          </span>
-          <span class="Action_Section Bg_Info">
-            <i class="material-icons"  (click)="CreateDepartmentInfo()">edit</i>
-          </span>
-          <span class="Action_Section Bg_Success">
-            <i class="material-icons"   (click)="ViewDepartmentInfo()"> remove_red_eye </i>
-          </span>
-        </td>
+         <button (click)="ViewDepartmentInfo()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+            <i class="material-icons">zoom_in</i>
+         </button>
+         <button   (click)="CreateDepartmentInfo()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+            <i class="material-icons">edit</i>
+         </button>
+         <button (click)="  DeleteDepartmentInfo()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+            <i class="material-icons">delete_forever</i>
+         </button>
+      </td>
       </tr>
     </tbody>
   </table>

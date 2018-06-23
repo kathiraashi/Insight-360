@@ -32,7 +32,7 @@ export class DesignationHrSettingsComponent implements OnInit {
     };
     this.bsModalRef = this.modalService.show(ModelDesignationHrsettingsComponent, Object.assign({initialState}, { class: 'modal-lg' }));
   }
-  DeleteContactInfo() {
+  DeleteDesignation() {
     const initialState = {
       Text: 'Designation Hr Settings'
     };

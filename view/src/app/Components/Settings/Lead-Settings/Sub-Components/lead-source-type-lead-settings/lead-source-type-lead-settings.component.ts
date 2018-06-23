@@ -32,7 +32,7 @@ export class LeadSourceTypeLeadSettingsComponent implements OnInit {
     };
     this.bsModalRef = this.modalService.show(ModelLeadsourceLeadsettingsComponent, Object.assign({initialState}, { class: 'modal-lg' }));
   }
-  DeleteContactInfo() {
+  DeleteLeadSource() {
     const initialState = {
       Text: 'Lead Source Type'
     };
