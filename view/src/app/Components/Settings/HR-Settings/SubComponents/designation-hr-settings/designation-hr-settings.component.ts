@@ -30,7 +30,7 @@ export class DesignationHrSettingsComponent implements OnInit {
     const initialState = {
       Type: 'View'
     };
-    this.bsModalRef = this.modalService.show(ModelDesignationHrsettingsComponent, Object.assign({initialState}, { class: 'modal-lg' }));
+    this.bsModalRef = this.modalService.show(ModelDesignationHrsettingsComponent, Object.assign({initialState}, { class: '' }));
   }
   DeleteDesignation() {
     const initialState = {

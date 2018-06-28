@@ -12,10 +12,12 @@
 }
 .Modal_Header p {
     margin: 0px;
-    font-weight: 600;
-    font-size: 23px;
-    color: #484848;
+    font-weight: 700;
+    font-size: 24px;
+    color: #4f6a7a;
     letter-spacing: 0.3px;
+    width: 100%;
+    text-align: center;
 }
 .Modal_Header span {
     font-size: 30px;
@@ -28,37 +30,40 @@
 .Model_Body {
     padding: 20px;
 }
-.Image_Section {
-    display: block;
-    width: 100%;
-    text-align: center;
-}
-.Image_Section img {
-    display: flex;
-    width: 180px;
-    height: 180px;
-    border-radius: 5px;
-    text-align: center;
-    margin: auto;
-    margin-bottom: 20px;
-}
-.Image_Section .Upload_Btn {
-    border: 1px solid #08a92c;
-    padding: 5px 15px;
-    color: #08a92c;
-    font-weight: 600;
-    cursor: pointer;
+.Form_Input label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    font-weight: 700;
+    color: #4e6a7a;
 }
 .Form_Input input {
-    padding: 10px;
+    padding: 4px 10px;
     width: 100%;
-    height: 40px;
+    height: 37px;
     outline: none;
-    margin-bottom: 25px;
-    border: 1px solid gainsboro;
-    color: #484848;
-    font-weight: 500;
+    margin-bottom: 20px;
+    border: 1px solid #e8e8e8;
+    color: rgb(79, 107, 123);
+    font-weight: 400;
     font-size: 14px;
+    letter-spacing: 0.3px;
+}
+.Form_TextArea label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    font-weight: 700;
+    color: #4e6a7a;
+}
+.Form_TextArea textarea {
+    padding: 4px 10px;
+    width: 100%;
+    outline: none;
+    margin-bottom: 20px;
+    border: 1px solid #e8e8e8;
+    color: rgb(79, 107, 123);
+    font-weight: 400;
+    font-size: 14px;
+    letter-spacing: 0.3px;
 }
 .Form_Input input:-moz-placeholder{
     color: #999999;
@@ -76,50 +81,27 @@
     color: #999999;
     font-weight: 400;
 }
+.Form_Select label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    font-weight: 700;
+    color: #4e6a7a;
+}
 .Form_Select select{
     width: 100%;
-    height: 40px;
-    color: #999;
+    height: 37px;
     outline: none;
     padding: 0px 10px;
-    border: 1px solid #dcdcdc;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
+    border: 1px solid #e8e8e8;
+    color: rgb(79, 107, 123);
+    font-weight: 400;
+    font-size: 14px;
+    letter-spacing: 0.3px;
 }
 .Form_Select select option{
-    color: #999999;
+    color: rgb(79, 107, 123);
     width: 100%;
-}
-.Form_TextArea textarea {
-    padding: 10px;
-    width: 100%;
-    outline: none;
-    margin-bottom: 25px;
-    border: 1px solid gainsboro;
-    color: #484848;
-    font-weight: 500;
-    font-size: 14px;
-}
-.Form_TextArea textarea:-moz-placeholder{
-    color: #999999;
-    font-weight: 400;
-}
-.Form_TextArea textarea::-moz-placeholder{
-    color: #999999;
-    font-weight: 400;
-}
-.Form_TextArea textarea::-webkit-input-placeholder{
-    color: #999999;
-    font-weight: 400;
-}
-.Form_TextArea textarea:-ms-input-placeholder{
-    color: #999999;
-    font-weight: 400;
-}
-.Append_Btn i{
-    color: #484848;
-    line-height: 45px;
-    font-size: 30px;
-    cursor: pointer;
 }
 .Model_Footer {
     border-top: 1px solid #e8e8e8;
@@ -128,16 +110,15 @@
     align-items: center;
     position: relative;
 }
-.Model_Footer .Submit_Btn {
+.Model_Footer button {
     position: absolute;
     right: 0px;
-    border: 1px solid #08a92c;
-    padding: 5px 20px;
-    background-color: #08a92c;
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    border-radius: 3px;
-    cursor: pointer;
+}
+.Static{
+    font-weight: 800;
+    color: #4f6a7a;
+}
+.Data{
+    font-weight: 500;
+    color: #4f6a7a;
 }

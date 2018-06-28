@@ -105,7 +105,6 @@
  }
  .Table_Section table thead {
     line-height: 40px;
-    text-align: center;
     background-color: #ffffff;
     color: #4d6a7a;
     font-size: 14px;
@@ -113,17 +112,32 @@
  }
  .Table_Section table thead th{
     font-weight: 800;
+    text-align: left;
+ }
+ .Table_Section table thead th:first-child{
+   text-align: center;
+   width:80px;
+ }
+ .Table_Section table thead th:last-child{
+   text-align: center;
  }
  .Table_Section table tbody {
     border: 1px solid #e8e8e8;
     background-color: #ffffff;
  }
  .Table_Section table tbody tr {
-    line-height: 42px;
-    text-align: center;
     align-items: center;
     border-bottom: 1px solid #eaeaea;
  }
+ .Table_Section table tbody tr td {
+   text-align: left;
+ }
+ .Table_Section table tbody tr td:first-child {
+    text-align: center;
+  }
+  .Table_Section table tbody tr td:last-child {
+    text-align: center;
+  }
  .Table_Section table tbody tr:nth-child(odd) {
     background-color: #f1f1f185;
  }
@@ -140,6 +154,21 @@
     font-weight: 600;
     cursor: pointer;
  }
+ .Table_Section table tbody tr td .Style_2 {
+    margin: 0px;
+    font-size: 14px;
+    color: rgb(77, 106, 122);
+    font-weight: 700;
+    cursor: pointer;
+    line-height: 20px;
+ }
+ .Table_Section table tbody tr td .Style_3 {
+    font-size: 14px;
+    color: rgba(77, 106, 122, 0.84);
+    font-weight: 400;
+    cursor: pointer;
+    line-height: 20px;
+ }
  .Table_Section table tbody tr td .Action_Section{
     color: #ffffff;
     height: 35px;
@@ -151,14 +180,5 @@
     float: right;
     margin-right: 10px;
  }
- .Table_Section table tbody tr td .Action_Button{
-    padding: 0px 10px;
-    background-color: #49B660;
-    color: #fff;
-    border: 1px solid #49B660;
-    outline: none;
-    border-radius: 4px;
-    font-weight: 500;
-    font-size: 16px;
- }
+ 
  

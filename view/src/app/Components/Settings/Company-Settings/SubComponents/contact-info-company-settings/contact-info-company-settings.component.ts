@@ -30,7 +30,7 @@ export class ContactInfoCompanySettingsComponent implements OnInit {
     const initialState = {
       Type: 'View'
     };
-    this.bsModalRef = this.modalService.show(ModelContactinfoCompanysettingsComponent, Object.assign({initialState}, { class: '' }));
+    this.bsModalRef = this.modalService.show(ModelContactinfoCompanysettingsComponent, Object.assign({initialState}, { class: 'modal-lg' }));
   }
   DeleteContactInfo() {
     const initialState = {

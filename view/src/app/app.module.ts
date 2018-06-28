@@ -213,7 +213,35 @@ import { HeaderComponent } from './Components/Common-Components/header/header.co
         // vendor
         import { VendorListComponent } from './Components/Purchase/Vendor/vendor-list/vendor-list.component';
         import { VendorCreateComponent } from './Components/Purchase/Vendor/vendor-create/vendor-create.component';
-        import { VendorViewComponent } from './Components/Purchase/Vendor/vendor-view/vendor-view.component';
+            // main vendor view
+                import { MainVendorViewComponent } from './Components/Purchase/Vendor/vendor-view/main-vendor-view/main-vendor-view.component';
+                // Sub Components
+                    import { AboutVendorViewComponent } from './Components/Purchase/Vendor/vendor-view/SubComponents/about-vendor-view/about-vendor-view.component';
+                    import { ContactsVendorViewComponent } from './Components/Purchase/Vendor/vendor-view/SubComponents/contacts-vendor-view/contacts-vendor-view.component';
+                    import { PurchaseQuotationsVendorViewComponent } from './Components/Purchase/Vendor/vendor-view/SubComponents/purchase-quotations-vendor-view/purchase-quotations-vendor-view.component';
+                    import { PurchaseOrdersVendorViewComponent } from './Components/Purchase/Vendor/vendor-view/SubComponents/purchase-orders-vendor-view/purchase-orders-vendor-view.component';
+                    import { VendorBillVendorViewComponent } from './Components/Purchase/Vendor/vendor-view/SubComponents/vendor-bill-vendor-view/vendor-bill-vendor-view.component';
+                    import { PaymentsVendorViewComponent } from './Components/Purchase/Vendor/vendor-view/SubComponents/payments-vendor-view/payments-vendor-view.component';
+                    import { OthersVendorViewComponent } from './Components/Purchase/Vendor/vendor-view/SubComponents/others-vendor-view/others-vendor-view.component';
+
+    // Accounts Folder
+        // Customer
+            import { AccountsCustomerListComponent } from './Components/Accounts/Customer/accounts-customer-list/accounts-customer-list.component';
+            import { AccountsCustomerInvoiceListComponent } from './Components/Accounts/customer-invoice/accounts-customer-invoice-list/accounts-customer-invoice-list.component';
+            import { AccountsCustomerPaymentsListComponent } from './Components/Accounts/customer-payments/accounts-customer-payments-list/accounts-customer-payments-list.component';
+            import { AccountsCustomerInvoiceViewComponent } from './Components/Accounts/customer-invoice/accounts-customer-invoice-view/accounts-customer-invoice-view.component';
+        // vendor
+            import { AccountsCustomerPaymentsViewComponent } from './Components/Accounts/customer-payments/accounts-customer-payments-view/accounts-customer-payments-view.component';
+            import { AccountsVendorListComponent } from './Components/Accounts/Vendor/accounts-vendor-list/accounts-vendor-list.component';
+            import { AccountsVendorbillsListComponent } from './Components/Accounts/Vendor-Bills/accounts-vendorbills-list/accounts-vendorbills-list.component';
+import { InventoryDeliveryordersListComponent } from './Components/Inventory/Delivery-Orders/inventory-deliveryorders-list/inventory-deliveryorders-list.component';
+import { InventoryDirectpurchaseListComponent } from './Components/Inventory/Direct-Purchase/inventory-directpurchase-list/inventory-directpurchase-list.component';
+import { CustomerPaymentsCreateComponent } from './Components/Accounts/customer-payments/customer-payments-create/customer-payments-create.component';
+import { VendorPaymentsListComponent } from './Components/Accounts/Vendor-Payments/vendor-payments-list/vendor-payments-list.component';
+import { VendorPaymentsCreateComponent } from './Components/Accounts/Vendor-Payments/vendor-payments-create/vendor-payments-create.component';
+import { VendorPaymentsViewComponent } from './Components/Accounts/Vendor-Payments/vendor-payments-view/vendor-payments-view.component';
+
+
 
 
 
@@ -410,8 +438,37 @@ import { HeaderComponent } from './Components/Common-Components/header/header.co
         // vendor
          VendorListComponent,
          VendorCreateComponent,
-         VendorViewComponent,
-         CreateModelContactinfoCompanySettingsComponent,
+        CreateModelContactinfoCompanySettingsComponent,
+              // main vendor view
+                MainVendorViewComponent,
+                    // Sub components
+                        AboutVendorViewComponent,
+                        ContactsVendorViewComponent,
+                        PurchaseQuotationsVendorViewComponent,
+                        PurchaseOrdersVendorViewComponent,
+                        VendorBillVendorViewComponent,
+                        PaymentsVendorViewComponent,
+                        OthersVendorViewComponent,
+
+   // Accounts Folder
+        // Customer
+            AccountsCustomerListComponent,
+            AccountsCustomerInvoiceListComponent,
+            AccountsCustomerPaymentsListComponent,
+            AccountsCustomerInvoiceViewComponent,
+        // vendor
+            AccountsCustomerPaymentsViewComponent,
+            AccountsVendorListComponent,
+            AccountsVendorbillsListComponent,
+            InventoryDeliveryordersListComponent,
+            InventoryDirectpurchaseListComponent,
+            CustomerPaymentsCreateComponent,
+            VendorPaymentsListComponent,
+            VendorPaymentsCreateComponent,
+            VendorPaymentsViewComponent,
+
+
+
 
 
 

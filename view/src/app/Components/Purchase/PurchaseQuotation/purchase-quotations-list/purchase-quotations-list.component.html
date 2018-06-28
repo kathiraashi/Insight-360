@@ -1,29 +1,32 @@
 <div class="Main_Section">
       <div class="page_section">
       <div class="container-fluid">
-            <div class="page-identity" style="display:flex;width:100%;">
-                  <div  class="page-name">
-                    <h5 ></h5>
-                  </div>
-                  <div  class="page-track" style="width:47%">
-                    <ul>
-                      <li> Purchase Quotations</li>
-                    </ul>
-                  </div>
-                </div>
-      <div class="row">
-      <div class="col-sm-6">
-         <span class="Create_Button" [routerLink]="['/Purchase_Quotation_Create']">+ Add New</span>
-      </div>
-      <div class="col-sm-6">
-         <div class="Search_Section">
-            <input type="text" placeholder="Search.." name="search">
-            <i class="material-icons">search</i>
+         <div class="Page_Identity">
+            <div class="Page_Name">
+               <h5>Purchase Quotations</h5>
+            </div>
+            <div class="Page_Track">
+               <ul >
+                 <li class="HeaderName">Purchase</li>
+                 <li class="arrow">>></li>
+                 <li class= "LinkName">Purchase Quotations</li>
+                 <li class="arrow">>></li>
+                 <li >Purchase Quotations List</li>
+               </ul>
+            </div>
          </div>
-      </div>
-   </div>
-   <br>
-   <div class="Table_Section">
+         <div class="row header_part">
+            <div class="col-sm-6">
+              <button class="Create_Button" mat-raised-button [routerLink]="['/Purchase_Quotation_Create']"> + Create </button>
+            </div>
+            <div class="col-sm-6">
+              <div class="Search_Section">
+                <input type="text" placeholder="Search.." name="search">
+                <i class="material-icons">search</i>
+              </div>
+            </div>
+          </div>
+<div class="Table_Section">
       <table>
          <thead>
             <tr>
@@ -42,31 +45,31 @@
                   <span class="S_no"> 1 </span>
                </td>
                <td>
-                  <span class="Name_Style">Von_Quote_123</span>
-                  <span class="Name_Style">Valid Till:17/04/17</span>
+                  <h6 class="Style_2">Von_Quote_123</h6>
+                  <span class="Style_3">Valid Till:17/04/17</span>
                </td>
                <td>
-                  <span class="Name_Style"> Vendor_aashi</span>
+                  <span class="Style_3"> Vendor_aashi</span>
                </td>
                <td>
-                  <span class="Name_Style">Admin</span>
+                  <span class="Style_3">Admin</span>
                </td>
                <td>
-                  <span class="Name_Style">32300</span>
+                  <span class="Style_3">32300</span>
                </td>
                <td>
-                  <span class="Name_Style">Draft</span>
+                  <span class="Style_3">Draft</span>
                </td>
                <td>
-                  <span class="Action_Section Bg_Danger">
-                     <i class="material-icons" (click)="DeletePurchaseQuotation()" >delete</i>
-                  </span>
-                  <span class="Action_Section Bg_Info">
-                     <i class="material-icons" [routerLink]="['/Purchase_Quotation_Create']">edit</i>
-                  </span>
-                  <span class="Action_Section Bg_Success">
-                     <i class="material-icons" [routerLink]="['/Purchase_Quotation_View']"> remove_red_eye </i>
-                  </span>
+                  <button [routerLink]="['/Purchase_Quotation_View']" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                     <i class="material-icons">zoom_in</i>
+                  </button>
+                  <button  [routerLink]="['/Purchase_Quotation_Create']" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                     <i class="material-icons">edit</i>
+                  </button>
+                  <button (click)=" DeletePurchaseQuotation()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                     <i class="material-icons">delete_forever</i>
+                  </button>
                </td>
             </tr>
             <tr>
@@ -74,31 +77,31 @@
                   <span class="S_no"> 2 </span>
                </td>
                <td>
-                  <span class="Name_Style">Von_Quote_123</span>
-                  <span class="Name_Style">Valid Till:17/04/17</span>
+                  <h6 class="Style_2">Von_Quote_123</h6>
+                  <span class="Style_3">Valid Till:17/04/17</span>
                </td>
                <td>
-                  <span class="Name_Style"> Vendor_aashi</span>
+                  <span class="Style_3"> Vendor_aashi</span>
                </td>
                <td>
-                  <span class="Name_Style">Admin</span>
+                  <span class="Style_3">Admin</span>
                </td>
                <td>
-                  <span class="Name_Style">32300</span>
+                  <span class="Style_3">32300</span>
                </td>
                <td>
-                  <span class="Name_Style">Draft</span>
+                  <span class="Style_3">Draft</span>
                </td>
                <td>
-                  <span class="Action_Section Bg_Danger">
-                     <i class="material-icons"  (click)="DeletePurchaseQuotation()"  >delete</i>
-                  </span>
-                  <span class="Action_Section Bg_Info">
-                     <i class="material-icons" [routerLink]="['/Purchase_Quotation_Create']">edit</i>
-                  </span>
-                  <span class="Action_Section Bg_Success">
-                     <i class="material-icons" [routerLink]="['/Purchase_Quotation_View']"> remove_red_eye </i>
-                  </span>
+                  <button [routerLink]="['/Purchase_Quotation_View']" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                     <i class="material-icons">zoom_in</i>
+                  </button>
+                  <button  [routerLink]="['/Purchase_Quotation_Create']" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                     <i class="material-icons">edit</i>
+                  </button>
+                  <button (click)=" DeletePurchaseQuotation()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                     <i class="material-icons">delete_forever</i>
+                  </button>
                </td>
             </tr>
             <tr>
@@ -106,31 +109,31 @@
                   <span class="S_no"> 3 </span>
                </td>
                <td>
-                  <span class="Name_Style">Von_Quote_123</span>
-                  <span class="Name_Style">Valid Till:17/04/17</span>
+                  <h6 class="Style_2">Von_Quote_123</h6>
+                  <span class="Style_3">Valid Till:17/04/17</span>
                </td>
                <td>
-                  <span class="Name_Style"> Vendor_aashi</span>
+                  <span class="Style_3"> Vendor_aashi</span>
                </td>
                <td>
-                  <span class="Name_Style">Admin</span>
+                  <span class="Style_3">Admin</span>
                </td>
                <td>
-                  <span class="Name_Style">32300</span>
+                  <span class="Style_3">32300</span>
                </td>
                <td>
-                  <span class="Name_Style">Draft</span>
+                  <span class="Style_3">Draft</span>
                </td>
                <td>
-                  <span class="Action_Section Bg_Danger">
-                     <i class="material-icons"  (click)="DeletePurchaseQuotation()" >delete</i>
-                  </span>
-                  <span class="Action_Section Bg_Info">
-                     <i class="material-icons" [routerLink]="['/Purchase_Quotation_Create']">edit</i>
-                  </span>
-                  <span class="Action_Section Bg_Success">
-                     <i class="material-icons" [routerLink]="['/Purchase_Quotation_View']"> remove_red_eye </i>
-                  </span>
+                  <button [routerLink]="['/Purchase_Quotation_View']" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                     <i class="material-icons">zoom_in</i>
+                  </button>
+                  <button  [routerLink]="['/Purchase_Quotation_Create']" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                     <i class="material-icons">edit</i>
+                  </button>
+                  <button (click)=" DeletePurchaseQuotation()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                     <i class="material-icons">delete_forever</i>
+                  </button>
                </td>
             </tr>
             <tr>
@@ -138,31 +141,31 @@
                   <span class="S_no"> 4 </span>
                </td>
                <td>
-                  <span class="Name_Style">Von_Quote_123</span>
-                  <span class="Name_Style">Valid Till:17/04/17</span>
+                  <h6 class="Style_2">Von_Quote_123</h6>
+                  <span class="Style_3">Valid Till:17/04/17</span>
                </td>
                <td>
-                  <span class="Name_Style"> Vendor_aashi</span>
+                  <span class="Style_3"> Vendor_aashi</span>
                </td>
                <td>
-                  <span class="Name_Style">Admin</span>
+                  <span class="Style_3">Admin</span>
                </td>
                <td>
-                  <span class="Name_Style">32300</span>
+                  <span class="Style_3">32300</span>
                </td>
                <td>
-                  <span class="Name_Style">Draft</span>
+                  <span class="Style_3">Draft</span>
                </td>
                <td>
-                  <span class="Action_Section Bg_Danger">
-                     <i class="material-icons"  (click)="DeletePurchaseQuotation()" >delete</i>
-                  </span>
-                  <span class="Action_Section Bg_Info">
-                     <i class="material-icons" [routerLink]="['/Purchase_Quotation_Create']">edit</i>
-                  </span>
-                  <span class="Action_Section Bg_Success">
-                     <i class="material-icons" [routerLink]="['/Purchase_Quotation_View']"> remove_red_eye </i>
-                  </span>
+                  <button [routerLink]="['/Purchase_Quotation_View']" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                     <i class="material-icons">zoom_in</i>
+                  </button>
+                  <button  [routerLink]="['/Purchase_Quotation_Create']" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                     <i class="material-icons">edit</i>
+                  </button>
+                  <button (click)=" DeletePurchaseQuotation()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                     <i class="material-icons">delete_forever</i>
+                  </button>
                </td>
             </tr>
          </tbody>

@@ -26,29 +26,27 @@
 
 <div class="Modal_Content" *ngIf="Type && Type === 'View'">
         <div class="Modal_Header">
-           <p>PF Info</p>
+           <p>View PT Info</p>
            <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
        </div>
        <div class="Model_Body">
-        <div class="row">
-           <div class="col-sm-6 Form_Input">
-              PT No:<br>
-              <input type="text" >
-           </div>
-         <div class="col-sm-6 Form_Input">
-              Registration date:<br>
-              <input type="text">
-           </div><br>
-           <div class="col-sm-6 Form_Input">
-                 Signatory Name:<br>
-              <input type="text" >
-           </div>
-       </div>
+            <div class="row">
+                  <div class="col-sm-6 text-right Static">  PT No : </div>
+                  <div class="col-sm-6 text-left Data">  4355</div>
+               </div>
+               <div class="row">
+                  <div class="col-sm-6 text-right Static"> Registration Date: </div>
+                  <div class="col-sm-6 text-left Data"> 25/08/17 </div>
+               </div>
+             <div class="row">
+                  <div class="col-sm-6 text-right Static">  Signatory Name : </div>
+                  <div class="col-sm-6 text-left Data">   Signatory Name </div>
+               </div>
+          </div>
         <div class="Model_Footer">
-           <span class="Submit_Btn" > Submit </span>
        </div>
       </div>
-      </div>
+     
       
 
 

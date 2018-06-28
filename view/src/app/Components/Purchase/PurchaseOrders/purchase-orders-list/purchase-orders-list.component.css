@@ -1,66 +1,143 @@
 .Main_Section{
    margin-top: 100px;
 }
-.page-identity .page-name{
-   width: 50%;
-   height: 42px;
-   float: left; 
-}
-.page-identity .page-name h5{
-   line-height: 42px;
-   font-size: 18px;
-   font-weight: 800;
-   color: #6c7986;
-   text-transform: uppercase;
-   font-family: 'Rubik', sans-serif;
-}
-.page-identity .page-track{
-   height: 42px;
-   float: left;
-}
-.page-identity .page-track ul {
-   float: right;
-}
-.page-identity .page-track ul {
-   margin-bottom: 0px;
-   list-style: none;
-   display: inline-block;
-   height: 42px;
-}
-.page-identity .page-track ul li {
-   float: left;
-   height: 42px;
-   margin-right: 10px;
-   line-height: 42px;
-   font-size: 13px;
-   font-weight: 500;
-   color: #61626394;
-   font-family: 'Rubik', sans-serif;
-}
-.Table_Section table {
+/* --------------   Page Identity Section  ----------------- */
+.Page_Identity{
+    display: flex;
+    height:40px;
+    width: 100%;
+    margin-bottom: 5px;
+ }
+ .Page_Identity .Page_Name{
+    width:50%;
+ }
+ .Page_Identity .Page_Name h5{
+    color: #4f6a7a;
+    line-height: 35px;
+    font-size: 18px;
+    margin: 0px;
+    font-weight: 700;
+ }
+ .Page_Identity .Page_Track{
+    width:50%;
+    line-height: 35px;
+ }
+ .Page_Identity .Page_Track ul{
+    display: flex;
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+    align-items: center;
+    float: right;
+ }
+ .Page_Identity .Page_Track ul li {
+    color: #a5adb1;
+    font-size: 13px;
+    font-weight: 500;
+    margin-left: 5px;
+ }
+ .Page_Identity .Page_Track ul li.arrow{
+    letter-spacing: -4px;
+    font-size: 19px;
+    transform: scale(.6, 1);
+ }
+ .Page_Identity .Page_Track ul li.arrowGreen{
+     letter-spacing: -4px;
+     font-size: 19px;
+     transform: scale(.6, 1);
+     color: #4ab65f;
+  }
+ .Page_Identity .Page_Track ul li.HeaderName{
+     color: #4ab65f;
+ }
+ .Page_Identity .Page_Track ul li.LinkName{
+    color: #4ab65f;
+    cursor: pointer;
+ }
+ /* ----------- Create and Search Section ---------- */
+ .header_part{
+    margin-bottom: 15px;
+ }
+ .Create_Button{
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #4ab65f;
+    margin-left: 3%;
+ }
+ 
+ /* ---------- Search Section ----------- */
+ .Search_Section{
+    position: relative;
+    background-color: #ffffff;
+    height: 36px;
+    box-shadow: 1px 2px 4px 0px rgba(0,0,0,.2);
+    width: 96%;
+ }
+ .Search_Section input{
+    width: 100%;
+    border-radius: 0;
+    border: none;
+    background-color: transparent;
+    padding: 10px;
+    height: 36px;
+    color: #4f6a7a;
+    font-weight: 500;
+    outline: none;
+ }
+ .Search_Section input::placeholder{
+    color:#cccccc; 
+    font-weight:400;
+ }
+ .Search_Section i{
+    position: absolute;
+    right: 0px;
+    padding: 7px 5px;
+    color: #4ab65f;
+    font-weight: 600;
+    cursor: pointer;
+ }
+ .Table_Section table {
     border: 1px solid lightgray;
     width: 100%;
+    box-shadow: 2px 2px 3px rgba(0,0,0,.24), 0 0 2px rgba(0,0,0,.12);
  }
  .Table_Section table thead {
-    border: 1px #49B660;
     line-height: 40px;
-    text-align: center;
-    background-color: #49B660;
-    color: #ffffff;
+    background-color: #ffffff;
+    color: #4d6a7a;
     font-size: 14px;
     letter-spacing: 0.5px;
+ }
+ .Table_Section table thead th{
+    font-weight: 800;
+    text-align: left;
+ }
+ .Table_Section table thead th:first-child{
+   text-align: center;
+   width:80px;
+ }
+ .Table_Section table thead th:last-child{
+   text-align: center;
  }
  .Table_Section table tbody {
     border: 1px solid #e8e8e8;
     background-color: #ffffff;
  }
  .Table_Section table tbody tr {
-    line-height: 50px;
-    text-align: center;
     align-items: center;
     border-bottom: 1px solid #eaeaea;
  }
- .Table_Section table tbody tr:nth-child(even) {
+ .Table_Section table tbody tr td {
+   text-align: left;
+ }
+ .Table_Section table tbody tr td:first-child {
+    text-align: center;
+  }
+  .Table_Section table tbody tr td:last-child {
+    text-align: center;
+  }
+ .Table_Section table tbody tr:nth-child(odd) {
     background-color: #f1f1f185;
  }
  .Table_Section table tbody tr:hover {
@@ -68,32 +145,28 @@
  }
  .Table_Section table tbody tr td .S_no {
     font-size: 14px;
-    color: #777;
+    color: #4d6a7a;
  }
- .Table_Section table tbody tr td .Name_Style {
+ .Table_Section table tbody tr td .Style_1 {
     font-size: 14px;
-    color: #484848;
-    display: block;
-    font-weight: 700;
+    color: rgba(77, 106, 122, 0.84);
+    font-weight: 600;
     cursor: pointer;
  }
- .Table_Section table tbody tr td .Name_Style {
-    display: block;
-    line-height: 16px;
+ .Table_Section table tbody tr td .Style_2 {
+    margin: 0px;
     font-size: 14px;
-    font-weight: 500;
-    color: #888888;
+    color: rgb(77, 106, 122);
+    font-weight: 700;
+    cursor: pointer;
+    line-height: 20px;
  }
- .Table_Section table tbody tr td .Name_Style {
-    display: block;
-    line-height: 16px;
-    font-size: 13px;
-    color: #888888;
- }
- .Table_Section table tbody tr td .Name_Style {
-    color: #888888;
+ .Table_Section table tbody tr td .Style_3 {
     font-size: 14px;
-    font-weight: 500;
+    color: rgba(77, 106, 122, 0.84);
+    font-weight: 400;
+    cursor: pointer;
+    line-height: 20px;
  }
  .Table_Section table tbody tr td .Action_Section{
     color: #ffffff;
@@ -106,48 +179,4 @@
     float: right;
     margin-right: 10px;
  }
- .Table_Section table tbody tr td .Action_Section i {
-    width: 100%;
-    line-height: 35px;
- }
- .Create_Button{
-    margin-left: 33px;
-    border-radius: 0px;
-    color: #49B660;
-    font-weight: 600;
-    font-size: 15px;
-    letter-spacing: 0.6px;
-    cursor: pointer;
-    padding: 3px 15px;
-    outline:none;
- }
- .Search_Section{
-    position:relative;
-    margin-right: 32px;
-    background-color: #ffffff;
- }
- .Search_Section input{
-    width: 100%;
-    border-radius: 0;
-    border: none;
-    border-bottom: 1px solid #cccccc;
-    background-color: transparent;
-    padding-left: 5px;
-    height: 35px;
-    color: #484848;
-    font-weight: 500;
-    padding-top: 8px;
-    outline:none;
- }
- .Search_Section input::placeholder{
-    color:#cccccc; 
-    font-weight:400;
- }
- .Search_Section i{
-    position: absolute;
-    right: 0px;
-    padding: 7px 5px;
-    color: #cccccc;
-    font-weight: 600;
-    cursor: pointer;
- }
+ 

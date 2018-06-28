@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./crm-saleorder-create.component.css']
 })
 export class CrmSaleorderCreateComponent implements OnInit {
-
+  Active_Tab = 'Product_Details';
   constructor() { }
 
   ngOnInit() {
   }
-
+  Active_Tab_Change(name) {
+    this.Active_Tab = name;
+  }
 }

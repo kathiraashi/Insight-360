@@ -32,7 +32,7 @@ export class VendorQuoteTermsPurchaseSettingsComponent implements OnInit {
     const initialState = {
       Type: 'View'
     };
-    this.bsModalRef = this.modalService.show(ModelVendorquotetermsPurchasesettingsComponent, Object.assign({initialState}, { class: 'modal-lg' }));
+    this.bsModalRef = this.modalService.show(ModelVendorquotetermsPurchasesettingsComponent, Object.assign({initialState}, { class: '' }));
   }
   DeleteVendorQuoteTerms() {
     const initialState = {

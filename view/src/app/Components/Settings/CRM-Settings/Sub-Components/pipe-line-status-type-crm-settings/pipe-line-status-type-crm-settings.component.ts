@@ -30,7 +30,7 @@ export class PipeLineStatusTypeCrmSettingsComponent implements OnInit {
     const initialState = {
       Type: 'View'
     };
-    this.bsModalRef = this.modalService.show(ModelPipelinestatusCrmsettingsComponent, Object.assign({initialState}, { class: 'modal-lg' }));
+    this.bsModalRef = this.modalService.show(ModelPipelinestatusCrmsettingsComponent, Object.assign({initialState}, { class: '' }));
   }
   DeletePipelineStatus() {
     const initialState = {

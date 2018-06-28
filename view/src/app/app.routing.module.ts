@@ -35,10 +35,22 @@ import { PurchaseOrdersViewComponent } from './Components/Purchase/PurchaseOrder
 import { VendorBillsCreateComponent } from './Components/Purchase/VendorBills/vendor-bills-create/vendor-bills-create.component';
 import { VendorBillsViewComponent } from './Components/Purchase/VendorBills/vendor-bills-view/vendor-bills-view.component';
 import { VendorCreateComponent } from './Components/Purchase/Vendor/vendor-create/vendor-create.component';
-import { VendorViewComponent } from './Components/Purchase/Vendor/vendor-view/vendor-view.component';
-
-
-
+import { CrmQuatationsViewComponent } from './Components/CRM/Quotations/crm-quatations-view/crm-quatations-view.component';
+import { CrmSaleorderViewComponent } from './Components/CRM/SaleOrder/crm-saleorder-view/crm-saleorder-view.component';
+import { CrmInvoiceViewComponent } from './Components/CRM/Invoice/crm-invoice-view/crm-invoice-view.component';
+import { MainVendorViewComponent } from './Components/Purchase/Vendor/vendor-view/main-vendor-view/main-vendor-view.component';
+import { AccountsCustomerListComponent } from './Components/Accounts/Customer/accounts-customer-list/accounts-customer-list.component';
+import { AccountsCustomerInvoiceListComponent } from './Components/Accounts/customer-invoice/accounts-customer-invoice-list/accounts-customer-invoice-list.component';
+import { AccountsCustomerPaymentsListComponent } from './Components/Accounts/customer-payments/accounts-customer-payments-list/accounts-customer-payments-list.component';
+import { AccountsCustomerInvoiceViewComponent } from './Components/Accounts/customer-invoice/accounts-customer-invoice-view/accounts-customer-invoice-view.component';
+import { AccountsVendorListComponent } from './Components/Accounts/Vendor/accounts-vendor-list/accounts-vendor-list.component';
+import { AccountsVendorbillsListComponent } from './Components/Accounts/Vendor-Bills/accounts-vendorbills-list/accounts-vendorbills-list.component';
+import { InventoryDeliveryordersListComponent } from './Components/Inventory/Delivery-Orders/inventory-deliveryorders-list/inventory-deliveryorders-list.component';
+import { CustomerPaymentsCreateComponent } from './Components/Accounts/customer-payments/customer-payments-create/customer-payments-create.component';
+import { VendorPaymentsListComponent } from './Components/Accounts/Vendor-Payments/vendor-payments-list/vendor-payments-list.component';
+import { VendorPaymentsCreateComponent } from './Components/Accounts/Vendor-Payments/vendor-payments-create/vendor-payments-create.component';
+import { AccountsCustomerPaymentsViewComponent } from './Components/Accounts/customer-payments/accounts-customer-payments-view/accounts-customer-payments-view.component';
+import { VendorPaymentsViewComponent } from './Components/Accounts/Vendor-Payments/vendor-payments-view/vendor-payments-view.component';
 
 const appRoutes: Routes = [
   {
@@ -217,10 +229,86 @@ const appRoutes: Routes = [
     data: {   animation: { value: 'Vendor_Create'}   }
 },
 {
-    path: 'Vendor_View',
-    component: VendorViewComponent,
-    data: {   animation: { value: 'Vendor_View'}   }
+    path: 'crm_quotations_view',
+    component: CrmQuatationsViewComponent,
+    data: {   animation: { value: 'crm_quotations_view'}   }
 },
+{
+    path: 'crm_saleorder_view',
+    component: CrmSaleorderViewComponent,
+    data: {   animation: { value: 'crm_saleorder_view'}   }
+},
+{
+    path: 'crm_invoice_view',
+    component: CrmInvoiceViewComponent,
+    data: {   animation: { value: 'crm_invoice_view'}   }
+},
+{
+    path: 'main_vendor_view',
+    component: MainVendorViewComponent,
+    data: {   animation: { value: 'main_vendor_view'}   }
+},
+{
+    path: 'account_customer_list',
+    component: AccountsCustomerListComponent,
+    data: {   animation: { value: 'account_customer_list'}   }
+},
+{
+    path: 'account_customer_invoice_list',
+    component: AccountsCustomerInvoiceListComponent,
+    data: {   animation: { value: 'account_customer_invoice_list'}   }
+},
+{
+    path: 'account_customer_payments_list',
+    component: AccountsCustomerPaymentsListComponent,
+    data: {   animation: { value: 'account_customer_payments_list'}   }
+},
+{
+    path: 'account_customer_invoice_view',
+    component: AccountsCustomerInvoiceViewComponent,
+    data: {   animation: { value: 'account_customer_invoice_view'}   }
+},
+{
+    path: 'account_vendor_list',
+    component: AccountsVendorListComponent,
+    data: {   animation: { value: 'account_vendor_list'}   }
+},
+{
+    path: 'account_vendor_bills_list',
+    component: AccountsVendorbillsListComponent,
+    data: {   animation: { value: 'account_vendor_bills_list'}   }
+},
+{
+    path: 'Inventory_deliveryorder_list',
+    component: InventoryDeliveryordersListComponent,
+    data: {   animation: { value: 'Inventory_deliveryorder_list'}   }
+},
+{
+    path: 'customer_payment_create',
+    component: CustomerPaymentsCreateComponent,
+    data: {   animation: { value: 'customer_payment_create'}   }
+},
+{
+    path: 'vendor_payment_list',
+    component: VendorPaymentsListComponent,
+    data: {   animation: { value: 'vendor_payment_list'}   }
+},
+{
+    path: 'vendor_payment_create',
+    component: VendorPaymentsCreateComponent,
+    data: {   animation: { value: 'vendor_payment_create'}   }
+},
+{
+    path: 'customer_payment_view',
+    component: AccountsCustomerPaymentsViewComponent,
+    data: {   animation: { value: 'customer_payment_view'}   }
+},
+{
+    path: 'vendor_payment_view',
+    component: VendorPaymentsViewComponent,
+    data: {   animation: { value: 'vendor_payment_view'}   }
+},
+
 
 
 

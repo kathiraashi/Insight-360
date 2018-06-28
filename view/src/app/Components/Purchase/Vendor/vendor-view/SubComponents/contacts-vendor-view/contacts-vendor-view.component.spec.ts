@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VendorViewComponent } from './vendor-view.component';
+import { ContactsVendorViewComponent } from './contacts-vendor-view.component';
 
-describe('VendorViewComponent', () => {
-  let component: VendorViewComponent;
-  let fixture: ComponentFixture<VendorViewComponent>;
+describe('ContactsVendorViewComponent', () => {
+  let component: ContactsVendorViewComponent;
+  let fixture: ComponentFixture<ContactsVendorViewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ VendorViewComponent ]
+      declarations: [ ContactsVendorViewComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(VendorViewComponent);
+    fixture = TestBed.createComponent(ContactsVendorViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

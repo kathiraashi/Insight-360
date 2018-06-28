@@ -1,0 +1,198 @@
+<app-header></app-header>
+<div class="Main_Section">
+   <div class="container-fluid">
+      <div class="Page_Section">
+            <div class="Page_Identity">
+                  <div class="Page_Name">
+                     <h5>Vendor View</h5>
+                  </div>
+                  <div class="Page_Track">
+                     <ul >
+                       <li class="HeaderName">Purchase</li>
+                       <li class="arrow">>></li>
+                       <li class="LinkName">Vendor</li>
+                       <li class="arrow">>></li>
+                       <li>Vendor View</li>
+                     </ul>
+                  </div>
+               </div>
+         <div class="row">
+            <div class="col-sm-9">
+               <div class="row">
+                  <div class="col-sm-2 Image_Section">
+                     <img src="../../../../../assets/images/basic/company.png">
+                  </div>
+                  <div class="col-sm-10 ">
+                     <div class="row">
+                           <div class="col-sm-12">
+                                 <h5 class="customer_name">VENDOR NAME <span><i class="material-icons"> border_color</i></span>
+                                 <span class="Create_Button"> +Create</span></h5>
+                              </div>
+                        <div class="col-sm-3">
+                           <div class="Card card_bg_Liner_1">
+                              <div class="Card_Body">
+                                 <div class="Card_Left">
+                                    <i class="material-icons account_balance">account_balance_wallet</i>
+                                 </div>
+                                 <div class="Card_Right">
+                                    <h5 class="card_color_1"> Purchase Request </h5>
+                                    <h6></h6>
+                                 </div>
+                              </div>
+                              <div class="Card_Footer card_bg_1">
+                                 <span class="Card_Info"> view more </span>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col-sm-3">
+                           <div class="Card card_bg_Liner_2">
+                              <div class="Card_Body">
+                                 <div class="Card_Left">
+                                    <i class="material-icons assignment">   assignment   </i>
+                                 </div>
+                                 <div class="Card_Right">
+                                    <h5 class="card_color_2 ">Purchase Orders</h5>
+                                    <h6></h6>
+                                 </div>
+                              </div>
+                              <div class="Card_Footer card_bg_2">
+                                 <span class="Card_Info"> view more </span>
+                              </div>
+                           </div>
+                        </div>
+                           <div class="col-sm-3">
+                              <div class="Card card_bg_Liner_3">
+                                 <div class="Card_Body">
+                                    <div class="Card_Left">
+                                       <i class="material-icons add_shopping"> add_shopping_cart  </i>
+                                    </div>
+                                    <div class="Card_Right">
+                                       <h5 class="card_color_3"> Waiting for approval</h5>
+                                          <h6></h6>
+                                    </div>
+                                 </div>
+                                 <div class="Card_Footer card_bg_3">
+                                    <span class="Card_Info">view more </span>
+                                 </div>
+                              </div>
+                           </div>
+                              <div class="col-sm-3">
+                                 <div class="Card card_bg_Liner_4">
+                                    <div class="Card_Body">
+                                       <div class="Card_Left">
+                                          <i class="material-icons alarm"> alarm </i>
+                                       </div>
+                                       <div class="Card_Right">
+                                          <h5 class="card_color_4"> Cancelled</h5>
+                                          <h6> </h6>
+                                       </div>
+                                    </div>
+                                    <div class="Card_Footer card_bg_4">
+                                       <span class="Card_Info"> view more   </span>
+                                    </div>
+                                 </div>
+                              </div><br>
+                           </div>
+                        </div>
+                     </div> <br>                
+                     <div class="row">
+                        <div class="col-sm-12">
+                           <div class="Menu_Bar">
+                              <ul class="Menu">
+                                 <li  [ngClass]="{'active': Active_Tab === 'About' }" (click)="Active_Tab_Change('About')"><span class="Menu_List">About</span></li>
+                                 <li  [ngClass]="{'active': Active_Tab === 'Contacts' }" (click)="Active_Tab_Change('Contacts')"><span class="Menu_List">Contacts</span></li>
+                                 <li  [ngClass]="{'active': Active_Tab === 'Quotations' }" (click)="Active_Tab_Change('Quotations')"><span class="Menu_List">Quotations</span></li>
+                                 <li  [ngClass]="{'active': Active_Tab === 'Purchase_Orders' }" (click)="Active_Tab_Change('Purchase_Orders')"><span class="Menu_List">Purchase Orders</span></li>
+                                 <li  [ngClass]="{'active': Active_Tab === 'Vendor_Bill' }" (click)="Active_Tab_Change('Vendor_Bill')"><span class="Menu_List">VendorBill</span></li>
+                                 <li  [ngClass]="{'active': Active_Tab === 'Payments' }" (click)="Active_Tab_Change('Payments')"><span class="Menu_List">Payments</span></li>
+                                 <li  [ngClass]="{'active': Active_Tab === 'Others' }" (click)="Active_Tab_Change('Others')"><span class="Menu_List">Others</span></li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="row" *ngIf=" Active_Tab === 'About' ">
+                        <div class="col-sm-12">
+                              <app-about-vendor-view></app-about-vendor-view>
+                        </div>
+                     </div>
+                     <div class="row" *ngIf=" Active_Tab === 'Contacts' ">
+                        <div class="col-sm-12">
+                              <app-contacts-vendor-view></app-contacts-vendor-view>
+                        </div>
+                     </div>
+                     <div class="row" *ngIf=" Active_Tab === 'Quotations' ">
+                        <div class="col-sm-12">
+                              <app-purchase-quotations-vendor-view></app-purchase-quotations-vendor-view>
+                        </div>
+                     </div>
+                     <div class="row" *ngIf=" Active_Tab === 'Purchase_Orders' ">
+                        <div class="col-sm-12">
+                              <app-purchase-orders-vendor-view></app-purchase-orders-vendor-view>
+                        </div>
+                     </div>
+                     <div class="row" *ngIf=" Active_Tab === 'Vendor_Bill' ">
+                        <div class="col-sm-12">
+                              <app-vendor-bill-vendor-view></app-vendor-bill-vendor-view>
+                        </div>
+                     </div>
+                     <div class="row" *ngIf=" Active_Tab === 'Payments' ">
+                        <div class="col-sm-12">
+                              <app-payments-vendor-view></app-payments-vendor-view>
+                        </div>
+                     </div>
+                     <div class="row" *ngIf=" Active_Tab === 'Others' ">
+                        <div class="col-sm-12">
+                              <app-others-vendor-view></app-others-vendor-view>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-sm-3">
+                        <div class="Calender">
+                          <p-calendar class="Custom_Calender_1" [inline]="true"></p-calendar> 
+                        </div>
+                        <br>
+                        <div class="Log_Section">
+                          <div class="Log_Header">
+                            <h5> Recent </h5>
+                          </div>
+                          <div class="Log_List">
+                            <ul>
+                              <li>
+                                <h5>New Location Added</h5>
+                                <h6> ( 27/05/2018 05:32-PM ) </h6>
+                              </li>
+                              <li>
+                                <h5>New Order Received</h5>
+                                <h6> ( 27/05/2018 05:22-PM ) </h6>
+                              </li>
+                              <li>
+                                <h5>New Food Item Added</h5>
+                                <h6> ( 27/05/2018 05:12-PM ) </h6>
+                              </li>
+                              <li>
+                                <h5>New Location Added</h5>
+                                <h6> ( 27/05/2018 05:12-PM ) </h6>
+                              </li>
+                              <li>
+                                <h5>One Promotion Used</h5>
+                                <h6> ( 27/05/2018 05:02-PM ) </h6>
+                              </li>
+                              <li>
+                                <h5>One Order Delivered</h5>
+                                <h6> ( 27/05/2018 05:02-PM ) </h6>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+              
+            </div>
+         </div>
+      </div>
+      
+
+  
+  
+   
+
+

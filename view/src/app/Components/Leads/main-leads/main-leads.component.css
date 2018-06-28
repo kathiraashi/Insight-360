@@ -2,40 +2,59 @@
     margin-top:100px;
    
 }
-.Page_Idendity .Page_Name{
-    width:50%;
+/* --------------   Page Identity Section  ----------------- */
+.Page_Identity{
+    display: flex;
     height:40px;
-    float:left;
-    margin-bottom: 20px;
-}
-.Page_Idendity .Page_Name h5{
-    font-weight:800;
-    color:#546979;
-    line-height:40px;
-    font-size:25px;
-}
-.Page_Idendity .Page_Track{
+    width: 100%;
+    margin-bottom: 5px;
+ }
+ .Page_Identity .Page_Name{
     width:50%;
-    height:40px;
-    float:left;
-    margin-bottom:20px;
-}
-.Page_Idendity .Page_Track .color{
-    color:#49B660;
+ }
+ .Page_Identity .Page_Name h5{
+    color: #4f6a7a;
+    line-height: 35px;
+    font-size: 18px;
+    margin: 0px;
+    font-weight: 700;
+ }
+ .Page_Identity .Page_Track{
+    width:50%;
+    line-height: 35px;
+ }
+ .Page_Identity .Page_Track ul{
+    display: flex;
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+    align-items: center;
+    float: right;
+ }
+ .Page_Identity .Page_Track ul li {
+    color: #a5adb1;
+    font-size: 13px;
+    font-weight: 500;
+    margin-left: 5px;
+ }
+ .Page_Identity .Page_Track ul li.arrow{
+    letter-spacing: -4px;
+    font-size: 19px;
+    transform: scale(.6, 1);
+ }
+ .Page_Identity .Page_Track ul li.arrowGreen{
+     letter-spacing: -4px;
+     font-size: 19px;
+     transform: scale(.6, 1);
+     color: #4ab65f;
+  }
+ .Page_Identity .Page_Track ul li.HeaderName{
+     color: #4ab65f;
+ }
+ .Page_Identity .Page_Track ul li.LinkName{
+    color: #4ab65f;
     cursor: pointer;
-}
-.Page_Idendity .Page_Track ul{
-    float:right;
-    list-style-type:none;
-    display:inline;
-}
-.Page_Idendity .Page_Track ul li {
-    float:left;
-    height:40px;
-    font-weight:500;
-    font-size:13px;
-    margin-right: 6px;
-}
+ }
 .Page_Content.Leads .Main_Section{
     width:100%;
     display:flex;

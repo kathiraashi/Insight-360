@@ -29,7 +29,7 @@ export class DepartmentHrSettingsComponent implements OnInit {
     const initialState = {
       Type: 'View'
     };
-    this.bsModalRef = this.modalService.show(ModelDepartmentHrsettingsComponent, Object.assign({initialState}, { class: 'modal-lg' }));
+    this.bsModalRef = this.modalService.show(ModelDepartmentHrsettingsComponent, Object.assign({initialState}, { class: '' }));
   }
   DeleteDepartment() {
     const initialState = {

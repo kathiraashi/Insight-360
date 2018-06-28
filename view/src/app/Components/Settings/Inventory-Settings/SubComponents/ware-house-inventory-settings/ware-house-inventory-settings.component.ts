@@ -29,7 +29,7 @@ export class WareHouseInventorySettingsComponent implements OnInit {
     const initialState = {
       Type: 'View'
     };
-    this.bsModalRef = this.modalService.show(ModelWarehouseInventorysettingsComponent, Object.assign({initialState}, { class: 'modal-lg' }));
+    this.bsModalRef = this.modalService.show(ModelWarehouseInventorysettingsComponent, Object.assign({initialState}, { class: '' }));
   }
   DeleteWareHouse() {
     const initialState = {

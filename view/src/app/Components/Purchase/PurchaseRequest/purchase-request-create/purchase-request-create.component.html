@@ -1,17 +1,19 @@
-<div class="page" style="margin-top:130px;">
+<div class="page" style="margin-top:100px;">
       <div class="container-fluid">
-        <!-- <div class="page-identity" style="position:fixed; margin-top:-40px;">
-              <div class="page-name">
-                <h5> Creat Customers </h5>
-              </div>
-              <div class="page-track" style="width:47%">
-                <ul>
-                  <li><a> Customers List </a></li>
-                  <li><i class="fa fa-angle-double-right" aria-hidden="true"></i></li>
-                  <li> Creat Customers </li>
-                </ul>
-              </div>
-            </div> -->
+        <div class="Page_Identity">
+          <div class="Page_Name">
+             <h5>Purchase Request</h5>
+          </div>
+          <div class="Page_Track">
+             <ul >
+               <li class="HeaderName">Purchase</li>
+               <li class="arrow">>></li>
+               <li class= "LinkName">Purchase Request</li>
+               <li class="arrow">>></li>
+               <li >Purchase Request Create</li>
+             </ul>
+          </div>
+       </div>
         <form>
           <div class="row">
             <div class="Company_Details">
@@ -21,23 +23,23 @@
               <br>
               <div class="col-sm-12">
                 <div class="row">
-                  <div class="col-sm-4 Form_Input">
-                    Request No:
+                  <div class="col-sm-5 Form_Input">
+                    <label>Request No:</label>
                     <br>
                     <input type="text">
                   </div>
-                  <div class="col-sm-4 Form_Input">
-                    Request Date:
+                  <div class="col-sm-5 Form_Input">
+                     <label>Request Date:</label>
                     <br>
                     <input type="text">
                   </div>
-                  <div class="col-sm-4 Form_Input">
-                    Requested By:
+                  <div class="col-sm-5 Form_Input">
+                     <label>Requested By:</label>
                     <br>
                     <input type="text">
                   </div>
-                  <div class="col-sm-4 Form_TextArea">
-                    Description:
+                  <div class="col-sm-5 Form_TextArea">
+                     <label>Description:</label>
                     <br>
                     <textarea class="Description" rows="3"></textarea>
                   </div>
@@ -103,9 +105,7 @@
           </div>
           <div class="row" style="margin-top:20px;">
             <div class="col-sm-12 text-right">
-    
-                <button class="Submit_Btn"> Submit </button>
-              <button class="Reset_Btn"> Reset</button>
+               <button mat-raised-button color="primary" > Submit </button>
             </div>
           </div>
         </form>

@@ -1,6 +1,6 @@
-<div class="row">
+<div class="row header_part">
    <div class="col-sm-6">
-      <span class="Create_Button" (click)="CreateLogPhoneCall()">+ Create</span>
+    <button class="Create_Button" mat-raised-button (click)="CreateCallSchedule()"> + Create </button>
    </div>
    <div class="col-sm-6">
       <div class="Search_Section">
@@ -9,7 +9,6 @@
       </div>
    </div>
 </div>
-<br>
 <div class="Table_Section">
   <table>
       <thead>
@@ -27,24 +26,24 @@
                <span class="S_no"> 1 </span>
             </td>
             <td>
-               <span class="Name_Style">Company Name1</span>
+               <span class="Style_1">Company Name1</span>
             </td>
             <td>
-               <span class="Name_Style"> may 12,2017</span>
+               <span class="Style_1"> may 12,2017</span>
             </td>
             <td>
-               <span class="Name_Style">+428765</span>
+               <span class="Style_1">+428765</span>
             </td>
             <td>
-               <span class="Action_Section Bg_Danger">
-                  <i class="material-icons" (click)="DeleteLogPhoneCall()">delete</i>
-               </span>
-               <span class="Action_Section Bg_Info">
-                  <i class="material-icons" (click)="CreateLogPhoneCall()">edit</i>
-               </span>
-               <span class="Action_Section Bg_Success">
-                  <i class="material-icons" (click)="ViewLogPhoneCall()"> remove_red_eye </i>
-               </span>
+               <button (click)="ViewCallSchedule()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                  <i class="material-icons">zoom_in</i>
+               </button>
+               <button  (click)="CreateCallSchedule()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                  <i class="material-icons">edit</i>
+               </button>
+               <button (click)=" DeleteCallSchedule()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                  <i class="material-icons">delete_forever</i>
+               </button>
             </td>
          </tr>
          <tr>
@@ -52,24 +51,24 @@
                <span class="S_no"> 2 </span>
             </td>
             <td>
-               <span class="Name_Style">Company Name2</span>
+               <span class="Style_1">Company Name2</span>
             </td>
             <td>
-               <span class="Name_Style"> may 12,2017</span>
+               <span class="Style_1"> may 12,2017</span>
             </td>
             <td>
-               <span class="Name_Style">+53435455</span>
+               <span class="Style_1">+53435455</span>
             </td>
             <td>
-               <span class="Action_Section Bg_Danger">
-                  <i class="material-icons" (click)="DeleteLogPhoneCall()">delete</i>
-               </span>
-               <span class="Action_Section Bg_Info">
-                  <i class="material-icons" (click)="CreateLogPhoneCall()">edit</i>
-               </span>
-               <span class="Action_Section Bg_Success">
-                  <i class="material-icons" (click)="ViewLogPhoneCall()"> remove_red_eye </i>
-               </span>
+               <button (click)="ViewCallSchedule()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                  <i class="material-icons">zoom_in</i>
+               </button>
+               <button  (click)="CreateCallSchedule()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                  <i class="material-icons">edit</i>
+               </button>
+               <button (click)=" DeleteCallSchedule()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                  <i class="material-icons">delete_forever</i>
+               </button>
             </td>
          </tr>
          <tr>
@@ -77,24 +76,24 @@
                <span class="S_no"> 3 </span>
             </td>
             <td>
-               <span class="Name_Style">Company Name3</span>
+               <span class="Style_1">Company Name3</span>
             </td>
             <td>
-               <span class="Name_Style"> may 12,2017</span>
+               <span class="Style_1"> may 12,2017</span>
             </td>
             <td>
-               <span class="Name_Style">+354545</span>
+               <span class="Style_1">+354545</span>
             </td>
             <td>
-               <span class="Action_Section Bg_Danger">
-                  <i class="material-icons" (click)="DeleteLogPhoneCall()">delete</i>
-               </span>
-               <span class="Action_Section Bg_Info">
-                  <i class="material-icons" (click)="CreateLogPhoneCall()">edit</i>
-               </span>
-               <span class="Action_Section Bg_Success">
-                  <i class="material-icons" (click)="ViewLogPhoneCall()"> remove_red_eye </i>
-               </span>
+               <button (click)="ViewCallSchedule()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                  <i class="material-icons">zoom_in</i>
+               </button>
+               <button  (click)="CreateCallSchedule()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                  <i class="material-icons">edit</i>
+               </button>
+               <button (click)=" DeleteCallSchedule()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                  <i class="material-icons">delete_forever</i>
+               </button>
             </td>
          </tr>
          <tr>
@@ -102,24 +101,24 @@
                <span class="S_no"> 4</span>
             </td>
             <td>
-               <span class="Name_Style">Company Name4</span>
+               <span class="Style_1">Company Name4</span>
             </td>
             <td>
-               <span class="Name_Style">may 12,2017</span>
+               <span class="Style_1">may 12,2017</span>
             </td>
             <td>
-               <span class="Name_Style">+4365565</span>
+               <span class="Style_1">+4365565</span>
             </td>
             <td>
-               <span class="Action_Section Bg_Danger">
-                  <i class="material-icons" (click)="DeleteLogPhoneCall()">delete</i>
-               </span>
-               <span class="Action_Section Bg_Info">
-                  <i class="material-icons" (click)="CreateLogPhoneCall()">edit</i>
-               </span>
-               <span class="Action_Section Bg_Success">
-                  <i class="material-icons" (click)="ViewLogPhoneCall()"> remove_red_eye </i>
-               </span>
+               <button (click)="ViewCallSchedule()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                  <i class="material-icons">zoom_in</i>
+               </button>
+               <button  (click)="CreateCallSchedule()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                  <i class="material-icons">edit</i>
+               </button>
+               <button (click)=" DeleteCallSchedule()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                  <i class="material-icons">delete_forever</i>
+               </button>
             </td>
          </tr>
       </tbody>

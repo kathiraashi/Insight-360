@@ -1,7 +1,60 @@
+/* --------------   Page Identity Section  ----------------- */
+.Page_Identity{
+  display: flex;
+  height:40px;
+  width: 100%;
+  margin-bottom: 5px;
+}
+.Page_Identity .Page_Name{
+  width:50%;
+}
+.Page_Identity .Page_Name h5{
+  color: #4f6a7a;
+  line-height: 35px;
+  font-size: 18px;
+  margin: 0px;
+  font-weight: 700;
+}
+.Page_Identity .Page_Track{
+  width:50%;
+  line-height: 35px;
+}
+.Page_Identity .Page_Track ul{
+  display: flex;
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
+  align-items: center;
+  float: right;
+}
+.Page_Identity .Page_Track ul li {
+  color: #a5adb1;
+  font-size: 13px;
+  font-weight: 500;
+  margin-left: 5px;
+}
+.Page_Identity .Page_Track ul li.arrow{
+  letter-spacing: -4px;
+  font-size: 19px;
+  transform: scale(.6, 1);
+}
+.Page_Identity .Page_Track ul li.arrowGreen{
+   letter-spacing: -4px;
+   font-size: 19px;
+   transform: scale(.6, 1);
+   color: #4ab65f;
+}
+.Page_Identity .Page_Track ul li.HeaderName{
+   color: #4ab65f;
+}
+.Page_Identity .Page_Track ul li.LinkName{
+  color: #4ab65f;
+  cursor: pointer;
+}
 .Form_Input input {
     padding: 10px;
     width: 100%;
-    height: 40px;
+    height: 37px;
     outline: none;
     margin-bottom: 5px;
     border: 1px solid gainsboro;
@@ -9,6 +62,12 @@
     font-weight: 500;
     font-size: 14px;
     margin-top: 5px;
+  }
+  .Form_Input label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    font-weight: 700;
+    color: #4e6a7a;
   }
   .Form_Input input:-moz-placeholder{
     color: #999999;
@@ -28,7 +87,7 @@
   }
   .Form_Select select{
     width: 100%;
-    height: 40px;
+    height: 37px;
     color: #999;
     outline: none;
     padding: 0px 10px;
@@ -39,32 +98,6 @@
   .Form_Select select option{
     color: #999999;
     width: 100%;
-  }
-  .Append_Btn i{
-    color: #484848;
-    line-height: 45px;
-    font-size: 30px;
-    cursor: pointer;
-  }
-  .Model_Footer {
-    border-top: 1px solid #e8e8e8;
-    height: 55px;
-    display: flex;
-    align-items: center;
-    position: relative;
-  }
-  .Model_Footer .Submit_Btn {
-    position: absolute;
-    right: 0px;
-    border: 1px solid #08a92c;
-    padding: 5px 20px;
-    background-color: #08a92c;
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    border-radius: 3px;
-    cursor: pointer;
   }
   .Form_TextArea textarea {
     padding: 10px;
@@ -94,12 +127,6 @@
     color: #999999;
     font-weight: 400;
   }
-  .button_submit{
-    background-color: #49B660;
-    border: 1px solid #49B660; 
-    color:#fff;
-    outline: none;
-  }
   .Company_Details{
     background-color: #fff;
     margin: 10px;
@@ -110,15 +137,6 @@
     border-top: 2px solid #49B660;
   }
   .Table_Section{
-    background-color: #fff;
-    margin: 10px;
-    padding: 20px;
-    margin-left: 15px;
-    width: 100%;
-    border-radius: 5px;
-    border-top: 2px solid #49B660;
-  }
-  .Done_Section{
     background-color: #fff;
     margin: 10px;
     padding: 20px;
@@ -177,38 +195,7 @@
     width: 100%;
     line-height: 35px;
 }
-.Submit_Btn {
-  position: absolute;
-  right: 0px;
-  border: 1px solid #08a92c;
-  padding: 5px 20px;
-  background-color: #08a92c;
-  color: #ffffff;
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  border-radius: 3px;
-  cursor: pointer;
-  margin-right:30px;
-}
-.Reset_Btn {
-  position: absolute;
-  right: 0px;
-  border: 1px solid red;
-  padding: 5px 23px;
-  background-color: red;
-  color: #ffffff;
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  border-radius: 3px;
-  cursor: pointer;
-  margin-right: 145px;
-}
-hr{
-    width:65%;
- }
- .Add_Product_Button{
+.Add_Product_Button{
   float: right;
   font-size: 16px;
   font-weight: 400;

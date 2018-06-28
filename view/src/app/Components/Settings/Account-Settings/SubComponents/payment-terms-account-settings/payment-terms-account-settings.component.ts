@@ -32,7 +32,7 @@ export class PaymentTermsAccountSettingsComponent implements OnInit {
     const initialState = {
       Type: 'View'
     };
-    this.bsModalRef = this.modalService.show(ModelPaymenttermsAccountsettingsComponent, Object.assign({initialState}, { class: 'modal-lg' }));
+    this.bsModalRef = this.modalService.show(ModelPaymenttermsAccountsettingsComponent, Object.assign({initialState}, { class: '' }));
   }
   DeletePaymentTerm() {
     const initialState = {

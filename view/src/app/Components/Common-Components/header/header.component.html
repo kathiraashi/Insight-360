@@ -52,6 +52,37 @@
                        </ul>
                     </span>
                  </li>
+                 <li class="Menu_List" >
+                     <span class="Menu_Tree">
+                        <span class="Menu">
+                           <i class="material-icons">people</i>
+                           <span> &nbsp; Inventory </span> 
+                        </span>
+                        <ul class="Menu_Tree_View">
+                           <li class="Menu_Tree_List"  [routerLink]="['/Inventory_deliveryorder_list']"><a> Delivery Orders </a></li>
+                           <li class="Menu_Tree_List"  [routerLink]="['/']"><a> Direct Purchase </a></li>
+                           <li class="Menu_Tree_List"  [routerLink]="['/']"><a> Internal Transfer </a></li>
+                           <li class="Menu_Tree_List"  [routerLink]="['/']"><a>Stock Values</a></li>
+                           <li class="Menu_Tree_List"  [routerLink]="['/']"><a>To Receive</a></li>
+                        </ul>
+                     </span>
+                  </li>
+                 <li class="Menu_List" >
+                    <span class="Menu_Tree">
+                       <span class="Menu">
+                          <i class="material-icons">people</i>
+                          <span> &nbsp; Accounts </span> 
+                       </span>
+                       <ul class="Menu_Tree_View">
+                          <li class="Menu_Tree_List"  [routerLink]="['/account_customer_list']"><a> Customer </a></li>
+                          <li class="Menu_Tree_List"  [routerLink]="['/account_customer_invoice_list']"><a> CustomerInvoice </a></li>
+                          <li class="Menu_Tree_List"  [routerLink]="['/account_customer_payments_list']"><a> CustomerPayments </a></li>
+                          <li class="Menu_Tree_List"  [routerLink]="['/account_vendor_list']"><a>Vendor</a></li>
+                          <li class="Menu_Tree_List"  [routerLink]="['/account_vendor_bills_list']"><a>Vendor Bills</a></li>
+                          <li class="Menu_Tree_List"  [routerLink]="['/vendor_payment_list']"><a>Vendor Payments</a></li>
+                   </ul>
+                    </span>
+                 </li>
          <li class="Menu_List" >
             <span class="Menu_Tree">
                <span class="Menu">

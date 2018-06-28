@@ -29,7 +29,7 @@ export class EmployeeCategoryHrSettingsComponent implements OnInit {
     const initialState = {
       Type: 'View'
     };
-    this.bsModalRef = this.modalService.show(ModelEmployeecategoryHrsettingsComponent, Object.assign({initialState}, { class: 'modal-lg' }));
+    this.bsModalRef = this.modalService.show(ModelEmployeecategoryHrsettingsComponent, Object.assign({initialState}, { class: '' }));
   }
   DeleteEmployeeCategory() {
     const initialState = {

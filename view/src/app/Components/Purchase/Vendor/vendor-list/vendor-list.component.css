@@ -1,70 +1,54 @@
 .Main_Section{
     margin-top: 100px;
 }
-.page-identity .page-name{
-    width: 50%;
-    height: 42px;
-    float: left; 
-}
-.page-identity .page-name h5{
-    line-height: 42px;
+/* --------------   Page Identity Section  ----------------- */
+.Page_Identity{
+    display: flex;
+    height:40px;
+    width: 100%;
+    margin-bottom: 5px;
+  }
+  .Page_Identity .Page_Name{
+    width:50%;
+  }
+  .Page_Identity .Page_Name h5{
+    color: #4f6a7a;
+    line-height: 35px;
     font-size: 18px;
-    font-weight: 800;
-    color: #6c7986;
-    text-transform: uppercase;
-    font-family: 'Rubik', sans-serif;
-}
-.page-identity .page-track{
-    height: 42px;
-    float: left;
-}
-.page-identity .page-track ul {
-    float: right;
-}
-.page-identity .page-track ul {
-    margin-bottom: 0px;
-    list-style: none;
-    display: inline-block;
-    height: 42px;
-}
-.page-identity .page-track ul li {
-    float: left;
-    height: 42px;
-    margin-right: 10px;
-    line-height: 42px;
-    font-size: 13px;
-    font-weight: 500;
-    color: #61626394;
-    font-family: 'Rubik', sans-serif;
-}
-.Create_Button{
-    margin-left: 33px;
-    border-radius: 0px;
-    color: #49B660;
-    font-weight: 600;
-    font-size: 15px;
-    letter-spacing: 0.6px;
-    cursor: pointer;
-    padding: 3px 15px;
-    outline:none;
+    margin: 0px;
+    font-weight: 700;
+  }
+ 
+/* ----------- Create and Search Section ---------- */
+.header_part{
+    margin-bottom: 15px;
  }
+ .Create_Button{
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #4ab65f;
+    margin-left: 3%;
+ }
+ 
+ /* ---------- Search Section ----------- */
  .Search_Section{
-    position:relative;
-    margin-right: 32px;
+    position: relative;
     background-color: #ffffff;
+    height: 36px;
+    box-shadow: 1px 2px 4px 0px rgba(0,0,0,.2);
+    width: 96%;
  }
  .Search_Section input{
     width: 100%;
     border-radius: 0;
     border: none;
-    border-bottom: 1px solid #cccccc;
     background-color: transparent;
-    padding-left: 5px;
-    height: 35px;
-    color: #484848;
+    padding: 10px;
+    height: 36px;
+    color: #4f6a7a;
     font-weight: 500;
-    padding-top: 8px;
-    outline:none;
+    outline: none;
  }
  .Search_Section input::placeholder{
     color:#cccccc; 
@@ -74,7 +58,7 @@
     position: absolute;
     right: 0px;
     padding: 7px 5px;
-    color: #cccccc;
+    color: #4ab65f;
     font-weight: 600;
     cursor: pointer;
  }

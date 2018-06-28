@@ -1,6 +1,6 @@
-<div class="row">
+<div class="row header_part">
    <div class="col-sm-6">
-      <span class="Create_Button" (click)="CreateLeads()">+ Create</span>
+      <button class="Create_Button" mat-raised-button (click)="CreateLeads()"> + Create </button>
    </div>
    <div class="col-sm-6">
       <div class="Search_Section">
@@ -9,7 +9,6 @@
       </div>
   </div>
 </div>
-<br>
 <div class="Table_Section">
    <table>
       <thead>
@@ -29,124 +28,124 @@
                <span class="S_no"> 1 </span>
             </td>
             <td>
-               <span class="Name_Style">Company Name1</span>
+               <span class="Style_1">Company Name1</span>
             </td>
             <td>
-               <span class="Name_Style"> Address1</span>
+               <span class="Style_1"> Address1</span>
             </td>
             <td>
-               <span class="Name_Style">+9876564345</span>
+               <span class="Style_1">+9876564345</span>
             </td>
             <td>
-               <span class="Name_Style">Product1</span>
+               <span class="Style_1">Product1</span>
             </td>
             <td>
-               <span class="Name_Style">Lead Source1</span>
+               <span class="Style_1">Lead Source1</span>
             </td>
             <td>
-               <span class="Action_Section Bg_Danger">
-                  <i class="material-icons" (click)="DeleteLeads()">delete</i>
-               </span>
-               <span class="Action_Section Bg_Info">
-                  <i class="material-icons" (click)="CreateLeads()">edit</i>
-               </span>
-               <span class="Action_Section Bg_Success">
-                  <i class="material-icons" (click)="ViewLeads()"> remove_red_eye </i>
-               </span>
-            </td>
+                  <button (click)="ViewLeads()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                     <i class="material-icons">zoom_in</i>
+                  </button>
+                  <button  (click)="CreateLeads()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                     <i class="material-icons">edit</i>
+                  </button>
+                  <button (click)=" DeleteLeads()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                     <i class="material-icons">delete_forever</i>
+                  </button>
+               </td>
          </tr>
          <tr>
             <td>
                <span class="S_no"> 2 </span>
             </td>
             <td>
-               <span class="Name_Style">Company Name2</span>
+               <span class="Style_1">Company Name2</span>
             </td>
             <td>
-               <span class="Name_Style"> Address2</span>
+               <span class="Style_1"> Address2</span>
             </td>
             <td>
-               <span class="Name_Style">+9876564345</span>
+               <span class="Style_1">+9876564345</span>
             </td>
             <td>
-               <span class="Name_Style">Product2</span>
+               <span class="Style_1">Product2</span>
             </td>
             <td>
-               <span class="Name_Style">Lead Source2</span>
+               <span class="Style_1">Lead Source2</span>
             </td>
             <td>
-               <span class="Action_Section Bg_Danger">
-                  <i class="material-icons" (click)="DeleteLeads()">delete</i>
-               </span>
-               <span class="Action_Section Bg_Info">
-                  <i class="material-icons" (click)="CreateLeads()">edit</i>
-               </span>
-               <span class="Action_Section Bg_Success">
-                  <i class="material-icons" (click)="ViewLeads()"> remove_red_eye </i>
-               </span>
-            </td>
+                  <button (click)="ViewLeads()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                     <i class="material-icons">zoom_in</i>
+                  </button>
+                  <button  (click)="CreateLeads()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                     <i class="material-icons">edit</i>
+                  </button>
+                  <button (click)=" DeleteLeads()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                     <i class="material-icons">delete_forever</i>
+                  </button>
+               </td>
          </tr>
          <tr>
             <td>
                <span class="S_no"> 3 </span>
             </td>
             <td>
-               <span class="Name_Style">Company Name3</span>
+               <span class="Style_1">Company Name3</span>
             </td>
             <td>
-               <span class="Name_Style"> Address3</span>
+               <span class="Style_1"> Address3</span>
             </td>
             <td>
-               <span class="Name_Style">+9876564345</span>
+               <span class="Style_1">+9876564345</span>
             </td>
             <td>
-               <span class="Name_Style">Product3</span>
+               <span class="Style_1">Product3</span>
             </td>
             <td>
-               <span class="Name_Style">Lead Source3</span>
+               <span class="Style_1">Lead Source3</span>
             </td>
             <td>
-               <span class="Action_Section Bg_Danger">
-                  <i class="material-icons" (click)="DeleteLeads()">delete</i>
-               </span>
-               <span class="Action_Section Bg_Info">
-                  <i class="material-icons" (click)="CreateLeads()">edit</i>
-               </span>
-               <span class="Action_Section Bg_Success">
-                  <i class="material-icons" (click)="ViewLeads()"> remove_red_eye </i>
-               </span>
-            </td>
+                  <button (click)="ViewLeads()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                     <i class="material-icons">zoom_in</i>
+                  </button>
+                  <button  (click)="CreateLeads()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                     <i class="material-icons">edit</i>
+                  </button>
+                  <button (click)=" DeleteLeads()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                     <i class="material-icons">delete_forever</i>
+                  </button>
+               </td>
          </tr>
          <tr>
             <td>
                <span class="S_no"> 4</span>
             </td>
             <td>
-               <span class="Name_Style">Company Name4</span>
+               <span class="Style_1">Company Name4</span>
             </td>
             <td>
-               <span class="Name_Style"> Address4</span>
+               <span class="Style_1"> Address4</span>
             </td>
             <td>
-               <span class="Name_Style">+9876564345</span>
+               <span class="Style_1">+9876564345</span>
             </td>
             <td>
-               <span class="Name_Style">Product4</span>
+               <span class="Style_1">Product4</span>
             </td>
             <td>
-               <span class="Name_Style">Lead Source4</span>
+               <span class="Style_1">Lead Source4</span>
             </td>
             <td>
-               <span class="Action_Section Bg_Danger">
-                  <i class="material-icons" (click)="DeleteLeads()">delete</i>
-               </span>
-               <span class="Action_Section Bg_Info">
-                  <i class="material-icons" (click)="CreateLeads()">edit</i>
-               </span>
-               <span class="Action_Section Bg_Success">
-                  <i class="material-icons" (click)="ViewLeads()"> remove_red_eye </i>
-               </span>
-            </td>
+                  <button (click)="ViewLeads()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                     <i class="material-icons">zoom_in</i>
+                  </button>
+                  <button  (click)="CreateLeads()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                     <i class="material-icons">edit</i>
+                  </button>
+                  <button (click)=" DeleteLeads()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                     <i class="material-icons">delete_forever</i>
+                  </button>
+               </td>
          </tr>
       </tbody>
    </table>

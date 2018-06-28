@@ -9,24 +9,24 @@
             <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Personal <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span></h5><br>
             <div class="col-sm-12">
                <div class="row">
-                  <div class="col-sm-4 Form_Input" >
-                     Name:<br>
+                  <div class="col-sm-6 Form_Input" >
+                     <label>Name:</label>
                      <input type="text" placeholder="Name">
                   </div>
-                  <div class="col-sm-4 Form_Input" >
-                        Department:<br>
+                  <div class="col-sm-6 Form_Input" >
+                     <label>Department:</label>
                         <input type="text" placeholder="Department">
                      </div>
-                     <div class="col-sm-4 Form_Input" >
-                           Designation:<br>
+                     <div class="col-sm-6 Form_Input" >
+                        <label>Designation:</label>
                            <input type="text" placeholder="Designation">
                         </div>
-                  <div class="col-sm-4 Form_Input" >
-                        Email Id:<br>
+                  <div class="col-sm-6 Form_Input" >
+                     <label>Email Id:</label>
                      <input type="text" placeholder="emailid"> 
                   </div>
-                  <div class="col-sm-4 Form_Input" >
-                        Contact Number:<br>
+                  <div class="col-sm-6 Form_Input" >
+                     <label>Contact Number:</label>
                      <input type="text" placeholder="contactnumber"> 
                   </div>
                </div>
@@ -37,8 +37,8 @@
             <h5 style="color:#49B660;font-size:20px;font-weight: 600;"> Application <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span></h5><br>
             <div class="col-sm-12">
                <div class="row">
-                  <div class="col-sm-4 Form_Select" >
-                     Leave Type:<br>
+                  <div class="col-sm-6 Form_Select">
+                     <label>Leave Type:</label>
                      <select>
                         <option checked>Select Leave Type</option>
                         <option> Leave Type1</option>
@@ -47,31 +47,30 @@
                         <option> Leave Type4</option>
                      </select>
                   </div>
-                  <div class="col-sm-4 Form_Input" >
-                        From:<br>
+                  <div class="col-sm-6 Form_Input" >
+                     <label>From:</label>
                         <input type="text" placeholder="from">
                      </div>
-                     <div class="col-sm-4 Form_Input" >
-                           To:<br>
+                     <div class="col-sm-6 Form_Input" >
+                        <label>To:</label>
                            <input type="text" placeholder="Designation">
                         </div>
-                  <div class="col-sm-4 Form_Input" >
-                        Purpose:<br>
+                  <div class="col-sm-6 Form_Input" >
+                     <label>Purpose:</label>
                      <input type="text" placeholder="purpose"> 
                   </div>
                </div>
             </div>
          </div>
       </div>
-      <div class="Model_Footer">
-         <button class="Submit_Btn"> Submit </button>
-         <button class="Reset_Btn"> Reset</button>
-      </div>
    </div>
-</div>
-<div class="Modal_Content" style="background-color: #F1F4F7;" *ngIf=" Type && Type === 'View'">
+      <div class="Model_Footer">
+         <button mat-raised-button color="primary" > Submit </button>
+      </div>
+ </div>
+ <div class="Modal_Content" style="background-color: #F1F4F7;"*ngIf="Type && Type === 'View'">
    <div class="Modal_Header">
-      <p>View Leads</p>
+      <p>View Leaves</p>
       <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
    </div>
    <div class="Model_Body">
@@ -80,26 +79,32 @@
             <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Personal <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span></h5><br>
             <div class="col-sm-12">
                <div class="row">
-                  <div class="col-sm-4 Form_Input" >
-                     Name:<br>
-                     <input type="text" placeholder="Name">
-                  </div>
-                  <div class="col-sm-4 Form_Input" >
-                        Department:<br>
-                        <input type="text" placeholder="Department">
-                     </div>
-                     <div class="col-sm-4 Form_Input" >
-                           Designation:<br>
-                           <input type="text" placeholder="Designation">
-                        </div>
-                  <div class="col-sm-4 Form_Input" >
-                        Email Id:<br>
-                     <input type="text" placeholder="emailid"> 
-                  </div>
-                  <div class="col-sm-4 Form_Input" >
-                        Contact Number:<br>
-                     <input type="text" placeholder="contactnumber"> 
-                  </div>
+                     <div class="col-sm-6 text-center Left_Section">
+                           <div class="row">
+                              <div class="col-sm-4 text-right Static"> Name: </div>
+                              <div class="col-sm-8 text-left Data">aashi </div>
+                             </div>
+                             <div class="row">
+                                 <div class="col-sm-4 text-right Static"> Department: </div>
+                                 <div class="col-sm-8 text-left Data"> Department</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4 text-right Static"> Designation: </div>
+                                    <div class="col-sm-8 text-left Data"> Designation</div>
+                                   </div>
+                          </div>
+                          <div class="col-sm-6 Right_Section">
+                            <div class="left-data">
+                                 <div class="row">
+                                       <div class="col-sm-4 text-right Static"> contact : </div>
+                                       <div class="col-sm-8 text-left Data"> +536456324 </div>
+                                      </div>
+                             <div class="row">
+                                <div class="col-sm-4 text-right Static">  Email: </div>
+                                <div class="col-sm-8 text-left Data">sample@gmail.com </div>
+                              </div>
+                            </div>
+                          </div>
                </div>
             </div>
          </div>
@@ -108,35 +113,33 @@
             <h5 style="color:#49B660;font-size:20px;font-weight: 600;"> Application <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span></h5><br>
             <div class="col-sm-12">
                <div class="row">
-                  <div class="col-sm-4 Form_Select" >
-                     Leave Type:<br>
-                     <select>
-                        <option checked>Select Leave Type</option>
-                        <option> Leave Type1</option>
-                        <option> Leave Type2</option>
-                        <option> Leave Type3</option>
-                        <option> Leave Type4</option>
-                     </select>
-                  </div>
-                  <div class="col-sm-4 Form_Input" >
-                        From:<br>
-                        <input type="text" placeholder="from">
-                     </div>
-                     <div class="col-sm-4 Form_Input" >
-                           To:<br>
-                           <input type="text" placeholder="Designation">
-                        </div>
-                  <div class="col-sm-4 Form_Input" >
-                        Purpose:<br>
-                     <input type="text" placeholder="purpose"> 
-                  </div>
+                     <div class="col-sm-6 text-center Left_Section">
+                           <div class="row">
+                              <div class="col-sm-4 text-right Static"> Leave Type: </div>
+                              <div class="col-sm-8 text-left Data"> Leave Type1</div>
+                             </div>
+                             <div class="row">
+                                 <div class="col-sm-4 text-right Static"> From: </div>
+                                 <div class="col-sm-8 text-left Data"> 27/05/18</div>
+                                </div>
+                          </div>
+                          <div class="col-sm-6 Right_Section">
+                            <div class="left-data">
+                                 <div class="row">
+                                       <div class="col-sm-4 text-right Static"> To : </div>
+                                       <div class="col-sm-8 text-left Data"> 30/07/18 </div>
+                                      </div>
+                             <div class="row">
+                                <div class="col-sm-4 text-right Static">  Purpose: </div>
+                                <div class="col-sm-8 text-left Data">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
+                              </div>
+                            </div>
+                          </div>
                </div>
             </div>
          </div>
       </div>
-      <div class="Model_Footer">
-         <button class="Submit_Btn"> Submit </button>
-         <button class="Reset_Btn"> Reset</button>
-      </div>
    </div>
-</div>
+      <div class="Model_Footer">
+      </div>
+ </div>

@@ -1,29 +1,32 @@
 <div class="Main_Section">
    <div class="page_section">
    <div class="container-fluid">
-         <div class="page-identity" style="display:flex;width:100%;">
-               <div  class="page-name">
-                 <h5 ></h5>
-               </div>
-               <div  class="page-track" style="width:47%">
-                 <ul>
-                   <li> Purchase Request</li>
-                 </ul>
-               </div>
-             </div>
-   <div class="row">
-      <div class="col-sm-6">
-         <span class="Create_Button"  [routerLink]="['/purchase_request_create']">+ Add New</span>
-      </div>
-      <div class="col-sm-6">
-         <div class="Search_Section">
-            <input type="text" placeholder="Search.." name="search">
-            <i class="material-icons">search</i>
+      <div class="Page_Identity">
+         <div class="Page_Name">
+            <h5>Purchase Request</h5>
+         </div>
+         <div class="Page_Track">
+            <ul >
+              <li class="HeaderName">Purchase</li>
+              <li class="arrow">>></li>
+              <li class= "LinkName">Purchase Request</li>
+              <li class="arrow">>></li>
+              <li >Purchase Request List</li>
+            </ul>
          </div>
       </div>
-   </div>
-   <br>
-   <div class="Table_Section">
+      <div class="row header_part">
+         <div class="col-sm-6">
+           <button class="Create_Button" mat-raised-button [routerLink]="['/purchase_request_create']"> + Create </button>
+         </div>
+         <div class="col-sm-6">
+           <div class="Search_Section">
+             <input type="text" placeholder="Search.." name="search">
+             <i class="material-icons">search</i>
+           </div>
+         </div>
+       </div>
+ <div class="Table_Section">
       <table>
          <thead>
             <tr>
@@ -43,33 +46,33 @@
                   <span class="S_no"> 1 </span>
                </td>
                <td>
-                  <span class="Name_Style">344354</span>
+                  <span class="Style_1">344354</span>
                </td>
                <td>
-                  <span class="Name_Style"> aashi</span>
+                  <span class="Style_1"> aashi</span>
                </td>
                <td>
-                  <span class="Name_Style">xxx</span>
+                  <span class="Style_1">xxx</span>
                </td>
                <td>
-                  <span class="Name_Style">25/05/2017</span>
+                  <span class="Style_1">25/05/2017</span>
                </td>
                <td>
-                  <span class="Name_Style">Requested</span>
+                  <span class="Style_1">Requested</span>
                </td>
                <td>
-                  <span class="Name_Style">35000</span>
+                  <span class="Style_1">35000</span>
                </td>
                <td>
-                  <span class="Action_Section Bg_Danger">
-                     <i class="material-icons" (click)="DeletePurchaseRequest()">delete</i>
-                  </span>
-                  <span class="Action_Section Bg_Info">
-                     <i class="material-icons" [routerLink]="['/purchase_request_create']">edit</i>
-                  </span>
-                  <span class="Action_Section Bg_Success">
-                     <i class="material-icons" [routerLink]="['/Purchase_Request_View']"> remove_red_eye </i>
-                  </span>
+                  <button [routerLink]="['/Purchase_Request_View']" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                     <i class="material-icons">zoom_in</i>
+                  </button>
+                  <button  [routerLink]="['/purchase_request_create']" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                     <i class="material-icons">edit</i>
+                  </button>
+                  <button (click)=" DeletePurchaseRequest()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                     <i class="material-icons">delete_forever</i>
+                  </button>
                </td>
             </tr>
             <tr>
@@ -77,33 +80,33 @@
                   <span class="S_no"> 2 </span>
                </td>
                <td>
-                  <span class="Name_Style">344354</span>
+                  <span class="Style_1">344354</span>
                </td>
                <td>
-                  <span class="Name_Style"> aashi</span>
+                  <span class="Style_1"> aashi</span>
                </td>
                <td>
-                  <span class="Name_Style">xxx</span>
+                  <span class="Style_1">xxx</span>
                </td>
                <td>
-                  <span class="Name_Style">25/05/2017</span>
+                  <span class="Style_1">25/05/2017</span>
                </td>
                <td>
-                  <span class="Name_Style">Requested</span>
+                  <span class="Style_1">Requested</span>
                </td>
                <td>
-                  <span class="Name_Style">35000</span>
+                  <span class="Style_1">35000</span>
                </td>
                <td>
-                  <span class="Action_Section Bg_Danger">
-                     <i class="material-icons" (click)="DeletePurchaseRequest()">delete</i>
-                  </span>
-                  <span class="Action_Section Bg_Info">
-                     <i class="material-icons" [routerLink]="['/purchase_request_create']">edit</i>
-                  </span>
-                  <span class="Action_Section Bg_Success">
-                     <i class="material-icons" [routerLink]="['/Purchase_Request_View']"> remove_red_eye </i>
-                  </span>
+                  <button [routerLink]="['/Purchase_Request_View']" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                     <i class="material-icons">zoom_in</i>
+                  </button>
+                  <button  [routerLink]="['/purchase_request_create']" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                     <i class="material-icons">edit</i>
+                  </button>
+                  <button (click)=" DeletePurchaseRequest()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                     <i class="material-icons">delete_forever</i>
+                  </button>
                </td>
             </tr>
             <tr>
@@ -111,33 +114,33 @@
                   <span class="S_no"> 3 </span>
                </td>
                <td>
-                  <span class="Name_Style">344354</span>
+                  <span class="Style_1">344354</span>
                </td>
                <td>
-                  <span class="Name_Style"> aashi</span>
+                  <span class="Style_1"> aashi</span>
                </td>
                <td>
-                  <span class="Name_Style">xxx</span>
+                  <span class="Style_1">xxx</span>
                </td>
                <td>
-                  <span class="Name_Style">25/05/2017</span>
+                  <span class="Style_1">25/05/2017</span>
                </td>
                <td>
-                  <span class="Name_Style">Requested</span>
+                  <span class="Style_1">Requested</span>
                </td>
                <td>
-                  <span class="Name_Style">35000</span>
+                  <span class="Style_1">35000</span>
                </td>
                <td>
-                  <span class="Action_Section Bg_Danger">
-                     <i class="material-icons" (click)="DeletePurchaseRequest()" >delete</i>
-                  </span>
-                  <span class="Action_Section Bg_Info">
-                     <i class="material-icons" [routerLink]="['/purchase_request_create']">edit</i>
-                  </span>
-                  <span class="Action_Section Bg_Success">
-                     <i class="material-icons" [routerLink]="['/Purchase_Request_View']"> remove_red_eye </i>
-                  </span>
+                  <button [routerLink]="['/Purchase_Request_View']" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                     <i class="material-icons">zoom_in</i>
+                  </button>
+                  <button  [routerLink]="['/purchase_request_create']" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                     <i class="material-icons">edit</i>
+                  </button>
+                  <button (click)=" DeletePurchaseRequest()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                     <i class="material-icons">delete_forever</i>
+                  </button>
                </td>
             </tr>
             <tr>
@@ -145,33 +148,33 @@
                   <span class="S_no"> 4 </span>
                </td>
                <td>
-                  <span class="Name_Style">344354</span>
+                  <span class="Style_1">344354</span>
                </td>
                <td>
-                  <span class="Name_Style"> aashi</span>
+                  <span class="Style_1"> aashi</span>
                </td>
                <td>
-                  <span class="Name_Style">xxx</span>
+                  <span class="Style_1">xxx</span>
                </td>
                <td>
-                  <span class="Name_Style">25/05/2017</span>
+                  <span class="Style_1">25/05/2017</span>
                </td>
                <td>
-                  <span class="Name_Style">Requested</span>
+                  <span class="Style_1">Requested</span>
                </td>
                <td>
-                  <span class="Name_Style">35000</span>
+                  <span class="Style_1">35000</span>
                </td>
                <td>
-                  <span class="Action_Section Bg_Danger">
-                     <i class="material-icons" (click)="DeletePurchaseRequest()" >delete</i>
-                  </span>
-                  <span class="Action_Section Bg_Info">
-                     <i class="material-icons" [routerLink]="['/purchase_request_create']">edit</i>
-                  </span>
-                  <span class="Action_Section Bg_Success">
-                     <i class="material-icons" [routerLink]="['/Purchase_Request_View']"> remove_red_eye </i>
-                  </span>
+                  <button [routerLink]="['/Purchase_Request_View']" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                     <i class="material-icons">zoom_in</i>
+                  </button>
+                  <button  [routerLink]="['/purchase_request_create']" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                     <i class="material-icons">edit</i>
+                  </button>
+                  <button (click)=" DeletePurchaseRequest()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                     <i class="material-icons">delete_forever</i>
+                  </button>
                </td>
             </tr>
          </tbody>

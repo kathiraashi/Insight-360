@@ -30,7 +30,7 @@ export class RegistrationTypeCompanySettingsComponent implements OnInit {
     const initialState = {
       Type: 'View'
     };
-    this.bsModalRef = this.modalService.show(ModelRegistrationtypeCompanysettingsComponent, Object.assign({initialState}, { class: 'modal-lg' }));
+    this.bsModalRef = this.modalService.show(ModelRegistrationtypeCompanysettingsComponent, Object.assign({initialState}, { class: '' }));
   }
   DeleteRegistrationType() {
     const initialState = {

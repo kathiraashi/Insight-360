@@ -31,7 +31,7 @@ export class ExpensesTypeHrmsSettingsComponent implements OnInit {
     const initialState = {
       Type: 'View'
     };
-    this.bsModalRef = this.modalService.show(ModelExpensestypeHrmssettingsComponent, Object.assign({initialState}, { class: 'modal-lg' }));
+    this.bsModalRef = this.modalService.show(ModelExpensestypeHrmssettingsComponent, Object.assign({initialState}, { class: '' }));
   }
   DeleteExpensesType() {
     const initialState = {

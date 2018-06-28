@@ -19,19 +19,19 @@ export class CallScheduleLeadsComponetsComponent implements OnInit {
 
   ngOnInit() {
   }
-  CreateLogPhoneCall() {
+  CreateCallSchedule() {
     const initialState = {
       Type: 'Create'
     };
     this.bsModalRef = this.modalService.show(ModelCallScheduleLeadsComponentsComponent, Object.assign({initialState}, { class: 'modal-lg' }));
   }
-  ViewLogPhoneCall() {
+  ViewCallSchedule() {
     const initialState = {
       Type: 'View'
     };
     this.bsModalRef = this.modalService.show(ModelCallScheduleLeadsComponentsComponent, Object.assign({initialState}, { class: 'modal-lg' }));
   }
-  DeleteLogPhoneCall() {
+  DeleteCallSchedule() {
     const initialState = {
       Text: 'Log Phone Call'
     };
