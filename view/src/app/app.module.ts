@@ -240,6 +240,12 @@ import { CustomerPaymentsCreateComponent } from './Components/Accounts/customer-
 import { VendorPaymentsListComponent } from './Components/Accounts/Vendor-Payments/vendor-payments-list/vendor-payments-list.component';
 import { VendorPaymentsCreateComponent } from './Components/Accounts/Vendor-Payments/vendor-payments-create/vendor-payments-create.component';
 import { VendorPaymentsViewComponent } from './Components/Accounts/Vendor-Payments/vendor-payments-view/vendor-payments-view.component';
+import { InternalTransferListComponent } from './Components/Inventory/Internal-Transfer/internal-transfer-list/internal-transfer-list.component';
+import { ToReceiveListComponent } from './Components/Inventory/To-Receive/to-receive-list/to-receive-list.component';
+import { InventoryDeliveryordersCreateComponent } from './Components/Inventory/Delivery-Orders/inventory-deliveryorders-create/inventory-deliveryorders-create.component';
+import { InventoryDirectpurchaseCreateComponent } from './Components/Inventory/Direct-Purchase/inventory-directpurchase-create/inventory-directpurchase-create.component';
+import { InternalTransferCreateComponent } from './Components/Inventory/Internal-Transfer/internal-transfer-create/internal-transfer-create.component';
+import { ToReceiveCreateComponent } from './Components/Inventory/To-Receive/to-receive-create/to-receive-create.component';
 
 
 
@@ -466,15 +472,12 @@ import { VendorPaymentsViewComponent } from './Components/Accounts/Vendor-Paymen
             VendorPaymentsListComponent,
             VendorPaymentsCreateComponent,
             VendorPaymentsViewComponent,
-
-
-
-
-
-
-
-
-
+            InternalTransferListComponent,
+            ToReceiveListComponent,
+            InventoryDeliveryordersCreateComponent,
+            InventoryDirectpurchaseCreateComponent,
+            InternalTransferCreateComponent,
+            ToReceiveCreateComponent,
 
 
    ],

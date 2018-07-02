@@ -51,6 +51,12 @@ import { VendorPaymentsListComponent } from './Components/Accounts/Vendor-Paymen
 import { VendorPaymentsCreateComponent } from './Components/Accounts/Vendor-Payments/vendor-payments-create/vendor-payments-create.component';
 import { AccountsCustomerPaymentsViewComponent } from './Components/Accounts/customer-payments/accounts-customer-payments-view/accounts-customer-payments-view.component';
 import { VendorPaymentsViewComponent } from './Components/Accounts/Vendor-Payments/vendor-payments-view/vendor-payments-view.component';
+import { InternalTransferListComponent } from './Components/Inventory/Internal-Transfer/internal-transfer-list/internal-transfer-list.component';
+import { ToReceiveListComponent } from './Components/Inventory/To-Receive/to-receive-list/to-receive-list.component';
+import { InventoryDeliveryordersCreateComponent } from './Components/Inventory/Delivery-Orders/inventory-deliveryorders-create/inventory-deliveryorders-create.component';
+import { InventoryDirectpurchaseCreateComponent } from './Components/Inventory/Direct-Purchase/inventory-directpurchase-create/inventory-directpurchase-create.component';
+import { InternalTransferCreateComponent } from './Components/Inventory/Internal-Transfer/internal-transfer-create/internal-transfer-create.component';
+import { ToReceiveCreateComponent } from './Components/Inventory/To-Receive/to-receive-create/to-receive-create.component';
 
 const appRoutes: Routes = [
   {
@@ -307,6 +313,36 @@ const appRoutes: Routes = [
     path: 'vendor_payment_view',
     component: VendorPaymentsViewComponent,
     data: {   animation: { value: 'vendor_payment_view'}   }
+},
+{
+    path: 'internal_transfer_list',
+    component: InternalTransferListComponent,
+    data: {   animation: { value: 'internal_transfer_list'}   }
+},
+{
+    path: 'to_receive_list',
+    component: ToReceiveListComponent,
+    data: {   animation: { value: 'to_receive_list'}   }
+},
+{
+    path: 'inventory_deliveryorder_create',
+    component: InventoryDeliveryordersCreateComponent,
+    data: {   animation: { value: 'inventory_deliveryorder_create'}   }
+},
+{
+    path: 'inventory_directpurchase_create',
+    component: InventoryDirectpurchaseCreateComponent,
+    data: {   animation: { value: 'inventory_directpurchase_create'}   }
+},
+{
+    path: 'internal_transfer_create',
+    component: InternalTransferCreateComponent,
+    data: {   animation: { value: 'internal_transfer_create'}   }
+},
+{
+    path: 'to_receive_create',
+    component: ToReceiveCreateComponent,
+    data: {   animation: { value: 'to_receive_create'}   }
 },
 
 

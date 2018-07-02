@@ -1,0 +1,194 @@
+
+<div class="page" style="margin-top:100px;">
+   <div class="container-fluid">
+     <div class="Page_Identity">
+       <div class="Page_Name">
+         <h5>Delivery Orders Create</h5>
+       </div>
+       <div class="Page_Track">
+         <ul>
+           <li class="HeaderName">Inventory</li>
+           <li class="arrow">>></li>
+           <li class="LinkName">Delivery Orders </li>
+           <li class="arrow">>></li>
+           <li>Delivery Orders  Create</li>
+         </ul>
+       </div>
+     </div>
+     <div class="row">
+       <div class="Company_Details">
+         <div class="col-sm-12">
+           <div class="row">
+             <div class="col-sm-4 Form_Input">
+               <label>From:</label>
+               <input type="text">
+             </div>
+             <div class="col-sm-4 Form_Input">
+               <label>Destination:</label>
+               <input type="text">
+             </div>
+             <div class="col-sm-4 Form_Input">
+               <label>partner:</label>
+               <input type="text"> 
+             </div>
+             <div class="col-sm-4 Form_Input">
+               <label>Customer Address:</label>
+               <input type="text">
+             </div>
+             <div class="col-sm-4 Form_Input">
+               <label>Date:</label>
+               <input type="text">
+             </div>
+             <div class="col-sm-4 Form_Input">
+               <label>SaleOrder No:</label>
+               <input type="text">
+             </div>
+           </div>
+         </div><br>
+         <div class="row">
+            <div class="col-sm-12">
+              <h5 style="font-weight: 600;font-size: 20px;color: #516570;letter-spacing: 1.2px;">Shipped By</h5>
+            </div>
+          </div><br>
+      <div class="Product_Details" >
+       <div class="Product_Tab">
+                  <div class="Product_details">
+                    <span [ngClass]="{'active': Active_Tab === 'Courier'}" (click)="Active_Tab_Change('Courier')">Courier</span>
+                  </div>
+                  <div class="Quote_Terms">
+                    <span [ngClass]="{'active': Active_Tab === 'Transports'}" (click)="Active_Tab_Change('Transports')">Transports</span>
+                  </div>
+                  <div class="Quote_Terms">
+                        <span [ngClass]="{'active': Active_Tab === 'others'}" (click)="Active_Tab_Change('others')">others</span>
+                      </div>
+                </div>
+                <br>
+                <div class="Bank" *ngIf="Active_Tab === 'Courier'">
+             <div class="row">
+               <div class="col-sm-2">
+                 <input type="radio" checked> Courier
+               </div>
+               <div class="col-sm-2">
+                 <input type="radio"> transports
+               </div>
+               <div class="col-sm-2">
+                 <input type="radio"> others
+               </div>
+             </div>
+             <br>
+             <div class="row">
+               <div class="col-sm-4 Form_Input">
+                 <label>Courier Name:</label>
+                 <input type="text">
+               </div>
+               <div class="col-sm-4 Form_Input">
+                 <label>Reference No:</label>
+                 <input type="text">
+               </div>
+             </div>
+           </div>
+           </div>
+           <div class="Done_Section" >
+            <div class="cash" *ngIf="Active_Tab === 'Transports'">
+             <div class="row">
+               <div class="col-sm-2">
+                 <input type="radio" > Courier
+               </div>
+              <div class="col-sm-2">
+                 <input type="radio" checked> transports
+               </div>
+               <div class="col-sm-2">
+                 <input type="radio">others
+               </div>
+             </div>
+             <br>
+             <div class="row">
+               <div class="col-sm-4 Form_Input">
+                 <label>Transport Name:</label>
+                 <input type="text">
+               </div>
+               <div class="col-sm-4 Form_Input">
+                     <label>Reference No:</label>
+                     <input type="text">
+                   </div>
+               <div class="col-sm-4 Form_Input">
+                 <label>Vehicle No:</label>
+                 <input type="text">
+               </div>
+             </div>
+           </div>
+           </div>
+           <div class="Done_Section" >
+               <div class="cash" *ngIf="Active_Tab === 'others'">
+                <div class="row">
+                  <div class="col-sm-2">
+                    <input type="radio" >Courier
+                  </div>
+                 <div class="col-sm-2">
+                    <input type="radio"> transports
+                  </div>
+                  <div class="col-sm-2">
+                    <input type="radio" checked>others
+                  </div>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col-sm-4 Form_TextArea">
+                    <label>Remarks:</label>
+                    <textarea class="Description" rows="3"></textarea>
+                  </div>
+                 </div>
+              </div>
+              </div>
+        </div>
+       <div class="Table_Section">
+            <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Product
+              <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span>
+              <span><button class="Add_Product_Button">Add Product</button></span>
+            </h5>
+            <br>
+            <table class="table_section">
+              <thead class="table_head">
+                <tr>
+                  <th class="S_No">S.No</th>
+                  <th>Product Name</th>
+                  <th>Quantity</th>
+                  <th>Status</th>
+                  <th class="Action">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td >1</td>
+                  <td class="Form_Select">
+                    <select>
+                    <option checked>Select any one product</option>
+                    <option> product1</option>
+                    <option> product2</option>
+                    <option> product3</option>
+                    <option> product4</option>
+                 </select>
+                </td>
+                <td class="Form_Input">
+                       <input type="text">
+                     </td>
+                     <td class="Form_Input">
+                          <input type="text">
+                        </td>
+                        <td>
+                                   <span class="Action_Section Bg_Danger">
+                                         <i class="material-icons">delete</i>
+                                      </span> 
+                                 </td>
+                </tr>
+              </tbody>
+            </table>
+           </div>
+      </div>
+     <div class="row" style="margin-top:20px;">
+       <div class="col-sm-12 text-right">
+         <button mat-raised-button color="primary"> Submit </button>
+       </div>
+     </div>
+   </div>
+ </div>
