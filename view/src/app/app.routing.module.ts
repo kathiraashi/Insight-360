@@ -1,6 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 
+import { LoginComponent } from './Components/Common-Components/login/login.component';
 import { MainCrmSettingsComponent } from './Components/Settings/CRM-Settings/main-crm-settings/main-crm-settings.component';
 import { MainLeadsSettingsComponent } from './Components/Settings/Lead-Settings/main-leads-settings/main-leads-settings.component';
 import { MainCompanySettingsComponent } from './Components/Settings/Company-Settings/main-company-settings/main-company-settings.component';
@@ -53,263 +54,266 @@ import { AccountsCustomerPaymentsViewComponent } from './Components/Accounts/cus
 import { VendorPaymentsViewComponent } from './Components/Accounts/Vendor-Payments/vendor-payments-view/vendor-payments-view.component';
 
 const appRoutes: Routes = [
-  {
+   {
       path: '',
-      component: MainCrmSettingsComponent,
-      data: { animation: { value: 'CRM_Settings'}  }
-  },
-  {
+      component: LoginComponent,
+      data: { animation: { value: 'Login'}  }
+   },
+   {
+      path: 'Login',
+      component: LoginComponent,
+      data: { animation: { value: 'Login'}  }
+   },
+   {
       path: 'CRM_Settings',
       component: MainCrmSettingsComponent,
       data: {   animation: { value: 'CRM_Settings'}   }
-  },
-  {
-    path: 'lead_settings',
-    component: MainLeadsSettingsComponent,
-    data: {   animation: { value: 'lead_settings'}   }
-},
-{
-    path: 'company_settings',
-    component: MainCompanySettingsComponent,
-    data: {   animation: { value: 'company_settings'}   }
-},
-{
-    path: 'purchase_settings',
-    component: MainPurchaseSettingsComponent,
-    data: {   animation: { value: 'purchase_settings'}   }
-},
-{
-    path: 'Hrms_Settings',
-    component: MainHrmsSettingsComponent,
-    data: {   animation: { value: 'Hrms_Settings'}   }
-},
-{
-    path: 'Hr_Settings',
-    component: MainHrSettingsComponent,
-    data: {   animation: { value: 'Hr_Settings'}   }
-},
-{
-    path: 'Account_Settings',
-    component: MainAccountSettingsComponent,
-    data: {   animation: { value: 'Account_Settings'}   }
-},
-{
-    path: 'Inventory_Settings',
-    component: MainInventorySettingsComponent,
-    data: {   animation: { value: 'Inventory_Settings'}   }
-},
-{
-    path: 'Product_Settings',
-    component: MainProductSettingsComponent,
-    data: {   animation: { value: 'Product_Settings'}   }
-},
-{
-    path: 'Crm_Customers_List',
-    component: CrmCustomersListComponent,
-    data: {   animation: { value: 'Crm_Customers_List'}   }
-},
-{
-    path: 'main_crm_customers_view',
-    component: MainCrmCustomersViewComponent,
-    data: {   animation: { value: 'main_crm_customers_view'}   }
-},
-{
-    path: 'crm_customers_create',
-    component: CrmCustomersCreateComponent,
-    data: {   animation: { value: 'crm_customers_create'}   }
-},
-{
-    path: 'crm_invoice_list',
-    component: CrmInvoiceListComponent,
-    data: {   animation: { value: 'crm_invoice_list'}   }
-},
-{
-    path: 'crm_invoice_create',
-    component: CrmInvoiceCreateComponent,
-    data: {   animation: { value: 'crm_invoice_create'}   }
-},
-{
-    path: 'crm_quotations_list',
-    component: CrmQuatationsListComponent,
-    data: {   animation: { value: 'crm_quotations_list'}   }
-},
-{
-    path: 'crm_quotations_create',
-    component: CrmQuatationsCreateComponent,
-    data: {   animation: { value: 'crm_quotations_create'}   }
-},
-{
-    path: 'crm_saleorder_list',
-    component: CrmSaleorderListComponent,
-    data: {   animation: { value: 'crm_saleorder_list'}   }
-},
-{
-    path: 'crm_saleorder_create',
-    component: CrmSaleorderCreateComponent,
-    data: {   animation: { value: 'crm_saleorder_create'}   }
-},
-{
-    path: 'main_leads',
-    component: MainLeadsComponent,
-    data: {   animation: { value: 'main_leads'}   }
-},
-{
-    path: 'main_hrms',
-    component: MainHrmsComponentsComponent,
-    data: {   animation: { value: 'main_hrms'}   }
-},
-{
-    path: 'purchase_request_list',
-    component: PurchaseRequestListComponent,
-    data: {   animation: { value: 'purchase_request_list'}   }
-},
-{
-    path: 'purchase_request_create',
-    component: PurchaseRequestCreateComponent,
-    data: {   animation: { value: 'purchase_request_create'}   }
-},
-{
-    path: 'Purchase_Quotations_List',
-    component: PurchaseQuotationsListComponent,
-    data: {   animation: { value: 'Purchase_Quotations_List'}   }
-},
-{
-    path: 'Purchase_Orders_List',
-    component: PurchaseOrdersListComponent,
-    data: {   animation: { value: 'Purchase_Orders_List'}   }
-},
-{
-    path: 'Vendor_Bills_List',
-    component: VendorBillsListComponent,
-    data: {   animation: { value: 'Vendor_Bills_List'}   }
-},
-{
-    path: 'Vendor_List',
-    component: VendorListComponent,
-    data: {   animation: { value: 'Vendor_List'}   }
-},
-{
-    path: 'Purchase_Quotation_Create',
-    component: PurchaseQuotationsCreateComponent,
-    data: {   animation: { value: 'Purchase_Quotation_Create'}   }
-},
-{
-    path: 'Purchase_Request_View',
-    component: PurchaseRequestViewComponent,
-    data: {   animation: { value: 'Purchase_Request_View'}   }
-},
-{
-    path: 'Purchase_Quotation_View',
-    component: PurchaseQuotationsViewComponent,
-    data: {   animation: { value: 'Purchase_Quotation_View'}   }
-},
-{
-    path: 'Purchase_Order_Create',
-    component: PurchaseOrdersCreateComponent,
-    data: {   animation: { value: 'Purchase_Order_Create'}   }
-},
-{
-    path: 'Purchase_Order_View',
-    component: PurchaseOrdersViewComponent,
-    data: {   animation: { value: 'Purchase_Order_View'}   }
-},
-{
-    path: 'Vendor_Bills_Create',
-    component: VendorBillsCreateComponent,
-    data: {   animation: { value: 'Vendor_Bills_Create'}   }
-},
-{
-    path: 'Vendor_Bills_View',
-    component: VendorBillsViewComponent,
-    data: {   animation: { value: 'Vendor_Bills_View'}   }
-},
-{
-    path: 'Vendor_Create',
-    component: VendorCreateComponent,
-    data: {   animation: { value: 'Vendor_Create'}   }
-},
-{
-    path: 'crm_quotations_view',
-    component: CrmQuatationsViewComponent,
-    data: {   animation: { value: 'crm_quotations_view'}   }
-},
-{
-    path: 'crm_saleorder_view',
-    component: CrmSaleorderViewComponent,
-    data: {   animation: { value: 'crm_saleorder_view'}   }
-},
-{
-    path: 'crm_invoice_view',
-    component: CrmInvoiceViewComponent,
-    data: {   animation: { value: 'crm_invoice_view'}   }
-},
-{
-    path: 'main_vendor_view',
-    component: MainVendorViewComponent,
-    data: {   animation: { value: 'main_vendor_view'}   }
-},
-{
-    path: 'account_customer_list',
-    component: AccountsCustomerListComponent,
-    data: {   animation: { value: 'account_customer_list'}   }
-},
-{
-    path: 'account_customer_invoice_list',
-    component: AccountsCustomerInvoiceListComponent,
-    data: {   animation: { value: 'account_customer_invoice_list'}   }
-},
-{
-    path: 'account_customer_payments_list',
-    component: AccountsCustomerPaymentsListComponent,
-    data: {   animation: { value: 'account_customer_payments_list'}   }
-},
-{
-    path: 'account_customer_invoice_view',
-    component: AccountsCustomerInvoiceViewComponent,
-    data: {   animation: { value: 'account_customer_invoice_view'}   }
-},
-{
-    path: 'account_vendor_list',
-    component: AccountsVendorListComponent,
-    data: {   animation: { value: 'account_vendor_list'}   }
-},
-{
-    path: 'account_vendor_bills_list',
-    component: AccountsVendorbillsListComponent,
-    data: {   animation: { value: 'account_vendor_bills_list'}   }
-},
-{
-    path: 'Inventory_deliveryorder_list',
-    component: InventoryDeliveryordersListComponent,
-    data: {   animation: { value: 'Inventory_deliveryorder_list'}   }
-},
-{
-    path: 'customer_payment_create',
-    component: CustomerPaymentsCreateComponent,
-    data: {   animation: { value: 'customer_payment_create'}   }
-},
-{
-    path: 'vendor_payment_list',
-    component: VendorPaymentsListComponent,
-    data: {   animation: { value: 'vendor_payment_list'}   }
-},
-{
-    path: 'vendor_payment_create',
-    component: VendorPaymentsCreateComponent,
-    data: {   animation: { value: 'vendor_payment_create'}   }
-},
-{
-    path: 'customer_payment_view',
-    component: AccountsCustomerPaymentsViewComponent,
-    data: {   animation: { value: 'customer_payment_view'}   }
-},
-{
-    path: 'vendor_payment_view',
-    component: VendorPaymentsViewComponent,
-    data: {   animation: { value: 'vendor_payment_view'}   }
-},
-
-
+   },
+   {
+      path: 'lead_settings',
+      component: MainLeadsSettingsComponent,
+      data: {   animation: { value: 'lead_settings'}   }
+   },
+   {
+      path: 'company_settings',
+      component: MainCompanySettingsComponent,
+      data: {   animation: { value: 'company_settings'}   }
+   },
+   {
+      path: 'purchase_settings',
+      component: MainPurchaseSettingsComponent,
+      data: {   animation: { value: 'purchase_settings'}   }
+   },
+   {
+      path: 'Hrms_Settings',
+      component: MainHrmsSettingsComponent,
+      data: {   animation: { value: 'Hrms_Settings'}   }
+   },
+   {
+      path: 'Hr_Settings',
+      component: MainHrSettingsComponent,
+      data: {   animation: { value: 'Hr_Settings'}   }
+   },
+   {
+      path: 'Account_Settings',
+      component: MainAccountSettingsComponent,
+      data: {   animation: { value: 'Account_Settings'}   }
+   },
+   {
+      path: 'Inventory_Settings',
+      component: MainInventorySettingsComponent,
+      data: {   animation: { value: 'Inventory_Settings'}   }
+   },
+   {
+      path: 'Product_Settings',
+      component: MainProductSettingsComponent,
+      data: {   animation: { value: 'Product_Settings'}   }
+   },
+   {
+      path: 'Crm_Customers_List',
+      component: CrmCustomersListComponent,
+      data: {   animation: { value: 'Crm_Customers_List'}   }
+   },
+   {
+      path: 'main_crm_customers_view',
+      component: MainCrmCustomersViewComponent,
+      data: {   animation: { value: 'main_crm_customers_view'}   }
+   },
+   {
+      path: 'crm_customers_create',
+      component: CrmCustomersCreateComponent,
+      data: {   animation: { value: 'crm_customers_create'}   }
+   },
+   {
+      path: 'crm_invoice_list',
+      component: CrmInvoiceListComponent,
+      data: {   animation: { value: 'crm_invoice_list'}   }
+   },
+   {
+      path: 'crm_invoice_create',
+      component: CrmInvoiceCreateComponent,
+      data: {   animation: { value: 'crm_invoice_create'}   }
+   },
+   {
+      path: 'crm_quotations_list',
+      component: CrmQuatationsListComponent,
+      data: {   animation: { value: 'crm_quotations_list'}   }
+   },
+   {
+      path: 'crm_quotations_create',
+      component: CrmQuatationsCreateComponent,
+      data: {   animation: { value: 'crm_quotations_create'}   }
+   },
+   {
+      path: 'crm_saleorder_list',
+      component: CrmSaleorderListComponent,
+      data: {   animation: { value: 'crm_saleorder_list'}   }
+   },
+   {
+      path: 'crm_saleorder_create',
+      component: CrmSaleorderCreateComponent,
+      data: {   animation: { value: 'crm_saleorder_create'}   }
+   },
+   {
+      path: 'main_leads',
+      component: MainLeadsComponent,
+      data: {   animation: { value: 'main_leads'}   }
+   },
+   {
+      path: 'main_hrms',
+      component: MainHrmsComponentsComponent,
+      data: {   animation: { value: 'main_hrms'}   }
+   },
+   {
+      path: 'purchase_request_list',
+      component: PurchaseRequestListComponent,
+      data: {   animation: { value: 'purchase_request_list'}   }
+   },
+   {
+      path: 'purchase_request_create',
+      component: PurchaseRequestCreateComponent,
+      data: {   animation: { value: 'purchase_request_create'}   }
+   },
+   {
+      path: 'Purchase_Quotations_List',
+      component: PurchaseQuotationsListComponent,
+      data: {   animation: { value: 'Purchase_Quotations_List'}   }
+   },
+   {
+      path: 'Purchase_Orders_List',
+      component: PurchaseOrdersListComponent,
+      data: {   animation: { value: 'Purchase_Orders_List'}   }
+   },
+   {
+      path: 'Vendor_Bills_List',
+      component: VendorBillsListComponent,
+      data: {   animation: { value: 'Vendor_Bills_List'}   }
+   },
+   {
+      path: 'Vendor_List',
+      component: VendorListComponent,
+      data: {   animation: { value: 'Vendor_List'}   }
+   },
+   {
+      path: 'Purchase_Quotation_Create',
+      component: PurchaseQuotationsCreateComponent,
+      data: {   animation: { value: 'Purchase_Quotation_Create'}   }
+   },
+   {
+      path: 'Purchase_Request_View',
+      component: PurchaseRequestViewComponent,
+      data: {   animation: { value: 'Purchase_Request_View'}   }
+   },
+   {
+      path: 'Purchase_Quotation_View',
+      component: PurchaseQuotationsViewComponent,
+      data: {   animation: { value: 'Purchase_Quotation_View'}   }
+   },
+   {
+      path: 'Purchase_Order_Create',
+      component: PurchaseOrdersCreateComponent,
+      data: {   animation: { value: 'Purchase_Order_Create'}   }
+   },
+   {
+      path: 'Purchase_Order_View',
+      component: PurchaseOrdersViewComponent,
+      data: {   animation: { value: 'Purchase_Order_View'}   }
+   },
+   {
+      path: 'Vendor_Bills_Create',
+      component: VendorBillsCreateComponent,
+      data: {   animation: { value: 'Vendor_Bills_Create'}   }
+   },
+   {
+      path: 'Vendor_Bills_View',
+      component: VendorBillsViewComponent,
+      data: {   animation: { value: 'Vendor_Bills_View'}   }
+   },
+   {
+      path: 'Vendor_Create',
+      component: VendorCreateComponent,
+      data: {   animation: { value: 'Vendor_Create'}   }
+   },
+   {
+      path: 'crm_quotations_view',
+      component: CrmQuatationsViewComponent,
+      data: {   animation: { value: 'crm_quotations_view'}   }
+   },
+   {
+      path: 'crm_saleorder_view',
+      component: CrmSaleorderViewComponent,
+      data: {   animation: { value: 'crm_saleorder_view'}   }
+   },
+   {
+      path: 'crm_invoice_view',
+      component: CrmInvoiceViewComponent,
+      data: {   animation: { value: 'crm_invoice_view'}   }
+   },
+   {
+      path: 'main_vendor_view',
+      component: MainVendorViewComponent,
+      data: {   animation: { value: 'main_vendor_view'}   }
+   },
+   {
+      path: 'account_customer_list',
+      component: AccountsCustomerListComponent,
+      data: {   animation: { value: 'account_customer_list'}   }
+   },
+   {
+      path: 'account_customer_invoice_list',
+      component: AccountsCustomerInvoiceListComponent,
+      data: {   animation: { value: 'account_customer_invoice_list'}   }
+   },
+   {
+      path: 'account_customer_payments_list',
+      component: AccountsCustomerPaymentsListComponent,
+      data: {   animation: { value: 'account_customer_payments_list'}   }
+   },
+   {
+      path: 'account_customer_invoice_view',
+      component: AccountsCustomerInvoiceViewComponent,
+      data: {   animation: { value: 'account_customer_invoice_view'}   }
+   },
+   {
+      path: 'account_vendor_list',
+      component: AccountsVendorListComponent,
+      data: {   animation: { value: 'account_vendor_list'}   }
+   },
+   {
+      path: 'account_vendor_bills_list',
+      component: AccountsVendorbillsListComponent,
+      data: {   animation: { value: 'account_vendor_bills_list'}   }
+   },
+   {
+      path: 'Inventory_deliveryorder_list',
+      component: InventoryDeliveryordersListComponent,
+      data: {   animation: { value: 'Inventory_deliveryorder_list'}   }
+   },
+   {
+      path: 'customer_payment_create',
+      component: CustomerPaymentsCreateComponent,
+      data: {   animation: { value: 'customer_payment_create'}   }
+   },
+   {
+      path: 'vendor_payment_list',
+      component: VendorPaymentsListComponent,
+      data: {   animation: { value: 'vendor_payment_list'}   }
+   },
+   {
+      path: 'vendor_payment_create',
+      component: VendorPaymentsCreateComponent,
+      data: {   animation: { value: 'vendor_payment_create'}   }
+   },
+   {
+      path: 'customer_payment_view',
+      component: AccountsCustomerPaymentsViewComponent,
+      data: {   animation: { value: 'customer_payment_view'}   }
+   },
+   {
+      path: 'vendor_payment_view',
+      component: VendorPaymentsViewComponent,
+      data: {   animation: { value: 'vendor_payment_view'}   }
+   },
 
 
 ];

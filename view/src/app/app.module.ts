@@ -13,17 +13,20 @@
    import { AppComponent } from './app.component';
 
 // Future Modules
-import { ModalModule, AccordionModule} from 'ngx-bootstrap';
-import {CalendarModule} from 'primeng/calendar';
-import {MatButtonModule, MatFormFieldModule, MatSelectModule} from '@angular/material';
+   import { ModalModule, AccordionModule} from 'ngx-bootstrap';
+   import {CalendarModule} from 'primeng/calendar';
+   import {MatButtonModule, MatFormFieldModule, MatSelectModule} from '@angular/material';
 // Custom Modules
-    import { AppRoutingModule } from './app.routing.module';
+   import { AppRoutingModule } from './app.routing.module';
 
 
 // Custom Components
-import { HeaderComponent } from './Components/Common-Components/header/header.component';
    // Component Folder
-      // Settings Folder
+      // Common-Components ---------------------------------------------------
+         import { DeleteConfirmationComponent } from './Components/Common-Components/delete-confirmation/delete-confirmation.component';
+         import { HeaderComponent } from './Components/Common-Components/header/header.component';
+         import { LoginComponent } from './Components/Common-Components/login/login.component';
+      // Settings Folder ----------------------------------------------------
          // CRM Settings Folder
             import { MainCrmSettingsComponent } from './Components/Settings/CRM-Settings/main-crm-settings/main-crm-settings.component';
             // Sub Components Folder
@@ -39,55 +42,54 @@ import { HeaderComponent } from './Components/Common-Components/header/header.co
          // Lead Settings Folder
             import { MainLeadsSettingsComponent } from './Components/Settings/Lead-Settings/main-leads-settings/main-leads-settings.component';
             // Sub Components Folder
-                import { LeadSourceTypeLeadSettingsComponent } from './Components/Settings/Lead-settings/sub-components/lead-source-type-lead-settings/lead-source-type-lead-settings.component';
-        // Company Settings Folder
+               import { LeadSourceTypeLeadSettingsComponent } from './Components/Settings/Lead-settings/sub-components/lead-source-type-lead-settings/lead-source-type-lead-settings.component';
+         // Company Settings Folder
             import { MainCompanySettingsComponent } from './Components/Settings/Company-Settings/main-company-settings/main-company-settings.component';
             // Sub Components Folder
-                import { CompanyInfoCompanySettingsComponent } from './Components/settings/Company-Settings/SubComponents/company-info-company-settings/company-info-company-settings.component';
-                import { ContactInfoCompanySettingsComponent } from './Components/settings/Company-Settings/SubComponents/contact-info-company-settings/contact-info-company-settings.component';
-                import { DepartmentsCompanySettingsComponent } from './Components/settings/Company-Settings/SubComponents/departments-company-settings/departments-company-settings.component';
-                import { BranchCompanySettingsComponent } from './Components/settings/Company-Settings/SubComponents/branch-company-settings/branch-company-settings.component';
-                import { RegistrationInfoCompanySettingsComponent } from './Components/settings/Company-Settings/SubComponents/registration-info-company-settings/registration-info-company-settings.component';
-                import { ESIInfoCompanySettingsComponent } from './Components/Settings/Company-Settings/SubComponents/esiinfo-company-settings/esiinfo-company-settings.component';
-                import { PFInfoCompanySettingsComponent } from './Components/Settings/Company-Settings/SubComponents/pfinfo-company-settings/pfinfo-company-settings.component';
-                import { ItInfoCompanySettingsComponent } from './Components/Settings/Company-Settings/SubComponents/it-info-company-settings/it-info-company-settings.component';
-                import { PTInfoCompanySettingsComponent } from './Components/Settings/Company-Settings/SubComponents/ptinfo-company-settings/ptinfo-company-settings.component';
-                import { RegistrationTypeCompanySettingsComponent } from './Components/Settings/Company-Settings/SubComponents/registration-type-company-settings/registration-type-company-settings.component';
-        // purchase settings folder
+               import { CompanyInfoCompanySettingsComponent } from './Components/settings/Company-Settings/SubComponents/company-info-company-settings/company-info-company-settings.component';
+               import { ContactInfoCompanySettingsComponent } from './Components/settings/Company-Settings/SubComponents/contact-info-company-settings/contact-info-company-settings.component';
+               import { DepartmentsCompanySettingsComponent } from './Components/settings/Company-Settings/SubComponents/departments-company-settings/departments-company-settings.component';
+               import { BranchCompanySettingsComponent } from './Components/settings/Company-Settings/SubComponents/branch-company-settings/branch-company-settings.component';
+               import { RegistrationInfoCompanySettingsComponent } from './Components/settings/Company-Settings/SubComponents/registration-info-company-settings/registration-info-company-settings.component';
+               import { ESIInfoCompanySettingsComponent } from './Components/Settings/Company-Settings/SubComponents/esiinfo-company-settings/esiinfo-company-settings.component';
+               import { PFInfoCompanySettingsComponent } from './Components/Settings/Company-Settings/SubComponents/pfinfo-company-settings/pfinfo-company-settings.component';
+               import { ItInfoCompanySettingsComponent } from './Components/Settings/Company-Settings/SubComponents/it-info-company-settings/it-info-company-settings.component';
+               import { PTInfoCompanySettingsComponent } from './Components/Settings/Company-Settings/SubComponents/ptinfo-company-settings/ptinfo-company-settings.component';
+               import { RegistrationTypeCompanySettingsComponent } from './Components/Settings/Company-Settings/SubComponents/registration-type-company-settings/registration-type-company-settings.component';
+         // purchase settings folder
             import { MainPurchaseSettingsComponent } from './Components/Settings/Purchase-Settings/main-purchase-settings/main-purchase-settings.component';
             // Sub Components
-                import { VendorQuoteTermsPurchaseSettingsComponent } from './Components/Settings/Purchase-Settings/SubComponents/vendor-quote-terms-purchase-settings/vendor-quote-terms-purchase-settings.component';
-        // Hrms Settings Folder
+               import { VendorQuoteTermsPurchaseSettingsComponent } from './Components/Settings/Purchase-Settings/SubComponents/vendor-quote-terms-purchase-settings/vendor-quote-terms-purchase-settings.component';
+         // Hrms Settings Folder
             import { MainHrmsSettingsComponent } from './Components/Settings/HRMS-Settings/main-hrms-settings/main-hrms-settings.component';
             // Sub Components
-                import { LeaveTypeHrmsSettingsComponent } from './Components/Settings/HRMS-Settings/SubComponents/leave-type-hrms-settings/leave-type-hrms-settings.component';
-                import { ExpensesTypeHrmsSettingsComponent } from './Components/Settings/HRMS-Settings/SubComponents/expenses-type-hrms-settings/expenses-type-hrms-settings.component';
-        // Hr Settings Folder
+               import { LeaveTypeHrmsSettingsComponent } from './Components/Settings/HRMS-Settings/SubComponents/leave-type-hrms-settings/leave-type-hrms-settings.component';
+               import { ExpensesTypeHrmsSettingsComponent } from './Components/Settings/HRMS-Settings/SubComponents/expenses-type-hrms-settings/expenses-type-hrms-settings.component';
+         // Hr Settings Folder
             import { MainHrSettingsComponent } from './Components/Settings/HR-Settings/main-hr-settings/main-hr-settings.component';
             // Sub Components
-                import { EmployeeCategoryHrSettingsComponent } from './Components/Settings/HR-Settings/SubComponents/employee-category-hr-settings/employee-category-hr-settings.component';
-                import { DepartmentHrSettingsComponent } from './Components/Settings/HR-Settings/SubComponents/department-hr-settings/department-hr-settings.component';
-                import { DesignationHrSettingsComponent } from './Components/Settings/HR-Settings/SubComponents/designation-hr-settings/designation-hr-settings.component';
-        // Account Settings Folder
+               import { EmployeeCategoryHrSettingsComponent } from './Components/Settings/HR-Settings/SubComponents/employee-category-hr-settings/employee-category-hr-settings.component';
+               import { DepartmentHrSettingsComponent } from './Components/Settings/HR-Settings/SubComponents/department-hr-settings/department-hr-settings.component';
+               import { DesignationHrSettingsComponent } from './Components/Settings/HR-Settings/SubComponents/designation-hr-settings/designation-hr-settings.component';
+         // Account Settings Folder
             import { MainAccountSettingsComponent } from './Components/Settings/Account-Settings/main-account-settings/main-account-settings.component';
              // Sub Components
-                import { TaxesAccountSettingsComponent } from './Components/Settings/Account-Settings/SubComponents/taxes-account-settings/taxes-account-settings.component';
-                import { BankAccountSettingsComponent } from './Components/Settings/Account-Settings/SubComponents/bank-account-settings/bank-account-settings.component';
-                import { IncomeTypeAccountSettingsComponent } from './Components/Settings/Account-Settings/SubComponents/income-type-account-settings/income-type-account-settings.component';
-                import { AssetTypeAccountSettingsComponent } from './Components/Settings/Account-Settings/SubComponents/asset-type-account-settings/asset-type-account-settings.component';
-                import { PaymentTermsAccountSettingsComponent } from './Components/Settings/Account-Settings/SubComponents/payment-terms-account-settings/payment-terms-account-settings.component';
-        // Inventory settings Folder
+               import { TaxesAccountSettingsComponent } from './Components/Settings/Account-Settings/SubComponents/taxes-account-settings/taxes-account-settings.component';
+               import { BankAccountSettingsComponent } from './Components/Settings/Account-Settings/SubComponents/bank-account-settings/bank-account-settings.component';
+               import { IncomeTypeAccountSettingsComponent } from './Components/Settings/Account-Settings/SubComponents/income-type-account-settings/income-type-account-settings.component';
+               import { AssetTypeAccountSettingsComponent } from './Components/Settings/Account-Settings/SubComponents/asset-type-account-settings/asset-type-account-settings.component';
+               import { PaymentTermsAccountSettingsComponent } from './Components/Settings/Account-Settings/SubComponents/payment-terms-account-settings/payment-terms-account-settings.component';
+         // Inventory settings Folder
             import { MainInventorySettingsComponent } from './Components/Settings/Inventory-Settings/main-inventory-settings/main-inventory-settings.component';
-             // Sub Components
-                import { WareHouseInventorySettingsComponent } from './Components/Settings/Inventory-Settings/SubComponents/ware-house-inventory-settings/ware-house-inventory-settings.component';
-        // Product Settings Folder
+            // Sub Components
+               import { WareHouseInventorySettingsComponent } from './Components/Settings/Inventory-Settings/SubComponents/ware-house-inventory-settings/ware-house-inventory-settings.component';
+         // Product Settings Folder
             import { MainProductSettingsComponent } from './Components/Settings/Product-Settings/main-product-settings/main-product-settings.component';
-             // Sub Components
-                import { ConfigurationProductSettingsComponent } from './Components/Settings/Product-Settings/SubComponents/configuration-product-settings/configuration-product-settings.component';
-
-// models
-    // settings
-        // company settings
+            // Sub Components
+               import { ConfigurationProductSettingsComponent } from './Components/Settings/Product-Settings/SubComponents/configuration-product-settings/configuration-product-settings.component';
+   // models -----------------------------------------------------------
+      // settings
+         // company settings
             import { ModelCompanyinfoCompanysettingsComponent } from './models/settings/company_settings/model-companyinfo-companysettings/model-companyinfo-companysettings.component';
             import { ModelContactinfoCompanysettingsComponent } from './models/settings/company_settings/model-contactinfo-companysettings/model-contactinfo-companysettings.component';
             import { ModelDepartmentsCompanysettingsComponent } from './models/settings/company_settings/model-departments-companysettings/model-departments-companysettings.component';
@@ -98,8 +100,7 @@ import { HeaderComponent } from './Components/Common-Components/header/header.co
             import { ModelPtinfoCompanysettingsComponent } from './models/settings/company_settings/model-ptinfo-companysettings/model-ptinfo-companysettings.component';
             import { ModelItinfoCompanysettingsComponent } from './models/settings/company_settings/model-itinfo-companysettings/model-itinfo-companysettings.component';
             import { ModelRegistrationtypeCompanysettingsComponent } from './models/settings/company_settings/model-registrationtype-companysettings/model-registrationtype-companysettings.component';
-            import { CreateModelContactinfoCompanySettingsComponent } from './models/settings/create-model-contactinfo-company-settings/create-model-contactinfo-company-settings.component';
-        // CRM Settings
+         // CRM Settings
             import { ModelIndustrytypeCrmsettingsComponent } from './models/settings/crm_settings/model-industrytype-crmsettings/model-industrytype-crmsettings.component';
             import { ModelOwnershipytypeCrmsettingsComponent } from './models/settings/crm_settings/model-ownershipytype-crmsettings/model-ownershipytype-crmsettings.component';
             import { ModelActivitytypeCrmsettingsComponent } from './models/settings/crm_settings/model-activitytype-crmsettings/model-activitytype-crmsettings.component';
@@ -108,65 +109,59 @@ import { HeaderComponent } from './Components/Common-Components/header/header.co
             import { ModelPipelinestatusCrmsettingsComponent } from './models/settings/crm_settings/model-pipelinestatus-crmsettings/model-pipelinestatus-crmsettings.component';
             import { ModelContactroleCrmsettingsComponent } from './models/settings/crm_settings/model-contactrole-crmsettings/model-contactrole-crmsettings.component';
             import { ModelQuotetermsCrmsettingsComponent } from './models/settings/crm_settings/model-quoteterms-crmsettings/model-quoteterms-crmsettings.component';
-        // Lead Settings
+         // Lead Settings
             import { ModelLeadsourceLeadsettingsComponent } from './models/settings/lead_settings/model-leadsource-leadsettings/model-leadsource-leadsettings.component';
-        // Purchase Settings
+         // Purchase Settings
             import { ModelVendorquotetermsPurchasesettingsComponent } from './models/settings/purchase_settings/model-vendorquoteterms-purchasesettings/model-vendorquoteterms-purchasesettings.component';
-        // HRMS settings
+         // HRMS settings
             import { ModelLeavetypeHrmssettingsComponent } from './models/settings/hrms_settings/model-leavetype-hrmssettings/model-leavetype-hrmssettings.component';
             import { ModelExpensestypeHrmssettingsComponent } from './models/settings/hrms_settings/model-expensestype-hrmssettings/model-expensestype-hrmssettings.component';
-        // HR settings
+         // HR settings
             import { ModelEmployeecategoryHrsettingsComponent } from './models/settings/hr_settings/model-employeecategory-hrsettings/model-employeecategory-hrsettings.component';
             import { ModelDepartmentHrsettingsComponent } from './models/settings/hr_settings/model-department-hrsettings/model-department-hrsettings.component';
             import { ModelDesignationHrsettingsComponent } from './models/settings/hr_settings/model-designation-hrsettings/model-designation-hrsettings.component';
-        // Inventory settings
+         // Inventory settings
             import { ModelWarehouseInventorysettingsComponent } from './models/settings/inventory_settings/model-warehouse-inventorysettings/model-warehouse-inventorysettings.component';
-        // Account Settings
+         // Account Settings
             import { ModelTaxesAccountsettingsComponent } from './models/settings/account_settings/model-taxes-accountsettings/model-taxes-accountsettings.component';
             import { ModelBankAccountsettingsComponent } from './models/settings/account_settings/model-bank-accountsettings/model-bank-accountsettings.component';
             import { ModelIncometypeAccountsettingsComponent } from './models/settings/account_settings/model-incometype-accountsettings/model-incometype-accountsettings.component';
             import { ModelAssettypeAccountsettingsComponent } from './models/settings/account_settings/model-assettype-accountsettings/model-assettype-accountsettings.component';
             import { ModelPaymenttermsAccountsettingsComponent } from './models/settings/account_settings/model-paymentterms-accountsettings/model-paymentterms-accountsettings.component';
-// Components
-    // Common-Components
-        // delete-confirmation
-            import { DeleteConfirmationComponent } from './Components/Common-Components/delete-confirmation/delete-confirmation.component';
-   // CRM Folder
-        // Customers
-            // crm-customers-list
-                import { CrmCustomersListComponent } from './Components/CRM/Customers/crm-customers-list/crm-customers-list.component';
-            // crm-customers-view
-                // main crm customers view
-                    import { MainCrmCustomersViewComponent } from './Components/CRM/Customers/Crm-Customers-View/main-crm-customers-view/main-crm-customers-view.component';
-                        // SubComponents
-                        import { AboutCrmCustomersViewComponent } from './Components/CRM/Customers/Crm-Customers-View/SubComponents/about-crm-customers-view/about-crm-customers-view.component';
-                        import { ContactCrmCustomersViewComponent } from './Components/CRM/Customers/Crm-Customers-view/SubComponents/contact-crm-customers-view/contact-crm-customers-view.component';
-                        import { ActivityCrmCustomersViewComponent } from './Components/CRM/Customers/Crm-Customers-view/SubComponents/activity-crm-customers-view/activity-crm-customers-view.component';
-                        import { QuoteCrmCustomersViewComponent } from './Components/CRM/Customers/Crm-Customers-view/SubComponents/quote-crm-customers-view/quote-crm-customers-view.component';
-                        import { SaleorderCrmCustomersViewComponent } from './Components/CRM/Customers/Crm-Customers-view/SubComponents/saleorder-crm-customers-view/saleorder-crm-customers-view.component';
-                        import { InvoiceCrmCustomersViewComponent } from './Components/CRM/Customers/Crm-Customers-view/SubComponents/invoice-crm-customers-view/invoice-crm-customers-view.component';
-                        import { PaymentCrmCustomersViewComponent } from './Components/CRM/Customers/Crm-Customers-view/SubComponents/payment-crm-customers-view/payment-crm-customers-view.component';
-                        import { RemainderCrmCustomersViewComponent } from './Components/CRM/Customers/Crm-Customers-view/SubComponents/remainder-crm-customers-view/remainder-crm-customers-view.component';
-                        import { OthersCrmCustomersViewComponent } from './Components/CRM/Customers/Crm-Customers-view/SubComponents/others-crm-customers-view/others-crm-customers-view.component';
-            // crm
-                import { CrmCustomersCreateComponent } from './Components/CRM/Customers/crm-customers-create/crm-customers-create.component';
-            // Quotation
-                import { CrmQuatationsCreateComponent } from './Components/CRM/Quotations/crm-quatations-create/crm-quatations-create.component';
-                import { CrmQuatationsListComponent } from './Components/CRM/Quotations/crm-quatations-list/crm-quatations-list.component';
-                import { CrmQuatationsViewComponent } from './Components/CRM/Quotations/crm-quatations-view/crm-quatations-view.component';
-            // Sale Order
-                import { CrmSaleorderCreateComponent } from './Components/CRM/SaleOrder/crm-saleorder-create/crm-saleorder-create.component';
-                import { CrmSaleorderListComponent } from './Components/CRM/SaleOrder/crm-saleorder-list/crm-saleorder-list.component';
-                import { CrmSaleorderViewComponent } from './Components/CRM/SaleOrder/crm-saleorder-view/crm-saleorder-view.component';
 
-        // Invoice
-            // crm-invoice-create
-                import { CrmInvoiceCreateComponent } from './Components/CRM/Invoice/crm-invoice-create/crm-invoice-create.component';
-            // crm-invoice-List
-                import { CrmInvoiceListComponent } from './Components/CRM/Invoice/crm-invoice-list/crm-invoice-list.component';
-             // crm-invoice-View
-                import { CrmInvoiceViewComponent } from './Components/CRM/Invoice/crm-invoice-view/crm-invoice-view.component';
-    // Leads Folder
+
+      // CRM Folder --------------------------------------------------------------
+         // Customers ----------------
+            // CRM Customers List
+               import { CrmCustomersListComponent } from './Components/CRM/Customers/crm-customers-list/crm-customers-list.component';
+            // CRM Customers View
+               // Main CRM Customers View
+                  import { MainCrmCustomersViewComponent } from './Components/CRM/Customers/Crm-Customers-View/main-crm-customers-view/main-crm-customers-view.component';
+                  // Sub Components
+                     import { AboutCrmCustomersViewComponent } from './Components/CRM/Customers/Crm-Customers-View/SubComponents/about-crm-customers-view/about-crm-customers-view.component';
+                     import { ContactCrmCustomersViewComponent } from './Components/CRM/Customers/Crm-Customers-view/SubComponents/contact-crm-customers-view/contact-crm-customers-view.component';
+                     import { ActivityCrmCustomersViewComponent } from './Components/CRM/Customers/Crm-Customers-view/SubComponents/activity-crm-customers-view/activity-crm-customers-view.component';
+                     import { QuoteCrmCustomersViewComponent } from './Components/CRM/Customers/Crm-Customers-view/SubComponents/quote-crm-customers-view/quote-crm-customers-view.component';
+                     import { SaleorderCrmCustomersViewComponent } from './Components/CRM/Customers/Crm-Customers-view/SubComponents/saleorder-crm-customers-view/saleorder-crm-customers-view.component';
+                     import { InvoiceCrmCustomersViewComponent } from './Components/CRM/Customers/Crm-Customers-view/SubComponents/invoice-crm-customers-view/invoice-crm-customers-view.component';
+                     import { PaymentCrmCustomersViewComponent } from './Components/CRM/Customers/Crm-Customers-view/SubComponents/payment-crm-customers-view/payment-crm-customers-view.component';
+                     import { RemainderCrmCustomersViewComponent } from './Components/CRM/Customers/Crm-Customers-view/SubComponents/remainder-crm-customers-view/remainder-crm-customers-view.component';
+                     import { OthersCrmCustomersViewComponent } from './Components/CRM/Customers/Crm-Customers-view/SubComponents/others-crm-customers-view/others-crm-customers-view.component';
+            // CRM-customers-create
+                import { CrmCustomersCreateComponent } from './Components/CRM/Customers/crm-customers-create/crm-customers-create.component';
+         // Quotation -------------------
+            import { CrmQuatationsCreateComponent } from './Components/CRM/Quotations/crm-quatations-create/crm-quatations-create.component';
+            import { CrmQuatationsListComponent } from './Components/CRM/Quotations/crm-quatations-list/crm-quatations-list.component';
+            import { CrmQuatationsViewComponent } from './Components/CRM/Quotations/crm-quatations-view/crm-quatations-view.component';
+         // Sale Order ------------------
+            import { CrmSaleorderCreateComponent } from './Components/CRM/SaleOrder/crm-saleorder-create/crm-saleorder-create.component';
+            import { CrmSaleorderListComponent } from './Components/CRM/SaleOrder/crm-saleorder-list/crm-saleorder-list.component';
+            import { CrmSaleorderViewComponent } from './Components/CRM/SaleOrder/crm-saleorder-view/crm-saleorder-view.component';
+        // Invoice ---------------------
+            import { CrmInvoiceCreateComponent } from './Components/CRM/Invoice/crm-invoice-create/crm-invoice-create.component';
+            import { CrmInvoiceListComponent } from './Components/CRM/Invoice/crm-invoice-list/crm-invoice-list.component';
+            import { CrmInvoiceViewComponent } from './Components/CRM/Invoice/crm-invoice-view/crm-invoice-view.component';
+      // Leads Folder ----------------------------------------------------
         // main-leads
             import { MainLeadsComponent } from './Components/Leads/main-leads/main-leads.component';
             // SubComponents
@@ -438,7 +433,6 @@ import { VendorPaymentsViewComponent } from './Components/Accounts/Vendor-Paymen
         // vendor
          VendorListComponent,
          VendorCreateComponent,
-        CreateModelContactinfoCompanySettingsComponent,
               // main vendor view
                 MainVendorViewComponent,
                     // Sub components
@@ -466,17 +460,7 @@ import { VendorPaymentsViewComponent } from './Components/Accounts/Vendor-Paymen
             VendorPaymentsListComponent,
             VendorPaymentsCreateComponent,
             VendorPaymentsViewComponent,
-
-
-
-
-
-
-
-
-
-
-
+            LoginComponent,
    ],
    imports: [
       // Default Modules
@@ -485,7 +469,9 @@ import { VendorPaymentsViewComponent } from './Components/Accounts/Vendor-Paymen
          RouterModule,
          HttpModule,
          HttpClientModule,
-        // future modules
+         FormsModule,
+         ReactiveFormsModule,
+      // future modules
          ModalModule.forRoot(),
          AccordionModule.forRoot(),
          CalendarModule,
@@ -493,49 +479,48 @@ import { VendorPaymentsViewComponent } from './Components/Accounts/Vendor-Paymen
          MatFormFieldModule,
          MatSelectModule,
       // Custom Modules
-          AppRoutingModule,
+         AppRoutingModule,
    ],
    providers: [],
    entryComponents: [ModelCompanyinfoCompanysettingsComponent,
-    ModelContactinfoCompanysettingsComponent,
-    ModelDepartmentsCompanysettingsComponent,
-    ModelBranchCompanysettingsComponent,
-    ModelRegistrationinfoCompanysettingsComponent,
-    ModelPfinfoCompanysettingsComponent,
-    ModelEsiinfoCompanysettingsComponent,
-    ModelPtinfoCompanysettingsComponent,
-    ModelItinfoCompanysettingsComponent,
-    ModelRegistrationtypeCompanysettingsComponent,
-    ModelIndustrytypeCrmsettingsComponent,
-    ModelOwnershipytypeCrmsettingsComponent,
-    ModelActivitytypeCrmsettingsComponent,
-    ModelActivitystatusCrmsettingsComponent,
-    ModelActivitypriorityCrmsettingsComponent,
-    ModelPipelinestatusCrmsettingsComponent,
-    ModelContactroleCrmsettingsComponent,
-    ModelQuotetermsCrmsettingsComponent,
-    ModelLeadsourceLeadsettingsComponent,
-    ModelVendorquotetermsPurchasesettingsComponent,
-    ModelLeavetypeHrmssettingsComponent,
-    ModelExpensestypeHrmssettingsComponent,
-    ModelEmployeecategoryHrsettingsComponent,
-    ModelDepartmentHrsettingsComponent,
-    ModelDesignationHrsettingsComponent,
-    ModelWarehouseInventorysettingsComponent,
-    ModelTaxesAccountsettingsComponent,
-    ModelBankAccountsettingsComponent,
-    ModelIncometypeAccountsettingsComponent,
-    ModelAssettypeAccountsettingsComponent,
-    ModelPaymenttermsAccountsettingsComponent,
-    DeleteConfirmationComponent,
-    ModelLeadsComponentsComponent,
-    ModelLogPhoneCallLeadsComponentsComponent,
-    ModelCallScheduleLeadsComponentsComponent,
-    ModelLeavesHrmsComponent,
-    ModelOndutyHrmsComponent,
-    ModelPermissionsHrmsComponent,
-    ModelAdvanceHrmsComponent,
-    CreateModelContactinfoCompanySettingsComponent],
+      ModelContactinfoCompanysettingsComponent,
+      ModelDepartmentsCompanysettingsComponent,
+      ModelBranchCompanysettingsComponent,
+      ModelRegistrationinfoCompanysettingsComponent,
+      ModelPfinfoCompanysettingsComponent,
+      ModelEsiinfoCompanysettingsComponent,
+      ModelPtinfoCompanysettingsComponent,
+      ModelItinfoCompanysettingsComponent,
+      ModelRegistrationtypeCompanysettingsComponent,
+      ModelIndustrytypeCrmsettingsComponent,
+      ModelOwnershipytypeCrmsettingsComponent,
+      ModelActivitytypeCrmsettingsComponent,
+      ModelActivitystatusCrmsettingsComponent,
+      ModelActivitypriorityCrmsettingsComponent,
+      ModelPipelinestatusCrmsettingsComponent,
+      ModelContactroleCrmsettingsComponent,
+      ModelQuotetermsCrmsettingsComponent,
+      ModelLeadsourceLeadsettingsComponent,
+      ModelVendorquotetermsPurchasesettingsComponent,
+      ModelLeavetypeHrmssettingsComponent,
+      ModelExpensestypeHrmssettingsComponent,
+      ModelEmployeecategoryHrsettingsComponent,
+      ModelDepartmentHrsettingsComponent,
+      ModelDesignationHrsettingsComponent,
+      ModelWarehouseInventorysettingsComponent,
+      ModelTaxesAccountsettingsComponent,
+      ModelBankAccountsettingsComponent,
+      ModelIncometypeAccountsettingsComponent,
+      ModelAssettypeAccountsettingsComponent,
+      ModelPaymenttermsAccountsettingsComponent,
+      DeleteConfirmationComponent,
+      ModelLeadsComponentsComponent,
+      ModelLogPhoneCallLeadsComponentsComponent,
+      ModelCallScheduleLeadsComponentsComponent,
+      ModelLeavesHrmsComponent,
+      ModelOndutyHrmsComponent,
+      ModelPermissionsHrmsComponent,
+      ModelAdvanceHrmsComponent],
    bootstrap: [AppComponent]
 })
 export class AppModule { }
