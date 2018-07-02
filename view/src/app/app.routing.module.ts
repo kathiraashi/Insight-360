@@ -1,6 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 
+import { LoginComponent } from './Components/Common-Components/login/login.component';
 import { MainCrmSettingsComponent } from './Components/Settings/CRM-Settings/main-crm-settings/main-crm-settings.component';
 import { MainLeadsSettingsComponent } from './Components/Settings/Lead-Settings/main-leads-settings/main-leads-settings.component';
 import { MainCompanySettingsComponent } from './Components/Settings/Company-Settings/main-company-settings/main-company-settings.component';
@@ -59,12 +60,17 @@ import { InternalTransferCreateComponent } from './Components/Inventory/Internal
 import { ToReceiveCreateComponent } from './Components/Inventory/To-Receive/to-receive-create/to-receive-create.component';
 
 const appRoutes: Routes = [
-  {
+   {
       path: '',
-      component: MainCrmSettingsComponent,
-      data: { animation: { value: 'CRM_Settings'}  }
-  },
-  {
+      component: LoginComponent,
+      data: { animation: { value: 'Login'}  }
+   },
+   {
+      path: 'Login',
+      component: LoginComponent,
+      data: { animation: { value: 'Login'}  }
+   },
+   {
       path: 'CRM_Settings',
       component: MainCrmSettingsComponent,
       data: {   animation: { value: 'CRM_Settings'}   }
