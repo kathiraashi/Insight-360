@@ -1,33 +1,64 @@
-<div class="Modal_Content" *ngIf="Type && Type === 'Create'">
-  <div class="Modal_Header">
-      <p> Create Activity Type</p>
-      <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
-  </div>
-  <div class="Model_Body">
-    <div class="row">
-      <div class="col-sm-6 Form_Input">
-        <label>Activity Type:</label>
-          <input type="text">
+<!-- If Create Or Edit The Activity Type -->
+   <div class="Modal_Content" *ngIf="Type && ( Type === 'Create' || Type === 'Edit')">
+      <div class="Modal_Header">
+         <p> {{Type}} Activity Type</p>
+         <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
       </div>
+      <form [formGroup]="Form" (ngSubmit)="onSubmit()">
+         <div class="Model_Body">
+            <div class="row">
+               <div class="col-sm-10 Form_Input" [ngClass]="{'Form_Err': Form.controls['Activity_Type'].errors && !Form.controls['Activity_Type'].pristine, 'Form_Success': Form.controls['Activity_Type'].valid && !Form.controls['Activity_Type'].pristine }">
+                  <label>Activity Type:</label>
+                  <input type="text" formControlName="Activity_Type">
+                  <p class="error" *ngIf="Form.controls['Activity_Type'].errors && !Form.controls['Activity_Type'].pristine">
+                     <span *ngIf="Form.controls['Activity_Type'].errors.required">Activity Type is required</span>
+                  </p>
+               </div>
+            </div>
+         </div>
+         <div class="Model_Footer">
+            <button type="submit"  [disabled]="Form.invalid" mat-raised-button color="primary">
+               <span *ngIf="Type === 'Create'">Submit</span>
+               <span *ngIf="Type === 'Edit'">Update</span>
+            </button>
+         </div>
+      </form>
    </div>
-</div>
-<div class="Model_Footer">
-   <button mat-raised-button color="primary" > Submit </button>
-</div>
-  </div>
 
-<div class="Modal_Content" *ngIf=" Type && Type === 'View'">
-  <div class="Modal_Header">
-     <p>View Activity Type</p>
-     <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
- </div>
- <div class="Model_Body">
-    <div class="row">
-        <div class="col-sm-6 text-right Static">Activity Type : </div>
-        <div class="col-sm-6 text-left Data"> Industry type</div>
-     </div>
- </div>
-</div>
+   <!-- If View The Activity Type -->
+      <div class="Modal_Content" *ngIf=" Type && Type === 'View'">
+         <div class="Modal_Header">
+            <p>View Activity Type</p>
+            <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+         </div>
+         <div class="Model_Body">
+            <div class="view_item">
+               <div class="Static">Activity Type </div>
+               <div class="dots"> : </div>
+               <div class="Data"> {{Data.Activity_Type}}</div>
+            </div>
+            <div class="view_item">
+               <div class="Static">Created By </div>
+               <div class="dots"> : </div>
+               <div class="Data"> {{Data.Created_By}}</div>
+            </div>
+            <div class="view_item">
+               <div class="Static">Last Modified By </div>
+               <div class="dots"> : </div>
+               <div class="Data"> {{Data.Last_Modified_By}}</div>
+            </div>
+            <div class="view_item">
+               <div class="Static"> Created Date </div>
+               <div class="dots"> : </div>
+               <div class="Data"> {{Data.createdAt | date:'medium'}}</div>
+            </div>
+            <div class="view_item">
+               <div class="Static">Last Modified Date  </div>
+               <div class="dots"> : </div>
+               <div class="Data"> {{Data.updatedAt | date:'medium'}}</div>
+            </div>
+         </div>
+      </div>
 
 
 

@@ -1,31 +1,62 @@
-<div class="Modal_Content" *ngIf="Type && Type === 'Create'">
-  <div class="Modal_Header">
-      <p> Create Lead Source</p>
-      <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
-  </div>
-  <div class="Model_Body">
-    <div class="row">
-      <div class="col-sm-6 Form_Input">
-        <label>Lead Source:</label>
-          <input type="text">
+<!-- If Create Or Edit The Lead Source -->
+   <div class="Modal_Content" *ngIf="Type && ( Type === 'Create' || Type === 'Edit')">
+      <div class="Modal_Header">
+            <p> {{Type}}  Lead Source</p>
+            <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
       </div>
+      <form [formGroup]="Form" (ngSubmit)="onSubmit()">
+         <div class="Model_Body">
+            <div class="row">
+               <div class="col-sm-10 Form_Input" [ngClass]="{'Form_Err': Form.controls['Lead_Source'].errors && !Form.controls['Lead_Source'].pristine, 'Form_Success': Form.controls['Lead_Source'].valid && !Form.controls['Lead_Source'].pristine }">
+                  <label>Lead Source:</label>
+                  <input type="text" formControlName="Lead_Source">
+                  <p class="error" *ngIf="Form.controls['Lead_Source'].errors && !Form.controls['Lead_Source'].pristine">
+                     <span *ngIf="Form.controls['Lead_Source'].errors.required">Lead Source is required</span>
+                  </p>
+               </div>
+            </div>
+         </div>
+         <div class="Model_Footer">
+            <button type="submit"  [disabled]="Form.invalid" mat-raised-button color="primary">
+               <span *ngIf="Type === 'Create'">Submit</span>
+               <span *ngIf="Type === 'Edit'">Update</span>
+            </button>
+         </div>
+      </form>
    </div>
-</div>
-<div class="Model_Footer">
-   <button mat-raised-button color="primary" > Submit </button>
-</div>
-  </div>
+<!-- If View The Lead Source-->
 <div class="Modal_Content" *ngIf=" Type && Type === 'View'">
-  <div class="Modal_Header">
-     <p>View  Lead Source</p>
-     <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
- </div>
- <div class="Model_Body">
-    <div class="row">
-        <div class="col-sm-6 text-right Static">Lead Source: </div>
-        <div class="col-sm-6 text-left Data">Lead Source</div>
-     </div>
- </div>
+   <div class="Modal_Header">
+      <p>View  Lead Source</p>
+      <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+   </div>
+   <div class="Model_Body">
+         <div class="view_item">
+            <div class="Static">Lead Source </div>
+            <div class="dots"> : </div>
+            <div class="Data"> {{Data.Lead_Source}}</div>
+         </div>
+         <div class="view_item">
+            <div class="Static">Created By </div>
+            <div class="dots"> : </div>
+            <div class="Data"> {{Data.Created_By}}</div>
+         </div>
+         <div class="view_item">
+            <div class="Static">Last Modified By </div>
+            <div class="dots"> : </div>
+            <div class="Data"> {{Data.Last_Modified_By}}</div>
+         </div>
+         <div class="view_item">
+            <div class="Static"> Created Date </div>
+            <div class="dots"> : </div>
+            <div class="Data"> {{Data.createdAt | date:'medium'}}</div>
+         </div>
+         <div class="view_item">
+            <div class="Static">Last Modified Date  </div>
+            <div class="dots"> : </div>
+            <div class="Data"> {{Data.updatedAt | date:'medium'}}</div>
+         </div>
+      </div>
 </div>
 
 

@@ -23,7 +23,7 @@ export class AssetTypeAccountSettingsComponent implements OnInit {
     const initialState = {
       Type: 'Create'
     };
-    this.bsModalRef = this.modalService.show(ModelAssettypeAccountsettingsComponent, Object.assign({initialState}, { class: 'modal-lg' }));
+    this.bsModalRef = this.modalService.show(ModelAssettypeAccountsettingsComponent, Object.assign({initialState}, { class: '' }));
   }
   ViewAssetType() {
     const initialState = {

@@ -16,14 +16,14 @@ import * as CryptoJS from 'crypto-js';
 })
 export class IndustryTypeCrmSettingsComponent implements OnInit {
 
-  bsModalRef: BsModalRef;
+   bsModalRef: BsModalRef;
 
    _List: any[] = [];
 
-   constructor(   private modalService: BsModalService,
-                  private Service: CrmSettingsService
+   constructor (   private modalService: BsModalService,
+                   private Service: CrmSettingsService
                ) {
-                  //  Get Industry Type List
+                  // Get Industry Type List
                      const Data = { 'Company_Id' : '1', 'User_Id' : '2', };
                      let Info = CryptoJS.AES.encrypt(JSON.stringify(Data), 'SecretKeyIn@123');
                      Info = Info.toString();
@@ -42,7 +42,7 @@ export class IndustryTypeCrmSettingsComponent implements OnInit {
                            console.log(response);
                         }
                      });
-               }
+                  }
 
    ngOnInit() {
    }
@@ -56,7 +56,7 @@ export class IndustryTypeCrmSettingsComponent implements OnInit {
                this._List.splice(0, 0, response.Response);
                alert('New Industry Type Successfully Created.');
             } else {
-               alert(response.Message);
+            alert(response.Message);
             }
          });
       }

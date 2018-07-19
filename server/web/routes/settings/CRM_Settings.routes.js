@@ -17,4 +17,39 @@ module.exports = function(app) {
       app.post('/API/CRM_Settings/Ownership_Type_Update', Controller.Ownership_Type_Update);
       app.post('/API/CRM_Settings/Ownership_Type_Delete', Controller.Ownership_Type_Delete);
 
+   // Activity Type --------------------------------------------------
+      app.post('/API/CRM_Settings/Activity_Type_Create', Controller.Activity_Type_Create); 
+      app.post('/API/CRM_Settings/Activity_Type_List', Controller.Activity_Type_List); 
+      app.post('/API/CRM_Settings/Activity_Type_SimpleList', Controller.Activity_Type_SimpleList); 
+      app.post('/API/CRM_Settings/Activity_Type_Update', Controller.Activity_Type_Update); 
+      app.post('/API/CRM_Settings/Activity_Type_Delete', Controller.Activity_Type_Delete);      
+      
+   // Activity Type --------------------------------------------------
+      app.post('/API/CRM_Settings/Activity_Status_Create', Controller.Activity_Status_Create); 
+      app.post('/API/CRM_Settings/Activity_Status_List', Controller.Activity_Status_List); 
+      app.post('/API/CRM_Settings/Activity_Status_SimpleList', Controller.Activity_Status_SimpleList); 
+      app.post('/API/CRM_Settings/Activity_Status_Update', Controller.Activity_Status_Update); 
+      app.post('/API/CRM_Settings/Activity_Status_Delete', Controller.Activity_Status_Delete); 
+
+   // Activity Priority --------------------------------------------------
+      app.post('/API/CRM_Settings/Activity_Priority_Create', Controller.Activity_Priority_Create); 
+      app.post('/API/CRM_Settings/Activity_Priority_List', Controller.Activity_Priority_List); 
+      app.post('/API/CRM_Settings/Activity_Priority_SimpleList', Controller.Activity_Priority_SimpleList); 
+      app.post('/API/CRM_Settings/Activity_Priority_Update', Controller.Activity_Priority_Update); 
+      app.post('/API/CRM_Settings/Activity_Priority_Delete', Controller.Activity_Priority_Delete); 
+
+   // Contact role --------------------------------------------------
+      app.post('/API/CRM_Settings/Contact_Role_Create', Controller.Contact_Role_Create); 
+      app.post('/API/CRM_Settings/Contact_Role_List', Controller.Contact_Role_List); 
+      app.post('/API/CRM_Settings/Contact_Role_SimpleList', Controller.Contact_Role_SimpleList); 
+      app.post('/API/CRM_Settings/Contact_Role_Update', Controller.Contact_Role_Update); 
+      app.post('/API/CRM_Settings/Contact_Role_Delete', Controller.Contact_Role_Delete); 
+
+      
+   // Contact role --------------------------------------------------
+      app.post('/API/CRM_Settings/Pipeline_Status_Create', Controller.Pipeline_Status_Create); 
+      app.post('/API/CRM_Settings/Pipeline_Status_List', Controller.Pipeline_Status_List); 
+      app.post('/API/CRM_Settings/Pipeline_Status_SimpleList', Controller.Pipeline_Status_SimpleList); 
+      app.post('/API/CRM_Settings/Pipeline_Status_Update', Controller.Pipeline_Status_Update); 
+      app.post('/API/CRM_Settings/Pipeline_Status_Delete', Controller.Pipeline_Status_Delete); 
 };

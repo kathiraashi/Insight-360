@@ -16,13 +16,16 @@ var app = express();
       console.error("'Un Handled Rejection' Error Log File - " + new Date().toLocaleDateString());
    });
    process.on('uncaughtException', function (err) {
+     console.log(err);
+     
       ErrorManagement.ErrorHandling.ErrorLogCreation('', '', '', err.toString());
       console.error(" 'Un Caught Exception' Error Log File - " + new Date().toLocaleDateString());
    });
 
 
-// DB Connection
-   mongoose.connect('mongodb://localhost/Insight-360');
+   // DB Connection
+   mongoose.connect('mongodb://kathiraashi:kathir143@ds121871.mlab.com:21871/insight-360');
+  //  mongoose.connect('mongodb://localhost/Insight-360');
    mongoose.connection.on('error', function(err) {
       ErrorManagement.ErrorHandling.ErrorLogCreation('', 'Mongodb Connection Error', 'Server.js', err);
    });
@@ -50,6 +53,14 @@ require('./server/web/routes/RegisterAndLogin.routes.js')(app);
 // Settings
    // CRM Settings
       require('./server/web/routes/settings/CRM_Settings.routes.js')(app);
+   // Leads Settings
+      require('./server/web/routes/settings/Leads_Settings.routes.js')(app);
+   // HRMS Settings
+      require('./server/web/routes/settings/Hrms_Settings.routes.js')(app);
+   // HR Settings
+      require('./server/web/routes/settings/Hr_Settings.routes.js')(app);
+   // Account Settings
+      require('./server/web/routes/settings/Account_Settings.routes.js')(app);
 
 
 

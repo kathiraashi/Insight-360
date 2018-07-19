@@ -16,13 +16,13 @@ export class ModelIndustrytypeCrmsettingsComponent implements OnInit {
 
    onClose: Subject<any>;
 
-  Type: String;
-  Data;
+   Type: String;
+   Data;
 
-  Form: FormGroup;
+   Form: FormGroup;
 
-  constructor( public bsModalRef: BsModalRef,
-               public Service: CrmSettingsService
+   constructor( public bsModalRef: BsModalRef,
+                public Service: CrmSettingsService
             ) {}
 
    ngOnInit() {
@@ -45,6 +45,15 @@ export class ModelIndustrytypeCrmsettingsComponent implements OnInit {
             });
          }
    }
+   // onSubmit Function
+      onSubmit() {
+         if (this.Type === 'Create') {
+            this.submit();
+         }
+         if (this.Type === 'Edit') {
+            this.update();
+         }
+      }
 
    // Submit New Industry Type
       submit() {
