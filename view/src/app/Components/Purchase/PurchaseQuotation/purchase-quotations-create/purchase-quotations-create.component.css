@@ -128,13 +128,7 @@
   color: rgb(79, 107, 123);
   width: 100%;
 }
-  .button_submit{
-    background-color: #49B660;
-    border: 1px solid #49B660; 
-    color:#fff;
-    outline: none;
-  }
-  .Company_Details{
+ .Company_Details{
     background-color: #fff;
     margin: 10px;
     padding: 20px;

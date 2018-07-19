@@ -240,6 +240,16 @@ import { UserManagementListComponent } from './Components/Settings/UserManagemen
 import { UserPermissionsComponent } from './Components/Settings/UserPermissions/user-permissions/user-permissions.component';
 import { ModelUserCreateUserManagementComponent } from './models/settings/user_management/model-user-create-user-management/model-user-create-user-management.component';
 import { UserPermissionsGroupCreateComponent } from './Components/Settings/UserPermissions/user-permissions-group-create/user-permissions-group-create.component';
+import { InternalTransferListComponent } from './Components/Inventory/Internal-Transfer/internal-transfer-list/internal-transfer-list.component';
+import { ToReceiveListComponent } from './Components/Inventory/To-Receive/to-receive-list/to-receive-list.component';
+import { InventoryDeliveryordersCreateComponent } from './Components/Inventory/Delivery-Orders/inventory-deliveryorders-create/inventory-deliveryorders-create.component';
+import { InventoryDirectpurchaseCreateComponent } from './Components/Inventory/Direct-Purchase/inventory-directpurchase-create/inventory-directpurchase-create.component';
+import { InternalTransferCreateComponent } from './Components/Inventory/Internal-Transfer/internal-transfer-create/internal-transfer-create.component';
+import { ToReceiveCreateComponent } from './Components/Inventory/To-Receive/to-receive-create/to-receive-create.component';
+
+
+
+
 
 
 
@@ -461,6 +471,12 @@ import { UserPermissionsGroupCreateComponent } from './Components/Settings/UserP
             VendorPaymentsListComponent,
             VendorPaymentsCreateComponent,
             VendorPaymentsViewComponent,
+            InternalTransferListComponent,
+            ToReceiveListComponent,
+            InventoryDeliveryordersCreateComponent,
+            InventoryDirectpurchaseCreateComponent,
+            InternalTransferCreateComponent,
+            ToReceiveCreateComponent,
             LoginComponent,
             UserManagementListComponent,
             UserPermissionsComponent,

@@ -1,32 +1,64 @@
-<div class="Modal_Content" *ngIf="Type && Type === 'Create'">
-  <div class="Modal_Header">
-      <p> Create Pipeline status</p>
-      <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
-  </div>
-  <div class="Model_Body">
-    <div class="row">
-      <div class="col-sm-6 Form_Input">
-        <label>Pipeline status:</label>
-          <input type="text">
+<!-- If Create Or Edit The Pipeline Status -->
+   <div class="Modal_Content" *ngIf="Type && ( Type === 'Create' || Type === 'Edit')">
+      <div class="Modal_Header">
+            <p> {{Type}} Pipeline status</p>
+            <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+      </div>
+      <form [formGroup]="Form" (ngSubmit)="onSubmit()">
+         <div class="Model_Body">
+            <div class="row">
+               <div class="col-sm-10 Form_Input" [ngClass]="{'Form_Err': Form.controls['Pipeline_Status'].errors && !Form.controls['Pipeline_Status'].pristine, 'Form_Success': Form.controls['Pipeline_Status'].valid && !Form.controls['Pipeline_Status'].pristine }">
+                  <label>Pipeline status:</label>
+                  <input type="text" formControlName="Pipeline_Status">
+                  <p class="error" *ngIf="Form.controls['Pipeline_Status'].errors && !Form.controls['Pipeline_Status'].pristine">
+                     <span *ngIf="Form.controls['Pipeline_Status'].errors.required">Pipeline Status is required</span>
+                  </p>
+               </div>
+            </div>
+         </div>
+         <div class="Model_Footer">
+            <button type="submit"  [disabled]="Form.invalid" mat-raised-button color="primary">
+               <span *ngIf="Type === 'Create'">Submit</span>
+               <span *ngIf="Type === 'Edit'">Update</span>
+            </button>
+         </div>
+      </form>
+   </div>
+
+<!-- If View The Pipeline Status-->
+   <div class="Modal_Content" *ngIf=" Type && Type === 'View'">
+      <div class="Modal_Header">
+         <p>View Pipeline status</p>
+         <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+      </div>
+      <div class="Model_Body">
+         <div class="view_item">
+            <div class="Static">Pipeline status </div>
+            <div class="dots"> : </div>
+            <div class="Data"> {{Data.Pipeline_Status}}</div>
+         </div>
+         <div class="view_item">
+            <div class="Static">Created By </div>
+            <div class="dots"> : </div>
+            <div class="Data"> {{Data.Created_By}}</div>
+         </div>
+         <div class="view_item">
+            <div class="Static">Last Modified By </div>
+            <div class="dots"> : </div>
+            <div class="Data"> {{Data.Last_Modified_By}}</div>
+         </div>
+         <div class="view_item">
+            <div class="Static"> Created Date </div>
+            <div class="dots"> : </div>
+            <div class="Data"> {{Data.createdAt | date:'medium'}}</div>
+         </div>
+         <div class="view_item">
+            <div class="Static">Last Modified Date  </div>
+            <div class="dots"> : </div>
+            <div class="Data"> {{Data.updatedAt | date:'medium'}}</div>
+         </div>
       </div>
    </div>
-</div>
-<div class="Model_Footer">
-   <button mat-raised-button color="primary" > Submit </button>
-</div>
-  </div>
-<div class="Modal_Content" *ngIf=" Type && Type === 'View'">
-  <div class="Modal_Header">
-     <p>View Pipeline status</p>
-     <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
- </div>
- <div class="Model_Body">
-    <div class="row">
-        <div class="col-sm-6 text-right Static">Pipeline Status: </div>
-        <div class="col-sm-6 text-left Data">Pipeline Status</div>
-     </div>
- </div>
-</div>
 
 
 

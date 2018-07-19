@@ -69,6 +69,14 @@ require('./server/web/routes/Admin/AdminManagement.routes.js')(app);
 // Settings
    // CRM Settings
       require('./server/web/routes/settings/CRM_Settings.routes.js')(app);
+   // Leads Settings
+      require('./server/web/routes/settings/Leads_Settings.routes.js')(app);
+   // HRMS Settings
+      require('./server/web/routes/settings/Hrms_Settings.routes.js')(app);
+   // HR Settings
+      require('./server/web/routes/settings/Hr_Settings.routes.js')(app);
+   // Account Settings
+      require('./server/web/routes/settings/Account_Settings.routes.js')(app);
 
 
 

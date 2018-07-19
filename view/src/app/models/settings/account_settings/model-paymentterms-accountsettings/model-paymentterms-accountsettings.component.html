@@ -1,37 +1,66 @@
-
-<div class="Modal_Content" *ngIf="Type && Type === 'Create'">
-    <div class="Modal_Header">
-        <p> Create Payment Term</p>
-        <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
-    </div>
-    <div class="Model_Body">
-      <div class="row">
-        <div class="col-sm-6 Form_Input">
-            <label>Payment Term:</label>
-            <input type="text">
-        </div>
-        <div class="col-sm-6 ">
-          <input type="radio" style="margin-top:33px;">Active
-        </div>
-     </div>
-    </div>
-    <div class="Model_Footer">
-      <button mat-raised-button color="primary" > Submit </button>
+<!-- If Create Or Edit The Income Type -->
+   <div class="Modal_Content" *ngIf="Type && (Type === 'Create' || Type === 'Edit')">
+      <div class="Modal_Header">
+         <p> {{Type}} Payment Term</p>
+         <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+      </div>
+      <form [formGroup]="Form" (ngSubmit)="onSubmit()">
+         <div class="Model_Body">
+            <div class="row">
+               <div class="col-sm-10 Form_Input" [ngClass]="{'Form_Err': Form.controls['Payment_Terms'].errors && !Form.controls['Payment_Terms'].pristine, 'Form_Success': Form.controls['Payment_Terms'].valid && !Form.controls['Payment_Terms'].pristine }">
+                  <label>Payment Terms:</label>
+                  <input type="text" formControlName="Payment_Terms">
+                  <p class="error" *ngIf="Form.controls['Payment_Terms'].errors && !Form.controls['Payment_Terms'].pristine">
+                     <span *ngIf="Form.controls['Payment_Terms'].errors.required">Payment Terms is required</span>
+                  </p>
+               </div>
+               <!-- <div class="col-sm-6 ">
+                  <input type="radio" style="margin-top:33px;">Active
+               </div> -->
+            </div>
+         </div>
+         <div class="Model_Footer">
+            <button type="submit"  [disabled]="Form.invalid" mat-raised-button color="primary">
+               <span *ngIf="Type === 'Create'">Submit</span>
+               <span *ngIf="Type === 'Edit'">Update</span>
+            </button>
+         </div>
+      </form>
    </div>
-    </div>
-
-  <div class="Modal_Content" *ngIf=" Type && Type === 'View'">
-    <div class="Modal_Header">
-       <p>View  Payment Term</p>
-       <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+<!-- If View The Income Type-->
+   <div class="Modal_Content" *ngIf=" Type && Type === 'View'">
+      <div class="Modal_Header">
+         <p>View  Payment Term</p>
+         <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+      </div>
+      <div class="Model_Body">
+            <div class="view_item">
+               <div class="Static">Payment Terms </div>
+               <div class="dots"> : </div>
+               <div class="Data"> {{Data.Payment_Terms}}</div>
+            </div>
+            <div class="view_item">
+               <div class="Static">Created By </div>
+               <div class="dots"> : </div>
+               <div class="Data"> {{Data.Created_By}}</div>
+            </div>
+            <div class="view_item">
+               <div class="Static">Last Modified By </div>
+               <div class="dots"> : </div>
+               <div class="Data"> {{Data.Last_Modified_By}}</div>
+            </div>
+            <div class="view_item">
+               <div class="Static"> Created Date </div>
+               <div class="dots"> : </div>
+               <div class="Data"> {{Data.createdAt | date:'medium'}}</div>
+            </div>
+            <div class="view_item">
+               <div class="Static">Last Modified Date  </div>
+               <div class="dots"> : </div>
+               <div class="Data"> {{Data.updatedAt | date:'medium'}}</div>
+            </div>
+         </div>
    </div>
-   <div class="Model_Body">
-         <div class="row">
-               <div class="col-sm-6 text-right Static">Payment Term: </div>
-               <div class="col-sm-6 text-left Data">Payment Term1</div>
-             </div>
-  </div>
-  </div>
   
   
   

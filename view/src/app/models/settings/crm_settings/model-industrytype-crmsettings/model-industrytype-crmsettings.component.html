@@ -4,8 +4,8 @@
          <p> {{Type}} Industry Type</p>
          <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
       </div>
-      <div class="Model_Body">
-         <form [formGroup]="Form">
+      <form [formGroup]="Form" (ngSubmit)="onSubmit()">
+         <div class="Model_Body">
             <div class="row">
                <div class="col-sm-10 Form_Input" [ngClass]="{'Form_Err': Form.controls['Industry_Type'].errors && !Form.controls['Industry_Type'].pristine, 'Form_Success': Form.controls['Industry_Type'].valid && !Form.controls['Industry_Type'].pristine }">
                   <label>Industry Type:</label>
@@ -15,19 +15,15 @@
                   </p>
                </div>
             </div>
-         </form>
-      </div>
-      <div class="Model_Footer">
-         <ng-container *ngIf="Type === 'Create'">
-            <button type="submit" (click)="submit()" [disabled]="Form.invalid" mat-raised-button color="primary" > Submit </button>
-         </ng-container>
-         <ng-container *ngIf="Type === 'Edit'">
-            <button type="submit" (click)="update()" [disabled]="Form.invalid" mat-raised-button color="primary" > Update </button>
-         </ng-container>
-      </div>
+         </div>
+         <div class="Model_Footer">
+            <button type="submit"  [disabled]="Form.invalid" mat-raised-button color="primary">
+               <span *ngIf="Type === 'Create'">Submit</span>
+               <span *ngIf="Type === 'Edit'">Update</span>
+            </button>
+         </div>
+      </form>
    </div>
-
-
 
 <!-- If View The Industry Type -->
    <div class="Modal_Content" *ngIf=" Type && Type === 'View'">

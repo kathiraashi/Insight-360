@@ -17,7 +17,7 @@ import * as CryptoJS from 'crypto-js';
 })
 export class IndustryTypeCrmSettingsComponent implements OnInit {
 
-  bsModalRef: BsModalRef;
+   bsModalRef: BsModalRef;
 
    _List: any[] = [];
 
@@ -25,7 +25,7 @@ export class IndustryTypeCrmSettingsComponent implements OnInit {
                   private Service: CrmSettingsService,
                   private Toastr: ToastrService
                ) {
-                  //  Get Industry Type List
+                  // Get Industry Type List
                      const Data = { 'Company_Id' : '1', 'User_Id' : '2', };
                      let Info = CryptoJS.AES.encrypt(JSON.stringify(Data), 'SecretKeyIn@123');
                      Info = Info.toString();
@@ -49,7 +49,7 @@ export class IndustryTypeCrmSettingsComponent implements OnInit {
                            );
                         }
                      });
-               }
+                  }
 
    ngOnInit() {
    }
