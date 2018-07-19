@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
             const Data = this.LoginForm.value;
             let Info = CryptoJS.AES.encrypt(JSON.stringify(Data), 'SecretKeyIn@123');
             Info = Info.toString();
-            this.service.User_Validate({'Info': Info}).subscribe( response => {
+            this.service.User_Login_Validate({'Info': Info}).subscribe( response => {
                const ReceivingData = JSON.parse(response['_body']);
                if (response['status'] === 200 && ReceivingData.Status) {
                   alert('Login Success');

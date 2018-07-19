@@ -16,10 +16,10 @@ export class ModelIndustrytypeCrmsettingsComponent implements OnInit {
 
    onClose: Subject<any>;
 
-  Type: String;
-  Data;
+   Type: String;
+   Data;
 
-  Form: FormGroup;
+   Form: FormGroup;
 
   constructor( public bsModalRef: BsModalRef,
                public Service: CrmSettingsService
@@ -65,11 +65,9 @@ export class ModelIndustrytypeCrmsettingsComponent implements OnInit {
                } else if (response['status'] === 417 && !ReceivingData.Status) {
                   this.onClose.next({Status: false, Message: 'Industry Type Query Error!'});
                   this.bsModalRef.hide();
-                  console.log(ReceivingData.Message, ReceivingData.Error);
                } else {
                   this.onClose.next({Status: false, Message: 'UnExpected Error!'});
                   this.bsModalRef.hide();
-                  console.log(ReceivingData);
                }
             });
          }

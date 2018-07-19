@@ -52,6 +52,11 @@ import { VendorPaymentsListComponent } from './Components/Accounts/Vendor-Paymen
 import { VendorPaymentsCreateComponent } from './Components/Accounts/Vendor-Payments/vendor-payments-create/vendor-payments-create.component';
 import { AccountsCustomerPaymentsViewComponent } from './Components/Accounts/customer-payments/accounts-customer-payments-view/accounts-customer-payments-view.component';
 import { VendorPaymentsViewComponent } from './Components/Accounts/Vendor-Payments/vendor-payments-view/vendor-payments-view.component';
+import { UserManagementListComponent } from './Components/Settings/UserManagement/user-management-list/user-management-list.component';
+import { UserPermissionsComponent } from './Components/Settings/UserPermissions/user-permissions/user-permissions.component';
+import { UserPermissionsGroupCreateComponent } from './Components/Settings/UserPermissions/user-permissions-group-create/user-permissions-group-create.component';
+
+
 
 const appRoutes: Routes = [
    {
@@ -314,6 +319,22 @@ const appRoutes: Routes = [
       component: VendorPaymentsViewComponent,
       data: {   animation: { value: 'vendor_payment_view'}   }
    },
+   {
+      path: 'User_Management',
+      component: UserManagementListComponent,
+      data: {   animation: { value: 'User_Management'}   }
+   },
+   {
+      path: 'User_Permissions',
+      component: UserPermissionsComponent,
+      data: {   animation: { value: 'User_Permissions'}   }
+   },
+   {
+      path: 'User_Permissions_Group_Create',
+      component: UserPermissionsGroupCreateComponent,
+      data: {   animation: { value: 'User_Permissions_Group_Create'}   }
+   },
+
 
 
 ];

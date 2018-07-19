@@ -4,8 +4,11 @@ var CryptoJS = require("crypto-js");
 
 var LogHandling = {
 	LogCreation: function(req) {
-      var bytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
-      var decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+        var decryptedData = '-';
+        if (req.body.Info !== '-') {
+            var bytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
+            decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+        }
 
       // Log Creation For Every Request
           var fileName = new Date().toLocaleDateString();

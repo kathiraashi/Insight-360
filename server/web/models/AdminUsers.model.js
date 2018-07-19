@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
 var AdminUsersSchema = mongoose.Schema({
    User_Name: { type : String , required : true },
@@ -11,6 +12,7 @@ var AdminUsersSchema = mongoose.Schema({
 );
 
 var VarAdminUsers = mongoose.model('AdminUsers', AdminUsersSchema, 'Admin_Users');
+
 
 module.exports = {
    AdminUsers : VarAdminUsers

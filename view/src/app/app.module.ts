@@ -15,7 +15,8 @@
 // Future Modules
    import { ModalModule, AccordionModule} from 'ngx-bootstrap';
    import {CalendarModule} from 'primeng/calendar';
-   import {MatButtonModule, MatFormFieldModule, MatSelectModule} from '@angular/material';
+   import {MatButtonModule, MatFormFieldModule, MatSelectModule, MatCheckboxModule} from '@angular/material';
+   import { NgSelectModule } from '@ng-select/ng-select';
 // Custom Modules
    import { AppRoutingModule } from './app.routing.module';
 
@@ -235,10 +236,10 @@ import { CustomerPaymentsCreateComponent } from './Components/Accounts/customer-
 import { VendorPaymentsListComponent } from './Components/Accounts/Vendor-Payments/vendor-payments-list/vendor-payments-list.component';
 import { VendorPaymentsCreateComponent } from './Components/Accounts/Vendor-Payments/vendor-payments-create/vendor-payments-create.component';
 import { VendorPaymentsViewComponent } from './Components/Accounts/Vendor-Payments/vendor-payments-view/vendor-payments-view.component';
-
-
-
-
+import { UserManagementListComponent } from './Components/Settings/UserManagement/user-management-list/user-management-list.component';
+import { UserPermissionsComponent } from './Components/Settings/UserPermissions/user-permissions/user-permissions.component';
+import { ModelUserCreateUserManagementComponent } from './models/settings/user_management/model-user-create-user-management/model-user-create-user-management.component';
+import { UserPermissionsGroupCreateComponent } from './Components/Settings/UserPermissions/user-permissions-group-create/user-permissions-group-create.component';
 
 
 
@@ -461,6 +462,10 @@ import { VendorPaymentsViewComponent } from './Components/Accounts/Vendor-Paymen
             VendorPaymentsCreateComponent,
             VendorPaymentsViewComponent,
             LoginComponent,
+            UserManagementListComponent,
+            UserPermissionsComponent,
+            ModelUserCreateUserManagementComponent,
+            UserPermissionsGroupCreateComponent,
    ],
    imports: [
       // Default Modules
@@ -475,9 +480,11 @@ import { VendorPaymentsViewComponent } from './Components/Accounts/Vendor-Paymen
          ModalModule.forRoot(),
          AccordionModule.forRoot(),
          CalendarModule,
+         NgSelectModule,
          MatButtonModule,
          MatFormFieldModule,
          MatSelectModule,
+         MatCheckboxModule,
       // Custom Modules
          AppRoutingModule,
    ],
@@ -520,7 +527,8 @@ import { VendorPaymentsViewComponent } from './Components/Accounts/Vendor-Paymen
       ModelLeavesHrmsComponent,
       ModelOndutyHrmsComponent,
       ModelPermissionsHrmsComponent,
-      ModelAdvanceHrmsComponent],
+      ModelAdvanceHrmsComponent,
+      ModelUserCreateUserManagementComponent],
    bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -3,10 +3,12 @@
 @import '../node_modules/primeng/resources/primeng.min.css';
 
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~@ng-select/ng-select/themes/default.theme.css";
 
 @import './assets/Over-Write-Css/ngx-bootstrap-overwrite.css';
 @import './assets/Over-Write-Css/Primeng-Overwrite.css';
 @import './assets/Over-Write-Css/material-overwrite.css';
+@import './assets/Over-Write-Css/ng-select-overwrite.css';
 
 
 /* You can add global styles to this file, and also import other style files */

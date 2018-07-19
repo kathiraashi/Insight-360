@@ -2,8 +2,8 @@ var mongoose = require('mongoose');
 
 // Industry Type Schema
    var IndustryTypeSchema = mongoose.Schema({
-      Industry_Type: { type : String , required : true },
-      Company_Id: { type : Number , required : true },
+      Industry_Type: { type : String , required : true},
+      Company_Id: { type : String , required : true },
       Created_By : { type : String, required : true },
       Last_Modified_By: { type : String , required : true },
       Active_Status: { type : Boolean , required : true},
@@ -17,7 +17,7 @@ var mongoose = require('mongoose');
 // Ownership Type Schema
    var OwnershipTypeSchema = mongoose.Schema({
       Ownership_Type: { type : String , required : true },
-      Company_Id: { type : Number , required : true },
+      Company_Id: { type : String , required : true },
       Created_By : { type : String, required : true },
       Last_Modified_By: { type : String , required : true },
       Active_Status: { type : Boolean , required : true},

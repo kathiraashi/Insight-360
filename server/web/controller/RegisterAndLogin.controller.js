@@ -1,6 +1,9 @@
 var CryptoJS = require("crypto-js");
 var AdminUsersModel = require('./../models/AdminUsers.model.js');
 var ErrorManagement = require('./../../handling/ErrorHandling.js');
+var axios = require("axios");
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
 // -------------------------------------------------- User Validate -----------------------------------------------
 exports.User_Validate = function(req, res) {
@@ -74,5 +77,3 @@ exports.User_Register = function(req, res) {
   }
 
 };
-
-

@@ -12,13 +12,9 @@ export class LoginService {
 
    constructor(private http: Http) {  }
 
-      public User_Validate(Info: any): Observable<any[]> {
-         return this.http.post(API_URL + 'User_Validate', Info)
-         .pipe( map(response => response),  catchError(error => of(error)));
-      }
+   public User_Login_Validate(Info: any): Observable<any[]> {
+      return this.http.post(API_URL + 'User_Login_Validate', Info)
+      .pipe( map(response => response),  catchError(error => of(error)));
+   }
 
-      public User_Register(Info: any): Observable<any[]> {
-         return this.http.post(API_URL + 'User_Register', Info)
-         .pipe( map(response => response), catchError(error => of(error)));
-      }
 }

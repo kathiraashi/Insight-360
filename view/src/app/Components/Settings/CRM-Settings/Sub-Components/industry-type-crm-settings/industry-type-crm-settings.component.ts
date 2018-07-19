@@ -7,6 +7,7 @@ import { ModelIndustrytypeCrmsettingsComponent } from '../../../../../models/set
 import { DeleteConfirmationComponent } from '../../../../Common-Components/delete-confirmation/delete-confirmation.component';
 
 import { CrmSettingsService } from './../../../../../services/settings/crmSettings/crm-settings.service';
+import { ToastrService } from './../../../../../services/common-services/toastr-service/toastr.service';
 import * as CryptoJS from 'crypto-js';
 
 @Component({
@@ -21,7 +22,8 @@ export class IndustryTypeCrmSettingsComponent implements OnInit {
    _List: any[] = [];
 
    constructor(   private modalService: BsModalService,
-                  private Service: CrmSettingsService
+                  private Service: CrmSettingsService,
+                  private Toastr: ToastrService
                ) {
                   //  Get Industry Type List
                      const Data = { 'Company_Id' : '1', 'User_Id' : '2', };
@@ -33,13 +35,18 @@ export class IndustryTypeCrmSettingsComponent implements OnInit {
                            const CryptoBytes  = CryptoJS.AES.decrypt(ResponseData['Response'], 'SecretKeyOut@123');
                            const DecryptedData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
                            this._List = DecryptedData;
-                        } else if (response['status'] === 400 && !ResponseData['Status']) {
-                           alert(ResponseData['Message']);
-                        } else if (response['status'] === 417 && !ResponseData['Status']) {
-                           alert(ResponseData['Message']);
+                        } else if (response['status'] === 400 || response['status'] === 417 && !ResponseData['Status']) {
+                           this.Toastr.NewToastrMessage(
+                              {  Type: 'Error',
+                                 Message: response['Message']
+                              }
+                           );
                         } else {
-                           alert('Some Error Occurred!, But not Identify!');
-                           console.log(response);
+                           this.Toastr.NewToastrMessage(
+                              {  Type: 'Error',
+                                 Message: 'Industry Type List Getting Error!, But not Identify!'
+                              }
+                           );
                         }
                      });
                }
@@ -52,11 +59,19 @@ export class IndustryTypeCrmSettingsComponent implements OnInit {
          const initialState = { Type: 'Create' };
          this.bsModalRef = this.modalService.show(ModelIndustrytypeCrmsettingsComponent, Object.assign({initialState}, { class: '' }));
          this.bsModalRef.content.onClose.subscribe(response => {
-            if (response.Status) {
-               this._List.splice(0, 0, response.Response);
-               alert('New Industry Type Successfully Created.');
+            if (response['Status']) {
+               this._List.splice(0, 0, response['Response']);
+               this.Toastr.NewToastrMessage(
+                  {  Type: 'Success',
+                     Message: 'Industry Type Successfully Added'
+                  }
+               );
             } else {
-               alert(response.Message);
+               this.Toastr.NewToastrMessage(
+                  {  Type: 'Error',
+                     Message: response['Message']
+                  }
+               );
             }
          });
       }
@@ -68,11 +83,20 @@ export class IndustryTypeCrmSettingsComponent implements OnInit {
          };
          this.bsModalRef = this.modalService.show(ModelIndustrytypeCrmsettingsComponent, Object.assign({initialState}, { class: '' }));
          this.bsModalRef.content.onClose.subscribe(response => {
-            if (response.Status) {
-               this._List[_index] = response.Response;
-               alert('Industry Successfully Updated.');
+            if (response['Status']) {
+               this._List[_index] = response['Response'];
+               this.Toastr.NewToastrMessage(
+                  {  Type: 'Info',
+                     Message: 'Industry Type Successfully Updated',
+                     Duration: 1000
+                  }
+               );
             } else {
-               alert(response.Message);
+              this.Toastr.NewToastrMessage(
+                  {  Type: 'Error',
+                     Message: response['Message']
+                  }
+               );
             }
          });
       }
@@ -99,18 +123,25 @@ export class IndustryTypeCrmSettingsComponent implements OnInit {
                   const ResponseData = JSON.parse(returnResponse['_body']);
                   if (returnResponse['status'] === 200 && ResponseData['Status'] ) {
                      this._List.splice(_index, 1);
-                     alert('Successfully Deleted');
-                  } else if (returnResponse['status'] === 400 && !ResponseData['Status']) {
-                     alert(ResponseData['Message']);
-                  } else if (returnResponse['status'] === 417 && !ResponseData['Status']) {
-                     alert(ResponseData['Message']);
+                     this.Toastr.NewToastrMessage(
+                        {  Type: 'Warning',
+                           Message: 'Industry Type Successfully Deleted'
+                        }
+                     );
+                  } else if (returnResponse['status'] === 400 || returnResponse['status'] === 417 && !ResponseData['Status']) {
+                     this.Toastr.NewToastrMessage(
+                        {  Type: 'Error',
+                           Message: ResponseData['Message']
+                        }
+                     );
                   } else {
-                     alert('Some Error Occurred!, But not Identify!');
-                     console.log(returnResponse);
+                     this.Toastr.NewToastrMessage(
+                        {  Type: 'Error',
+                           Message: 'Some Error Occurred!, But not Identify!'
+                        }
+                     );
                   }
                });
-            } else {
-               alert('Industry Type Delete Confirmation = Cancel.');
             }
          });
       }
