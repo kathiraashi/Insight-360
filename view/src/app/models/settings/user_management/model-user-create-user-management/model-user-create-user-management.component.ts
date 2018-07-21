@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
-import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
 
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import * as CryptoJS from 'crypto-js';
+import { map } from 'rxjs/operators';
 
 import { AdminService } from './../../../../services/Admin/admin.service';
 import { ToastrService } from './../../../../services/common-services/toastr-service/toastr.service';
@@ -20,27 +21,20 @@ export class ModelUserCreateUserManagementComponent implements OnInit {
    Type: String;
    Data;
 
-   _UserTypes: any[] =  [
-                           {_id: '1', User_Type: 'Sub Admin'},
-                           {_id: '2', User_Type: 'Manager'},
-                           {_id: '4', User_Type: 'Senior Executive'},
-                           {_id: '3', User_Type: 'Co-ordinator'},
-                           {_id: '5', User_Type: 'User'}
-                        ];
+   _UserTypes: any[] =  [];
 
-   _ReportUsers: any[] =  [
-                           {_id: '1', User_Name: 'UserName_1'},
-                           {_id: '2', User_Name: 'UserName_2'},
-                           {_id: '4', User_Name: 'UserName_3'},
-                           {_id: '3', User_Name: 'UserName_4'},
-                           {_id: '5', User_Name: 'UserName_5'}
-                        ];
+   _ReportUsers: any[] =  [];
+
+   _Permissions: any[] =  [];
 
    ShowReportsTo: Boolean = false;
+   _AccessPermissions: any[] = [];
 
    User_Name_Changed: Boolean = false;
    UserNameValidated: Boolean = false;
    User_NameAvailable: Boolean = false;
+
+   Company_Id = '5b3c66d01dd3ff14589602fe';
 
    Form: FormGroup;
 
@@ -48,27 +42,106 @@ export class ModelUserCreateUserManagementComponent implements OnInit {
                public bsModalRef: BsModalRef,
                public Service: AdminService,
                private Toastr: ToastrService
-            ) {}
+            ) {
+               const Data = { 'Company_Id' : '1', 'User_Id' : '2', };
+                  let Info = CryptoJS.AES.encrypt(JSON.stringify(Data), 'SecretKeyIn@123');
+                  Info = Info.toString();
+               this.Service.UserTypes_List({'Info': Info}).subscribe( response => {
+                  const ResponseData = JSON.parse(response['_body']);
+                  if (response['status'] === 200 && ResponseData['Status'] ) {
+                     const CryptoBytes  = CryptoJS.AES.decrypt(ResponseData['Response'], 'SecretKeyOut@123');
+                     const DecryptedData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+                     this._UserTypes = DecryptedData;
+                  } else if (response['status'] === 400 || response['status'] === 417 && !ResponseData['Status']) {
+                     this.Toastr.NewToastrMessage(
+                        {  Type: 'Error',
+                           Message: ResponseData['Message']
+                        }
+                     );
+                  } else {
+                     this.Toastr.NewToastrMessage(
+                        {  Type: 'Error',
+                           Message: 'Error Not Identify!, Getting User Types List!'
+                        }
+                     );
+                  }
+               });
+               this.Service.UserTypeBased_SimpleUsersList({'Info': Info}).subscribe( response => {
+                  const ResponseData = JSON.parse(response['_body']);
+                  if (response['status'] === 200 && ResponseData['Status'] ) {
+                     const CryptoBytes  = CryptoJS.AES.decrypt(ResponseData['Response'], 'SecretKeyOut@123');
+                     const DecryptedData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+                     this._ReportUsers = DecryptedData;
+                  } else if (response['status'] === 400 || response['status'] === 417 && !ResponseData['Status']) {
+                     this.Toastr.NewToastrMessage(
+                        {  Type: 'Error',
+                           Message: ResponseData['Message']
+                        }
+                     );
+                  } else {
+                     this.Toastr.NewToastrMessage(
+                        {  Type: 'Error',
+                           Message: 'Error Not Identify!, Getting Simple Users List User Type Based!'
+                        }
+                     );
+                  }
+               });
+               this.Service.UserTypeBased_PermissionsGroup_SimpleList({'Info': Info}).subscribe( response => {
+                  const ResponseData = JSON.parse(response['_body']);
+                  if (response['status'] === 200 && ResponseData['Status'] ) {
+                     const CryptoBytes  = CryptoJS.AES.decrypt(ResponseData['Response'], 'SecretKeyOut@123');
+                     const DecryptedData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+                     this._Permissions = DecryptedData;
+                  } else if (response['status'] === 400 || response['status'] === 417 && !ResponseData['Status']) {
+                     this.Toastr.NewToastrMessage(
+                        {  Type: 'Error',
+                           Message: ResponseData['Message']
+                        }
+                     );
+                  } else {
+                     this.Toastr.NewToastrMessage(
+                        {  Type: 'Error',
+                           Message: 'Error Not Identify!, Getting Simple Permission Group List User Type Based!'
+                        }
+                     );
+                  }
+               });
+            }
 
    ngOnInit() {
       this.onClose = new Subject();
 
       this.Form = new FormGroup({
-         User_Name: new FormControl(''),
-         User_Password: new FormControl(''),
-         Name: new FormControl(''),
-         Email: new FormControl(''),
+         Company_Id: new FormControl('5b3c66d01dd3ff14589602fe'),
+         User_Id: new FormControl('5b3c7268f838b31bc89e7c8c'),
+         User_Name: new FormControl('', { validators: Validators.required,
+                                          asyncValidators: [this.UserNameAsyncValidate.bind(this)],
+                                          updateOn: 'blur' }),
+         User_Password: new FormControl('', Validators.required),
+         Name: new FormControl('', Validators.required ),
+         Email: new FormControl('', [Validators.required, Validators.email]),
          Phone: new FormControl(''),
          User_Type: new FormControl(null, Validators.required),
-         Company_Id: new FormControl('5b3c66d01dd3ff14589602fe'),
          Reports_To: new FormControl(null),
+         AccessPermissions_Groups: new FormControl(null, Validators.required)
       });
    }
 
-  User_Name_Change() {
-     this.User_Name_Changed = true;
-  }
-  UserType_Change() {
+   UserNameAsyncValidate( control: AbstractControl ) {
+      const Data = { User_Name: control.value, Company_Id: this.Company_Id };
+      let Info = CryptoJS.AES.encrypt(JSON.stringify(Data), 'SecretKeyIn@123');
+      Info = Info.toString();
+      return this.Service.User_Name_Validate({'Info': Info}).pipe(map( response => {
+         const ReceivingData = JSON.parse(response['_body']);
+         if (response['status'] === 200 && ReceivingData['Status'] && ReceivingData['Available']) {
+            return null;
+         } else {
+            return { UserName_NotAvailable: true};
+         }
+      }));
+   }
+
+   UserType_Change() {
       const value = this.Form.controls['User_Type'].value;
       if (typeof value === 'object' && value !== null ) {
          if (value.User_Type  !== 'Sub Admin') {
@@ -86,38 +159,13 @@ export class ModelUserCreateUserManagementComponent implements OnInit {
          this.Form.controls['Reports_To'].clearValidators();
          this.Form.controls['Reports_To'].setErrors(null);
          this.Form.controls['Reports_To'].reset();
+         this.Form.controls['AccessPermissions_Groups'].reset();
+         this.Form.updateValueAndValidity();
       }
-  }
-
-  UserNameValidate() {
-   if ( this.Form.controls['User_Name'].value !== '') {
-      const Data = { User_Name: this.Form.controls['User_Name'].value, Company_Id: '5b3c66d01dd3ff14589602fe' };
-      let Info = CryptoJS.AES.encrypt(JSON.stringify(Data), 'SecretKeyIn@123');
-      Info = Info.toString();
-      this.Service.User_Name_Validate({'Info': Info}).subscribe( response => {
-         const ReceivingData = JSON.parse(response['_body']);
-         if (response['status'] === 200 && ReceivingData['Status']) {
-           if (ReceivingData['Available']) {
-              this.User_NameAvailable = true;
-              this.UserNameValidated = true;
-           } else {
-            this.User_NameAvailable = false;
-            this.UserNameValidated = true;
-           }
-           this.User_Name_Changed = false;
-         } else {
-            this.Toastr.NewToastrMessage(
-               {  Type: 'Error',
-                  Message: 'Users Name Validate Error!, Try Another Name!'
-               }
-            );
-         }
-      });
    }
-  }
 
   submit() {
-   if (this.Form.valid && this.UserNameValidated && this.User_NameAvailable && !this.User_Name_Changed) {
+   if (this.Form.valid) {
       const Data = this.Form.value;
       let Info = CryptoJS.AES.encrypt(JSON.stringify(Data), 'SecretKeyIn@123');
       Info = Info.toString();

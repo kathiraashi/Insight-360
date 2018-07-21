@@ -33,7 +33,7 @@ export class AppComponent {
             setTimeout(() => {
                this.ToastrList.splice(0, 1);
                this.RefreshToastrPosition();
-            }, 60000);
+            }, 3000);
          });
    }
 
