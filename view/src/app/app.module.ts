@@ -15,8 +15,9 @@
 // Future Modules
    import { ModalModule, AccordionModule} from 'ngx-bootstrap';
    import {CalendarModule} from 'primeng/calendar';
-   import {MatButtonModule, MatFormFieldModule, MatSelectModule, MatCheckboxModule} from '@angular/material';
+   import {MatButtonModule, MatFormFieldModule, MatSelectModule, MatCheckboxModule, MatMenuModule} from '@angular/material';
    import { NgSelectModule } from '@ng-select/ng-select';
+
 // Custom Modules
    import { AppRoutingModule } from './app.routing.module';
 
@@ -246,9 +247,22 @@ import { InventoryDeliveryordersCreateComponent } from './Components/Inventory/D
 import { InventoryDirectpurchaseCreateComponent } from './Components/Inventory/Direct-Purchase/inventory-directpurchase-create/inventory-directpurchase-create.component';
 import { InternalTransferCreateComponent } from './Components/Inventory/Internal-Transfer/internal-transfer-create/internal-transfer-create.component';
 import { ToReceiveCreateComponent } from './Components/Inventory/To-Receive/to-receive-create/to-receive-create.component';
-
-
-
+import { ModelContactCustomersViewComponent } from './models/CRM/Customers/model-contact-customers-view/model-contact-customers-view.component';
+import { ModelActivitiesCustomersViewComponent } from './models/CRM/Customers/model-activities-customers-view/model-activities-customers-view.component';
+import { ModelPaymentsCustomersViewComponent } from './models/CRM/Customers/model-payments-customers-view/model-payments-customers-view.component';
+import { MainHrComponent } from './Components/HR/main-hr/main-hr.component';
+import { MainEmployeesHrComponent } from './Components/HR/SubComponents/Employees/main-employees-hr/main-employees-hr.component';
+import { ModelEmployeesCreateComponent } from './models/HR/model-employees-create/model-employees-create.component';
+import { AttendanceLogHrComponent } from './Components/HR/SubComponents/attendance-log-hr/attendance-log-hr.component';
+import { ModelAttendanceLogCreateComponent } from './models/HR/model-attendance-log-create/model-attendance-log-create.component';
+import { MainAttendanceReportHrComponent } from './Components/HR/SubComponents/Attendance-Report/main-attendance-report-hr/main-attendance-report-hr.component';
+import { AttendanceReportViewComponent } from './Components/HR/SubComponents/Attendance-Report/attendance-report-view/attendance-report-view.component';
+import { ModelAttendanceReportCreateComponent } from './models/HR/model-attendance-report-create/model-attendance-report-create.component';
+import { MainPayrollHrComponent } from './Components/HR/SubComponents/Payroll/main-payroll-hr/main-payroll-hr.component';
+import { PayrollViewComponent } from './Components/HR/SubComponents/Payroll/payroll-view/payroll-view.component';
+import { MainPayrollMasterHrComponent } from './Components/HR/SubComponents/Payroll-Master/main-payroll-master-hr/main-payroll-master-hr.component';
+import { PayrollMasterCreateComponent } from './Components/HR/SubComponents/Payroll-Master/payroll-master-create/payroll-master-create.component';
+import { ModelPayrollMasterViewComponent } from './models/HR/model-payroll-master-view/model-payroll-master-view.component';
 
 
 
@@ -482,6 +496,24 @@ import { ToReceiveCreateComponent } from './Components/Inventory/To-Receive/to-r
             UserPermissionsComponent,
             ModelUserCreateUserManagementComponent,
             UserPermissionsGroupCreateComponent,
+            ModelContactCustomersViewComponent,
+            ModelActivitiesCustomersViewComponent,
+            ModelPaymentsCustomersViewComponent,
+            MainHrComponent,
+            MainEmployeesHrComponent,
+            ModelEmployeesCreateComponent,
+            AttendanceLogHrComponent,
+            ModelAttendanceLogCreateComponent,
+            MainAttendanceReportHrComponent,
+            AttendanceReportViewComponent,
+            ModelAttendanceReportCreateComponent,
+            MainPayrollHrComponent,
+            PayrollViewComponent,
+            MainPayrollMasterHrComponent,
+            PayrollMasterCreateComponent,
+            ModelPayrollMasterViewComponent
+
+
    ],
    imports: [
       // Default Modules
@@ -501,6 +533,7 @@ import { ToReceiveCreateComponent } from './Components/Inventory/To-Receive/to-r
          MatFormFieldModule,
          MatSelectModule,
          MatCheckboxModule,
+         MatMenuModule,
       // Custom Modules
          AppRoutingModule,
    ],
@@ -544,7 +577,14 @@ import { ToReceiveCreateComponent } from './Components/Inventory/To-Receive/to-r
       ModelOndutyHrmsComponent,
       ModelPermissionsHrmsComponent,
       ModelAdvanceHrmsComponent,
-      ModelUserCreateUserManagementComponent],
+      ModelUserCreateUserManagementComponent,
+      ModelContactCustomersViewComponent,
+      ModelActivitiesCustomersViewComponent,
+      ModelPaymentsCustomersViewComponent,
+      ModelEmployeesCreateComponent,
+      ModelAttendanceLogCreateComponent,
+      ModelAttendanceReportCreateComponent,
+      ModelPayrollMasterViewComponent],
    bootstrap: [AppComponent]
 })
 export class AppModule { }

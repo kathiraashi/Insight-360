@@ -1,0 +1,59 @@
+<div class="Modal_Content" *ngIf="Type && Type === 'Create'">
+   <div class="Modal_Header">
+     <p> Payments</p>
+     <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+   </div>
+   <div class="Model_Body">
+     <div class="row">
+       <div class="col-sm-6 Form_Input">
+         <label>Date:</label>
+         <input type="text">
+      </div>
+       <div class="col-sm-6 Form_Select">
+         <label>Payment Method:</label>
+         <select>
+            <option disabled> Method</option>
+            <option> Method</option>
+            <option>Method</option>
+         </select>
+       </div>
+       <div class="col-sm-6 Form_Input">
+         <label>Customer:</label>
+         <input type="text">
+       </div>
+       <div class="col-sm-6 Form_Input">
+         <label>Payment Amount:</label>
+         <input type="text">
+       </div>
+      </div>
+   </div>
+   <div class="Model_Footer">
+     <button mat-raised-button color="primary"> Submit </button>
+   </div>
+ </div>
+ <div class="Modal_Content" *ngIf=" Type && Type === 'View'">
+   <div class="Modal_Header">
+     <p>Payments</p>
+     <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+   </div>
+   <div class="Model_Body">
+     <div class="row">
+       <div class="col-sm-6 text-right Static">Date: </div>
+       <div class="col-sm-6 text-left Data"> 25.07.18</div>
+     </div>
+     <div class="row">
+       <div class="col-sm-6 text-right Static">Payment Method: </div>
+       <div class="col-sm-6 text-left Data"> Method</div>
+     </div>
+     <div class="row">
+       <div class="col-sm-6 text-right Static">Customer: </div>
+       <div class="col-sm-6 text-left Data"> Customer</div>
+     </div>
+     <div class="row">
+       <div class="col-sm-6 text-right Static">Payment Amount: </div>
+       <div class="col-sm-6 text-left Data"> 10000</div>
+     </div>
+   </div>
+ </div>
+
+

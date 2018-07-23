@@ -67,7 +67,8 @@
                      <span class="Style_3">Rs.2500</span>
                      </td>
                      <td>
-                        <button mat-raised-button color="primary" [routerLink]="['/crm_invoice_view']"> Action </button>
+                        <button color="primary" mat-raised-button [matMenuTriggerFor]="Action">Action
+                        </button>
                      </td>
                   </tr>
                   <tr>
@@ -96,7 +97,7 @@
                         <span class="Style_3">Rs.2500</span>
                      </td>
                      <td>
-                        <button mat-raised-button color="primary" [routerLink]="['/crm_invoice_view']"> Action </button>
+                        <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
                      </td>
                   </tr>
                      <tr>
@@ -125,7 +126,7 @@
                         <span class="Style_3">Rs.2500</span>
                      </td>
                      <td>
-                        <button mat-raised-button color="primary" [routerLink]="['/crm_invoice_view']"> Action </button>
+                        <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
                      </td>
                   </tr>
                   <tr>
@@ -154,7 +155,7 @@
                         <span class="Style_3">Rs.2500</span>
                      </td>
                      <td>
-                        <button mat-raised-button color="primary" [routerLink]="['/crm_invoice_view']"> Action </button>
+                        <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
                      </td>
                   </tr>
                   <tr>
@@ -183,7 +184,7 @@
                         <span class="Style_3">Rs.2500</span>
                      </td>
                      <td>
-                        <button mat-raised-button color="primary" [routerLink]="['/crm_invoice_view']"> Action </button>
+                        <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
                      </td>
                   </tr> 
                   <tr>
@@ -212,7 +213,7 @@
                         <span class="Style_3">Rs.2500</span>
                      </td>
                      <td>
-                        <button mat-raised-button color="primary" [routerLink]="['/crm_invoice_view']"> Action </button>
+                        <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
                      </td>
                   </tr>
                   <tr>
@@ -241,7 +242,7 @@
                         <span class="Style_3">Rs.2500</span>
                      </td>
                      <td>
-                        <button mat-raised-button color="primary" [routerLink]="['/crm_invoice_view']"> Action </button>
+                        <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
                      </td>
                   </tr> 
                </tbody>
@@ -250,3 +251,9 @@
       </div>
    </div>
 </div>
+<!-- Dropdown menus -->
+<mat-menu #Action="matMenu">
+   <button mat-menu-item [routerLink]="['/crm_invoice_view']">
+      <span>Invoice View</span>
+   </button>
+</mat-menu>

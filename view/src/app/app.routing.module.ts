@@ -63,7 +63,10 @@ import { InventoryDeliveryordersCreateComponent } from './Components/Inventory/D
 import { InventoryDirectpurchaseCreateComponent } from './Components/Inventory/Direct-Purchase/inventory-directpurchase-create/inventory-directpurchase-create.component';
 import { InternalTransferCreateComponent } from './Components/Inventory/Internal-Transfer/internal-transfer-create/internal-transfer-create.component';
 import { ToReceiveCreateComponent } from './Components/Inventory/To-Receive/to-receive-create/to-receive-create.component';
-
+import { MainHrComponent } from './Components/HR/main-hr/main-hr.component';
+import { AttendanceReportViewComponent } from './Components/HR/SubComponents/Attendance-Report/attendance-report-view/attendance-report-view.component';
+import { PayrollViewComponent } from './Components/HR/SubComponents/Payroll/payroll-view/payroll-view.component';
+import { PayrollMasterCreateComponent } from './Components/HR/SubComponents/Payroll-Master/payroll-master-create/payroll-master-create.component';
 const appRoutes: Routes = [
    {
       path: '',
@@ -370,6 +373,26 @@ const appRoutes: Routes = [
       component: UserPermissionsGroupCreateComponent,
       data: {   animation: { value: 'User_Permissions_Group_Create'}   }
    },
+   {
+    path: 'main_hr',
+    component: MainHrComponent,
+    data: {   animation: { value: 'main_hr'}   }
+},
+{
+    path: 'Attendance_Report_View',
+    component: AttendanceReportViewComponent,
+    data: {   animation: { value: 'Attendance_Report_View'}   }
+},
+{
+    path: 'Payroll_View',
+    component: PayrollViewComponent,
+    data: {   animation: { value: 'Payroll_View'}   }
+},
+{
+    path: 'Payroll_master_View',
+    component: PayrollMasterCreateComponent,
+    data: {   animation: { value: 'Payroll_master_View'}   }
+},
 
 
 
