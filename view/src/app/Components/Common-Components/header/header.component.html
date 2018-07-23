@@ -37,6 +37,12 @@
                    <span > &nbsp; HRMS </span> 
                 </span>
              </li>
+             <li class="Menu_List"  [routerLink]="['/main_hr']" style="outline:none;">
+               <span class="Menu">
+                  <i class="material-icons">people</i>
+                  <span > &nbsp; HR </span> 
+               </span>
+            </li>
              <li class="Menu_List" >
                     <span class="Menu_Tree">
                        <span class="Menu">
@@ -75,9 +81,11 @@
                        </span>
                        <ul class="Menu_Tree_View">
                           <li class="Menu_Tree_List"  [routerLink]="['/account_customer_list']"><a> Customer </a></li>
+                          <li class="Menu_Tree_List"  [routerLink]="['/crm_saleorder_list']"><a> Sale Order </a></li>
                           <li class="Menu_Tree_List"  [routerLink]="['/account_customer_invoice_list']"><a> CustomerInvoice </a></li>
                           <li class="Menu_Tree_List"  [routerLink]="['/account_customer_payments_list']"><a> CustomerPayments </a></li>
                           <li class="Menu_Tree_List"  [routerLink]="['/account_vendor_list']"><a>Vendor</a></li>
+                          <li class="Menu_Tree_List"  [routerLink]="['/Purchase_Orders_List']"><a>Purchase Order</a></li>
                           <li class="Menu_Tree_List"  [routerLink]="['/account_vendor_bills_list']"><a>Vendor Bills</a></li>
                           <li class="Menu_Tree_List"  [routerLink]="['/vendor_payment_list']"><a>Vendor Payments</a></li>
                    </ul>
