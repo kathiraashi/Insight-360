@@ -1,5 +1,6 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
+import { AuthGuard } from './Authentication/auth.guard';
 
 import { LoginComponent } from './Components/Common-Components/login/login.component';
 import { MainCrmSettingsComponent } from './Components/Settings/CRM-Settings/main-crm-settings/main-crm-settings.component';
@@ -81,316 +82,379 @@ const appRoutes: Routes = [
    {
       path: 'CRM_Settings',
       component: MainCrmSettingsComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'CRM_Settings'}   }
    },
    {
       path: 'lead_settings',
       component: MainLeadsSettingsComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'lead_settings'}   }
    },
    {
       path: 'company_settings',
       component: MainCompanySettingsComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'company_settings'}   }
    },
    {
       path: 'purchase_settings',
       component: MainPurchaseSettingsComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'purchase_settings'}   }
    },
    {
       path: 'Hrms_Settings',
       component: MainHrmsSettingsComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'Hrms_Settings'}   }
    },
    {
       path: 'Hr_Settings',
       component: MainHrSettingsComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'Hr_Settings'}   }
    },
    {
       path: 'Account_Settings',
       component: MainAccountSettingsComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'Account_Settings'}   }
    },
    {
       path: 'Inventory_Settings',
       component: MainInventorySettingsComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'Inventory_Settings'}   }
    },
    {
       path: 'Product_Settings',
       component: MainProductSettingsComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'Product_Settings'}   }
    },
    {
       path: 'Crm_Customers_List',
       component: CrmCustomersListComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'Crm_Customers_List'}   }
    },
    {
       path: 'main_crm_customers_view',
       component: MainCrmCustomersViewComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'main_crm_customers_view'}   }
    },
    {
       path: 'crm_customers_create',
       component: CrmCustomersCreateComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'crm_customers_create'}   }
    },
    {
       path: 'crm_invoice_list',
       component: CrmInvoiceListComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'crm_invoice_list'}   }
    },
    {
       path: 'crm_invoice_create',
       component: CrmInvoiceCreateComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'crm_invoice_create'}   }
    },
    {
       path: 'crm_quotations_list',
       component: CrmQuatationsListComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'crm_quotations_list'}   }
    },
    {
       path: 'crm_quotations_create',
       component: CrmQuatationsCreateComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'crm_quotations_create'}   }
    },
    {
       path: 'crm_saleorder_list',
       component: CrmSaleorderListComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'crm_saleorder_list'}   }
    },
    {
       path: 'crm_saleorder_create',
       component: CrmSaleorderCreateComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'crm_saleorder_create'}   }
    },
    {
       path: 'main_leads',
       component: MainLeadsComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'main_leads'}   }
    },
    {
       path: 'main_hrms',
       component: MainHrmsComponentsComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'main_hrms'}   }
    },
    {
       path: 'purchase_request_list',
       component: PurchaseRequestListComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'purchase_request_list'}   }
    },
    {
       path: 'purchase_request_create',
       component: PurchaseRequestCreateComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'purchase_request_create'}   }
    },
    {
       path: 'Purchase_Quotations_List',
       component: PurchaseQuotationsListComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'Purchase_Quotations_List'}   }
    },
    {
       path: 'Purchase_Orders_List',
       component: PurchaseOrdersListComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'Purchase_Orders_List'}   }
    },
    {
       path: 'Vendor_Bills_List',
       component: VendorBillsListComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'Vendor_Bills_List'}   }
    },
    {
       path: 'Vendor_List',
       component: VendorListComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'Vendor_List'}   }
    },
    {
       path: 'Purchase_Quotation_Create',
       component: PurchaseQuotationsCreateComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'Purchase_Quotation_Create'}   }
    },
    {
       path: 'Purchase_Request_View',
       component: PurchaseRequestViewComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'Purchase_Request_View'}   }
    },
    {
       path: 'Purchase_Quotation_View',
       component: PurchaseQuotationsViewComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'Purchase_Quotation_View'}   }
    },
    {
       path: 'Purchase_Order_Create',
       component: PurchaseOrdersCreateComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'Purchase_Order_Create'}   }
    },
    {
       path: 'Purchase_Order_View',
       component: PurchaseOrdersViewComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'Purchase_Order_View'}   }
    },
    {
       path: 'Vendor_Bills_Create',
       component: VendorBillsCreateComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'Vendor_Bills_Create'}   }
    },
    {
       path: 'Vendor_Bills_View',
       component: VendorBillsViewComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'Vendor_Bills_View'}   }
    },
    {
       path: 'Vendor_Create',
       component: VendorCreateComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'Vendor_Create'}   }
    },
    {
       path: 'crm_quotations_view',
       component: CrmQuatationsViewComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'crm_quotations_view'}   }
    },
    {
       path: 'crm_saleorder_view',
       component: CrmSaleorderViewComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'crm_saleorder_view'}   }
    },
    {
       path: 'crm_invoice_view',
       component: CrmInvoiceViewComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'crm_invoice_view'}   }
    },
    {
       path: 'main_vendor_view',
       component: MainVendorViewComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'main_vendor_view'}   }
    },
    {
       path: 'account_customer_list',
       component: AccountsCustomerListComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'account_customer_list'}   }
    },
    {
       path: 'account_customer_invoice_list',
       component: AccountsCustomerInvoiceListComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'account_customer_invoice_list'}   }
    },
    {
       path: 'account_customer_payments_list',
       component: AccountsCustomerPaymentsListComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'account_customer_payments_list'}   }
    },
    {
       path: 'account_customer_invoice_view',
       component: AccountsCustomerInvoiceViewComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'account_customer_invoice_view'}   }
    },
    {
       path: 'account_vendor_list',
       component: AccountsVendorListComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'account_vendor_list'}   }
    },
    {
       path: 'account_vendor_bills_list',
       component: AccountsVendorbillsListComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'account_vendor_bills_list'}   }
    },
    {
       path: 'Inventory_deliveryorder_list',
       component: InventoryDeliveryordersListComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'Inventory_deliveryorder_list'}   }
    },
    {
       path: 'customer_payment_create',
       component: CustomerPaymentsCreateComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'customer_payment_create'}   }
    },
    {
       path: 'vendor_payment_list',
       component: VendorPaymentsListComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'vendor_payment_list'}   }
    },
    {
       path: 'vendor_payment_create',
       component: VendorPaymentsCreateComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'vendor_payment_create'}   }
    },
    {
       path: 'customer_payment_view',
       component: AccountsCustomerPaymentsViewComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'customer_payment_view'}   }
    },
    {
     path: 'vendor_payment_view',
     component: VendorPaymentsViewComponent,
+    canActivate: [AuthGuard],
     data: {   animation: { value: 'vendor_payment_view'}   }
 },
 {
     path: 'internal_transfer_list',
     component: InternalTransferListComponent,
+    canActivate: [AuthGuard],
     data: {   animation: { value: 'internal_transfer_list'}   }
 },
 {
     path: 'to_receive_list',
     component: ToReceiveListComponent,
+    canActivate: [AuthGuard],
     data: {   animation: { value: 'to_receive_list'}   }
 },
 {
     path: 'inventory_deliveryorder_create',
     component: InventoryDeliveryordersCreateComponent,
+    canActivate: [AuthGuard],
     data: {   animation: { value: 'inventory_deliveryorder_create'}   }
 },
 {
     path: 'inventory_directpurchase_create',
     component: InventoryDirectpurchaseCreateComponent,
+    canActivate: [AuthGuard],
     data: {   animation: { value: 'inventory_directpurchase_create'}   }
 },
 {
     path: 'internal_transfer_create',
     component: InternalTransferCreateComponent,
+    canActivate: [AuthGuard],
     data: {   animation: { value: 'internal_transfer_create'}   }
 },
 {
     path: 'to_receive_create',
     component: ToReceiveCreateComponent,
+    canActivate: [AuthGuard],
     data: {   animation: { value: 'to_receive_create'}   }
 },
    {
       path: 'User_Management',
       component: UserManagementListComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'User_Management'}   }
    },
    {
       path: 'User_Permissions',
       component: UserPermissionsComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'User_Permissions'}   }
    },
    {
       path: 'User_Permissions_Group_Create',
       component: UserPermissionsGroupCreateComponent,
+      canActivate: [AuthGuard],
       data: {   animation: { value: 'User_Permissions_Group_Create'}   }
    },
    {
     path: 'main_hr',
     component: MainHrComponent,
+    canActivate: [AuthGuard],
     data: {   animation: { value: 'main_hr'}   }
 },
 {
     path: 'Attendance_Report_View',
     component: AttendanceReportViewComponent,
+    canActivate: [AuthGuard],
     data: {   animation: { value: 'Attendance_Report_View'}   }
 },
 {
     path: 'Payroll_View',
     component: PayrollViewComponent,
+    canActivate: [AuthGuard],
     data: {   animation: { value: 'Payroll_View'}   }
 },
 {
     path: 'Payroll_master_View',
     component: PayrollMasterCreateComponent,
+    canActivate: [AuthGuard],
     data: {   animation: { value: 'Payroll_master_View'}   }
 },
 

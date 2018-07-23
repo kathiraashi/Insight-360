@@ -46,6 +46,10 @@ var UserManagementSchema = mongoose.Schema({
    Company_Id: { type: Schema.Types.ObjectId, ref: 'Company_Management' },
    Last_ModifiedBy: { type: Schema.Types.ObjectId, ref: 'User_Management' },
    Active_Status: { type : Boolean, required : true },
+   LoginToken: { type : String },
+   LoginTime: { type : Date },
+   LastActiveTime: { type : Date },
+   LogOutTime: { type : Date },
    },
    { timestamps: true }
 );

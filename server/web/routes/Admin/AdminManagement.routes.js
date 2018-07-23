@@ -8,11 +8,7 @@ module.exports = function(app) {
    app.post('/API/AdminManagement/Users_List', Controller.Users_List);
    app.post('/API/AdminManagement/UserTypeBased_SimpleUsersList', Controller.UserTypeBased_SimpleUsersList);
 
-
-   app.post('/API/AdminManagement/Create_UserTypes', Controller.Create_UserTypes);
    app.post('/API/AdminManagement/UserTypes_List', Controller.UserTypes_List);
-   app.post('/API/AdminManagement/Create_Project_Modules', Controller.Create_Project_Modules);
-   app.post('/API/AdminManagement/Create_Project_SubModules', Controller.Create_Project_SubModules);
 
    app.post('/API/AdminManagement/ModulesAndSubModules_List', Controller.ModulesAndSubModules_List);
    app.post('/API/AdminManagement/Create_Permissions_Group', Controller.Create_Permissions_Group);

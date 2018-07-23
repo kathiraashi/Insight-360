@@ -39,9 +39,9 @@ export class LoginComponent implements OnInit {
             Info = Info.toString();
             this.service.User_Login_Validate({'Info': Info}).subscribe( response => {
                const ReceivingData = JSON.parse(response['_body']);
+               console.log(response);
                if (response['status'] === 200 && ReceivingData.Status) {
-                  alert('Login Success');
-                  this.router.navigate(['/company_settings']);
+                  // this.router.navigate(['/company_settings']);
                } else if (response['status'] === 200 && !ReceivingData.Status) {
                   alert(ReceivingData.Message + '-1');
                } else if (response['status'] === 400 && !ReceivingData.Status) {

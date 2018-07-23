@@ -3,6 +3,7 @@ var jwt = require('jsonwebtoken');
 var AdminModel = require('./../../models/Admin/AdminManagement.model.js');
 var ErrorManagement = require('./../../../handling/ErrorHandling.js');
 var mongoose = require('mongoose');
+var crypto = require("crypto");
 
 
 
@@ -184,19 +185,33 @@ exports.User_Login_Validate = function(req, res) {
                         FinalResult.SubModule_Permissions = Array.from(new Set(FinalResult.SubModule_Permissions.map(JSON.stringify))).map(JSON.parse);
                         FinalResult.SubModule_Permissions = FinalResult.SubModule_Permissions.reduce( (acc, obj) => {
                            let existObj = acc.find(({SubModule_Id}) =>  SubModule_Id == obj.SubModule_Id);
-                             if(existObj){
+                           if(existObj){
                               existObj.Create_Permission = existObj.Create_Permission || obj.Create_Permission;
                               existObj.Edit_Permission = existObj.Edit_Permission || obj.Edit_Permission;
                               existObj.View_Permission = existObj.View_Permission || obj.View_Permission;
                               existObj.Delete_Permission = existObj.Delete_Permission || obj.Delete_Permission;
                               return acc;
-                            }
-                           acc.push(obj);
-                           return acc;
-                         }, []);
-                         var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(FinalResult), 'SecretKeyOut@123');
-                              ReturnData = ReturnData.toString();
-                        res.status(200).send({ Status: true,  Response: ReturnData });
+                           } else {
+                              acc.push(obj);
+                              return acc;
+                           }
+                        }, []);
+                        
+                        var Key = crypto.randomBytes(16).toString("hex");
+                        var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(FinalResult), Key);
+                            ReturnData = ReturnData.toString();
+                           ReturnData =  (ReturnData.slice(0, -1) + Key).concat('=');
+                           AdminModel.User_Management.update(
+                              { _id : FinalResult._id },
+                              { $set: { LoginToken : Key, LoginTime: new Date(), LastActiveTime: new Date()  }}
+                           ).exec((err_3, result_3) => {
+                              if(err_3) {
+                                 ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'User Validate Update Query Error', 'RegisterAndLogin.controller.js', err_3);
+                                 res.status(417).send({Status: false, Message: "Some error occurred while Validate Update the User Details!"});           
+                              } else {
+                                 res.status(200).send({ Status: true,  Response: ReturnData });
+                              }
+                           });
                      }
                });
             } 

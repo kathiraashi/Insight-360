@@ -27,7 +27,6 @@ var app = express();
 // DB Connection
 
   mongoose.connect('mongodb://kathiraashi:kathir143@ds121871.mlab.com:21871/insight-360');
-  //  mongoose.connect('mongodb://localhost/Insight-360');
    mongoose.connection.on('error', function(err) {
       ErrorManagement.ErrorHandling.ErrorLogCreation('', 'Mongodb Connection Error', 'Server.js', err);
    });
@@ -51,21 +50,10 @@ app.use('/API/', function (req, res, next) {
    }
 });
 
- require('./server/web/routes/Admin/RegisterAndLogin.routes.js')(app);
-
-// Every request Token Validation
-// app.use('/API/', function (req, res, next) {
-//    if (req.body.Info !== '' && req.body.Info){
-//       LogManagement.LogHandling.LogCreation(req);
-//       return next();
-//    }else {
-//       ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Security Error For Every Request Log Creation', 'Server.js');
-//       return res.status(406).end('Invalid arguments');
-//    }
-// });
+ require('./server/web/routes/Admin/RegisterAndLogin.routes.js')(app); // Without Company Id and User Id
 
 // Admin
-require('./server/web/routes/Admin/AdminManagement.routes.js')(app);
+   require('./server/web/routes/Admin/AdminManagement.routes.js')(app);
 // Settings
    // CRM Settings
       require('./server/web/routes/settings/CRM_Settings.routes.js')(app);
