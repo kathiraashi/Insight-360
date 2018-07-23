@@ -3,6 +3,7 @@ module.exports = function(app) {
    var Controller = require('../../controller/settings/CRM_Settings.controller.js');
 
    // Industry Type -----------------------------------------------
+      app.post('/API/CRM_Settings/IndustryType_AsyncValidate', Controller.IndustryType_AsyncValidate);
       app.post('/API/CRM_Settings/Industry_Type_Create', Controller.Industry_Type_Create);
       app.post('/API/CRM_Settings/Industry_Type_List', Controller.Industry_Type_List);
       app.post('/API/CRM_Settings/Industry_Type_SimpleList', Controller.Industry_Type_SimpleList);
@@ -11,6 +12,7 @@ module.exports = function(app) {
 
       
    // Ownership Type -----------------------------------------------
+      app.post('/API/CRM_Settings/OwnershipType_AsyncValidate', Controller.OwnershipType_AsyncValidate);
       app.post('/API/CRM_Settings/Ownership_Type_Create', Controller.Ownership_Type_Create);
       app.post('/API/CRM_Settings/Ownership_Type_List', Controller.Ownership_Type_List);
       app.post('/API/CRM_Settings/Ownership_Type_SimpleList', Controller.Ownership_Type_SimpleList);

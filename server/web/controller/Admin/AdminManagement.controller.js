@@ -65,11 +65,11 @@ exports.User_Name_Validate = function(req, res) {
    }
 };
 
+
 // -------------------------------------------------- User Validate ---------------------------------------------------
 exports.User_Login_Validate = function(req, res) {
-   // var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
-   // var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
-   ReceivingData = req.body;
+   var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
+   var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
 
    if(!ReceivingData.User_Name || ReceivingData.User_Name === '' ) {
       res.status(400).send({Status: false, Message: "User_Name can not be empty" });
@@ -194,7 +194,9 @@ exports.User_Login_Validate = function(req, res) {
                            acc.push(obj);
                            return acc;
                          }, []);
-                        res.status(200).send({ Status: true,  Response: FinalResult });
+                         var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(FinalResult), 'SecretKeyOut@123');
+                              ReturnData = ReturnData.toString();
+                        res.status(200).send({ Status: true,  Response: ReturnData });
                      }
                });
             } 
@@ -202,6 +204,7 @@ exports.User_Login_Validate = function(req, res) {
       });
    }
 };
+
 
 // -------------------------------------------------- User Create -----------------------------------------------
 exports.User_Create = function(req, res) {
@@ -267,6 +270,7 @@ exports.User_Create = function(req, res) {
   }
 };
 
+
 // -------------------------------------------------- Users List -----------------------------------------------
 exports.Users_List = function(req, res) {
 
@@ -289,6 +293,7 @@ exports.Users_List = function(req, res) {
    }
 };
 
+
 // -------------------------------------------------- User Type Based Simple Users List -----------------------------------------------
 exports.UserTypeBased_SimpleUsersList = function(req, res) {
 
@@ -310,6 +315,7 @@ exports.UserTypeBased_SimpleUsersList = function(req, res) {
       });
    }
 };
+
 
 // -------------------------------------------------- User Types Create  -----------------------------------------------
 exports.Create_UserTypes = function(req, res) {
@@ -357,6 +363,7 @@ exports.UserTypes_List = function(req, res) {
       });
    }
 };
+
 
 // -------------------------------------------------- Project Module Create -----------------------------------------------
 exports.Create_Project_Modules = function(req, res) {
@@ -409,7 +416,6 @@ exports.Create_Project_SubModules = function(req, res) {
 };
 
 
-
 // -------------------------------------------------- Modules And Sub Modules List -----------------------------------------------
 exports.ModulesAndSubModules_List = function(req, res) {
    var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
@@ -452,11 +458,6 @@ exports.ModulesAndSubModules_List = function(req, res) {
       });
    }
 };
-
-
-
-
-
 
 
 // -------------------------------------------------- Create Permissions Group -----------------------------------------------
@@ -551,7 +552,6 @@ exports.Create_Permissions_Group = function(req, res) {
 };
 
 
-
 // -------------------------------------------------- User Permissions Group List -----------------------------------------------
 exports.PermissionsGroup_SimpleList = function(req, res) {
    var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
@@ -574,7 +574,6 @@ exports.PermissionsGroup_SimpleList = function(req, res) {
       });
    }
 };
-
 
 
 // -------------------------------------------------- UserTypeBased Permissions Group Simple List -----------------------------------------------

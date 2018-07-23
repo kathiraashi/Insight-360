@@ -2,7 +2,7 @@
    <div class="Modal_Content" *ngIf="Type && ( Type === 'Create' || Type === 'Edit')">
       <div class="Modal_Header">
          <p> {{Type}} Industry Type</p>
-         <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+         <span  *ngIf="!Uploading" data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
       </div>
       <form [formGroup]="Form" (ngSubmit)="onSubmit()">
          <div class="Model_Body">
@@ -12,14 +12,16 @@
                   <input type="text" formControlName="Industry_Type">
                   <p class="error" *ngIf="Form.controls['Industry_Type'].errors && !Form.controls['Industry_Type'].pristine">
                      <span *ngIf="Form.controls['Industry_Type'].errors.required">Industry Type is required</span>
+                     <span *ngIf="Form.controls['Industry_Type'].errors.IndustryType_NotAvailable">Industry Type Already Exist</span>
                   </p>
                </div>
             </div>
          </div>
          <div class="Model_Footer">
-            <button type="submit"  [disabled]="Form.invalid" mat-raised-button color="primary">
-               <span *ngIf="Type === 'Create'">Submit</span>
-               <span *ngIf="Type === 'Edit'">Update</span>
+            <button type="submit" [disabled]="Form.status !== 'VALID' || Uploading" mat-raised-button color="primary">
+               <span *ngIf="Type === 'Create' && !Uploading">Submit</span>
+               <span *ngIf="Type === 'Edit' && !Uploading">Update</span>
+               <span *ngIf="Uploading" class="UploadingBtn"> <i class="fa fa-refresh fa-spin"></i> Loading... </span>
             </button>
          </div>
       </form>

@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
-
-
-import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
+import { map } from 'rxjs/operators';
 
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
 import * as CryptoJS from 'crypto-js';
 import { CrmSettingsService } from './../../../../services/settings/crmSettings/crm-settings.service';
-import { log } from 'util';
+import { ToastrService } from './../../../../services/common-services/toastr-service/toastr.service';
 
 
 @Component({
@@ -24,9 +23,13 @@ export class ModelOwnershipytypeCrmsettingsComponent implements OnInit {
    Data;
 
    Form: FormGroup;
+   Uploading: Boolean = false;
+   Company_Id = '5b3c66d01dd3ff14589602fe';
+   User_Id = '5b530ef333fc40064c0db31e';
 
    constructor(  public bsModalRef: BsModalRef,
-                 public Service: CrmSettingsService
+                 public Service: CrmSettingsService,
+                 public Toastr: ToastrService
                ) {}
 
 
@@ -36,17 +39,21 @@ export class ModelOwnershipytypeCrmsettingsComponent implements OnInit {
       // If Create New Ownership Type
          if (this.Type === 'Create') {
             this.Form = new FormGroup({
-               Ownership_Type: new FormControl('', Validators.required),
-               Company_Id: new FormControl('1', Validators.required),
-               Created_By: new FormControl('2', Validators.required),
+               Ownership_Type: new FormControl('', {  validators: Validators.required,
+                                                      asyncValidators: [ this.OwnershipType_AsyncValidate.bind(this) ],
+                                                      updateOn: 'blur' } ),
+               Company_Id: new FormControl(this.Company_Id, Validators.required),
+               Created_By: new FormControl(this.User_Id, Validators.required),
             });
          }
       // If Edit New Ownership Type
          if (this.Type === 'Edit') {
             this.Form = new FormGroup({
-               Ownership_Type: new FormControl(this.Data.Ownership_Type, Validators.required),
+               Ownership_Type: new FormControl(this.Data.Ownership_Type, { validators: Validators.required,
+                                                                           asyncValidators: [ this.OwnershipType_AsyncValidate.bind(this) ],
+                                                                           updateOn: 'blur' } ),
                Ownership_Type_Id: new FormControl(this.Data._id, Validators.required),
-               Modified_By: new FormControl('2', Validators.required)
+               Modified_By: new FormControl(this.User_Id, Validators.required)
             });
          }
    }
@@ -61,30 +68,57 @@ export class ModelOwnershipytypeCrmsettingsComponent implements OnInit {
       }
    }
 
+
+   OwnershipType_AsyncValidate( control: AbstractControl ) {
+      const Data = { Ownership_Type: control.value, Company_Id: this.Company_Id, User_Id: this.User_Id  };
+      let Info = CryptoJS.AES.encrypt(JSON.stringify(Data), 'SecretKeyIn@123');
+      Info = Info.toString();
+      return this.Service.OwnershipType_AsyncValidate({'Info': Info}).pipe(map( response => {
+         const ReceivingData = JSON.parse(response['_body']);
+         if (response['status'] === 200 && ReceivingData['Status'] && ReceivingData['Available']) {
+            return null;
+         } else {
+            return { OwnershipType_NotAvailable: true };
+         }
+      }));
+   }
+
    // Submit New Ownership Type
       submit() {
          if (this.Form.valid) {
+            this.Uploading = true;
             const Data = this.Form.value;
             let Info = CryptoJS.AES.encrypt(JSON.stringify(Data), 'SecretKeyIn@123');
             Info = Info.toString();
             this.Service.Ownership_Type_Create({'Info': Info}).subscribe( response => {
+               this.Uploading = false;
                const ReceivingData = JSON.parse(response['_body']);
                if (response['status'] === 200 && ReceivingData.Status) {
                   const CryptoBytes  = CryptoJS.AES.decrypt(ReceivingData['Response'], 'SecretKeyOut@123');
                   const DecryptedData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+                  this.Toastr.NewToastrMessage(
+                     {  Type: 'Success',
+                        Message: 'New Ownership Type Successfully Created'
+                     }
+                  );
                   this.onClose.next({Status: true, Response: DecryptedData});
                   this.bsModalRef.hide();
-               } else if (response['status'] === 400 && !ReceivingData.Status) {
-                  this.onClose.next({Status: false, Message: 'Bad Request Error!'});
+               } else if (response['status'] === 400 || response['status'] === 417 && !ReceivingData.Status) {
+                  this.Toastr.NewToastrMessage(
+                     {  Type: 'Error',
+                        Message: ReceivingData['Message']
+                     }
+                  );
+                  this.onClose.next({Status: false});
                   this.bsModalRef.hide();
-               } else if (response['status'] === 417 && !ReceivingData.Status) {
-                  this.onClose.next({Status: false, Message: 'Ownership Type Query Error!'});
-                  this.bsModalRef.hide();
-                  console.log(ReceivingData.Message, ReceivingData.Error);
                } else {
-                  this.onClose.next({Status: false, Message: 'UnExpected Error!'});
+                  this.Toastr.NewToastrMessage(
+                     {  Type: 'Error',
+                        Message: 'Error Not Identify!, Creating Ownership Type!'
+                     }
+                  );
+                  this.onClose.next({Status: false});
                   this.bsModalRef.hide();
-                  console.log(ReceivingData);
                }
             });
          }
@@ -93,27 +127,39 @@ export class ModelOwnershipytypeCrmsettingsComponent implements OnInit {
    // Update New Ownership Type
       update() {
          if (this.Form.valid) {
+            this.Uploading = true;
             const Data = this.Form.value;
             let Info = CryptoJS.AES.encrypt(JSON.stringify(Data), 'SecretKeyIn@123');
             Info = Info.toString();
             this.Service.Ownership_Type_Update({'Info': Info}).subscribe( response => {
+               this.Uploading = false;
                const ReceivingData = JSON.parse(response['_body']);
                if (response['status'] === 200 && ReceivingData.Status) {
                   const CryptoBytes  = CryptoJS.AES.decrypt(ReceivingData['Response'], 'SecretKeyOut@123');
                   const DecryptedData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+                  this.Toastr.NewToastrMessage(
+                     {  Type: 'Success',
+                        Message: 'Ownership Type Successfully Updated'
+                     }
+                  );
                   this.onClose.next({Status: true, Response: DecryptedData});
                   this.bsModalRef.hide();
-               } else if (response['status'] === 400 && !ReceivingData.Status) {
+               } else if (response['status'] === 400 || response['status'] === 417 && !ReceivingData.Status) {
+                  this.Toastr.NewToastrMessage(
+                     {  Type: 'Error',
+                        Message: ReceivingData['Message']
+                     }
+                  );
                   this.onClose.next({Status: false, Message: 'Bad Request Error!'});
                   this.bsModalRef.hide();
-               } else if (response['status'] === 417 && !ReceivingData.Status) {
-                  this.onClose.next({Status: false, Message: 'Ownership Type Query Error!'});
-                  this.bsModalRef.hide();
-                  console.log(ReceivingData.Message, ReceivingData.Error);
                } else {
+                  this.Toastr.NewToastrMessage(
+                     {  Type: 'Error',
+                        Message: 'Error Not Identify!, Creating Ownership Type!'
+                     }
+                  );
                   this.onClose.next({Status: false, Message: 'UnExpected Error!'});
                   this.bsModalRef.hide();
-                  console.log(ReceivingData);
                }
             });
          }

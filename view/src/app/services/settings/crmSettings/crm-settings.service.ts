@@ -13,6 +13,10 @@ export class CrmSettingsService {
    constructor(private http: Http) {  }
 
    // Industry Type
+      public IndustryType_AsyncValidate(Info: any): Observable<any[]> {
+         return this.http.post(API_URL + 'IndustryType_AsyncValidate', Info)
+         .pipe( map(response => response),  catchError(error => of(error)));
+      }
       public Industry_Type_Create(Info: any): Observable<any[]> {
          return this.http.post(API_URL + 'Industry_Type_Create', Info)
          .pipe( map(response => response),  catchError(error => of(error)));
@@ -36,6 +40,10 @@ export class CrmSettingsService {
 
 
    // Ownership Type
+      public OwnershipType_AsyncValidate(Info: any): Observable<any[]> {
+         return this.http.post(API_URL + 'OwnershipType_AsyncValidate', Info)
+         .pipe( map(response => response),  catchError(error => of(error)));
+      }
       public Ownership_Type_Create(Info: any): Observable<any[]> {
          return this.http.post(API_URL + 'Ownership_Type_Create', Info)
          .pipe( map(response => response),  catchError(error => of(error)));

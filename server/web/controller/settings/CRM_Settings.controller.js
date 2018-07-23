@@ -7,6 +7,32 @@ var ErrorManagement = require('./../../../handling/ErrorHandling.js');
 
 
 // ************************************************** Industry Type *****************************************************
+   // -------------------------------------------------- Industry Type Async Validate -----------------------------------------------
+      exports.IndustryType_AsyncValidate = function(req, res) {
+         var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
+         var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+
+         if(!ReceivingData.Industry_Type || ReceivingData.Industry_Type === '' ) {
+            res.status(400).send({Status: false, Message: "Industry Type can not be empty" });
+         } else if (!ReceivingData.Company_Id || ReceivingData.Company_Id === ''  ) {
+            res.status(400).send({Status: false, Message: "Company Details can not be empty" });
+         } else if (!ReceivingData.User_Id || ReceivingData.User_Id === ''  ) {
+            res.status(400).send({Status: false, Message: "User Details can not be empty" });
+         }else {
+            CRMSettingsModel.IndustryTypeSchema.findOne({'Industry_Type': ReceivingData.Industry_Type.toLowerCase(), 'If_Deleted': false }, {}, {}, function(err, result) {
+               if(err) {
+                  ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Industry Type Find Query Error', 'CRM_Settings.controller.js', err);
+                  res.status(417).send({status: false, Message: "Some error occurred while Find Industry Type!."});
+               } else {
+                  if ( result !== null) {
+                     res.status(200).send({Status: true, Available: false });
+                  } else {
+                     res.status(200).send({Status: true, Available: true });
+                  }
+               }
+            });
+         }
+      };   
    // Industry Type Create -----------------------------------------------
       exports.Industry_Type_Create = function(req, res) {
          var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
@@ -33,7 +59,7 @@ var ErrorManagement = require('./../../../handling/ErrorHandling.js');
                   res.status(417).send({Status: false, Error: err, Message: "Some error occurred while creating the Industry Type!."});
                } else {
                   var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result), 'SecretKeyOut@123');
-                  ReturnData = ReturnData.toString();
+                     ReturnData = ReturnData.toString();
                   res.status(200).send({Status: true, Response: ReturnData });
                }
             });
@@ -159,6 +185,32 @@ var ErrorManagement = require('./../../../handling/ErrorHandling.js');
 
 
 // ************************************************** Ownership Type *****************************************************
+   // -------------------------------------------------- Ownership Type Async Validate -----------------------------------------------
+      exports.OwnershipType_AsyncValidate = function(req, res) {
+         var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
+         var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+
+         if(!ReceivingData.Ownership_Type || ReceivingData.Ownership_Type === '' ) {
+            res.status(400).send({Status: false, Message: "Ownership Type can not be empty" });
+         } else if (!ReceivingData.Company_Id || ReceivingData.Company_Id === ''  ) {
+            res.status(400).send({Status: false, Message: "Company Details can not be empty" });
+         } else if (!ReceivingData.User_Id || ReceivingData.User_Id === ''  ) {
+            res.status(400).send({Status: false, Message: "User Details can not be empty" });
+         }else {
+            CRMSettingsModel.OwnershipTypeSchema.findOne({'Ownership_Type': ReceivingData.Ownership_Type.toLowerCase(), 'If_Deleted': false }, {}, {}, function(err, result) {
+               if(err) {
+                  ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Ownership Type Find Query Error', 'CRM_Settings.controller.js', err);
+                  res.status(417).send({status: false, Message: "Some error occurred while Find Ownership Type!."});
+               } else {
+                  if ( result !== null) {
+                     res.status(200).send({Status: true, Available: false });
+                  } else {
+                     res.status(200).send({Status: true, Available: true });
+                  }
+               }
+            });
+         }
+      };   
    // Ownership Type Create -----------------------------------------------
       exports.Ownership_Type_Create = function(req, res) {
          var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
@@ -213,7 +265,6 @@ var ErrorManagement = require('./../../../handling/ErrorHandling.js');
             });
          }
       };
-
    // Ownership Type Simple List -----------------------------------------------
       exports.Ownership_Type_SimpleList = function(req, res) {
          var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');

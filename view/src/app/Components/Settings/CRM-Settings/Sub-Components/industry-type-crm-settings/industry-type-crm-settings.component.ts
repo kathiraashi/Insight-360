@@ -57,21 +57,10 @@ export class IndustryTypeCrmSettingsComponent implements OnInit {
    // Create New Industry Type
       CreateIndustrytype() {
          const initialState = { Type: 'Create' };
-         this.bsModalRef = this.modalService.show(ModelIndustrytypeCrmsettingsComponent, Object.assign({initialState}, { class: '' }));
+         this.bsModalRef = this.modalService.show(ModelIndustrytypeCrmsettingsComponent, Object.assign({initialState}, {ignoreBackdropClick: true, class: '' }));
          this.bsModalRef.content.onClose.subscribe(response => {
             if (response['Status']) {
                this._List.splice(0, 0, response['Response']);
-               this.Toastr.NewToastrMessage(
-                  {  Type: 'Success',
-                     Message: 'Industry Type Successfully Added'
-                  }
-               );
-            } else {
-               this.Toastr.NewToastrMessage(
-                  {  Type: 'Error',
-                     Message: response['Message']
-                  }
-               );
             }
          });
       }
@@ -81,22 +70,10 @@ export class IndustryTypeCrmSettingsComponent implements OnInit {
             Type: 'Edit',
             Data: this._List[_index]
          };
-         this.bsModalRef = this.modalService.show(ModelIndustrytypeCrmsettingsComponent, Object.assign({initialState}, { class: '' }));
+         this.bsModalRef = this.modalService.show(ModelIndustrytypeCrmsettingsComponent, Object.assign({initialState}, {ignoreBackdropClick: true, class: '' }));
          this.bsModalRef.content.onClose.subscribe(response => {
             if (response['Status']) {
                this._List[_index] = response['Response'];
-               this.Toastr.NewToastrMessage(
-                  {  Type: 'Info',
-                     Message: 'Industry Type Successfully Updated',
-                     Duration: 1000
-                  }
-               );
-            } else {
-              this.Toastr.NewToastrMessage(
-                  {  Type: 'Error',
-                     Message: response['Message']
-                  }
-               );
             }
          });
       }
@@ -113,7 +90,7 @@ export class IndustryTypeCrmSettingsComponent implements OnInit {
          const initialState = {
             Text: 'Industry Type'
          };
-         this.bsModalRef = this.modalService.show(DeleteConfirmationComponent, Object.assign({initialState}, { class: 'modal-sm' }));
+         this.bsModalRef = this.modalService.show(DeleteConfirmationComponent, Object.assign({initialState}, {ignoreBackdropClick: true, class: 'modal-sm' }));
          this.bsModalRef.content.onClose.subscribe(response => {
             if (response.Status) {
                const Data = { 'Industry_Type_Id' :  this._List[_index]._id, 'Modified_By' : '2' };

@@ -49,13 +49,10 @@ export class OwnerShipTypeCrmSettingsComponent implements OnInit {
    // Create New Ownership Type
       CreateOwnershiptype() {
          const initialState = { Type: 'Create' };
-         this.bsModalRef = this.modalService.show(ModelOwnershipytypeCrmsettingsComponent, Object.assign({initialState}, { class: '' }));
+         this.bsModalRef = this.modalService.show(ModelOwnershipytypeCrmsettingsComponent, Object.assign({initialState}, {ignoreBackdropClick: true, class: '' }));
          this.bsModalRef.content.onClose.subscribe(response => {
             if (response.Status) {
                this._List.splice(0, 0, response.Response);
-               alert('New Ownership Type Successfully Created.');
-            } else {
-               alert(response.Message);
             }
          });
       }
@@ -65,13 +62,10 @@ export class OwnerShipTypeCrmSettingsComponent implements OnInit {
             Type: 'Edit',
             Data: this._List[_index]
          };
-         this.bsModalRef = this.modalService.show(ModelOwnershipytypeCrmsettingsComponent, Object.assign({initialState}, { class: '' }));
+         this.bsModalRef = this.modalService.show(ModelOwnershipytypeCrmsettingsComponent, Object.assign({initialState}, {ignoreBackdropClick: true, class: '' }));
          this.bsModalRef.content.onClose.subscribe(response => {
             if (response.Status) {
                this._List[_index] = response.Response;
-               alert('Ownership Successfully Updated.');
-            } else {
-               alert(response.Message);
             }
          });
       }
@@ -81,14 +75,14 @@ export class OwnerShipTypeCrmSettingsComponent implements OnInit {
             Type: 'View',
             Data: this._List[_index]
          };
-         this.bsModalRef = this.modalService.show(ModelOwnershipytypeCrmsettingsComponent, Object.assign({initialState}, { class: '' }));
+         this.bsModalRef = this.modalService.show(ModelOwnershipytypeCrmsettingsComponent, Object.assign({initialState}, {class: '' }));
       }
    // Delete Ownership Type
       DeleteOwnershipType(_index) {
          const initialState = {
             Text: 'Ownership Type'
          };
-         this.bsModalRef = this.modalService.show(DeleteConfirmationComponent, Object.assign({initialState}, { class: 'modal-sm' }));
+         this.bsModalRef = this.modalService.show(DeleteConfirmationComponent, Object.assign({initialState},  { ignoreBackdropClick: true, class: 'modal-sm' }));
          this.bsModalRef.content.onClose.subscribe(response => {
             if (response.Status) {
                const Data = { 'Ownership_Type_Id' :  this._List[_index]._id, 'Modified_By' : '2' };
