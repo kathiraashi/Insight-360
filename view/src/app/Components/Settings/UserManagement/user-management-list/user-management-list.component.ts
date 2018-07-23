@@ -30,7 +30,7 @@ export class UserManagementListComponent implements OnInit {
                const Data = { 'Company_Id' : '5b3c66d01dd3ff14589602fe' };
                let Info = CryptoJS.AES.encrypt(JSON.stringify(Data), 'SecretKeyIn@123');
                Info = Info.toString();
-               this.Service.User_List({'Info': Info}).subscribe( response => {
+               this.Service.Users_List({'Info': Info}).subscribe( response => {
                   const ResponseData = JSON.parse(response['_body']);
                   if (response['status'] === 200 && ResponseData['Status'] ) {
                      const CryptoBytes  = CryptoJS.AES.decrypt(ResponseData['Response'], 'SecretKeyOut@123');

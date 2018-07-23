@@ -6,13 +6,13 @@ var CompanyManagementSchema = mongoose.Schema({
    Company_Address: { type : String, required : true },
    Company_Phone : { type : String , required : true },
    Company_Email: { type : String , required : true },
+   Company_Prefix: { type : String, unique: true, required : true },
    Company_Image: { type : Object },
    Company_Fax: { type : String },
    Company_Website: { type : String },
    Company_Type: { type : String },
    Company_Registry: { type : String },
    Company_TypeOfBusiness: { type : String },
-   Company_Prefix: { type : String },
    Renewal_Date: { type : String, required : true },
    Renewal_Status: { type : Number, required : true }, // 0-already renewal, 1-renewal soon, 2-renewal warning, 3-not renewable
    Active_Status: { type : Boolean, required : true },
@@ -21,16 +21,30 @@ var CompanyManagementSchema = mongoose.Schema({
    { timestamps: true }
 );
 
+var UserManagement_PermissionGroups_Schema = mongoose.Schema({
+
+});
+
 
 var UserManagementSchema = mongoose.Schema({
-   User_Name: { type : String , required : true },
-   User_Password: { type : String, required : true },
+   User_Name: { type : String , unique: true, required : true },
+   User_Password: { type : String, required : true,  },
    Name: { type : String , required : true },
    Phone : { type : String},
    Email: { type : String , required : true },
-   Image: { type : Object },
-   User_Type: { type : String }, // "Admin", "Users"
+   If_Admin: { type : Boolean, required : true },
+   User_Type: {
+      UserType_Id:  { type: Schema.Types.ObjectId, ref: 'User_Types' },
+      User_Type: { type : String , required : true } 
+   },
+   Reports_To: { type: Schema.Types.ObjectId, ref: 'User_Management' },
+   Permission_Groups: [{
+         PermissionsGroup_Id: { type: Schema.Types.ObjectId, ref: 'Permissions_Group' },
+         PermissionsGroup_Name: { type : String , required : true }
+      }],
+   Created_By: { type: Schema.Types.ObjectId, ref: 'User_Management' },
    Company_Id: { type: Schema.Types.ObjectId, ref: 'Company_Management' },
+   Last_ModifiedBy: { type: Schema.Types.ObjectId, ref: 'User_Management' },
    Active_Status: { type : Boolean, required : true },
    },
    { timestamps: true }
@@ -64,6 +78,13 @@ var UserLoginSchema = mongoose.Schema({
    { timestamps: true }
 );
 
+var UserTypesSchema = mongoose.Schema({
+   User_Type: { type : String , required : true },
+   Active_Status: { type : Boolean, required : true },
+   },
+   { timestamps: true }
+);
+
 
 var ProjectModulesSchema = mongoose.Schema({
    Module_Name: { type : String , required : true },
@@ -91,7 +112,7 @@ var PermissionsGroupSchema = mongoose.Schema({
       Module_Name: { type : String , required : true }
    },
    Group_UserType:  { 
-      UserType_Id:  { type : String , required : true },
+      UserType_Id:  { type: Schema.Types.ObjectId, ref: 'User_Types' },
       User_Type: { type : String , required : true }
    },
    Group_Description:  { type : String},
@@ -138,6 +159,7 @@ var VarUser_Management = mongoose.model('User_Management', UserManagementSchema,
 var VarUserActivity_Management = mongoose.model('UserActivity_Management', UserActivityManagementSchema, 'UserActivity_Management');
 var VarUserLogin_Management = mongoose.model('UserLogin_Management', UserLoginSchema, 'UserLogin_Management');
 
+var VarUser_Types = mongoose.model('User_Types', UserTypesSchema, 'User_Types');
 var VarProject_Modules = mongoose.model('Project_Modules', ProjectModulesSchema, 'Project_Modules');
 var VarProject_SubModules = mongoose.model('Project_SubModules', ProjectSubModulesSchema, 'Project_SubModules');
 var VarPermissions_Group = mongoose.model('Permissions_Group', PermissionsGroupSchema, 'Permissions_Group');
@@ -151,6 +173,7 @@ module.exports = {
    UserActivity_Management : VarUserActivity_Management,
    UserLogin_Management : VarUserLogin_Management,
 
+   User_Types : VarUser_Types,
    Project_Modules : VarProject_Modules,
    Project_SubModules : VarProject_SubModules,
    Permissions_Group : VarPermissions_Group,

@@ -19,16 +19,9 @@
          <div class="Main_Section">
             <div class="Left_Section">
                <form [formGroup]="Form">
-                  <div class="Form_Input" [ngClass]="{'Form_Err': Form.controls['Group_Name'].errors && !Form.controls['Group_Name'].pristine, 'Form_Success': Form.controls['Group_Name'].valid && !Form.controls['Group_Name'].pristine }">
-                     <label> Group Name </label>
-                     <input type="text" formControlName="Group_Name">
-                     <p class="error" *ngIf="Form.controls['Group_Name'].errors && !Form.controls['Group_Name'].pristine">
-                        <span *ngIf="Form.controls['Group_Name'].errors.required"> Group Name is required</span>
-                     </p>
-                  </div>
                   <div class="Form_Input">
                      <label> Select Module </label>
-                     <ng-select class="NgSelect" [searchable]="true" formControlName="Group_Module">
+                     <ng-select class="NgSelect" [searchable]="true" formControlName="Group_Module" (ngModelChange)="CreateGroupName()">
                         <ng-option *ngFor="let Module of _Modules" [value]="Module">{{Module.Module_Name}}</ng-option>
                      </ng-select>
                      <p class="error" *ngIf="Form.controls['Group_Module'].errors && !Form.controls['Group_Module'].pristine">
@@ -37,12 +30,16 @@
                   </div>
                   <div class="Form_Input">
                      <label> Select User Type </label>
-                     <ng-select class="NgSelect" [searchable]="true" formControlName="Group_UserType">
+                     <ng-select class="NgSelect" [searchable]="true" formControlName="Group_UserType" (ngModelChange)="CreateGroupName()">
                         <ng-option *ngFor="let Type of _UserTypes" [value]="Type">{{Type.User_Type}}</ng-option>
                      </ng-select>
                      <p class="error" *ngIf="Form.controls['Group_UserType'].errors && !Form.controls['Group_UserType'].pristine">
                         <span *ngIf="Form.controls['Group_UserType'].errors.required"> User Type is required</span>
                      </p>
+                  </div>
+                  <div class="Form_Input" [ngClass]="{'Form_Success': Form.controls['Group_Name'].valid }">
+                     <label> Group Name </label>
+                     <input type="text" formControlName="Group_Name" (keypress)="NotAllow()" (keydown)="NotAllow()" readonly>
                   </div>
                   <div class="Form_TextArea">
                      <label> Description </label>

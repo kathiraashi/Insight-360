@@ -16,13 +16,7 @@ export class UserPermissionsGroupCreateComponent implements OnInit {
 
    _List: any[] = [];
    _Modules: any[] = [];
-   _UserTypes: any[] =  [
-                           {_id: '1', User_Type: 'Sub Admin'},
-                           {_id: '2', User_Type: 'Manager'},
-                           {_id: '4', User_Type: 'Senior Executive'},
-                           {_id: '3', User_Type: 'Co-ordinator'},
-                           {_id: '5', User_Type: 'User'}
-                        ];
+   _UserTypes: any[] =  [];
 
    ValidForm = false;
 
@@ -72,6 +66,26 @@ export class UserPermissionsGroupCreateComponent implements OnInit {
                            );
                         }
                   });
+                  this.Service.UserTypes_List({'Info': Info}).subscribe( response => {
+                     const ResponseData = JSON.parse(response['_body']);
+                     if (response['status'] === 200 && ResponseData['Status'] ) {
+                        const CryptoBytes  = CryptoJS.AES.decrypt(ResponseData['Response'], 'SecretKeyOut@123');
+                        const DecryptedData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+                        this._UserTypes = DecryptedData;
+                     } else if (response['status'] === 400 || response['status'] === 417 && !ResponseData['Status']) {
+                        this.Toastr.NewToastrMessage(
+                           {  Type: 'Error',
+                              Message: ResponseData['Message']
+                           }
+                        );
+                     } else {
+                        this.Toastr.NewToastrMessage(
+                           {  Type: 'Error',
+                              Message: 'Error Not Identify!, Getting Modules and Sub Modules List!'
+                           }
+                        );
+                     }
+                  });
               }
 
   ngOnInit() {
@@ -87,20 +101,33 @@ export class UserPermissionsGroupCreateComponent implements OnInit {
    });
   }
 
-  ModuleRightsChange() {
-   this._List.map(MainModule => {
-      MainModule.Sub_Modules.map(SubModule => {
-         if (!MainModule.Access_Permission) {
-            SubModule.View_Permission = false;
-            SubModule.Create_Permission = false;
-            SubModule.Edit_Permission = false;
-            SubModule.Delete_Permission = false;
-         }
-         return SubModule;
+   CreateGroupName() {
+      const Module = this.Form.controls['Group_Module'].value;
+      const UserType = this.Form.controls['Group_UserType'].value;
+      if (typeof Module === 'object' && Module !== null && typeof UserType === 'object' && UserType !== null ) {
+         const ModuleName =  Module.Module_Name;
+         const UserType_Name =  UserType.User_Type;
+         this.Form.controls['Group_Name'].setValue(ModuleName + '-' + UserType_Name);
+      } else {
+         this.Form.controls['Group_Name'].setValue('');
+      }
+   }
+   NotAllow(): boolean { return false; }
+
+   ModuleRightsChange() {
+      this._List.map(MainModule => {
+         MainModule.Sub_Modules.map(SubModule => {
+            if (!MainModule.Access_Permission) {
+               SubModule.View_Permission = false;
+               SubModule.Create_Permission = false;
+               SubModule.Edit_Permission = false;
+               SubModule.Delete_Permission = false;
+            }
+            return SubModule;
+         });
+         return MainModule;
       });
-      return MainModule;
-   });
-  }
+   }
 
    AllView_Change(_index) {
       this._List[_index].Sub_Modules.map(Obj => {

@@ -22,10 +22,21 @@ export class AdminService {
       .pipe( map(response => response), catchError(error => of(error)));
    }
 
-   public User_List(Info: any): Observable<any[]> {
-      return this.http.post(API_URL + 'User_List', Info)
+   public UserTypeBased_SimpleUsersList(Info: any): Observable<any[]> {
+      return this.http.post(API_URL + 'UserTypeBased_SimpleUsersList', Info)
       .pipe( map(response => response), catchError(error => of(error)));
    }
+
+   public Users_List(Info: any): Observable<any[]> {
+      return this.http.post(API_URL + 'Users_List', Info)
+      .pipe( map(response => response), catchError(error => of(error)));
+   }
+
+   public UserTypes_List(Info: any): Observable<any[]> {
+      return this.http.post(API_URL + 'UserTypes_List', Info)
+      .pipe( map(response => response), catchError(error => of(error)));
+   }
+
 
    public ModulesAndSubModules_List(Info: any): Observable<any[]> {
       return this.http.post(API_URL + 'ModulesAndSubModules_List', Info)
@@ -39,6 +50,11 @@ export class AdminService {
 
    public PermissionsGroup_SimpleList(Info: any): Observable<any[]> {
       return this.http.post(API_URL + 'PermissionsGroup_SimpleList', Info)
+      .pipe( map(response => response), catchError(error => of(error)));
+   }
+
+   public UserTypeBased_PermissionsGroup_SimpleList(Info: any): Observable<any[]> {
+      return this.http.post(API_URL + 'UserTypeBased_PermissionsGroup_SimpleList', Info)
       .pipe( map(response => response), catchError(error => of(error)));
    }
 

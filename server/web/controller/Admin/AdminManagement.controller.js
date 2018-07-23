@@ -67,15 +67,16 @@ exports.User_Name_Validate = function(req, res) {
 
 // -------------------------------------------------- User Validate ---------------------------------------------------
 exports.User_Login_Validate = function(req, res) {
-   var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
-   var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+   // var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
+   // var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+   ReceivingData = req.body;
 
    if(!ReceivingData.User_Name || ReceivingData.User_Name === '' ) {
       res.status(400).send({Status: false, Message: "User_Name can not be empty" });
    } else if (!ReceivingData.User_Password || ReceivingData.User_Password === ''  ) {
       res.status(400).send({Status: false, Message: "User Password can not be empty" });
    } else {
-      AdminModel.User_Management.findOne({'User_Name': ReceivingData.User_Name, 'User_Password': ReceivingData.User_Password}, { User_Password: 0 }, {}, function(err, result) {
+      AdminModel.User_Management.findOne({'User_Name': ReceivingData.User_Name, 'User_Password': ReceivingData.User_Password, 'Active_Status': true}, { User_Password: 0 }, {}, function(err, result) {
          if(err) {
             ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'User Details Validate Query Error', 'RegisterAndLogin.controller.js', err);
             res.status(417).send({status: false, Error:err, Message: "Some error occurred while Validate The User Details!."});
@@ -94,7 +95,108 @@ exports.User_Login_Validate = function(req, res) {
                   }
                });
             }else{
-               res.status(200).send({ Status: true,  Response: result });
+                  AdminModel.User_Management.aggregate([
+                     { $match : { _id : result._id } },
+                     { $unwind: "$Permission_Groups" },
+                     { $lookup: { from: 'GroupPermissions_OfModules', localField: 'Permission_Groups.PermissionsGroup_Id', foreignField: 'Group_Id', as: 'Module_Permissions' } },
+                     { $unwind: "$Module_Permissions" },
+                     { $match : { "Module_Permissions.Access_Permission" : true } },
+                     { $lookup: { from: 'Project_Modules', localField: 'Module_Permissions.Module_Id', foreignField: '_id', as: 'Module_Permissions.AccessModules_Info' } },
+                     { $unwind: "$Module_Permissions.AccessModules_Info" },
+                     { $lookup: { from: 'GroupPermissions_OfSubModules', localField: 'Module_Permissions._id', foreignField: 'GroupPermission_OfModuleId', as: 'SubModule_Permissions' } },
+                     { $unwind: "$SubModule_Permissions" },
+                     { $match : { $or: [ 
+                                          { "SubModule_Permissions.Create_Permission" : true },  
+                                          { "SubModule_Permissions.Edit_Permission" : true }, 
+                                          { "SubModule_Permissions.View_Permission" : true }, 
+                                          { "SubModule_Permissions.Delete_Permission" : true } 
+                                       ] 
+                              } 
+                     },
+                     { $lookup: { from: 'Project_SubModules', localField: 'SubModule_Permissions.SubModule_Id', foreignField: '_id', as: 'SubModule_Permissions.AccessSubModule_Info' } },
+                     { $unwind: "$SubModule_Permissions.AccessSubModule_Info" },
+                     { $group : {
+                        _id:  {  _id: "$_id",
+                                 User_Type: "$User_Type",
+                                 User_Name: "$User_Name", 
+                                 Name: "$Name",
+                                 Phone: "$Phone",
+                                 Email: "$Email",
+                                 Reports_To: "$Reports_To",
+                                 Company_Id :"$Company_Id",
+                              },
+                        Permission_Groups: { $addToSet:  "$Permission_Groups" },
+                        Module_Permissions: { $addToSet:  "$Module_Permissions" },
+                        SubModule_Permissions: { $addToSet:  "$SubModule_Permissions" },
+                     }},
+                     { $project : {
+                        _id: "$_id._id",
+                        User_Type: "$_id.User_Type",
+                        User_Name: "$_id.User_Name", 
+                        Name: "$_id.Name",
+                        Phone: "$_id.Phone",
+                        Email: "$_id.Email",
+                        Reports_To: "$_id.Reports_To",
+                        Company_Id :"$_id.Company_Id",
+                        Permission_GroupIds:{
+                           $map: {
+                              input: "$Permission_Groups",
+                              as: "permission_Group",
+                              in: "$$permission_Group.PermissionsGroup_Id" 
+                           }
+                        },
+                        Module_Permissions:{
+                           $map: {
+                              input: "$Module_Permissions",
+                              as: "module_Permission",
+                              in:{ 
+                                    Module_Id : "$$module_Permission.Module_Id",
+                                    Module_Name : "$$module_Permission.AccessModules_Info.Module_Name",
+                                    Module_RouterName : "$$module_Permission.AccessModules_Info.Module_Router_Name",
+                                    Access_Permission : "$$module_Permission.Access_Permission",
+                                 } 
+                           }
+                        },
+                        SubModule_Permissions:{
+                           $map: {
+                              input: "$SubModule_Permissions",
+                              as: "subModule_Permission",
+                              in:{ 
+                                    Module_Id: "$$subModule_Permission.Module_Id",
+                                    SubModule_Id : "$$subModule_Permission.SubModule_Id",
+                                    SubModule_Name : "$$subModule_Permission.AccessSubModule_Info.SubModule_Name",
+                                    SubModule_Router_Name : "$$subModule_Permission.AccessSubModule_Info.SubModule_Router_Name",
+                                    Create_Permission : "$$subModule_Permission.Create_Permission",
+                                    Edit_Permission : "$$subModule_Permission.Edit_Permission",
+                                    View_Permission : "$$subModule_Permission.View_Permission",
+                                    Delete_Permission : "$$subModule_Permission.Delete_Permission",
+                                 } 
+                           }
+                        }
+                     }}
+                  ]).exec(function (err_2, result_2) {
+                     if(err_2) {
+                        ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'User Validate Aggregate Query Error', 'RegisterAndLogin.controller.js', err_2);
+                        res.status(417).send({Status: false, Message: "Some error occurred while Validate Aggregate the User Details!"});           
+                     } else {
+                        FinalResult = JSON.parse(JSON.stringify(result_2[0]));
+                        FinalResult.Module_Permissions = Array.from(new Set(FinalResult.Module_Permissions.map(JSON.stringify))).map(JSON.parse);
+                        FinalResult.SubModule_Permissions = Array.from(new Set(FinalResult.SubModule_Permissions.map(JSON.stringify))).map(JSON.parse);
+                        FinalResult.SubModule_Permissions = FinalResult.SubModule_Permissions.reduce( (acc, obj) => {
+                           let existObj = acc.find(({SubModule_Id}) =>  SubModule_Id == obj.SubModule_Id);
+                             if(existObj){
+                              existObj.Create_Permission = existObj.Create_Permission || obj.Create_Permission;
+                              existObj.Edit_Permission = existObj.Edit_Permission || obj.Edit_Permission;
+                              existObj.View_Permission = existObj.View_Permission || obj.View_Permission;
+                              existObj.Delete_Permission = existObj.Delete_Permission || obj.Delete_Permission;
+                              return acc;
+                            }
+                           acc.push(obj);
+                           return acc;
+                         }, []);
+                        res.status(200).send({ Status: true,  Response: FinalResult });
+                     }
+               });
             } 
          }
       });
@@ -109,24 +211,49 @@ exports.User_Create = function(req, res) {
 
    if(!ReceivingData.Company_Id || ReceivingData.Company_Id === '' ) {
       res.status(400).send({Status: false, Message: "Company Details can not be empty" });
+   } else if(!ReceivingData.User_Id || ReceivingData.User_Id === '' ) {
+      res.status(400).send({Status: false, Message: "User Details can not be empty" });
    } else if(!ReceivingData.Name || ReceivingData.Name === '' ) {
       res.status(400).send({Status: false, Message: "Name can not be empty" });
    } else if(!ReceivingData.User_Name || ReceivingData.User_Name === '' ) {
       res.status(400).send({Status: false, Message: "User Name can not be empty" });
    } else if(!ReceivingData.User_Password || ReceivingData.User_Password === '' ) {
          res.status(400).send({Status: false, Message: "User Password can not be empty" });
+   } else if(!ReceivingData.User_Type || typeof ReceivingData.User_Type !== 'object' || ReceivingData.User_Type._id === '' ) {
+      res.status(400).send({Status: false, Message: "User Type can not be empty or not valid" });
+   } else if(!ReceivingData.AccessPermissions_Groups || typeof ReceivingData.AccessPermissions_Groups !== 'object' || ReceivingData.AccessPermissions_Groups.length <= 0 ) {
+      res.status(400).send({Status: false, Message: "User Access Permissions can not be empty or not valid" });
    } else {
+
+      var Reports_To = null;
+      if (ReceivingData.Reports_To && typeof ReceivingData.Reports_To === 'object' && ReceivingData.User_Type.Reports_To !== '' ) {
+          Reports_To = mongoose.Types.ObjectId(ReceivingData.Reports_To._id);
+      }
+      ReceivingData.AccessPermissions_Groups = ReceivingData.AccessPermissions_Groups.map(Obj => {
+         Obj.PermissionsGroup_Id = mongoose.Types.ObjectId(Obj._id);
+         Obj.PermissionsGroup_Name = Obj.Group_Name;
+         delete Obj._id;
+         delete Obj.Group_Name;
+         return Obj;
+      });
+      
       var CreateUser_Management = new AdminModel.User_Management({
          User_Name : ReceivingData.User_Name,
          User_Password : ReceivingData.User_Password || '',
          Name : ReceivingData.Name,
+         If_Admin: false,
          Phone : ReceivingData.Phone || '',
          Email : ReceivingData.Email,
-         Image : ReceivingData.Image || {},
-         User_Type : ReceivingData.User_Type || 'User',
+         "User_Type.UserType_Id": mongoose.Types.ObjectId(ReceivingData.User_Type._id),
+         "User_Type.User_Type": ReceivingData.User_Type.User_Type,
+         Reports_To: Reports_To,
+         Permission_Groups: ReceivingData.AccessPermissions_Groups,
+         Created_By : mongoose.Types.ObjectId(ReceivingData.User_Id),
          Company_Id : mongoose.Types.ObjectId(ReceivingData.Company_Id),
+         Last_ModifiedBy : mongoose.Types.ObjectId(ReceivingData.User_Id),
          Active_Status : ReceivingData.Active_Status || true,
       });
+      
       CreateUser_Management.save(function(err, result) {
          if(err) {
             ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'User Creation Query Error', 'AdminManagement.controller.js', err);
@@ -140,8 +267,8 @@ exports.User_Create = function(req, res) {
   }
 };
 
-// -------------------------------------------------- User List -----------------------------------------------
-exports.User_List = function(req, res) {
+// -------------------------------------------------- Users List -----------------------------------------------
+exports.Users_List = function(req, res) {
 
    var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
    var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
@@ -162,6 +289,74 @@ exports.User_List = function(req, res) {
    }
 };
 
+// -------------------------------------------------- User Type Based Simple Users List -----------------------------------------------
+exports.UserTypeBased_SimpleUsersList = function(req, res) {
+
+   var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
+   var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+
+   if(!ReceivingData.Company_Id || ReceivingData.Company_Id === '' ) {
+      res.status(400).send({Status: false, Message: "Company Details can not be empty" });
+   }else {
+      AdminModel.User_Management.find({'Active_Status': true }, { Name: 1 }, {sort: { updatedAt: -1 }}, function(err, result) {
+         if(err) {
+            ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'User List Find Query Error', 'AdminManagement.controller.js', err);
+            res.status(417).send({status: false, Message: "Some error occurred while Find Users List!."});
+         } else {
+            var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result), 'SecretKeyOut@123');
+               ReturnData = ReturnData.toString();
+            res.status(200).send({Status: true, Response: ReturnData });
+         }
+      });
+   }
+};
+
+// -------------------------------------------------- User Types Create  -----------------------------------------------
+exports.Create_UserTypes = function(req, res) {
+   var ReceivingData = req.body;
+
+   if(!ReceivingData.User_Type || ReceivingData.User_Type === '' ) {
+      res.status(400).send({Status: false, Message: "User Type can not be empty" });
+   } else {
+      var CreateUser_Types = new AdminModel.User_Types({
+         User_Type : ReceivingData.User_Type,
+         Active_Status : ReceivingData.Active_Status || true,
+      });
+      CreateUser_Types.save(function(err, result) {
+         if(err) {
+            ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'User Type Creation Query Error', 'AdminManagement.controller.js', err);
+            res.status(400).send({Status: false, Message: "Some error occurred while creating the User Type!."});
+         } else {
+            res.status(200).send({Status: true, Response: result } );
+         }
+      });
+   }
+};
+
+
+// -------------------------------------------------- User Types List -----------------------------------------------
+exports.UserTypes_List = function(req, res) {
+
+   var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
+   var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+
+   if(!ReceivingData.Company_Id || ReceivingData.Company_Id === '' ) {
+      res.status(400).send({Status: false, Message: "Company Details can not be empty" });
+   }else if(!ReceivingData.User_Id || ReceivingData.User_Id === ''){
+      res.status(400).send({Status: false, Message: "User Details can not be empty" });
+   }else {
+      AdminModel.User_Types.find({'Active_Status': true }, {User_Type: 1}, {}, function(err, result) {
+         if(err) {
+            ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'User Types List Find Query Error', 'AdminManagement.controller.js', err);
+            res.status(417).send({status: false, Message: "Some error occurred while Find User Types List!."});
+         } else {
+            var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result), 'SecretKeyOut@123');
+               ReturnData = ReturnData.toString();
+            res.status(200).send({Status: true, Response: ReturnData });
+         }
+      });
+   }
+};
 
 // -------------------------------------------------- Project Module Create -----------------------------------------------
 exports.Create_Project_Modules = function(req, res) {
@@ -380,6 +575,30 @@ exports.PermissionsGroup_SimpleList = function(req, res) {
    }
 };
 
+
+
+// -------------------------------------------------- UserTypeBased Permissions Group Simple List -----------------------------------------------
+exports.UserTypeBased_PermissionsGroup_SimpleList = function(req, res) {
+   var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
+   var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+
+   if(!ReceivingData.Company_Id || ReceivingData.Company_Id === '' ) {
+      res.status(400).send({Status: false, Message: " Company Details can not be empty!" });
+   } else if(!ReceivingData.User_Id || ReceivingData.User_Id === '' ) {
+      res.status(400).send({Status: false, Message: "User Details can not be empty!" });
+   } else {
+      AdminModel.Permissions_Group.find({'Active_Status': true }, {Group_Name: 1}, {}, function(err, result) { // Groups List Find Query
+         if(err) {
+            ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Permissions Group List Find Query Error', 'AdminManagement.controller.js', err);
+            res.status(417).send({status: false, Message: "Some error occurred while Find Permissions Group List!."});
+         } else {
+            var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result), 'SecretKeyOut@123');
+               ReturnData = ReturnData.toString();
+            res.status(200).send({Status: true, Response: ReturnData });
+         }
+      });
+   }
+};
 
 
 // -------------------------------------------------- Modules And Sub Modules List -----------------------------------------------
