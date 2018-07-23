@@ -18,12 +18,14 @@ export class OwnerShipTypeCrmSettingsComponent implements OnInit {
 
    bsModalRef: BsModalRef;
    _List: any[] = [];
+   Company_Id = '5b3c66d01dd3ff14589602fe';
+   User_Id = '5b530ef333fc40064c0db31e';
 
    constructor(   private modalService: BsModalService,
                   private Service: CrmSettingsService
                ) {
                   // Get Ownership Type List
-                     const Data = { 'Company_Id' : '1', 'User_Id' : '2', };
+                     const Data = { 'Company_Id': this.Company_Id, 'User_Id' : this.User_Id };
                      let Info = CryptoJS.AES.encrypt(JSON.stringify(Data), 'SecretKeyIn@123');
                      Info = Info.toString();
                      this.Service.Ownership_Type_List({'Info': Info}).subscribe( response => {

@@ -40,8 +40,8 @@ export class ModelIndustrytypeCrmsettingsComponent implements OnInit {
                Industry_Type: new FormControl( '', {  validators: Validators.required,
                                                       asyncValidators: [this.IndustryType_AsyncValidate.bind(this)],
                                                       updateOn: 'blur' } ),
-               Company_Id: new FormControl( '1', Validators.required ),
-               Created_By: new FormControl( '2', Validators.required ),
+               Company_Id: new FormControl( this.Company_Id, Validators.required ),
+               Created_By: new FormControl( this.User_Id, Validators.required ),
             });
          }
       // If Edit New Industry Type
@@ -51,7 +51,7 @@ export class ModelIndustrytypeCrmsettingsComponent implements OnInit {
                                                                         asyncValidators: [this.IndustryType_AsyncValidate.bind(this)],
                                                                         updateOn: 'blur' }),
                Industry_Type_Id: new FormControl(this.Data._id, Validators.required),
-               Modified_By: new FormControl('2', Validators.required)
+               Modified_By: new FormControl(this.User_Id, Validators.required)
             });
          }
          console.log(this.Form);

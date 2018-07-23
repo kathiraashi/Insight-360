@@ -18,7 +18,7 @@
                <th>S.no</th>
                <th>Industry Type</th>
                <th>Created By </th>
-               <th>Last Modified Date</th>
+               <th>Last Modified By</th>
                <th>Action</th>
             </tr>
          </thead>
@@ -31,10 +31,19 @@
                   <span class="Style_1"> {{Item.Industry_Type}} </span>
                </td>
                <td>
-                  <span class="Style_1"> {{Item.Created_By}} </span>
+                  <span class="Style_1"> {{Item.Created_By.Name}}
+                      <span class="Badge"> {{Item.Created_By.User_Type.User_Type}} </span>
+                      <br> 
+                      <span class="Time"> {{Item.createdAt | date:'medium'}}  </span>
+                  </span>
                </td>
                <td>
-                  <span class="Style_1"> {{Item.updatedAt | date:'medium'}} </span>
+                  <span class="Style_1"> 
+                     {{Item.Last_Modified_By.Name}} 
+                     <span class="Badge"> {{Item.Last_Modified_By.User_Type.User_Type}} </span> 
+                     <br> 
+                     <span class="Time"> {{Item.updatedAt | date:'medium'}}  </span>
+                  </span>
                </td>
                <td>
                   <button (click)="ViewIndustrytype(i)" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">

@@ -1,7 +1,7 @@
 var CryptoJS = require("crypto-js");
 var CRMSettingsModel = require('./../../models/settings/CRM_Settings.model.js');
 var ErrorManagement = require('./../../../handling/ErrorHandling.js');
-
+var mongoose = require('mongoose');
 
 
 
@@ -19,7 +19,7 @@ var ErrorManagement = require('./../../../handling/ErrorHandling.js');
          } else if (!ReceivingData.User_Id || ReceivingData.User_Id === ''  ) {
             res.status(400).send({Status: false, Message: "User Details can not be empty" });
          }else {
-            CRMSettingsModel.IndustryTypeSchema.findOne({'Industry_Type': ReceivingData.Industry_Type.toLowerCase(), 'If_Deleted': false }, {}, {}, function(err, result) {
+            CRMSettingsModel.IndustryTypeSchema.findOne({'Company_Id': ReceivingData.Company_Id, 'Industry_Type': { $regex : new RegExp("^" + ReceivingData.Industry_Type + "$", "i") }, 'If_Deleted': false }, {}, {}, function(err, result) {
                if(err) {
                   ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Industry Type Find Query Error', 'CRM_Settings.controller.js', err);
                   res.status(417).send({status: false, Message: "Some error occurred while Find Industry Type!."});
@@ -47,20 +47,31 @@ var ErrorManagement = require('./../../../handling/ErrorHandling.js');
          }else {
             var Create_IndustryType = new CRMSettingsModel.IndustryTypeSchema({
                Industry_Type: ReceivingData.Industry_Type, 
-               Company_Id: ReceivingData.Company_Id,
-               Created_By: ReceivingData.Created_By,
-               Last_Modified_By: ReceivingData.Created_By,
+               Company_Id: mongoose.Types.ObjectId(ReceivingData.Company_Id),
+               Created_By: mongoose.Types.ObjectId(ReceivingData.Created_By),
+               Last_Modified_By: mongoose.Types.ObjectId(ReceivingData.Created_By),
                Active_Status: true,
                If_Deleted: false
             });
             Create_IndustryType.save(function(err, result) { // Industry Type Save Query
                if(err) {
                   ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Industry Type Creation Query Error', 'CRM_Settings.controller.js');
-                  res.status(417).send({Status: false, Error: err, Message: "Some error occurred while creating the Industry Type!."});
+                  res.status(417).send({Status: false, Message: "Some error occurred while creating the Industry Type!."});
                } else {
-                  var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result), 'SecretKeyOut@123');
-                     ReturnData = ReturnData.toString();
-                  res.status(200).send({Status: true, Response: ReturnData });
+                  CRMSettingsModel.IndustryTypeSchema
+                     .findOne({'_id': result._id})
+                     .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
+                     .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
+                     .exec(function(err_1, result_1) { // Industry Type FindOne Query
+                     if(err_1) {
+                        ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Industry Type Find Query Error', 'CRM_Settings.controller.js', err_1);
+                        res.status(417).send({status: false, Message: "Some error occurred while Find The Industry Types!."});
+                     } else {
+                        var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result_1), 'SecretKeyOut@123');
+                           ReturnData = ReturnData.toString();
+                        res.status(200).send({Status: true, Response: ReturnData });
+                     }
+                  });
                }
             });
          }
@@ -75,7 +86,11 @@ var ErrorManagement = require('./../../../handling/ErrorHandling.js');
          } else if (!ReceivingData.User_Id || ReceivingData.User_Id === ''  ) {
             res.status(400).send({Status: false, Message: "User Details can not be empty" });
          }else {
-            CRMSettingsModel.IndustryTypeSchema.find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, {}, {sort: { updatedAt: -1 }}, function(err, result) { // Industry Type FindOne Query
+            CRMSettingsModel.IndustryTypeSchema
+               .find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, {}, {sort: { updatedAt: -1 }})
+               .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
+               .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
+               .exec(function(err, result) { // Industry Type FindOne Query
                if(err) {
                   ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Industry Type Find Query Error', 'CRM_Settings.controller.js', err);
                   res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Industry Types!."});
@@ -128,15 +143,26 @@ var ErrorManagement = require('./../../../handling/ErrorHandling.js');
                } else {
                   if (result !== null) {
                      result.Industry_Type = ReceivingData.Industry_Type;
-                     result.Last_Modified_By = ReceivingData.Modified_By;
+                     result.Last_Modified_By = mongoose.Types.ObjectId(ReceivingData.Modified_By);
                      result.save(function(err_1, result_1) { // Industry Type Update Query
                         if(err_1) {
                            ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Industry Type Update Query Error', 'CRM_Settings.controller.js');
                            res.status(417).send({Status: false, Error: err_1, Message: "Some error occurred while Update the Industry Type!."});
                         } else {
-                           var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result_1), 'SecretKeyOut@123');
-                           ReturnData = ReturnData.toString();
-                           res.status(200).send({Status: true, Response: ReturnData });
+                           CRMSettingsModel.IndustryTypeSchema
+                              .findOne({'_id': result_1._id})
+                              .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
+                              .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
+                              .exec(function(err_2, result_2) { // Industry Type FindOne Query
+                              if(err_2) {
+                                 ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Industry Type Find Query Error', 'CRM_Settings.controller.js', err_2);
+                                 res.status(417).send({status: false, Message: "Some error occurred while Find The Industry Types!."});
+                              } else {
+                                 var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result_2), 'SecretKeyOut@123');
+                                    ReturnData = ReturnData.toString();
+                                 res.status(200).send({Status: true, Response: ReturnData });
+                              }
+                           });
                         }
                      });
                   } else {
@@ -163,7 +189,7 @@ var ErrorManagement = require('./../../../handling/ErrorHandling.js');
                } else {
                   if (result !== null) {
                      result.If_Deleted = true;
-                     result.Last_Modified_By = ReceivingData.Modified_By;
+                     result.Last_Modified_By = mongoose.Types.ObjectId(ReceivingData.Modified_By);
                      result.save(function(err_1, result_1) { // Industry Type Delete Query
                         if(err_1) {
                            ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Industry Type Delete Query Error', 'CRM_Settings.controller.js');
@@ -197,7 +223,7 @@ var ErrorManagement = require('./../../../handling/ErrorHandling.js');
          } else if (!ReceivingData.User_Id || ReceivingData.User_Id === ''  ) {
             res.status(400).send({Status: false, Message: "User Details can not be empty" });
          }else {
-            CRMSettingsModel.OwnershipTypeSchema.findOne({'Ownership_Type': ReceivingData.Ownership_Type.toLowerCase(), 'If_Deleted': false }, {}, {}, function(err, result) {
+            CRMSettingsModel.OwnershipTypeSchema.findOne({'Company_Id': ReceivingData.Company_Id, 'Ownership_Type': ReceivingData.Ownership_Type.toLowerCase(), 'If_Deleted': false }, {}, {}, function(err, result) {
                if(err) {
                   ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Ownership Type Find Query Error', 'CRM_Settings.controller.js', err);
                   res.status(417).send({status: false, Message: "Some error occurred while Find Ownership Type!."});
@@ -225,9 +251,9 @@ var ErrorManagement = require('./../../../handling/ErrorHandling.js');
          }else {
             var Create_OwnershipType = new CRMSettingsModel.OwnershipTypeSchema({
                Ownership_Type: ReceivingData.Ownership_Type, 
-               Company_Id: ReceivingData.Company_Id,
-               Created_By: ReceivingData.Created_By,
-               Last_Modified_By: ReceivingData.Created_By,
+               Company_Id: mongoose.Types.ObjectId(ReceivingData.Company_Id),
+               Created_By: mongoose.Types.ObjectId(ReceivingData.Created_By),
+               Last_Modified_By: mongoose.Types.ObjectId(ReceivingData.Created_By),
                Active_Status: true,
                If_Deleted: false
             });
@@ -306,7 +332,7 @@ var ErrorManagement = require('./../../../handling/ErrorHandling.js');
                } else {
                   if (result !== null) {
                      result.Ownership_Type = ReceivingData.Ownership_Type;
-                     result.Last_Modified_By = ReceivingData.Modified_By;
+                     result.Last_Modified_By = mongoose.Types.ObjectId(ReceivingData.Modified_By);
                      result.save(function(err_1, result_1) { // Ownership Type Update Query
                         if(err_1) {
                            ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Ownership Type Update Query Error', 'CRM_Settings.controller.js');
@@ -326,39 +352,39 @@ var ErrorManagement = require('./../../../handling/ErrorHandling.js');
 
       };
    // Ownership Type Delete -----------------------------------------------
-   exports.Ownership_Type_Delete = function(req, res) {
-      var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
-      var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+      exports.Ownership_Type_Delete = function(req, res) {
+            var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
+            var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
 
-      if(!ReceivingData.Ownership_Type_Id || ReceivingData.Ownership_Type_Id === '' ) {
-         res.status(400).send({Status: false, Message: "Ownership Type Id can not be empty" });
-      } else if (!ReceivingData.Modified_By || ReceivingData.Modified_By === ''  ) {
-         res.status(400).send({Status: false, Message: "Modified User Details can not be empty" });
-      }else {
-         CRMSettingsModel.OwnershipTypeSchema.findOne({'_id': ReceivingData.Ownership_Type_Id}, {}, {}, function(err, result) { // Ownership Type FindOne Query
-            if(err) {
-               ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Ownership Type FindOne Query Error', 'CRM_Settings.controller.js', err);
-               res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Ownership Type!."});
-            } else {
-               if (result !== null) {
-                  result.If_Deleted = true;
-                  result.Last_Modified_By = ReceivingData.Modified_By;
-                  result.save(function(err_1, result_1) { // Ownership Type Delete Query
-                     if(err_1) {
-                        ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Ownership Type Delete Query Error', 'CRM_Settings.controller.js');
-                        res.status(417).send({Status: false, Error: err_1, Message: "Some error occurred while Delete the Ownership Type!."});
-                     } else {
-                        res.status(200).send({Status: true, Message: 'Successfully Deleted' });
-                     }
-                  });
-               } else {
-                  res.status(400).send({Status: false, Message: "Ownership Type Id can not be valid!" });
-               }
+            if(!ReceivingData.Ownership_Type_Id || ReceivingData.Ownership_Type_Id === '' ) {
+            res.status(400).send({Status: false, Message: "Ownership Type Id can not be empty" });
+            } else if (!ReceivingData.Modified_By || ReceivingData.Modified_By === ''  ) {
+            res.status(400).send({Status: false, Message: "Modified User Details can not be empty" });
+            }else {
+            CRMSettingsModel.OwnershipTypeSchema.findOne({'_id': ReceivingData.Ownership_Type_Id}, {}, {}, function(err, result) { // Ownership Type FindOne Query
+                  if(err) {
+                  ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Ownership Type FindOne Query Error', 'CRM_Settings.controller.js', err);
+                  res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Ownership Type!."});
+                  } else {
+                  if (result !== null) {
+                        result.If_Deleted = true;
+                        result.Last_Modified_By = mongoose.Types.ObjectId(ReceivingData.Modified_By);
+                        result.save(function(err_1, result_1) { // Ownership Type Delete Query
+                        if(err_1) {
+                              ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Ownership Type Delete Query Error', 'CRM_Settings.controller.js');
+                              res.status(417).send({Status: false, Error: err_1, Message: "Some error occurred while Delete the Ownership Type!."});
+                        } else {
+                              res.status(200).send({Status: true, Message: 'Successfully Deleted' });
+                        }
+                        });
+                  } else {
+                        res.status(400).send({Status: false, Message: "Ownership Type Id can not be valid!" });
+                  }
+                  }
+            });
             }
-         });
-      }
 
-   };
+      };
 
 
 // ************************************************** Activity Type *****************************************************

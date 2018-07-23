@@ -20,13 +20,15 @@ export class IndustryTypeCrmSettingsComponent implements OnInit {
    bsModalRef: BsModalRef;
 
    _List: any[] = [];
+   Company_Id = '5b3c66d01dd3ff14589602fe';
+   User_Id = '5b530ef333fc40064c0db31e';
 
    constructor(   private modalService: BsModalService,
                   private Service: CrmSettingsService,
                   private Toastr: ToastrService
                ) {
                   // Get Industry Type List
-                     const Data = { 'Company_Id' : '1', 'User_Id' : '2', };
+                     const Data = { 'Company_Id': this.Company_Id, 'User_Id' : this.User_Id };
                      let Info = CryptoJS.AES.encrypt(JSON.stringify(Data), 'SecretKeyIn@123');
                      Info = Info.toString();
                      this.Service.Industry_Type_List({'Info': Info}).subscribe( response => {
@@ -60,7 +62,8 @@ export class IndustryTypeCrmSettingsComponent implements OnInit {
          this.bsModalRef = this.modalService.show(ModelIndustrytypeCrmsettingsComponent, Object.assign({initialState}, {ignoreBackdropClick: true, class: '' }));
          this.bsModalRef.content.onClose.subscribe(response => {
             if (response['Status']) {
-               this._List.splice(0, 0, response['Response']);
+              this._List.splice(0, 0, response['Response']);
+              this._List.slice();
             }
          });
       }
@@ -93,7 +96,7 @@ export class IndustryTypeCrmSettingsComponent implements OnInit {
          this.bsModalRef = this.modalService.show(DeleteConfirmationComponent, Object.assign({initialState}, {ignoreBackdropClick: true, class: 'modal-sm' }));
          this.bsModalRef.content.onClose.subscribe(response => {
             if (response.Status) {
-               const Data = { 'Industry_Type_Id' :  this._List[_index]._id, 'Modified_By' : '2' };
+               const Data = { 'Industry_Type_Id' :  this._List[_index]._id, 'Modified_By' : this.User_Id };
                let Info = CryptoJS.AES.encrypt(JSON.stringify(Data), 'SecretKeyIn@123');
                Info = Info.toString();
                this.Service.Industry_Type_Delete({'Info': Info}).subscribe( returnResponse => {
