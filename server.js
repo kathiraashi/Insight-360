@@ -5,6 +5,7 @@ var cors = require('cors');
 
 var ErrorManagement = require('./server/handling/ErrorHandling.js');
 var LogManagement = require('./server/handling/LogHandling.js');
+var AdminModel = require('./server/web/models/Admin/AdminManagement.model.js');
 
 var port = process.env.PORT || 3000;
 var app = express();
@@ -46,11 +47,42 @@ app.use('/API/', function (req, res, next) {
       return next();
    }else {
       ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Security Error For Every Request Log Creation', 'Server.js');
-      return res.status(406).end('Invalid arguments');
+      return res.status(406).send({Status: false, Message: 'Invalid Arguments'});
    }
 });
 
- require('./server/web/routes/Admin/RegisterAndLogin.routes.js')(app); // Without Company Id and User Id
+ require('./server/web/routes/Admin/RegisterAndLogin.routes.js')(app); // Without Company Id, User Id and Authorization
+
+   function AuthorizationValidate(AuthorizationKey, callback) {
+      var date = new Date(new Date() - 20 * 60 * 1000); // 20 minutes differ
+      AdminModel.User_Management.findOne({ 
+         '_id': mongoose.Types.ObjectId(AuthorizationKey.slice(0, -32)), 
+         'LoginToken': AuthorizationKey.slice(-32),
+         LastActiveTime: { $gte: date } }, {}, {}, function(err, response) {
+            if (!err && response !== null) {
+               AdminModel.User_Management.update({ _id: response._id }, { $set: { LastActiveTime: new Date() }}).exec();
+               return callback(true);
+            }else {
+               return callback(false);
+            }
+         });
+   }
+ // Every request Log Creation
+   app.use('/API/', function (req, res, next) {
+      if (req.headers.authorization) {
+         AuthorizationValidate(req.headers.authorization, function(callback){
+            if (callback) {
+               return next();
+            }else{
+               ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Security Error For Request authorization Empty', 'Server.js');
+               return res.status(401).send({Status: false, Message: 'Invalid Authorization'});
+            }
+          });
+      }else {
+         ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Security Error For Request authorization Empty', 'Server.js');
+         return res.status(401).send({Status: false, Message: 'Invalid Authorization'});
+      }
+   });
 
 // Admin
    require('./server/web/routes/Admin/AdminManagement.routes.js')(app);

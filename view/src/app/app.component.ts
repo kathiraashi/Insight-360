@@ -28,12 +28,14 @@ export class AppComponent {
          });
       // Toastr Message
          this.Toastr.WaitingToastr.subscribe(Message => {
-            this.ToastrList.push(Message);
-            this.RefreshToastrPosition();
             setTimeout(() => {
-               this.ToastrList.splice(0, 1);
+               this.ToastrList.push(Message);
                this.RefreshToastrPosition();
-            }, 3000);
+               setTimeout(() => {
+                  this.ToastrList.splice(0, 1);
+                  this.RefreshToastrPosition();
+               }, 4000);
+            }, 100);
          });
    }
 

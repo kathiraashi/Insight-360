@@ -51,7 +51,7 @@ exports.User_Name_Validate = function(req, res) {
    if(!ReceivingData.User_Name || ReceivingData.User_Name === '' ) {
       res.status(400).send({Status: false, Message: "User Name can not be empty" });
    }else {
-      AdminModel.User_Management.findOne({'User_Name': ReceivingData.User_Name.toLowerCase(), 'Active_Status': true }, {}, {}, function(err, result) { // User Name Find Query
+      AdminModel.User_Management.findOne({'User_Name': { $regex : new RegExp("^" + ReceivingData.User_Name + "$", "i") }, 'Active_Status': true }, {}, {}, function(err, result) { // User Name Find Query
          if(err) {
             ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'User Name Find Query Error', 'AdminManagement.controller.js', err);
             res.status(417).send({status: false, Message: "Some error occurred while Find Users Name!."});
@@ -77,7 +77,7 @@ exports.User_Login_Validate = function(req, res) {
    } else if (!ReceivingData.User_Password || ReceivingData.User_Password === ''  ) {
       res.status(400).send({Status: false, Message: "User Password can not be empty" });
    } else {
-      AdminModel.User_Management.findOne({'User_Name': ReceivingData.User_Name, 'User_Password': ReceivingData.User_Password, 'Active_Status': true}, { User_Password: 0 }, {}, function(err, result) {
+      AdminModel.User_Management.findOne({'User_Name': { $regex : new RegExp("^" + ReceivingData.User_Name + "$", "i") }, 'User_Password': ReceivingData.User_Password, 'Active_Status': true}, { User_Password: 0 }, {}, function(err, result) {
          if(err) {
             ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'User Details Validate Query Error', 'RegisterAndLogin.controller.js', err);
             res.status(417).send({status: false, Error:err, Message: "Some error occurred while Validate The User Details!."});
@@ -153,7 +153,7 @@ exports.User_Login_Validate = function(req, res) {
                               in:{ 
                                     Module_Id : "$$module_Permission.Module_Id",
                                     Module_Name : "$$module_Permission.AccessModules_Info.Module_Name",
-                                    Module_RouterName : "$$module_Permission.AccessModules_Info.Module_Router_Name",
+                                    Module_Key : "$$module_Permission.AccessModules_Info.Module_Key",
                                     Access_Permission : "$$module_Permission.Access_Permission",
                                  } 
                            }
@@ -166,7 +166,7 @@ exports.User_Login_Validate = function(req, res) {
                                     Module_Id: "$$subModule_Permission.Module_Id",
                                     SubModule_Id : "$$subModule_Permission.SubModule_Id",
                                     SubModule_Name : "$$subModule_Permission.AccessSubModule_Info.SubModule_Name",
-                                    SubModule_Router_Name : "$$subModule_Permission.AccessSubModule_Info.SubModule_Router_Name",
+                                    SubModule_Key : "$$subModule_Permission.AccessSubModule_Info.SubModule_Key",
                                     Create_Permission : "$$subModule_Permission.Create_Permission",
                                     Edit_Permission : "$$subModule_Permission.Edit_Permission",
                                     View_Permission : "$$subModule_Permission.View_Permission",
@@ -197,19 +197,19 @@ exports.User_Login_Validate = function(req, res) {
                            }
                         }, []);
                         
-                        var Key = crypto.randomBytes(16).toString("hex");
+                        const Key = crypto.randomBytes(16).toString("hex");
                         var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(FinalResult), Key);
                             ReturnData = ReturnData.toString();
-                           ReturnData =  (ReturnData.slice(0, -1) + Key).concat('=');
+                           const NewReturnData = (ReturnData + Key).concat('==');
                            AdminModel.User_Management.update(
                               { _id : FinalResult._id },
-                              { $set: { LoginToken : Key, LoginTime: new Date(), LastActiveTime: new Date()  }}
+                              { $set: { LoginToken : Key, LoginTime: new Date().toString(), LastActiveTime: new Date() }}
                            ).exec((err_3, result_3) => {
                               if(err_3) {
                                  ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'User Validate Update Query Error', 'RegisterAndLogin.controller.js', err_3);
                                  res.status(417).send({Status: false, Message: "Some error occurred while Validate Update the User Details!"});           
                               } else {
-                                 res.status(200).send({ Status: true,  Response: ReturnData });
+                                 res.status(200).send({ Status: true,  Response: NewReturnData });
                               }
                            });
                      }
@@ -386,10 +386,12 @@ exports.Create_Project_Modules = function(req, res) {
 
    if(!ReceivingData.Module_Name || ReceivingData.Module_Name === '' ) {
       res.status(400).send({Status: false, Message: "Module Name can not be empty" });
+   }else if(!ReceivingData.Module_Key || ReceivingData.Module_Key === '' ) {
+      res.status(400).send({Status: false, Message: "Module Key can not be empty" });
    } else {
       var CreateProject_Module = new AdminModel.Project_Modules({
          Module_Name : ReceivingData.Module_Name,
-         Module_Router_Name : ReceivingData.Module_Router_Name,
+         Module_Key : ReceivingData.Module_Key,
          Active_Status : ReceivingData.Active_Status || true,
       });
       CreateProject_Module.save(function(err, result) {
@@ -412,10 +414,12 @@ exports.Create_Project_SubModules = function(req, res) {
       res.status(400).send({Status: false, Message: " Sub Module Name can not be empty" });
    } else if(!ReceivingData.Module_Id || ReceivingData.Module_Id === '' ) {
       res.status(400).send({Status: false, Message: "Module Details can not be empty" });
+   } else if(!ReceivingData.SubModule_Key || ReceivingData.SubModule_Key === '' ) {
+      res.status(400).send({Status: false, Message: "Sub Module Key can not be empty" });
    } else {
       var CreateProject_SubModule = new AdminModel.Project_SubModules({
          SubModule_Name : ReceivingData.SubModule_Name,
-         SubModule_Router_Name : ReceivingData.SubModule_Router_Name,
+         SubModule_Key : ReceivingData.SubModule_Key,
          Module_Id : ReceivingData.Module_Id,
          Active_Status : ReceivingData.Active_Status || true
       });
@@ -446,7 +450,7 @@ exports.ModulesAndSubModules_List = function(req, res) {
          { $match : { Active_Status : true } },
          { $project:
             {  Module_Name: 1,
-               Module_Router_Name: 1,
+               Module_Key: 1,
                Active_Status: 1,
                Sub_Modules:{ 
                   $filter:{ input: "$Sub_Modules", as: "subModule", cond: { $eq: [ "$$subModule.Active_Status", true ] } } 
@@ -504,6 +508,7 @@ exports.Create_Permissions_Group = function(req, res) {
          Group_Name : ReceivingData.Group_Name,
          "Group_Module.Module_Id" : mongoose.Types.ObjectId(ReceivingData.Group_Module._id),
          "Group_Module.Module_Name" : ReceivingData.Group_Module.Module_Name,
+         "Group_Module.Module_Key" : ReceivingData.Group_Module.Module_Key,
          "Group_UserType.UserType_Id" : ReceivingData.Group_UserType._id,
          "Group_UserType.User_Type" : ReceivingData.Group_UserType.User_Type,
          Group_Description : ReceivingData.Group_Description,
@@ -640,7 +645,8 @@ exports.GroupPermission_ModulesAndSubModules_List = function(req, res) {
          { $group : {
             _id:  {  _id: "$_id",
                      Module_Id: "$Module_Id",
-                     Module_Name: "$ModuleInfo.Module_Name", 
+                     Module_Name: "$ModuleInfo.Module_Name",
+                     Module_Key: "$ModuleInfo.Module_Key", 
                      Module_AccessPermission: "$Access_Permission",
                      Group_Id: "$Group_Id",
                      Company_Id: "$Company_Id",
@@ -651,6 +657,7 @@ exports.GroupPermission_ModulesAndSubModules_List = function(req, res) {
             _id: "$_id._id",
             Module_Id : "$_id.Module_Id",
             Module_Name : "$_id.Module_Name",
+            Module_Key : "$_id.Module_Key",
             Access_Permission : "$_id.Module_AccessPermission",
             Group_Id : "$_id.Group_Id",
             Company_Id : "$_id.Company_Id",
@@ -670,7 +677,7 @@ exports.GroupPermission_ModulesAndSubModules_List = function(req, res) {
                         _id: "$$subModule._id",
                         SubModule_Id: "$$subModule.SubModule_Id",
                         SubModule_Name: "$$subModule.SubModule_Info.SubModule_Name",
-                        SubModule_Router_Name: "$$subModule.SubModule_Info.SubModule_Router_Name",
+                        SubModule_Key: "$$subModule.SubModule_Info.SubModule_Key",
                         Create_Permission: "$$subModule.Create_Permission",
                         Edit_Permission: "$$subModule.Edit_Permission",
                         View_Permission: "$$subModule.View_Permission",

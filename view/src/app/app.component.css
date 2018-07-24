@@ -132,7 +132,7 @@
   height: 3px;
   background-color: transparent;
   border-top: 2px dotted;
-  animation: loading 3s linear;
+  animation: loading 4s linear;
 }
 .Warning .loader{
    background-color: #FDBA29;

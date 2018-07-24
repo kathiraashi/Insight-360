@@ -27,6 +27,7 @@
     color: #4f6a7a;
     font-weight: 600;
     font-size: 20px;
+    cursor: pointer;
 }
 .Header_Page .Header_Two{
     width: 100%;
