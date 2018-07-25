@@ -17,7 +17,7 @@ var Schema = mongoose.Schema;
 
 // Ownership Type Schema
    var OwnershipTypeSchema = mongoose.Schema({
-      Ownership_Type: { type : String , required : true },
+      Ownership_Type: { type : String , required : true},
       Company_Id: { type: Schema.Types.ObjectId, ref: 'Company_Management', required : true },
       Created_By : { type: Schema.Types.ObjectId, ref: 'User_Management', required : true },
       Last_Modified_By: { type: Schema.Types.ObjectId, ref: 'User_Management', required : true },
@@ -30,12 +30,12 @@ var Schema = mongoose.Schema;
 
 // Activity Type
    var ActivityTypeSchema = mongoose.Schema({
-      Activity_Type: { type : String , require : true },
-      Company_Id: { type : String , require : true },
-      Created_By: { type : String , require : true },
-      Last_Modified_By: { type : String , require : true },
-      Active_Status: { type : Boolean , require : true },
-      If_Deleted: { type : Boolean , require : true },
+      Activity_Type: { type : String , required : true},
+      Company_Id: { type : Schema.Types.ObjectId,ref: 'Company_Management' , required: true },
+      Created_By: { type : Schema.Types.ObjectId, ref: 'User_Management' , required : true },
+      Last_Modified_By: { type : Schema.Types.ObjectId, ref: 'User_Management' , required : true },
+      Active_Status: { type : Boolean , required : true },
+      If_Deleted: { type : Boolean , required : true },
       },
       { timestamps: true }
    );
@@ -44,12 +44,12 @@ var Schema = mongoose.Schema;
    
 // Activity Status
    var ActivityStatusSchema = mongoose.Schema({
-      Activity_Status: { type : String , require : true },
-      Company_Id: { type : String , require : true },
-      Created_By: { type : String , require : true },
-      Last_Modified_By: { type : String , require : true },
-      Active_Status: { type : Boolean , require : true },
-      If_Deleted: { type : Boolean , require : true },
+      Activity_Status: { type : String , required : true},
+      Company_Id: { type : Schema.Types.ObjectId, ref: 'Company_Management', required : true },
+      Created_By: { type : Schema.Types.ObjectId, ref: 'User_Management' , required : true },
+      Last_Modified_By: { type : Schema.Types.ObjectId, ref: 'User_Management' , required : true },
+      Active_Status: { type : Boolean , required : true },
+      If_Deleted: { type : Boolean , required : true },
       },
       { timestamps: true }
    );
@@ -57,12 +57,12 @@ var Schema = mongoose.Schema;
 
 // Activity Priority
    var ActivityPrioritySchema = mongoose.Schema({
-      Activity_Priority: { type : String , require : true },
-      Company_Id: { type : String , require : true },
-      Created_By: { type : String , require : true },
-      Last_Modified_By: { type : String , require : true },
-      Active_Status: { type : Boolean , require : true },
-      If_Deleted: { type : Boolean , require : true },
+      Activity_Priority: { type : String , required : true},
+      Company_Id: { type : Schema.Types.ObjectId, ref: 'Company_Management', required : true },
+      Created_By: { type : Schema.Types.ObjectId, ref: 'User_Management' , required : true },
+      Last_Modified_By: { type : Schema.Types.ObjectId, ref: 'User_Management' , required : true },
+      Active_Status: { type : Boolean , required : true },
+      If_Deleted: { type : Boolean , required : true },
       },
       { timestamps: true }
    );
@@ -71,9 +71,9 @@ var Schema = mongoose.Schema;
 // Contact Role
    var ContactRoleSchema = mongoose.Schema({
       Contact_Role: { type : String , require : true },
-      Company_Id: { type : String , require : true },
-      Created_By: { type : String , require : true },
-      Last_Modified_By: { type : String , require : true },
+      Company_Id: { type : Schema.Types.ObjectId, ref: 'Company_Management', required : true },
+      Created_By: { type : Schema.Types.ObjectId, ref: 'User_Management' , required : true },
+      Last_Modified_By: { type : Schema.Types.ObjectId, ref: 'User_Management' , required : true },
       Active_Status: { type : Boolean , require : true },
       If_Deleted: { type : Boolean , require : true },
       },
@@ -84,9 +84,9 @@ var Schema = mongoose.Schema;
 // Pipeline Status
    var PipelineStatusSchema = mongoose.Schema({
       Pipeline_Status: { type : String , require : true },
-      Company_Id: { type : String , require : true },
-      Created_By: { type : String , require : true },
-      Last_Modified_By: { type : String , require : true },
+      Company_Id: { type : Schema.Types.ObjectId, ref: 'Company_Management', required : true },
+      Created_By: { type : Schema.Types.ObjectId, ref: 'User_Management' , required : true },
+      Last_Modified_By: { type : Schema.Types.ObjectId, ref: 'User_Management' , required : true },
       Active_Status: { type : Boolean , require : true },
       If_Deleted: { type : Boolean , require : true },
       },

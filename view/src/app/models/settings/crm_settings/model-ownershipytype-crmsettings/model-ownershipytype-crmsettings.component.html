@@ -42,12 +42,16 @@
             <div class="view_item">
                <div class="Static">Created By </div>
                <div class="dots"> : </div>
-               <div class="Data"> {{Data.Created_By}}</div>
+               <div class="Data"> {{Data.Created_By.Name}} 
+                <span class="Badge"> {{Data.Created_By.User_Type.User_Type}} </span>
+             </div>
             </div>
             <div class="view_item">
                <div class="Static">Last Modified By </div>
                <div class="dots"> : </div>
-               <div class="Data"> {{Data.Last_Modified_By}}</div>
+               <div class="Data"> {{Data.Last_Modified_By.Name}}
+                <span class="Badge"> {{Data.Last_Modified_By.User_Type.User_Type}} </span>
+             </div>
             </div>
             <div class="view_item">
                <div class="Static"> Created Date </div>

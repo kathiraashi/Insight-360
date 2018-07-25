@@ -18,7 +18,7 @@
                <th>S.no</th>
                <th>Activity Status</th>
                <th>Created By </th>
-               <th>Date</th>
+               <th>Modified By</th>
                <th>Action</th>
             </tr>
          </thead>
@@ -31,11 +31,20 @@
                   <span class="Style_1">{{ Item.Activity_Status }} </span>
                </td>
                <td>
-                  <span class="Style_1"> {{ Item.Created_By }} </span>
-               </td>
-               <td>
-                  <span class="Style_1"> {{ Item.updatedAt | date:'medium' }}</span>
-               </td>
+                <span class="Style_1"> {{Item.Created_By.Name}}</span>
+                    <!-- <span class="Badge"> {{Item.Created_By.User_Type.User_Type}} </span>
+                    <br> 
+                    <span class="Time"> {{Item.createdAt | date:'medium'}}  </span>
+                </span> -->
+             </td>
+             <td>
+                <span class="Style_1"> 
+                   {{Item.Last_Modified_By.Name}} </span>
+                   <!-- <span class="Badge"> {{Item.Last_Modified_By.User_Type.User_Type}} </span> 
+                   <br> 
+                   <span class="Time"> {{Item.updatedAt | date:'medium'}}  </span>
+                </span> -->
+             </td>
                <td>
                   <button (click)="ViewActivitystatus(i)" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
                      <i class="material-icons">zoom_in</i>

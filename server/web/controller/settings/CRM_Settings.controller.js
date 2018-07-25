@@ -223,7 +223,7 @@ var mongoose = require('mongoose');
          } else if (!ReceivingData.User_Id || ReceivingData.User_Id === ''  ) {
             res.status(400).send({Status: false, Message: "User Details can not be empty" });
          }else {
-            CRMSettingsModel.OwnershipTypeSchema.findOne({'Company_Id': ReceivingData.Company_Id, 'Ownership_Type': ReceivingData.Ownership_Type.toLowerCase(), 'If_Deleted': false }, {}, {}, function(err, result) {
+            CRMSettingsModel.OwnershipTypeSchema.findOne({'Company_Id': ReceivingData.Company_Id, 'Ownership_Type': { $regex : new RegExp("^" + ReceivingData.Ownership_Type + "$", "i") }, 'If_Deleted': false }, {}, {}, function(err, result) {
                if(err) {
                   ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Ownership Type Find Query Error', 'CRM_Settings.controller.js', err);
                   res.status(417).send({status: false, Message: "Some error occurred while Find Ownership Type!."});
@@ -260,11 +260,25 @@ var mongoose = require('mongoose');
             Create_OwnershipType.save(function(err, result) { // Ownership Type Save Query
                if(err) {
                   ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Ownership Type Creation Query Error', 'CRM_Settings.controller.js');
-                  res.status(417).send({Status: false, Error: err, Message: "Some error occurred while creating the Ownership Type!."});
+                  res.status(417).send({Status: false, Message: "Some error occurred while creating the Ownership Type!."});
                } else {
-                  var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result), 'SecretKeyOut@123');
-                  ReturnData = ReturnData.toString();
-                  res.status(200).send({Status: true, Response: ReturnData });
+                  CRMSettingsModel.OwnershipTypeSchema
+                     .findOne({'_id': result._id})
+                     .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
+                     .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
+                     .exec(function(err_1, result_1) { // Ownership Type FindOne Query
+                     if(err_1) {
+                        ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Ownership Type Find Query Error', 'CRM_Settings.controller.js', err_1);
+                        res.status(417).send({status: false, Message: "Some error occurred while Find The Ownership Types!."});
+                     } else {
+                        var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result_1), 'SecretKeyOut@123');
+                           ReturnData = ReturnData.toString();
+                           // setTimeout(() => {
+                              
+                           // }, 5000);
+                           res.status(200).send({Status: true, Response: ReturnData });
+                     }
+                  });
                }
             });
          }
@@ -279,7 +293,11 @@ var mongoose = require('mongoose');
          } else if(!ReceivingData.User_Id || ReceivingData.User_Id === ''){
             res.status(400).send({Status: false, Message: "User Details Can not be Empty" });
          } else {
-            CRMSettingsModel.OwnershipTypeSchema.find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, {}, {sort: { updatedAt: -1 }}, function(err, result) { // Ownership Type FindOne Query
+            CRMSettingsModel.OwnershipTypeSchema
+               .find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, {}, {sort: { updatedAt: -1 }})
+               .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
+               .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
+               .exec(function(err, result) { // Ownership Type FindOne Query
                if(err) {
                   ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Ownership Type Find Query Error', 'CRM_Settings.controller.js', err);
                   res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Ownership Types!."});
@@ -338,9 +356,20 @@ var mongoose = require('mongoose');
                            ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Ownership Type Update Query Error', 'CRM_Settings.controller.js');
                            res.status(417).send({Status: false, Error: err_1, Message: "Some error occurred while Update the Ownership Type!."});
                         } else {
-                           var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result_1), 'SecretKeyOut@123');
-                           ReturnData = ReturnData.toString();
-                           res.status(200).send({Status: true, Response: ReturnData });
+                           CRMSettingsModel.OwnershipTypeSchema
+                              .findOne({'_id': result_1._id})
+                              .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
+                              .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
+                              .exec(function(err_2, result_2) { // Ownership Type FindOne Query
+                              if(err_2) {
+                                 ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Ownership Type Find Query Error', 'CRM_Settings.controller.js', err_2);
+                                 res.status(417).send({status: false, Message: "Some error occurred while Find The Ownership Types!."});
+                              } else {
+                                 var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result_2), 'SecretKeyOut@123');
+                                    ReturnData = ReturnData.toString();
+                                 res.status(200).send({Status: true, Response: ReturnData });
+                              }
+                           });
                         }
                      });
                   } else {
@@ -388,7 +417,33 @@ var mongoose = require('mongoose');
 
 
 // ************************************************** Activity Type *****************************************************
-   // Activity Type Create -----------------------------------------------
+   // Activity Type Async Validate
+   exports.ActivityType_AsyncValidate = function(req, res){
+      var CryptoBytes = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
+      var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+
+      if(!ReceivingData.Activity_Type || ReceivingData.Activity_Type === ''){
+         res.status(400).send({ Status: false, Message: "Activity Type Cannot be empty"});
+      } else if(!ReceivingData.Company_Id || ReceivingData.Company_Id === '') {
+         res.status(400).send({ Status: false, Message: "Company Details Cannot be empty"}); 
+      } else if(!ReceivingData.User_Id || ReceivingData.User_Id === '') {
+         res.status(400).send({ Status: false, Message: "Creator Details Cannot be empty"}); 
+      } else{
+         CRMSettingsModel.ActivityTypeSchema.findOne({'Company_Id': ReceivingData.Company_Id, 'Activity_Type': {$regex : new RegExp("^" + ReceivingData.Activity_Type + "$", "i")}, 'If_Deleted' : false}, {},{}, function(err, result) {
+            if(err) {
+               ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Activity Type Find Query Error', 'CRM_Settings.controller.js', err);
+               res.status(417).send({status: false, Message: "Some error occurred while Find Activity Type!."});
+            } else {
+               if ( result !== null) {
+                  res.status(200).send({Status: true, Available: false });
+               } else {
+                  res.status(200).send({Status: true, Available: true });
+               }
+            }
+         });
+      }
+   }
+// Activity Type Create -----------------------------------------------
       exports.Activity_Type_Create = function(req, res) {
          var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
          var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
@@ -402,26 +457,39 @@ var mongoose = require('mongoose');
          }else {
             var Create_ActivityType = new CRMSettingsModel.ActivityTypeSchema({
                Activity_Type: ReceivingData.Activity_Type, 
-               Company_Id: ReceivingData.Company_Id,
-               Created_By: ReceivingData.Created_By,
-               Last_Modified_By: ReceivingData.Created_By,
+               Company_Id: mongoose.Types.ObjectId(ReceivingData.Company_Id),
+               Created_By: mongoose.Types.ObjectId(ReceivingData.Created_By),
+               Last_Modified_By: mongoose.Types.ObjectId(ReceivingData.Created_By),
                Active_Status: true,
                If_Deleted: false
             });
             Create_ActivityType.save(function(err, result) { // Activity Type Save Query
                if(err) {
                   ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Activity Type Creation Query Error', 'CRM_Settings.controller.js');
-                  res.status(417).send({Status: false, Error: err, Message: "Some error occurred while creating the Activity Type!."});
+                  res.status(417).send({Status: false, Message: "Some error occurred while creating the Activity Type!."});
                } else {
-                  var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result), 'SecretKeyOut@123');
-                  ReturnData = ReturnData.toString();
-                  res.status(200).send({Status: true, Response: ReturnData });
+                  CRMSettingsModel.ActivityTypeSchema
+                     .findOne({'_id': result._id})
+                     .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
+                     .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
+                     .exec(function(err_1, result_1) { // Activity Type FindOne Query
+                     if(err_1) {
+                        ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Activity Type Find Query Error', 'CRM_Settings.controller.js', err_1);
+                        res.status(417).send({status: false, Message: "Some error occurred while Find The Activity Types!."});
+                     } else {
+                        var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result_1), 'SecretKeyOut@123');
+                           ReturnData = ReturnData.toString();
+                           // setTimeout(() => {
+                              
+                           // }, 5000);
+                           res.status(200).send({Status: true, Response: ReturnData });
+                     }
+                  });
                }
             });
          }
       };
-      
-   // Activity Type List -----------------------------------------------
+// Activity Type List -----------------------------------------------
       exports.Activity_Type_List = function(req, res) {
          var CryptoBytes = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
          var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
@@ -431,9 +499,13 @@ var mongoose = require('mongoose');
          } else if(!ReceivingData.User_Id || ReceivingData.User_Id === ''){
             res.status(400).send({Status: false, Message: "User Details Can not be Empty" });
          } else {
-            CRMSettingsModel.ActivityTypeSchema.find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, {}, {sort: { updatedAt: -1 }}, function(err, result) { // Activity Type FindOne Query
+            CRMSettingsModel.ActivityTypeSchema
+               .find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, {}, {sort: { updatedAt: -1 }})
+               .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
+               .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
+               .exec(function(err, result) { // Activity Type FindOne Query
                if(err) {
-                  ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Activiyt Type Find Query Error', 'CRM_Settings.controller.js', err);
+                  ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Activity Type Find Query Error', 'CRM_Settings.controller.js', err);
                   res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Activity Types!."});
                } else {
                   var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result), 'SecretKeyOut@123');
@@ -486,15 +558,26 @@ var mongoose = require('mongoose');
                } else {
                   if (result !== null) {
                      result.Activity_Type = ReceivingData.Activity_Type;
-                     result.Last_Modified_By = ReceivingData.Modified_By;
+                     result.Last_Modified_By = mongoose.Types.ObjectId(ReceivingData.Modified_By);
                      result.save(function(err_1, result_1) { // Activity Type Update Query
                         if(err_1) {
                            ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Activity Type Update Query Error', 'CRM_Settings.controller.js');
                            res.status(417).send({Status: false, Error: err_1, Message: "Some error occurred while Update the Activity Type!."});
                         } else {
-                           var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result_1), 'SecretKeyOut@123');
-                           ReturnData = ReturnData.toString();
-                           res.status(200).send({Status: true, Response: ReturnData });
+                           CRMSettingsModel.ActivityTypeSchema
+                              .findOne({'_id': result_1._id})
+                              .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
+                              .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
+                              .exec(function(err_2, result_2) { // Activity Type FindOne Query
+                              if(err_2) {
+                                 ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Activity Type Find Query Error', 'CRM_Settings.controller.js', err_2);
+                                 res.status(417).send({status: false, Message: "Some error occurred while Find The Activity Types!."});
+                              } else {
+                                 var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result_2), 'SecretKeyOut@123');
+                                    ReturnData = ReturnData.toString();
+                                 res.status(200).send({Status: true, Response: ReturnData });
+                              }
+                           });
                         }
                      });
                   } else {
@@ -543,7 +626,33 @@ var mongoose = require('mongoose');
       
 
 // ************************************************** Activity Status *****************************************************
-   // Activity Status Create -----------------------------------------------
+   // Activity Status Async Validate
+   exports.ActivityStatus_AsyncValidate = function(req, res){
+      var CryptoBytes = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
+      var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+
+      if(!ReceivingData.Activity_Status || ReceivingData.Activity_Status === ''){
+         res.status(400).send({ Status: false, Message: "Activity Status Cannot be empty"});
+      } else if(!ReceivingData.Company_Id || ReceivingData.Company_Id === '') {
+         res.status(400).send({ Status: false, Message: "Company Details Cannot be empty"}); 
+      } else if(!ReceivingData.User_Id || ReceivingData.User_Id === '') {
+         res.status(400).send({ Status: false, Message: "Creator Details Cannot be empty"}); 
+      } else{
+         CRMSettingsModel.ActivityStatusSchema.findOne({'Company_Id': ReceivingData.Company_Id, 'Activity_Status': {$regex : new RegExp("^" + ReceivingData.Activity_Status + "$", "i")}, 'If_Deleted' : false}, {},{}, function(err, result) {
+            if(err) {
+               ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Activity Status Find Query Error', 'CRM_Settings.controller.js', err);
+               res.status(417).send({status: false, Message: "Some error occurred while Find Activity Status!."});
+            } else {
+               if ( result !== null) {
+                  res.status(200).send({Status: true, Available: false });
+               } else {
+                  res.status(200).send({Status: true, Available: true });
+               }
+            }
+         });
+      }
+   }   
+// Activity Status Create -----------------------------------------------
       exports.Activity_Status_Create = function(req, res) {
          var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
          var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
@@ -557,20 +666,34 @@ var mongoose = require('mongoose');
          }else {
             var Create_ActivityStatus = new CRMSettingsModel.ActivityStatusSchema({
                Activity_Status: ReceivingData.Activity_Status, 
-               Company_Id: ReceivingData.Company_Id,
-               Created_By: ReceivingData.Created_By,
-               Last_Modified_By: ReceivingData.Created_By,
+               Company_Id: mongoose.Types.ObjectId(ReceivingData.Company_Id),
+               Created_By: mongoose.Types.ObjectId(ReceivingData.Created_By),
+               Last_Modified_By: mongoose.Types.ObjectId(ReceivingData.Created_By),
                Active_Status: true,
                If_Deleted: false
             });
             Create_ActivityStatus.save(function(err, result) { // Activity Status Save Query
                if(err) {
                   ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Activity Status Creation Query Error', 'CRM_Settings.controller.js');
-                  res.status(417).send({Status: false, Error: err, Message: "Some error occurred while creating the Activity Status!."});
+                  res.status(417).send({Status: false, Message: "Some error occurred while creating the Activity Status!."});
                } else {
-                  var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result), 'SecretKeyOut@123');
-                  ReturnData = ReturnData.toString();
-                  res.status(200).send({Status: true, Response: ReturnData });
+                  CRMSettingsModel.ActivityStatusSchema
+                     .findOne({'_id': result._id})
+                     .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
+                     .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
+                     .exec(function(err_1, result_1) { // Activity Status FindOne Query
+                     if(err_1) {
+                        ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Activity Status Find Query Error', 'CRM_Settings.controller.js', err_1);
+                        res.status(417).send({status: false, Message: "Some error occurred while Find The Activity Status!."});
+                     } else {
+                        var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result_1), 'SecretKeyOut@123');
+                           ReturnData = ReturnData.toString();
+                           // setTimeout(() => {
+                              
+                           // }, 5000);
+                           res.status(200).send({Status: true, Response: ReturnData });
+                     }
+                  });
                }
             });
          }
@@ -586,9 +709,13 @@ var mongoose = require('mongoose');
          } else if(!ReceivingData.User_Id || ReceivingData.User_Id === ''){
             res.status(400).send({Status: false, Message: "User Details Can not be Empty" });
          } else {
-            CRMSettingsModel.ActivityStatusSchema.find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, {}, {sort: { updatedAt: -1 }}, function(err, result) { // Activity Status FindOne Query
+            CRMSettingsModel.ActivityStatusSchema
+               .find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, {}, {sort: { updatedAt: -1 }})
+               .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
+               .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
+               .exec(function(err, result) { // Activity Status FindOne Query
                if(err) {
-                  ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Activiyt Status Find Query Error', 'CRM_Settings.controller.js', err);
+                  ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Activity Status Find Query Error', 'CRM_Settings.controller.js', err);
                   res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Activity Status!."});
                } else {
                   var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result), 'SecretKeyOut@123');
@@ -641,15 +768,26 @@ var mongoose = require('mongoose');
                } else {
                   if (result !== null) {
                      result.Activity_Status = ReceivingData.Activity_Status;
-                     result.Last_Modified_By = ReceivingData.Modified_By;
+                     result.Last_Modified_By = mongoose.Types.ObjectId(ReceivingData.Modified_By);
                      result.save(function(err_1, result_1) { // Activity Status Update Query
                         if(err_1) {
                            ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Activity Status Update Query Error', 'CRM_Settings.controller.js');
                            res.status(417).send({Status: false, Error: err_1, Message: "Some error occurred while Update the Activity Status!."});
                         } else {
-                           var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result_1), 'SecretKeyOut@123');
-                           ReturnData = ReturnData.toString();
-                           res.status(200).send({Status: true, Response: ReturnData });
+                           CRMSettingsModel.ActivityStatusSchema
+                              .findOne({'_id': result_1._id})
+                              .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
+                              .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
+                              .exec(function(err_2, result_2) { // Activity Status FindOne Query
+                              if(err_2) {
+                                 ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Activity Status Find Query Error', 'CRM_Settings.controller.js', err_2);
+                                 res.status(417).send({status: false, Message: "Some error occurred while Find The Activity Status!."});
+                              } else {
+                                 var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result_2), 'SecretKeyOut@123');
+                                    ReturnData = ReturnData.toString();
+                                 res.status(200).send({Status: true, Response: ReturnData });
+                              }
+                           });
                         }
                      });
                   } else {
@@ -695,7 +833,33 @@ var mongoose = require('mongoose');
       };
 
 // ************************************************** Activity Priority *****************************************************
-   // Activity Priority Create -----------------------------------------------
+// Activity Priority Async Validate
+exports.ActivityPriority_AsyncValidate = function(req, res){
+   var CryptoBytes = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
+   var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+
+   if(!ReceivingData.Activity_Priority || ReceivingData.Activity_Priority === ''){
+      res.status(400).send({ Status: false, Message: "Activity Priority Cannot be empty"});
+   } else if(!ReceivingData.Company_Id || ReceivingData.Company_Id === '') {
+      res.status(400).send({ Status: false, Message: "Company Details Cannot be empty"}); 
+   } else if(!ReceivingData.User_Id || ReceivingData.User_Id === '') {
+      res.status(400).send({ Status: false, Message: "Creator Details Cannot be empty"}); 
+   } else{
+      CRMSettingsModel.ActivityPrioritySchema.findOne({'Company_Id': ReceivingData.Company_Id, 'Activity_Priority': {$regex : new RegExp("^" + ReceivingData.Activity_Priority + "$", "i")}, 'If_Deleted' : false}, {},{}, function(err, result) {
+         if(err) {
+            ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Activity Priority Find Query Error', 'CRM_Settings.controller.js', err);
+            res.status(417).send({status: false, Message: "Some error occurred while Find Activity Priority!."});
+         } else {
+            if ( result !== null) {
+               res.status(200).send({Status: true, Available: false });
+            } else {
+               res.status(200).send({Status: true, Available: true });
+            }
+         }
+      });
+   }
+}      
+// Activity Priority Create -----------------------------------------------
       exports.Activity_Priority_Create = function(req, res) {
          var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
          var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
@@ -709,20 +873,34 @@ var mongoose = require('mongoose');
          }else {
             var Create_ActivityPriority  = new CRMSettingsModel.ActivityPrioritySchema({
                Activity_Priority: ReceivingData.Activity_Priority, 
-               Company_Id: ReceivingData.Company_Id,
-               Created_By: ReceivingData.Created_By,
-               Last_Modified_By: ReceivingData.Created_By,
+               Company_Id: mongoose.Types.ObjectId(ReceivingData.Company_Id),
+               Created_By: mongoose.Types.ObjectId(ReceivingData.Created_By),
+               Last_Modified_By: mongoose.Types.ObjectId(ReceivingData.Created_By),
                Active_Status: true,
                If_Deleted: false
             });
             Create_ActivityPriority.save(function(err, result) { // Activity Priority Save Query
                if(err) {
                   ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Activity Priority Creation Query Error', 'CRM_Settings.controller.js');
-                  res.status(417).send({Status: false, Error: err, Message: "Some error occurred while creating the Activity Priority!."});
+                  res.status(417).send({Status: false, Message: "Some error occurred while creating the Activity Priority!."});
                } else {
-                  var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result), 'SecretKeyOut@123');
-                  ReturnData = ReturnData.toString();
-                  res.status(200).send({Status: true, Response: ReturnData });
+                  CRMSettingsModel.ActivityPrioritySchema
+                     .findOne({'_id': result._id})
+                     .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
+                     .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
+                     .exec(function(err_1, result_1) { // Activity Priority FindOne Query
+                     if(err_1) {
+                        ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Activity Priority Find Query Error', 'CRM_Settings.controller.js', err_1);
+                        res.status(417).send({status: false, Message: "Some error occurred while Find The Activity Priority!."});
+                     } else {
+                        var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result_1), 'SecretKeyOut@123');
+                           ReturnData = ReturnData.toString();
+                           // setTimeout(() => {
+                              
+                           // }, 5000);
+                           res.status(200).send({Status: true, Response: ReturnData });
+                     }
+                  });
                }
             });
          }
@@ -738,9 +916,13 @@ var mongoose = require('mongoose');
          } else if(!ReceivingData.User_Id || ReceivingData.User_Id === ''){
             res.status(400).send({Status: false, Message: "User Details Can not be Empty" });
          } else {
-            CRMSettingsModel.ActivityPrioritySchema.find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, {}, {sort: { updatedAt: -1 }}, function(err, result) { // Activity Priority FindOne Query
+            CRMSettingsModel.ActivityPrioritySchema
+               .find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, {}, {sort: { updatedAt: -1 }})
+               .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
+               .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
+               .exec(function(err, result) { // Activity Priority FindOne Query
                if(err) {
-                  ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Activiyt Priority Find Query Error', 'CRM_Settings.controller.js', err);
+                  ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Activity Priority Find Query Error', 'CRM_Settings.controller.js', err);
                   res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Activity Priority!."});
                } else {
                   var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result), 'SecretKeyOut@123');
@@ -793,15 +975,26 @@ var mongoose = require('mongoose');
                } else {
                   if (result !== null) {
                      result.Activity_Priority = ReceivingData.Activity_Priority;
-                     result.Last_Modified_By = ReceivingData.Modified_By;
+                     result.Last_Modified_By = mongoose.Types.ObjectId(ReceivingData.Modified_By);
                      result.save(function(err_1, result_1) { // Activity Priority Update Query
                         if(err_1) {
                            ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Activity Priority Update Query Error', 'CRM_Settings.controller.js');
                            res.status(417).send({Status: false, Error: err_1, Message: "Some error occurred while Update the Activity Priority!."});
                         } else {
-                           var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result_1), 'SecretKeyOut@123');
-                           ReturnData = ReturnData.toString();
-                           res.status(200).send({Status: true, Response: ReturnData });
+                           CRMSettingsModel.ActivityPrioritySchema
+                              .findOne({'_id': result_1._id})
+                              .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
+                              .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
+                              .exec(function(err_2, result_2) { // Activity Priority FindOne Query
+                              if(err_2) {
+                                 ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Activity Priority Find Query Error', 'CRM_Settings.controller.js', err_2);
+                                 res.status(417).send({status: false, Message: "Some error occurred while Find The Activity Priority!."});
+                              } else {
+                                 var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result_2), 'SecretKeyOut@123');
+                                    ReturnData = ReturnData.toString();
+                                 res.status(200).send({Status: true, Response: ReturnData });
+                              }
+                           });
                         }
                      });
                   } else {
@@ -848,7 +1041,33 @@ var mongoose = require('mongoose');
 
 
 // ************************************************** Contact Role *****************************************************
-   // Contact Role Create -----------------------------------------------
+// Contact Role Async Validate
+exports.ContactRole_AsyncValidate = function(req, res){
+   var CryptoBytes = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
+   var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+
+   if(!ReceivingData.Contact_Role || ReceivingData.Contact_Role === ''){
+      res.status(400).send({ Status: false, Message: "Contact Role Cannot be empty"});
+   } else if(!ReceivingData.Company_Id || ReceivingData.Company_Id === '') {
+      res.status(400).send({ Status: false, Message: "Company Details Cannot be empty"}); 
+   } else if(!ReceivingData.User_Id || ReceivingData.User_Id === '') {
+      res.status(400).send({ Status: false, Message: "Creator Details Cannot be empty"}); 
+   } else{
+      CRMSettingsModel.ContactRoleSchema.findOne({'Company_Id': ReceivingData.Company_Id, 'Contact_Role': {$regex : new RegExp("^" + ReceivingData.Contact_Role + "$", "i")}, 'If_Deleted' : false}, {},{}, function(err, result) {
+         if(err) {
+            ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Contact Role Find Query Error', 'CRM_Settings.controller.js', err);
+            res.status(417).send({status: false, Message: "Some error occurred while Find Contact Role!."});
+         } else {
+            if ( result !== null) {
+               res.status(200).send({Status: true, Available: false });
+            } else {
+               res.status(200).send({Status: true, Available: true });
+            }
+         }
+      });
+   }
+}       
+// Contact Role Create -----------------------------------------------
       exports.Contact_Role_Create = function(req, res) {
          var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
          var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
@@ -862,20 +1081,34 @@ var mongoose = require('mongoose');
          }else {
             var Create_ContactRole = new CRMSettingsModel.ContactRoleSchema({
                Contact_Role: ReceivingData.Contact_Role, 
-               Company_Id: ReceivingData.Company_Id,
-               Created_By: ReceivingData.Created_By,
-               Last_Modified_By: ReceivingData.Created_By,
+               Company_Id: mongoose.Types.ObjectId(ReceivingData.Company_Id),
+               Created_By: mongoose.Types.ObjectId(ReceivingData.Created_By),
+               Last_Modified_By: mongoose.Types.ObjectId(ReceivingData.Created_By),
                Active_Status: true,
                If_Deleted: false
             });
             Create_ContactRole.save(function(err, result) { // Contact Role Save Query
                if(err) {
                   ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Contact Role Creation Query Error', 'CRM_Settings.controller.js');
-                  res.status(417).send({Status: false, Error: err, Message: "Some error occurred while creating the Contact Role!."});
+                  res.status(417).send({Status: false, Message: "Some error occurred while creating the Contact Role!."});
                } else {
-                  var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result), 'SecretKeyOut@123');
-                  ReturnData = ReturnData.toString();
-                  res.status(200).send({Status: true, Response: ReturnData });
+                  CRMSettingsModel.ContactRoleSchema
+                     .findOne({'_id': result._id})
+                     .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
+                     .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
+                     .exec(function(err_1, result_1) { // Contact Role FindOne Query
+                     if(err_1) {
+                        ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Contact RoleFind Query Error', 'CRM_Settings.controller.js', err_1);
+                        res.status(417).send({status: false, Message: "Some error occurred while Find The Contact Role!."});
+                     } else {
+                        var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result_1), 'SecretKeyOut@123');
+                           ReturnData = ReturnData.toString();
+                           // setTimeout(() => {
+                              
+                           // }, 5000);
+                           res.status(200).send({Status: true, Response: ReturnData });
+                     }
+                  });
                }
             });
          }
@@ -891,16 +1124,20 @@ var mongoose = require('mongoose');
          } else if(!ReceivingData.User_Id || ReceivingData.User_Id === ''){
             res.status(400).send({Status: false, Message: "User Details Can not be Empty" });
          } else {
-            CRMSettingsModel.ContactRoleSchema.find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, {}, {sort: { updatedAt: -1 }}, function(err, result) { // Contact Role FindOne Query
-               if(err) {
-                  ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Contact Role Find Query Error', 'CRM_Settings.controller.js', err);
-                  res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Contact Role!."});
-               } else {
-                  var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result), 'SecretKeyOut@123');
-                  ReturnData = ReturnData.toString();
-                  res.status(200).send({Status: true, Response: ReturnData });
-               }
-            });
+            CRMSettingsModel.ContactRoleSchema
+            .find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, {}, {sort: { updatedAt: -1 }})
+            .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
+            .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
+            .exec(function(err, result) { // Contact Role FindOne Query
+            if(err) {
+               ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Contact Role Find Query Error', 'CRM_Settings.controller.js', err);
+               res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Contact Role!."});
+            } else {
+               var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result), 'SecretKeyOut@123');
+               ReturnData = ReturnData.toString();
+               res.status(200).send({Status: true, Response: ReturnData });
+            }
+         });
          }
       };
 
@@ -914,7 +1151,7 @@ var mongoose = require('mongoose');
          } else if (!ReceivingData.User_Id || ReceivingData.User_Id === ''  ) {
             res.status(400).send({Status: false, Message: "User Details can not be empty" });
          }else {
-            CRMSettingsModel.ContactRoleSchema.find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, { Industry_Type : 1 }, {sort: { updatedAt: -1 }}, function(err, result) { // Contact Role FindOne Query
+            CRMSettingsModel.ContactRoleSchema.find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, {}, {sort: { updatedAt: -1 }}, function(err, result) { // Contact Role FindOne Query
                if(err) {
                   ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Contact Role Find Query Error', 'CRM_Settings.controller.js', err);
                   res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Contact Role!."});
@@ -946,15 +1183,26 @@ var mongoose = require('mongoose');
                } else {
                   if (result !== null) {
                      result.Contact_Role = ReceivingData.Contact_Role;
-                     result.Last_Modified_By = ReceivingData.Modified_By;
+                     result.Last_Modified_By = mongoose.Types.ObjectId(ReceivingData.Modified_By);
                      result.save(function(err_1, result_1) { // Contact Role Update Query
                         if(err_1) {
-                           ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Contact RoleUpdate Query Error', 'CRM_Settings.controller.js');
+                           ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Contact Role Update Query Error', 'CRM_Settings.controller.js');
                            res.status(417).send({Status: false, Error: err_1, Message: "Some error occurred while Update the Contact Role!."});
                         } else {
-                           var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result_1), 'SecretKeyOut@123');
-                           ReturnData = ReturnData.toString();
-                           res.status(200).send({Status: true, Response: ReturnData });
+                           CRMSettingsModel.ContactRoleSchema
+                              .findOne({'_id': result_1._id})
+                              .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
+                              .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
+                              .exec(function(err_2, result_2) { // Contact Role FindOne Query
+                              if(err_2) {
+                                 ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Contact Role Find Query Error', 'CRM_Settings.controller.js', err_2);
+                                 res.status(417).send({status: false, Message: "Some error occurred while Find The Contact Role!."});
+                              } else {
+                                 var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result_2), 'SecretKeyOut@123');
+                                    ReturnData = ReturnData.toString();
+                                 res.status(200).send({Status: true, Response: ReturnData });
+                              }
+                           });
                         }
                      });
                   } else {
@@ -1001,7 +1249,33 @@ var mongoose = require('mongoose');
 
 
 // ************************************************** Pipeline Status *****************************************************
-   // Pipeline Status Create -----------------------------------------------
+// Pipeline Status Async Validate
+exports.PipelineStatus_AsyncValidate = function(req, res){
+   var CryptoBytes = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
+   var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+
+   if(!ReceivingData.Pipeline_Status || ReceivingData.Pipeline_Status === ''){
+      res.status(400).send({ Status: false, Message: "Pipeline Status Cannot be empty"});
+   } else if(!ReceivingData.Company_Id || ReceivingData.Company_Id === '') {
+      res.status(400).send({ Status: false, Message: "Company Details Cannot be empty"}); 
+   } else if(!ReceivingData.User_Id || ReceivingData.User_Id === '') {
+      res.status(400).send({ Status: false, Message: "Creator Details Cannot be empty"}); 
+   } else{
+      CRMSettingsModel.PipelineStatusSchema.findOne({'Company_Id': ReceivingData.Company_Id, 'Pipeline_Status': {$regex : new RegExp("^" + ReceivingData.Pipeline_Status + "$", "i")}, 'If_Deleted' : false}, {},{}, function(err, result) {
+         if(err) {
+            ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Pipeline Status Find Query Error', 'CRM_Settings.controller.js', err);
+            res.status(417).send({status: false, Message: "Some error occurred while Find Pipeline Status!."});
+         } else {
+            if ( result !== null) {
+               res.status(200).send({Status: true, Available: false });
+            } else {
+               res.status(200).send({Status: true, Available: true });
+            }
+         }
+      });
+   }
+}            
+// Pipeline Status Create -----------------------------------------------
       exports.Pipeline_Status_Create = function(req, res) {
          var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
          var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
@@ -1015,25 +1289,38 @@ var mongoose = require('mongoose');
          }else {
             var Create_PipelineStatus = new CRMSettingsModel.PipelineStatusSchema({
                Pipeline_Status: ReceivingData.Pipeline_Status, 
-               Company_Id: ReceivingData.Company_Id,
-               Created_By: ReceivingData.Created_By,
-               Last_Modified_By: ReceivingData.Created_By,
+               Company_Id: mongoose.Types.ObjectId(ReceivingData.Company_Id),
+               Created_By: mongoose.Types.ObjectId(ReceivingData.Created_By),
+               Last_Modified_By: mongoose.Types.ObjectId(ReceivingData.Created_By),
                Active_Status: true,
                If_Deleted: false
             });
             Create_PipelineStatus.save(function(err, result) { // Pipeline Status Save Query
                if(err) {
-                  ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Pipeline Status Creation Query Error', 'CRM_Settings.controller.js');
-                  res.status(417).send({Status: false, Error: err, Message: "Some error occurred while creating the Pipeline Status!."});
+                  ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Pipeline StatusCreation Query Error', 'CRM_Settings.controller.js');
+                  res.status(417).send({Status: false, Message: "Some error occurred while creating the Pipeline Status!."});
                } else {
-                  var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result), 'SecretKeyOut@123');
-                  ReturnData = ReturnData.toString();
-                  res.status(200).send({Status: true, Response: ReturnData });
+                  CRMSettingsModel.PipelineStatusSchema
+                     .findOne({'_id': result._id})
+                     .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
+                     .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
+                     .exec(function(err_1, result_1) { // Pipeline Status FindOne Query
+                     if(err_1) {
+                        ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Pipeline Status Find Query Error', 'CRM_Settings.controller.js', err_1);
+                        res.status(417).send({status: false, Message: "Some error occurred while Find The Pipeline Status!."});
+                     } else {
+                        var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result_1), 'SecretKeyOut@123');
+                           ReturnData = ReturnData.toString();
+                           // setTimeout(() => {
+                              
+                           // }, 5000);
+                           res.status(200).send({Status: true, Response: ReturnData });
+                     }
+                  });
                }
             });
-         }
-      };
-
+      }
+   };
    // Pipeline Status List -----------------------------------------------
       exports.Pipeline_Status_List = function(req, res) {
          var CryptoBytes = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
@@ -1044,16 +1331,20 @@ var mongoose = require('mongoose');
          } else if(!ReceivingData.User_Id || ReceivingData.User_Id === ''){
             res.status(400).send({Status: false, Message: "User Details Can not be Empty" });
          } else {
-            CRMSettingsModel.PipelineStatusSchema.find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, {}, {sort: { updatedAt: -1 }}, function(err, result) { //  Pipeline Status FindOne Query
-               if(err) {
-                  ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings  Pipeline Status Find Query Error', 'CRM_Settings.controller.js', err);
-                  res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The  Pipeline Status!."});
-               } else {
-                  var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result), 'SecretKeyOut@123');
-                  ReturnData = ReturnData.toString();
-                  res.status(200).send({Status: true, Response: ReturnData });
-               }
-            });
+            CRMSettingsModel.PipelineStatusSchema
+            .find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, {}, {sort: { updatedAt: -1 }})
+            .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
+            .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
+            .exec(function(err, result) { // Pipeline Status FindOne Query
+            if(err) {
+               ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Pipeline Status Find Query Error', 'CRM_Settings.controller.js', err);
+               res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Pipeline Status!."});
+            } else {
+               var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result), 'SecretKeyOut@123');
+               ReturnData = ReturnData.toString();
+               res.status(200).send({Status: true, Response: ReturnData });
+            }
+         });
          }
       };
 
@@ -1099,15 +1390,26 @@ var mongoose = require('mongoose');
                } else {
                   if (result !== null) {
                      result.Pipeline_Status = ReceivingData.Pipeline_Status;
-                     result.Last_Modified_By = ReceivingData.Modified_By;
+                     result.Last_Modified_By = mongoose.Types.ObjectId(ReceivingData.Modified_By);
                      result.save(function(err_1, result_1) { // Pipeline Status Update Query
                         if(err_1) {
                            ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Pipeline Status Update Query Error', 'CRM_Settings.controller.js');
                            res.status(417).send({Status: false, Error: err_1, Message: "Some error occurred while Update the Pipeline Status!."});
                         } else {
-                           var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result_1), 'SecretKeyOut@123');
-                           ReturnData = ReturnData.toString();
-                           res.status(200).send({Status: true, Response: ReturnData });
+                           CRMSettingsModel.PipelineStatusSchema
+                              .findOne({'_id': result_1._id})
+                              .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
+                              .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
+                              .exec(function(err_2, result_2) { // Pipeline Status FindOne Query
+                              if(err_2) {
+                                 ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Pipeline Status Find Query Error', 'CRM_Settings.controller.js', err_2);
+                                 res.status(417).send({status: false, Message: "Some error occurred while Find The Pipeline Status!."});
+                              } else {
+                                 var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result_2), 'SecretKeyOut@123');
+                                    ReturnData = ReturnData.toString();
+                                 res.status(200).send({Status: true, Response: ReturnData });
+                              }
+                           });
                         }
                      });
                   } else {
@@ -1151,11 +1453,3 @@ var mongoose = require('mongoose');
             });
          }
       };
-
-
-
-
-
-
-
-

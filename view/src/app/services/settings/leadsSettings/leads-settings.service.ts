@@ -13,6 +13,10 @@ export class LeadsSettingsService {
   constructor(private http: Http) { }
 
   // Lead Source
+  public LeadSource_AsyncValidate(Info: any): Observable<any[]> {
+    return this.http.post(API_URL + 'LeadSource_AsyncValidate', Info)
+    .pipe( map(response => response),  catchError(error => of(error)));
+  }
   public Lead_Source_Create(Info: any): Observable<any[]> {
     return this.http.post(API_URL + 'Lead_Source_Create', Info)
     .pipe( map(response => response),  catchError(error => of(error)));

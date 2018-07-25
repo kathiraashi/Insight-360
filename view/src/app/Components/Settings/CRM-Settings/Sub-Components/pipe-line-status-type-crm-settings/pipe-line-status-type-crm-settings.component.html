@@ -18,7 +18,7 @@
                <th>S.no</th>
                <th>Pipeline Status</th>
                <th>Created By </th>
-               <th>Date</th>
+               <th>Modified By</th>
                <th>Action</th>
             </tr>
          </thead>
@@ -31,11 +31,11 @@
                   <span class="Style_1">{{ Item.Pipeline_Status }}</span>
                </td>
                <td>
-                  <span class="Style_1"> {{ Item.Created_By }}  </span>
-               </td>
-               <td>
-                  <span class="Style_1">{{ Item.updatedAt | date:'medium' }} </span>
-               </td>
+                <span class="Style_1">{{Item.Created_By.Name}}</span>
+             </td>
+             <td>
+                <span class="Style_1">{{ Item.Last_Modified_By.Name }}</span>
+             </td>
                <td>
                   <button (click)="ViewPipelineStatus(i)" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
                      <i class="material-icons">zoom_in</i>

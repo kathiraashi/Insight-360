@@ -20,13 +20,15 @@ module.exports = function(app) {
       app.post('/API/CRM_Settings/Ownership_Type_Delete', Controller.Ownership_Type_Delete);
 
    // Activity Type --------------------------------------------------
+      app.post('/API/CRM_Settings/ActivityType_AsyncValidate', Controller.ActivityType_AsyncValidate);
       app.post('/API/CRM_Settings/Activity_Type_Create', Controller.Activity_Type_Create); 
       app.post('/API/CRM_Settings/Activity_Type_List', Controller.Activity_Type_List); 
       app.post('/API/CRM_Settings/Activity_Type_SimpleList', Controller.Activity_Type_SimpleList); 
       app.post('/API/CRM_Settings/Activity_Type_Update', Controller.Activity_Type_Update); 
       app.post('/API/CRM_Settings/Activity_Type_Delete', Controller.Activity_Type_Delete);      
       
-   // Activity Type --------------------------------------------------
+   // Activity Status --------------------------------------------------
+      app.post('/API/CRM_Settings/ActivityStatus_AsyncValidate', Controller.ActivityStatus_AsyncValidate);
       app.post('/API/CRM_Settings/Activity_Status_Create', Controller.Activity_Status_Create); 
       app.post('/API/CRM_Settings/Activity_Status_List', Controller.Activity_Status_List); 
       app.post('/API/CRM_Settings/Activity_Status_SimpleList', Controller.Activity_Status_SimpleList); 
@@ -34,6 +36,7 @@ module.exports = function(app) {
       app.post('/API/CRM_Settings/Activity_Status_Delete', Controller.Activity_Status_Delete); 
 
    // Activity Priority --------------------------------------------------
+      app.post('/API/CRM_Settings/ActivityPriority_AsyncValidate', Controller.ActivityPriority_AsyncValidate);
       app.post('/API/CRM_Settings/Activity_Priority_Create', Controller.Activity_Priority_Create); 
       app.post('/API/CRM_Settings/Activity_Priority_List', Controller.Activity_Priority_List); 
       app.post('/API/CRM_Settings/Activity_Priority_SimpleList', Controller.Activity_Priority_SimpleList); 
@@ -41,6 +44,7 @@ module.exports = function(app) {
       app.post('/API/CRM_Settings/Activity_Priority_Delete', Controller.Activity_Priority_Delete); 
 
    // Contact role --------------------------------------------------
+      app.post('/API/CRM_Settings/ContactRole_AsyncValidate', Controller.ContactRole_AsyncValidate);
       app.post('/API/CRM_Settings/Contact_Role_Create', Controller.Contact_Role_Create); 
       app.post('/API/CRM_Settings/Contact_Role_List', Controller.Contact_Role_List); 
       app.post('/API/CRM_Settings/Contact_Role_SimpleList', Controller.Contact_Role_SimpleList); 
@@ -48,7 +52,8 @@ module.exports = function(app) {
       app.post('/API/CRM_Settings/Contact_Role_Delete', Controller.Contact_Role_Delete); 
 
       
-   // Contact role --------------------------------------------------
+   // pipelinestatus role --------------------------------------------------
+      app.post('/API/CRM_Settings/PipelineStatus_AsyncValidate', Controller.PipelineStatus_AsyncValidate);
       app.post('/API/CRM_Settings/Pipeline_Status_Create', Controller.Pipeline_Status_Create); 
       app.post('/API/CRM_Settings/Pipeline_Status_List', Controller.Pipeline_Status_List); 
       app.post('/API/CRM_Settings/Pipeline_Status_SimpleList', Controller.Pipeline_Status_SimpleList); 
