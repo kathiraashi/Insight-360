@@ -23,7 +23,7 @@ export class IndustryTypeCrmSettingsComponent implements OnInit {
    _View: Boolean = false;
    _Edit: Boolean = false;
    _Delete: Boolean = false;
-
+   Loader: Boolean = true;
    _List: any[] = [];
    Company_Id = '5b3c66d01dd3ff14589602fe';
    User_Id = '5b530ef333fc40064c0db31e';
@@ -45,8 +45,10 @@ export class IndustryTypeCrmSettingsComponent implements OnInit {
                      const Data = { 'Company_Id': this.Company_Id, 'User_Id' : this.User_Id };
                      let Info = CryptoJS.AES.encrypt(JSON.stringify(Data), 'SecretKeyIn@123');
                      Info = Info.toString();
+                     this.Loader = true;
                      this.Service.Industry_Type_List({'Info': Info}).subscribe( response => {
                         const ResponseData = JSON.parse(response['_body']);
+                        this.Loader = false;
                         if (response['status'] === 200 && ResponseData['Status'] ) {
                            const CryptoBytes  = CryptoJS.AES.decrypt(ResponseData['Response'], 'SecretKeyOut@123');
                            const DecryptedData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));

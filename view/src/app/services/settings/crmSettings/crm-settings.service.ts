@@ -39,6 +39,7 @@ export class CrmSettingsService {
       public IndustryType_AsyncValidate(Info: any): Observable<any[]> {
          if (this.Service.If_LoggedIn()) {
             this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+            sessionStorage.setItem('SessionKey', btoa(Date()));
             return this.http.post(API_URL + 'IndustryType_AsyncValidate', Info, {headers: this.headers }).pipe( map(response => response),  catchError(error => of(error)));
          } else {
             return this.ValidateEveryRequest();
@@ -47,6 +48,7 @@ export class CrmSettingsService {
       public Industry_Type_Create(Info: any): Observable<any[]> {
          if (this.Service.If_LoggedIn()) {
             this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+            sessionStorage.setItem('SessionKey', btoa(Date()));
             return this.http.post(API_URL + 'Industry_Type_Create', Info, {headers: this.headers }).pipe( map(response => response),  catchError(error => of(error)));
          } else {
             return this.ValidateEveryRequest();
@@ -55,6 +57,7 @@ export class CrmSettingsService {
       public Industry_Type_List(Info: any): Observable<any[]> {
          if (this.Service.If_LoggedIn()) {
             this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+            sessionStorage.setItem('SessionKey', btoa(Date()));
             return this.http.post(API_URL + 'Industry_Type_List', Info, {headers: this.headers }).pipe( map(response => response), catchError(error => of(error)));
          } else {
             return this.ValidateEveryRequest();
@@ -63,6 +66,7 @@ export class CrmSettingsService {
       public Industry_Type_SimpleList(Info: any): Observable<any[]> {
          if (this.Service.If_LoggedIn()) {
             this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+            sessionStorage.setItem('SessionKey', btoa(Date()));
             return this.http.post(API_URL + 'Industry_Type_SimpleList', Info, {headers: this.headers }).pipe( map(response => response),  catchError(error => of(error)));
          } else {
             return this.ValidateEveryRequest();
@@ -71,6 +75,7 @@ export class CrmSettingsService {
       public Industry_Type_Update(Info: any): Observable<any[]> {
          if (this.Service.If_LoggedIn()) {
             this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+            sessionStorage.setItem('SessionKey', btoa(Date()));
             return this.http.post(API_URL + 'Industry_Type_Update', Info, {headers: this.headers }).pipe( map(response => response), catchError(error => of(error)));
          } else {
             return this.ValidateEveryRequest();
@@ -79,6 +84,7 @@ export class CrmSettingsService {
       public Industry_Type_Delete(Info: any): Observable<any[]> {
          if (this.Service.If_LoggedIn()) {
             this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+            sessionStorage.setItem('SessionKey', btoa(Date()));
             return this.http.post(API_URL + 'Industry_Type_Delete', Info, {headers: this.headers }).pipe( map(response => response),  catchError(error => of(error)));
          } else {
             return this.ValidateEveryRequest();
