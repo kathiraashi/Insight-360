@@ -63,7 +63,6 @@ export class IndustryTypeCrmSettingsComponent implements OnInit {
          this.bsModalRef.content.onClose.subscribe(response => {
             if (response['Status']) {
               this._List.splice(0, 0, response['Response']);
-              this._List.slice();
             }
          });
       }

@@ -13,6 +13,10 @@ export class HrmsSettingsService {
   constructor(private http: Http) { }
 
    // Leave Type
+      public LeaveType_AsyncValidate(Info: any): Observable<any[]> {
+         return this.http.post(API_URL + 'LeaveType_AsyncValidate', Info)
+         .pipe( map(response => response),  catchError(error => of(error)));
+      }
       public Leave_Type_Create(Info: any): Observable<any[]> {
          return this.http.post(API_URL + 'Leave_Type_Create', Info)
          .pipe( map(response => response),  catchError(error => of(error)));
@@ -35,6 +39,10 @@ export class HrmsSettingsService {
       }
 
       // Expenses Type
+      public ExpensesType_AsyncValidate(Info: any): Observable<any[]> {
+         return this.http.post(API_URL + 'ExpensesType_AsyncValidate', Info)
+         .pipe( map(response => response),  catchError(error => of(error)));
+      }
       public Expenses_Type_Create(Info: any): Observable<any[]> {
          return this.http.post(API_URL + 'Expenses_Type_Create', Info)
          .pipe( map(response => response),  catchError(error => of(error)));

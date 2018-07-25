@@ -8,6 +8,8 @@ import { DeleteConfirmationComponent } from '../../../../Common-Components/delet
 
 import { CrmSettingsService } from './../../../../../services/settings/crmSettings/crm-settings.service';
 import * as CryptoJS from 'crypto-js';
+import { ToastrService } from '../../../../../services/common-services/toastr-service/toastr.service';
+
 
 @Component({
   selector: 'app-owner-ship-type-crm-settings',
@@ -22,7 +24,8 @@ export class OwnerShipTypeCrmSettingsComponent implements OnInit {
    User_Id = '5b530ef333fc40064c0db31e';
 
    constructor(   private modalService: BsModalService,
-                  private Service: CrmSettingsService
+                  private Service: CrmSettingsService,
+                  private Toastr: ToastrService
                ) {
                   // Get Ownership Type List
                      const Data = { 'Company_Id': this.Company_Id, 'User_Id' : this.User_Id };
@@ -34,13 +37,20 @@ export class OwnerShipTypeCrmSettingsComponent implements OnInit {
                            const CryptoBytes  = CryptoJS.AES.decrypt(ResponseData['Response'], 'SecretKeyOut@123');
                            const DecryptedData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
                            this._List = DecryptedData;
-                        } else if (response['status'] === 400 && !ResponseData['Status']) {
-                           alert(ResponseData['Message']);
-                        } else if (response['status'] === 417 && !ResponseData['Status']) {
-                           alert(ResponseData['Message']);
+                        } else if (response['status'] === 400 || response['status'] === 417 && !ResponseData['Status']) {
+                           this.Toastr.NewToastrMessage(
+                              {
+                                 Type: 'Error',
+                                 Message: response['Message']
+                              }
+                           );
                         } else {
-                           alert('Some Error Occurred!, But not Identify!');
-                           console.log(response);
+                           this.Toastr.NewToastrMessage(
+                              {
+                                 Type: 'Error',
+                                 Message: 'Some Error Occurred!, But not Identify!'
+                              }
+                           );
                         }
                      });
                   }
@@ -87,25 +97,32 @@ export class OwnerShipTypeCrmSettingsComponent implements OnInit {
          this.bsModalRef = this.modalService.show(DeleteConfirmationComponent, Object.assign({initialState},  { ignoreBackdropClick: true, class: 'modal-sm' }));
          this.bsModalRef.content.onClose.subscribe(response => {
             if (response.Status) {
-               const Data = { 'Ownership_Type_Id' :  this._List[_index]._id, 'Modified_By' : '2' };
+               const Data = { 'Ownership_Type_Id' :  this._List[_index]._id, 'Modified_By' : this.User_Id };
                let Info = CryptoJS.AES.encrypt(JSON.stringify(Data), 'SecretKeyIn@123');
                Info = Info.toString();
                this.Service.Ownership_Type_Delete({'Info': Info}).subscribe( returnResponse => {
                   const ResponseData = JSON.parse(returnResponse['_body']);
                   if (returnResponse['status'] === 200 && ResponseData['Status'] ) {
                      this._List.splice(_index, 1);
-                     alert('Successfully Deleted');
-                  } else if (returnResponse['status'] === 400 && !ResponseData['Status']) {
-                     alert(ResponseData['Message']);
-                  } else if (returnResponse['status'] === 417 && !ResponseData['Status']) {
-                     alert(ResponseData['Message']);
+                     this.Toastr.NewToastrMessage(
+                        {  Type: 'Warning',
+                           Message: 'Ownership Type Successfully Deleted'
+                        }
+                     );
+                  } else if (returnResponse['status'] === 400 || returnResponse['status'] === 417 && !ResponseData['Status']) {
+                     this.Toastr.NewToastrMessage(
+                        {  Type: 'Error',
+                           Message: ResponseData['Message']
+                        }
+                     );
                   } else {
-                     alert('Some Error Occurred!, But not Identify!');
-                     console.log(returnResponse);
+                     this.Toastr.NewToastrMessage(
+                        {  Type: 'Error',
+                           Message: 'Some Error Occurred!, But not Identify!'
+                        }
+                     );
                   }
                });
-            } else {
-               alert('Ownership Type Delete Confirmation = Cancel.');
             }
          });
       }

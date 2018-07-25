@@ -8,6 +8,7 @@ import { DeleteConfirmationComponent } from '../../../../Common-Components/delet
 
 import { CrmSettingsService } from './../../../../../services/settings/crmSettings/crm-settings.service';
 import * as CryptoJS from 'crypto-js';
+import { ToastrService } from '../../../../../services/common-services/toastr-service/toastr.service';
 
 @Component({
   selector: 'app-activity-type-crm-settings',
@@ -19,12 +20,15 @@ export class ActivityTypeCrmSettingsComponent implements OnInit {
    bsModalRef: BsModalRef;
 
    _List: any[] = [];
+   Company_Id = '5b3c66d01dd3ff14589602fe';
+   User_Id = '5b530ef333fc40064c0db31e';
 
    constructor (  private modalService: BsModalService,
-                  private Service: CrmSettingsService
+                  private Service: CrmSettingsService,
+                  private Toastr: ToastrService
                ) {
                   //  Get Activity Type List
-                     const Data = { 'Company_Id' : '1', 'User_Id' : '2', };
+                     const Data = { 'Company_Id' : this.Company_Id, 'User_Id' : this.User_Id, };
                      let Info = CryptoJS.AES.encrypt(JSON.stringify(Data), 'SecretKeyIn@123');
                      Info = Info.toString();
                      this.Service.Activity_Type_List({'Info': Info}).subscribe( response => {
@@ -33,13 +37,18 @@ export class ActivityTypeCrmSettingsComponent implements OnInit {
                            const CryptoBytes  = CryptoJS.AES.decrypt(ResponseData['Response'], 'SecretKeyOut@123');
                            const DecryptedData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
                            this._List = DecryptedData;
-                        } else if (response['status'] === 400 && !ResponseData['Status']) {
-                           alert(ResponseData['Message']);
-                        } else if (response['status'] === 417 && !ResponseData['Status']) {
-                           alert(ResponseData['Message']);
+                        } else if (response['status'] === 400 || response['status'] === 417 && !ResponseData['Status']) {
+                           this.Toastr.NewToastrMessage({
+                            Type: 'Error',
+                            Message: response['Message']
+                           });
                         } else {
-                           alert('Some Error Occurred!, But not Identify!');
-                           console.log(response);
+                          this.Toastr.NewToastrMessage(
+                            {
+                               Type: 'Error',
+                               Message: 'Some Error Occurred!, But not Identify!'
+                            }
+                         );
                         }
                      });
                   }
@@ -48,13 +57,10 @@ export class ActivityTypeCrmSettingsComponent implements OnInit {
    // Create New Industry Type
       CreateActivitytype() {
          const initialState = { Type: 'Create' };
-         this.bsModalRef = this.modalService.show(ModelActivitytypeCrmsettingsComponent, Object.assign({initialState}, { class: '' }));
+         this.bsModalRef = this.modalService.show(ModelActivitytypeCrmsettingsComponent, Object.assign({initialState}, {ignoreBackdropClick: true, class: '' }));
          this.bsModalRef.content.onClose.subscribe(response => {
             if (response.Status) {
                this._List.splice(0, 0, response.Response);
-               alert('Activity Type Successfully Added.');
-            } else {
-            alert(response.Message);
             }
          });
       }
@@ -64,13 +70,10 @@ export class ActivityTypeCrmSettingsComponent implements OnInit {
             Type: 'Edit',
             Data: this._List[_index]
          };
-         this.bsModalRef = this.modalService.show(ModelActivitytypeCrmsettingsComponent, Object.assign({initialState}, { class: '' }));
+         this.bsModalRef = this.modalService.show(ModelActivitytypeCrmsettingsComponent, Object.assign({initialState}, { ignoreBackdropClick: true, class: '' }));
          this.bsModalRef.content.onClose.subscribe(response => {
             if (response.Status) {
                this._List[_index] = response.Response;
-               alert('Activity Type Successfully Updated.');
-            } else {
-               alert(response.Message);
             }
          });
       }
@@ -87,28 +90,35 @@ export class ActivityTypeCrmSettingsComponent implements OnInit {
       const initialState = {
          Text: 'Activity Type'
       };
-      this.bsModalRef = this.modalService.show(DeleteConfirmationComponent, Object.assign({initialState}, { class: 'modal-sm' }));
+      this.bsModalRef = this.modalService.show(DeleteConfirmationComponent, Object.assign({initialState}, { ignoreBackdropClick: true, class: 'modal-sm' }));
       this.bsModalRef.content.onClose.subscribe(response => {
          if (response.Status) {
-            const Data = { 'Activity_Type_Id' :  this._List[_index]._id, 'Modified_By' : '2' };
+            const Data = { 'Activity_Type_Id' :  this._List[_index]._id, 'Modified_By' : this.User_Id};
             let Info = CryptoJS.AES.encrypt(JSON.stringify(Data), 'SecretKeyIn@123');
             Info = Info.toString();
             this.Service.Activity_Type_Delete({'Info': Info}).subscribe( returnResponse => {
                const ResponseData = JSON.parse(returnResponse['_body']);
                if (returnResponse['status'] === 200 && ResponseData['Status'] ) {
                   this._List.splice(_index, 1);
-                  alert('Successfully Deleted');
-               } else if (returnResponse['status'] === 400 && !ResponseData['Status']) {
-                  alert(ResponseData['Message']);
-               } else if (returnResponse['status'] === 417 && !ResponseData['Status']) {
-                  alert(ResponseData['Message']);
-               } else {
-                  alert('Some Error Occurred!, But not Identify!');
-                  console.log(returnResponse);
+                  this.Toastr.NewToastrMessage(
+                     {  Type: 'Warning',
+                        Message: 'Activity Type Successfully Deleted'
+                     }
+                  );
+               } else if (returnResponse['status'] === 400 || returnResponse['status'] === 417 && !ResponseData['Status']) {
+                  this.Toastr.NewToastrMessage(
+                     {  Type: 'Error',
+                        Message: ResponseData['Message']
+                     }
+                  );
+               }  else {
+                  this.Toastr.NewToastrMessage(
+                     {  Type: 'Error',
+                        Message: 'Some Error Occurred!, But not Identify!'
+                     }
+                  );
                }
             });
-         } else {
-            alert('Activity Type Delete Confirmation = Cancel.');
          }
       });
    }

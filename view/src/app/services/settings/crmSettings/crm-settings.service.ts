@@ -40,8 +40,8 @@ export class CrmSettingsService {
 
 
    // Ownership Type
-      public OwnershipType_AsyncValidate(Info: any): Observable<any[]> {
-         return this.http.post(API_URL + 'OwnershipType_AsyncValidate', Info)
+      public ActivityType_AsyncValidate(Info: any): Observable<any[]> {
+         return this.http.post(API_URL + 'ActivityType_AsyncValidate', Info)
          .pipe( map(response => response),  catchError(error => of(error)));
       }
       public Ownership_Type_Create(Info: any): Observable<any[]> {
@@ -66,6 +66,10 @@ export class CrmSettingsService {
       }
 
       // Activity Type
+        public OwnershipType_AsyncValidate(Info: any): Observable<any[]> {
+            return this.http.post(API_URL + 'OwnershipType_AsyncValidate', Info)
+            .pipe( map(response => response),  catchError(error => of(error)));
+        }
          public Activity_Type_Create(Info: any): Observable<any[]> {
             return this.http.post(API_URL + 'Activity_Type_Create', Info)
             .pipe( map(response => response),  catchError(error => of(error)));
@@ -88,6 +92,10 @@ export class CrmSettingsService {
          }
 
       // Activity Status
+        public ActivityStatus_AsyncValidate(Info: any): Observable<any[]> {
+            return this.http.post(API_URL + 'ActivityStatus_AsyncValidate', Info)
+            .pipe( map(response => response),  catchError(error => of(error)));
+        }
          public Activity_Status_Create(Info: any): Observable<any[]> {
             return this.http.post(API_URL + 'Activity_Status_Create', Info)
             .pipe( map(response => response),  catchError(error => of(error)));
@@ -110,6 +118,10 @@ export class CrmSettingsService {
          }
 
       // Activity Priority
+        public ActivityPriority_AsyncValidate(Info: any): Observable<any[]> {
+            return this.http.post(API_URL + 'ActivityPriority_AsyncValidate', Info)
+            .pipe( map(response => response),  catchError(error => of(error)));
+        }
          public Activity_Priority_Create(Info: any): Observable<any[]> {
             return this.http.post(API_URL + 'Activity_Priority_Create', Info)
             .pipe( map(response => response),  catchError(error => of(error)));
@@ -132,6 +144,10 @@ export class CrmSettingsService {
          }
 
       // Contact Role
+        public ContactRole_AsyncValidate(Info: any): Observable<any[]> {
+            return this.http.post(API_URL + 'ContactRole_AsyncValidate', Info)
+            .pipe( map(response => response),  catchError(error => of(error)));
+        }
          public Contact_Role_Create(Info: any): Observable<any[]> {
             return this.http.post(API_URL + 'Contact_Role_Create', Info)
             .pipe( map(response => response),  catchError(error => of(error)));
@@ -154,6 +170,10 @@ export class CrmSettingsService {
          }
 
       // Pipeline Status
+        public PipelineStatus_AsyncValidate(Info: any): Observable<any[]> {
+            return this.http.post(API_URL + 'PipelineStatus_AsyncValidate', Info)
+            .pipe( map(response => response),  catchError(error => of(error)));
+        }
          public Pipeline_Status_Create(Info: any): Observable<any[]> {
             return this.http.post(API_URL + 'Pipeline_Status_Create', Info)
             .pipe( map(response => response),  catchError(error => of(error)));

@@ -42,6 +42,13 @@
     position: absolute;
     right: 0px;
  }
+ .Model_Footer .UploadingBtn{
+    color: #5a798c;
+ }
+ .Model_Footer .UploadingBtn I{
+    color: #2a9e40;
+ }
+
 
 
 

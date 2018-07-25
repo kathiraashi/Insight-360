@@ -42,10 +42,13 @@
     position: absolute;
     right: 0px;
  }
-
-
-
-/* ************************************ Create And Edit Form Style ******************************* */
+ .Model_Footer .UploadingBtn{
+    color: #5a798c;
+ }
+ .Model_Footer .UploadingBtn I{
+    color: #2a9e40;
+ }
+* ************************************ Create And Edit Form Style ******************************* */
  .Form_Input{
     margin-bottom: 20px;
  }
@@ -161,3 +164,11 @@
     margin-bottom: 10px;
     font-size: 14px;
  }
+ .view_item .Data .Badge{
+    color: #4ab65f;
+    padding: 2px 4px;
+    border-radius: 20px;
+    font-size: 10px;
+    letter-spacing: 0.4px;
+    border: 1px solid #4ab65f;
+}

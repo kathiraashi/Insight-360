@@ -85,7 +85,7 @@ export class ModelOwnershipytypeCrmsettingsComponent implements OnInit {
 
    // Submit New Ownership Type
       submit() {
-         if (this.Form.valid) {
+         if (this.Form.valid && !this.Uploading) {
             this.Uploading = true;
             const Data = this.Form.value;
             let Info = CryptoJS.AES.encrypt(JSON.stringify(Data), 'SecretKeyIn@123');
@@ -117,7 +117,7 @@ export class ModelOwnershipytypeCrmsettingsComponent implements OnInit {
                         Message: 'Error Not Identify!, Creating Ownership Type!'
                      }
                   );
-                  this.onClose.next({Status: false});
+                  this.onClose.next({Status: false, Message: 'UnExpected Error!'});
                   this.bsModalRef.hide();
                }
             });
@@ -150,15 +150,15 @@ export class ModelOwnershipytypeCrmsettingsComponent implements OnInit {
                         Message: ReceivingData['Message']
                      }
                   );
-                  this.onClose.next({Status: false, Message: 'Bad Request Error!'});
+                  this.onClose.next({Status: false});
                   this.bsModalRef.hide();
                } else {
                   this.Toastr.NewToastrMessage(
                      {  Type: 'Error',
-                        Message: 'Error Not Identify!, Creating Ownership Type!'
+                        Message: 'Error Not Identify!, Updating Ownership Type!'
                      }
                   );
-                  this.onClose.next({Status: false, Message: 'UnExpected Error!'});
+                  this.onClose.next({Status: false});
                   this.bsModalRef.hide();
                }
             });
