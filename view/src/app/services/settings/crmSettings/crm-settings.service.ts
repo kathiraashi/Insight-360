@@ -93,13 +93,8 @@ export class CrmSettingsService {
 
 
    // Ownership Type
-<<<<<<< HEAD
-      public ActivityType_AsyncValidate(Info: any): Observable<any[]> {
-         return this.http.post(API_URL + 'ActivityType_AsyncValidate', Info)
-=======
       public OwnershipType_AsyncValidate(Info: any): Observable<any[]> {
          return this.http.post(API_URL + 'OwnershipType_AsyncValidate', Info, {headers: this.headers })
->>>>>>> 99c501fd641a7391be5bce935673c2d6176a7842
          .pipe( map(response => response),  catchError(error => of(error)));
       }
       public Ownership_Type_Create(Info: any): Observable<any[]> {
@@ -124,8 +119,8 @@ export class CrmSettingsService {
       }
 
       // Activity Type
-        public OwnershipType_AsyncValidate(Info: any): Observable<any[]> {
-            return this.http.post(API_URL + 'OwnershipType_AsyncValidate', Info)
+        public ActivityType_AsyncValidate(Info: any): Observable<any[]> {
+            return this.http.post(API_URL + 'ActivityType_AsyncValidate', Info)
             .pipe( map(response => response),  catchError(error => of(error)));
         }
          public Activity_Type_Create(Info: any): Observable<any[]> {

@@ -9,58 +9,6 @@
             <div class="rect6"></div>
          </div>
    </div>
-<<<<<<< HEAD
-<!-- Table Section -->
-   <div class="Table_Section">
-      <table >
-         <thead>
-            <tr>
-               <th>S.no</th>
-               <th>Industry Type</th>
-               <th>Created By </th>
-               <th>Last Modified By</th>
-               <th>Action</th>
-            </tr>
-         </thead>
-         <tbody>
-            <tr *ngFor="let Item of _List; let i=index">
-               <td>
-                  <span class="S_no"> {{ i + 1}} </span>
-               </td>
-               <td>
-                  <span class="Style_1"> {{Item.Industry_Type}} </span>
-               </td>
-               <td>
-                  <span class="Style_1"> {{Item.Created_By.Name}}
-                      <!-- <span class="Badge"> {{Item.Created_By.User_Type.User_Type}} </span>
-                      <br> 
-                      <span class="Time"> {{Item.createdAt | date:'medium'}}  </span> -->
-                  </span>
-               </td>
-               <td>
-                  <span class="Style_1"> 
-                     {{Item.Last_Modified_By.Name}} 
-                     <!-- <span class="Badge"> {{Item.Last_Modified_By.User_Type.User_Type}} </span> 
-                     <br> 
-                     <span class="Time"> {{Item.updatedAt | date:'medium'}}  </span> -->
-                  </span>
-               </td>
-               <td>
-                  <button (click)="ViewIndustrytype(i)" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
-                     <i class="material-icons">zoom_in</i>
-                  </button>
-                  <button  (click)="EditIndustrytype(i)" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
-                     <i class="material-icons">edit</i>
-                  </button>
-                  <button (click)=" DeleteIndustryType(i)" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
-                     <i class="material-icons">delete_forever</i>
-                  </button>
-               </td>
-            </tr>
-         </tbody>
-      </table>
-   </div>
-=======
 </div>
 <div class="LoadedDataStyle_1" [ngClass]="{'Show': !Loader}">
    <!-- Page Header Part -->
@@ -126,4 +74,3 @@
          </table>
       </div>
 </div>
->>>>>>> 99c501fd641a7391be5bce935673c2d6176a7842
