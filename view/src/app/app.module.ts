@@ -6,7 +6,7 @@
    import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
    import { FormsModule, ReactiveFormsModule } from '@angular/forms';
    import { HttpModule } from '@angular/http';
-   import { HttpClientModule } from '@angular/common/http';
+   import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
    import { RouterModule, Routes } from '@angular/router';
 
 // Default Components
@@ -20,7 +20,7 @@
 
 // Custom Modules
    import { AppRoutingModule } from './app.routing.module';
-
+   import { AuthGuard } from './Authentication/auth.guard';
 
 // Custom Components
    // Component Folder
@@ -264,7 +264,8 @@ import { MainPayrollMasterHrComponent } from './Components/HR/SubComponents/Payr
 import { PayrollMasterCreateComponent } from './Components/HR/SubComponents/Payroll-Master/payroll-master-create/payroll-master-create.component';
 import { ModelPayrollMasterViewComponent } from './models/HR/model-payroll-master-view/model-payroll-master-view.component';
 
-
+// Services
+    import { LoginService } from './services/LoginService/login.service';
 
 
 @NgModule({
@@ -537,7 +538,7 @@ import { ModelPayrollMasterViewComponent } from './models/HR/model-payroll-maste
       // Custom Modules
          AppRoutingModule,
    ],
-   providers: [],
+   providers: [AuthGuard],
    entryComponents: [ModelCompanyinfoCompanysettingsComponent,
       ModelContactinfoCompanysettingsComponent,
       ModelDepartmentsCompanysettingsComponent,

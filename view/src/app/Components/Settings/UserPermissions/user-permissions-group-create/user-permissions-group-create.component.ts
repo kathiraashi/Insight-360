@@ -36,7 +36,7 @@ export class UserPermissionsGroupCreateComponent implements OnInit {
                            const DecryptedData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
                            this._List = DecryptedData;
                            this._List.map(MainModule => {
-                              this._Modules.push({_id: MainModule._id, Module_Name: MainModule.Module_Name});
+                              this._Modules.push({_id: MainModule._id, Module_Name: MainModule.Module_Name, Module_Key: MainModule.Module_Key});
                               MainModule.Access_Permission = false;
                               MainModule.AllView_Permission = false;
                               MainModule.AllCreate_Permission = false;

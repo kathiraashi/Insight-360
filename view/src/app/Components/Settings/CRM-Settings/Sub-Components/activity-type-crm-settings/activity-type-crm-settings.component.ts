@@ -32,6 +32,7 @@ export class ActivityTypeCrmSettingsComponent implements OnInit {
                      let Info = CryptoJS.AES.encrypt(JSON.stringify(Data), 'SecretKeyIn@123');
                      Info = Info.toString();
                      this.Service.Activity_Type_List({'Info': Info}).subscribe( response => {
+                       console.log(response);
                         const ResponseData = JSON.parse(response['_body']);
                         if (response['status'] === 200 && ResponseData['Status'] ) {
                            const CryptoBytes  = CryptoJS.AES.decrypt(ResponseData['Response'], 'SecretKeyOut@123');

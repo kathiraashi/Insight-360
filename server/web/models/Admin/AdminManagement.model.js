@@ -21,10 +21,6 @@ var CompanyManagementSchema = mongoose.Schema({
    { timestamps: true }
 );
 
-var UserManagement_PermissionGroups_Schema = mongoose.Schema({
-
-});
-
 
 var UserManagementSchema = mongoose.Schema({
    User_Name: { type : String , unique: true, required : true },
@@ -46,6 +42,10 @@ var UserManagementSchema = mongoose.Schema({
    Company_Id: { type: Schema.Types.ObjectId, ref: 'Company_Management' },
    Last_ModifiedBy: { type: Schema.Types.ObjectId, ref: 'User_Management' },
    Active_Status: { type : Boolean, required : true },
+   LoginToken: { type : String },
+   LoginTime: { type : Date },
+   LastActiveTime: { type : Date },
+   LogOutTime: { type : Date },
    },
    { timestamps: true }
 );
@@ -88,7 +88,7 @@ var UserTypesSchema = mongoose.Schema({
 
 var ProjectModulesSchema = mongoose.Schema({
    Module_Name: { type : String , required : true },
-   Module_Router_Name: {type : String},
+   Module_Key: {type : String, required : true},
    Active_Status: { type : Boolean, required : true },
    },
    { timestamps: true }
@@ -97,7 +97,7 @@ var ProjectModulesSchema = mongoose.Schema({
 
 var ProjectSubModulesSchema = mongoose.Schema({
    SubModule_Name: { type : String , required : true },
-   SubModule_Router_Name: {type : String },
+   SubModule_Key: {type : String, required : true },
    Module_Id: { type: Schema.Types.ObjectId, ref: 'Project_Modules' },
    Active_Status: { type : Boolean, required : true },
    },
@@ -109,7 +109,8 @@ var PermissionsGroupSchema = mongoose.Schema({
    Group_Name:  { type : String , required : true },
    Group_Module:  { 
       Module_Id: { type: Schema.Types.ObjectId, ref: 'Project_Modules' },
-      Module_Name: { type : String , required : true }
+      Module_Name: { type : String , required : true },
+      Module_Key: { type : String , required : true }
    },
    Group_UserType:  { 
       UserType_Id:  { type: Schema.Types.ObjectId, ref: 'User_Types' },

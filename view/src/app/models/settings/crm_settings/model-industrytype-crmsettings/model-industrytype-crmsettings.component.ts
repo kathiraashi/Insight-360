@@ -54,7 +54,6 @@ export class ModelIndustrytypeCrmsettingsComponent implements OnInit {
                Modified_By: new FormControl(this.User_Id, Validators.required)
             });
          }
-         console.log(this.Form);
    }
    // onSubmit Function
       onSubmit() {
