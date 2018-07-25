@@ -101,19 +101,13 @@ export class ModelPipelinestatusCrmsettingsComponent implements OnInit {
                   this.onClose.next({Status: true, Response: DecryptedData});
                   this.bsModalRef.hide();
                } else if (response['status'] === 400 || response['status'] === 417 && !ReceivingData.Status) {
-                this.Toastr.NewToastrMessage(
-                  {  Type: 'Error',
-                     Message: ReceivingData['Message']
-                  }
-                );
+                this.Toastr.NewToastrMessage({  Type: 'Error', Message: ReceivingData['Message']});
                   this.onClose.next({Status: false});
                   this.bsModalRef.hide();
-               } else {
-                this.Toastr.NewToastrMessage(
-                  {  Type: 'Error',
-                     Message: 'Error Not Identify!, Creating Pipeline status!'
-                  }
-               );
+               } else if (response['status'] === 401 && !ReceivingData['Status']) {
+                this.Toastr.NewToastrMessage( { Type: 'Error', Message: ReceivingData['Message'] } );
+             } else {
+                this.Toastr.NewToastrMessage({  Type: 'Error', Message: 'Error Not Identify!, Creating Pipeline status!' });
                   this.onClose.next({Status: false, Message: 'UnExpected Error!'});
                   this.bsModalRef.hide();
                }
@@ -142,19 +136,13 @@ export class ModelPipelinestatusCrmsettingsComponent implements OnInit {
                   this.onClose.next({Status: true, Response: DecryptedData});
                   this.bsModalRef.hide();
                } else if (response['status'] === 400 || response['status'] === 417 && !ReceivingData.Status) {
-                this.Toastr.NewToastrMessage(
-                  {  Type: 'Error',
-                    Message: ReceivingData['Message']
-                  }
-                );
+                this.Toastr.NewToastrMessage({  Type: 'Error', Message: ReceivingData['Message']});
                 this.onClose.next({Status: false});
                   this.bsModalRef.hide();
-               } else {
-                this.Toastr.NewToastrMessage(
-                  {  Type: 'Error',
-                     Message: 'Error Not Identify!, Updating Pipeline status!'
-                  }
-               );
+               } else if (response['status'] === 401 && !ReceivingData['Status']) {
+                this.Toastr.NewToastrMessage( { Type: 'Error', Message: ReceivingData['Message'] } );
+             } else {
+                this.Toastr.NewToastrMessage({  Type: 'Error', Message: 'Error Not Identify!, Updating Pipeline status!'});
                   this.onClose.next({Status: false});
                   this.bsModalRef.hide();
                }

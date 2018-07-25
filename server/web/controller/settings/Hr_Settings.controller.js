@@ -1,10 +1,37 @@
 var CryptoJS = require("crypto-js");
 var HrSettingsModel = require('./../../models/settings/Hr_Settings.model.js');
 var ErrorManagement = require('./../../../handling/ErrorHandling.js');
+var mongoose = require('mongoose');
 
 
 // ************************************************** Employee category *****************************************************
-   // Employee category Create -----------------------------------------------
+// -------------------------------------------------- Employee category Async Validate -----------------------------------------------
+exports.Employeecategory_AsyncValidate = function(req, res) {
+   var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
+   var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+
+   if(!ReceivingData.Employee_Category || ReceivingData.Employee_Category === '' ) {
+      res.status(400).send({Status: false, Message: "Employee Category can not be empty" });
+   } else if (!ReceivingData.Company_Id || ReceivingData.Company_Id === ''  ) {
+      res.status(400).send({Status: false, Message: "Company Details can not be empty" });
+   } else if (!ReceivingData.User_Id || ReceivingData.User_Id === ''  ) {
+      res.status(400).send({Status: false, Message: "User Details can not be empty" });
+   }else {
+      HrSettingsModel.EmployeeCategorySchema.findOne({'Company_Id': ReceivingData.Company_Id, 'Employee_Category': { $regex : new RegExp("^" + ReceivingData.Employee_Category + "$", "i") }, 'If_Deleted': false }, {}, {}, function(err, result) {
+         if(err) {
+            ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Employee category Find Query Error', 'Hr_Settings.controller.js', err);
+            res.status(417).send({status: false, Message: "Some error occurred while Find Employee category!."});
+         } else {
+            if ( result !== null) {
+               res.status(200).send({Status: true, Available: false });
+            } else {
+               res.status(200).send({Status: true, Available: true });
+            }
+         }
+      });
+   }
+};            
+// Employee category Create -----------------------------------------------
       exports.Employee_category_Create = function(req, res) {
          var CryptoBytes = CryptoJS.AES.decrypt( req.body.Info , 'SecretKeyIn@123' );
          var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
@@ -18,20 +45,31 @@ var ErrorManagement = require('./../../../handling/ErrorHandling.js');
          }else {
             var Create_EmployeeCategory = new HrSettingsModel.EmployeeCategorySchema({
                Employee_Category: ReceivingData.Employee_Category, 
-               Company_Id: ReceivingData.Company_Id,
-               Created_By: ReceivingData.Created_By,
-               Last_Modified_By: ReceivingData.Created_By,
+               Company_Id: mongoose.Types.ObjectId(ReceivingData.Company_Id),
+               Created_By: mongoose.Types.ObjectId(ReceivingData.Created_By),
+               Last_Modified_By: mongoose.Types.ObjectId(ReceivingData.Created_By),
                Active_Status: true,
                If_Deleted: false
             });
             Create_EmployeeCategory.save(function(err, result) { // Employee category Save Query
                if(err) {
-                  ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'HR Employee category Creation Query Error', 'Hr_Settings.controller.js');
-                  res.status(417).send({Status: false, Error: err, Message: "Some error occurred while creating the Employee category!."});
+                  ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'HR Settings Employee category Creation Query Error', 'Hr_Settings.controller.js');
+                  res.status(417).send({Status: false, Message: "Some error occurred while creating the Employee category!."});
                } else {
-                  var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result), 'SecretKeyOut@123');
-                  ReturnData = ReturnData.toString();
-                  res.status(200).send({Status: true, Response: ReturnData });
+                  HrSettingsModel.EmployeeCategorySchema
+                     .findOne({'_id': result._id})
+                     .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
+                     .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
+                     .exec(function(err_1, result_1) { // Employee category FindOne Query
+                     if(err_1) {
+                        ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'HR Settings Employee category Find Query Error', 'Hr_Settings.controller.js', err_1);
+                        res.status(417).send({status: false, Message: "Some error occurred while Find The Employee category!."});
+                     } else {
+                        var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result_1), 'SecretKeyOut@123');
+                           ReturnData = ReturnData.toString();
+                        res.status(200).send({Status: true, Response: ReturnData });
+                     }
+                  });
                }
             });
          }
@@ -47,16 +85,20 @@ var ErrorManagement = require('./../../../handling/ErrorHandling.js');
          } else if (!ReceivingData.User_Id || ReceivingData.User_Id === ''  ) {
             res.status(400).send({Status: false, Message: "User Details can not be empty" });
          }else {
-            HrSettingsModel.EmployeeCategorySchema.find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, {}, {sort: { updatedAt: -1 }}, function(err, result) { // Employee category FindOne Query
-               if(err) {
-                  ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'HR Employee category Find Query Error', 'Hr_Settings.controller.js', err);
-                  res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Employee category!."});
-               } else {
-                  var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result), 'SecretKeyOut@123');
-                  ReturnData = ReturnData.toString();
-                  res.status(200).send({Status: true, Response: ReturnData });
-               }
-            });
+            HrSettingsModel.EmployeeCategorySchema
+            .find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, {}, {sort: { updatedAt: -1 }})
+            .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
+            .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
+            .exec(function(err, result) { // Employee category FindOne Query
+            if(err) {
+               ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Hr Settings Employee category Find Query Error', 'Hr_Settings.controller.js', err);
+               res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Employee category!."});
+            } else {
+               var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result), 'SecretKeyOut@123');
+               ReturnData = ReturnData.toString();
+               res.status(200).send({Status: true, Response: ReturnData });
+            }
+         });
          }
       };
 
@@ -102,15 +144,26 @@ var ErrorManagement = require('./../../../handling/ErrorHandling.js');
                } else {
                   if (result !== null) {
                      result.Employee_Category = ReceivingData.Employee_Category;
-                     result.Last_Modified_By = ReceivingData.Modified_By;
-                     result.save(function(err_1, result_1) { // Employee category Update Query
+                     result.Last_Modified_By = mongoose.Types.ObjectId(ReceivingData.Modified_By);
+                     result.save(function(err_1, result_1) { //  Employee category  Update Query
                         if(err_1) {
-                           ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'HR Employee category Update Query Error', 'Hr_Settings.controller.js');
-                           res.status(417).send({Status: false, Error: err_1, Message: "Some error occurred while Update the Employee category!."});
+                           ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Hr Settings  Employee category  Update Query Error', 'Hr_Settings.controller.js');
+                           res.status(417).send({Status: false, Error: err_1, Message: "Some error occurred while Update the  Employee category !."});
                         } else {
-                           var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result_1), 'SecretKeyOut@123');
-                           ReturnData = ReturnData.toString();
-                           res.status(200).send({Status: true, Response: ReturnData });
+                           HrSettingsModel.EmployeeCategorySchema
+                              .findOne({'_id': result_1._id})
+                              .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
+                              .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
+                              .exec(function(err_2, result_2) { //  Employee category  FindOne Query
+                              if(err_2) {
+                                 ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Hr Settings  Employee category Find Query Error', 'Hr_Settings.controller.js', err_2);
+                                 res.status(417).send({status: false, Message: "Some error occurred while Find The  Employee category !."});
+                              } else {
+                                 var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result_2), 'SecretKeyOut@123');
+                                    ReturnData = ReturnData.toString();
+                                 res.status(200).send({Status: true, Response: ReturnData });
+                              }
+                           });
                         }
                      });
                   } else {
@@ -158,7 +211,33 @@ var ErrorManagement = require('./../../../handling/ErrorHandling.js');
 
 
 // ************************************************** Department *****************************************************
-   // Department Create -----------------------------------------------
+// -------------------------------------------------- Department Async Validate -----------------------------------------------
+exports.Department_AsyncValidate = function(req, res) {
+   var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
+   var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+
+   if(!ReceivingData.Department || ReceivingData.Department === '' ) {
+      res.status(400).send({Status: false, Message: "Department can not be empty" });
+   } else if (!ReceivingData.Company_Id || ReceivingData.Company_Id === ''  ) {
+      res.status(400).send({Status: false, Message: "Company Details can not be empty" });
+   } else if (!ReceivingData.User_Id || ReceivingData.User_Id === ''  ) {
+      res.status(400).send({Status: false, Message: "User Details can not be empty" });
+   }else {
+      HrSettingsModel.DepartmentSchema.findOne({'Company_Id': ReceivingData.Company_Id, 'Department': { $regex : new RegExp("^" + ReceivingData.Department + "$", "i") }, 'If_Deleted': false }, {}, {}, function(err, result) {
+         if(err) {
+            ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Department Find Query Error', 'Hr_Settings.controller.js', err);
+            res.status(417).send({status: false, Message: "Some error occurred while Find Department!."});
+         } else {
+            if ( result !== null) {
+               res.status(200).send({Status: true, Available: false });
+            } else {
+               res.status(200).send({Status: true, Available: true });
+            }
+         }
+      });
+   }
+};              
+// Department Create -----------------------------------------------
       exports.Department_Create = function(req, res) {
          var CryptoBytes = CryptoJS.AES.decrypt( req.body.Info , 'SecretKeyIn@123' );
          var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
@@ -172,20 +251,31 @@ var ErrorManagement = require('./../../../handling/ErrorHandling.js');
          }else {
             var Create_Department = new HrSettingsModel.DepartmentSchema({
                Department: ReceivingData.Department, 
-               Company_Id: ReceivingData.Company_Id,
-               Created_By: ReceivingData.Created_By,
-               Last_Modified_By: ReceivingData.Created_By,
+               Company_Id: mongoose.Types.ObjectId(ReceivingData.Company_Id),
+               Created_By: mongoose.Types.ObjectId(ReceivingData.Created_By),
+               Last_Modified_By: mongoose.Types.ObjectId(ReceivingData.Created_By),
                Active_Status: true,
                If_Deleted: false
             });
             Create_Department.save(function(err, result) { // Department Save Query
                if(err) {
-                  ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'HR Department Creation Query Error', 'Hr_Settings.controller.js');
-                  res.status(417).send({Status: false, Error: err, Message: "Some error occurred while creating the Department!."});
+                  ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'HR Settings Department Creation Query Error', 'Hr_Settings.controller.js');
+                  res.status(417).send({Status: false, Message: "Some error occurred while creating the Department!."});
                } else {
-                  var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result), 'SecretKeyOut@123');
-                  ReturnData = ReturnData.toString();
-                  res.status(200).send({Status: true, Response: ReturnData });
+                  HrSettingsModel.DepartmentSchema
+                     .findOne({'_id': result._id})
+                     .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
+                     .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
+                     .exec(function(err_1, result_1) { // Department FindOne Query
+                     if(err_1) {
+                        ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'HR Settings Department Find Query Error', 'Hr_Settings.controller.js', err_1);
+                        res.status(417).send({status: false, Message: "Some error occurred while Find The Department!."});
+                     } else {
+                        var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result_1), 'SecretKeyOut@123');
+                           ReturnData = ReturnData.toString();
+                        res.status(200).send({Status: true, Response: ReturnData });
+                     }
+                  });
                }
             });
          }
@@ -201,16 +291,20 @@ var ErrorManagement = require('./../../../handling/ErrorHandling.js');
          } else if (!ReceivingData.User_Id || ReceivingData.User_Id === ''  ) {
             res.status(400).send({Status: false, Message: "User Details can not be empty" });
          }else {
-            HrSettingsModel.DepartmentSchema.find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, {}, {sort: { updatedAt: -1 }}, function(err, result) { // Department FindOne Query
-               if(err) {
-                  ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'HR Department Find Query Error', 'Hr_Settings.controller.js', err);
-                  res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Department!."});
-               } else {
-                  var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result), 'SecretKeyOut@123');
-                  ReturnData = ReturnData.toString();
-                  res.status(200).send({Status: true, Response: ReturnData });
-               }
-            });
+            HrSettingsModel.DepartmentSchema
+            .find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, {}, {sort: { updatedAt: -1 }})
+            .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
+            .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
+            .exec(function(err, result) { // Department FindOne Query
+            if(err) {
+               ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Hr Settings Department Find Query Error', 'Hr_Settings.controller.js', err);
+               res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Department!."});
+            } else {
+               var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result), 'SecretKeyOut@123');
+               ReturnData = ReturnData.toString();
+               res.status(200).send({Status: true, Response: ReturnData });
+            }
+         });
          }
       };
 
@@ -256,15 +350,26 @@ var ErrorManagement = require('./../../../handling/ErrorHandling.js');
                } else {
                   if (result !== null) {
                      result.Department = ReceivingData.Department;
-                     result.Last_Modified_By = ReceivingData.Modified_By;
-                     result.save(function(err_1, result_1) { // Department Update Query
+                     result.Last_Modified_By = mongoose.Types.ObjectId(ReceivingData.Modified_By);
+                     result.save(function(err_1, result_1) { //  Department  Update Query
                         if(err_1) {
-                           ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'HR Department Update Query Error', 'Hr_Settings.controller.js');
-                           res.status(417).send({Status: false, Error: err_1, Message: "Some error occurred while Update the Department!."});
+                           ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Hr Settings  Department  Update Query Error', 'Hr_Settings.controller.js');
+                           res.status(417).send({Status: false, Error: err_1, Message: "Some error occurred while Update the  Department !."});
                         } else {
-                           var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result_1), 'SecretKeyOut@123');
-                           ReturnData = ReturnData.toString();
-                           res.status(200).send({Status: true, Response: ReturnData });
+                           HrSettingsModel.DepartmentSchema
+                              .findOne({'_id': result_1._id})
+                              .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
+                              .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
+                              .exec(function(err_2, result_2) { //  Department  FindOne Query
+                              if(err_2) {
+                                 ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Hr Settings  Department Find Query Error', 'Hr_Settings.controller.js', err_2);
+                                 res.status(417).send({status: false, Message: "Some error occurred while Find The  Department!."});
+                              } else {
+                                 var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result_2), 'SecretKeyOut@123');
+                                    ReturnData = ReturnData.toString();
+                                 res.status(200).send({Status: true, Response: ReturnData });
+                              }
+                           });
                         }
                      });
                   } else {
@@ -311,7 +416,33 @@ var ErrorManagement = require('./../../../handling/ErrorHandling.js');
 
 
 // ************************************************** Designation *****************************************************
-   // Designation Create -----------------------------------------------
+// -------------------------------------------------- Designation Async Validate -----------------------------------------------
+exports.Designation_AsyncValidate = function(req, res) {
+   var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
+   var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+
+   if(!ReceivingData.Designation || ReceivingData.Designation === '' ) {
+      res.status(400).send({Status: false, Message: "Designation can not be empty" });
+   } else if (!ReceivingData.Company_Id || ReceivingData.Company_Id === ''  ) {
+      res.status(400).send({Status: false, Message: "Company Details can not be empty" });
+   } else if (!ReceivingData.User_Id || ReceivingData.User_Id === ''  ) {
+      res.status(400).send({Status: false, Message: "User Details can not be empty" });
+   }else {
+      HrSettingsModel.DesignationSchema.findOne({'Company_Id': ReceivingData.Company_Id, 'Designation': { $regex : new RegExp("^" + ReceivingData.Designation + "$", "i") }, 'If_Deleted': false }, {}, {}, function(err, result) {
+         if(err) {
+            ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Designation Find Query Error', 'Hr_Settings.controller.js', err);
+            res.status(417).send({status: false, Message: "Some error occurred while Find Designation!."});
+         } else {
+            if ( result !== null) {
+               res.status(200).send({Status: true, Available: false });
+            } else {
+               res.status(200).send({Status: true, Available: true });
+            }
+         }
+      });
+   }
+};              
+// Designation Create -----------------------------------------------
       exports.Designation_Create = function(req, res) {
          var CryptoBytes = CryptoJS.AES.decrypt( req.body.Info , 'SecretKeyIn@123' );
          var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
@@ -325,20 +456,31 @@ var ErrorManagement = require('./../../../handling/ErrorHandling.js');
          }else {
             var Create_Designation = new HrSettingsModel.DesignationSchema({
                Designation: ReceivingData.Designation, 
-               Company_Id: ReceivingData.Company_Id,
-               Created_By: ReceivingData.Created_By,
-               Last_Modified_By: ReceivingData.Created_By,
+               Company_Id: mongoose.Types.ObjectId(ReceivingData.Company_Id),
+               Created_By: mongoose.Types.ObjectId(ReceivingData.Created_By),
+               Last_Modified_By: mongoose.Types.ObjectId(ReceivingData.Created_By),
                Active_Status: true,
                If_Deleted: false
             });
             Create_Designation.save(function(err, result) { // Designation Save Query
                if(err) {
-                  ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'HR Designation Creation Query Error', 'Hr_Settings.controller.js');
-                  res.status(417).send({Status: false, Error: err, Message: "Some error occurred while creating the Designation!."});
+                  ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'HR Settings Designation Creation Query Error', 'Hr_Settings.controller.js');
+                  res.status(417).send({Status: false, Message: "Some error occurred while creating the Designation!."});
                } else {
-                  var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result), 'SecretKeyOut@123');
-                  ReturnData = ReturnData.toString();
-                  res.status(200).send({Status: true, Response: ReturnData });
+                  HrSettingsModel.DesignationSchema
+                     .findOne({'_id': result._id})
+                     .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
+                     .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
+                     .exec(function(err_1, result_1) { // Designation FindOne Query
+                     if(err_1) {
+                        ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'HR Settings Designation Find Query Error', 'Hr_Settings.controller.js', err_1);
+                        res.status(417).send({status: false, Message: "Some error occurred while Find The Designation!."});
+                     } else {
+                        var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result_1), 'SecretKeyOut@123');
+                           ReturnData = ReturnData.toString();
+                        res.status(200).send({Status: true, Response: ReturnData });
+                     }
+                  });
                }
             });
          }
@@ -354,16 +496,20 @@ var ErrorManagement = require('./../../../handling/ErrorHandling.js');
       } else if (!ReceivingData.User_Id || ReceivingData.User_Id === ''  ) {
          res.status(400).send({Status: false, Message: "User Details can not be empty" });
       }else {
-         HrSettingsModel.DesignationSchema.find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, {}, {sort: { updatedAt: -1 }}, function(err, result) { // Designation FindOne Query
-            if(err) {
-               ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'HR Designation Find Query Error', 'Hr_Settings.controller.js', err);
-               res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Designation!."});
-            } else {
-               var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result), 'SecretKeyOut@123');
-               ReturnData = ReturnData.toString();
-               res.status(200).send({Status: true, Response: ReturnData });
-            }
-         });
+         HrSettingsModel.DesignationSchema
+         .find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, {}, {sort: { updatedAt: -1 }})
+         .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
+         .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
+         .exec(function(err, result) { // Designation FindOne Query
+         if(err) {
+            ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Hr Settings Designation Find Query Error', 'Hr_Settings.controller.js', err);
+            res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Designation!."});
+         } else {
+            var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result), 'SecretKeyOut@123');
+            ReturnData = ReturnData.toString();
+            res.status(200).send({Status: true, Response: ReturnData });
+         }
+      });
       }
    };
 
@@ -409,15 +555,26 @@ var ErrorManagement = require('./../../../handling/ErrorHandling.js');
             } else {
                if (result !== null) {
                   result.Designation = ReceivingData.Designation;
-                  result.Last_Modified_By = ReceivingData.Modified_By;
-                  result.save(function(err_1, result_1) { // Designation Update Query
+                  result.Last_Modified_By = mongoose.Types.ObjectId(ReceivingData.Modified_By);
+                  result.save(function(err_1, result_1) { //  Department  Update Query
                      if(err_1) {
-                        ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'HR Designation Update Query Error', 'Hr_Settings.controller.js');
-                        res.status(417).send({Status: false, Error: err_1, Message: "Some error occurred while Update the Designation!."});
+                        ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Hr Settings  Designation  Update Query Error', 'Hr_Settings.controller.js');
+                        res.status(417).send({Status: false, Error: err_1, Message: "Some error occurred while Update the  Designation !."});
                      } else {
-                        var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result_1), 'SecretKeyOut@123');
-                        ReturnData = ReturnData.toString();
-                        res.status(200).send({Status: true, Response: ReturnData });
+                        HrSettingsModel.DesignationSchema
+                           .findOne({'_id': result_1._id})
+                           .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
+                           .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
+                           .exec(function(err_2, result_2) { //  Department  FindOne Query
+                           if(err_2) {
+                              ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Hr Settings  Department Find Query Error', 'Hr_Settings.controller.js', err_2);
+                              res.status(417).send({status: false, Message: "Some error occurred while Find The  Department!."});
+                           } else {
+                              var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result_2), 'SecretKeyOut@123');
+                                 ReturnData = ReturnData.toString();
+                              res.status(200).send({Status: true, Response: ReturnData });
+                           }
+                        });
                      }
                   });
                } else {

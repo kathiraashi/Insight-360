@@ -2,7 +2,7 @@
    <div class="Modal_Content" *ngIf="Type && ( Type === 'Create' || Type === 'Edit')">
       <div class="Modal_Header">
          <p> {{Type}} Employee category</p>
-         <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+         <span *ngIf="!Uploading" data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
       </div>
       <form [formGroup]="Form" (ngSubmit)="onSubmit()">
          <div class="Model_Body">
@@ -12,14 +12,17 @@
                      <input type="text" formControlName="Employee_Category">
                      <p class="error" *ngIf="Form.controls['Employee_Category'].errors && !Form.controls['Employee_Category'].pristine">
                         <span *ngIf="Form.controls['Employee_Category'].errors.required">Employee Category is required</span>
-                     </p>
+                        <span *ngIf="Form.controls['Employee_Category'].errors.EmployeeCategory_NotAvailable"> Employee Category  Already Exist </span>      
+                        
+                  </p>
                   </div>
                </div>
          </div>
          <div class="Model_Footer">
-            <button type="submit"  [disabled]="Form.invalid" mat-raised-button color="primary">
-               <span *ngIf="Type === 'Create'">Submit</span>
-               <span *ngIf="Type === 'Edit'">Update</span>
+            <button type="submit"  [disabled]="Form.status !== 'VALID' || Uploading" mat-raised-button color="primary">
+               <span *ngIf="Type === 'Create'  && !Uploading">Submit</span>
+               <span *ngIf="Type === 'Edit' && !Uploading">Update</span>
+               <span *ngIf="Uploading" class="UploadingBtn"> <i class="fa fa-refresh fa-spin"></i> Loading... </span>
             </button>
          </div>
       </form>
@@ -39,12 +42,12 @@
          <div class="view_item">
             <div class="Static">Created By </div>
             <div class="dots"> : </div>
-            <div class="Data"> {{Data.Created_By}}</div>
+            <div class="Data"> {{Data.Created_By.Name}}</div>
          </div>
          <div class="view_item">
             <div class="Static">Last Modified By </div>
             <div class="dots"> : </div>
-            <div class="Data"> {{Data.Last_Modified_By}}</div>
+            <div class="Data"> {{Data.Last_Modified_By.Name}}</div>
          </div>
          <div class="view_item">
             <div class="Static"> Created Date </div>

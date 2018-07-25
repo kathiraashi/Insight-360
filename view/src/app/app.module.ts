@@ -263,7 +263,8 @@ import { PayrollViewComponent } from './Components/HR/SubComponents/Payroll/payr
 import { MainPayrollMasterHrComponent } from './Components/HR/SubComponents/Payroll-Master/main-payroll-master-hr/main-payroll-master-hr.component';
 import { PayrollMasterCreateComponent } from './Components/HR/SubComponents/Payroll-Master/payroll-master-create/payroll-master-create.component';
 import { ModelPayrollMasterViewComponent } from './models/HR/model-payroll-master-view/model-payroll-master-view.component';
-
+// import { EarningsHrSettingsComponent } from './Components/Settings/HR-Settings/SubComponents/earnings-hr-settings/earnings-hr-settings.component';
+// import { DetectionsHrSettingsComponent } from './Components/Settings/HR-Settings/SubComponents/detections-hr-settings/detections-hr-settings.component';
 // Services
     import { LoginService } from './services/LoginService/login.service';
 
@@ -512,7 +513,9 @@ import { ModelPayrollMasterViewComponent } from './models/HR/model-payroll-maste
             PayrollViewComponent,
             MainPayrollMasterHrComponent,
             PayrollMasterCreateComponent,
-            ModelPayrollMasterViewComponent
+            ModelPayrollMasterViewComponent,
+            // EarningsHrSettingsComponent,
+            // DetectionsHrSettingsComponent
 
 
    ],

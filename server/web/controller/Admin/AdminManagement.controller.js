@@ -196,7 +196,6 @@ exports.User_Login_Validate = function(req, res) {
                               return acc;
                            }
                         }, []);
-                        
                         const Key = crypto.randomBytes(16).toString("hex");
                         var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(FinalResult), Key);
                             ReturnData = ReturnData.toString();

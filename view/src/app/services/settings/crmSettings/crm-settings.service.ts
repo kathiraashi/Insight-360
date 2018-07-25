@@ -94,157 +94,373 @@ export class CrmSettingsService {
 
    // Ownership Type
       public OwnershipType_AsyncValidate(Info: any): Observable<any[]> {
+         if (this.Service.If_LoggedIn()) {
+            this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+            sessionStorage.setItem('SessionKey', btoa(Date()));
          return this.http.post(API_URL + 'OwnershipType_AsyncValidate', Info, {headers: this.headers })
          .pipe( map(response => response),  catchError(error => of(error)));
+      } else {
+         return this.ValidateEveryRequest();
       }
+   }
       public Ownership_Type_Create(Info: any): Observable<any[]> {
+         if (this.Service.If_LoggedIn()) {
+            this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+            sessionStorage.setItem('SessionKey', btoa(Date()));
          return this.http.post(API_URL + 'Ownership_Type_Create', Info, {headers: this.headers })
          .pipe( map(response => response),  catchError(error => of(error)));
+      } else {
+         return this.ValidateEveryRequest();
       }
+   }
       public Ownership_Type_List(Info: any): Observable<any[]> {
+         if (this.Service.If_LoggedIn()) {
+            this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+            sessionStorage.setItem('SessionKey', btoa(Date()));
          return this.http.post(API_URL + 'Ownership_Type_List', Info, {headers: this.headers })
          .pipe( map(response => response), catchError(error => of(error)));
+      } else {
+         return this.ValidateEveryRequest();
       }
+   }
       public Ownership_Type_SimpleList(Info: any): Observable<any[]> {
+         if (this.Service.If_LoggedIn()) {
+            this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+            sessionStorage.setItem('SessionKey', btoa(Date()));
          return this.http.post(API_URL + 'Ownership_Type_SimpleList', Info, {headers: this.headers })
          .pipe( map(response => response),  catchError(error => of(error)));
+      } else {
+         return this.ValidateEveryRequest();
       }
+   }
       public Ownership_Type_Update(Info: any): Observable<any[]> {
+         if (this.Service.If_LoggedIn()) {
+            this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+            sessionStorage.setItem('SessionKey', btoa(Date()));
          return this.http.post(API_URL + 'Ownership_Type_Update', Info, {headers: this.headers })
          .pipe( map(response => response), catchError(error => of(error)));
+      } else {
+         return this.ValidateEveryRequest();
       }
+   }
       public Ownership_Type_Delete(Info: any): Observable<any[]> {
+         if (this.Service.If_LoggedIn()) {
+            this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+            sessionStorage.setItem('SessionKey', btoa(Date()));
          return this.http.post(API_URL + 'Ownership_Type_Delete', Info, {headers: this.headers })
          .pipe( map(response => response),  catchError(error => of(error)));
+      } else {
+         return this.ValidateEveryRequest();
       }
+   }
 
       // Activity Type
         public ActivityType_AsyncValidate(Info: any): Observable<any[]> {
-            return this.http.post(API_URL + 'ActivityType_AsyncValidate', Info)
+         if (this.Service.If_LoggedIn()) {
+            this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+            sessionStorage.setItem('SessionKey', btoa(Date()));
+            return this.http.post(API_URL + 'ActivityType_AsyncValidate', Info, {headers: this.headers })
             .pipe( map(response => response),  catchError(error => of(error)));
-        }
+        } else {
+         return this.ValidateEveryRequest();
+      }
+   }
          public Activity_Type_Create(Info: any): Observable<any[]> {
-            return this.http.post(API_URL + 'Activity_Type_Create', Info)
+            if (this.Service.If_LoggedIn()) {
+               this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+               sessionStorage.setItem('SessionKey', btoa(Date()));
+            return this.http.post(API_URL + 'Activity_Type_Create', Info, {headers: this.headers })
             .pipe( map(response => response),  catchError(error => of(error)));
+         } else {
+            return this.ValidateEveryRequest();
          }
+      }
          public Activity_Type_List(Info: any): Observable<any[]> {
-            return this.http.post(API_URL + 'Activity_Type_List', Info)
+            if (this.Service.If_LoggedIn()) {
+               this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+               sessionStorage.setItem('SessionKey', btoa(Date()));
+            return this.http.post(API_URL + 'Activity_Type_List', Info, {headers: this.headers })
             .pipe( map(response => response), catchError(error => of(error)));
+         } else {
+            return this.ValidateEveryRequest();
          }
+      }
          public Activity_Type_SimpleList(Info: any): Observable<any[]> {
-            return this.http.post(API_URL + 'Activity_Type_SimpleList', Info)
+            if (this.Service.If_LoggedIn()) {
+               this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+               sessionStorage.setItem('SessionKey', btoa(Date()));
+            return this.http.post(API_URL + 'Activity_Type_SimpleList', Info, {headers: this.headers })
             .pipe( map(response => response),  catchError(error => of(error)));
+         } else {
+            return this.ValidateEveryRequest();
          }
+      }
          public Activity_Type_Update(Info: any): Observable<any[]> {
-            return this.http.post(API_URL + 'Activity_Type_Update', Info)
+            if (this.Service.If_LoggedIn()) {
+               this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+               sessionStorage.setItem('SessionKey', btoa(Date()));
+            return this.http.post(API_URL + 'Activity_Type_Update', Info, {headers: this.headers })
             .pipe( map(response => response), catchError(error => of(error)));
+         } else {
+            return this.ValidateEveryRequest();
          }
+      }
          public Activity_Type_Delete(Info: any): Observable<any[]> {
-            return this.http.post(API_URL + 'Activity_Type_Delete', Info)
+            if (this.Service.If_LoggedIn()) {
+               this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+               sessionStorage.setItem('SessionKey', btoa(Date()));
+            return this.http.post(API_URL + 'Activity_Type_Delete', Info, {headers: this.headers })
             .pipe( map(response => response),  catchError(error => of(error)));
+         } else {
+            return this.ValidateEveryRequest();
          }
+      }
 
       // Activity Status
         public ActivityStatus_AsyncValidate(Info: any): Observable<any[]> {
-            return this.http.post(API_URL + 'ActivityStatus_AsyncValidate', Info)
+         if (this.Service.If_LoggedIn()) {
+            this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+            sessionStorage.setItem('SessionKey', btoa(Date()));
+            return this.http.post(API_URL + 'ActivityStatus_AsyncValidate', Info, {headers: this.headers })
             .pipe( map(response => response),  catchError(error => of(error)));
-        }
+        } else {
+         return this.ValidateEveryRequest();
+      }
+   }
          public Activity_Status_Create(Info: any): Observable<any[]> {
-            return this.http.post(API_URL + 'Activity_Status_Create', Info)
+            if (this.Service.If_LoggedIn()) {
+               this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+               sessionStorage.setItem('SessionKey', btoa(Date()));
+            return this.http.post(API_URL + 'Activity_Status_Create', Info, {headers: this.headers })
             .pipe( map(response => response),  catchError(error => of(error)));
+         } else {
+            return this.ValidateEveryRequest();
          }
+      }
          public Activity_Status_List(Info: any): Observable<any[]> {
-            return this.http.post(API_URL + 'Activity_Status_List', Info)
+            if (this.Service.If_LoggedIn()) {
+               this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+               sessionStorage.setItem('SessionKey', btoa(Date()));
+            return this.http.post(API_URL + 'Activity_Status_List', Info, {headers: this.headers })
             .pipe( map(response => response), catchError(error => of(error)));
+         } else {
+            return this.ValidateEveryRequest();
          }
+      }
          public Activity_Status_SimpleList(Info: any): Observable<any[]> {
-            return this.http.post(API_URL + 'Activity_Status_SimpleList', Info)
+            if (this.Service.If_LoggedIn()) {
+               this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+               sessionStorage.setItem('SessionKey', btoa(Date()));
+            return this.http.post(API_URL + 'Activity_Status_SimpleList', Info, {headers: this.headers })
             .pipe( map(response => response),  catchError(error => of(error)));
+         } else {
+            return this.ValidateEveryRequest();
          }
+      }
          public Activity_Status_Update(Info: any): Observable<any[]> {
-            return this.http.post(API_URL + 'Activity_Status_Update', Info)
+            if (this.Service.If_LoggedIn()) {
+               this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+               sessionStorage.setItem('SessionKey', btoa(Date()));
+            return this.http.post(API_URL + 'Activity_Status_Update', Info, {headers: this.headers })
             .pipe( map(response => response), catchError(error => of(error)));
+         } else {
+            return this.ValidateEveryRequest();
          }
+      }
          public Activity_Status_Delete(Info: any): Observable<any[]> {
-            return this.http.post(API_URL + 'Activity_Status_Delete', Info)
+            if (this.Service.If_LoggedIn()) {
+               this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+               sessionStorage.setItem('SessionKey', btoa(Date()));
+            return this.http.post(API_URL + 'Activity_Status_Delete', Info, {headers: this.headers })
             .pipe( map(response => response),  catchError(error => of(error)));
+         } else {
+            return this.ValidateEveryRequest();
          }
+      }
 
       // Activity Priority
         public ActivityPriority_AsyncValidate(Info: any): Observable<any[]> {
-            return this.http.post(API_URL + 'ActivityPriority_AsyncValidate', Info)
+         if (this.Service.If_LoggedIn()) {
+            this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+            sessionStorage.setItem('SessionKey', btoa(Date()));
+            return this.http.post(API_URL + 'ActivityPriority_AsyncValidate', Info, {headers: this.headers })
             .pipe( map(response => response),  catchError(error => of(error)));
-        }
+        }  else {
+         return this.ValidateEveryRequest();
+      }
+   }
          public Activity_Priority_Create(Info: any): Observable<any[]> {
-            return this.http.post(API_URL + 'Activity_Priority_Create', Info)
+            if (this.Service.If_LoggedIn()) {
+               this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+               sessionStorage.setItem('SessionKey', btoa(Date()));
+            return this.http.post(API_URL + 'Activity_Priority_Create', Info, {headers: this.headers })
             .pipe( map(response => response),  catchError(error => of(error)));
+         }  else {
+            return this.ValidateEveryRequest();
          }
+      }
          public Activity_Priority_List(Info: any): Observable<any[]> {
-            return this.http.post(API_URL + 'Activity_Priority_List', Info)
+            if (this.Service.If_LoggedIn()) {
+               this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+               sessionStorage.setItem('SessionKey', btoa(Date()));
+            return this.http.post(API_URL + 'Activity_Priority_List', Info, {headers: this.headers })
             .pipe( map(response => response), catchError(error => of(error)));
+         }  else {
+            return this.ValidateEveryRequest();
          }
+      }
          public Activity_Priority_SimpleList(Info: any): Observable<any[]> {
-            return this.http.post(API_URL + 'Activity_Priority_SimpleList', Info)
+            if (this.Service.If_LoggedIn()) {
+               this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+               sessionStorage.setItem('SessionKey', btoa(Date()));
+            return this.http.post(API_URL + 'Activity_Priority_SimpleList', Info, {headers: this.headers })
             .pipe( map(response => response),  catchError(error => of(error)));
+         }  else {
+            return this.ValidateEveryRequest();
          }
+      }
          public Activity_Priority_Update(Info: any): Observable<any[]> {
-            return this.http.post(API_URL + 'Activity_Priority_Update', Info)
+            if (this.Service.If_LoggedIn()) {
+               this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+               sessionStorage.setItem('SessionKey', btoa(Date()));
+            return this.http.post(API_URL + 'Activity_Priority_Update', Info, {headers: this.headers })
             .pipe( map(response => response), catchError(error => of(error)));
+         }  else {
+            return this.ValidateEveryRequest();
          }
+      }
          public Activity_Priority_Delete(Info: any): Observable<any[]> {
-            return this.http.post(API_URL + 'Activity_Priority_Delete', Info)
+            if (this.Service.If_LoggedIn()) {
+               this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+               sessionStorage.setItem('SessionKey', btoa(Date()));
+            return this.http.post(API_URL + 'Activity_Priority_Delete', Info, {headers: this.headers })
             .pipe( map(response => response),  catchError(error => of(error)));
+         }  else {
+            return this.ValidateEveryRequest();
          }
+      }
 
       // Contact Role
         public ContactRole_AsyncValidate(Info: any): Observable<any[]> {
-            return this.http.post(API_URL + 'ContactRole_AsyncValidate', Info)
+         if (this.Service.If_LoggedIn()) {
+            this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+            sessionStorage.setItem('SessionKey', btoa(Date()));
+            return this.http.post(API_URL + 'ContactRole_AsyncValidate', Info, {headers: this.headers })
             .pipe( map(response => response),  catchError(error => of(error)));
-        }
+        } else {
+         return this.ValidateEveryRequest();
+      }
+   }
          public Contact_Role_Create(Info: any): Observable<any[]> {
-            return this.http.post(API_URL + 'Contact_Role_Create', Info)
+            if (this.Service.If_LoggedIn()) {
+               this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+               sessionStorage.setItem('SessionKey', btoa(Date()));
+            return this.http.post(API_URL + 'Contact_Role_Create', Info, {headers: this.headers })
             .pipe( map(response => response),  catchError(error => of(error)));
+         } else {
+            return this.ValidateEveryRequest();
          }
+      }
          public Contact_Role_List(Info: any): Observable<any[]> {
-            return this.http.post(API_URL + 'Contact_Role_List', Info)
+            if (this.Service.If_LoggedIn()) {
+               this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+               sessionStorage.setItem('SessionKey', btoa(Date()));
+            return this.http.post(API_URL + 'Contact_Role_List', Info, {headers: this.headers })
             .pipe( map(response => response), catchError(error => of(error)));
+         } else {
+            return this.ValidateEveryRequest();
          }
+      }
          public Contact_Role_SimpleList(Info: any): Observable<any[]> {
-            return this.http.post(API_URL + 'Contact_Role_SimpleList', Info)
+            if (this.Service.If_LoggedIn()) {
+               this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+               sessionStorage.setItem('SessionKey', btoa(Date()));
+            return this.http.post(API_URL + 'Contact_Role_SimpleList', Info, {headers: this.headers })
             .pipe( map(response => response),  catchError(error => of(error)));
+         } else {
+            return this.ValidateEveryRequest();
          }
+      }
          public Contact_Role_Update(Info: any): Observable<any[]> {
-            return this.http.post(API_URL + 'Contact_Role_Update', Info)
+            if (this.Service.If_LoggedIn()) {
+               this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+               sessionStorage.setItem('SessionKey', btoa(Date()));
+            return this.http.post(API_URL + 'Contact_Role_Update', Info, {headers: this.headers })
             .pipe( map(response => response), catchError(error => of(error)));
+         } else {
+            return this.ValidateEveryRequest();
          }
+      }
          public Contact_Role_Delete(Info: any): Observable<any[]> {
-            return this.http.post(API_URL + 'Contact_Role_Delete', Info)
+            if (this.Service.If_LoggedIn()) {
+               this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+               sessionStorage.setItem('SessionKey', btoa(Date()));
+            return this.http.post(API_URL + 'Contact_Role_Delete', Info, {headers: this.headers })
             .pipe( map(response => response),  catchError(error => of(error)));
+         } else {
+            return this.ValidateEveryRequest();
          }
+      }
 
       // Pipeline Status
         public PipelineStatus_AsyncValidate(Info: any): Observable<any[]> {
-            return this.http.post(API_URL + 'PipelineStatus_AsyncValidate', Info)
+         if (this.Service.If_LoggedIn()) {
+            this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+            sessionStorage.setItem('SessionKey', btoa(Date()));
+            return this.http.post(API_URL + 'PipelineStatus_AsyncValidate', Info, {headers: this.headers })
             .pipe( map(response => response),  catchError(error => of(error)));
-        }
+        } else {
+         return this.ValidateEveryRequest();
+      }
+   }
          public Pipeline_Status_Create(Info: any): Observable<any[]> {
-            return this.http.post(API_URL + 'Pipeline_Status_Create', Info)
+            if (this.Service.If_LoggedIn()) {
+               this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+               sessionStorage.setItem('SessionKey', btoa(Date()));
+            return this.http.post(API_URL + 'Pipeline_Status_Create', Info, {headers: this.headers })
             .pipe( map(response => response),  catchError(error => of(error)));
+         } else {
+            return this.ValidateEveryRequest();
          }
+      }
          public Pipeline_Status_List(Info: any): Observable<any[]> {
-            return this.http.post(API_URL + 'Pipeline_Status_List', Info)
+            if (this.Service.If_LoggedIn()) {
+               this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+               sessionStorage.setItem('SessionKey', btoa(Date()));
+            return this.http.post(API_URL + 'Pipeline_Status_List', Info, {headers: this.headers })
             .pipe( map(response => response), catchError(error => of(error)));
+         } else {
+            return this.ValidateEveryRequest();
          }
+      }
          public Pipeline_Status_SimpleList(Info: any): Observable<any[]> {
-            return this.http.post(API_URL + 'Pipeline_Status_SimpleList', Info)
+            if (this.Service.If_LoggedIn()) {
+               this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+               sessionStorage.setItem('SessionKey', btoa(Date()));
+            return this.http.post(API_URL + 'Pipeline_Status_SimpleList', Info, {headers: this.headers })
             .pipe( map(response => response),  catchError(error => of(error)));
+         } else {
+            return this.ValidateEveryRequest();
          }
+      }
          public Pipeline_Status_Update(Info: any): Observable<any[]> {
-            return this.http.post(API_URL + 'Pipeline_Status_Update', Info)
+            if (this.Service.If_LoggedIn()) {
+               this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+               sessionStorage.setItem('SessionKey', btoa(Date()));
+            return this.http.post(API_URL + 'Pipeline_Status_Update', Info, {headers: this.headers })
             .pipe( map(response => response), catchError(error => of(error)));
+         } else {
+            return this.ValidateEveryRequest();
          }
+      }
          public Pipeline_Status_Delete(Info: any): Observable<any[]> {
-            return this.http.post(API_URL + 'Pipeline_Status_Delete', Info)
+            if (this.Service.If_LoggedIn()) {
+               this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+               sessionStorage.setItem('SessionKey', btoa(Date()));
+            return this.http.post(API_URL + 'Pipeline_Status_Delete', Info, {headers: this.headers })
             .pipe( map(response => response),  catchError(error => of(error)));
+         } else {
+            return this.ValidateEveryRequest();
          }
+      }
 }

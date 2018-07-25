@@ -92,28 +92,17 @@ export class ModelLeavetypeHrmssettingsComponent implements OnInit {
                if (response['status'] === 200 && ReceivingData.Status) {
                   const CryptoBytes  = CryptoJS.AES.decrypt(ReceivingData['Response'], 'SecretKeyOut@123');
                   const DecryptedData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
-                  this.Toastr.NewToastrMessage(
-                     {
-                       Type: 'Success',
-                        Message: 'New Leave Type Successfully Created'
-                     }
-                   );
+                  this.Toastr.NewToastrMessage( { Type: 'Success', Message: 'New Leave Type Successfully Created' });
                   this.onClose.next({Status: true, Response: DecryptedData});
                   this.bsModalRef.hide();
                } else if (response['status'] === 400 || response['status'] === 417 && !ReceivingData.Status) {
-                  this.Toastr.NewToastrMessage(
-                     {  Type: 'Error',
-                        Message: ReceivingData['Message']
-                     }
-                   );
+                  this.Toastr.NewToastrMessage(  {  Type: 'Error',  Message: ReceivingData['Message'] } );
                   this.onClose.next({Status: false});
                   this.bsModalRef.hide();
-               } else {
-                  this.Toastr.NewToastrMessage(
-                     {  Type: 'Error',
-                        Message: 'Error Not Identify!, Creating Leave Type!'
-                     }
-                  );
+               } else if (response['status'] === 401 && !ReceivingData['Status']) {
+                this.Toastr.NewToastrMessage( { Type: 'Error', Message: ReceivingData['Message'] } );
+             }  else {
+                  this.Toastr.NewToastrMessage( {  Type: 'Error',  Message: 'Error Not Identify!, Creating Leave Type!' } );
                   this.onClose.next({Status: false, Message: 'UnExpected Error!'});
                   this.bsModalRef.hide();
                   console.log(ReceivingData);
@@ -135,26 +124,16 @@ export class ModelLeavetypeHrmssettingsComponent implements OnInit {
                if (response['status'] === 200 && ReceivingData.Status) {
                   const CryptoBytes  = CryptoJS.AES.decrypt(ReceivingData['Response'], 'SecretKeyOut@123');
                   const DecryptedData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
-                  this.Toastr.NewToastrMessage(
-                     {  Type: 'Success',
-                        Message: 'Leave Type Successfully Updated'
-                     }
-                  );
+                  this.Toastr.NewToastrMessage( {  Type: 'Success',   Message: 'Leave Type Successfully Updated' });
                   this.onClose.next({Status: true, Response: DecryptedData});
                   this.bsModalRef.hide();
                } else if (response['status'] === 400 || response['status'] === 417   && !ReceivingData.Status) {
-                  this.Toastr.NewToastrMessage(
-                     {  Type: 'Error',
-                       Message: ReceivingData['Message']
-                     }
-                   );
+                  this.Toastr.NewToastrMessage(  {  Type: 'Error', Message: ReceivingData['Message']  } );
                   this.onClose.next({Status: false});
-               } else {
-                  this.Toastr.NewToastrMessage(
-                     {  Type: 'Error',
-                        Message: 'Error Not Identify!, Updating Leave Type!'
-                     }
-                  );
+               } else if (response['status'] === 401 && !ReceivingData['Status']) {
+                this.Toastr.NewToastrMessage( { Type: 'Error', Message: ReceivingData['Message'] } );
+             }  else {
+                  this.Toastr.NewToastrMessage( {  Type: 'Error',  Message: 'Error Not Identify!, Updating Leave Type!' });
                   this.onClose.next({Status: false, Message: 'UnExpected Error!'});
                   this.bsModalRef.hide();
                   console.log(ReceivingData);

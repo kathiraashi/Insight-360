@@ -1,11 +1,12 @@
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
 // Employee Category schema
       var EmployeeCategorySchema = mongoose.Schema({
          Employee_Category: { type : String , require : true},
-         Company_Id: { type : String , required : true },
-         Created_By : { type : String, required : true },
-         Last_Modified_By: { type : String , required : true },
+         Company_Id: { type : Schema.Types.ObjectId,ref: 'Company_Management' , required: true },
+         Created_By: { type : Schema.Types.ObjectId, ref: 'User_Management' , required : true },
+         Last_Modified_By: { type : Schema.Types.ObjectId, ref: 'User_Management' , required : true },
          Active_Status: { type : Boolean , required : true},
          If_Deleted: { type : Boolean , required : true }
          },
@@ -17,9 +18,9 @@ var mongoose = require('mongoose');
    // Department schema
    var DepartmentSchema = mongoose.Schema({
       Department: { type : String , require : true},
-      Company_Id: { type : String , required : true },
-      Created_By : { type : String, required : true },
-      Last_Modified_By: { type : String , required : true },
+      Company_Id: { type : Schema.Types.ObjectId,ref: 'Company_Management' , required: true },
+      Created_By: { type : Schema.Types.ObjectId, ref: 'User_Management' , required : true },
+      Last_Modified_By: { type : Schema.Types.ObjectId, ref: 'User_Management' , required : true },
       Active_Status: { type : Boolean , required : true},
       If_Deleted: { type : Boolean , required : true }
       },
@@ -31,9 +32,9 @@ var mongoose = require('mongoose');
    // Designation schema
    var DesignationSchema = mongoose.Schema({
       Designation: { type : String , require : true},
-      Company_Id: { type : String , required : true },
-      Created_By : { type : String, required : true },
-      Last_Modified_By: { type : String , required : true },
+      Company_Id: { type : Schema.Types.ObjectId,ref: 'Company_Management' , required: true },
+      Created_By: { type : Schema.Types.ObjectId, ref: 'User_Management' , required : true },
+      Last_Modified_By: { type : Schema.Types.ObjectId, ref: 'User_Management' , required : true },
       Active_Status: { type : Boolean , required : true},
       If_Deleted: { type : Boolean , required : true }
       },
