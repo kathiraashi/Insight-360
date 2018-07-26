@@ -211,7 +211,7 @@ var mongoose = require('mongoose');
 
 
 // ************************************************** Ownership Type *****************************************************
-   // -------------------------------------------------- Ownership Type Async Validate -----------------------------------------------
+   // Ownership Type Async Validate -----------------------------------------------
       exports.OwnershipType_AsyncValidate = function(req, res) {
          var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
          var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
@@ -319,7 +319,7 @@ var mongoose = require('mongoose');
          } else if (!ReceivingData.User_Id || ReceivingData.User_Id === ''  ) {
             res.status(400).send({Status: false, Message: "User Details can not be empty" });
          }else {
-            CRMSettingsModel.OwnershipTypeSchema.find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, { Industry_Type : 1 }, {sort: { updatedAt: -1 }}, function(err, result) { // Ownership Type FindOne Query
+            CRMSettingsModel.OwnershipTypeSchema.find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, { Ownership_Type : 1 }, {sort: { updatedAt: -1 }}, function(err, result) { // Ownership Type FindOne Query
                if(err) {
                   ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Ownership Type Find Query Error', 'CRM_Settings.controller.js', err);
                   res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Ownership Types!."});
@@ -416,34 +416,37 @@ var mongoose = require('mongoose');
       };
 
 
-// ************************************************** Activity Type *****************************************************
-   // Activity Type Async Validate
-   exports.ActivityType_AsyncValidate = function(req, res){
-      var CryptoBytes = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
-      var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
 
-      if(!ReceivingData.Activity_Type || ReceivingData.Activity_Type === ''){
-         res.status(400).send({ Status: false, Message: "Activity Type Cannot be empty"});
-      } else if(!ReceivingData.Company_Id || ReceivingData.Company_Id === '') {
-         res.status(400).send({ Status: false, Message: "Company Details Cannot be empty"}); 
-      } else if(!ReceivingData.User_Id || ReceivingData.User_Id === '') {
-         res.status(400).send({ Status: false, Message: "Creator Details Cannot be empty"}); 
-      } else{
-         CRMSettingsModel.ActivityTypeSchema.findOne({'Company_Id': ReceivingData.Company_Id, 'Activity_Type': {$regex : new RegExp("^" + ReceivingData.Activity_Type + "$", "i")}, 'If_Deleted' : false}, {},{}, function(err, result) {
-            if(err) {
-               ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Activity Type Find Query Error', 'CRM_Settings.controller.js', err);
-               res.status(417).send({status: false, Message: "Some error occurred while Find Activity Type!."});
-            } else {
-               if ( result !== null) {
-                  res.status(200).send({Status: true, Available: false });
+
+
+// ************************************************** Activity Type *****************************************************
+   // Activity Type Async Validate ------------------------------------
+      exports.ActivityType_AsyncValidate = function(req, res){
+         var CryptoBytes = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
+         var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+
+         if(!ReceivingData.Activity_Type || ReceivingData.Activity_Type === ''){
+            res.status(400).send({ Status: false, Message: "Activity Type Cannot be empty"});
+         } else if(!ReceivingData.Company_Id || ReceivingData.Company_Id === '') {
+            res.status(400).send({ Status: false, Message: "Company Details Cannot be empty"}); 
+         } else if(!ReceivingData.User_Id || ReceivingData.User_Id === '') {
+            res.status(400).send({ Status: false, Message: "Creator Details Cannot be empty"}); 
+         } else{
+            CRMSettingsModel.ActivityTypeSchema.findOne({'Company_Id': ReceivingData.Company_Id, 'Activity_Type': {$regex : new RegExp("^" + ReceivingData.Activity_Type + "$", "i")}, 'If_Deleted' : false}, {},{}, function(err, result) {
+               if(err) {
+                  ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Activity Type Find Query Error', 'CRM_Settings.controller.js', err);
+                  res.status(417).send({status: false, Message: "Some error occurred while Find Activity Type!."});
                } else {
-                  res.status(200).send({Status: true, Available: true });
+                  if ( result !== null) {
+                     res.status(200).send({Status: true, Available: false });
+                  } else {
+                     res.status(200).send({Status: true, Available: true });
+                  }
                }
-            }
-         });
-      }
-   }
-// Activity Type Create -----------------------------------------------
+            });
+         }
+      };
+   // Activity Type Create -----------------------------------------------
       exports.Activity_Type_Create = function(req, res) {
          var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
          var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
@@ -489,7 +492,7 @@ var mongoose = require('mongoose');
             });
          }
       };
-// Activity Type List -----------------------------------------------
+   // Activity Type List -----------------------------------------------
       exports.Activity_Type_List = function(req, res) {
          var CryptoBytes = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
          var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
@@ -515,7 +518,6 @@ var mongoose = require('mongoose');
             });
          }
       };
-
    // Activity Type Simple List -----------------------------------------------
       exports.Activity_Type_SimpleList = function(req, res) {
          var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
@@ -538,7 +540,6 @@ var mongoose = require('mongoose');
             });
          }
       };
-
    // Activity Type Update -----------------------------------------------
       exports.Activity_Type_Update = function(req, res) {
          var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
@@ -626,33 +627,33 @@ var mongoose = require('mongoose');
       
 
 // ************************************************** Activity Status *****************************************************
-   // Activity Status Async Validate
-   exports.ActivityStatus_AsyncValidate = function(req, res){
-      var CryptoBytes = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
-      var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+   // Activity Status Async Validate --------------------------------------
+      exports.ActivityStatus_AsyncValidate = function(req, res){
+         var CryptoBytes = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
+         var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
 
-      if(!ReceivingData.Activity_Status || ReceivingData.Activity_Status === ''){
-         res.status(400).send({ Status: false, Message: "Activity Status Cannot be empty"});
-      } else if(!ReceivingData.Company_Id || ReceivingData.Company_Id === '') {
-         res.status(400).send({ Status: false, Message: "Company Details Cannot be empty"}); 
-      } else if(!ReceivingData.User_Id || ReceivingData.User_Id === '') {
-         res.status(400).send({ Status: false, Message: "Creator Details Cannot be empty"}); 
-      } else{
-         CRMSettingsModel.ActivityStatusSchema.findOne({'Company_Id': ReceivingData.Company_Id, 'Activity_Status': {$regex : new RegExp("^" + ReceivingData.Activity_Status + "$", "i")}, 'If_Deleted' : false}, {},{}, function(err, result) {
-            if(err) {
-               ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Activity Status Find Query Error', 'CRM_Settings.controller.js', err);
-               res.status(417).send({status: false, Message: "Some error occurred while Find Activity Status!."});
-            } else {
-               if ( result !== null) {
-                  res.status(200).send({Status: true, Available: false });
+         if(!ReceivingData.Activity_Status || ReceivingData.Activity_Status === ''){
+            res.status(400).send({ Status: false, Message: "Activity Status Cannot be empty"});
+         } else if(!ReceivingData.Company_Id || ReceivingData.Company_Id === '') {
+            res.status(400).send({ Status: false, Message: "Company Details Cannot be empty"}); 
+         } else if(!ReceivingData.User_Id || ReceivingData.User_Id === '') {
+            res.status(400).send({ Status: false, Message: "Creator Details Cannot be empty"}); 
+         } else{
+            CRMSettingsModel.ActivityStatusSchema.findOne({'Company_Id': ReceivingData.Company_Id, 'Activity_Status': {$regex : new RegExp("^" + ReceivingData.Activity_Status + "$", "i")}, 'If_Deleted' : false}, {},{}, function(err, result) {
+               if(err) {
+                  ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Activity Status Find Query Error', 'CRM_Settings.controller.js', err);
+                  res.status(417).send({status: false, Message: "Some error occurred while Find Activity Status!."});
                } else {
-                  res.status(200).send({Status: true, Available: true });
+                  if ( result !== null) {
+                     res.status(200).send({Status: true, Available: false });
+                  } else {
+                     res.status(200).send({Status: true, Available: true });
+                  }
                }
-            }
-         });
-      }
-   }   
-// Activity Status Create -----------------------------------------------
+            });
+         }
+      }; 
+   // Activity Status Create -----------------------------------------------
       exports.Activity_Status_Create = function(req, res) {
          var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
          var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
@@ -698,7 +699,6 @@ var mongoose = require('mongoose');
             });
          }
       };
-
    // Activity Status List -----------------------------------------------
       exports.Activity_Status_List = function(req, res) {
          var CryptoBytes = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
@@ -725,7 +725,6 @@ var mongoose = require('mongoose');
             });
          }
       };
-
    // Activity Status Simple List -----------------------------------------------
       exports.Activity_Status_SimpleList = function(req, res) {
          var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
@@ -748,7 +747,6 @@ var mongoose = require('mongoose');
             });
          }
       };
-
    // Activity Status Update -----------------------------------------------
       exports.Activity_Status_Update = function(req, res) {
          var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
@@ -797,7 +795,6 @@ var mongoose = require('mongoose');
             });
          }
       };
-
    // Activity Status Delete -----------------------------------------------
       exports.Activity_Status_Delete = function(req, res) {
          var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
@@ -832,34 +829,38 @@ var mongoose = require('mongoose');
          }
       };
 
-// ************************************************** Activity Priority *****************************************************
-// Activity Priority Async Validate
-exports.ActivityPriority_AsyncValidate = function(req, res){
-   var CryptoBytes = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
-   var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
 
-   if(!ReceivingData.Activity_Priority || ReceivingData.Activity_Priority === ''){
-      res.status(400).send({ Status: false, Message: "Activity Priority Cannot be empty"});
-   } else if(!ReceivingData.Company_Id || ReceivingData.Company_Id === '') {
-      res.status(400).send({ Status: false, Message: "Company Details Cannot be empty"}); 
-   } else if(!ReceivingData.User_Id || ReceivingData.User_Id === '') {
-      res.status(400).send({ Status: false, Message: "Creator Details Cannot be empty"}); 
-   } else{
-      CRMSettingsModel.ActivityPrioritySchema.findOne({'Company_Id': ReceivingData.Company_Id, 'Activity_Priority': {$regex : new RegExp("^" + ReceivingData.Activity_Priority + "$", "i")}, 'If_Deleted' : false}, {},{}, function(err, result) {
-         if(err) {
-            ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Activity Priority Find Query Error', 'CRM_Settings.controller.js', err);
-            res.status(417).send({status: false, Message: "Some error occurred while Find Activity Priority!."});
-         } else {
-            if ( result !== null) {
-               res.status(200).send({Status: true, Available: false });
-            } else {
-               res.status(200).send({Status: true, Available: true });
-            }
+
+
+
+// ************************************************** Activity Priority *****************************************************
+   // Activity Priority Async Validate ---------------------------------------------
+      exports.ActivityPriority_AsyncValidate = function(req, res){
+         var CryptoBytes = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
+         var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+
+         if(!ReceivingData.Activity_Priority || ReceivingData.Activity_Priority === ''){
+            res.status(400).send({ Status: false, Message: "Activity Priority Cannot be empty"});
+         } else if(!ReceivingData.Company_Id || ReceivingData.Company_Id === '') {
+            res.status(400).send({ Status: false, Message: "Company Details Cannot be empty"}); 
+         } else if(!ReceivingData.User_Id || ReceivingData.User_Id === '') {
+            res.status(400).send({ Status: false, Message: "Creator Details Cannot be empty"}); 
+         } else{
+            CRMSettingsModel.ActivityPrioritySchema.findOne({'Company_Id': ReceivingData.Company_Id, 'Activity_Priority': {$regex : new RegExp("^" + ReceivingData.Activity_Priority + "$", "i")}, 'If_Deleted' : false}, {},{}, function(err, result) {
+               if(err) {
+                  ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Activity Priority Find Query Error', 'CRM_Settings.controller.js', err);
+                  res.status(417).send({status: false, Message: "Some error occurred while Find Activity Priority!."});
+               } else {
+                  if ( result !== null) {
+                     res.status(200).send({Status: true, Available: false });
+                  } else {
+                     res.status(200).send({Status: true, Available: true });
+                  }
+               }
+            });
          }
-      });
-   }
-}      
-// Activity Priority Create -----------------------------------------------
+      };   
+   // Activity Priority Create -----------------------------------------------
       exports.Activity_Priority_Create = function(req, res) {
          var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
          var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
@@ -905,7 +906,6 @@ exports.ActivityPriority_AsyncValidate = function(req, res){
             });
          }
       };
-
    // Activity Priority List -----------------------------------------------
       exports.Activity_Priority_List = function(req, res) {
          var CryptoBytes = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
@@ -932,7 +932,6 @@ exports.ActivityPriority_AsyncValidate = function(req, res){
             });
          }
       };
-
    // Activity Priority Simple List -----------------------------------------------
       exports.Activity_Priority_SimpleList = function(req, res) {
          var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
@@ -955,7 +954,6 @@ exports.ActivityPriority_AsyncValidate = function(req, res){
             });
          }
       };
-
    // Activity Priority Update -----------------------------------------------
       exports.Activity_Priority_Update = function(req, res) {
          var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
@@ -1004,7 +1002,6 @@ exports.ActivityPriority_AsyncValidate = function(req, res){
             });
          }
       };
-      
    // Activity Priority Delete -----------------------------------------------
       exports.Activity_Priority_Delete = function(req, res) {
          var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
@@ -1040,34 +1037,37 @@ exports.ActivityPriority_AsyncValidate = function(req, res){
       };
 
 
-// ************************************************** Contact Role *****************************************************
-// Contact Role Async Validate
-exports.ContactRole_AsyncValidate = function(req, res){
-   var CryptoBytes = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
-   var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
 
-   if(!ReceivingData.Contact_Role || ReceivingData.Contact_Role === ''){
-      res.status(400).send({ Status: false, Message: "Contact Role Cannot be empty"});
-   } else if(!ReceivingData.Company_Id || ReceivingData.Company_Id === '') {
-      res.status(400).send({ Status: false, Message: "Company Details Cannot be empty"}); 
-   } else if(!ReceivingData.User_Id || ReceivingData.User_Id === '') {
-      res.status(400).send({ Status: false, Message: "Creator Details Cannot be empty"}); 
-   } else{
-      CRMSettingsModel.ContactRoleSchema.findOne({'Company_Id': ReceivingData.Company_Id, 'Contact_Role': {$regex : new RegExp("^" + ReceivingData.Contact_Role + "$", "i")}, 'If_Deleted' : false}, {},{}, function(err, result) {
-         if(err) {
-            ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Contact Role Find Query Error', 'CRM_Settings.controller.js', err);
-            res.status(417).send({status: false, Message: "Some error occurred while Find Contact Role!."});
-         } else {
-            if ( result !== null) {
-               res.status(200).send({Status: true, Available: false });
-            } else {
-               res.status(200).send({Status: true, Available: true });
-            }
+
+
+// ************************************************** Contact Role *****************************************************
+   // Contact Role Async Validate -------------------------------------
+      exports.ContactRole_AsyncValidate = function(req, res){
+         var CryptoBytes = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
+         var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+
+         if(!ReceivingData.Contact_Role || ReceivingData.Contact_Role === ''){
+            res.status(400).send({ Status: false, Message: "Contact Role Cannot be empty"});
+         } else if(!ReceivingData.Company_Id || ReceivingData.Company_Id === '') {
+            res.status(400).send({ Status: false, Message: "Company Details Cannot be empty"}); 
+         } else if(!ReceivingData.User_Id || ReceivingData.User_Id === '') {
+            res.status(400).send({ Status: false, Message: "Creator Details Cannot be empty"}); 
+         } else{
+            CRMSettingsModel.ContactRoleSchema.findOne({'Company_Id': ReceivingData.Company_Id, 'Contact_Role': {$regex : new RegExp("^" + ReceivingData.Contact_Role + "$", "i")}, 'If_Deleted' : false}, {},{}, function(err, result) {
+               if(err) {
+                  ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Contact Role Find Query Error', 'CRM_Settings.controller.js', err);
+                  res.status(417).send({status: false, Message: "Some error occurred while Find Contact Role!."});
+               } else {
+                  if ( result !== null) {
+                     res.status(200).send({Status: true, Available: false });
+                  } else {
+                     res.status(200).send({Status: true, Available: true });
+                  }
+               }
+            });
          }
-      });
-   }
-}       
-// Contact Role Create -----------------------------------------------
+      };      
+   // Contact Role Create -----------------------------------------------
       exports.Contact_Role_Create = function(req, res) {
          var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
          var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
@@ -1113,7 +1113,6 @@ exports.ContactRole_AsyncValidate = function(req, res){
             });
          }
       };
-
    // Contact Role List -----------------------------------------------
       exports.Contact_Role_List = function(req, res) {
          var CryptoBytes = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
@@ -1140,7 +1139,6 @@ exports.ContactRole_AsyncValidate = function(req, res){
          });
          }
       };
-
    // Contact Role Simple List -----------------------------------------------
       exports.Contact_Role_SimpleList = function(req, res) {
          var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
@@ -1163,7 +1161,6 @@ exports.ContactRole_AsyncValidate = function(req, res){
             });
          }
       };
-
    // Contact Role Update -----------------------------------------------
       exports.Contact_Role_Update = function(req, res) {
          var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
@@ -1212,7 +1209,6 @@ exports.ContactRole_AsyncValidate = function(req, res){
             });
          }
       };
-
    // Contact Role Delete -----------------------------------------------
       exports.Contact_Role_Delete = function(req, res) {
          var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
@@ -1248,34 +1244,37 @@ exports.ContactRole_AsyncValidate = function(req, res){
       };
 
 
-// ************************************************** Pipeline Status *****************************************************
-// Pipeline Status Async Validate
-exports.PipelineStatus_AsyncValidate = function(req, res){
-   var CryptoBytes = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
-   var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
 
-   if(!ReceivingData.Pipeline_Status || ReceivingData.Pipeline_Status === ''){
-      res.status(400).send({ Status: false, Message: "Pipeline Status Cannot be empty"});
-   } else if(!ReceivingData.Company_Id || ReceivingData.Company_Id === '') {
-      res.status(400).send({ Status: false, Message: "Company Details Cannot be empty"}); 
-   } else if(!ReceivingData.User_Id || ReceivingData.User_Id === '') {
-      res.status(400).send({ Status: false, Message: "Creator Details Cannot be empty"}); 
-   } else{
-      CRMSettingsModel.PipelineStatusSchema.findOne({'Company_Id': ReceivingData.Company_Id, 'Pipeline_Status': {$regex : new RegExp("^" + ReceivingData.Pipeline_Status + "$", "i")}, 'If_Deleted' : false}, {},{}, function(err, result) {
-         if(err) {
-            ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Pipeline Status Find Query Error', 'CRM_Settings.controller.js', err);
-            res.status(417).send({status: false, Message: "Some error occurred while Find Pipeline Status!."});
-         } else {
-            if ( result !== null) {
-               res.status(200).send({Status: true, Available: false });
-            } else {
-               res.status(200).send({Status: true, Available: true });
-            }
+
+
+// ************************************************** Pipeline Status *****************************************************
+   // Pipeline Status Async Validate
+      exports.PipelineStatus_AsyncValidate = function(req, res){
+         var CryptoBytes = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
+         var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+
+         if(!ReceivingData.Pipeline_Status || ReceivingData.Pipeline_Status === ''){
+            res.status(400).send({ Status: false, Message: "Pipeline Status Cannot be empty"});
+         } else if(!ReceivingData.Company_Id || ReceivingData.Company_Id === '') {
+            res.status(400).send({ Status: false, Message: "Company Details Cannot be empty"}); 
+         } else if(!ReceivingData.User_Id || ReceivingData.User_Id === '') {
+            res.status(400).send({ Status: false, Message: "Creator Details Cannot be empty"}); 
+         } else{
+            CRMSettingsModel.PipelineStatusSchema.findOne({'Company_Id': ReceivingData.Company_Id, 'Pipeline_Status': {$regex : new RegExp("^" + ReceivingData.Pipeline_Status + "$", "i")}, 'If_Deleted' : false}, {},{}, function(err, result) {
+               if(err) {
+                  ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Pipeline Status Find Query Error', 'CRM_Settings.controller.js', err);
+                  res.status(417).send({status: false, Message: "Some error occurred while Find Pipeline Status!."});
+               } else {
+                  if ( result !== null) {
+                     res.status(200).send({Status: true, Available: false });
+                  } else {
+                     res.status(200).send({Status: true, Available: true });
+                  }
+               }
+            });
          }
-      });
-   }
-}            
-// Pipeline Status Create -----------------------------------------------
+      };          
+   // Pipeline Status Create -----------------------------------------------
       exports.Pipeline_Status_Create = function(req, res) {
          var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
          var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
@@ -1319,8 +1318,8 @@ exports.PipelineStatus_AsyncValidate = function(req, res){
                   });
                }
             });
-      }
-   };
+         }
+      };
    // Pipeline Status List -----------------------------------------------
       exports.Pipeline_Status_List = function(req, res) {
          var CryptoBytes = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
@@ -1347,7 +1346,6 @@ exports.PipelineStatus_AsyncValidate = function(req, res){
          });
          }
       };
-
    // Pipeline Status Simple List -----------------------------------------------
       exports.Pipeline_Status_SimpleList = function(req, res) {
          var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
@@ -1370,7 +1368,6 @@ exports.PipelineStatus_AsyncValidate = function(req, res){
             });
          }
       };
-
    // Pipeline Status Update -----------------------------------------------
       exports.Pipeline_Status_Update = function(req, res) {
          var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
@@ -1419,7 +1416,6 @@ exports.PipelineStatus_AsyncValidate = function(req, res){
             });
          }
       };
-
    // Pipeline Status Delete -----------------------------------------------
       exports.Pipeline_Status_Delete = function(req, res) {
          var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');

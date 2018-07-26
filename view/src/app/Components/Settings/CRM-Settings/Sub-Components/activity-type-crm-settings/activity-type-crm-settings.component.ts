@@ -10,6 +10,7 @@ import { CrmSettingsService } from './../../../../../services/settings/crmSettin
 import * as CryptoJS from 'crypto-js';
 import { ToastrService } from '../../../../../services/common-services/toastr-service/toastr.service';
 import { PermissionsCheckService } from './../../../../../services/PermissionsCheck/permissions-check.service';
+
 @Component({
   selector: 'app-activity-type-crm-settings',
   templateUrl: './activity-type-crm-settings.component.html',

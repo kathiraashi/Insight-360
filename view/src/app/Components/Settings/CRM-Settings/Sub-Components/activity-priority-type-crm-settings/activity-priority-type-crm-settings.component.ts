@@ -4,7 +4,6 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
 import { ModelActivitypriorityCrmsettingsComponent } from '../../../../../models/settings/crm_settings/model-activitypriority-crmsettings/model-activitypriority-crmsettings.component';
 import { DeleteConfirmationComponent } from '../../../../Common-Components/delete-confirmation/delete-confirmation.component';
-import { CrmCustomersCreateComponent } from '../../../../CRM/Customers/crm-customers-create/crm-customers-create.component';
 import { CrmSettingsService } from '../../../../../services/settings/crmSettings/crm-settings.service';
 import { ToastrService } from '../../../../../services/common-services/toastr-service/toastr.service';
 import { PermissionsCheckService } from './../../../../../services/PermissionsCheck/permissions-check.service';
