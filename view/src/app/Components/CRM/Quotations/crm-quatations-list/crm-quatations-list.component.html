@@ -1,32 +1,32 @@
 <app-header></app-header>
 <div class="Main_Section">
-  <div class="Page_Section">
+   <div class="Page_Section">
       <div class="container-fluid">
-          <div class="Page_Identity">
-              <div class="Page_Name">
-                 <h5>Quotations</h5>
-              </div>
-              <div class="Page_Track">
-                 <ul >
-                   <li class="HeaderName">CRM</li>
-                   <li class="arrow">>></li>
-                   <li class= "LinkName">Quotations</li>
-                   <li class="arrow">>></li>
-                   <li >Quotation List</li>
-                 </ul>
-              </div>
-           </div>
-           <div class="row header_part">
-               <div class="col-sm-6">
-                 <button class="Create_Button" mat-raised-button [routerLink]="['/crm_quotations_create']"> + Create </button>
+         <!-- page Identity -->
+         <div class="Page_Identity">
+            <div class="Page_Track">
+               <ul>
+                  <li class="Home">Home</li>
+                  <li class="arrow">>></li>
+                  <li class="HeaderName">CRM</li>
+                  <li class="arrow">>></li>
+                  <li class= "LinkName">Quotations</li>
+               </ul>
+            </div>
+         </div>
+         <!-- Header part -->
+         <div class="row header_part">
+            <div class="col-sm-6">
+               <button class="Create_Button" mat-raised-button [routerLink]="['/crm_quotations_create']"> + Create </button>
+            </div>
+            <div class="col-sm-6">
+               <div class="Search_Section">
+                  <input type="text" placeholder="Search.." name="search">
+                  <i class="material-icons">search</i>
                </div>
-               <div class="col-sm-6">
-                 <div class="Search_Section">
-                   <input type="text" placeholder="Search.." name="search">
-                   <i class="material-icons">search</i>
-                 </div>
-               </div>
-             </div>
+            </div>
+         </div>
+         <!-- Table Section -->
          <div class="Table_Section">
             <table>
                <thead>
@@ -47,7 +47,7 @@
                      </td>
                      <td>
                         <h6 class="Style_2">Quote-a1653d4d</h6>
-                           <span class="Style_3">Valid Till : 12/01/1998</span>
+                        <span class="Style_3">Valid Till : 12/01/1998</span>
                      </td>
                      <td>
                         <h6 class="Style_2">Customer Name</h6>
@@ -55,7 +55,7 @@
                      </td>
                      <td>
                         <h6 class="Style_2">Contact Name</h6>
-                           <span class="Style_3">ContactPerson@gmail.com</span>
+                        <span class="Style_3">ContactPerson@gmail.com</span>
                      </td>
                      <td>
                         <span class="Style_3">Admin Name</span>
@@ -64,8 +64,8 @@
                         <span class="Style_3">White</span>
                      </td>
                      <td>
-                        <button mat-raised-button color="primary" [routerLink]="['/crm_quotations_view']"> Action </button>
-                        </td>
+                        <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
+                     </td>
                   </tr>
                   <tr>
                      <td>
@@ -73,17 +73,15 @@
                      </td>
                      <td>
                         <h6 class="Style_2">Quote-a1653d4d</h6>
-                           <span class="Style_3">Valid Till : 12/01/1998</span>
-                        
+                        <span class="Style_3">Valid Till : 12/01/1998</span>
                      </td>
                      <td>
                         <h6 class="Style_2">Customer Name  </h6>
                         <span class="Style_3">ganapathy, coimboture, Tamil Nadu</span>
-                      
                      </td>
                      <td>
                         <h6 class="Style_2">Contact Name  </h6>
-                           <span class="Style_3">ContactPerson@gmail.com</span>
+                        <span class="Style_3">ContactPerson@gmail.com</span>
                      </td>
                      <td>
                         <span class="Style_3">Admin Name</span>
@@ -92,8 +90,8 @@
                         <span class="Style_3">green</span>
                      </td>
                      <td>
-                        <button mat-raised-button color="primary" [routerLink]="['/crm_quotations_view']"> Action </button>
-                        </td>
+                        <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
+                     </td>
                   </tr>
                   <tr>
                      <td>
@@ -101,17 +99,15 @@
                      </td>
                      <td>
                         <h6 class="Style_2">Quote-a1653d4d</h6>
-                           <span class="Style_3">Valid Till : 12/01/1998</span>
+                        <span class="Style_3">Valid Till : 12/01/1998</span>
                      </td>
                      <td>
                         <h6 class="Style_2">Customer Name </h6>
-                           <span class="Style_3">ganapathy, coimboture, Tamil Nadu</span>
-                       
+                        <span class="Style_3">ganapathy, coimboture, Tamil Nadu</span>
                      </td>
                      <td>
                         <h6 class="Style_2">Contact Name</h6>
-                           <span class="Style_3">ContactPerson@gmail.com</span>
-                        
+                        <span class="Style_3">ContactPerson@gmail.com</span>
                      </td>
                      <td>
                         <span class="Style_3">Admin Name</span>
@@ -120,8 +116,8 @@
                         <span class="Style_3">red</span>
                      </td>
                      <td>
-                        <button mat-raised-button color="primary" [routerLink]="['/crm_quotations_view']"> Action </button>
-                        </td>
+                        <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
+                     </td>
                   </tr>
                   <tr>
                      <td>
@@ -129,18 +125,15 @@
                      </td>
                      <td>
                         <h6 class="Style_2">Quote-a1653d4d </h6>
-                           <span class="Style_3">Valid Till : 12/01/1998</span>
-                       
+                        <span class="Style_3">Valid Till : 12/01/1998</span>
                      </td>
                      <td>
                         <h6 class="Style_2">Customer Name </h6>
-                           <span class="Style_3">ganapathy, coimboture, Tamil Nadu</span>
-                       
+                        <span class="Style_3">ganapathy, coimboture, Tamil Nadu</span>
                      </td>
                      <td>
                         <h6 class="Style_2">Contact Name </h6>
-                           <span class="Style_3">ContactPerson@gmail.com</span>
-                       
+                        <span class="Style_3">ContactPerson@gmail.com</span>
                      </td>
                      <td>
                         <span class="Style_3">Admin Name</span>
@@ -149,8 +142,8 @@
                         <span class="Style_3">green</span>
                      </td>
                      <td>
-                        <button mat-raised-button color="primary" [routerLink]="['/crm_quotations_view']"> Action </button>
-                        </td>
+                        <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
+                     </td>
                   </tr>
                   <tr>
                      <td>
@@ -158,18 +151,15 @@
                      </td>
                      <td>
                         <h6 class="Style_2">Quote-a1653d4d  </h6>
-                           <span class="Style_3">Valid Till : 12/01/1998</span>
-                      
+                        <span class="Style_3">Valid Till : 12/01/1998</span>
                      </td>
                      <td>
                         <h6 class="Style_2">Customer Name   </h6>
-                           <span class="Style_3">ganapathy, coimboture, Tamil Nadu</span>
-                     
+                        <span class="Style_3">ganapathy, coimboture, Tamil Nadu</span>
                      </td>
                      <td>
                         <h6 class="Style_2">Contact Name </h6>
-                           <span class="Style_3">ContactPerson@gmail.com</span>
-                       
+                        <span class="Style_3">ContactPerson@gmail.com</span>
                      </td>
                      <td>
                         <span class="Style_3">Admin Name</span>
@@ -178,69 +168,87 @@
                         <span class="Style_3">red</span>
                      </td>
                      <td>
-                        <button mat-raised-button color="primary" [routerLink]="['/crm_quotations_view']"> Action </button>
-                        </td>
+                        <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
+                     </td>
                   </tr>
-                     <tr>
-                        <td>
-                           <span class="S_no"> 6 </span>
-                        </td>
-                        <td>
-                           <h6 class="Style_2">Quote-a1653d4d   </h6>
-                              <span class="Style_3">Valid Till : 12/01/1998</span>
-                        
-                        </td>
-                        <td>
-                           <h6 class="Style_2">Customer Name </h6>
-                              <span class="Style_3">ganapathy, coimboture, Tamil Nadu</span>
-                          
-                        </td>
-                        <td>
-                           <h6 class="Style_2">Contact Name   </h6>
-                              <span class="Style_3">ContactPerson@gmail.com</span>
-                        
-                        </td>
-                        <td>
-                           <span class="Style_3">Admin Name</span>
-                        </td>
-                        <td>
-                           <span class="Style_3">blue</span>
-                        </td>
-                        <td>
-                              <button mat-raised-button color="primary" [routerLink]="['/crm_quotations_view']"> Action </button>
-                           </td>
-                     </tr>
-                     <tr>
-                        <td>
-                           <span class="S_no"> 7 </span>
-                        </td>
-                        <td>
-                           <h6 class="Style_2">Quote-a1653d4d </h6>
-                              <span class="Style_3">Valid Till : 12/01/1998</span>
-                          
-                        </td>
-                        <td>
-                           <h6 class="Style_2">Customer Name </h6>
-                              <span class="Style_3">ganapathy, coimboture, Tamil Nadu</span>
-                          
-                        </td>
-                        <td>
-                           <h6 class="Style_2">Contact Name</h6>
-                              <span class="Style_3">ContactPerson@gmail.com</span>
-                       </td>
-                        <td>
-                           <span class="Style_3">Admin Name</span>
-                        </td>
-                        <td>
-                           <span class="Style_3">green</span>
-                        </td>
-                        <td>
-                              <button mat-raised-button color="primary" [routerLink]="['/crm_quotations_view']"> Action </button>
-                           </td>
-                     </tr>
-                  </tbody>
-               </table>
-            </div>
+                  <tr>
+                     <td>
+                        <span class="S_no"> 6 </span>
+                     </td>
+                     <td>
+                        <h6 class="Style_2">Quote-a1653d4d   </h6>
+                        <span class="Style_3">Valid Till : 12/01/1998</span>
+                     </td>
+                     <td>
+                        <h6 class="Style_2">Customer Name </h6>
+                        <span class="Style_3">ganapathy, coimboture, Tamil Nadu</span>
+                     </td>
+                     <td>
+                        <h6 class="Style_2">Contact Name   </h6>
+                        <span class="Style_3">ContactPerson@gmail.com</span>
+                     </td>
+                     <td>
+                        <span class="Style_3">Admin Name</span>
+                     </td>
+                     <td>
+                        <span class="Style_3">blue</span>
+                     </td>
+                     <td>
+                        <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action"> Action </button>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <span class="S_no"> 7 </span>
+                     </td>
+                     <td>
+                        <h6 class="Style_2">Quote-a1653d4d </h6>
+                        <span class="Style_3">Valid Till : 12/01/1998</span>
+                     </td>
+                     <td>
+                        <h6 class="Style_2">Customer Name </h6>
+                        <span class="Style_3">ganapathy, coimboture, Tamil Nadu</span>
+                     </td>
+                     <td>
+                        <h6 class="Style_2">Contact Name</h6>
+                        <span class="Style_3">ContactPerson@gmail.com</span>
+                     </td>
+                     <td>
+                        <span class="Style_3">Admin Name</span>
+                     </td>
+                     <td>
+                        <span class="Style_3">green</span>
+                     </td>
+                     <td>
+                        <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action"> Action </button>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
          </div>
       </div>
    </div>
+</div>
+   
+
+<!-- Dropdown menus -->
+<mat-menu #Action="matMenu">
+     <button mat-menu-item [routerLink]="['/crm_quotations_create']">
+         <span>Edit</span>
+      </button>
+      <button mat-menu-item [routerLink]="['/crm_quotations_view']">
+         <span>View</span>
+      </button>
+      <button mat-menu-item>
+         <span>Delete</span>
+      </button>
+      <button mat-menu-item>
+         <span>Quote</span>
+      </button>
+      <button mat-menu-item>
+         <span>Sale order</span>
+      </button>
+      <button mat-menu-item>
+         <span>Invoice</span>
+      </button>
+   </mat-menu>

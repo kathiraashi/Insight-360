@@ -1,3 +1,16 @@
+<div [ngClass]="{'Hide': !Loader}" class="DataLoaderStyle_1">
+    <div class="Loading">
+          <div class="spinner">
+             <div class="rect1"></div>
+             <div class="rect2"></div>
+             <div class="rect3"></div>
+             <div class="rect4"></div>
+             <div class="rect5"></div>
+             <div class="rect6"></div>
+          </div>
+    </div>
+  </div>
+  <div class="LoadedDataStyle_1" [ngClass]="{'Show': !Loader}">
 <!-- Page Header Part -->
    <div class="row header_part">
       <div class="col-sm-6">
@@ -32,9 +45,13 @@
                </td>
                <td>
                   <span class="Style_1">{{Item.Created_By.Name}}</span>
+                  <br>
+                  <span class="Time"> {{Item.createdAt | date:'medium'}}  </span>
                </td>
                <td>
                   <span class="Style_1">{{ Item.Last_Modified_By.Name }}</span>
+                  <br> 
+                  <span class="Time"> {{Item.updatedAt | date:'medium'}}  </span>
                </td>
                <td>
                   <button *ngIf="_View" (click)="ViewDepartment(i)" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
@@ -50,6 +67,7 @@
             </tr>
          </tbody>
       </table>
+   </div>
    </div>
  
  

@@ -1,113 +1,117 @@
 <div class="page" style="margin-top:100px;">
-      <div class="container-fluid">
-        <div class="Page_Identity">
-          <div class="Page_Name">
-             <h5>Purchase Request</h5>
-          </div>
-          <div class="Page_Track">
-             <ul >
-               <li class="HeaderName">Purchase</li>
+   <div class="container-fluid">
+      <!-- Page Identity -->
+      <div class="Page_Identity">
+         <div class="Page_Track">
+            <ul>
+               <li class="HeaderName">Home</li>
                <li class="arrow">>></li>
-               <li class= "LinkName">Purchase Request</li>
+               <li class= "LinkName">Purchase</li>
                <li class="arrow">>></li>
-               <li >Purchase Request Create</li>
-             </ul>
-          </div>
-       </div>
-        <form>
-          <div class="row">
+               <li >Purchase Request</li>
+            </ul>
+         </div>
+      </div>
+      <form>
+         <div class="row">
+            <!-- Company details -->
             <div class="Company_Details">
-              <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Purchase 
-                <span style="color:#516570;font-size:20px;font-weight: 600;">Request</span>
-              </h5>
-              <br>
-              <div class="col-sm-12">
-                <div class="row">
+               <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Purchase 
+                  <span style="color:#516570;font-size:20px;font-weight: 600;">Request</span>
+               </h5>
+               <br>
+               <div class="col-sm-12">
+                  <div class="row">
                   <div class="col-sm-5 Form_Input">
-                    <label>Request No:</label>
-                    <br>
-                    <input type="text">
+                     <label>Request No:</label>
+                     <br>
+                     <input type="text">
                   </div>
                   <div class="col-sm-5 Form_Input">
                      <label>Request Date:</label>
-                    <br>
-                    <input type="text">
+                     <br>
+                     <input type="text">
                   </div>
                   <div class="col-sm-5 Form_Input">
                      <label>Requested By:</label>
-                    <br>
-                    <input type="text">
+                     <br>
+                     <input type="text" readonly="true">
                   </div>
                   <div class="col-sm-5 Form_TextArea">
                      <label>Description:</label>
-                    <br>
-                    <textarea class="Description" rows="3"></textarea>
+                     <br>
+                     <textarea class="Description" rows="3"></textarea>
                   </div>
-                </div>
-              </div>
+                  </div>
+               </div>
             </div>
+            <!-- Table Section -->
             <div class="Table_Section">
-              <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Product
-                <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span>
-                <span><button class="Add_Product_Button">Add Product</button></span>
-              </h5>
-              <br>
-              <table class="table_section">
-                <thead class="table_head">
-                  <tr>
-                    <th class="S_No">S.No</th>
-                    <th>Product</th>
-                    <th>Required Quantity</th>
-                    <th>Required Date</th>
-                    <th>Approved Quantity</th>
-                    <th>Tax</th>
-                    <th>Status</th>
-                    <th class="Action">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td >1</td>
-                    <td class="Form_Select">
-                      <select>
-                      <option checked>Select one Product</option>
-                      <option> Product1</option>
-                      <option> Product2</option>
-                      <option> Product3</option>
-                      <option> Product4</option>
-                   </select>
-                  </td>
-                   <td class="Form_Input">
-                      <input type="text">
-                    </td>
-                    <td class="Form_Input">
-                         <input type="text">
-                       </td>
-                       <td class="Form_Input">
-                            <input type="text">
-                          </td>
-                          <td class="Form_Input">
-                               <input type="text">
-                             </td>
-                             <td class="Form_Input">
-                                  <input type="text">
-                                </td>
-                                <td>
-                                     <span class="Action_Section Bg_Danger">
-                                           <i class="material-icons">delete</i>
-                                        </span> 
-                                   </td>
-                  </tr>
-                </tbody>
-              </table>
-              <br>
+               <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Product
+                  <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span>
+                  <span><button class="Add_Product_Button">Add Product</button></span>
+               </h5>
+               <br>
+               <table class="table_section">
+                  <thead class="table_head">
+                     <tr>
+                        <th class="S_No">S.No</th>
+                        <th>Product</th>
+                        <th>Description</th>
+                        <th>Required Quantity</th>
+                        <th>Required Date</th>
+                        <th>Approved Quantity</th>
+                        <th>Tax</th>
+                        <th>Status</th>
+                        <th class="Action">Action</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td >1</td>
+                        <td class="Form_Select">
+                           <select>
+                              <option checked>Select one Product</option>
+                              <option> Product1</option>
+                              <option> Product2</option>
+                              <option> Product3</option>
+                              <option> Product4</option>
+                           </select>
+                        </td>
+                        <td class="Form_TextArea">
+                           <textarea class="Description" rows="2"></textarea>
+                        </td>
+                        <td class="Form_Input">
+                           <input type="text">
+                        </td>
+                        <td class="Form_Input">
+                           <input type="text">
+                        </td>
+                        <td class="Form_Input">
+                           <input type="text">
+                        </td>
+                        <td class="Form_Input">
+                           <input type="text">
+                        </td>
+                        <td class="Form_Input">
+                           <input type="text">
+                        </td>
+                        <td>
+                           <span class="Action_Section Bg_Danger">
+                              <i class="material-icons">delete</i>
+                           </span> 
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+               <br>
             </div>
-          </div>
-          <div class="row" style="margin-top:20px;">
+         </div>
+         <div class="row" style="margin-top:20px;">
             <div class="col-sm-12 text-right">
                <button mat-raised-button color="primary" > Submit </button>
             </div>
-          </div>
-        </form>
-      </div>
-    </div>
+         </div>
+      </form>
+   </div>
+</div>

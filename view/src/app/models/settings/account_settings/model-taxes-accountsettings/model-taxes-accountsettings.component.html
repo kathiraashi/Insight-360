@@ -1,9 +1,9 @@
-<div class="Modal_Content" *ngIf="Type && Type === 'Create'">
+<div class="Modal_Content" *ngIf="_Data?.Type && (_Data?.Type === 'Create' || _Data?.Type === 'Edit')">
    <div class="Modal_Header">
-      <p> Create Taxes</p>
-      <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+      <p> {{_Data?.Type}} Taxes</p>
+      <span *ngIf="!Uploading" data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
    </div>
-   <form [formGroup]= "Form">
+   <form [formGroup]="Form" (ngSubmit)="onSubmit()">
       <div class="Model_Body">
          <div class="row">
             <div class="col-sm-6 Form_Input" [ngClass]="{'Form_Err': Form.controls['Tax_Name'].errors && !Form.controls['Tax_Name'].pristine, 'Form_Success': Form.controls['Tax_Name'].valid && !Form.controls['Tax_Name'].pristine }">
@@ -15,86 +15,98 @@
             </div>
             <div class="col-sm-6 Form_Select">
             <label>Tax Scope: </label>
-            <select>
-               <option disabled> Tax Scope</option>
-               <option> Tax Scope </option>
-               <option>Tax Scope </option>
-               <option> Tax Scope </option>
-               <option> Tax Scope </option>
-               <option> Tax Scope </option>
-               <option> Tax Scope </option>
-            </select>
+            <ng-select class="NgSelect ValueBold" formControlName="Tax_Scope" [searchable]="true" placeholder="Tax Scope">
+                  <ng-option *ngFor="let Tax_Scope of _Tax_Scope" [value]="Tax_Scope">{{ Tax_Scope }}</ng-option>
+               </ng-select>
+               <p class="error" *ngIf="Form.controls['Tax_Scope'].errors && !Form.controls['Tax_Scope'].pristine">
+                  <span  *ngIf="Form.controls['Tax_Scope'].errors.required"> Tax Scope is required</span>
+               </p>
             </div>
             <div class="col-sm-6 Form_Select">
             <label>Tax Computation: </label>
-            <select>
-               <option disabled> Tax Computation</option>
-               <option> Tax Computation </option>
-               <option> Tax Computation</option>
-               <option>Tax Computation </option>
-               <option> Tax Computation</option>
-               <option> Tax Computation</option>
-               <option> Tax Computation</option>
-            </select>
+            <ng-select class="NgSelect ValueBold" formControlName="Tax_Computation" [searchable]="true" placeholder="Tax Computation">
+                  <ng-option *ngFor="let TaxComputation of _Tax_Computation" [value]="TaxComputation">{{ TaxComputation?.Value }}</ng-option>
+               </ng-select>
+               <p class="error" *ngIf="Form.controls['Tax_Computation'].errors && !Form.controls['Tax_Computation'].pristine">
+                  <span  *ngIf="Form.controls['Tax_Computation'].errors.required"> Tax Computation is required</span>
+               </p>
             </div>
             <div class="col-sm-6 Form_Input" [ngClass]="{'Form_Err': Form.controls['Amount'].errors && !Form.controls['Amount'].pristine , 'Form_Success': Form.controls['Amount'].valid && !Form.controls['Amount'].pristine}">
-            <label>Amount: </label>
+            <label>Amount/Percent: </label>
             <input type="text" formControlName = "Amount">
             <p class="error" *ngIf="Form.controls['Amount'].errors && !Form.controls['Amount'].pristine">
                <span *ngIf="Form.controls['Amount'].errors.required">!Amount is required</span>
             </p>
             </div>
-            <div class="col-sm-6 Form_Input" [ngClass]="{'Form_Err': Form.controls['Percent'].errors && !Form.controls['Percent'].pristine, 'Form_Success': Form.controls['Percent'].valid && !Form.controls['Percent'].pristine}">
-            <label>Percent: </label>
-            <input type="text" formControlName="Percent">
-            <p class="error" *ngIf="Form.controls['Percent'].errors && !Form.controls['Percent'].pristine">
-               <span *ngIf="Form.controls['Percent'].errors.required">!Percent is required</span>
-            </p>
-            </div>
-            <div class="col-sm-6 Form_TextArea">
+           <div class="col-sm-6 Form_TextArea">
             <label>Notes: </label>
-            <textarea class="message" rows="2"></textarea>
+            <textarea class="message" rows="2" formControlName="Notes"></textarea>
             </div>
          </div>
       </div>
-   </form>
-  <div class="Model_Footer">
-    <button mat-raised-button color="primary" [disabled] = "Form.nValid" > Submit </button>
+<div class="Model_Footer">
+   <button type="submit" [disabled]="Form.status !== 'VALID' || Uploading" mat-raised-button color="primary">
+      <span *ngIf="_Data?.Type === 'Create' && !Uploading">Submit</span>
+      <span *ngIf="_Data?.Type === 'Edit' && !Uploading">Update</span>
+      <span *ngIf="Uploading" class="UploadingBtn"> <i class="fa fa-refresh fa-spin"></i> Loading... </span>
+   </button>
   </div>
-</div>
-<div class="Modal_Content" *ngIf=" Type && Type === 'View'">
+</form>
+  </div>
+<div class="Modal_Content" *ngIf="_Data?.Type && _Data?.Type === 'View'">
   <div class="Modal_Header">
     <p>View Taxes</p>
     <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
   </div>
   <div class="Model_Body">
-    <div class="row">
-      <div class="col-sm-6 text-right Static">Tax Name: </div>
-      <div class="col-sm-6 text-left Data">tax name</div>
-    </div>
-    <div class="row">
-      <div class="col-sm-6 text-right Static">Tax Scope: </div>
-      <div class="col-sm-6 text-left Data">tax scope</div>
-    </div>
-    <div class="row">
-      <div class="col-sm-6 text-right Static">Tax Computation: </div>
-      <div class="col-sm-6 text-left Data">tax computation</div>
-    </div>
-    <div class="row">
-      <div class="col-sm-6 text-right Static">Tax Scope: </div>
-      <div class="col-sm-6 text-left Data">tax scope</div>
-    </div>
-    <div class="row">
-      <div class="col-sm-6 text-right Static">Amount: </div>
-      <div class="col-sm-6 text-left Data">5000</div>
-    </div>
-    <div class="row">
-      <div class="col-sm-6 text-right Static">Percent: </div>
-      <div class="col-sm-6 text-left Data">percent</div>
-    </div>
-    <div class="row">
-      <div class="col-sm-6 text-right Static">Notes: </div>
-      <div class="col-sm-6 text-left Data">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-    </div>
+   <div class="view_item">
+      <div class="Static"> Tax Name </div>
+      <div class="dots"> : </div>
+      <div class="Data"> {{_Taxes_Info.Tax_Name}}  </div>
+   </div>
+   <div class="view_item">
+      <div class="Static"> Tax Scope </div>
+      <div class="dots"> : </div>
+      <div class="Data">  {{_Taxes_Info.Tax_Scope}} </div>
+   </div>
+   <div class="view_item">
+      <div class="Static"> Tax Computation </div>
+      <div class="dots"> : </div>
+      <div class="Data">  {{_Taxes_Info.Tax_Computation?.Value}} </div>
+   </div>
+   <div class="view_item">
+      <div class="Static"> Amount </div>
+      <div class="dots"> : </div>
+      <div class="Data">  {{_Taxes_Info.Amount}} </div>
+   </div>
+   <div class="view_item">
+      <div class="Static"> Notes </div>
+      <div class="dots"> : </div>
+      <div class="Data">  {{_Taxes_Info.Notes}} </div>
+   </div>
+   <div class="view_item">
+      <div class="Static">Created By </div>
+      <div class="dots"> : </div>
+      <div class="Data"> {{_Taxes_Info.Created_By?.Name}}
+         <!-- <span class="Badge"> {{Data.Created_By.User_Type.User_Type}} </span> -->
+      </div>
+   </div>
+   <div class="view_item">
+      <div class="Static">Last Modified By </div>
+      <div class="dots"> : </div>
+      <div class="Data">  {{_Taxes_Info.Last_Modified_By?.Name}}
+         <!-- <span class="Badge"> {{Data.Last_Modified_By.User_Type.User_Type}} </span> -->
+      </div>
+   </div>
+   <div class="view_item">
+      <div class="Static"> Created Date </div>
+      <div class="dots"> : </div>
+      <div class="Data"> {{_Taxes_Info.createdAt | date:'medium' }} </div>
+   </div>
+   <div class="view_item">
+      <div class="Static">Last Modified Date  </div>
+      <div class="dots"> : </div>
+      <div class="Data"> {{_Taxes_Info.updatedAt | date:'medium' }} </div>
+   </div>
 </div>
 </div>

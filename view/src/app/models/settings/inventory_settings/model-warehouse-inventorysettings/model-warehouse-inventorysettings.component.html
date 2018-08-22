@@ -1,28 +1,44 @@
 
-<div class="Modal_Content" *ngIf="Type && Type === 'Create'">
+<div class="Modal_Content" *ngIf="Type && (Type === 'Create' || Type === 'Edit')">
   <div class="Modal_Header">
-      <p> Create WareHouse</p>
-      <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+      <p> {{Type}} WareHouse</p>
+      <span *ngIf="!Uploading" data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
   </div>
+  <form [formGroup] ="Form" (ngSubmit)="onSubmit()">
   <div class="Model_Body">
     <div class="row">
-      <div class="col-sm-6 Form_Input">
+      <div class="col-sm-6 Form_Input" [ngClass]="{'Form_Err': Form.controls['Ware_House_Name'].errors && !Form.controls['Ware_House_Name'].pristine, 'Form_Success': Form.controls['Ware_House_Name'].valid && !Form.controls['Ware_House_Name'].pristine}">
         <label>WareHouse Name:</label>
-          <input type="text">
+          <input type="text" formControlName="Ware_House_Name">
+          <p class="error" *ngIf="Form.controls['Ware_House_Name'].errors && !Form.controls['Ware_House_Name'].pristine">
+            <span *ngIf="Form.controls['Ware_House_Name'].errors.required">!Ware House Name is Required</span>
+            <span *ngIf="Form.controls['Ware_House_Name'].errors.WareHouse_NotAvailable"> Ware House Name Already Exist </span>
+         </p>
       </div>
-      <div class="col-sm-6 Form_Input">
+      <div class="col-sm-6 Form_Input" [ngClass]="{'Form_Err': Form.controls['Ware_House_Code'].errors && !Form.controls['Ware_House_Code'].pristine, 'Form_Success': Form.controls['Ware_House_Code'].valid && !Form.controls['Ware_House_Code'].pristine}">
         <label>WareHouse Code:</label>
-          <input type="text">
+          <input type="text" formControlName="Ware_House_Code">
+          <p class="error" *ngIf="Form.controls['Ware_House_Code'].errors && !Form.controls['Ware_House_Code'].pristine">
+            <span *ngIf="Form.controls['Ware_House_Code'].errors.required">!Ware House Code is Required</span>
+         </p>
       </div>
-      <div class="col-sm-6 Form_Input">
+      <div class="col-sm-6 Form_Input" [ngClass]="{'Form_Err': Form.controls['Address'].errors && !Form.controls['Address'].pristine, 'Form_Success': Form.controls['Address'].valid && !Form.controls['Address'].pristine}">
         <label>Address:</label>
-          <input type="text">
+          <input type="text" formControlName="Address">
+          <p class="error" *ngIf="Form.controls['Address'].errors && !Form.controls['Address'].pristine">
+            <span *ngIf="Form.controls['Address'].errors.required">!Address is Required</span>
+         </p>
       </div>
    </div>
   </div>
   <div class="Model_Footer">
-    <button mat-raised-button color="primary" > Submit </button>
+   <button type="submit"  [disabled]="Form.status !== 'VALID' || Uploading" mat-raised-button color="primary" >
+      <span *ngIf="Type === 'Create' && !Uploading"> Submit </span>
+      <span *ngIf="Type === 'Edit' && !Uploading"> Update </span> 
+      <span *ngIf="Uploading" class="UploadingBtn"> <i class="fa fa-refresh fa-spin"></i> Loading... </span>
+   </button>
  </div>
+ </form>
   </div>
 
 <div class="Modal_Content" *ngIf=" Type && Type === 'View'">
@@ -31,18 +47,41 @@
      <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
  </div>
  <div class="Model_Body">
-    <div class="row">
-        <div class="col-sm-6 text-right Static">WareHouse Name: </div>
-        <div class="col-sm-6 text-left Data">warehouse name</div>
-     </div>
-     <div class="row">
-        <div class="col-sm-6 text-right Static">WareHouse Code: </div>
-        <div class="col-sm-6 text-left Data">warehouse code</div>
-     </div>
-     <div class="row">
-        <div class="col-sm-6 text-right Static">Address: </div>
-        <div class="col-sm-6 text-left Data">ganapathy</div>
-     </div>
+   <div class="view_item">
+      <div class="Static">Ware House Name</div>
+      <div class="dots">: </div>
+      <div class="Data">{{Data.Ware_House_Name}}</div>
+   </div>
+   <div class="view_item">
+      <div class="Static">Ware House Code: </div>
+      <div class="dots">: </div>
+      <div class=" Data">{{Data.Ware_House_Code}}</div>
+   </div>
+   <div class="view_item">
+      <div class="Static">Address: </div>
+      <div class="dots">: </div>
+      <div class="Data">{{Data.Address}}</div>
+   </div>
+  <div class="view_item">
+         <div class="Static">Created By </div>
+         <div class="dots"> : </div>
+         <div class="Data"> {{Data.Created_By.Name}}</div>
+      </div>
+      <div class="view_item">
+         <div class="Static">Last Modified By </div>
+         <div class="dots"> : </div>
+         <div class="Data"> {{Data.Last_Modified_By.Name}}</div>
+      </div>
+      <div class="view_item">
+         <div class="Static"> Created Date </div>
+         <div class="dots"> : </div>
+         <div class="Data"> {{Data.createdAt | date:'medium'}}</div>
+      </div>
+      <div class="view_item">
+         <div class="Static">Last Modified Date  </div>
+         <div class="dots"> : </div>
+         <div class="Data"> {{Data.updatedAt | date:'medium'}}</div>
+      </div>
 </div>
 </div>
 

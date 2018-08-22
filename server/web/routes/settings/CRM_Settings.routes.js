@@ -1,6 +1,6 @@
 module.exports = function(app) {
 
-   var Controller = require('../../controller/settings/CRM_Settings.controller.js');
+      var Controller = require('../../controller/settings/CRM_Settings.controller.js');
 
    // Industry Type -----------------------------------------------
       app.post('/API/CRM_Settings/IndustryType_AsyncValidate', Controller.IndustryType_AsyncValidate);

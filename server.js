@@ -97,6 +97,10 @@ app.use('/API/', function (req, res, next) {
       require('./server/web/routes/settings/Hr_Settings.routes.js')(app);
    // Account Settings
       require('./server/web/routes/settings/Account_Settings.routes.js')(app);
+    // Company Settings
+    require('./server/web/routes/settings/Company_Settings.routes.js')(app);
+    // Inventory Settings
+    require('./server/web/routes/settings/Inventory_Settings.routes.js')(app);
 
 
 

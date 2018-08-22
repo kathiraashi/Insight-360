@@ -111,7 +111,7 @@ var mongoose = require('mongoose');
          } else if (!ReceivingData.User_Id || ReceivingData.User_Id === ''  ) {
             res.status(400).send({Status: false, Message: "User Details can not be empty" });
          }else {
-            HrmsSettingsModel.LeaveTypeSchema.find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, { Industry_Type : 1 }, {sort: { updatedAt: -1 }}, function(err, result) { // Leave Type FindOne Query
+            HrmsSettingsModel.LeaveTypeSchema.find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, { Leave_Type : 1 }, {sort: { updatedAt: -1 }}, function(err, result) { // Leave Type FindOne Query
                if(err) {
                   ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Hrms Leave Type Find Query Error', 'Hrms_Settings.controller.js', err);
                   res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Leave Type!."});
@@ -318,7 +318,7 @@ exports.ExpensesType_AsyncValidate = function(req, res) {
          } else if (!ReceivingData.User_Id || ReceivingData.User_Id === ''  ) {
             res.status(400).send({Status: false, Message: "User Details can not be empty" });
          }else {
-            HrmsSettingsModel.ExpensesTypeSchema.find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, { Industry_Type : 1 }, {sort: { updatedAt: -1 }}, function(err, result) { // Expenses Type FindOne Query
+            HrmsSettingsModel.ExpensesTypeSchema.find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, { Expenses_Type : 1 }, {sort: { updatedAt: -1 }}, function(err, result) { // Expenses Type FindOne Query
                if(err) {
                   ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Hrms Expenses Type Find Query Error', 'Hrms_Settings.controller.js', err);
                   res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Expenses Type!."});

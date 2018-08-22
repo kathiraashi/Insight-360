@@ -3,16 +3,13 @@
    <div class="container-fluid">
       <div class="Page_Section">
             <div class="Page_Identity">
-                  <div class="Page_Name">
-                     <h5>Vendor View</h5>
-                  </div>
                   <div class="Page_Track">
                      <ul >
-                       <li class="HeaderName">Purchase</li>
+                       <li class="HeaderName">Home</li>
                        <li class="arrow">>></li>
-                       <li class="LinkName">Vendor</li>
+                       <li class="LinkName">Purchase</li>
                        <li class="arrow">>></li>
-                       <li>Vendor View</li>
+                       <li>Vendor</li>
                      </ul>
                   </div>
                </div>
@@ -25,8 +22,8 @@
                   <div class="col-sm-10 ">
                      <div class="row">
                            <div class="col-sm-12">
-                                 <h5 class="customer_name">VENDOR NAME <span><i class="material-icons"> border_color</i></span>
-                                 <span class="Create_Button"> +Create</span></h5>
+                                 <h5 class="customer_name">VENDOR NAME <span><i class="material-icons" [routerLink]="['/Vendor_Create']"> border_color</i></span>
+                                 <span class="Create_Button" [matMenuTriggerFor] = "Action" > +Create</span></h5>
                               </div>
                         <div class="col-sm-3">
                            <div class="Card card_bg_Liner_1">
@@ -189,6 +186,25 @@
             </div>
          </div>
       </div>
+
+      <!-- Dropdown menus -->
+<mat-menu #Action="matMenu">
+      <button mat-menu-item (click)="CreateContact()">
+         <span>Contacts</span>
+      </button>
+      <button mat-menu-item [routerLink]="['/Purchase_Quotation_Create']">
+         <span>Purchase Quotations</span>
+      </button>
+      <button mat-menu-item [routerLink]="['/Purchase_Order_Create']">
+         <span>Purchase Orders</span>
+      </button>
+      <button mat-menu-item [routerLink]="['/Vendor_Bills_Create']">
+         <span>Vendor Bills</span>
+      </button>
+      <button mat-menu-item (click)="CreatePayments()">
+         <span>Payments</span>
+      </button>
+   </mat-menu>
       
 
   

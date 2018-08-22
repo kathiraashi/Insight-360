@@ -84,64 +84,7 @@
   border-radius: 5px;
   border-top: 2px solid #49B660;
 }
-.Product_Tab{
-  display:flex;
-}
-.Product_Tab .Product_details span{
- width: 50%;
- height: 50px;
- font-size: 16px;
- font-weight: 600;
- padding: 5px 10px; 
- margin-right: 5px;
- letter-spacing: 0.8px;
- border-radius: 3px;
-}
-.Product_Tab .Product_details span.active{
-width: 50%;
-height: 50px;
-font-size: 16px;
-font-weight: 600;
-padding: 5px 10px;
-border: 1px solid #49b660;
-background-color: #49b660;
-color: #fff;
-margin-right: 5px;
-letter-spacing: 0.8px;
-border-radius: 3px;
-}
- .Product_Tab .Product_details span:hover{
-cursor:pointer;
-box-shadow: 2px 2px 2px rgb(16, 26, 18);
-}
- .Product_Tab .Quote_Terms span{
-width: 50%;
-height: 50px;
-font-size: 16px;
-font-weight: 600;
-padding: 5px 10px;
-margin-right: 5px;
-letter-spacing: 0.8px;
-border-radius: 3px;
 
-}
- .Product_Tab .Quote_Terms span.active{
-width: 50%;
-height: 50px;
-font-size: 16px;
-font-weight: 600;
-padding: 5px 10px;
-border: 1px solid #49b660;
-background-color: #49b660;
-color: #fff;
-margin-right: 5px;
-letter-spacing: 0.8px;
-border-radius: 3px;
-}
-.Product_Tab .Quote_Terms span:hover{
-cursor:pointer;
-box-shadow: 2px 2px 2px rgb(16, 26, 18);
-}
 .Table_Section{
   background-color: #fff;
   margin: 10px;
@@ -208,18 +151,8 @@ height:40px;
 width: 100%;
 margin-bottom: 5px;
 }
-.Page_Identity .Page_Name{
-width:50%;
-}
-.Page_Identity .Page_Name h5{
-color: #4f6a7a;
-line-height: 35px;
-font-size: 18px;
-margin: 0px;
-font-weight: 700;
-}
 .Page_Identity .Page_Track{
-width:50%;
+width:100%;
 line-height: 35px;
 }
 .Page_Identity .Page_Track ul{

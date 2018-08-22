@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./purchase-orders-create.component.css']
 })
 export class PurchaseOrdersCreateComponent implements OnInit {
+  Active_Tab = 'Product_Details';
 
-  constructor() { }
+   constructor() { }
 
-  ngOnInit() {
-  }
+   ngOnInit() {
+   }
+   Active_Tab_Change(name) {
+    this.Active_Tab = name;
+ }
 
 }

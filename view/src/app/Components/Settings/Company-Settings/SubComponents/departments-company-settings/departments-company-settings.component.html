@@ -1,6 +1,19 @@
+<div [ngClass]="{'Hide': !Loader}" class="DataLoaderStyle_1">
+   <div class="Loading">
+      <div class="spinner">
+         <div class="rect1"></div>
+         <div class="rect2"></div>
+         <div class="rect3"></div>
+         <div class="rect4"></div>
+         <div class="rect5"></div>
+         <div class="rect6"></div>
+      </div>
+   </div>
+ </div>
+ <div class="LoadedDataStyle_1" [ngClass]="{'Show': !Loader}">
 <div class="row header_part">
   <div class="col-sm-6">
-   <button class="Create_Button" mat-raised-button (click)="CreateDepartmentInfo()"> + Create </button>
+   <button class="Create_Button" mat-raised-button (click)="CreateDepartment()"> + Create </button>
   </div>
   <div class="col-sm-6">
     <div class="Search_Section">
@@ -14,126 +27,49 @@
     <thead>
       <tr>
         <th>S.no</th>
-        <th>Departments</th>
-        <th>Departments Head </th>
+        <th>Department Name</th>
         <th>Created By</th>
-        <th>Branch</th>
+        <th>Modified By</th>
         <th style="width:130px">Action</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
+      <tr *ngFor="let Items of _List; let i=index">
         <td>
-          <span class="S_no"> 1 </span>
+          <span class="S_no"> {{i + 1}}  </span>
         </td>
         <td>
-          <span class="Style_1">Department one</span>
+          <span class="Style_1">{{ Items.Department_Name }}</span>
         </td>
         <td>
-          <span class="Style_1">Department head one </span>
-        </td>
+         <span class="Style_1"> {{Items.Created_By.Name}}</span>
+             
+             <br> 
+             <span class="Time"> {{Items.createdAt | date:'medium'}}  </span>
+        
+      </td>
+      <td>
+         <span class="Style_1"> 
+            {{Items.Last_Modified_By.Name}} </span>
+           
+            <br> 
+            <span class="Time"> {{Items.updatedAt | date:'medium'}}  </span>
+         
+      </td>
         <td>
-          <span class="Style_1">admin</span>
-        </td>
-        <td>
-          <span class="Style_1">head office</span>
-        </td>
-        <td>
-         <button (click)="ViewDepartmentInfo()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+         <button *ngIf="_View"  (click)="ViewDepartment(i)" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
             <i class="material-icons">zoom_in</i>
          </button>
-         <button   (click)="CreateDepartmentInfo()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+         <button  *ngIf="_Edit" (click)="EditDepartments(i)" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
             <i class="material-icons">edit</i>
          </button>
-         <button (click)="  DeleteDepartmentInfo()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+         <button *ngIf="_Delete"  (click)="DeleteDepartment(i)" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
             <i class="material-icons">delete_forever</i>
          </button>
       </td>
       </tr>
-      <tr>
-        <td>
-          <span class="S_no"> 2 </span>
-        </td>
-        <td>
-          <span class="Style_1">Department three</span>
-        </td>
-        <td>
-          <span class="Style_1">Department head two </span>
-        </td>
-        <td>
-          <span class="Style_1">admin</span>
-        </td>
-        <td>
-          <span class="Style_1">admin</span>
-        </td>
-        <td>
-         <button (click)="ViewDepartmentInfo()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
-            <i class="material-icons">zoom_in</i>
-         </button>
-         <button   (click)="CreateDepartmentInfo()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
-            <i class="material-icons">edit</i>
-         </button>
-         <button (click)="  DeleteDepartmentInfo()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
-            <i class="material-icons">delete_forever</i>
-         </button>
-      </td>
-      </tr>
-      <tr>
-        <td>
-          <span class="S_no"> 3 </span>
-        </td>
-        <td>
-          <span class="Style_1">Department two</span>
-        </td>
-        <td>
-          <span class="Style_1">Department head one </span>
-        </td>
-        <td>
-          <span class="Style_1">admin</span>
-        </td>
-        <td>
-          <span class="Style_1">head office</span>
-        </td>
-        <td>
-         <button (click)="ViewDepartmentInfo()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
-            <i class="material-icons">zoom_in</i>
-         </button>
-         <button   (click)="CreateDepartmentInfo()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
-            <i class="material-icons">edit</i>
-         </button>
-         <button (click)="  DeleteDepartmentInfo()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
-            <i class="material-icons">delete_forever</i>
-         </button>
-      </td>
-      </tr>
-      <tr>
-        <td>
-          <span class="S_no"> 4 </span>
-        </td>
-        <td>
-          <span class="Style_1">Department three</span>
-        </td>
-        <td>
-          <span class="Style_1">Department head three </span>
-        </td>
-        <td>
-          <span class="Style_1">admin</span>
-        </td>
-        <td>
-          <span class="Style_1">admin</span>
-        </td>
-        <td>
-         <button (click)="ViewDepartmentInfo()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
-            <i class="material-icons">zoom_in</i>
-         </button>
-         <button   (click)="CreateDepartmentInfo()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
-            <i class="material-icons">edit</i>
-         </button>
-         <button (click)="  DeleteDepartmentInfo()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
-            <i class="material-icons">delete_forever</i>
-         </button>
-      </td>
-      </tr>
-    </tbody>
+   </tbody>
   </table>
+  </div>
+  </div>
 

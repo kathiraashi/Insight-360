@@ -50,14 +50,7 @@
     color: #999999;
     width: 100%;
   }
-  .Append_Btn i{
-    color: #484848;
-    line-height: 45px;
-    font-size: 30px;
-    cursor: pointer;
-  }
-
-  .Form_TextArea textarea {
+.Form_TextArea textarea {
     padding: 10px;
     width: 100%;
     outline: none;
@@ -113,64 +106,39 @@
     border-radius: 5px;
     border-top: 2px solid #49B660;
   }
-  .Product .Product_Tab{
-    display:flex;
-}
-.Product .Product_Tab .Product_details span{
-   width: 50%;
-   height: 50px;
-   font-size: 16px;
-   font-weight: 600;
-   padding: 5px 10px; 
-   margin-right: 5px;
-   letter-spacing: 0.8px;
-   border-radius: 3px;
-}
-.Product .Product_Tab .Product_details span.active{
-  width: 50%;
-  height: 50px;
-  font-size: 16px;
-  font-weight: 600;
-  padding: 5px 10px;
-  border: 1px solid #49b660;
-  background-color: #49b660;
-  color: #fff;
-  margin-right: 5px;
-  letter-spacing: 0.8px;
-  border-radius: 3px;
-}
-.Product .Product_Tab .Product_details span:hover{
-  cursor:pointer;
-  box-shadow: 2px 2px 2px rgb(16, 26, 18);
-}
-.Product .Product_Tab .Quote_Terms span{
-  width: 50%;
-  height: 50px;
-  font-size: 16px;
-  font-weight: 600;
-  padding: 5px 10px;
-  margin-right: 5px;
-  letter-spacing: 0.8px;
-  border-radius: 3px;
+    /* Tabs */
+    .Tabs{
+      display: flex;
+      width: 100%;
+  }
+  .Tabs .Tab{
+      color: #4d6a7a;
+      width: 14%;
+      line-height: 35px;
+      background-color: #80808038;
+      margin-top: -10px;
+      text-align: center;
+      margin-right: 5px;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.4px;
+      cursor: pointer;
+  }
+  .Tabs .Tab:hover{
+      background-color: #49B660;
+      border-bottom: 2px solid #49B660;
+      color:#fff
+  }
   
-}
-.Product .Product_Tab .Quote_Terms span.active{
-  width: 50%;
-  height: 50px;
-  font-size: 16px;
-  font-weight: 600;
-  padding: 5px 10px;
-  border: 1px solid #49b660;
-  background-color: #49b660;
-  color: #fff;
-  margin-right: 5px;
-  letter-spacing: 0.8px;
-  border-radius: 3px;
-}
-.Product .Product_Tab .Quote_Terms span:hover{
-  cursor:pointer;
-  box-shadow: 2px 2px 2px rgb(16, 26, 18);
-}
+  .Tabs .Tab.active{
+      border-bottom: 2px solid #49B660;
+      color: #49B660;
+      cursor: default;
+  }
+  .Tabs .Tab.active:hover{
+        background-color: #49B660;
+        color:#fff;
+  }
   .table_section{
     border-collapse: collapse;
     width: 100%;
@@ -215,18 +183,8 @@
   width: 100%;
   margin-bottom: 5px;
 }
-.Page_Identity .Page_Name{
-  width:50%;
-}
-.Page_Identity .Page_Name h5{
-  color: #4f6a7a;
-  line-height: 35px;
-  font-size: 18px;
-  margin: 0px;
-  font-weight: 700;
-}
 .Page_Identity .Page_Track{
-  width:50%;
+  width:100%;
   line-height: 35px;
 }
 .Page_Identity .Page_Track ul{

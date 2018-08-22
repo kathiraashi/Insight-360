@@ -1,0 +1,138 @@
+
+<div class="page" style="margin-top:100px;">
+      <div class="container-fluid">
+         <!-- page identity -->
+         <div class="Page_Identity">
+            <div class="Page_Track">
+               <ul>
+                  <li class="HeaderName">Home</li>
+                  <li class="arrow">>></li>
+                  <li>Product</li>
+               </ul>
+            </div>
+         </div>
+         <div class="row">
+            <!-- Company details -->
+            <div class="Company_Details">
+               <div class="row">
+                  <div class="col-sm-4 Form_Input">
+                      <label>Name:</label>
+                      <input type="text">
+                  </div>
+                  <div class="col-sm-4 Form_Input">
+                       <label>Image:</label>
+                       <input type="text">
+                   </div>
+                   <div class="col-sm-4 Form_Input">
+                       <label>Item Code:</label>
+                       <input type="text">
+                   </div>
+                   <div class="col-sm-4 Form_Input">
+                       <label>HSN Code:</label>
+                       <input type="text">
+                   </div>
+                   <div class="col-sm-4 Form_Input">
+                       <label>Price:</label>
+                       <input type="text">
+                   </div>
+                   <div class="col-sm-4 Form_TextArea">
+                       <label>Description:</label>
+                       <textarea type="text" row="4"></textarea>
+                   </div>
+                   <div class="col-sm-4 Form_Select">
+                       <label>UOM:</label>
+                       <select>
+                             <option disabled> Unit of Measure</option>
+                             <option>Unit Of Measure </option>
+                             <option> Unit Of Measure </option>
+                           </select>
+                   </div>
+                   <div class="col-sm-4 Form_Select">
+                     <label>Product type:</label>
+                     <select>
+                           <option disabled> Product Type</option>
+                           <option>Consumable </option>
+                           <option> Stockable </option>
+                        </select>
+                 </div>
+                 <div class="col-sm-4 checkbox">
+                  <input type="Checkbox"> Can Be Sold
+               </div><br>
+               <div class="col-sm-4 checkbox">
+                   <input type="Checkbox"> Can Be Purchased
+                </div>
+                <div class="col-sm-6 checkbox">
+                <div class="row">
+                    <div class="col-sm-4 Left_Data">
+                       <p>Invoicing Policy</p>
+                    </div>
+                    <div class="col-sm-6 Right_data">
+                       <form>
+                          <input type="radio" name="radiobutton"> Ordered Quantity<br>
+                          <input type="radio" name="radiobutton"> Delivered Quantity<br>
+                          <input type="radio" name="radiobutton">Invoice based On Time & Material<br>
+                       </form>
+                    </div>
+                 </div>
+                </div><br>
+                <div class="col-sm-6 checkbox">
+                  <div class="row">
+                      <div class="col-sm-4 Left_Data">
+                         <p>Control Purchase Bills</p>
+                      </div>
+                      <div class="col-sm-6 Right_data">
+                         <form>
+                            <input type="radio" name="radiobutton"> On Ordered Quantity<br>
+                            <input type="radio" name="radiobutton"> On Received Quantity<br>
+                           </form>
+                      </div>
+                   </div>
+                  </div><br>
+               </div>
+            </div>
+            <!-- Tab -->
+         <div class="Product">
+            <div class="Product_Tab">
+               <div class="Product_details">
+                  <span [ngClass]="{'active': Active_Tab === 'Sales'}" (click)="Active_Tab_Change('Sales')">Sales</span>
+               </div>
+               <div class="Quote_Terms">
+                  <span [ngClass]="{'active': Active_Tab === 'Accounting'}" (click)="Active_Tab_Change('Accounting')">Accounting</span>
+               </div>
+            </div>
+            <!-- Table Section -->
+            <div class="Product_Details" *ngIf="Active_Tab === 'Sales'">
+               <div class="row">
+               <div class="col-sm-4 Form_Input">
+                  <label>Warrenty:</label>
+                  <input type="text">
+              </div>
+              </div>
+            </div>
+         <br>
+         <div class="Done_Section" *ngIf="Active_Tab === 'Accounting'">
+               <div class="row">
+                     <div class="col-sm-4 Form_Input">
+                        <label>Customer Taxes:</label>
+                        <input type="text">
+                    </div>
+                    <div class="col-sm-4 Form_Input">
+                        <label>Vendor Taxes:</label>
+                        <input type="text">
+                    </div>
+                    </div>
+            </div>
+         </div>
+         </div>
+         <div class="row" style="margin-top:20px;"> 
+            <div class="col-sm-12 text-right">
+                  <button mat-raised-button color="primary" style = "bottom: 20px;"> Submit </button>
+            </div>
+         </div>
+      </div>
+   </div>
+
+            
+         
+   
+   

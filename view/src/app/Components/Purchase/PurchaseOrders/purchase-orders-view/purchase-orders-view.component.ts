@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PurchaseOrdersViewComponent implements OnInit {
 
-  constructor() { }
+   Active_Tab = 'Product_Details';
+   constructor() { }
 
-  ngOnInit() {
-  }
+   ngOnInit() {
+   }
+   Active_Tab_Change(name) {
+      this.Active_Tab = name;
+   }
 
 }

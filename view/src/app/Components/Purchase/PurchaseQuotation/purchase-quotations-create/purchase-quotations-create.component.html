@@ -1,175 +1,203 @@
 <div class="page" style="margin-top:100px;">
-    <div class="container-fluid">
+   <div class="container-fluid">
+      <!-- Page Identity -->
       <div class="Page_Identity">
-         <div class="Page_Name">
-            <h5>Purchase Quotations Create</h5>
-         </div>
          <div class="Page_Track">
             <ul >
-              <li class="HeaderName">Purchase</li>
-              <li class="arrow">>></li>
-              <li class= "LinkName">Purchase Quotations</li>
-              <li class="arrow">>></li>
-              <li >Purchase Quotations Create</li>
+               <li class="HeaderName">Home</li>
+               <li class="arrow">>></li>
+               <li class= "LinkName">Purchase</li>
+               <li class="arrow">>></li>
+               <li >Purchase Quotations</li>
             </ul>
          </div>
       </div>
       <form>
-        <div class="row">
-          <div class="Company_Details">
+         <div class="row">
+            <!-- Company details -->
+            <div class="Company_Details">
             <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Purchase 
-              <span style="color:#516570;font-size:20px;font-weight: 600;">Quotation</span>
-              
+               <span style="color:#516570;font-size:20px;font-weight: 600;">Quotation</span>
             </h5>
             <br>
             <div class="col-sm-12">
-              <div class="row">
-                <div class="col-sm-4 Form_Input">
-                  <label>Order No:</label>
-                  <br>
-                  <input type="text">
-                </div>
-                <div class="col-sm-4 Form_Select">
-                  <label>Account Name:</label>
-                  <br>
-                  <select>
-                        <option checked>Select</option>
-                        <option> Account name1</option>
-                        <option> Account name2</option>
-                        <option> Account name3</option>
-                        <option> Account name4</option>
-                     </select>
-                </div>
-                <div class="col-sm-4 Form_Select">
-                  <label>Quote Ref No:</label>
-                  <br>
-                  <select>
-                        <option checked>Select</option>
-                        <option>Quote Ref No1</option>
-                        <option> Quote Ref No2</option>
-                        <option> Quote Ref No3</option>
-                        <option>Quote Ref No4</option>
-                     </select>
-                </div>
-                <div class="col-sm-4 Form_Input">
-                  <label>Contact:</label>
-                  <br>
-                  <input type="text">
-                </div>
-                <div class="col-sm-4 Form_Input">
-                  <label>Validity Till:</label>
-                     <br>
-                     <input type="text">
-                   </div>
-                   <div class="col-sm-4 Form_Input">
-                     <label>Subject:</label>
-                        <br>
-                        <input type="text">
-                      </div>
-                      <div class="col-sm-4 Form_Input">
-                        <label>Date:</label>
-                           <br>
-                           <input type="text">
-                         </div>
-              </div>
-            </div>
-          </div>
-          <div class="Table_Section">
-            <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Product
-              <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span>
-              <span><button class="Add_Product_Button">Add Product</button></span>
-            </h5>
-            <br>
-            <table class="table_section">
-              <thead class="table_head">
-                <tr>
-                  <th class="S_No">S.No</th>
-                  <th>Product</th>
-                  <th>Description</th>
-                  <th>Price</th>
-                  <th>Quantity</th>
-                  <th>Tax</th>
-                  <th>Total</th>
-                  <th class="Action">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td >1</td>
-                  <td class="Form_Select">
-                    <select>
-                    <option checked>Select an option</option>
-                    <option> option1</option>
-                    <option> option2</option>
-                    <option> option3</option>
-                    <option> option4</option>
-                 </select>
-                </td>
-                 <td class="Form_TextArea">
-                   <textarea class="" rows="2"></textarea>
-                  </td>
-                  <td class="Form_Input">
-                       <input type="text">
-                     </td>
-                     <td class="Form_Input">
-                          <input type="text">
-                        </td>
-                        <td class="Form_Select">
+               <div class="row">
+                  <div class="col-sm-4 Form_Select">
+                     <label>Vendor Name:</label>
+                        <select>
+                           <option checked>Select</option>
+                           <option> Account name1</option>
+                           <option> Account name2</option>
+                           <option> Account name3</option>
+                           <option> Account name4</option>
+                        </select>
+                  </div>
+                     <div class="col-sm-4 Form_Select">
+                        <label>Purchase Request:</label>
+                        <select>
+                           <option checked>Purchase Request</option>
+                           <option> Purchase Request</option>
+                           <option> Purchase Request</option>
+                           <option> Purchase Request</option>
+                           <option> Purchase Request</option>
+                        </select>
+                     </div>
+                     <div class="col-sm-4 Form_Select">
+                        <label>Quote Ref No:</label>
+                        <select>
+                           <option checked>Select</option>
+                           <option>Quote Ref No1</option>
+                           <option> Quote Ref No2</option>
+                           <option> Quote Ref No3</option>
+                           <option>Quote Ref No4</option>
+                        </select>
+                     </div>
+                     <div class="col-sm-4 Form_Select">
+                           <label>Contact:</label>
                               <select>
+                                 <option checked>Contact</option>
+                                 <option> Contact1</option>
+                                 <option> Contact2</option>
+                                 <option> Contact3</option>
+                                 <option> Contact4</option>
+                              </select>
+                        </div>
+                     <div class="col-sm-4 Form_Input">
+                           <label>Date:</label>
+                           <input type="text">
+                        </div>
+                     <div class="col-sm-4 Form_Input">
+                        <label>Subject:</label>
+                        <input type="text">
+                     </div>
+                     <div class="col-sm-4 Form_Input">
+                           <label>Validity Till:</label>
+                           <input type="text">
+                        </div>
+                  </div>
+               </div>
+            </div>
+            <!-- Tabs -->
+        <div class="Company_Details">
+            <div class="Tabs">
+               <div class="Tab" [ngClass]="{'active': Active_Tab === 'Product_Details'}" (click)="Active_Tab_Change('Product_Details')">
+                  <span >Product Details</span>
+               </div>
+               <div class="Tab" [ngClass]="{'active': Active_Tab === 'quote_Terms'}" (click)="Active_Tab_Change('quote_Terms')">
+                  <span >Terms & Conditions</span>
+               </div>
+            </div>
+            <span><button class="Add_Product_Button">Add Product</button></span><br>
+            <br>
+            <!-- Product details -->
+            <div class="Product_Details" *ngIf="Active_Tab === 'Product_Details'">
+                  <table class="table_section">
+                        <thead class="table_head">
+                           <tr>
+                           <th class="S_No">S.No</th>
+                           <th>Product</th>
+                           <th>Description</th>
+                           <th>Price</th>
+                           <th>Quantity</th>
+                           <th>Tax</th>
+                           <th>Total</th>
+                           <th class="Action">Action</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td >1</td>
+                              <td class="Form_Select">
+                                 <select>
+                                    <option checked>Select an option</option>
+                                    <option> option1</option>
+                                    <option> option2</option>
+                                    <option> option3</option>
+                                    <option> option4</option>
+                                 </select>
+                              </td>
+                              <td class="Form_TextArea">
+                                 <textarea class="" rows="2"></textarea>
+                              </td>
+                              <td class="Form_Input">
+                                 <input type="text">
+                              </td>
+                              <td class="Form_Input">
+                                 <input type="text">
+                              </td>
+                              <td class="Form_Select">
+                                 <select>
                                     <option checked>Select</option>
                                     <option> Tax</option>
                                     <option> Tax</option>
                                     <option> Tax</option>
                                     <option> Tax</option>
                                  </select>
-                           </td>
-                           <td class="Form_Input">
-                                <input type="text">
+                              </td>
+                              <td class="Form_Input">
+                                 <input type="text">
                               </td>
                               <td>
-                                   <span class="Action_Section Bg_Danger">
-                                         <i class="material-icons">delete</i>
-                                      </span> 
-                                 </td>
-                </tr>
-              </tbody>
-            </table>
-            <br>
-            <div class="row">
-               <div class="col-sm-4">
-                  </div>
-                  <div class="col-sm-4">
-                     </div>
-                     <div class="col-sm-4 Form_Input">
-                        <label>Sub Total:</label>
-                        <input type="text">
-                        </div>
-                        <div class="col-sm-4">
+                                 <span class="Action_Section Bg_Danger">
+                                    <i class="material-icons">delete</i>
+                                 </span> 
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table><br>
+                     <div class="row">
+                           <div class="col-sm-4">
                            </div>
                            <div class="col-sm-4">
-                              </div>
-                              <div class="col-sm-4 Form_Input">
-                                    <label>Tax:</label>
-                                 <input type="text">
-                                 </div>
-                                 <div class="col-sm-4">
-                                    </div>
-                                    <div class="col-sm-4">
-                                       </div>
-                                       <div class="col-sm-4 Form_Input">
-                                             <label>Total:</label>
-                                          <input type="text">
-                                          </div>
+                           </div>
+                           <div class="col-sm-4 Form_Input">
+                              <label>Sub Total:</label>
+                              <input type="text">
+                           </div>
+                           <div class="col-sm-4">
+                           </div>
+                           <div class="col-sm-4">
+                           </div>
+                           <div class="col-sm-4 Form_Input">
+                              <label>Tax:</label>
+                              <input type="text">
+                           </div>
+                           <div class="col-sm-4">
+                           </div>
+                           <div class="col-sm-4">
+                           </div>
+                           <div class="col-sm-4 Form_Input">
+                              <label>Total:</label>
+                              <input type="text">
+                           </div>
+                        </div>
+            </div>
+            <!-- Quote Terms -->
+            <div class="Done_Section" *ngIf="Active_Tab === 'quote_Terms'">
+               <div class="row">
+                  <div class="col-sm-4 Form_Select">
+                     <select>
+                        <option checked>Select Quote Terms</option>
+                        <option> QuoteTermOptions-One</option>
+                        <option> QuoteTermOptions-Two </option>
+                        <option> QuoteTermOptions-Three </option>
+                        <option> QuoteTermOptions-Four </option>
+                        <option> QuoteTermOptions-Five </option>
+                     </select>
+                  </div>
+                  <div class="col-sm-4 Form_TextArea" >
+                     <textarea  type="text" row="4" placeholder="Notes"></textarea>
+                  </div>
                </div>
-          </div>
-        </div>
-        <div class="row" style="margin-top:20px;">
-          <div class="col-sm-12 text-right">
-  
-            <button mat-raised-button color="primary" > Submit </button>
-          </div>
-        </div>
+            </div>
+      </div>
+         </div>
+         <div class="row" style="margin-top:20px;">
+            <div class="col-sm-12 text-right">
+               <button mat-raised-button color="primary" > Submit </button>
+            </div>
+         </div>
       </form>
-    </div>
-  </div>
+   </div>
+</div>
 

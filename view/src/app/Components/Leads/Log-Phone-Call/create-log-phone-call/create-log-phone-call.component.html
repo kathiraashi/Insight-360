@@ -1,0 +1,69 @@
+
+<!-- page -->
+<div class="page" style="margin-top:100px;">
+   <div class="container-fluid">
+      <!-- page identity -->
+      <div class="Page_Identity">
+         <div class="Page_Track">
+            <ul>
+               <li class="HeaderName">Leads</li>
+               <li class="arrow"> >> </li>
+               <li class="LinkName" [routerLink]="['/List_Log_Phone_call']">Log Phone call List</li>
+               <li class="arrow">>></li>
+               <li>Log Phone call Create</li>
+            </ul>
+         </div>
+      </div>
+      <div class="row">
+         <!-- Company details -->
+         <div class="Company_Details">
+            <div class="row">
+               <div class="col-sm-6 Form_Select">
+                  <label>Company Name: </label>
+                  <select>
+                     <option checked>Select Company</option>
+                     <option>Company1</option>
+                     <option>Company2</option>
+                     <option>Company3</option>
+                     <option>Company4</option>
+                  </select>
+               </div>
+               <div class="col-sm-6 Form_Input">
+                  <label>Date & Time: </label>
+                  <input type="text">
+               </div>
+               <br>
+               <div class="col-sm-6 Form_Select">
+                  <label>Product: </label>
+                  <select>
+                     <option checked>Select Product</option>
+                     <option>Product</option>
+                     <option>Product</option>
+                     <option>Product</option>
+                     <option>Product</option>
+                  </select>
+               </div>
+               <div class="col-sm-6 Form_Input">
+                  <label>Contact: </label>
+                  <input type="text">
+               </div>
+               <div class="col-sm-6 Form_TextArea">
+                  <label>Descriptio: </label>
+                  <textarea class="Description" rows="3"></textarea>
+               </div>
+               <div class="col-sm-6 Form_TextArea ">
+                  <label>Address: </label>
+                  <textarea class="message" rows="3"></textarea>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="row" style="margin-top:20px;"> 
+         <div class="col-sm-12 text-right">
+               <button mat-raised-button color="primary" style = "bottom: 20px;"> Submit </button>
+         </div>
+      </div>
+   </div>
+</div>
+      
+   

@@ -3,16 +3,13 @@
   <div class="Page_Section">
       <div class="container-fluid">
           <div class="Page_Identity">
-              <div class="Page_Name">
-                 <h5>Customer Payments</h5>
-              </div>
-              <div class="Page_Track">
+            <div class="Page_Track">
                  <ul >
-                   <li class="HeaderName">Accounts</li>
+                   <li class="HeaderName">Home</li>
                    <li class="arrow">>></li>
-                   <li class= "LinkName">Customer Payments</li>
+                   <li class= "LinkName">Accounts</li>
                    <li class="arrow">>></li>
-                   <li >Customer Payments List</li>
+                   <li >Vendor Payments </li>
                  </ul>
               </div>
            </div>
@@ -67,7 +64,7 @@
                         </span>
                      </td>
                      <td>
-                      <button mat-raised-button color="primary" [routerLink]="['/vendor_payment_view']"> Action </button>
+                      <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
                      </td>
                   </tr>
                   <tr>
@@ -96,7 +93,7 @@
                         </span>
                      </td>
                      <td>
-                      <button mat-raised-button color="primary" [routerLink]="['/vendor_payment_view']"> Action </button>
+                      <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
                      </td>
                   </tr>
                   <tr>
@@ -125,7 +122,7 @@
                         </span>
                      </td>
                      <td>
-                      <button mat-raised-button color="primary" [routerLink]="['/vendor_payment_view']"> Action </button>
+                      <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
                      </td>
                   </tr>
                   <tr>
@@ -154,7 +151,7 @@
                         </span>
                      </td>
                      <td>
-                      <button mat-raised-button color="primary" [routerLink]="['/vendor_payment_view']"> Action </button>
+                      <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
                      </td>
                   </tr>
                   <tr>
@@ -183,7 +180,7 @@
                         </span>
                      </td>
                      <td>
-                      <button mat-raised-button color="primary" [routerLink]="['/vendor_payment_view']"> Action </button>
+                      <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
                      </td>
                   </tr>
                   <tr>
@@ -212,7 +209,7 @@
                         </span>
                      </td>
                      <td>
-                      <button mat-raised-button color="primary" [routerLink]="['/vendor_payment_view']"> Action </button>
+                      <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
                      </td>
                   </tr>
                   <tr>
@@ -241,7 +238,7 @@
                         </span>
                      </td>
                      <td>
-                      <button mat-raised-button color="primary" [routerLink]="['/vendor_payment_view']"> Action </button>
+                      <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
                      </td>
                   </tr>
                   </tbody>
@@ -250,6 +247,18 @@
          </div>
       </div>
    </div>
+
+   <mat-menu #Action="matMenu">
+      <button mat-menu-item [routerLink]="['/vendor_payment_create']">
+         <span>Edit</span>
+      </button>
+      <button mat-menu-item [routerLink]="['/vendor_payment_view']">
+         <span>View</span>
+      </button>
+      <button mat-menu-item>
+         <span>Delete</span>
+      </button>
+   </mat-menu>
 
 
 

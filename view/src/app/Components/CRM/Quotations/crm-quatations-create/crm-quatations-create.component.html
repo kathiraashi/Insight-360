@@ -1,30 +1,29 @@
-<div class="page" style="margin-top:100px;">
+<div class="page" style="margin-top:100px;margin-bottom:100px;">
    <div class="container-fluid">
+      <!-- page identity -->
       <div class="Page_Identity">
-         <div class="Page_Name">
-            <h5>Quotations Create</h5>
-         </div>
          <div class="Page_Track">
             <ul>
-               <li class="HeaderName">CRM</li>
+               <li class="HeaderName">Home</li>
                <li class="arrow">>></li>
-               <li class= "LinkName">Quotations</li>
+               <li class= "LinkName">CRM</li>
                <li class="arrow">>></li>
-               <li >Quotations Create</li>
+               <li >Quotations </li>
             </ul>
          </div>
       </div>
       <div class="row">
+         <div class="col-sm-12">
+            <!-- Company details -->
          <div class="Company_Details">
                <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Company <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span></h5><br>
-            <div class="col-sm-12">
                <div class="row">
                   <div class="col-sm-4 Form_Input" >
                      <input type="text" placeholder="Date">
                   </div>
                   <div class="col-sm-4 Form_Select" >
                      <select>
-                        <option checked> Company Name</option>
+                        <option checked>Company Name</option>
                         <option> Company Name1</option>
                         <option>   Company Name2 </option>
                         <option>   Company Name3 </option>
@@ -43,10 +42,10 @@
                      </select>
                   </div>
                   <div class="col-sm-4 Form_Input" >
-                     <input type="text" placeholder="Quote Reference Number"> 
+                     <input type="text" placeholder="Quote Reference Number">
                   </div>
                   <div class="col-sm-4 Form_Input" >
-                     <input type="text" placeholder="Valid Till"> 
+                     <input type="text" placeholder="Valid Till">
                   </div>
                   <div class="col-sm-4 Form_Select" >
                      <select>
@@ -70,16 +69,20 @@
                   </div>
                </div>
             </div>
-         </div>
-         <div class="Product">
-            <div class="Product_Tab">
-               <div class="Product_details">
-                  <span [ngClass]="{'active': Active_Tab === 'Product_Details'}" (click)="Active_Tab_Change('Product_Details')">Product Details</span>
+         </div><br>
+         <!-- Tabs -->
+         <div class="Company_Details">
+            <div class="Tabs">
+               <div class="Tab" [ngClass]="{'active': Active_Tab === 'Product_Details'}" (click)="Active_Tab_Change('Product_Details')">
+                  <span >Product Details</span>
                </div>
-               <div class="Quote_Terms">
-                  <span [ngClass]="{'active': Active_Tab === 'quote_Terms'}" (click)="Active_Tab_Change('quote_Terms')">Quote Terms</span>
+               <div class="Tab" [ngClass]="{'active': Active_Tab === 'quote_Terms'}" (click)="Active_Tab_Change('quote_Terms')">
+                  <span >Terms & Conditions</span>
                </div>
-            </div><br>
+            </div>
+            <span><button class="Add_Product_Button">Add Product</button></span><br>
+            <br>
+            <!-- Product details -->
             <div class="Product_Details" *ngIf="Active_Tab === 'Product_Details'">
                <table class="table_section">
                   <thead class="table_head">
@@ -139,6 +142,7 @@
                   </div>
                </div>
             </div>
+            <!-- Quote Terms -->
             <div class="Done_Section" *ngIf="Active_Tab === 'quote_Terms'">
                <div class="row">
                   <div class="col-sm-4 Form_Select">
@@ -156,12 +160,11 @@
                   </div>
                </div>
             </div>
-         </div>
-      </div>
-      <div class="row" style="margin-top:20px;"> 
-         <div class="col-sm-12 text-right">
-               <button mat-raised-button color="primary" > Submit </button>
-         </div>
       </div>
    </div>
+   </div>
 </div>
+<!-- Footer -->
+<div class="Footer">
+      <button mat-raised-button color="primary" style = "top: 5px;"> Submit </button>
+   </div>

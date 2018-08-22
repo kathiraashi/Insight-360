@@ -1,0 +1,69 @@
+<!-- If Create Or Edit The Activity Type -->
+<div class="Modal_Content" *ngIf="Type && Type === 'Create'">
+      <div class="Modal_Header">
+         <p> Locations</p>
+         <span  data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+      </div>
+      <div class="Model_Body">
+            <div class="row">
+               <div class="col-sm-6 Form_Input" >
+                  <label>Location Name:</label>
+                  <input type="text" >
+               </div>
+            <div class="col-sm-6 Form_Select">
+                  <label>Ware House Name: </label>
+                  <select>
+                     <option checked>ware house</option>
+                     <option>ware house</option>
+                     <option>ware house</option>
+                     <option>ware house</option>
+                     <option>ware house</option>
+                  </select>
+               </div>
+               <div class="col-sm-6 Form_Select">
+                     <label>Location type: </label>
+                     <select>
+                        <option checked>Location type</option>
+                        <option>Type1</option>
+                        <option>Type1</option>
+                        <option>Type1</option>
+                        <option>Type1</option>
+                     </select>
+                  </div>
+               </div>
+         </div>
+         <div class="Model_Footer">
+            <button type="submit" mat-raised-button color="primary">Submit
+            </button>
+         </div>
+      </div>
+
+   <!-- If View The Activity Type -->
+      <div class="Modal_Content" *ngIf=" Type && Type === 'View'">
+         <div class="Modal_Header">
+            <p> locations</p>
+            <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+         </div>
+         <div class="Model_Body">
+            <div class="view_item">
+               <div class="Static">Location Name </div>
+               <div class="dots"> : </div>
+               <div class="Data"> Location Name</div>
+            </div>
+            <div class="view_item">
+               <div class="Static">Ware House Name </div>
+               <div class="dots"> : </div>
+               <div class="Data"> Ware House Name
+               </div>
+            </div>
+            <div class="view_item">
+               <div class="Static">Location type </div>
+               <div class="dots"> : </div>
+               <div class="Data"> Location type
+               </div>
+            </div>
+         </div>
+      </div>
+
+
+

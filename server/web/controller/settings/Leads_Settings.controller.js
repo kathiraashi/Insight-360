@@ -112,7 +112,7 @@ var mongoose = require('mongoose');
          } else if (!ReceivingData.User_Id || ReceivingData.User_Id === ''  ) {
             res.status(400).send({Status: false, Message: "User Details can not be empty" });
          }else {
-            LeadsSettingsModel.LeadSourceSchema.find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, { Industry_Type : 1 }, {sort: { updatedAt: -1 }}, function(err, result) { // Lead Source FindOne Query
+            LeadsSettingsModel.LeadSourceSchema.find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, { Lead_Source : 1 }, {sort: { updatedAt: -1 }}, function(err, result) { // Lead Source FindOne Query
                if(err) {
                   ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Leads Lead SourceFind Query Error', 'Leads_Settings.controller.js', err);
                   res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Lead Source!."});

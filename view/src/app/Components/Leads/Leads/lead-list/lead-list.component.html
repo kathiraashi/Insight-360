@@ -1,0 +1,154 @@
+<div class=Page_Section>
+   <div class="container-fluid">
+      <!-- page identity -->
+      <div class="Page_Identity">
+         <div class="Page_Track">
+            <ul>
+               <li class="HeaderName">Home</li>
+               <li class="arrow">>></li>
+               <li>Leads</li>
+            </ul>
+         </div>
+      </div>
+      <!-- Header Part -->
+      <div class="row header_part">
+         <div class="col-sm-6">
+            <button class="Create_Button" mat-raised-button [routerLink]="['/Create_leads']"> + Create </button>
+         </div>
+         <div class="col-sm-6">
+            <div class="Search_Section">
+               <input type="text" placeholder="Search.." name="search">
+               <i class="material-icons">search</i>
+            </div>
+         </div>
+      </div>
+      <!-- Table Section -->
+      <div class="Table_Section">
+         <table>
+            <thead>
+               <tr>
+                  <th>S.no</th>
+                  <th>Company Name</th>
+                  <th>Address</th>
+                  <th>Phone</th>
+                  <th>Product</th>
+                  <th>Lead Source</th>
+                  <th>Action</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td>
+                     <span class="S_no"> 1 </span>
+                  </td>
+                  <td>
+                     <span class="Style_1">Company Name1</span>
+                  </td>
+                  <td>
+                     <span class="Style_1"> Address1</span>
+                  </td>
+                  <td>
+                     <span class="Style_1">+9876564345</span>
+                  </td>
+                  <td>
+                     <span class="Style_1">Product1</span>
+                  </td>
+                  <td>
+                     <span class="Style_1">Lead Source1</span>
+                  </td>
+                  <td>
+                     <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
+                  </td>
+               </tr>
+               <tr>
+                  <td>
+                     <span class="S_no"> 2 </span>
+                  </td>
+                  <td>
+                     <span class="Style_1">Company Name2</span>
+                  </td>
+                  <td>
+                     <span class="Style_1"> Address2</span>
+                  </td>
+                  <td>
+                     <span class="Style_1">+9876564345</span>
+                  </td>
+                  <td>
+                     <span class="Style_1">Product2</span>
+                  </td>
+                  <td>
+                     <span class="Style_1">Lead Source2</span>
+                  </td>
+                  <td>
+                     <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
+                  </td>
+               </tr>
+               <tr>
+                  <td>
+                     <span class="S_no"> 3 </span>
+                  </td>
+                  <td>
+                     <span class="Style_1">Company Name3</span>
+                  </td>
+                  <td>
+                     <span class="Style_1"> Address3</span>
+                  </td>
+                  <td>
+                     <span class="Style_1">+9876564345</span>
+                  </td>
+                  <td>
+                     <span class="Style_1">Product3</span>
+                  </td>
+                  <td>
+                     <span class="Style_1">Lead Source3</span>
+                  </td>
+                  <td>
+                     <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
+                  </td>
+               </tr>
+               <tr>
+                  <td>
+                     <span class="S_no"> 4</span>
+                  </td>
+                  <td>
+                     <span class="Style_1">Company Name4</span>
+                  </td>
+                  <td>
+                     <span class="Style_1"> Address4</span>
+                  </td>
+                  <td>
+                     <span class="Style_1">+9876564345</span>
+                  </td>
+                  <td>
+                     <span class="Style_1">Product4</span>
+                  </td>
+                  <td>
+                     <span class="Style_1">Lead Source4</span>
+                  </td>
+                  <td>
+                     <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </div>
+</div>
+
+
+<!-- Dropdown menus -->
+<mat-menu #Action="matMenu">
+   <button mat-menu-item [routerLink]="['/Create_leads']">
+      <span>Edit</span>
+   </button>
+   <button mat-menu-item [routerLink]="['/View_leads']">
+      <span>View</span>
+   </button>
+   <button mat-menu-item (click)="DeleteLeads()">
+      <span>Delete</span>
+   </button>
+   <button mat-menu-item>
+      <span>Convert to Opportunity</span>
+   </button>
+</mat-menu>
+

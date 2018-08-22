@@ -10,20 +10,4 @@ module.exports = function(app){
       app.post('/API/Hr_Settings/Employee_category_Update', Controller.Employee_category_Update);
       app.post('/API/Hr_Settings/Employee_category_Delete', Controller.Employee_category_Delete);
 
-   // Department
-      app.post('/API/Hr_Settings/Department_AsyncValidate', Controller.Department_AsyncValidate);
-      app.post('/API/Hr_Settings/Department_Create', Controller.Department_Create);
-      app.post('/API/Hr_Settings/Department_List', Controller.Department_List);
-      app.post('/API/Hr_Settings/Department_SimpleList', Controller.Department_SimpleList);
-      app.post('/API/Hr_Settings/Department_Update', Controller.Department_Update);
-      app.post('/API/Hr_Settings/Department_Delete', Controller.Department_Delete);
-
-   // Designation
-      app.post('/API/Hr_Settings/Designation_AsyncValidate', Controller.Designation_AsyncValidate);
-      app.post('/API/Hr_Settings/Designation_Create', Controller.Designation_Create);
-      app.post('/API/Hr_Settings/Designation_List', Controller.Designation_List);
-      app.post('/API/Hr_Settings/Designation_SimpleList', Controller.Designation_SimpleList);
-      app.post('/API/Hr_Settings/Designation_Update', Controller.Designation_Update);
-      app.post('/API/Hr_Settings/Designation_Delete', Controller.Designation_Delete);
-
-};
+}

@@ -12,8 +12,7 @@
                   <input type="text" formControlName="Department">
                   <p class="error" *ngIf="Form.controls['Department'].errors && !Form.controls['Department'].pristine">
                      <span *ngIf="Form.controls['Department'].errors.required">Department is required</span>
-                     <span *ngIf="Form.controls['Department'].errors.EmployeeCategory_NotAvailable"> Department  Already Exist </span>      
-                    
+                     <span *ngIf="Form.controls['Department'].errors.Department_NotAvailable"> Department  Already Exist </span>      
                   </p>
                </div>
             </div>

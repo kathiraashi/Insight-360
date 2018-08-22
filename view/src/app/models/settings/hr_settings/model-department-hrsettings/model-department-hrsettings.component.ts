@@ -21,7 +21,7 @@ export class ModelDepartmentHrsettingsComponent implements OnInit {
 
    onClose: Subject<any>;
 
-   Type: String;
+   Type: string;
    Data;
    Uploading: Boolean = false;
    Company_Id = '5b3c66d01dd3ff14589602fe';
@@ -98,7 +98,8 @@ export class ModelDepartmentHrsettingsComponent implements OnInit {
                   this.onClose.next({Status: true, Response: DecryptedData});
                   this.bsModalRef.hide();
                } else if (response['status'] === 400 || response['status'] === 417 && !ReceivingData.Status) {
-                  this.onClose.next({Status: false, Message: 'Bad Request Error!'});
+                this.Toastr.NewToastrMessage( {  Type: 'Error', Message: ReceivingData['Message'] } );
+                this.onClose.next({Status: false, Message: 'Bad Request Error!'});
                   this.bsModalRef.hide();
                } else if (response['status'] === 401 && !ReceivingData['Status']) {
                 this.Toastr.NewToastrMessage( { Type: 'Error', Message: ReceivingData['Message'] } );
@@ -106,7 +107,6 @@ export class ModelDepartmentHrsettingsComponent implements OnInit {
             this.Toastr.NewToastrMessage( {  Type: 'Error', Message: 'Error Not Identify!, Creating Department!'} );
             this.onClose.next({Status: false, Message: 'UnExpected Error!'});
                   this.bsModalRef.hide();
-                  console.log(ReceivingData);
                }
             });
          }
@@ -129,7 +129,8 @@ export class ModelDepartmentHrsettingsComponent implements OnInit {
                   this.onClose.next({Status: true, Response: DecryptedData});
                   this.bsModalRef.hide();
                } else if (response['status'] === 400 || response['status'] === 417 && !ReceivingData.Status) {
-                  this.onClose.next({Status: false});
+                this.Toastr.NewToastrMessage(  {  Type: 'Error', Message: ReceivingData['Message'] });
+                this.onClose.next({Status: false});
                   this.bsModalRef.hide();
                } else if (response['status'] === 401 && !ReceivingData['Status']) {
                 this.Toastr.NewToastrMessage( { Type: 'Error', Message: ReceivingData['Message'] } );
@@ -137,7 +138,6 @@ export class ModelDepartmentHrsettingsComponent implements OnInit {
               this.Toastr.NewToastrMessage( {  Type: 'Error', Message: 'Error Not Identify!, Updating Department!' });
                   this.onClose.next({Status: false, Message: 'UnExpected Error!'});
                   this.bsModalRef.hide();
-                  console.log(ReceivingData);
                }
             });
          }

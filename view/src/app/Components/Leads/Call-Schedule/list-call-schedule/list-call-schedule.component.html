@@ -1,0 +1,145 @@
+<!-- page Section -->
+<div class=Page_Section>
+   <div class="container-fluid">
+      <!-- page identity -->
+      <div class="Page_Identity">
+         <div class="Page_Track">
+            <ul>
+               <li class="HeaderName">Home</li>
+               <li class="arrow">>></li>
+               <li>Call Schedule </li>
+            </ul>
+         </div>
+      </div>
+      <!-- Header Part -->
+      <div class="row header_part">
+         <div class="col-sm-6">
+            <button class="Create_Button" mat-raised-button [routerLink]="['/Create_Call_Schedule']"> + Create </button>
+         </div>
+         <div class="col-sm-6">
+            <div class="Search_Section">
+               <input type="text" placeholder="Search.." name="search">
+               <i class="material-icons">search</i>
+            </div>
+         </div>
+      </div>
+      <!-- Table Section -->
+      <div class="Table_Section">
+         <table>
+            <thead>
+               <tr>
+                  <th>S.no</th>
+                  <th>Company</th>
+                  <th>Date & Time</th>
+                  <th>Contact</th>
+                  <th>Action</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td>
+                     <span class="S_no"> 1 </span>
+                  </td>
+                  <td>
+                     <span class="Style_1">Company Name1</span>
+                  </td>
+                  <td>
+                     <span class="Style_1"> may 12,2017</span>
+                  </td>
+                  <td>
+                     <span class="Style_1">+428765</span>
+                  </td>
+                  <td>
+                     <button [routerLink]="['/View_Call_Schedule']" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                        <i class="material-icons">zoom_in</i>
+                     </button>
+                     <button  [routerLink]="['/Create_Call_Schedule']" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                        <i class="material-icons">edit</i>
+                     </button>
+                     <button (click)=" DeleteCallSchedule()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                        <i class="material-icons">delete_forever</i>
+                     </button>
+                  </td>
+               </tr>
+               <tr>
+                  <td>
+                     <span class="S_no"> 2 </span>
+                  </td>
+                  <td>
+                     <span class="Style_1">Company Name2</span>
+                  </td>
+                  <td>
+                     <span class="Style_1"> may 12,2017</span>
+                  </td>
+                  <td>
+                     <span class="Style_1">+53435455</span>
+                  </td>
+                  <td>
+                     <button [routerLink]="['/View_Call_Schedule']" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                        <i class="material-icons">zoom_in</i>
+                     </button>
+                     <button  [routerLink]="['/Create_Call_Schedule']" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                        <i class="material-icons">edit</i>
+                     </button>
+                     <button (click)=" DeleteCallSchedule()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                        <i class="material-icons">delete_forever</i>
+                     </button>
+                  </td>
+               </tr>
+               <tr>
+                  <td>
+                     <span class="S_no"> 3 </span>
+                  </td>
+                  <td>
+                     <span class="Style_1">Company Name3</span>
+                  </td>
+                  <td>
+                     <span class="Style_1"> may 12,2017</span>
+                  </td>
+                  <td>
+                     <span class="Style_1">+354545</span>
+                  </td>
+                  <td>
+                     <button [routerLink]="['/View_Call_Schedule']" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                        <i class="material-icons">zoom_in</i>
+                     </button>
+                     <button  [routerLink]="['/Create_Call_Schedule']" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                        <i class="material-icons">edit</i>
+                     </button>
+                     <button (click)=" DeleteCallSchedule()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                        <i class="material-icons">delete_forever</i>
+                     </button>
+                  </td>
+               </tr>
+               <tr>
+                  <td>
+                     <span class="S_no"> 4</span>
+                  </td>
+                  <td>
+                     <span class="Style_1">Company Name4</span>
+                  </td>
+                  <td>
+                     <span class="Style_1">may 12,2017</span>
+                  </td>
+                  <td>
+                     <span class="Style_1">+4365565</span>
+                  </td>
+                  <td>
+                     <button [routerLink]="['/View_Call_Schedule']" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                        <i class="material-icons">zoom_in</i>
+                     </button>
+                     <button  [routerLink]="['/Create_Call_Schedule']" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                        <i class="material-icons">edit</i>
+                     </button>
+                     <button (click)=" DeleteCallSchedule()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                        <i class="material-icons">delete_forever</i>
+                     </button>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </div>
+</div>
+   
+

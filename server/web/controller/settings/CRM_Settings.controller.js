@@ -528,7 +528,7 @@ var mongoose = require('mongoose');
          } else if (!ReceivingData.User_Id || ReceivingData.User_Id === ''  ) {
             res.status(400).send({Status: false, Message: "User Details can not be empty" });
          }else {
-            CRMSettingsModel.ActivityTypeSchema.find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, { Industry_Type : 1 }, {sort: { updatedAt: -1 }}, function(err, result) { // Activity Type FindOne Query
+            CRMSettingsModel.ActivityTypeSchema.find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, { Activity_Type : 1 }, {sort: { updatedAt: -1 }}, function(err, result) { // Activity Type FindOne Query
                if(err) {
                   ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Activity Type Find Query Error', 'CRM_Settings.controller.js', err);
                   res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Activity Types!."});
@@ -735,7 +735,7 @@ var mongoose = require('mongoose');
          } else if (!ReceivingData.User_Id || ReceivingData.User_Id === ''  ) {
             res.status(400).send({Status: false, Message: "User Details can not be empty" });
          }else {
-            CRMSettingsModel.ActivityStatusSchema.find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, { Industry_Type : 1 }, {sort: { updatedAt: -1 }}, function(err, result) { // Activity Status FindOne Query
+            CRMSettingsModel.ActivityStatusSchema.find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, { Activity_Status : 1 }, {sort: { updatedAt: -1 }}, function(err, result) { // Activity Status FindOne Query
                if(err) {
                   ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Activity Status Find Query Error', 'CRM_Settings.controller.js', err);
                   res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Activity Status!."});
@@ -942,7 +942,7 @@ var mongoose = require('mongoose');
          } else if (!ReceivingData.User_Id || ReceivingData.User_Id === ''  ) {
             res.status(400).send({Status: false, Message: "User Details can not be empty" });
          }else {
-            CRMSettingsModel.ActivityPrioritySchema.find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, { Industry_Type : 1 }, {sort: { updatedAt: -1 }}, function(err, result) { // Activity Priority FindOne Query
+            CRMSettingsModel.ActivityPrioritySchema.find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, { Activity_Priority : 1 }, {sort: { updatedAt: -1 }}, function(err, result) { // Activity Priority FindOne Query
                if(err) {
                   ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Activity Priority Find Query Error', 'CRM_Settings.controller.js', err);
                   res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Activity Priority!."});
@@ -1124,7 +1124,7 @@ var mongoose = require('mongoose');
             res.status(400).send({Status: false, Message: "User Details Can not be Empty" });
          } else {
             CRMSettingsModel.ContactRoleSchema
-            .find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, {}, {sort: { updatedAt: -1 }})
+            .find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, { }, {sort: { updatedAt: -1 }})
             .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
             .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
             .exec(function(err, result) { // Contact Role FindOne Query
@@ -1149,7 +1149,7 @@ var mongoose = require('mongoose');
          } else if (!ReceivingData.User_Id || ReceivingData.User_Id === ''  ) {
             res.status(400).send({Status: false, Message: "User Details can not be empty" });
          }else {
-            CRMSettingsModel.ContactRoleSchema.find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, {}, {sort: { updatedAt: -1 }}, function(err, result) { // Contact Role FindOne Query
+            CRMSettingsModel.ContactRoleSchema.find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, { Contact_Role : 1 }, {sort: { updatedAt: -1 }}, function(err, result) { // Contact Role FindOne Query
                if(err) {
                   ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Contact Role Find Query Error', 'CRM_Settings.controller.js', err);
                   res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Contact Role!."});
@@ -1356,7 +1356,7 @@ var mongoose = require('mongoose');
          } else if (!ReceivingData.User_Id || ReceivingData.User_Id === ''  ) {
             res.status(400).send({Status: false, Message: "User Details can not be empty" });
          }else {
-            CRMSettingsModel.PipelineStatusSchema.find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, { Industry_Type : 1 }, {sort: { updatedAt: -1 }}, function(err, result) { // Pipeline Status FindOne Query
+            CRMSettingsModel.PipelineStatusSchema.find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, { Pipeline_Status : 1 }, {sort: { updatedAt: -1 }}, function(err, result) { // Pipeline Status FindOne Query
                if(err) {
                   ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'CRM Settings Pipeline Status Find Query Error', 'CRM_Settings.controller.js', err);
                   res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Pipeline Status!."});

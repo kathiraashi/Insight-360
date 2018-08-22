@@ -7,9 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CrmInvoiceListComponent implements OnInit {
 
-  constructor() { }
+   constructor() { }
 
-  ngOnInit() {
-  }
+   ngOnInit() {
+   }
 
 }

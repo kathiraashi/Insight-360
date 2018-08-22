@@ -1,16 +1,13 @@
 <div class="page" style="margin-top:100px;">
   <div class="container-fluid">
     <div class="Page_Identity">
-      <div class="Page_Name">
-        <h5>Customer Payments</h5>
-      </div>
       <div class="Page_Track">
         <ul>
-          <li class="HeaderName">Accounts</li>
+          <li class="HeaderName">Home</li>
           <li class="arrow">>></li>
-          <li class="LinkName">Customer Payments</li>
+          <li class="LinkName">Accounts</li>
           <li class="arrow">>></li>
-          <li>Customer Payments Create</li>
+          <li>Customer Payments</li>
         </ul>
       </div>
     </div>
@@ -22,9 +19,15 @@
               <label>Customer:</label>
               <input type="text">
             </div>
-            <div class="col-sm-6 Form_Input">
+            <div class="col-sm-6 Form_Select">
               <label>Invoice No:</label>
-              <input type="text">
+              <select>
+                  <option checked>Invoice No</option>
+                  <option> IVC133</option>
+                  <option> IVC133</option>
+                  <option> IVC133</option>
+                  <option> IVC133</option>
+               </select>
             </div>
             <div class="col-sm-6 Form_Input">
               <label>Payment Amount:</label>
@@ -38,48 +41,23 @@
         </div>
       </div>
       <div class="Product">
-            <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Payment<span style="color:#516570;font-size:20px;font-weight: 600;">Method</span></h5><br>
         <div class="Product_Details" >
-        <div class="row">
-            <div class="col-sm-4 Form_Input">
-              <label>Company Name:</label>
-              <input type="text">
-            </div>
-            <div class="col-sm-4 Form_Input">
-              <label>Invoice No:</label>
-              <input type="text">
-            </div>
-          </div>
           <div class="row">
             <div class="col-sm-12">
               <h5>Mode Of Payments</h5>
-              <hr>
+              <br>
             </div>
           </div>
-          <div class="Product_Tab">
-               <div class="Product_details">
-                 <span [ngClass]="{'active': Active_Tab === 'Bank'}" (click)="Active_Tab_Change('Bank')">Bank</span>
+          <div class="Tabs">
+               <div class="Tab" [ngClass]="{'active': Active_Tab === 'Bank'}" (click)="Active_Tab_Change('Bank')">
+                  <span >Bank</span>
                </div>
-               <div class="Quote_Terms">
-                 <span [ngClass]="{'active': Active_Tab === 'Cash'}" (click)="Active_Tab_Change('Cash')">Cash</span>
+               <div class="Tab" [ngClass]="{'active': Active_Tab === 'Cash'}" (click)="Active_Tab_Change('Cash')">
+                  <span >Cash</span>
                </div>
-             </div>
+            </div>
              <br>
              <div class="Bank" *ngIf="Active_Tab === 'Bank'">
-          <div class="row">
-            <div class="col-sm-2">
-              <input type="radio"> cheque/DD
-            </div>
-            <div class="col-sm-2">
-              <input type="radio"> Cash
-            </div>
-            <div class="col-sm-2">
-              <input type="radio"> Online Payment
-            </div>
-            <div class="col-sm-2">
-              <input type="radio">NEFT/RTGS
-            </div>
-          </div>
           <br>
           <div class="row">
             <div class="col-sm-4 Form_Input">
@@ -99,17 +77,6 @@
         </div>
         <div class="Done_Section" >
          <div class="cash" *ngIf="Active_Tab === 'Cash'">
-          <div class="row">
-            <div class="col-sm-2">
-              <input type="radio"> cheque/DD
-            </div>
-           <div class="col-sm-2">
-              <input type="radio"> Online Payment
-            </div>
-            <div class="col-sm-2">
-              <input type="radio">NEFT/RTGS
-            </div>
-          </div>
           <br>
           <div class="row">
             <div class="col-sm-4 Form_Input">
@@ -127,7 +94,7 @@
     </div>
     <div class="row" style="margin-top:20px;">
       <div class="col-sm-12 text-right">
-        <button mat-raised-button color="primary"> Submit </button>
+        <button mat-raised-button color="primary" style="bottom: 15px;"> Submit </button>
       </div>
     </div>
   </div>

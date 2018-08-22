@@ -1,141 +1,129 @@
- /* .example-container {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .example-container > * {
-    width: 100%;
-    height: 45px;
-  }
-  .text-style-1{
-    margin-top: 25px;
-    line-height: 30px;
-    font-size: 20px; 
-    font-weight: 700; 
-    color: #6c7986;
-    font-family: 'Rubik', sans-serif;
-    border-bottom: 2px dashed #0464c7;
-  }  */
-  .change_button{
+/* Change Button */
+   .change_button{
       background-color:#08a92c;
       border:1px solid #08a92c;
       color:#fff;
       outline:none;
-      margin-right: 32%;
-  }
-  /* --------------   Page Identity Section  ----------------- */
-.Page_Identity{
-    display: flex;
-    height:40px;
-    width: 100%;
-    margin-bottom: 5px;
- }
- .Page_Identity .Page_Name{
-    width:50%;
- }
- .Page_Identity .Page_Name h5{
-    color: #4f6a7a;
-    line-height: 35px;
-    font-size: 18px;
-    margin: 0px;
-    font-weight: 700;
- }
- .Form_Input input {
-    padding: 10px;
-    width: 100%;
-    height: 37px;
-    outline: none;
-    margin-bottom: 25px;
-    border: 1px solid gainsboro;
-    color: #484848;
-    font-weight: 500;
-    font-size: 14px;
-}
-.Form_Input input:-moz-placeholder{
-    color: #999999;
-    font-weight: 400;
-}
-.Form_Input input::-moz-placeholder{
-    color: #999999;
-    font-weight: 400;
-}
-.Form_Input input::-webkit-input-placeholder{
-    color: #999999;
-    font-weight: 400;
-}
-.Form_Input input:-ms-input-placeholder{
-    color: #999999;
-    font-weight: 400;
-}
-.Form_Select select{
-    width: 100%;
-    height: 37px;
-    color: #999;
-    outline: none;
-    padding: 0px 10px;
-    border: 1px solid #dcdcdc;
-    margin-bottom: 25px;
-}
-.Form_Select select option{
-    color: #999999;
-    width: 100%;
-}
-.Append_Btn i{
-    color: #484848;
-    line-height: 45px;
-    font-size: 30px;
-    cursor: pointer;
-}
-.Model_Footer {
-    border-top: 1px solid #e8e8e8;
-    height: 55px;
-    display: flex;
-    align-items: center;
-    position: relative;
-}
-.Model_Footer .Submit_Btn {
-    position: absolute;
-    right: 0px;
-    border: 1px solid #08a92c;
-    padding: 5px 20px;
-    background-color: #08a92c;
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    border-radius: 3px;
-    cursor: pointer;
-}
-.Form_TextArea textarea {
-    padding: 10px;
-    width: 100%;
-    outline: none;
-    margin-bottom: 25px;
-    border: 1px solid gainsboro;
-    color: #484848;
-    font-weight: 500;
-    font-size: 14px;
-}
-.Form_TextArea textarea:-moz-placeholder{
-    color: #999999;
-    font-weight: 400;
-}
-.Form_TextArea textarea::-moz-placeholder{
-    color: #999999;
-    font-weight: 400;
-}
-.Form_TextArea textarea::-webkit-input-placeholder{
-    color: #999999;
-    font-weight: 400;
-}
-.Form_TextArea textarea:-ms-input-placeholder{
-    color: #999999;
-    font-weight: 400;
-}
-.left_section .Form_Input input{
-width:80%;
-}
-button {
-    position: absolute;
-    right: 0px;
-}
+   }
+/* --------------   Page Identity Section  ----------------- */
+   .Page_Identity{
+      display: flex;
+      height:40px;
+      width: 100%;
+      margin-bottom: 5px;
+   }
+   .Page_Identity .Page_Track{
+      width:100%;
+      line-height: 35px;
+   }
+   .Page_Identity .Page_Track ul{
+      display: flex;
+      list-style-type: none;
+      padding: 0px;
+      margin: 0px;
+      align-items: center;
+      float: right;
+   }
+   .Page_Identity .Page_Track ul li {
+      font-size: 13px;
+      font-weight: 500;
+      margin-left: 5px;
+   }
+   .Page_Identity .Page_Track ul li.arrow{
+      letter-spacing: -4px;
+      font-size: 19px;
+      transform: scale(.6, 1);
+   }
+   .Page_Identity .Page_Track ul li.arrowGreen{
+      letter-spacing: -4px;
+      font-size: 19px;
+      transform: scale(.6, 1);
+      color: #4ab65f;
+   }
+   .Page_Identity .Page_Track ul li.HeaderName{
+      color: #4ab65f;
+   }
+   .Page_Identity .Page_Track ul li.LinkName{
+      color: #4ab65f;
+      cursor: pointer;
+   }
+/* Form styles */
+   .Form_Input input {
+      padding: 10px;
+      width: 100%;
+      height: 37px;
+      outline: none;
+      margin-bottom: 25px;
+      border: 1px solid gainsboro;
+      color: #484848;
+      font-weight: 500;
+      font-size: 14px;
+   }
+   .Form_Input input:-moz-placeholder{
+      color: #999999;
+      font-weight: 400;
+   }
+   .Form_Input input::-moz-placeholder{
+      color: #999999;
+      font-weight: 400;
+   }
+   .Form_Input input::-webkit-input-placeholder{
+      color: #999999;
+      font-weight: 400;
+   }
+   .Form_Input input:-ms-input-placeholder{
+      color: #999999;
+      font-weight: 400;
+   }
+   .Form_Select select{
+      width: 100%;
+      height: 37px;
+      color: #999;
+      outline: none;
+      padding: 0px 10px;
+      border: 1px solid #dcdcdc;
+      margin-bottom: 25px;
+   }
+   .Form_Select select option{
+      color: #999999;
+      width: 100%;
+   }
+   .Form_TextArea textarea {
+      padding: 10px;
+      width: 100%;
+      outline: none;
+      margin-bottom: 25px;
+      border: 1px solid gainsboro;
+      color: #484848;
+      font-weight: 500;
+      font-size: 14px;
+   }
+   .Form_TextArea textarea:-moz-placeholder{
+      color: #999999;
+      font-weight: 400;
+   }
+   .Form_TextArea textarea::-moz-placeholder{
+      color: #999999;
+      font-weight: 400;
+   }
+   .Form_TextArea textarea::-webkit-input-placeholder{
+      color: #999999;
+      font-weight: 400;
+   }
+   .Form_TextArea textarea:-ms-input-placeholder{
+      color: #999999;
+      font-weight: 400;
+   }
+   .left_section .Form_Input input{
+   width:80%;
+   }
+/* Footer */
+   .Footer {
+      position: fixed;
+      bottom: 0px;
+      width: 100%;
+      padding: 0px 15px;
+      background-color: rgba(62, 59, 59, 0.13);
+      height: 45px;
+      text-align: right
+      }

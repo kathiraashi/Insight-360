@@ -1,0 +1,57 @@
+<!-- If Create Or Edit The Activity Type -->
+<div class="Modal_Content" *ngIf="Type && Type === 'Create'">
+      <div class="Modal_Header">
+         <p> Locations</p>
+         <span  data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+      </div>
+      <div class="Model_Body">
+            <div class="row">
+            <div class="col-sm-6 Form_Select">
+                  <label>Currency: </label>
+                  <select>
+                     <option checked>Select Currency</option>
+                     <option>INR</option>
+                     <option>UID</option>
+                     <option>EUR</option>
+                  </select>
+               </div>
+               <div class="col-sm-6 Form_Select">
+                     <label>Status: </label>
+                     <select>
+                        <option checked>status</option>
+                        <option>Active</option>
+                        <option>InActive</option>
+                     </select>
+                  </div>
+               </div>
+         </div>
+         <div class="Model_Footer">
+            <button type="submit" mat-raised-button color="primary">Submit
+            </button>
+         </div>
+      </div>
+
+   <!-- If View The Activity Type -->
+      <div class="Modal_Content" *ngIf=" Type && Type === 'View'">
+         <div class="Modal_Header">
+            <p> locations</p>
+            <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+         </div>
+         <div class="Model_Body">
+            <div class="view_item">
+               <div class="Static">Currency Name </div>
+               <div class="dots"> : </div>
+               <div class="Data"> Currency Name</div>
+            </div>
+            <div class="view_item">
+               <div class="Static">Status </div>
+               <div class="dots"> : </div>
+               <div class="Data"> Inactive
+               </div>
+            </div>
+        </div>
+      </div>
+
+
+
+

@@ -1,54 +1,90 @@
-<div class="Modal_Content" *ngIf="Type && Type === 'Create'">
+<div class="Modal_Content" *ngIf="_Data?.Type && (_Data?.Type === 'Create' || _Data?.Type === 'Edit')">
   <div class="Modal_Header">
-     <p>Create Registration Info</p>
-     <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+     <p>{{_Data?.Type}} Registration Info</p>
+     <span *ngIf="!Uploading" data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
  </div>
+ <form [formGroup]="Form" (ngSubmit)="onSubmit()">
  <div class="Model_Body">
   <div class="row">
      <div class="col-sm-6 Form_Select">
         <label>Registration Type:</label>
-        <select>
-          <option disabled> CST</option>
-          <option> All </option>
-          <option> </option>
-          <option> </option>
-          <option> </option>
-          <option> </option>
-          <option> </option>
-       </select>
+        <ng-select class="NgSelect ValueBold" formControlName="Registration_Type" [searchable]="true" placeholder="Registration Type">
+          <ng-option *ngFor="let Registration_Type of _Registration_Types" [value]="Registration_Type">{{ Registration_Type?.Registration_Type }}</ng-option>
+       </ng-select>
+       <p class="error" *ngIf="Form.controls['Registration_Type'].errors && !Form.controls['Registration_Type'].pristine">
+          <span  *ngIf="Form.controls['Registration_Type'].errors.required"> Registration Type is required</span>
+       </p>
      </div>
-   <div class="col-sm-6 Form_Input">
+   <div class="col-sm-6 Form_Input" [ngClass]="{'Form_Err': Form.controls['Incorporate_Date'].errors && !Form.controls['Incorporate_Date'].pristine, 'Form_Success': Form.controls['Incorporate_Date'].valid && !Form.controls['Incorporate_Date'].pristine }">
       <label>Incorporate Date:</label>
-        <input type="text">
+        <input type="text" formControlName="Incorporate_Date">
+        <p class="error" *ngIf="Form.controls['Incorporate_Date'].errors && !Form.controls['Incorporate_Date'].pristine">
+          <span *ngIf="Form.controls['Incorporate_Date'].errors.required">Incorporate Date is required</span>
+        </p>
      </div><br>
-     <div class="col-sm-6 Form_Input">
+     <div class="col-sm-6 Form_Input" [ngClass]="{'Form_Err': Form.controls['Number'].errors && !Form.controls['Number'].pristine, 'Form_Success': Form.controls['Number'].valid && !Form.controls['Number'].pristine }">
       <label>Number:</label>
-        <input type="text" >
+        <input type="text" formControlName="Number">
+        <p class="error" *ngIf="Form.controls['Number'].errors && !Form.controls['Number'].pristine">
+          <span *ngIf="Form.controls['Number'].errors.required">Number is required</span>
+        </p>
      </div>
    </div>
   </div>
   <div class="Model_Footer">
-   <button mat-raised-button color="primary" > Submit </button>
+    <button type="submit" [disabled]="Form.status !== 'VALID' || Uploading" mat-raised-button color="primary">
+      <span *ngIf="_Data?.Type === 'Create' && !Uploading">Submit</span>
+      <span *ngIf="_Data?.Type === 'Edit' && !Uploading">Update</span>
+      <span *ngIf="Uploading" class="UploadingBtn"> <i class="fa fa-refresh fa-spin"></i> Loading... </span>
+   </button>
 </div>
+</form>
 </div>
 
-<div class="Modal_Content" *ngIf="Type && Type === 'View'">
+<div class="Modal_Content" *ngIf="_Data?.Type && _Data?.Type === 'View'">
     <div class="Modal_Header">
        <p>View Registration Info</p>
        <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
    </div>
    <div class="Model_Body">
-         <div class="row">
-               <div class="col-sm-6 text-right Static">  Registration Type : </div>
-               <div class="col-sm-6 text-left Data">   Type1</div>
-            </div>
-            <div class="row">
-               <div class="col-sm-6 text-right Static"> Incorporate Date : </div>
-               <div class="col-sm-6 text-left Data">  27/05/18 </div>
-            </div>
-          <div class="row">
-               <div class="col-sm-6 text-right Static">  Number : </div>
-               <div class="col-sm-6 text-left Data">  7658454989 </div>
-            </div>
+      <div class="view_item">
+         <div class="Static"> Registration Type </div>
+         <div class="dots"> : </div>
+         <div class="Data"> {{_Registration_Info.RegistrationType?.Registration_Type}}  </div>
+      </div>
+      <div class="view_item">
+         <div class="Static"> Incorporate Date </div>
+         <div class="dots"> : </div>
+         <div class="Data">  {{_Registration_Info.Incorporate_Date}} </div>
+      </div>
+      <div class="view_item">
+         <div class="Static"> Number </div>
+         <div class="dots"> : </div>
+         <div class="Data">  {{_Registration_Info.Number}} </div>
+      </div>
+      <div class="view_item">
+         <div class="Static">Created By </div>
+         <div class="dots"> : </div>
+         <div class="Data"> {{_Registration_Info.Created_By?.Name}}
+            <!-- <span class="Badge"> {{Data.Created_By.User_Type.User_Type}} </span> -->
+         </div>
+      </div>
+      <div class="view_item">
+         <div class="Static">Last Modified By </div>
+         <div class="dots"> : </div>
+         <div class="Data">  {{_Registration_Info.Last_Modified_By?.Name}}
+            <!-- <span class="Badge"> {{Data.Last_Modified_By.User_Type.User_Type}} </span> -->
+         </div>
+      </div>
+      <div class="view_item">
+         <div class="Static"> Created Date </div>
+         <div class="dots"> : </div>
+         <div class="Data"> {{_Registration_Info.createdAt | date:'medium' }} </div>
+      </div>
+      <div class="view_item">
+         <div class="Static">Last Modified Date  </div>
+         <div class="dots"> : </div>
+         <div class="Data"> {{_Registration_Info.updatedAt | date:'medium' }} </div>
+      </div>
     </div>
    </div>

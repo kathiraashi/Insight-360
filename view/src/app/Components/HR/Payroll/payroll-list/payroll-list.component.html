@@ -1,0 +1,177 @@
+<app-header></app-header>
+<!-- Page section -->
+<div class="Page_Section">
+   <div class="container-fluid">
+      <div class="Page_Identity">
+         <div class="Page_Track">
+            <ul>
+               <li class="HeaderName">Home</li>
+               <li class="arrow">>></li>
+               <li class="LinkName">HR</li>
+               <li class="arrow">>></li>
+               <li>Payroll</li>
+            </ul>
+         </div>
+      </div>
+      <!--  Header Part -->
+<!-- Create and search Section -->
+<div class="row header_part">
+   <div class="col-sm-6">
+   </div>
+   <div class="col-sm-6">
+      <div class="Search_Section">
+         <input type="text" placeholder="Search.." name="search">
+         <i class="material-icons">search</i>
+      </div>
+   </div>
+</div>
+<!-- Table Section -->
+<div class="Table_Section">
+   <table>
+      <thead>
+         <tr>
+         <th>S.no</th>
+         <th>Employee Name</th>
+         <th>Code</th>
+         <th>Category</th>
+         <th>Month</th>
+         <th>Gross Pay</th>
+         <th>Detection</th>
+         <th>Net Pay</th>
+         <th>Action</th>
+         </tr>
+      </thead>
+      <tbody>
+         <tr>
+            <td>
+               <span class="S_no"> 1 </span>
+            </td>
+            <td>
+               <span class="Style_1">Employee Name</span>
+            </td>
+            <td>
+               <span class="Style_1"> Code</span>
+            </td>
+            <td>
+               <span class="Style_1">Category</span>
+            </td>
+            <td>
+               <span class="Style_1">Month</span>
+            </td>
+            <td>
+               <span class="Style_1">Gross Pay</span>
+            </td>
+            <td>
+               <span class="Style_1">Detection</span>
+            </td>
+            <td>
+               <span class="Style_1">Net Pay</span>
+            </td>
+            <td>
+               <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
+            </td>
+         </tr>
+         <tr>
+            <td>
+               <span class="S_no"> 2 </span>
+            </td>
+            <td>
+               <span class="Style_1">Employee Name</span>
+            </td>
+            <td>
+               <span class="Style_1"> Code</span>
+            </td>
+            <td>
+               <span class="Style_1">Category</span>
+            </td>
+            <td>
+               <span class="Style_1">Month</span>
+            </td>
+            <td>
+               <span class="Style_1">Gross Pay</span>
+            </td>
+            <td>
+               <span class="Style_1">Detection</span>
+            </td>
+            <td>
+               <span class="Style_1">Net Pay</span>
+            </td>
+            <td>
+               <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
+            </td>
+         </tr>
+         <tr>
+            <td>
+               <span class="S_no"> 3 </span>
+            </td>
+            <td>
+               <span class="Style_1">Employee Name</span>
+            </td>
+            <td>
+               <span class="Style_1"> Code</span>
+            </td>
+            <td>
+               <span class="Style_1">Category</span>
+            </td>
+            <td>
+               <span class="Style_1">Month</span>
+            </td>
+            <td>
+               <span class="Style_1">Gross Pay</span>
+            </td>
+            <td>
+               <span class="Style_1">Detection</span>
+            </td>
+            <td>
+               <span class="Style_1">Net Pay</span>
+            </td>
+            <td>
+               <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
+            </td>
+         </tr>
+         <tr>
+            <td>
+               <span class="S_no"> 4 </span>
+            </td>
+            <td>
+               <span class="Style_1">Employee Name</span>
+            </td>
+            <td>
+               <span class="Style_1"> Code</span>
+            </td>
+            <td>
+               <span class="Style_1">Category</span>
+            </td>
+            <td>
+               <span class="Style_1">Month</span>
+            </td>
+            <td>
+               <span class="Style_1">Gross Pay</span>
+            </td>
+            <td>
+               <span class="Style_1">Detection</span>
+            </td>
+            <td>
+               <span class="Style_1">Net Pay</span>
+            </td>
+            <td>
+               <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
+            </td>
+         </tr>
+      </tbody>
+   </table>
+</div>
+</div>
+</div>
+
+<!-- Dropdown menus -->
+<mat-menu #Action="matMenu">
+   <button mat-menu-item [routerLink]="['/View_Payroll']">
+      <span>View</span>
+   </button>
+   <button mat-menu-item>
+      <span>Delete</span>
+   </button>
+</mat-menu>
+
+

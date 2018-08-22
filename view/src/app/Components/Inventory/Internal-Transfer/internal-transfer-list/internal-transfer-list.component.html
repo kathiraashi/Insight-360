@@ -3,16 +3,13 @@
   <div class="Page_Section">
     <div class="container-fluid">
       <div class="Page_Identity">
-        <div class="Page_Name">
-          <h5>Internal Transfers</h5>
-        </div>
-        <div class="Page_Track">
+      <div class="Page_Track">
           <ul>
-            <li class="HeaderName">Inventory</li>
+            <li class="HeaderName">Home</li>
             <li class="arrow">>></li>
-            <li class="LinkName">Internal Transfers</li>
+            <li class="LinkName">Inventory</li>
             <li class="arrow">>></li>
-            <li>Internal Transfers List</li>
+            <li>Internal Transfers</li>
           </ul>
         </div>
       </div>
@@ -60,7 +57,7 @@
                 <span class="Style_3">Draft</span>
               </td>
               <td>
-                <button mat-raised-button color="primary"> Action </button>
+                <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
               </td>
             </tr>
             <tr>
@@ -83,7 +80,7 @@
                 <span class="Style_3">Draft</span>
               </td>
               <td>
-                <button mat-raised-button color="primary"> Action </button>
+                <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
               </td>
             </tr>
             <tr>
@@ -106,7 +103,7 @@
                 <span class="Style_3">Draft</span>
               </td>
               <td>
-                <button mat-raised-button color="primary"> Action </button>
+                <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
               </td>
             </tr>
             <tr>
@@ -129,7 +126,7 @@
                 <span class="Style_3">Draft</span>
               </td>
               <td>
-                <button mat-raised-button color="primary"> Action </button>
+                <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
               </td>
             </tr>
             <tr>
@@ -152,7 +149,7 @@
                 <span class="Style_3">Draft</span>
               </td>
               <td>
-                <button mat-raised-button color="primary"> Action </button>
+                <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
               </td>
             </tr>
             <tr>
@@ -175,7 +172,7 @@
                 <span class="Style_3">Draft</span>
               </td>
               <td>
-                <button mat-raised-button color="primary"> Action </button>
+                <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
               </td>
             </tr>
             <tr>
@@ -196,7 +193,7 @@
                 <span class="Style_3">Draft</span>
               </td>
               <td>
-                <button mat-raised-button color="primary"> Action </button>
+                <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
               </td>
             </tr>
           </tbody>
@@ -205,3 +202,16 @@
     </div>
   </div>
 </div>
+
+<!-- Dropdown menus -->
+<mat-menu #Action="matMenu">
+   <button mat-menu-item [routerLink]="['/internal_transfer_create']">
+      <span>Edit</span>
+   </button>
+   <button mat-menu-item>
+      <span>View</span>
+   </button>
+   <button mat-menu-item>
+      <span>Delete</span>
+   </button>
+</mat-menu>

@@ -16,4 +16,8 @@ module.exports = function(app) {
    app.post('/API/AdminManagement/UserTypeBased_PermissionsGroup_SimpleList', Controller.UserTypeBased_PermissionsGroup_SimpleList);
    app.post('/API/AdminManagement/GroupPermission_ModulesAndSubModules_List', Controller.GroupPermission_ModulesAndSubModules_List);
 
+   app.post('/API/AdminManagement/Country_List', Controller.Country_List);
+   app.post('/API/AdminManagement/State_List', Controller.State_List);
+   app.post('/API/AdminManagement/City_List', Controller.City_List);
+
 };

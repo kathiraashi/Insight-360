@@ -22,7 +22,8 @@
                    <li class="Tab" [ngClass]="{'active':Active_Tab === 'Bank'}" (click)="Active_Tab_Change('Bank')"><span class="Tab_Content">Bank</span></li>  
                    <li class="Tab" [ngClass]="{'active':Active_Tab === 'Income_Type'}" (click)="Active_Tab_Change('Income_Type')"><span class="Tab_Content">Income Type</span></li> 
                    <li class="Tab" [ngClass]="{'active':Active_Tab === 'Asset_Type'}" (click)="Active_Tab_Change('Asset_Type')"><span class="Tab_Content">Asset Type</span></li>
-                   <li class="Tab" [ngClass]="{'active':Active_Tab === 'Payment_Terms'}" (click)="Active_Tab_Change('Payment_Terms')"><span class="Tab_Content">Payment Terms</span></li>             
+                   <li class="Tab" [ngClass]="{'active':Active_Tab === 'Payment_Terms'}" (click)="Active_Tab_Change('Payment_Terms')"><span class="Tab_Content">Payment Terms</span></li>   
+                   <li class="Tab" [ngClass]="{'active':Active_Tab === 'Currency'}" (click)="Active_Tab_Change('Currency')"><span class="Tab_Content">Currency</span></li>          
                 </ul>
              </div>
              <div class="Right_Section">
@@ -40,7 +41,10 @@
                     </div> 
                     <div *ngIf="Active_Tab === 'Payment_Terms'">
                       <app-payment-terms-account-settings></app-payment-terms-account-settings>
-                      </div>              
+                      </div>   
+                      <div *ngIf="Active_Tab === 'Currency'">
+                        <app-currency-account-settings></app-currency-account-settings>
+                     </div>             
              </div>
           </div>
        </div>

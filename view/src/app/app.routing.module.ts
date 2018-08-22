@@ -21,8 +21,6 @@ import { CrmQuatationsListComponent } from './Components/CRM/Quotations/crm-quat
 import { CrmQuatationsCreateComponent } from './Components/CRM/Quotations/crm-quatations-create/crm-quatations-create.component';
 import { CrmSaleorderListComponent } from './Components/CRM/SaleOrder/crm-saleorder-list/crm-saleorder-list.component';
 import { CrmSaleorderCreateComponent } from './Components/CRM/SaleOrder/crm-saleorder-create/crm-saleorder-create.component';
-import { MainLeadsComponent } from './Components/Leads/main-leads/main-leads.component';
-import { MainHrmsComponentsComponent } from './Components/HRMS/main-hrms-components/main-hrms-components.component';
 import { PurchaseRequestListComponent } from './Components/Purchase/PurchaseRequest/purchase-request-list/purchase-request-list.component';
 import {PurchaseRequestCreateComponent  } from './Components/Purchase/PurchaseRequest/purchase-request-create/purchase-request-create.component';
 import { PurchaseQuotationsListComponent } from './Components/Purchase/PurchaseQuotation/purchase-quotations-list/purchase-quotations-list.component';
@@ -64,10 +62,49 @@ import { InventoryDeliveryordersCreateComponent } from './Components/Inventory/D
 import { InventoryDirectpurchaseCreateComponent } from './Components/Inventory/Direct-Purchase/inventory-directpurchase-create/inventory-directpurchase-create.component';
 import { InternalTransferCreateComponent } from './Components/Inventory/Internal-Transfer/internal-transfer-create/internal-transfer-create.component';
 import { ToReceiveCreateComponent } from './Components/Inventory/To-Receive/to-receive-create/to-receive-create.component';
-import { MainHrComponent } from './Components/HR/main-hr/main-hr.component';
-import { AttendanceReportViewComponent } from './Components/HR/SubComponents/Attendance-Report/attendance-report-view/attendance-report-view.component';
-import { PayrollViewComponent } from './Components/HR/SubComponents/Payroll/payroll-view/payroll-view.component';
-import { PayrollMasterCreateComponent } from './Components/HR/SubComponents/Payroll-Master/payroll-master-create/payroll-master-create.component';
+import { LeadCreateComponent } from './Components/Leads/Leads/lead-create/lead-create.component';
+import { LeadListComponent } from './Components/Leads/Leads/lead-list/lead-list.component';
+import { LeadViewComponent } from './Components/Leads/Leads/lead-view/lead-view.component';
+import { ListLogPhoneCallComponent } from './Components/Leads/Log-Phone-Call/list-log-phone-call/list-log-phone-call.component';
+import { CreateLogPhoneCallComponent } from './Components/Leads/Log-Phone-Call/create-log-phone-call/create-log-phone-call.component';
+import { ViewLogPhoneCallComponent } from './Components/Leads/Log-Phone-Call/view-log-phone-call/view-log-phone-call.component';
+import { ListCallScheduleComponent } from './Components/Leads/Call-Schedule/list-call-schedule/list-call-schedule.component';
+import { CreateCallScheduleComponent } from './Components/Leads/Call-Schedule/create-call-schedule/create-call-schedule.component';
+import { ViewCallScheduleComponent } from './Components/Leads/Call-Schedule/view-call-schedule/view-call-schedule.component';
+import { CrmConfigComponent } from './Components/CRM/crm-config/crm-config.component';
+import { ConfigurationComponent } from './Components/Purchase/configuration/configuration.component';
+import { AccountsConfigComponent } from './Components/Accounts/accounts-config/accounts-config.component';
+import { InventoryConfigComponent } from './Components/Inventory/inventory-config/inventory-config.component';
+import { EmployeesListComponent } from './Components/HR/Employees/employees-list/employees-list.component';
+import { EmployeesCreateComponent } from './Components/HR/Employees/employees-create/employees-create.component';
+import {EmployeesViewComponent } from './Components/HR/Employees/employees-view/employees-view.component';
+import { ListAttendanceLogComponent } from './Components/HR/Attendance-Log/list-attendance-log/list-attendance-log.component';
+import { CreateAttendanceLogComponent } from './Components/HR/Attendance-Log/create-attendance-log/create-attendance-log.component';
+import { ViewAttendanceLogComponent } from './Components/HR/Attendance-Log/view-attendance-log/view-attendance-log.component';
+import { ListAttendanceReportComponent } from './Components/HR/Attendance-Report/list-attendance-report/list-attendance-report.component';
+import { CreateAttendanceReportComponent } from './Components/HR/Attendance-Report/create-attendance-report/create-attendance-report.component';
+import { ViewAttendanceReportComponent } from './Components/HR/Attendance-Report/view-attendance-report/view-attendance-report.component';
+import { PayrollListComponent } from './Components/HR/Payroll/payroll-list/payroll-list.component';
+import { PayrollViewComponent } from './Components/HR/Payroll/payroll-view/payroll-view.component';
+import { ListPayrollMasterComponent } from './Components/HR/Payroll-Master/list-payroll-master/list-payroll-master.component';
+import { CreatePayrollMasterComponent } from './Components/HR/Payroll-Master/create-payroll-master/create-payroll-master.component';
+import { DashBoardComponent } from './Components/HRMS/DashBoard/dash-board/dash-board.component';
+import { ListLeavesComponent } from './Components/HRMS/Leaves/list-leaves/list-leaves.component';
+import { CreateLeavesComponent } from './Components/HRMS/Leaves/create-leaves/create-leaves.component';
+import { ViewLeavesComponent } from './Components/HRMS/Leaves/view-leaves/view-leaves.component';
+import { ListOnDutyComponent } from './Components/HRMS/On-Duty/list-on-duty/list-on-duty.component';
+import { CreateOnDutyComponent } from './Components/HRMS/On-Duty/create-on-duty/create-on-duty.component';
+import { ViewOnDutyComponent } from './Components/HRMS/On-Duty/view-on-duty/view-on-duty.component';
+import { ListPermissionsComponent } from './Components/HRMS/Permissions/list-permissions/list-permissions.component';
+import { CreatePermissionsComponent } from './Components/HRMS/Permissions/create-permissions/create-permissions.component';
+import { ViewPermissionsComponent } from './Components/HRMS/Permissions/view-permissions/view-permissions.component';
+import { ListAdvanceComponent } from './Components/HRMS/Advance/list-advance/list-advance.component';
+import { CreateAdvanceComponent } from './Components/HRMS/Advance/create-advance/create-advance.component';
+import { ViewAdvanceComponent } from './Components/HRMS/Advance/view-advance/view-advance.component';
+import { ListProductComponent } from './Components/Product/list-product/list-product.component';
+import { CreateProductComponent } from './Components/Product/create-product/create-product.component';
+import { ViewProductComponent } from './Components/Product/view-product/view-product.component';
+
 const appRoutes: Routes = [
    {
       path: '',
@@ -188,17 +225,143 @@ const appRoutes: Routes = [
       data: {   animation: { value: 'crm_saleorder_create'}   }
    },
    {
-      path: 'main_leads',
-      component: MainLeadsComponent,
-      canActivate: [AuthGuard],
-      data: {   animation: { value: 'main_leads'}   }
-   },
+    path: 'crm_config',
+    component: CrmConfigComponent,
+    canActivate: [AuthGuard],
+    data: {   animation: { value: 'crm_config'}   }
+ },
    {
-      path: 'main_hrms',
-      component: MainHrmsComponentsComponent,
-      canActivate: [AuthGuard],
-      data: {   animation: { value: 'main_hrms'}   }
-   },
+        path: 'Create_leads',
+        component: LeadCreateComponent,
+        canActivate: [AuthGuard],
+        data: {   animation: { value: 'Create_leads'}   }
+    },
+    {
+        path: 'List_leads',
+        component: LeadListComponent,
+        canActivate: [AuthGuard],
+        data: {   animation: { value: 'List_leads'}   }
+    },
+    {
+        path: 'View_leads',
+        component: LeadViewComponent,
+        canActivate: [AuthGuard],
+        data: {   animation: { value: 'View_leads'}   }
+    },
+    {
+        path: 'List_Log_Phone_call',
+        component: ListLogPhoneCallComponent,
+        canActivate: [AuthGuard],
+        data: {   animation: { value: 'List_Log_Phone_call'}   }
+    },
+    {
+        path: 'Create_Log_Phone_call',
+        component: CreateLogPhoneCallComponent,
+        canActivate: [AuthGuard],
+        data: {   animation: { value: 'Create_Log_Phone_call'}   }
+    },
+    {
+        path: 'View_Log_Phone_call',
+        component: ViewLogPhoneCallComponent,
+        canActivate: [AuthGuard],
+        data: {   animation: { value: 'View_Log_Phone_call'}   }
+    },
+    {
+        path: 'List_Call_Schedule',
+        component: ListCallScheduleComponent,
+        canActivate: [AuthGuard],
+        data: {   animation: { value: 'List_Call_Schedule'}   }
+    },
+    {
+        path: 'Create_Call_Schedule',
+        component: CreateCallScheduleComponent,
+        canActivate: [AuthGuard],
+        data: {   animation: { value: 'Create_Call_Schedule'}   }
+    },
+    {
+        path: 'View_Call_Schedule',
+        component: ViewCallScheduleComponent,
+        canActivate: [AuthGuard],
+        data: {   animation: { value: 'View_Call_Schedule'}   }
+    },
+    {
+        path: 'HRMS_DashBoard',
+        component: DashBoardComponent,
+        canActivate: [AuthGuard],
+        data: {   animation: { value: 'HRMS_DashBoard'}   }
+    },
+    {
+        path: 'List_Leaves',
+        component: ListLeavesComponent,
+        canActivate: [AuthGuard],
+        data: {   animation: { value: 'List_Leaves'}   }
+    },
+    {
+        path: 'Create_Leaves',
+        component: CreateLeavesComponent,
+        canActivate: [AuthGuard],
+        data: {   animation: { value: 'Create_Leaves'}   }
+    },
+    {
+        path: 'View_Leaves',
+        component: ViewLeavesComponent,
+        canActivate: [AuthGuard],
+        data: {   animation: { value: 'View_Leaves'}   }
+    },
+    {
+        path: 'List_Onduty',
+        component: ListOnDutyComponent,
+        canActivate: [AuthGuard],
+        data: {   animation: { value: 'List_Onduty'}   }
+    },
+    {
+        path: 'Create_Onduty',
+        component: CreateOnDutyComponent,
+        canActivate: [AuthGuard],
+        data: {   animation: { value: 'Create_Onduty'}   }
+    },
+    {
+        path: 'View_Onduty',
+        component: ViewOnDutyComponent,
+        canActivate: [AuthGuard],
+        data: {   animation: { value: 'View_Onduty'}   }
+    },
+    {
+        path: 'List_Permissions',
+        component: ListPermissionsComponent,
+        canActivate: [AuthGuard],
+        data: {   animation: { value: 'List_Permissions'}   }
+    },
+    {
+        path: 'Create_Permissions',
+        component: CreatePermissionsComponent,
+        canActivate: [AuthGuard],
+        data: {   animation: { value: 'Create_Permissions'}   }
+    },
+    {
+        path: 'View_Permissions',
+        component: ViewPermissionsComponent,
+        canActivate: [AuthGuard],
+        data: {   animation: { value: 'View_Permissions'}   }
+    },
+    {
+        path: 'List_Advance',
+        component: ListAdvanceComponent,
+        canActivate: [AuthGuard],
+        data: {   animation: { value: 'List_Advance'}   }
+    },
+    {
+        path: 'Create_Advance',
+        component: CreateAdvanceComponent,
+        canActivate: [AuthGuard],
+        data: {   animation: { value: 'Create_Permissions'}   }
+    },
+    {
+        path: 'View_Advance',
+        component: ViewAdvanceComponent,
+        canActivate: [AuthGuard],
+        data: {   animation: { value: 'View_Advance'}   }
+    },
    {
       path: 'purchase_request_list',
       component: PurchaseRequestListComponent,
@@ -284,6 +447,12 @@ const appRoutes: Routes = [
       data: {   animation: { value: 'Vendor_Create'}   }
    },
    {
+    path: 'purchase_configuration',
+    component: ConfigurationComponent,
+    canActivate: [AuthGuard],
+    data: {   animation: { value: 'purchase_configuration'}   }
+ },
+   {
       path: 'crm_quotations_view',
       component: CrmQuatationsViewComponent,
       canActivate: [AuthGuard],
@@ -344,11 +513,23 @@ const appRoutes: Routes = [
       data: {   animation: { value: 'account_vendor_bills_list'}   }
    },
    {
+    path: 'Accounts_configuration',
+    component: AccountsConfigComponent,
+    canActivate: [AuthGuard],
+    data: {   animation: { value: 'Accounts_configuration'}   }
+ },
+   {
       path: 'Inventory_deliveryorder_list',
       component: InventoryDeliveryordersListComponent,
       canActivate: [AuthGuard],
       data: {   animation: { value: 'Inventory_deliveryorder_list'}   }
    },
+   {
+    path: 'Inventory_configuration',
+    component: InventoryConfigComponent,
+    canActivate: [AuthGuard],
+    data: {   animation: { value: 'Inventory_configuration'}   }
+ },
    {
       path: 'customer_payment_create',
       component: CustomerPaymentsCreateComponent,
@@ -434,29 +615,103 @@ const appRoutes: Routes = [
       data: {   animation: { value: 'User_Permissions_Group_Create'}   }
    },
    {
-    path: 'main_hr',
-    component: MainHrComponent,
+    path: 'List_Employees',
+    component: EmployeesListComponent,
     canActivate: [AuthGuard],
-    data: {   animation: { value: 'main_hr'}   }
+    data: {   animation: { value: 'List_Employees'}   }
 },
 {
-    path: 'Attendance_Report_View',
-    component: AttendanceReportViewComponent,
+    path: 'Create_Employees',
+    component: EmployeesCreateComponent,
     canActivate: [AuthGuard],
-    data: {   animation: { value: 'Attendance_Report_View'}   }
+    data: {   animation: { value: 'Create_Employees'}   }
 },
 {
-    path: 'Payroll_View',
+    path: 'View_Employees',
+    component: EmployeesViewComponent,
+    canActivate: [AuthGuard],
+    data: {   animation: { value: 'View_Employees'}   }
+},
+{
+    path: 'List_Attendance_Log',
+    component: ListAttendanceLogComponent,
+    canActivate: [AuthGuard],
+    data: {   animation: { value: 'List_Attendance_Log'}   }
+},
+{
+    path: 'Create_Attendance_Log',
+    component: CreateAttendanceLogComponent,
+    canActivate: [AuthGuard],
+    data: {   animation: { value: 'Create_Attendance_Log'}   }
+},
+{
+    path: 'View_Attendance_Log',
+    component: ViewAttendanceLogComponent,
+    canActivate: [AuthGuard],
+    data: {   animation: { value: 'View_Attendance_Log'}   }
+},
+{
+    path: 'List_Attendance_Report',
+    component: ListAttendanceReportComponent,
+    canActivate: [AuthGuard],
+    data: {   animation: { value: 'List_Attendance_Report'}   }
+},
+{
+    path: 'Create_Attendance_Report',
+    component: CreateAttendanceReportComponent,
+    canActivate: [AuthGuard],
+    data: {   animation: { value: 'Create_Attendance_Report'}   }
+},
+{
+    path: 'View_Attendance_Report',
+    component: ViewAttendanceReportComponent,
+    canActivate: [AuthGuard],
+    data: {   animation: { value: 'View_Attendance_Report'}   }
+},
+{
+    path: 'List_Payroll',
+    component: PayrollListComponent,
+    canActivate: [AuthGuard],
+    data: {   animation: { value: 'List_Payroll'}   }
+},
+{
+    path: 'View_Payroll',
     component: PayrollViewComponent,
     canActivate: [AuthGuard],
-    data: {   animation: { value: 'Payroll_View'}   }
+    data: {   animation: { value: 'View_Payroll'}   }
 },
 {
-    path: 'Payroll_master_View',
-    component: PayrollMasterCreateComponent,
+    path: 'List_Payroll_Master',
+    component: ListPayrollMasterComponent,
     canActivate: [AuthGuard],
-    data: {   animation: { value: 'Payroll_master_View'}   }
+    data: {   animation: { value: 'List_Payroll_Master'}   }
 },
+{
+    path: 'Create_Payroll_Master',
+    component: CreatePayrollMasterComponent,
+    canActivate: [AuthGuard],
+    data: {   animation: { value: 'Create_Payroll_Master'}   }
+},
+{
+    path: 'List_Product',
+    component: ListProductComponent,
+    canActivate: [AuthGuard],
+    data: {   animation: { value: 'List_Product'}   }
+},
+{
+    path: 'Create_Product',
+    component: CreateProductComponent,
+    canActivate: [AuthGuard],
+    data: {   animation: { value: 'Create_Product'}   }
+},
+{
+    path: 'View_Product',
+    component: ViewProductComponent,
+    canActivate: [AuthGuard],
+    data: {   animation: { value: 'View_Product'}   }
+},
+
+
 
 
 

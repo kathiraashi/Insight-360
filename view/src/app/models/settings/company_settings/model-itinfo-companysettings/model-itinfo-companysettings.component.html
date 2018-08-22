@@ -1,31 +1,47 @@
-<div class="Modal_Content" *ngIf="Type && Type === 'Create'">
+<div class="Modal_Content" *ngIf="Type && (Type === 'Create' || Type === 'Edit')">
    <div class="Modal_Header">
-      <p>Create IT Info</p>
-      <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+      <p>{{Type}} IT Info</p>
+      <span *ngIf="!Uploading" data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
    </div>
+   <form [formGroup] ="Form" (ngSubmit)="onSubmit()">
    <div class="Model_Body">
       <div class="row">
-         <div class="col-sm-6 Form_Input">
+         <div class="col-sm-6 Form_Input" [ngClass]="{'Form_Err': Form.controls['Pan_No'].errors && !Form.controls['Pan_No'].pristine, 'Form_Success': Form.controls['Pan_No'].valid && !Form.controls['Pan_No'].pristine}">
             <label>PAN No:</label>
-            <input type="text">
+            <input type="text" formControlName="Pan_No">
+            <p class="error" *ngIf="Form.controls['Pan_No'].errors && !Form.controls['Pan_No'].pristine">
+               <span *ngIf="Form.controls['Pan_No'].errors.required">!Pan No is Required</span>
+               <span *ngIf="Form.controls['Pan_No'].errors.ItInfo_NotAvailable"> Pan No Already Exist </span>
+            </p>
          </div>
-         <div class="col-sm-6 Form_Input">
+         <div class="col-sm-6 Form_Input" [ngClass]="{'Form_Err': Form.controls['Tan_No'].errors && !Form.controls['Tan_No'].pristine, 'Form_Success': Form.controls['Tan_No'].valid && !Form.controls['Tan_No'].pristine}">
             <label>TAN No:</label>
-            <input type="text">
+            <input type="text" formControlName="Tan_No">
+            <p class="error" *ngIf="Form.controls['Tan_No'].errors && !Form.controls['Tan_No'].pristine">
+               <span *ngIf="Form.controls['Tan_No'].errors.required">!Tan No is Required</span>
+            </p>
          </div><br>
-         <div class="col-sm-6 Form_Input">
+         <div class="col-sm-6 Form_Input" [ngClass]="{'Form_Err': Form.controls['Tan_Circle_No'].errors && !Form.controls['Tan_Circle_No'].pristine, 'Form_Success': Form.controls['Tan_Circle_No'].valid && !Form.controls['Tan_Circle_No'].pristine}">
             <label>TAN Circle No:</label>
-            <input type="text" >
+            <input type="text" formControlName="Tan_Circle_No">
+            <p class="error" *ngIf="Form.controls['Tan_Circle_No'].errors && !Form.controls['Tan_Circle_No'].pristine">
+               <span *ngIf="Form.controls['Tan_Circle_No'].errors.required">!Tan Circle No is Required</span>
+            </p>
          </div>
          <div class="col-sm-6 Form_TextArea">
-      <label>TDS Detailes:</label>
+      <label>TDS Details:</label>
             <textarea class="message" rows="2"></textarea>
          </div>
       </div>
 </div>
       <div class="Model_Footer">
-            <button mat-raised-button color="primary" > Submit </button>
+         <button type="submit"  [disabled]="Form.status !== 'VALID' || Uploading" mat-raised-button color="primary" >
+            <span *ngIf="Type === 'Create' && !Uploading"> Submit </span>
+            <span *ngIf="Type === 'Edit' && !Uploading"> Update </span> 
+            <span *ngIf="Uploading" class="UploadingBtn"> <i class="fa fa-refresh fa-spin"></i> Loading... </span>
+         </button>
          </div>
+      </form>
 </div>
 
 <div class="Modal_Content" *ngIf="Type && Type === 'View'">
@@ -34,26 +50,48 @@
          <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
       </div>
       <div class="Model_Body">
-            <div class="row">
-                  <div class="col-sm-6 text-right Static"> PAN No : </div>
-                  <div class="col-sm-6 text-left Data">  4358785</div>
-               </div>
-               <div class="row">
-                  <div class="col-sm-6 text-right Static"> TAN No: </div>
-                  <div class="col-sm-6 text-left Data"> 3118786 </div>
-               </div>
-             <div class="row">
-                  <div class="col-sm-6 text-right Static">  TAN Circle No: </div>
-                  <div class="col-sm-6 text-left Data">   678745 </div>
-               </div>
-               <div class="row">
-                     <div class="col-sm-6 text-right Static">  TDS Details: </div>
-                     <div class="col-sm-6 text-left Data">   TDS Details </div>
-                  </div>
+         <div class="view_item">
+            <div class="Static">Pan No</div>
+            <div class="dots">: </div>
+            <div class="Data">{{Data.Pan_No}}</div>
          </div>
-         <div class="Model_Footer">
+         <div class="view_item">
+            <div class="Static">Tan No: </div>
+            <div class="dots">: </div>
+            <div class=" Data">{{Data.Tan_No}}</div>
+         </div>
+         <div class="view_item">
+            <div class="Static">Tan Circle No: </div>
+            <div class="dots">: </div>
+            <div class="Data">{{Data.Tan_Circle_No}}</div>
+         </div>
+         <div class="view_item">
+            <div class="Static">TDS_Details: </div>
+            <div class="dots">: </div>
+            <div class="Data">{{Data.TDS_Details}}</div>
+         </div>
+        <div class="view_item">
+               <div class="Static">Created By </div>
+               <div class="dots"> : </div>
+               <div class="Data"> {{Data.Created_By.Name}}</div>
+            </div>
+            <div class="view_item">
+               <div class="Static">Last Modified By </div>
+               <div class="dots"> : </div>
+               <div class="Data"> {{Data.Last_Modified_By.Name}}</div>
+            </div>
+            <div class="view_item">
+               <div class="Static"> Created Date </div>
+               <div class="dots"> : </div>
+               <div class="Data"> {{Data.createdAt | date:'medium'}}</div>
+            </div>
+            <div class="view_item">
+               <div class="Static">Last Modified Date  </div>
+               <div class="dots"> : </div>
+               <div class="Data"> {{Data.updatedAt | date:'medium'}}</div>
+            </div>
+         </div>
        </div>
-   </div>
   
 
 

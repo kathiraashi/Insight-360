@@ -1,6 +1,6 @@
 <div class="row header_part">
   <div class="col-sm-6">
-    <button class="Create_Button" mat-raised-button (click)="Createbranch()"> + Create </button>
+    <button class="Create_Button" mat-raised-button [routerLink]="['/Purchase_Quotation_Create']"> + Create </button>
   </div>
   <div class="col-sm-6">
     <div class="Search_Section">
@@ -44,13 +44,13 @@
           <span class="Style_1">6000</span>
         </td>
         <td>
-          <button class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+          <button [routerLink]="['/Purchase_Quotation_View']" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
             <i class="material-icons">zoom_in</i>
           </button>
-          <button class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+          <button [routerLink]="['/Purchase_Quotation_Create']" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
             <i class="material-icons">edit</i>
           </button>
-          <button class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+          <button (click)="DeleteQuotations()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
             <i class="material-icons">delete_forever</i>
           </button>
         </td>
@@ -75,13 +75,13 @@
           <span class="Style_1">6000</span>
         </td>
         <td>
-          <button class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+          <button [routerLink]="['/Purchase_Quotation_View']" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
             <i class="material-icons">zoom_in</i>
           </button>
-          <button class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+          <button [routerLink]="['/Purchase_Quotation_Create']" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
             <i class="material-icons">edit</i>
           </button>
-          <button class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+          <button (click)="DeleteQuotations()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
             <i class="material-icons">delete_forever</i>
           </button>
         </td>
@@ -106,13 +106,13 @@
           <span class="Style_1">6000</span>
         </td>
         <td>
-          <button class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+          <button [routerLink]="['/Purchase_Quotation_View']" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
             <i class="material-icons">zoom_in</i>
           </button>
-          <button class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+          <button [routerLink]="['/Purchase_Quotation_Create']" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
             <i class="material-icons">edit</i>
           </button>
-          <button class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+          <button (click)="DeleteQuotations()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
             <i class="material-icons">delete_forever</i>
           </button>
         </td>
@@ -137,13 +137,13 @@
           <span class="Style_1">6000</span>
         </td>
         <td>
-          <button class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+          <button [routerLink]="['/Purchase_Quotation_View']" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
             <i class="material-icons">zoom_in</i>
           </button>
-          <button class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+          <button [routerLink]="['/Purchase_Quotation_Create']" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
             <i class="material-icons">edit</i>
           </button>
-          <button class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+          <button (click)="DeleteQuotations()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
             <i class="material-icons">delete_forever</i>
           </button>
         </td>
@@ -168,13 +168,13 @@
           <span class="Style_1">6000</span>
         </td>
         <td>
-          <button class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+          <button [routerLink]="['/Purchase_Quotation_View']" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
             <i class="material-icons">zoom_in</i>
           </button>
-          <button class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+          <button [routerLink]="['/Purchase_Quotation_Create']" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
             <i class="material-icons">edit</i>
           </button>
-          <button class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+          <button (click)="DeleteQuotations()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
             <i class="material-icons">delete_forever</i>
           </button>
         </td>

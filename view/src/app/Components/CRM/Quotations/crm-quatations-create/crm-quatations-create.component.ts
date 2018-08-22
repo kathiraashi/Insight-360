@@ -6,12 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./crm-quatations-create.component.css']
 })
 export class CrmQuatationsCreateComponent implements OnInit {
-Active_Tab = 'Product_Details';
-  constructor() { }
+   Active_Tab = 'Product_Details';
+   constructor() { }
 
-  ngOnInit() {
-  }
-Active_Tab_Change(name) {
-  this.Active_Tab = name;
-}
+   ngOnInit() {
+   }
+   Active_Tab_Change(name) {
+      this.Active_Tab = name;
+   }
 }

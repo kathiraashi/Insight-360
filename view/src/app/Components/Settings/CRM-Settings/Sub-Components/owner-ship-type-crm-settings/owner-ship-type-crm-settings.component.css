@@ -84,15 +84,15 @@
       font-weight: 600;
       cursor: pointer;
    }
-   .Table_Section table tbody tr td .Style_1 .Badge{
+   /* .Table_Section table tbody tr td .Style_1 .Badge{
     color: #4ab65f;
     padding: 2px 4px;
     border-radius: 20px;
     font-size: 10px;
     letter-spacing: 0.4px;
     border: 1px solid #4ab65f;
-}
-.Table_Section table tbody tr td .Style_1 .Time{
+} */
+.Table_Section table tbody tr td  .Time{
     font-size: 12px;
     font-weight: 500;
     color: #8ca5b3;

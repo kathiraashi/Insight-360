@@ -1,16 +1,49 @@
 <div class="Header_Page">
+   <!-- Header One -->
    <div class="Header_One">
       <img src="assets/images/basic/Insight360.png" alt="Logo" class="Header_Logo"> 
+       <!-- Header Button -->
+       <span class="Header_Button">
+         <button mat-button color="primary" [routerLink]="['/Create_Bill']" > + Create </button>
+   </span>
+   <!-- Search Section -->
+   <span class="search_section">
+      <input type="text" placeholder="search">
+      <i class="material-icons">search </i>
+   </span>
       <div class="Logout_Btn"> <span (click)="LogOut()"> Logout </span></div>
    </div>
+   <!-- Header Two -->
    <div class="Header_Two">
       <ul class="Menus">
+         <!-- DashBoard -->
          <li *ngIf="ModulesValidate('Dashboard')" class="Menu_List">
             <span class="Menu">
                <i class="material-icons">dashboard</i>
                <span> &nbsp; Dashboard </span> 
             </span>
          </li>
+         <!-- Leads -->
+         <li *ngIf="ModulesValidate('Crm')" class="Menu_List">
+            <span class="Menu_Tree">
+               <span class="Menu">
+                  <i class="material-icons">people</i>
+                  <span> &nbsp; Leads </span> 
+               </span>
+               <ul class="Menu_Tree_View">
+                  <li *ngIf="SubModulesValidate('Crm_Customers_List')" class="Menu_Tree_List" [routerLink]="['/List_leads']"><a> Leads </a></li>
+                  <li *ngIf="SubModulesValidate('Crm_Quotations_List')" class="Menu_Tree_List" [routerLink]="['/List_Log_Phone_call']"><a> Log Phone Call </a></li>
+                  <li *ngIf="SubModulesValidate('Crm_SaleOrders_List')" class="Menu_Tree_List" [routerLink]="['/List_Call_Schedule']"><a> Call Schedule </a></li>
+               </ul>
+            </span>
+         </li>
+         <!-- <li *ngIf="ModulesValidate('Leads')" class="Menu_List"  [routerLink]="['/main_leads']" style="outline:none;">
+            <span class="Menu">
+               <i class="material-icons">people</i>
+               <span > &nbsp; Leads </span> 
+            </span>
+         </li> -->
+         <!-- CRM -->
          <li *ngIf="ModulesValidate('Crm')" class="Menu_List">
             <span class="Menu_Tree">
                <span class="Menu">
@@ -22,27 +55,11 @@
                   <li *ngIf="SubModulesValidate('Crm_Quotations_List')" class="Menu_Tree_List" [routerLink]="['/crm_quotations_list']"><a> Quotations </a></li>
                   <li *ngIf="SubModulesValidate('Crm_SaleOrders_List')" class="Menu_Tree_List" [routerLink]="['/crm_saleorder_list']"><a> Sale Order </a></li>
                   <li *ngIf="SubModulesValidate('Crm_Invoice_List')" class="Menu_Tree_List" [routerLink]="['/crm_invoice_list']"><a> Invoice  </a></li>
+                  <li *ngIf="SubModulesValidate('Crm_Invoice_List')" class="Menu_Tree_List" [routerLink]="['/crm_config']"><a> Configuration  </a></li>
                </ul>
             </span>
          </li>
-         <li *ngIf="ModulesValidate('Leads')" class="Menu_List"  [routerLink]="['/main_leads']" style="outline:none;">
-            <span class="Menu">
-               <i class="material-icons">people</i>
-               <span > &nbsp; Leads </span> 
-            </span>
-         </li>
-         <li *ngIf="ModulesValidate('Hrms')" class="Menu_List"  [routerLink]="['/main_hrms']" style="outline:none;">
-            <span class="Menu">
-               <i class="material-icons">people</i>
-               <span > &nbsp; HRMS </span> 
-            </span>
-         </li>
-         <li *ngIf="ModulesValidate('Hr')" class="Menu_List" [routerLink]="['/main_hr']" style="outline:none;">
-            <span class="Menu">
-               <i class="material-icons">people</i>
-               <span > &nbsp; HR </span> 
-            </span>
-         </li>
+         <!-- Purchase -->
          <li *ngIf="ModulesValidate('Purchase')" class="Menu_List">
             <span class="Menu_Tree">
                <span class="Menu">
@@ -55,9 +72,11 @@
                   <li *ngIf="SubModulesValidate('Purchase_Orders_List')" class="Menu_Tree_List" [routerLink]="['/Purchase_Orders_List']"><a> Purchase Orders </a></li>
                   <li *ngIf="SubModulesValidate('Purchase_VendorBills_List')" class="Menu_Tree_List" [routerLink]="['/Vendor_Bills_List']"><a> Vendor Bills </a></li>
                   <li *ngIf="SubModulesValidate('Purchase_Vendors_List')" class="Menu_Tree_List" [routerLink]="['/Vendor_List']"><a> Vendor </a></li>
+                  <li *ngIf="SubModulesValidate('Purchase_Config')" class="Menu_Tree_List" [routerLink]="['/purchase_configuration']"><a> Configuration </a></li>
                </ul>
             </span>
          </li>
+         <!-- Inventory -->
          <li *ngIf="ModulesValidate('Inventory')" class="Menu_List" >
             <span class="Menu_Tree">
                <span class="Menu">
@@ -68,9 +87,12 @@
                   <li *ngIf="SubModulesValidate('Inventory_DeliveryOrders_List')" class="Menu_Tree_List" [routerLink]="['/Inventory_deliveryorder_list']"><a> Delivery Orders </a></li>
                   <li *ngIf="SubModulesValidate('Inventory_InternalTransfer_List')" class="Menu_Tree_List" [routerLink]="['/internal_transfer_list']"><a> Internal Transfer </a></li>
                   <li *ngIf="SubModulesValidate('Inventory_ToReceive_List')" class="Menu_Tree_List" [routerLink]="['/to_receive_list']"><a> To Receive </a></li>
+                  <li *ngIf="SubModulesValidate('Inventory_Stock_Values')" class="Menu_Tree_List"><a> Stock Values </a></li>
+                  <li *ngIf="SubModulesValidate('Inventory_Config')" class="Menu_Tree_List"  [routerLink]="['/Inventory_configuration']"><a> Configuration </a></li>
                </ul>
             </span>
          </li>
+         <!-- Accounts -->
          <li *ngIf="ModulesValidate('Accounts')" class="Menu_List" >
             <span class="Menu_Tree">
                <span class="Menu">
@@ -86,9 +108,62 @@
                   <li *ngIf="SubModulesValidate('Accounts_PurchaseOrders_List')" class="Menu_Tree_List" [routerLink]="['/Purchase_Orders_List']"><a>Purchase Orders</a></li>
                   <li *ngIf="SubModulesValidate('Accounts_VendorBills_List')" class="Menu_Tree_List" [routerLink]="['/account_vendor_bills_list']"><a>Vendor Bills</a></li>
                   <li *ngIf="SubModulesValidate('Accounts_VendorPayments_List')" class="Menu_Tree_List" [routerLink]="['/vendor_payment_list']"><a>Vendor Payments</a></li>
-            </ul>
+                  <li *ngIf="SubModulesValidate('Accounts_Config')" class="Menu_Tree_List" [routerLink]="['/Accounts_configuration']"><a>Configuration</a></li>
+               </ul>
             </span>
          </li>
+         <!-- Product -->
+         <li *ngIf="ModulesValidate('Product')" class="Menu_List" [routerLink]="['/List_Product']" style="outline:none;">
+            <span class="Menu">
+               <i class="material-icons">people</i>
+               <span > &nbsp; Product </span> 
+            </span>
+         </li>
+        <!-- HR -->
+         <!-- <li *ngIf="ModulesValidate('Hr')" class="Menu_List" [routerLink]="['/main_hr']" style="outline:none;">
+            <span class="Menu">
+               <i class="material-icons">people</i>
+               <span > &nbsp; HR </span> 
+            </span>
+         </li> -->
+         <li *ngIf="ModulesValidate('Hr')" class="Menu_List" >
+            <span class="Menu_Tree">
+               <span class="Menu">
+                  <i class="material-icons">people</i>
+                  <span> &nbsp; HR </span> 
+               </span>
+               <ul class="Menu_Tree_View">
+                  <li  class="Menu_Tree_List" [routerLink]="['/List_Employees']"><a> Employees </a></li>
+                  <li  class="Menu_Tree_List" [routerLink]="['/List_Attendance_Log']"><a> Attendance Log </a></li>
+                  <li  class="Menu_Tree_List" [routerLink]="['/List_Attendance_Report']"><a> Attendance Report </a></li>
+                  <li  class="Menu_Tree_List" [routerLink]="['/List_Payroll']" ><a> Payroll </a></li>
+                  <li  class="Menu_Tree_List"  [routerLink]="['/List_Payroll_Master']"><a> Payroll Master </a></li>
+               </ul>
+            </span>
+         </li>
+         <!-- HRMS -->
+        <!-- <li *ngIf="ModulesValidate('Hrms')" class="Menu_List"  [routerLink]="['/main_hrms']" style="outline:none;">
+            <span class="Menu">
+               <i class="material-icons">people</i>
+               <span > &nbsp; HRMS </span> 
+            </span>
+         </li> -->
+         <li *ngIf="ModulesValidate('Hrms')" class="Menu_List" >
+                <span class="Menu_Tree">
+                   <span class="Menu">
+                      <i class="material-icons">people</i>
+                      <span> &nbsp; HRMS </span> 
+                   </span>
+                   <ul class="Menu_Tree_View">
+                      <li  class="Menu_Tree_List" [routerLink]="['/HRMS_DashBoard']"><a> DashBoard </a></li>
+                      <li  class="Menu_Tree_List" [routerLink]="['/List_Leaves']"><a> Leaves </a></li>
+                      <li  class="Menu_Tree_List" [routerLink]="['/List_Onduty']"><a> On Duty </a></li>
+                      <li  class="Menu_Tree_List" [routerLink]="['/List_Permissions']" ><a> Permissions </a></li>
+                      <li  class="Menu_Tree_List"  [routerLink]="['/List_Advance']"><a> Advance </a></li>
+                   </ul>
+                </span>
+             </li>
+         <!-- Seetings -->
          <li *ngIf="ModulesValidate('Settings')" class="Menu_List" >
             <span class="Menu_Tree">
                <span class="Menu">

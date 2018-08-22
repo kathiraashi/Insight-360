@@ -11,16 +11,16 @@ import { DeleteConfirmationComponent } from '../../../../Components/Common-Compo
 })
 export class PurchaseRequestListComponent implements OnInit {
 
-  bsModalRef: BsModalRef;
-  constructor( private modalService: BsModalService) { }
+   bsModalRef: BsModalRef;
+   constructor( private modalService: BsModalService) { }
 
 
-  ngOnInit() {
-  }
-  DeletePurchaseRequest() {
-    const initialState = {
-      Text: 'Purchase Request'
-    };
-    this.bsModalRef = this.modalService.show(DeleteConfirmationComponent, Object.assign({initialState}, { class: 'modal-sm' }));
-  }
+   ngOnInit() {
+   }
+   DeletePurchaseRequest() {
+      const initialState = {
+         Text: 'Purchase Request'
+      };
+      this.bsModalRef = this.modalService.show(DeleteConfirmationComponent, Object.assign({initialState}, { class: 'modal-sm' }));
+   }
 }

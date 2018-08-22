@@ -1,0 +1,48 @@
+<!-- Model content -->
+<div class="Modal_Content" *ngIf="Type && Type === 'Create'">
+   <!-- Model Header -->
+   <div class="Modal_Header">
+      <p>Log Phone Call</p>
+      <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+   </div>
+   <!-- Model Body -->
+   <div class="Model_Body">
+      <div class="row">
+         <div class="col-sm-6 Form_Input">
+            <label>Company Name: </label>
+            <input type="text" readonly="true">
+         </div>
+         <div class="col-sm-6 Form_Input">
+            <label>Date & Time: </label>
+            <input type="text">
+         </div>
+         <br>
+         <div class="col-sm-6 Form_Select">
+            <label>Product: </label>
+            <select>
+               <option checked>Select Product</option>
+               <option>Product</option>
+               <option>Product</option>
+               <option>Product</option>
+               <option>Product</option>
+            </select>
+         </div>
+         <div class="col-sm-6 Form_Input">
+            <label>Contact: </label>
+            <input type="text">
+         </div>
+         <div class="col-sm-6 Form_TextArea">
+            <label>Descriptio: </label>
+            <textarea class="Description" rows="3"></textarea>
+         </div>
+         <div class="col-sm-6 Form_TextArea ">
+            <label>Address: </label>
+            <textarea class="message" rows="3"></textarea>
+         </div>
+      </div>
+   </div>
+   <!-- Model footer -->
+   <div class="Model_Footer">
+      <button mat-raised-button color="primary" > Submit </button>
+   </div>
+</div>

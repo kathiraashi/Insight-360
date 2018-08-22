@@ -1,34 +1,32 @@
 <app-header></app-header>
 <div class="Main_Section">
-  <div class="Page_Section">
+   <div class="Page_Section">
       <div class="container-fluid">
-          <div class="Page_Identity">
-              <div class="Page_Name">
-                 <h5>Sale Order</h5>
-              </div>
-              <div class="Page_Track">
-                 <ul >
-                   <li class="HeaderName">CRM</li>
-                   <li class="arrow">>></li>
-                   <li class= "LinkName">Sale Order</li>
-                   <li class="arrow">>></li>
-                   <li >Sale Order List</li>
-                 </ul>
-              </div>
-           </div>
-           <div class="row header_part">
-              <div class="col-sm-6">
-                <button class="Create_Button" mat-raised-button [routerLink]="['/crm_saleorder_create']"> + Create </button>
-              </div>
-              <div class="col-sm-6">
-                <div class="Search_Section">
+         <!-- Page Identity -->
+         <div class="Page_Identity">
+            <div class="Page_Track">
+               <ul>
+                  <li class="HeaderName">Home</li>
+                  <li class="arrow">>></li>
+                  <li class= "LinkName">CRM</li>
+                  <li class="arrow">>></li>
+                  <li >Sale Order</li>
+               </ul>
+            </div>
+         </div>
+         <!-- Header part -->
+         <div class="row header_part">
+            <div class="col-sm-6">
+               <button class="Create_Button" mat-raised-button [routerLink]="['/crm_saleorder_create']"> + Create </button>
+            </div>
+            <div class="col-sm-6">
+               <div class="Search_Section">
                   <input type="text" placeholder="Search.." name="search">
                   <i class="material-icons">search</i>
-                </div>
-              </div>
+               </div>
             </div>
-         
-        
+         </div>
+         <!-- Table section -->
          <div class="Table_Section">
             <table>
                <thead>
@@ -37,7 +35,7 @@
                      <th>Saleorder Details</th>
                      <th>Quote Details</th>
                      <th>Company Details</th>
-                    <th>Created By</th>
+                     <th>Created By</th>
                      <th>Status</th>
                      <th>Action</th>
                   </tr>
@@ -48,10 +46,10 @@
                         <span class="S_no"> 1 </span>
                      </td>
                      <td>
-                      <span class="Style_2">SaleOrder-a1653d4d
-                         <h6 class="Style_3">Create Date : 12/07/2017</h6>
-                      </span>
-                   </td>
+                        <span class="Style_2">SaleOrder-a1653d4d
+                           <h6 class="Style_3">Create Date : 12/07/2017</h6>
+                        </span>
+                     </td>
                      <td>
                         <span class="Style_2">Quote-a1653d4d
                            <h6 class="Style_3">Valid Till : 12/01/1998</h6>
@@ -62,7 +60,6 @@
                            <h6 class="Style_3">ganapathy, coimboture, Tamil Nadu</h6>
                         </span>
                      </td>
-                    
                      <td>
                         <span class="Style_3">Admin Name</span>
                      </td>
@@ -70,7 +67,7 @@
                         <span class="Style_3">White</span>
                      </td>
                      <td>
-                      <button mat-raised-button color="primary" [routerLink]="['/crm_saleorder_view']"> Action </button>
+                        <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action"> Action </button>
                      </td>
                   </tr>
                   <tr>
@@ -78,10 +75,10 @@
                         <span class="S_no"> 2 </span>
                      </td>
                      <td>
-                      <span class="Style_2">SaleOrder-a1653d4d
-                         <h6 class="Style_3">Create Date : 12/07/2017</h6>
-                      </span>
-                   </td>
+                        <span class="Style_2">SaleOrder-a1653d4d
+                           <h6 class="Style_3">Create Date : 12/07/2017</h6>
+                        </span>
+                     </td>
                      <td>
                         <span class="Style_2">Quote-a1653d4d
                            <h6 class="Style_3">Valid Till : 12/01/1998</h6>
@@ -89,10 +86,9 @@
                      </td>
                      <td>
                         <span class="Style_2">Customer Name
-                        <h6 class="Style_3">ganapathy, coimboture, Tamil Nadu</h6>
+                           <h6 class="Style_3">ganapathy, coimboture, Tamil Nadu</h6>
                         </span>
                      </td>
-                    
                      <td>
                         <span class="Style_3">Admin Name</span>
                      </td>
@@ -100,7 +96,7 @@
                         <span class="Style_3">green</span>
                      </td>
                      <td>
-                      <button mat-raised-button color="primary" [routerLink]="['/crm_saleorder_view']"> Action </button>
+                        <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action"> Action </button>
                      </td>
                   </tr>
                   <tr>
@@ -108,10 +104,10 @@
                         <span class="S_no"> 3 </span>
                      </td>
                      <td>
-                      <span class="Style_2">SaleOrder-a1653d4d
-                         <h6 class="Style_3">Create Date : 12/07/2017</h6>
-                      </span>
-                   </td>
+                     <span class="Style_2">SaleOrder-a1653d4d
+                        <h6 class="Style_3">Create Date : 12/07/2017</h6>
+                     </span>
+                  </td>
                      <td>
                         <span class="Style_2">Quote-a1653d4d
                            <h6 class="Style_3">Valid Till : 12/01/1998</h6>
@@ -122,7 +118,6 @@
                            <h6 class="Style_3">ganapathy, coimboture, Tamil Nadu</h6>
                         </span>
                      </td>
-                    
                      <td>
                         <span class="Style_3">Admin Name</span>
                      </td>
@@ -130,7 +125,7 @@
                         <span class="Style_3">red</span>
                      </td>
                      <td>
-                        <button mat-raised-button color="primary" [routerLink]="['/crm_saleorder_view']"> Action </button>
+                        <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action"> Action </button>
                      </td>
                   </tr>
                   <tr>
@@ -138,10 +133,10 @@
                         <span class="S_no"> 4 </span>
                      </td>
                      <td>
-                      <span class="Style_2">SaleOrder-a1653d4d
-                         <h6 class="Style_3">Create Date : 12/07/2017</h6>
-                      </span>
-                   </td>
+                        <span class="Style_2">SaleOrder-a1653d4d
+                           <h6 class="Style_3">Create Date : 12/07/2017</h6>
+                        </span>
+                     </td>
                      <td>
                         <span class="Style_2">Quote-a1653d4d
                            <h6 class="Style_3">Valid Till : 12/01/1998</h6>
@@ -152,7 +147,6 @@
                            <h6 class="Style_3">ganapathy, coimboture, Tamil Nadu</h6>
                         </span>
                      </td>
-                    
                      <td>
                         <span class="Style_3">Admin Name</span>
                      </td>
@@ -160,7 +154,7 @@
                         <span class="Style_3">green</span>
                      </td>
                      <td>
-                        <button mat-raised-button color="primary" [routerLink]="['/crm_saleorder_view']"> Action </button>
+                        <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action"> Action </button>
                      </td>
                   </tr>
                   <tr>
@@ -168,10 +162,10 @@
                         <span class="S_no"> 5 </span>
                      </td>
                      <td>
-                      <span class="Style_2">SaleOrder-a1653d4d
-                         <h6 class="Style_3">Create Date : 12/07/2017</h6>
-                      </span>
-                   </td>
+                        <span class="Style_2">SaleOrder-a1653d4d
+                           <h6 class="Style_3">Create Date : 12/07/2017</h6>
+                        </span>
+                     </td>
                      <td>
                         <span class="Style_2">Quote-a1653d4d
                            <h6 class="Style_3">Valid Till : 12/01/1998</h6>
@@ -182,7 +176,6 @@
                            <h6 class="Style_3">ganapathy, coimboture, Tamil Nadu</h6>
                         </span>
                      </td>
-                     
                      <td>
                         <span class="Style_3">Admin Name</span>
                      </td>
@@ -190,73 +183,88 @@
                         <span class="Style_3">red</span>
                      </td>
                      <td>
-                        <button mat-raised-button color="primary" [routerLink]="['/crm_saleorder_view']"> Action </button>
+                        <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action"> Action </button>
                      </td>
                   </tr>
-                     <tr>
-                        <td>
-                           <span class="S_no"> 6 </span>
-                        </td>
-                        <td>
-                          <span class="Style_2">SaleOrder-a1653d4d
-                             <h6 class="Style_3">Create Date : 12/07/2017</h6>
-                          </span>
-                       </td>
-                        <td>
-                           <span class="Style_2">Quote-a1653d4d
-                              <h6 class="Style_3">Valid Till : 12/01/1998</h6>
-                           </span>
-                        </td>
-                        <td>
-                           <span class="Style_2">Customer Name
-                              <h6 class="Style_3">ganapathy, coimboture, Tamil Nadu</h6>
-                           </span>
-                        </td>
-                        
-                        <td>
-                           <span class="Style_3">Admin Name</span>
-                        </td>
-                        <td>
-                           <span class="Style_3">blue</span>
-                        </td>
-                        <td>
-                           <button mat-raised-button color="primary"[routerLink]="['/crm_saleorder_view']" > Action </button>
-                        </td>
-                     </tr>
-                     <tr>
-                        <td>
-                           <span class="S_no"> 7 </span>
-                        </td>
-                        <td>
-                          <span class="Style_2">SaleOrder-a1653d4d
-                             <h6 class="Style_3">Create Date : 12/07/2017</h6>
-                          </span>
-                       </td>
-                        <td>
-                           <span class="Style_2">Quote-a1653d4d
-                              <h6 class="Style_3">Valid Till : 12/01/1998</h6>
-                           </span>
-                        </td>
-                        <td>
-                           <span class="Style_2">Customer Name
-                              <h6 class="Style_3">ganapathy, coimboture, Tamil Nadu</h6>
-                           </span>
-                        </td>
-                        
-                        <td>
-                           <span class="Style_3">Admin Name</span>
-                        </td>
-                        <td>
-                           <span class="Style_3">green</span>
-                        </td>
-                        <td>
-                           <button mat-raised-button color="primary"[routerLink]="['/crm_saleorder_view']" > Action </button>
-                        </td>
-                     </tr>
-                  </tbody>
-               </table>
-            </div>
+                  <tr>
+                     <td>
+                        <span class="S_no"> 6 </span>
+                     </td>
+                     <td>
+                        <span class="Style_2">SaleOrder-a1653d4d
+                           <h6 class="Style_3">Create Date : 12/07/2017</h6>
+                        </span>
+                     </td>
+                     <td>
+                        <span class="Style_2">Quote-a1653d4d
+                           <h6 class="Style_3">Valid Till : 12/01/1998</h6>
+                        </span>
+                     </td>
+                     <td>
+                        <span class="Style_2">Customer Name
+                           <h6 class="Style_3">ganapathy, coimboture, Tamil Nadu</h6>
+                        </span>
+                     </td>
+                     <td>
+                        <span class="Style_3">Admin Name</span>
+                     </td>
+                     <td>
+                        <span class="Style_3">blue</span>
+                     </td>
+                     <td>
+                        <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <span class="S_no"> 7 </span>
+                     </td>
+                     <td>
+                        <span class="Style_2">SaleOrder-a1653d4d
+                           <h6 class="Style_3">Create Date : 12/07/2017</h6>
+                        </span>
+                     </td>
+                     <td>
+                        <span class="Style_2">Quote-a1653d4d
+                           <h6 class="Style_3">Valid Till : 12/01/1998</h6>
+                        </span>
+                     </td>
+                     <td>
+                        <span class="Style_2">Customer Name
+                           <h6 class="Style_3">ganapathy, coimboture, Tamil Nadu</h6>
+                        </span>
+                     </td>
+                     <td>
+                        <span class="Style_3">Admin Name</span>
+                     </td>
+                     <td>
+                        <span class="Style_3">green</span>
+                     </td>
+                     <td>
+                        <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
          </div>
       </div>
    </div>
+</div>
+   
+
+<!-- Dropdown menus -->
+<mat-menu #Action="matMenu">
+  <button mat-menu-item [routerLink]="['/crm_saleorder_create']">
+      <span>Edit</span>
+   </button>
+   <button mat-menu-item [routerLink]="['/crm_saleorder_view']">
+      <span>View</span>
+   </button>
+   <button mat-menu-item>
+      <span>Delete</span>
+   </button>
+   <button mat-menu-item>
+      <span>Covert to Invoice</span>
+   </button>
+</mat-menu>
 

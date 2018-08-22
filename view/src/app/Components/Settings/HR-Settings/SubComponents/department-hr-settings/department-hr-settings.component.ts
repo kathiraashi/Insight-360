@@ -115,7 +115,7 @@ export class DepartmentHrSettingsComponent implements OnInit {
                      this._List.splice(_index, 1);
                      this.Toastr.NewToastrMessage(  {  Type: 'Warning', Message: 'Department Successfully Deleted' } );
                   } else if (returnResponse['status'] === 400 || returnResponse['status'] === 417  && !ResponseData['Status']) {
-                     alert(ResponseData['Message']);
+                    this.Toastr.NewToastrMessage({ Type: 'Error',  Message: ResponseData['Message'] });
                   } else if (response['status'] === 401 && !ResponseData['Status']) {
                     this.Toastr.NewToastrMessage({ Type: 'Error',  Message: ResponseData['Message'] });
                  } else {

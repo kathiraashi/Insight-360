@@ -19,7 +19,7 @@
     background-color: #ffffff;
  }
  .Table_Section table tbody tr {
-    line-height: 42px;
+    height: 40px;
     text-align: center;
     align-items: center;
     border-bottom: 1px solid #eaeaea;
@@ -34,6 +34,11 @@
     font-size: 14px;
     color: #4d6a7a;
  }
+ .Table_Section table tbody tr td .Time{
+    font-size: 12px;
+    font-weight: 500;
+    color: #8ca5b3;
+}
  .Table_Section table tbody tr td .Style_1 {
     font-size: 14px;
     color: rgba(77, 106, 122, 0.84);

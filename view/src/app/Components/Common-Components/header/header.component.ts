@@ -25,13 +25,13 @@ export class HeaderComponent implements OnInit {
    }
 
    ModulesValidate(Key) {
-      let Available = false;
+      let Available = true;
       this.Modules.map(Obj => { if (Obj.Module_Key === Key) {  Available = true; } });
       return Available;
    }
 
    SubModulesValidate(Key) {
-      let Available = false;
+      let Available = true;
       this.SubModules.map(Obj => { if (Obj.SubModule_Key === Key) {  Available = true; } });
       return Available;
    }

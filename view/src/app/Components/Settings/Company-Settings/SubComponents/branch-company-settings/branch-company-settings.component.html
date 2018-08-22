@@ -1,3 +1,16 @@
+<div [ngClass]="{'Hide': !Loader}" class="DataLoaderStyle_1">
+   <div class="Loading">
+      <div class="spinner">
+         <div class="rect1"></div>
+         <div class="rect2"></div>
+         <div class="rect3"></div>
+         <div class="rect4"></div>
+         <div class="rect5"></div>
+         <div class="rect6"></div>
+      </div>
+   </div>
+ </div>
+ <div class="LoadedDataStyle_1" [ngClass]="{'Show': !Loader}">
 <div class="row header_part">
   <div class="col-sm-6">
     <button class="Create_Button" mat-raised-button (click)="Createbranch()"> + Create </button>
@@ -17,6 +30,12 @@
         <th>Branch</th>
         <th>Branch Head</th>
         <th>Departments</th>
+        <th>Street</th>
+        <th>Area</th>
+        <th>Country</th>
+        <th>State</th>
+        <th>City</th>
+        <th>Zipcode</th>
         <th>Address</th>
         <th>Created By</th>
         <th>Last Modification date</th>
@@ -24,142 +43,65 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>
-          <span class="S_no"> 1 </span>
-        </td>
-        <td>
-          <span class="Style_1">Branch one</span>
-        </td>
-        <td>
-          <span class="Style_1">Branch head one </span>
-        </td>
-        <td>
-          <span class="Style_1">Departments three</span>
-        </td>
-        <td>
-          <span class="Style_1">no/area/street code</span>
-        </td>
-        <td>
-          <span class="Style_1">admin</span>
-        </td>
-        <td>
-          <span class="Style_1">may 26,2018</span>
-        </td>
-        <td>
-         <button (click)="Viewbranch()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
-            <i class="material-icons">zoom_in</i>
-         </button>
-         <button   (click)="Createbranch()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
-            <i class="material-icons">edit</i>
-         </button>
-         <button (click)="  DeleteBranch()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
-            <i class="material-icons">delete_forever</i>
-         </button>
-      </td>
-      </tr>
-      <tr>
-        <td>
-          <span class="S_no"> 2 </span>
-        </td>
-        <td>
-          <span class="Style_1">Branch one</span>
-        </td>
-        <td>
-          <span class="Style_1">Branch head one </span>
-        </td>
-        <td>
-          <span class="Style_1">Departments three</span>
-        </td>
-        <td>
-          <span class="Style_1">no/area/street code</span>
-        </td>
-        <td>
-          <span class="Style_1">admin</span>
-        </td>
-        <td>
-          <span class="Style_1">may 26,2018</span>
-        </td>
-        <td>
-         <button (click)="Viewbranch()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
-            <i class="material-icons">zoom_in</i>
-         </button>
-         <button   (click)="Createbranch()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
-            <i class="material-icons">edit</i>
-         </button>
-         <button (click)="  DeleteBranch()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
-            <i class="material-icons">delete_forever</i>
-         </button>
-      </td>
-      </tr>
-      <tr>
-        <td>
-          <span class="S_no"> 3 </span>
-        </td>
-        <td>
-          <span class="Style_1">Branch one</span>
-        </td>
-        <td>
-          <span class="Style_1">Branch head one </span>
-        </td>
-        <td>
-          <span class="Style_1">Departments three</span>
-        </td>
-        <td>
-          <span class="Style_1">no/area/street code</span>
-        </td>
-        <td>
-          <span class="Style_1">admin</span>
-        </td>
-        <td>
-          <span class="Style_1">may 26,2018</span>
-        </td>
-        <td>
-         <button (click)="Viewbranch()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
-            <i class="material-icons">zoom_in</i>
-         </button>
-         <button   (click)="Createbranch()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
-            <i class="material-icons">edit</i>
-         </button>
-         <button (click)="  DeleteBranch()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
-            <i class="material-icons">delete_forever</i>
-         </button>
-      </td>
-      </tr>
-      <tr>
-        <td>
-          <span class="S_no"> 4 </span>
-        </td>
-        <td>
-          <span class="Style_1">Branch one</span>
-        </td>
-        <td>
-          <span class="Style_1">Branch head one </span>
-        </td>
-        <td>
-          <span class="Style_1">Departments three</span>
-        </td>
-        <td>
-          <span class="Style_1">no/area/street code</span>
-        </td>
-        <td>
-          <span class="Style_1">admin</span>
-        </td>
-        <td>
-          <span class="Style_1">may 26,2018</span>
-        </td>
-        <td>
-         <button (click)="Viewbranch()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
-            <i class="material-icons">zoom_in</i>
-         </button>
-         <button   (click)="CreateDepartmentInfo()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
-            <i class="material-icons">edit</i>
-         </button>
-         <button (click)="  DeleteBranch()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
-            <i class="material-icons">delete_forever</i>
-         </button>
-      </td>
-      </tr>
-    </tbody>
+      <tr *ngFor="let Items of _List; let i=index">
+         <td>
+           <span class="S_no"> {{i + 1}} </span>
+         </td>
+         <td>
+           <span class="Style_1">{{Items.Branch_Name}}</span>
+         </td>
+         <td>
+           <span class="Style_1">{{Items.Branch_Head}}</span>
+         </td>
+         <td>
+           <span class="Style_1">{{Items.Departments?.Departments}}</span>
+         </td>
+         <td>
+            <span class="Style_1">{{Items.AllStreet}}</span>
+          </td>
+          <td>
+            <span class="Style_1">{{Items.AllArea}}</span>
+          </td>
+         <td>
+            <span class="Style_1">{{Items.Global_Country?.AllCountry}}</span>
+          </td>
+          <td>
+            <span class="Style_1">{{Items.Global_State?.AllState}}</span>
+          </td>
+          <td>
+            <span class="Style_1">{{Items.Global_City?.AllCity}}</span>
+          </td>
+          <td>
+            <span class="Style_1">{{Items.AllZipCode}</span>
+          </td>
+          <td>
+            <span class="Style_1">{{Items.Address}}</span>
+          </td>
+         <td>
+          <span class="Style_1"> {{Items.Created_By.Name}}</span>
+            <br> 
+              <span class="Time"> {{Items.createdAt | date:'medium'}}  </span>
+         </td>
+       <td>
+          <span class="Style_1"> 
+             {{Items.Last_Modified_By.Name}} </span>
+            <br> 
+             <span class="Time"> {{Items.updatedAt | date:'medium'}}  </span>
+          </td>
+         <td>
+          <button *ngIf="_View"  (click)="Viewbranch(i)" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+             <i class="material-icons">zoom_in</i>
+          </button>
+          <button  *ngIf="_Edit" (click)="EditBranch(i)" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+             <i class="material-icons">edit</i>
+          </button>
+          <button *ngIf="_Delete"  (click)="DeleteBranch(i)" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+             <i class="material-icons">delete_forever</i>
+          </button>
+       </td>
+       </tr>
+      </tbody>
   </table>
+  </div>
+  </div>
 

@@ -20,7 +20,7 @@ import { ToastrService } from './../../../../services/common-services/toastr-ser
 export class ModelEmployeecategoryHrsettingsComponent implements OnInit {
    onClose: Subject<any>;
 
-   Type: String;
+   Type: string;
    Data;
    Uploading: Boolean = false;
    Company_Id = '5b3c66d01dd3ff14589602fe';

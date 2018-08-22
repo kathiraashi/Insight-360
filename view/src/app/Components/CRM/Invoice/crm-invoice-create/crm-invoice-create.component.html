@@ -1,11 +1,19 @@
 <div class="page" style="margin-top:100px;">
    <div class="container-fluid">
       <div class="Page_Identity">
-         <div class="Page_Name">
-            <h5>Invoice Create</h5>
+         <!-- Page Identity -->
+         <div class="Page_Track">
+            <ul>
+               <li class="HeaderName">Home</li>
+               <li class="arrow">>></li>
+               <li class="LinkName">CRM</li>
+               <li class="arrow">>></li>
+               <li>Invoice</li>
+            </ul>
          </div>
        </div>
       <div class="row">
+         <!-- Company details -->
          <div class="Company_Details">
             <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Company <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span></h5><br>
             <div class="col-sm-12">
@@ -34,7 +42,7 @@
                      </select>
                   </div>
                   <div class="col-sm-4 Form_Input" >
-                     <input type="text" placeholder="Quote Reference Number"> 
+                     <input type="text" placeholder="Invoice Reference Number"> 
                   </div>
                   <div class="col-sm-4 Form_Input" >
                      <input type="text" placeholder="Valid Till"> 
@@ -62,15 +70,18 @@
                </div>
             </div>
          </div>
-         <div class="Product">
-            <div class="Product_Tab">
-               <div class="Product_details">
-                  <span [ngClass]="{'active': Active_Tab === 'Product_Details'}" (click)="Active_Tab_Change('Product_Details')">Product Details</span>
-               </div>
-               <div class="Quote_Terms">
-                  <span [ngClass]="{'active': Active_Tab === 'quote_Terms'}" (click)="Active_Tab_Change('quote_Terms')">Quote Terms</span>
-               </div>
-            </div><br>
+         <!-- Tab -->
+         <div class="Company_Details">
+               <div class="Tabs">
+                     <div class="Tab" [ngClass]="{'active': Active_Tab === 'Product_Details'}" (click)="Active_Tab_Change('Product_Details')">
+                        <span >Product Details</span>
+                     </div>
+                     <div class="Tab" [ngClass]="{'active': Active_Tab === 'quote_Terms'}" (click)="Active_Tab_Change('quote_Terms')">
+                        <span >Terms & Conditions</span>
+                     </div>
+                  </div>
+            <span><button class="Add_Product_Button">Add Product</button></span><br><br>
+            <!-- Table Section -->
             <div class="Product_Details" *ngIf="Active_Tab === 'Product_Details'">
                <table class="table_section">
                   <thead class="table_head">
@@ -153,7 +164,7 @@
    </div>
    <div class="row" style="margin-top:20px;"> 
       <div class="col-sm-12 text-right">
-         <button mat-raised-button color="primary" > Submit </button>
+         <button mat-raised-button color="primary" style = "bottom: 8px;"> Submit </button>
       </div>
    </div>
 </div>

@@ -164,26 +164,7 @@
             import { CrmInvoiceListComponent } from './Components/CRM/Invoice/crm-invoice-list/crm-invoice-list.component';
             import { CrmInvoiceViewComponent } from './Components/CRM/Invoice/crm-invoice-view/crm-invoice-view.component';
       // Leads Folder ----------------------------------------------------
-        // main-leads
-            import { MainLeadsComponent } from './Components/Leads/main-leads/main-leads.component';
-            // SubComponents
-                import { LeadsComponetsComponent } from './Components/Leads/subComponents/leads-componets/leads-componets.component';
-                import { LogPhoneCallLeadsComponetsComponent } from './Components/Leads/subComponents/log-phone-call-leads-componets/log-phone-call-leads-componets.component';
-                import { CallScheduleLeadsComponetsComponent } from './Components/Leads/subComponents/call-schedule-leads-componets/call-schedule-leads-componets.component';
-// models
-    // Leads
-        import { ModelLeadsComponentsComponent } from './models/Leads/model-leads-components/model-leads-components.component';
-        import { ModelLogPhoneCallLeadsComponentsComponent } from './models/Leads/model-log-phone-call-leads-components/model-log-phone-call-leads-components.component';
-        import { ModelCallScheduleLeadsComponentsComponent } from './models/Leads/model-call-schedule-leads-components/model-call-schedule-leads-components.component';
-    // HRMS folder
-        // main hrms
-            import { MainHrmsComponentsComponent } from './Components/HRMS/main-hrms-components/main-hrms-components.component';
-            // SubComponents
-                import { DashboardHrmsComponent } from './Components/HRMS/SubComponents/dashboard-hrms/dashboard-hrms.component';
-                import { LeavesHrmsComponent } from './Components/HRMS/SubComponents/leaves-hrms/leaves-hrms.component';
-                import { OndutyHrmsComponent } from './Components/HRMS/SubComponents/onduty-hrms/onduty-hrms.component';
-                import { PermissionsHrmsComponent } from './Components/HRMS/SubComponents/permissions-hrms/permissions-hrms.component';
-                import { AdvanceHrmsComponent } from './Components/HRMS/SubComponents/advance-hrms/advance-hrms.component';
+
 // models
     // HRMS
         import { ModelLeavesHrmsComponent } from './models/HRMS/model-leaves-hrms/model-leaves-hrms.component';
@@ -250,23 +231,67 @@ import { ToReceiveCreateComponent } from './Components/Inventory/To-Receive/to-r
 import { ModelContactCustomersViewComponent } from './models/CRM/Customers/model-contact-customers-view/model-contact-customers-view.component';
 import { ModelActivitiesCustomersViewComponent } from './models/CRM/Customers/model-activities-customers-view/model-activities-customers-view.component';
 import { ModelPaymentsCustomersViewComponent } from './models/CRM/Customers/model-payments-customers-view/model-payments-customers-view.component';
-import { MainHrComponent } from './Components/HR/main-hr/main-hr.component';
-import { MainEmployeesHrComponent } from './Components/HR/SubComponents/Employees/main-employees-hr/main-employees-hr.component';
 import { ModelEmployeesCreateComponent } from './models/HR/model-employees-create/model-employees-create.component';
-import { AttendanceLogHrComponent } from './Components/HR/SubComponents/attendance-log-hr/attendance-log-hr.component';
 import { ModelAttendanceLogCreateComponent } from './models/HR/model-attendance-log-create/model-attendance-log-create.component';
-import { MainAttendanceReportHrComponent } from './Components/HR/SubComponents/Attendance-Report/main-attendance-report-hr/main-attendance-report-hr.component';
-import { AttendanceReportViewComponent } from './Components/HR/SubComponents/Attendance-Report/attendance-report-view/attendance-report-view.component';
 import { ModelAttendanceReportCreateComponent } from './models/HR/model-attendance-report-create/model-attendance-report-create.component';
-import { MainPayrollHrComponent } from './Components/HR/SubComponents/Payroll/main-payroll-hr/main-payroll-hr.component';
-import { PayrollViewComponent } from './Components/HR/SubComponents/Payroll/payroll-view/payroll-view.component';
-import { MainPayrollMasterHrComponent } from './Components/HR/SubComponents/Payroll-Master/main-payroll-master-hr/main-payroll-master-hr.component';
-import { PayrollMasterCreateComponent } from './Components/HR/SubComponents/Payroll-Master/payroll-master-create/payroll-master-create.component';
 import { ModelPayrollMasterViewComponent } from './models/HR/model-payroll-master-view/model-payroll-master-view.component';
-// import { EarningsHrSettingsComponent } from './Components/Settings/HR-Settings/SubComponents/earnings-hr-settings/earnings-hr-settings.component';
-// import { DetectionsHrSettingsComponent } from './Components/Settings/HR-Settings/SubComponents/detections-hr-settings/detections-hr-settings.component';
+import { EarningsHrSettingsComponent } from './Components/Settings/HR-Settings/SubComponents/earnings-hr-settings/earnings-hr-settings.component';
+import { DetectionsHrSettingsComponent } from './Components/Settings/HR-Settings/SubComponents/detections-hr-settings/detections-hr-settings.component';
+import { ModelEarningsHrsettingsComponent } from './models/settings/hr_settings/model-earnings-hrsettings/model-earnings-hrsettings.component';
+import { ModelDetectionsHrsettingsComponent } from './models/settings/hr_settings/model-detections-hrsettings/model-detections-hrsettings.component';
+
+
 // Services
-    import { LoginService } from './services/LoginService/login.service';
+import { LoginService } from './services/LoginService/login.service';
+import { CallScheduleLeadComponent } from './models/Leads/call-schedule-lead/call-schedule-lead.component';
+import { LogPhoneCallLeadComponent } from './models/Leads/log-phone-call-lead/log-phone-call-lead.component';
+import { LeadCreateComponent } from './Components/Leads/Leads/lead-create/lead-create.component';
+import { LeadListComponent } from './Components/Leads/Leads/lead-list/lead-list.component';
+import { LeadViewComponent } from './Components/Leads/Leads/lead-view/lead-view.component';
+import { ListLogPhoneCallComponent } from './Components/Leads/Log-Phone-Call/list-log-phone-call/list-log-phone-call.component';
+import { CreateLogPhoneCallComponent } from './Components/Leads/Log-Phone-Call/create-log-phone-call/create-log-phone-call.component';
+import { ViewLogPhoneCallComponent } from './Components/Leads/Log-Phone-Call/view-log-phone-call/view-log-phone-call.component';
+import { CreateCallScheduleComponent } from './Components/Leads/Call-Schedule/create-call-schedule/create-call-schedule.component';
+import { ListCallScheduleComponent } from './Components/Leads/Call-Schedule/list-call-schedule/list-call-schedule.component';
+import { ViewCallScheduleComponent } from './Components/Leads/Call-Schedule/view-call-schedule/view-call-schedule.component';
+import { CrmConfigComponent } from './Components/CRM/crm-config/crm-config.component';
+import { ConfigurationComponent } from './Components/Purchase/configuration/configuration.component';
+import { AccountsConfigComponent } from './Components/Accounts/accounts-config/accounts-config.component';
+import { InventoryConfigComponent } from './Components/Inventory/inventory-config/inventory-config.component';
+import { LocationsInventorySettingsComponent } from './Components/Settings/Inventory-Settings/SubComponents/locations-inventory-settings/locations-inventory-settings.component';
+import { ModelLocationsInventorySettingsComponent } from './models/settings/inventory_settings/model-locations-inventory-settings/model-locations-inventory-settings.component';
+import { CurrencyAccountSettingsComponent } from './Components/Settings/Account-Settings/SubComponents/currency-account-settings/currency-account-settings.component';
+import { ModelCurrencyAccountSettingsComponent } from './models/settings/account_settings/model-currency-account-settings/model-currency-account-settings.component';
+import { EmployeesCreateComponent } from './Components/HR/Employees/employees-create/employees-create.component';
+import { EmployeesListComponent } from './Components/HR/Employees/employees-list/employees-list.component';
+import { EmployeesViewComponent } from './Components/HR/Employees/employees-view/employees-view.component';
+import { CreateAttendanceLogComponent } from './Components/HR/Attendance-Log/create-attendance-log/create-attendance-log.component';
+import { ListAttendanceLogComponent } from './Components/HR/Attendance-Log/list-attendance-log/list-attendance-log.component';
+import { ViewAttendanceLogComponent } from './Components/HR/Attendance-Log/view-attendance-log/view-attendance-log.component';
+import { CreateAttendanceReportComponent } from './Components/HR/Attendance-Report/create-attendance-report/create-attendance-report.component';
+import { ListAttendanceReportComponent } from './Components/HR/Attendance-Report/list-attendance-report/list-attendance-report.component';
+import { ViewAttendanceReportComponent } from './Components/HR/Attendance-Report/view-attendance-report/view-attendance-report.component';
+import { PayrollListComponent } from './Components/HR/Payroll/payroll-list/payroll-list.component';
+import { PayrollViewComponent } from './Components/HR/Payroll/payroll-view/payroll-view.component';
+import { CreatePayrollMasterComponent } from './Components/HR/Payroll-Master/create-payroll-master/create-payroll-master.component';
+import { ListPayrollMasterComponent } from './Components/HR/Payroll-Master/list-payroll-master/list-payroll-master.component';
+import { DashBoardComponent } from './Components/HRMS/DashBoard/dash-board/dash-board.component';
+import { ListLeavesComponent } from './Components/HRMS/Leaves/list-leaves/list-leaves.component';
+import { CreateLeavesComponent } from './Components/HRMS/Leaves/create-leaves/create-leaves.component';
+import { ViewLeavesComponent } from './Components/HRMS/Leaves/view-leaves/view-leaves.component';
+import { ListOnDutyComponent } from './Components/HRMS/On-Duty/list-on-duty/list-on-duty.component';
+import { CreateOnDutyComponent } from './Components/HRMS/On-Duty/create-on-duty/create-on-duty.component';
+import { ViewOnDutyComponent } from './Components/HRMS/On-Duty/view-on-duty/view-on-duty.component';
+import { CreatePermissionsComponent } from './Components/HRMS/Permissions/create-permissions/create-permissions.component';
+import { ListPermissionsComponent } from './Components/HRMS/Permissions/list-permissions/list-permissions.component';
+import { ViewPermissionsComponent } from './Components/HRMS/Permissions/view-permissions/view-permissions.component';
+import { CreateAdvanceComponent } from './Components/HRMS/Advance/create-advance/create-advance.component';
+import { ListAdvanceComponent } from './Components/HRMS/Advance/list-advance/list-advance.component';
+import { ViewAdvanceComponent } from './Components/HRMS/Advance/view-advance/view-advance.component';
+import { ListProductComponent } from './Components/Product/list-product/list-product.component';
+import { CreateProductComponent } from './Components/Product/create-product/create-product.component';
+import { ViewProductComponent } from './Components/Product/view-product/view-product.component';
+
 
 
 @NgModule({
@@ -413,27 +438,7 @@ import { ModelPayrollMasterViewComponent } from './models/HR/model-payroll-maste
         CrmInvoiceCreateComponent,
         CrmInvoiceListComponent,
         CrmInvoiceViewComponent,
-    // Leads Folder
-         // main-leads
-            MainLeadsComponent,
-            // SubComponents
-                LeadsComponetsComponent,
-                LogPhoneCallLeadsComponetsComponent,
-                CallScheduleLeadsComponetsComponent,
     // models
-        // Leads
-            ModelLeadsComponentsComponent,
-            ModelLogPhoneCallLeadsComponentsComponent,
-            ModelCallScheduleLeadsComponentsComponent,
-    // HRMS Folder
-        // main hrms
-            MainHrmsComponentsComponent,
-              // SubComponents
-                DashboardHrmsComponent,
-                LeavesHrmsComponent,
-                OndutyHrmsComponent,
-                PermissionsHrmsComponent,
-                AdvanceHrmsComponent,
     // models
         // HRMS
                 ModelLeavesHrmsComponent,
@@ -501,21 +506,64 @@ import { ModelPayrollMasterViewComponent } from './models/HR/model-payroll-maste
             ModelContactCustomersViewComponent,
             ModelActivitiesCustomersViewComponent,
             ModelPaymentsCustomersViewComponent,
-            MainHrComponent,
-            MainEmployeesHrComponent,
+
             ModelEmployeesCreateComponent,
-            AttendanceLogHrComponent,
+
             ModelAttendanceLogCreateComponent,
-            MainAttendanceReportHrComponent,
-            AttendanceReportViewComponent,
             ModelAttendanceReportCreateComponent,
-            MainPayrollHrComponent,
+           ModelPayrollMasterViewComponent,
+            EarningsHrSettingsComponent,
+            DetectionsHrSettingsComponent,
+            ModelEarningsHrsettingsComponent,
+            ModelDetectionsHrsettingsComponent,
+            CallScheduleLeadComponent,
+            LogPhoneCallLeadComponent,
+            LeadCreateComponent,
+            LeadListComponent,
+            LeadViewComponent,
+            ListLogPhoneCallComponent,
+            CreateLogPhoneCallComponent,
+            ViewLogPhoneCallComponent,
+            CreateCallScheduleComponent,
+            ListCallScheduleComponent,
+            ViewCallScheduleComponent,
+            CrmConfigComponent,
+            ConfigurationComponent,
+            AccountsConfigComponent,
+            InventoryConfigComponent,
+            LocationsInventorySettingsComponent,
+            ModelLocationsInventorySettingsComponent,
+            CurrencyAccountSettingsComponent,
+            ModelCurrencyAccountSettingsComponent,
+            EmployeesCreateComponent,
+            EmployeesListComponent,
+            EmployeesViewComponent,
+            CreateAttendanceLogComponent,
+            ListAttendanceLogComponent,
+            ViewAttendanceLogComponent,
+            CreateAttendanceReportComponent,
+            ListAttendanceReportComponent,
+            ViewAttendanceReportComponent,
+            PayrollListComponent,
             PayrollViewComponent,
-            MainPayrollMasterHrComponent,
-            PayrollMasterCreateComponent,
-            ModelPayrollMasterViewComponent,
-            // EarningsHrSettingsComponent,
-            // DetectionsHrSettingsComponent
+            CreatePayrollMasterComponent,
+            ListPayrollMasterComponent,
+            DashBoardComponent,
+            ListLeavesComponent,
+            CreateLeavesComponent,
+            ViewLeavesComponent,
+            ListOnDutyComponent,
+            CreateOnDutyComponent,
+            ViewOnDutyComponent,
+            CreatePermissionsComponent,
+            ListPermissionsComponent,
+            ViewPermissionsComponent,
+            CreateAdvanceComponent,
+            ListAdvanceComponent,
+            ViewAdvanceComponent,
+            ListProductComponent,
+            CreateProductComponent,
+            ViewProductComponent,
 
 
    ],
@@ -574,10 +622,7 @@ import { ModelPayrollMasterViewComponent } from './models/HR/model-payroll-maste
       ModelAssettypeAccountsettingsComponent,
       ModelPaymenttermsAccountsettingsComponent,
       DeleteConfirmationComponent,
-      ModelLeadsComponentsComponent,
-      ModelLogPhoneCallLeadsComponentsComponent,
-      ModelCallScheduleLeadsComponentsComponent,
-      ModelLeavesHrmsComponent,
+        ModelLeavesHrmsComponent,
       ModelOndutyHrmsComponent,
       ModelPermissionsHrmsComponent,
       ModelAdvanceHrmsComponent,
@@ -588,7 +633,14 @@ import { ModelPayrollMasterViewComponent } from './models/HR/model-payroll-maste
       ModelEmployeesCreateComponent,
       ModelAttendanceLogCreateComponent,
       ModelAttendanceReportCreateComponent,
-      ModelPayrollMasterViewComponent],
+      ModelPayrollMasterViewComponent,
+      ModelEarningsHrsettingsComponent,
+      ModelDetectionsHrsettingsComponent,
+      LogPhoneCallLeadComponent,
+      CallScheduleLeadComponent,
+      ModelLocationsInventorySettingsComponent,
+      ModelCurrencyAccountSettingsComponent
+    ],
    bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,3 +1,16 @@
+<div [ngClass]="{'Hide': !Loader}" class="DataLoaderStyle_1">
+    <div class="Loading">
+          <div class="spinner">
+             <div class="rect1"></div>
+             <div class="rect2"></div>
+             <div class="rect3"></div>
+             <div class="rect4"></div>
+             <div class="rect5"></div>
+             <div class="rect6"></div>
+          </div>
+    </div>
+  </div>
+  <div class="LoadedDataStyle_1" [ngClass]="{'Show': !Loader}">
 <div class="row header_part">
    <div class="col-sm-6">
       <button class="Create_Button" mat-raised-button (click)="CreateBank()"> + Create </button>
@@ -16,6 +29,7 @@
             <th>S.no</th>
             <th>Bank Name</th>
             <th>Account Name</th>
+            <th>Account Type</th>
             <th>Account No</th>
             <th>IFSC Code</th>
             <th>Address</th>
@@ -36,6 +50,9 @@
                <span class="Style_1">{{ Item.Account_Name }}</span>
             </td>
             <td>
+               <span class="Style_1">{{ Item.Account_Type }}</span>
+            </td>
+            <td>
                <span class="Style_1">{{ Item.Account_No }}</span>
             </td>
             <td>
@@ -45,23 +62,28 @@
                <span class="Style_1">{{ Item.Address }}</span>
             </td>
             <td>
-               <span class="Style_1">{{ Item.Created_By }}</span>
-            </td>
+                <span class="Style_1">{{Item.Created_By.Name}}</span>
+                <br>
+                <span class="Time"> {{Item.createdAt | date:'medium'}}  </span>
+             </td>
+             <td>
+                <span class="Style_1">{{ Item.Last_Modified_By.Name }}</span>
+                <br> 
+                <span class="Time"> {{Item.updatedAt | date:'medium'}}  </span>
+             </td>
             <td>
-               <span class="Style_1">{{ Item.updatedAt | date:'medium' }}</span>
-            </td>
-            <td>
-               <button (click)="ViewBank(i)" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+               <button *ngIf="_View" (click)="ViewBank(i)" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
                   <i class="material-icons">zoom_in</i>
                </button>
-               <button  (click)="EditBank(i)" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+               <button  *ngIf="_Edit" (click)="EditBank(i)" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
                   <i class="material-icons">edit</i>
                </button>
-               <button (click)=" DeleteBank(i)" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+               <button *ngIf="_Delete" (click)=" DeleteBank(i)" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
                   <i class="material-icons">delete_forever</i>
                </button>
             </td>
          </tr>
       </tbody>
    </table>
+</div>
 </div>

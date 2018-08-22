@@ -112,7 +112,7 @@ exports.Employeecategory_AsyncValidate = function(req, res) {
          } else if (!ReceivingData.User_Id || ReceivingData.User_Id === ''  ) {
             res.status(400).send({Status: false, Message: "User Details can not be empty" });
          }else {
-            HrSettingsModel.EmployeeCategorySchema.find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, { Industry_Type : 1 }, {sort: { updatedAt: -1 }}, function(err, result) { // Employee category FindOne Query
+            HrSettingsModel.EmployeeCategorySchema.find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, { Employee_Category : 1 }, {sort: { updatedAt: -1 }}, function(err, result) { // Employee category FindOne Query
                if(err) {
                   ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Hr Employee category Find Query Error', 'Hr_Settings.controller.js', err);
                   res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Employee category!."});
@@ -318,7 +318,7 @@ exports.Department_AsyncValidate = function(req, res) {
          } else if (!ReceivingData.User_Id || ReceivingData.User_Id === ''  ) {
             res.status(400).send({Status: false, Message: "User Details can not be empty" });
          }else {
-            HrSettingsModel.DepartmentSchema.find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, { Industry_Type : 1 }, {sort: { updatedAt: -1 }}, function(err, result) { // Department FindOne Query
+            HrSettingsModel.DepartmentSchema.find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, { Department : 1 }, {sort: { updatedAt: -1 }}, function(err, result) { // Department FindOne Query
                if(err) {
                   ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Hr Department Find Query Error', 'Hr_Settings.controller.js', err);
                   res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Department!."});
@@ -454,6 +454,8 @@ exports.Designation_AsyncValidate = function(req, res) {
          } else if (!ReceivingData.Created_By || ReceivingData.Created_By === ''  ) {
             res.status(400).send({Status: false, Message: "Creator Details can not be empty" });
          }else {
+            console.log(ReceivingData);
+            
             var Create_Designation = new HrSettingsModel.DesignationSchema({
                Designation: ReceivingData.Designation, 
                Company_Id: mongoose.Types.ObjectId(ReceivingData.Company_Id),
@@ -500,7 +502,7 @@ exports.Designation_AsyncValidate = function(req, res) {
          .find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, {}, {sort: { updatedAt: -1 }})
          .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
          .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
-         .exec(function(err, result) { // Designation FindOne Query
+         .exec(function(err, result) { // Department FindOne Query
          if(err) {
             ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Hr Settings Designation Find Query Error', 'Hr_Settings.controller.js', err);
             res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Designation!."});
@@ -523,7 +525,7 @@ exports.Designation_AsyncValidate = function(req, res) {
       } else if (!ReceivingData.User_Id || ReceivingData.User_Id === ''  ) {
          res.status(400).send({Status: false, Message: "User Details can not be empty" });
       }else {
-         HrSettingsModel.DesignationSchema.find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, { Industry_Type : 1 }, {sort: { updatedAt: -1 }}, function(err, result) { // Designation FindOne Query
+         HrSettingsModel.DesignationSchema.find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, { Designation : 1 }, {sort: { updatedAt: -1 }}, function(err, result) { // Designation FindOne Query
             if(err) {
                ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Hr Designation Find Query Error', 'Hr_Settings.controller.js', err);
                res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Designation!."});
@@ -613,6 +615,416 @@ exports.Designation_AsyncValidate = function(req, res) {
                   });
                } else {
                   res.status(400).send({Status: false, Message: "Designation Id can not be valid!" });
+               }
+            }
+         });
+      }
+   };
+
+// ************************************************** Earnings *****************************************************
+// -------------------------------------------------- Earnings Async Validate -----------------------------------------------
+exports.Earnings_AsyncValidate = function(req, res) {
+   var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
+   var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+
+   if(!ReceivingData.Earnings_Type || ReceivingData.Earnings_Type === '' ) {
+      res.status(400).send({Status: false, Message: "Earnings Type can not be empty" });
+   } else if (!ReceivingData.Company_Id || ReceivingData.Company_Id === ''  ) {
+      res.status(400).send({Status: false, Message: "Company Details can not be empty" });
+   } else if (!ReceivingData.User_Id || ReceivingData.User_Id === ''  ) {
+      res.status(400).send({Status: false, Message: "User Details can not be empty" });
+   }else {
+      HrSettingsModel.EarningsSchema.findOne({'Company_Id': ReceivingData.Company_Id, 'Earnings_Type': { $regex : new RegExp("^" + ReceivingData.Earnings_Type + "$", "i") }, 'If_Deleted': false }, {}, {}, function(err, result) {
+         if(err) {
+            ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Earnings Find Query Error', 'Hr_Settings.controller.js', err);
+            res.status(417).send({status: false, Message: "Some error occurred while Find Earnings!."});
+         } else {
+            if ( result !== null) {
+               res.status(200).send({Status: true, Available: false });
+            } else {
+               res.status(200).send({Status: true, Available: true });
+            }
+         }
+      });
+   }
+};              
+// Earnings Create -----------------------------------------------
+      exports.Earnings_Create = function(req, res) {
+         var CryptoBytes = CryptoJS.AES.decrypt( req.body.Info , 'SecretKeyIn@123' );
+         var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+         
+         if(!ReceivingData.Earnings_Type || ReceivingData.Earnings_Type === '' ) {
+            res.status(400).send({Status: false, Message: "Earnings can not be empty" });
+         } else if (!ReceivingData.Company_Id || ReceivingData.Company_Id === ''  ) {
+            res.status(400).send({Status: false, Message: "Company Details can not be empty" });
+         } else if (!ReceivingData.Created_By || ReceivingData.Created_By === ''  ) {
+            res.status(400).send({Status: false, Message: "Creator Details can not be empty" });
+         }else {
+            console.log(ReceivingData);
+            
+            var Create_Earnings = new HrSettingsModel.EarningsSchema({
+               Earnings_Type: ReceivingData.Earnings_Type, 
+               Company_Id: mongoose.Types.ObjectId(ReceivingData.Company_Id),
+               Created_By: mongoose.Types.ObjectId(ReceivingData.Created_By),
+               Last_Modified_By: mongoose.Types.ObjectId(ReceivingData.Created_By),
+               Active_Status: true,
+               If_Deleted: false
+            });
+            Create_Earnings.save(function(err, result) { // Earnings Save Query
+               if(err) {
+                  ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'HR Settings Earnings Creation Query Error', 'Hr_Settings.controller.js');
+                  res.status(417).send({Status: false, Message: "Some error occurred while creating the Earnings!."});
+               } else {
+                  HrSettingsModel.EarningsSchema
+                     .findOne({'_id': result._id})
+                     .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
+                     .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
+                     .exec(function(err_1, result_1) { // Earnings FindOne Query
+                     if(err_1) {
+                        ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'HR Settings Earnings Find Query Error', 'Hr_Settings.controller.js', err_1);
+                        res.status(417).send({status: false, Message: "Some error occurred while Find The Earnings!."});
+                     } else {
+                        var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result_1), 'SecretKeyOut@123');
+                           ReturnData = ReturnData.toString();
+                        res.status(200).send({Status: true, Response: ReturnData });
+                     }
+                  });
+               }
+            });
+         }
+      };
+
+// Earnings List -----------------------------------------------
+   exports.Earnings_List = function(req, res) {
+      var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
+      var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+
+      if(!ReceivingData.Company_Id || ReceivingData.Company_Id === '' ) {
+         res.status(400).send({Status: false, Message: "Company Details can not be empty" });
+      } else if (!ReceivingData.User_Id || ReceivingData.User_Id === ''  ) {
+         res.status(400).send({Status: false, Message: "User Details can not be empty" });
+      }else {
+         HrSettingsModel.EarningsSchema
+         .find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, {}, {sort: { updatedAt: -1 }})
+         .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
+         .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
+         .exec(function(err, result) { // Department FindOne Query
+         if(err) {
+            ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Hr Settings Earnings Find Query Error', 'Hr_Settings.controller.js', err);
+            res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Earnings!."});
+         } else {
+            var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result), 'SecretKeyOut@123');
+            ReturnData = ReturnData.toString();
+            res.status(200).send({Status: true, Response: ReturnData });
+         }
+      });
+      }
+   };
+
+// Earnings Simple List -----------------------------------------------
+   exports.Earnings_SimpleList = function(req, res) {
+      var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
+      var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+
+      if(!ReceivingData.Company_Id || ReceivingData.Company_Id === '' ) {
+         res.status(400).send({Status: false, Message: "Company Details can not be empty" });
+      } else if (!ReceivingData.User_Id || ReceivingData.User_Id === ''  ) {
+         res.status(400).send({Status: false, Message: "User Details can not be empty" });
+      }else {
+         HrSettingsModel.EarningsSchema.find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, { Earnings_Type : 1 }, {sort: { updatedAt: -1 }}, function(err, result) { // Earnings FindOne Query
+            if(err) {
+               ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Hr Earnings Find Query Error', 'Hr_Settings.controller.js', err);
+               res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Earnings!."});
+            } else {
+               var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result), 'SecretKeyOut@123');
+               ReturnData = ReturnData.toString();
+               res.status(200).send({Status: true, Response: ReturnData });
+            }
+         });
+      }
+   };
+
+// Earnings Update -----------------------------------------------
+   exports. Earnings_Update = function(req, res) {
+      var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
+      var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+
+      if(!ReceivingData. Earnings_Type_Id || ReceivingData.Earnings_Type_Id === '' ) {
+         res.status(400).send({Status: false, Message: "Earnings Id can not be empty" });
+      }else if(!ReceivingData.Earnings_Type || ReceivingData.Earnings_Type === '' ) {
+         res.status(400).send({Status: false, Message: "Earnings can not be empty" });
+      } else if (!ReceivingData.Modified_By || ReceivingData.Modified_By === ''  ) {
+         res.status(400).send({Status: false, Message: "Modified User Details can not be empty" });
+      }else {
+         HrSettingsModel.EarningsSchema.findOne({'_id': ReceivingData.Earnings_Type_Id}, {}, {}, function(err, result) { // Earnings FindOne Query
+            if(err) {
+               ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'HR  Earnings FindOne Query Error', 'Hr_Settings.controller.js', err);
+               res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Earnings!."});
+            } else {
+               if (result !== null) {
+                  result.Earnings_Type = ReceivingData.Earnings_Type;
+                  result.Last_Modified_By = mongoose.Types.ObjectId(ReceivingData.Modified_By);
+                  result.save(function(err_1, result_1) { //  Earnings  Update Query
+                     if(err_1) {
+                        ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Hr Settings  Earnings  Update Query Error', 'Hr_Settings.controller.js');
+                        res.status(417).send({Status: false, Error: err_1, Message: "Some error occurred while Update the  Earnings !."});
+                     } else {
+                        HrSettingsModel.EarningsSchema
+                           .findOne({'_id': result_1._id})
+                           .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
+                           .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
+                           .exec(function(err_2, result_2) { //  Earnings  FindOne Query
+                           if(err_2) {
+                              ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Hr Settings  Earnings Find Query Error', 'Hr_Settings.controller.js', err_2);
+                              res.status(417).send({status: false, Message: "Some error occurred while Find The  Earnings!."});
+                           } else {
+                              var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result_2), 'SecretKeyOut@123');
+                                 ReturnData = ReturnData.toString();
+                              res.status(200).send({Status: true, Response: ReturnData });
+                           }
+                        });
+                     }
+                  });
+               } else {
+                  res.status(400).send({Status: false, Message: "Earnings Id can not be valid!" });
+               }
+            }
+         });
+      }
+   };
+
+// Earnings Delete -----------------------------------------------
+   exports.Earnings_Delete = function(req, res) { 
+      var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
+      var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+
+      if(!ReceivingData.Earnings_Type_Id || ReceivingData.Earnings_Type_Id === '' ) {
+         res.status(400).send({Status: false, Message: "Earnings Id can not be empty" });
+      } else if (!ReceivingData.Modified_By || ReceivingData.Modified_By === ''  ) {
+         res.status(400).send({Status: false, Message: "Modified User Details can not be empty" });
+      }else {
+         HrSettingsModel.EarningsSchema.findOne({'_id': ReceivingData.Earnings_Type_Id}, {}, {}, function(err, result) { // Earnings FindOne Query
+            if(err) {
+               ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'HR Earnings FindOne Query Error', 'Hr_Settings.controller.js', err);
+               res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Earnings!."});
+            } else {
+               if (result !== null) {
+                  result.If_Deleted = true;
+                  result.Last_Modified_By = ReceivingData.Modified_By;
+                  result.save(function(err_1, result_1) { // Earnings Delete Query
+                     if(err_1) {
+                        ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'HR Earnings Delete Query Error', 'Hrms_Settings.controller.js');
+                        res.status(417).send({Status: false, Error: err_1, Message: "Some error occurred while Delete the Earnings!."});
+                     } else {
+                        res.status(200).send({Status: true, Message: 'Successfully Deleted' });
+                     }
+                  });
+               } else {
+                  res.status(400).send({Status: false, Message: "Earnings Id can not be valid!" });
+               }
+            }
+         });
+      }
+   };
+
+   // ************************************************** Detections *****************************************************
+// -------------------------------------------------- Detections Async Validate -----------------------------------------------
+exports.Detections_AsyncValidate = function(req, res) {
+   var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
+   var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+
+   if(!ReceivingData.Detections_Type || ReceivingData.Detections_Type === '' ) {
+      res.status(400).send({Status: false, Message: "Detections Type can not be empty" });
+   } else if (!ReceivingData.Company_Id || ReceivingData.Company_Id === ''  ) {
+      res.status(400).send({Status: false, Message: "Company Details can not be empty" });
+   } else if (!ReceivingData.User_Id || ReceivingData.User_Id === ''  ) {
+      res.status(400).send({Status: false, Message: "User Details can not be empty" });
+   }else {
+      HrSettingsModel.DetectionsSchema.findOne({'Company_Id': ReceivingData.Company_Id, 'Detections_Type': { $regex : new RegExp("^" + ReceivingData.Detections_Type + "$", "i") }, 'If_Deleted': false }, {}, {}, function(err, result) {
+         if(err) {
+            ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Detections Find Query Error', 'Hr_Settings.controller.js', err);
+            res.status(417).send({status: false, Message: "Some error occurred while Find Detections!."});
+         } else {
+            if ( result !== null) {
+               res.status(200).send({Status: true, Available: false });
+            } else {
+               res.status(200).send({Status: true, Available: true });
+            }
+         }
+      });
+   }
+};              
+// Detections Create -----------------------------------------------
+      exports.Detections_Create = function(req, res) {
+         var CryptoBytes = CryptoJS.AES.decrypt( req.body.Info , 'SecretKeyIn@123' );
+         var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+         
+         if(!ReceivingData.Detections_Type || ReceivingData.Detections_Type === '' ) {
+            res.status(400).send({Status: false, Message: "Detections can not be empty" });
+         } else if (!ReceivingData.Company_Id || ReceivingData.Company_Id === ''  ) {
+            res.status(400).send({Status: false, Message: "Company Details can not be empty" });
+         } else if (!ReceivingData.Created_By || ReceivingData.Created_By === ''  ) {
+            res.status(400).send({Status: false, Message: "Creator Details can not be empty" });
+         }else {
+         var Create_Detections = new HrSettingsModel.DetectionsSchema({
+               Detections_Type: ReceivingData.Detections_Type, 
+               Company_Id: mongoose.Types.ObjectId(ReceivingData.Company_Id),
+               Created_By: mongoose.Types.ObjectId(ReceivingData.Created_By),
+               Last_Modified_By: mongoose.Types.ObjectId(ReceivingData.Created_By),
+               Active_Status: true,
+               If_Deleted: false
+            });
+            Create_Detections.save(function(err, result) { // Detections Save Query
+               if(err) {
+                  ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'HR Settings Detections Creation Query Error', 'Hr_Settings.controller.js');
+                  res.status(417).send({Status: false, Message: "Some error occurred while creating the Detections!."});
+               } else {
+                  HrSettingsModel.DetectionsSchema
+                     .findOne({'_id': result._id})
+                     .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
+                     .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
+                     .exec(function(err_1, result_1) { // Detections FindOne Query
+                     if(err_1) {
+                        ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'HR Settings Detections Find Query Error', 'Hr_Settings.controller.js', err_1);
+                        res.status(417).send({status: false, Message: "Some error occurred while Find The Detections!."});
+                     } else {
+                        var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result_1), 'SecretKeyOut@123');
+                           ReturnData = ReturnData.toString();
+                        res.status(200).send({Status: true, Response: ReturnData });
+                     }
+                  });
+               }
+            });
+         }
+      };
+
+// Detections List -----------------------------------------------
+   exports.Detections_List = function(req, res) {
+      var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
+      var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+
+      if(!ReceivingData.Company_Id || ReceivingData.Company_Id === '' ) {
+         res.status(400).send({Status: false, Message: "Company Details can not be empty" });
+      } else if (!ReceivingData.User_Id || ReceivingData.User_Id === ''  ) {
+         res.status(400).send({Status: false, Message: "User Details can not be empty" });
+      }else {
+         HrSettingsModel.DetectionsSchema
+         .find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, {}, {sort: { updatedAt: -1 }})
+         .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
+         .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
+         .exec(function(err, result) { // Department FindOne Query
+         if(err) {
+            ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Hr Settings Detections Find Query Error', 'Hr_Settings.controller.js', err);
+            res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Detections!."});
+         } else {
+            var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result), 'SecretKeyOut@123');
+            ReturnData = ReturnData.toString();
+            res.status(200).send({Status: true, Response: ReturnData });
+         }
+      });
+      }
+   };
+
+// Detections Simple List -----------------------------------------------
+   exports.Detections_SimpleList = function(req, res) {
+      var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
+      var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+
+      if(!ReceivingData.Company_Id || ReceivingData.Company_Id === '' ) {
+         res.status(400).send({Status: false, Message: "Company Details can not be empty" });
+      } else if (!ReceivingData.User_Id || ReceivingData.User_Id === ''  ) {
+         res.status(400).send({Status: false, Message: "User Details can not be empty" });
+      }else {
+         HrSettingsModel.DetectionsSchema.find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, { Detections_Type : 1 }, {sort: { updatedAt: -1 }}, function(err, result) { // Detections FindOne Query
+            if(err) {
+               ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Hr Detections Find Query Error', 'Hr_Settings.controller.js', err);
+               res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Detections!."});
+            } else {
+               var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result), 'SecretKeyOut@123');
+               ReturnData = ReturnData.toString();
+               res.status(200).send({Status: true, Response: ReturnData });
+            }
+         });
+      }
+   };
+
+// Detections Update -----------------------------------------------
+   exports. Detections_Update = function(req, res) {
+      var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
+      var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+
+      if(!ReceivingData. Detections_Type_Id || ReceivingData.Detections_Type_Id === '' ) {
+         res.status(400).send({Status: false, Message: "Detections Id can not be empty" });
+      }else if(!ReceivingData.Detections_Type || ReceivingData.Detections_Type === '' ) {
+         res.status(400).send({Status: false, Message: "Detections can not be empty" });
+      } else if (!ReceivingData.Modified_By || ReceivingData.Modified_By === ''  ) {
+         res.status(400).send({Status: false, Message: "Modified User Details can not be empty" });
+      }else {
+         HrSettingsModel.DetectionsSchema.findOne({'_id': ReceivingData.Detections_Type_Id}, {}, {}, function(err, result) { // Detections FindOne Query
+            if(err) {
+               ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'HR  Detections FindOne Query Error', 'Hr_Settings.controller.js', err);
+               res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Detections!."});
+            } else {
+               if (result !== null) {
+                  result.Detections_Type = ReceivingData.Detections_Type;
+                  result.Last_Modified_By = mongoose.Types.ObjectId(ReceivingData.Modified_By);
+                  result.save(function(err_1, result_1) { //  Detections  Update Query
+                     if(err_1) {
+                        ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Hr Settings  Detections  Update Query Error', 'Hr_Settings.controller.js');
+                        res.status(417).send({Status: false, Error: err_1, Message: "Some error occurred while Update the  Detections !."});
+                     } else {
+                        HrSettingsModel.DetectionsSchema
+                           .findOne({'_id': result_1._id})
+                           .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
+                           .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
+                           .exec(function(err_2, result_2) { //  Detections  FindOne Query
+                           if(err_2) {
+                              ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Hr Settings  Detections Find Query Error', 'Hr_Settings.controller.js', err_2);
+                              res.status(417).send({status: false, Message: "Some error occurred while Find The  Detections!."});
+                           } else {
+                              var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result_2), 'SecretKeyOut@123');
+                                 ReturnData = ReturnData.toString();
+                              res.status(200).send({Status: true, Response: ReturnData });
+                           }
+                        });
+                     }
+                  });
+               } else {
+                  res.status(400).send({Status: false, Message: "Detections Id can not be valid!" });
+               }
+            }
+         });
+      }
+   };
+
+// Detections Delete -----------------------------------------------
+   exports.Detections_Delete = function(req, res) { 
+      var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
+      var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+
+      if(!ReceivingData.Detections_Type_Id || ReceivingData.Detections_Type_Id === '' ) {
+         res.status(400).send({Status: false, Message: "Detections Id can not be empty" });
+      } else if (!ReceivingData.Modified_By || ReceivingData.Modified_By === ''  ) {
+         res.status(400).send({Status: false, Message: "Modified User Details can not be empty" });
+      }else {
+         HrSettingsModel.DetectionsSchema.findOne({'_id': ReceivingData.Detections_Type_Id}, {}, {}, function(err, result) { // Detections FindOne Query
+            if(err) {
+               ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'HR Detections FindOne Query Error', 'Hr_Settings.controller.js', err);
+               res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Detections!."});
+            } else {
+               if (result !== null) {
+                  result.If_Deleted = true;
+                  result.Last_Modified_By = ReceivingData.Modified_By;
+                  result.save(function(err_1, result_1) { // Detections Delete Query
+                     if(err_1) {
+                        ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'HR Detections Delete Query Error', 'Hrms_Settings.controller.js');
+                        res.status(417).send({Status: false, Error: err_1, Message: "Some error occurred while Delete the Detections!."});
+                     } else {
+                        res.status(200).send({Status: true, Message: 'Successfully Deleted' });
+                     }
+                  });
+               } else {
+                  res.status(400).send({Status: false, Message: "Detections Id can not be valid!" });
                }
             }
          });

@@ -3,6 +3,7 @@ module.exports = function(app){
    var Controller = require('../../controller/settings/Account_Settings.controller.js');
 
    // Income Type
+      app.post('/API/Account_Settings/IncomeType_AsyncValidate', Controller.IncomeType_AsyncValidate);
       app.post('/API/Account_Settings/Income_Type_Create', Controller.Income_Type_Create);
       app.post('/API/Account_Settings/Income_Type_List', Controller.Income_Type_List);
       app.post('/API/Account_Settings/Income_Type_SimpleList', Controller.Income_Type_SimpleList);
@@ -17,10 +18,20 @@ module.exports = function(app){
       app.post('/API/Account_Settings/Payment_Terms_Delete', Controller.Payment_Terms_Delete);
 
    // Bank
+      app.post('/API/Account_Settings/Bank_AsyncValidate', Controller.Bank_AsyncValidate);
       app.post('/API/Account_Settings/Bank_Create', Controller.Bank_Create);
       app.post('/API/Account_Settings/Bank_List', Controller.Bank_List);
       app.post('/API/Account_Settings/Bank_Simple_List', Controller.Bank_Simple_List);
       app.post('/API/Account_Settings/Bank_Update', Controller.Bank_Update);
       app.post('/API/Account_Settings/Bank_Delete', Controller.Bank_Delete);
+
+      // Taxes
+      // app.post('/API/Account_Settings/Bank_AsyncValidate', Controller.Bank_AsyncValidate);
+      app.post('/API/Account_Settings/Taxes_Create', Controller.Taxes_Create);
+      app.post('/API/Account_Settings/Taxes_List', Controller.Taxes_List);
+      app.post('/API/Account_Settings/Taxes_Simple_List', Controller.Taxes_Simple_List);
+      app.post('/API/Account_Settings/Taxes_Update', Controller.Taxes_Update);
+      app.post('/API/Account_Settings/Taxes_Delete', Controller.Taxes_Delete);
+
 
 }; 

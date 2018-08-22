@@ -1,34 +1,50 @@
-<div class="Modal_Content" *ngIf="Type && Type === 'Create'">
+<div class="Modal_Content" *ngIf="Type && (Type === 'Create' || Type === 'Edit')">
   <div class="Modal_Header">
-     <p>Create ESI Info</p>
-     <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+     <p>{{Type}} ESI Info</p>
+     <span *ngIf="!Uploading" data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
  </div>
+ <form [formGroup] ="Form" (ngSubmit)="onSubmit()">
  <div class="Model_Body">
   <div class="row">
-     <div class="col-sm-6 Form_Input">
-        <label>ESI No: </label>
-        <input type="text" >
-     </div>
-   <div class="col-sm-6 Form_Input">
-    <label>Registration date: </label>
-        <input type="text">
+   <div class="col-sm-6 Form_Input" [ngClass]="{'Form_Err': Form.controls['Esi_No'].errors && !Form.controls['Esi_No'].pristine, 'Form_Success': Form.controls['Esi_No'].valid && !Form.controls['Esi_No'].pristine}">
+      <label>Esi No:</label>
+      <input type="text" formControlName="Esi_No">
+      <p class="error" *ngIf="Form.controls['Esi_No'].errors && !Form.controls['Esi_No'].pristine">
+        <span *ngIf="Form.controls['Esi_No'].errors.required">!Esi  No is Required</span>
+        <span *ngIf="Form.controls['Esi_No'].errors.EsiInfo_NotAvailable"> Esi No Already Exist </span>
+     </p>
+   </div>
+     <div class="col-sm-6 Form_Input" [ngClass]="{'Form_Err': Form.controls['Registration_Date'].errors && !Form.controls['Registration_Date'].pristine, 'Form_Success': Form.controls['Registration_Date'].valid && !Form.controls['Registration_Date'].pristine}">
+      <label>Registration date:</label>
+        <input type="text" formControlName="Registration_Date">
+        <p class="error" *ngIf="Form.controls['Registration_Date'].errors && !Form.controls['Registration_Date'].pristine">
+          <span *ngIf="Form.controls['Registration_Date'].errors.required">!Registration Date is Required</span>
+       </p>
      </div><br>
-     <div class="col-sm-6 Form_Input">
-        <label>Signatory Name: </label>
-        <input type="text" >
+     <div class="col-sm-6 Form_Input" [ngClass]="{'Form_Err': Form.controls['Signatory_Name'].errors && !Form.controls['Signatory_Name'].pristine, 'Form_Success': Form.controls['Signatory_Name'].valid && !Form.controls['Signatory_Name'].pristine}">
+      <label>Signatory Name:</label>
+        <input type="text" formControlName="Signatory_Name">
+        <p class="error" *ngIf="Form.controls['Signatory_Name'].errors && !Form.controls['Signatory_Name'].pristine">
+          <span *ngIf="Form.controls['Signatory_Name'].errors.required">!Signatory Name is Required</span>
+       </p>
      </div>
-     <div class="col-sm-6 Form_Input">
-        <label>Signatory Designation: </label>
-        <input type="text"  >
-     </div>
-     <div class="col-sm-6 ">
-         <input type="radio" >ESI Rules Same for all Employees
+     <div class="col-sm-6 Form_Input" [ngClass]="{'Form_Err': Form.controls['Signatory_Designation'].errors && !Form.controls['Signatory_Designation'].pristine, 'Form_Success': Form.controls['Signatory_Designation'].valid && !Form.controls['Signatory_Designation'].pristine}">
+      <label>Signatory Designation:</label>
+      <input type="text" formControlName="Signatory_Designation" >
+      <p class="error" *ngIf="Form.controls['Signatory_Designation'].errors && !Form.controls['Signatory_Designation'].pristine">
+        <span *ngIf="Form.controls['Signatory_Designation'].errors.required">!Signatory Designation is Required</span>
+     </p>
      </div>
   </div>
 </div>
   <div class="Model_Footer">
-    <button mat-raised-button color="primary" > Submit </button>
+   <button type="submit"  [disabled]="Form.status !== 'VALID' || Uploading" mat-raised-button color="primary" >
+      <span *ngIf="Type === 'Create' && !Uploading"> Submit </span>
+      <span *ngIf="Type === 'Edit' && !Uploading"> Update </span> 
+      <span *ngIf="Uploading" class="UploadingBtn"> <i class="fa fa-refresh fa-spin"></i> Loading... </span>
+   </button>
  </div>
+</form>
 </div>
 
 <div class="Modal_Content" *ngIf="Type && Type === 'View'">
@@ -37,26 +53,48 @@
        <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
    </div>
    <div class="Model_Body">
-         <div class="row">
-               <div class="col-sm-6 text-right Static">  ESI No : </div>
-               <div class="col-sm-6 text-left Data">  4355</div>
-            </div>
-            <div class="row">
-               <div class="col-sm-6 text-right Static"> Registration Date: </div>
-               <div class="col-sm-6 text-left Data"> 25/08/17 </div>
-            </div>
-          <div class="row">
-               <div class="col-sm-6 text-right Static">  Signatory Name : </div>
-               <div class="col-sm-6 text-left Data">   Signatory Name </div>
-            </div>
-            <div class="row">
-                  <div class="col-sm-6 text-right Static">  Signatory Designation : </div>
-                  <div class="col-sm-6 text-left Data">  Signatory Designation </div>
-               </div>
+      <div class="view_item">
+         <div class="Static">Esi No</div>
+         <div class="dots">: </div>
+         <div class="Data">{{Data.Esi_No}}</div>
       </div>
-    <div class="Model_Footer">
-    </div>
-  </div>
+      <div class="view_item">
+         <div class="Static">Registration Date: </div>
+         <div class="dots">: </div>
+         <div class=" Data">{{Data.Registration_Date}}</div>
+      </div>
+      <div class="view_item">
+         <div class="Static">Signatory Name: </div>
+         <div class="dots">: </div>
+         <div class="Data">{{Data.Signatory_Name}}</div>
+      </div>
+      <div class="view_item">
+         <div class=" Static">Signatory Designation</div>
+         <div class="dots">: </div>
+         <div class=" Data">{{Data.Signatory_Designation}}</div>
+      </div>
+      <div class="view_item">
+            <div class="Static">Created By </div>
+            <div class="dots"> : </div>
+            <div class="Data"> {{Data.Created_By.Name}}</div>
+         </div>
+         <div class="view_item">
+            <div class="Static">Last Modified By </div>
+            <div class="dots"> : </div>
+            <div class="Data"> {{Data.Last_Modified_By.Name}}</div>
+         </div>
+         <div class="view_item">
+            <div class="Static"> Created Date </div>
+            <div class="dots"> : </div>
+            <div class="Data"> {{Data.createdAt | date:'medium'}}</div>
+         </div>
+         <div class="view_item">
+            <div class="Static">Last Modified Date  </div>
+            <div class="dots"> : </div>
+            <div class="Data"> {{Data.updatedAt | date:'medium'}}</div>
+         </div>
+      </div>
+   </div>
  
   
 

@@ -11,7 +11,7 @@ Active_Tab = 'Ware_House';
 
   ngOnInit() {
   }
-Active_tab_Change(name) {
+Active_Tab_Change(name) {
   this.Active_Tab = name;
 }
 }

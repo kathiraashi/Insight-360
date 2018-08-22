@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { DeleteConfirmationComponent } from '../../../../../Common-Components/delete-confirmation/delete-confirmation.component';
+
 @Component({
   selector: 'app-purchase-quotations-vendor-view',
   templateUrl: './purchase-quotations-vendor-view.component.html',
@@ -7,9 +11,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PurchaseQuotationsVendorViewComponent implements OnInit {
 
-  constructor() { }
+
+  bsModalRef: BsModalRef;
+
+  constructor(private modalService: BsModalService) { }
+
 
   ngOnInit() {
+  }
+
+  DeleteQuotations() {
+    const initialState = {
+      Text: 'Purchase Quotation'
+    };
+    this.bsModalRef = this.modalService.show(DeleteConfirmationComponent, Object.assign({initialState}, { class: 'modal-sm' }));
   }
 
 }

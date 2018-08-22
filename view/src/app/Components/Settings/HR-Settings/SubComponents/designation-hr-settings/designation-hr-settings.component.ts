@@ -67,13 +67,10 @@ export class DesignationHrSettingsComponent implements OnInit {
    // Create New Designation
       CreateDesignation() {
          const initialState = { Type: 'Create' };
-         this.bsModalRef = this.modalService.show(ModelDesignationHrsettingsComponent, Object.assign({initialState}, { class: '' }));
+         this.bsModalRef = this.modalService.show(ModelDesignationHrsettingsComponent, Object.assign({initialState}, { ignoreBackdropClick: true, class: '' }));
          this.bsModalRef.content.onClose.subscribe(response => {
             if (response.Status) {
                this._List.splice(0, 0, response.Response);
-               alert('Designation Successfully Added.');
-            } else {
-            alert(response.Message);
             }
          });
       }
@@ -83,14 +80,11 @@ export class DesignationHrSettingsComponent implements OnInit {
             Type: 'Edit',
             Data: this._List[_index]
          };
-         this.bsModalRef = this.modalService.show(ModelDesignationHrsettingsComponent, Object.assign({initialState}, { class: '' }));
+         this.bsModalRef = this.modalService.show(ModelDesignationHrsettingsComponent, Object.assign({initialState}, { ignoreBackdropClick: true, class: '' }));
          this.bsModalRef.content.onClose.subscribe(response => {
             if (response.Status) {
                this._List[_index] = response.Response;
-               alert('Designation Successfully Updated.');
-            } else {
-               alert(response.Message);
-            }
+             }
          });
       }
    // View Designation
@@ -106,28 +100,25 @@ export class DesignationHrSettingsComponent implements OnInit {
             const initialState = {
                Text: 'Department'
             };
-            this.bsModalRef = this.modalService.show(DeleteConfirmationComponent, Object.assign({initialState}, { class: 'modal-sm' }));
+            this.bsModalRef = this.modalService.show(DeleteConfirmationComponent, Object.assign({initialState}, { ignoreBackdropClick: true, class: 'modal-sm' }));
             this.bsModalRef.content.onClose.subscribe(response => {
                if (response.Status) {
-                  const Data = { 'Designation_Id' :  this._List[_index]._id, 'Modified_By' : '2' };
+                  const Data = { 'Designation_Id' :  this._List[_index]._id, 'Modified_By' : this.User_Id };
                   let Info = CryptoJS.AES.encrypt(JSON.stringify(Data), 'SecretKeyIn@123');
                   Info = Info.toString();
                   this.Service.Designation_Delete({'Info': Info}).subscribe( returnResponse => {
                      const ResponseData = JSON.parse(returnResponse['_body']);
                      if (returnResponse['status'] === 200 && ResponseData['Status'] ) {
                         this._List.splice(_index, 1);
-                        alert('Successfully Deleted');
-                     } else if (returnResponse['status'] === 400 && !ResponseData['Status']) {
-                        alert(ResponseData['Message']);
-                     } else if (returnResponse['status'] === 417 && !ResponseData['Status']) {
-                        alert(ResponseData['Message']);
-                     } else {
-                        alert('Some Error Occurred!, But not Identify!');
-                        console.log(returnResponse);
+                        this.Toastr.NewToastrMessage(  {  Type: 'Warning', Message: 'Designation Successfully Deleted' } );
+                     } else if (returnResponse['status'] === 400 || returnResponse['status'] === 417 && !ResponseData['Status']) {
+                      this.Toastr.NewToastrMessage({ Type: 'Error',  Message: ResponseData['Message'] });
+                     } else if (response['status'] === 401 && !ResponseData['Status']) {
+                      this.Toastr.NewToastrMessage({ Type: 'Error',  Message: ResponseData['Message'] });
+                   } else {
+                    this.Toastr.NewToastrMessage(  {  Type: 'Error',  Message: 'Some Error Occurred!, But not Identify!'  } );
                      }
                   });
-               } else {
-                  alert('Designation Delete Confirmation = Cancel.');
                }
             });
          }

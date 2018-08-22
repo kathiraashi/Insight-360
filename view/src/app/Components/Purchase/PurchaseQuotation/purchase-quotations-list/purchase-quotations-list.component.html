@@ -1,179 +1,163 @@
 <div class="Main_Section">
-      <div class="page_section">
+   <div class="page_section">
       <div class="container-fluid">
+         <!-- Page Identity -->
          <div class="Page_Identity">
-            <div class="Page_Name">
-               <h5>Purchase Quotations</h5>
-            </div>
             <div class="Page_Track">
-               <ul >
-                 <li class="HeaderName">Purchase</li>
-                 <li class="arrow">>></li>
-                 <li class= "LinkName">Purchase Quotations</li>
-                 <li class="arrow">>></li>
-                 <li >Purchase Quotations List</li>
+               <ul>
+               <li class="HeaderName">Home</li>
+               <li class="arrow">>></li>
+               <li class= "LinkName">Purchase</li>
+               <li class="arrow">>></li>
+               <li >Purchase Quotations</li>
                </ul>
             </div>
          </div>
+         <!-- Header part -->
          <div class="row header_part">
             <div class="col-sm-6">
-              <button class="Create_Button" mat-raised-button [routerLink]="['/Purchase_Quotation_Create']"> + Create </button>
+               <button class="Create_Button" mat-raised-button [routerLink]="['/Purchase_Quotation_Create']"> + Create </button>
             </div>
             <div class="col-sm-6">
-              <div class="Search_Section">
-                <input type="text" placeholder="Search.." name="search">
-                <i class="material-icons">search</i>
-              </div>
+               <div class="Search_Section">
+                  <input type="text" placeholder="Search.." name="search">
+                  <i class="material-icons">search</i>
+               </div>
             </div>
-          </div>
-<div class="Table_Section">
-      <table>
-         <thead>
-            <tr>
-               <th>S.no</th>
-               <th>Quote Details</th>
-               <th>Company Details</th>
-               <th>Created By</th>
-               <th>Total Amount</th>
-               <th>Status</th>
-               <th>Action</th>
-            </tr>
-         </thead>
-         <tbody>
-            <tr>
-               <td>
-                  <span class="S_no"> 1 </span>
-               </td>
-               <td>
-                  <h6 class="Style_2">Von_Quote_123</h6>
-                  <span class="Style_3">Valid Till:17/04/17</span>
-               </td>
-               <td>
-                  <span class="Style_3"> Vendor_aashi</span>
-               </td>
-               <td>
-                  <span class="Style_3">Admin</span>
-               </td>
-               <td>
-                  <span class="Style_3">32300</span>
-               </td>
-               <td>
-                  <span class="Style_3">Draft</span>
-               </td>
-               <td>
-                  <button [routerLink]="['/Purchase_Quotation_View']" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
-                     <i class="material-icons">zoom_in</i>
-                  </button>
-                  <button  [routerLink]="['/Purchase_Quotation_Create']" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
-                     <i class="material-icons">edit</i>
-                  </button>
-                  <button (click)=" DeletePurchaseQuotation()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
-                     <i class="material-icons">delete_forever</i>
-                  </button>
-               </td>
-            </tr>
-            <tr>
-               <td>
-                  <span class="S_no"> 2 </span>
-               </td>
-               <td>
-                  <h6 class="Style_2">Von_Quote_123</h6>
-                  <span class="Style_3">Valid Till:17/04/17</span>
-               </td>
-               <td>
-                  <span class="Style_3"> Vendor_aashi</span>
-               </td>
-               <td>
-                  <span class="Style_3">Admin</span>
-               </td>
-               <td>
-                  <span class="Style_3">32300</span>
-               </td>
-               <td>
-                  <span class="Style_3">Draft</span>
-               </td>
-               <td>
-                  <button [routerLink]="['/Purchase_Quotation_View']" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
-                     <i class="material-icons">zoom_in</i>
-                  </button>
-                  <button  [routerLink]="['/Purchase_Quotation_Create']" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
-                     <i class="material-icons">edit</i>
-                  </button>
-                  <button (click)=" DeletePurchaseQuotation()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
-                     <i class="material-icons">delete_forever</i>
-                  </button>
-               </td>
-            </tr>
-            <tr>
-               <td>
-                  <span class="S_no"> 3 </span>
-               </td>
-               <td>
-                  <h6 class="Style_2">Von_Quote_123</h6>
-                  <span class="Style_3">Valid Till:17/04/17</span>
-               </td>
-               <td>
-                  <span class="Style_3"> Vendor_aashi</span>
-               </td>
-               <td>
-                  <span class="Style_3">Admin</span>
-               </td>
-               <td>
-                  <span class="Style_3">32300</span>
-               </td>
-               <td>
-                  <span class="Style_3">Draft</span>
-               </td>
-               <td>
-                  <button [routerLink]="['/Purchase_Quotation_View']" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
-                     <i class="material-icons">zoom_in</i>
-                  </button>
-                  <button  [routerLink]="['/Purchase_Quotation_Create']" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
-                     <i class="material-icons">edit</i>
-                  </button>
-                  <button (click)=" DeletePurchaseQuotation()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
-                     <i class="material-icons">delete_forever</i>
-                  </button>
-               </td>
-            </tr>
-            <tr>
-               <td>
-                  <span class="S_no"> 4 </span>
-               </td>
-               <td>
-                  <h6 class="Style_2">Von_Quote_123</h6>
-                  <span class="Style_3">Valid Till:17/04/17</span>
-               </td>
-               <td>
-                  <span class="Style_3"> Vendor_aashi</span>
-               </td>
-               <td>
-                  <span class="Style_3">Admin</span>
-               </td>
-               <td>
-                  <span class="Style_3">32300</span>
-               </td>
-               <td>
-                  <span class="Style_3">Draft</span>
-               </td>
-               <td>
-                  <button [routerLink]="['/Purchase_Quotation_View']" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
-                     <i class="material-icons">zoom_in</i>
-                  </button>
-                  <button  [routerLink]="['/Purchase_Quotation_Create']" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
-                     <i class="material-icons">edit</i>
-                  </button>
-                  <button (click)=" DeletePurchaseQuotation()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
-                     <i class="material-icons">delete_forever</i>
-                  </button>
-               </td>
-            </tr>
-         </tbody>
-      </table>
+         </div>
+         <!-- Table section -->
+         <div class="Table_Section">
+            <table>
+               <thead>
+                  <tr>
+                     <th>S.no</th>
+                     <th>Quote Details</th>
+                     <th>Company Details</th>
+                     <th>Created By</th>
+                     <th>Total Amount</th>
+                     <th>Status</th>
+                     <th>Action</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>
+                        <span class="S_no"> 1 </span>
+                     </td>
+                     <td>
+                        <h6 class="Style_2">Von_Quote_123</h6>
+                        <span class="Style_3">Valid Till:17/04/17</span>
+                     </td>
+                     <td>
+                        <span class="Style_3"> Vendor_aashi</span>
+                     </td>
+                     <td>
+                        <span class="Style_3">Admin</span>
+                     </td>
+                     <td>
+                        <span class="Style_3">32300</span>
+                     </td>
+                     <td>
+                        <span class="Style_3">Draft</span>
+                     </td>
+                     <td>
+                        <button color="primary" mat-raised-button [matMenuTriggerFor]="Action">Action</button>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <span class="S_no"> 2 </span>
+                     </td>
+                     <td>
+                        <h6 class="Style_2">Von_Quote_123</h6>
+                        <span class="Style_3">Valid Till:17/04/17</span>
+                     </td>
+                     <td>
+                        <span class="Style_3"> Vendor_aashi</span>
+                     </td>
+                     <td>
+                        <span class="Style_3">Admin</span>
+                     </td>
+                     <td>
+                        <span class="Style_3">32300</span>
+                     </td>
+                     <td>
+                        <span class="Style_3">Draft</span>
+                     </td>
+                     <td>
+                        <button color="primary" mat-raised-button [matMenuTriggerFor]="Action">Action</button>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <span class="S_no"> 3 </span>
+                     </td>
+                     <td>
+                        <h6 class="Style_2">Von_Quote_123</h6>
+                        <span class="Style_3">Valid Till:17/04/17</span>
+                     </td>
+                     <td>
+                        <span class="Style_3"> Vendor_aashi</span>
+                     </td>
+                     <td>
+                        <span class="Style_3">Admin</span>
+                     </td>
+                     <td>
+                        <span class="Style_3">32300</span>
+                     </td>
+                     <td>
+                        <span class="Style_3">Draft</span>
+                     </td>
+                     <td>
+                        <button color="primary" mat-raised-button [matMenuTriggerFor]="Action">Action</button>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <span class="S_no"> 4 </span>
+                     </td>
+                     <td>
+                        <h6 class="Style_2">Von_Quote_123</h6>
+                        <span class="Style_3">Valid Till:17/04/17</span>
+                     </td>
+                     <td>
+                        <span class="Style_3"> Vendor_aashi</span>
+                     </td>
+                     <td>
+                        <span class="Style_3">Admin</span>
+                     </td>
+                     <td>
+                        <span class="Style_3">32300</span>
+                     </td>
+                     <td>
+                        <span class="Style_3">Draft</span>
+                     </td>
+                     <td>
+                        <button color="primary" mat-raised-button [matMenuTriggerFor]="Action">Action</button>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
    </div>
-   </div>
-   </div>
-   </div>
+</div>
+
+<!-- Dropdown menus -->
+<mat-menu #Action="matMenu">
+   <button mat-menu-item>
+      <span>Edit</span>
+   </button>
+   <button mat-menu-item [routerLink]="['/Purchase_Quotation_View']">
+      <span>View</span>
+   </button>
+   <button mat-menu-item>
+      <span>Delete</span>
+   </button>
+   <button mat-menu-item>
+        <span>Confirm Order</span>
+     </button>
+</mat-menu>
    
    
 

@@ -2,16 +2,13 @@
 <div class="page" style="margin-top:100px;">
       <div class="container-fluid">
         <div class="Page_Identity">
-          <div class="Page_Name">
-            <h5>Vendor Payments</h5>
-          </div>
           <div class="Page_Track">
             <ul>
-              <li class="HeaderName">Accounts</li>
+              <li class="HeaderName">Home</li>
               <li class="arrow">>></li>
-              <li class="LinkName">Vendor Payments</li>
+              <li class="LinkName">Accounts</li>
               <li class="arrow">>></li>
-              <li>Vendor Payments Create</li>
+              <li>Vendor Payments</li>
             </ul>
           </div>
         </div>
@@ -23,9 +20,15 @@
                   <label>Vendor:</label>
                   <input type="text">
                 </div>
-                <div class="col-sm-6 Form_Input">
+                <div class="col-sm-6 Form_Select">
                   <label>Bill No:</label>
-                  <input type="text">
+                  <select>
+                     <option checked>Bill No</option>
+                     <option> BILL133</option>
+                     <option> BILL133</option>
+                     <option> BILL133</option>
+                     <option> BILL133</option>
+                  </select>
                 </div>
                 <div class="col-sm-6 Form_Input">
                   <label>Payment Amount:</label>
@@ -39,49 +42,24 @@
             </div>
           </div>
           <div class="Product">
-                <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Payment<span style="color:#516570;font-size:20px;font-weight: 600;">Method</span></h5><br>
+               
             <div class="Product_Details" >
             <div class="row">
-                <div class="col-sm-4 Form_Input">
-                  <label>Company Name:</label>
-                  <input type="text">
-                </div>
-                <div class="col-sm-4 Form_Input">
-                  <label>Bill No:</label>
-                  <input type="text">
-                </div>
-              </div>
-              <div class="row">
                 <div class="col-sm-12">
                   <h5>Mode Of Payments</h5>
-                  <hr>
-                </div>
+                  <br>
+               </div>
               </div>
-              <div class="Product_Tab">
-                   <div class="Product_details">
-                     <span [ngClass]="{'active': Active_Tab === 'Bank'}" (click)="Active_Tab_Change('Bank')">Bank</span>
-                   </div>
-                   <div class="Quote_Terms">
-                     <span [ngClass]="{'active': Active_Tab === 'Cash'}" (click)="Active_Tab_Change('Cash')">Cash</span>
-                   </div>
-                 </div>
+              <div class="Tabs">
+                  <div class="Tab" [ngClass]="{'active': Active_Tab === 'Bank'}" (click)="Active_Tab_Change('Bank')">
+                     <span >Bank</span>
+                  </div>
+                  <div class="Tab" [ngClass]="{'active': Active_Tab === 'Cash'}" (click)="Active_Tab_Change('Cash')">
+                     <span >Cash</span>
+                  </div>
+               </div>
                  <br>
                  <div class="Bank" *ngIf="Active_Tab === 'Bank'">
-              <div class="row">
-                <div class="col-sm-2">
-                  <input type="radio"> cheque/DD
-                </div>
-                <div class="col-sm-2">
-                  <input type="radio"> Cash
-                </div>
-                <div class="col-sm-2">
-                  <input type="radio"> Online Payment
-                </div>
-                <div class="col-sm-2">
-                  <input type="radio">NEFT/RTGS
-                </div>
-              </div>
-              <br>
               <div class="row">
                 <div class="col-sm-4 Form_Input">
                   <label>Amount:</label>
@@ -100,18 +78,6 @@
             </div>
             <div class="Done_Section" >
              <div class="cash" *ngIf="Active_Tab === 'Cash'">
-              <div class="row">
-                <div class="col-sm-2">
-                  <input type="radio"> cheque/DD
-                </div>
-               <div class="col-sm-2">
-                  <input type="radio"> Online Payment
-                </div>
-                <div class="col-sm-2">
-                  <input type="radio">NEFT/RTGS
-                </div>
-              </div>
-              <br>
               <div class="row">
                 <div class="col-sm-4 Form_Input">
                   <label>Amount:</label>

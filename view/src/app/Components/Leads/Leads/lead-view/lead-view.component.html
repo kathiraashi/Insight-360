@@ -1,0 +1,353 @@
+<div class="page" style="margin-top:100px;">
+   <div class="container-fluid">
+      <!-- page Identity -->
+      <div class="Page_Identity">
+         <div class="Page_Track">
+            <ul>
+               <li class="HeaderName">Leads</li>
+               <li class="arrow">>></li>
+               <li class="LinkName" [routerLink]="['/List_leads']">Leads List</li>
+               <li class="arrow">>></li>
+               <li>Leads View</li>
+            </ul>
+         </div>
+      </div>
+      <div class="row">
+         <!-- Company details -->
+         <div class="Company_Details">
+            <br>
+            <div class="Buttons text-right">
+               <button class="button1">Convert To Opportunity</button>
+            </div>
+            <div class="col-sm-12">
+               <div class="view_item">
+                  <div class="Static">Company Name </div>
+                  <div class="dots"> : </div>
+                  <div class="Data"> Company Name</div>
+               </div>
+               <div class="view_item">
+                  <div class="Static">Email </div>
+                  <div class="dots"> : </div>
+                  <div class="Data"> Email</div>
+               </div>
+               <div class="view_item">
+                  <div class="Static">Product </div>
+                  <div class="dots"> : </div>
+                  <div class="Data"> Product</div>
+               </div>
+               <div class="view_item">
+                  <div class="Static">Phone </div>
+                  <div class="dots"> : </div>
+                  <div class="Data"> Phone</div>
+               </div>
+               <div class="view_item">
+                  <div class="Static">Lead source  </div>
+                  <div class="dots"> : </div>
+                  <div class="Data"> Lead source </div>
+               </div>
+               <div class="view_item">
+                  <div class="Static">Priority </div>
+                  <div class="dots"> : </div>
+                  <div class="Data"> Priority </div>
+               </div>
+               <div class="view_item">
+                  <div class="Static">Address </div>
+                  <div class="dots"> : </div>
+                  <div class="Data"> Address </div>
+               </div>
+            </div>
+         </div>
+         <br>
+         <!-- Tabs -->
+         <div class="Company_Details">
+            <div class="Tabs">
+               <div class="Tab" [ngClass]="{'active': Active_Tab === 'Log_Phone_Call'}" (click)="Active_Tab_Change('Log_Phone_Call')">
+                  <span >Log Phone Call</span>
+               </div>
+               <div class="Tab" [ngClass]="{'active': Active_Tab === 'Call_Schedule'}" (click)="Active_Tab_Change('Call_Schedule')">
+                  <span >Call Schedule</span>
+               </div>
+            </div><br>
+            <!-- Product details -->
+            <div class="Product_Details" *ngIf="Active_Tab === 'Log_Phone_Call'">
+               <!-- Header Part -->
+               <div class="row header_part">
+                  <div class="col-sm-6">
+                     <button class="Create_Button" mat-raised-button (click)="CreateLogPhoneCall()"> + Create </button>
+                  </div>
+                  <div class="col-sm-6">
+                     <div class="Search_Section">
+                        <input type="text" placeholder="Search.." name="search">
+                        <i class="material-icons">search</i>
+                     </div>
+                  </div>
+               </div>
+               <!-- Table Section -->
+               <div class="Table_Section">
+                  <table>
+                     <thead>
+                        <tr>
+                           <th>S.no</th>
+                           <th>Company</th>
+                           <th>Date & Time</th>
+                           <th>Product</th>
+                           <th>Contact</th>
+                           <th>Action</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <span class="S_no"> 1 </span>
+                           </td>
+                           <td>
+                              <span class="Style_1">Company Name1</span>
+                           </td>
+                           <td>
+                              <span class="Style_1"> may 12,2017</span>
+                           </td>
+                           <td>
+                              <span class="Style_1">Product1</span>
+                           </td>
+                           <td>
+                              <span class="Style_1">+428765</span>
+                           </td>
+                           <td>
+                              <button [routerLink]="['/View_Log_Phone_call']" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                                 <i class="material-icons">zoom_in</i>
+                              </button>
+                              <button  (click)="CreateLogPhoneCall()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                                 <i class="material-icons">edit</i>
+                              </button>
+                              <button (click)=" DeleteLogPhoneCall()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                                 <i class="material-icons">delete_forever</i>
+                              </button>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <span class="S_no"> 2 </span>
+                           </td>
+                           <td>
+                              <span class="Style_1">Company Name2</span>
+                           </td>
+                           <td>
+                              <span class="Style_1"> may 12,2017</span>
+                           </td>
+                           <td>
+                              <span class="Style_1">Product2</span>
+                           </td>
+                           <td>
+                              <span class="Style_1">+53435455</span>
+                           </td>
+                           <td>
+                              <button [routerLink]="['/View_Log_Phone_call']" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                                 <i class="material-icons">zoom_in</i>
+                              </button>
+                              <button  (click)="CreateLogPhoneCall()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                                 <i class="material-icons">edit</i>
+                              </button>
+                              <button (click)=" DeleteLogPhoneCall()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                                 <i class="material-icons">delete_forever</i>
+                              </button>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <span class="S_no"> 3 </span>
+                           </td>
+                           <td>
+                              <span class="Style_1">Company Name3</span>
+                           </td>
+                           <td>
+                              <span class="Style_1"> may 12,2017</span>
+                           </td>
+                           <td>
+                              <span class="Style_1">Product3</span>
+                           </td>
+                           <td>
+                              <span class="Style_1">+354545</span>
+                           </td>
+                           <td>
+                              <button [routerLink]="['/View_Log_Phone_call']" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                                 <i class="material-icons">zoom_in</i>
+                              </button>
+                              <button  (click)="CreateLogPhoneCall()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                                 <i class="material-icons">edit</i>
+                              </button>
+                              <button (click)=" DeleteLogPhoneCall()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                                 <i class="material-icons">delete_forever</i>
+                              </button>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <span class="S_no"> 4</span>
+                           </td>
+                           <td>
+                              <span class="Style_1">Company Name4</span>
+                           </td>
+                           <td>
+                              <span class="Style_1">may 12,2017</span>
+                           </td>
+                           <td>
+                              <span class="Style_1">Product4</span>
+                           </td>
+                           <td>
+                              <span class="Style_1">+4365565</span>
+                           </td>
+                           <td>
+                              <button [routerLink]="['/View_Log_Phone_call']" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                                 <i class="material-icons">zoom_in</i>
+                              </button>
+                              <button  (click)="CreateLogPhoneCall()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                                 <i class="material-icons">edit</i>
+                              </button>
+                              <button (click)=" DeleteLogPhoneCall()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                                 <i class="material-icons">delete_forever</i>
+                              </button>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+            <!-- Quote Terms -->
+            <div class="Done_Section" *ngIf="Active_Tab === 'Call_Schedule'">
+               <!-- Header Part -->
+               <div class="row header_part">
+                  <div class="col-sm-6">
+                     <button class="Create_Button" mat-raised-button (click)="CreateCallSchedule()"> + Create </button>
+                  </div>
+                  <div class="col-sm-6">
+                     <div class="Search_Section">
+                        <input type="text" placeholder="Search.." name="search">
+                        <i class="material-icons">search</i>
+                     </div>
+                  </div>
+               </div>
+               <!-- Table section -->
+               <div class="Table_Section">
+                  <table>
+                     <thead>
+                        <tr>
+                           <th>S.no</th>
+                           <th>Company</th>
+                           <th>Date & Time</th>
+                           <th>Contact</th>
+                           <th>Action</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td>
+                              <span class="S_no"> 1 </span>
+                           </td>
+                           <td>
+                              <span class="Style_1">Company Name1</span>
+                           </td>
+                           <td>
+                              <span class="Style_1"> may 12,2017</span>
+                           </td>
+                           <td>
+                              <span class="Style_1">+428765</span>
+                           </td>
+                           <td>
+                              <button [routerLink]="['/View_Call_Schedule']" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                                 <i class="material-icons">zoom_in</i>
+                              </button>
+                              <button  (click)="CreateCallSchedule()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                                 <i class="material-icons">edit</i>
+                              </button>
+                              <button (click)=" DeleteCallSchedule()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                                 <i class="material-icons">delete_forever</i>
+                              </button>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <span class="S_no"> 2 </span>
+                           </td>
+                           <td>
+                              <span class="Style_1">Company Name2</span>
+                           </td>
+                           <td>
+                              <span class="Style_1"> may 12,2017</span>
+                           </td>
+                           <td>
+                              <span class="Style_1">+53435455</span>
+                           </td>
+                           <td>
+                              <button [routerLink]="['/View_Call_Schedule']" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                                 <i class="material-icons">zoom_in</i>
+                              </button>
+                              <button  (click)="CreateCallSchedule()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                                 <i class="material-icons">edit</i>
+                              </button>
+                              <button (click)=" DeleteCallSchedule()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                                 <i class="material-icons">delete_forever</i>
+                              </button>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <span class="S_no"> 3 </span>
+                           </td>
+                           <td>
+                              <span class="Style_1">Company Name3</span>
+                           </td>
+                           <td>
+                              <span class="Style_1"> may 12,2017</span>
+                           </td>
+                           <td>
+                              <span class="Style_1">+354545</span>
+                           </td>
+                           <td>
+                              <button [routerLink]="['/View_Call_Schedule']" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                                 <i class="material-icons">zoom_in</i>
+                              </button>
+                              <button  (click)="CreateCallSchedule()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                                 <i class="material-icons">edit</i>
+                              </button>
+                              <button (click)=" DeleteCallSchedule()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                                 <i class="material-icons">delete_forever</i>
+                              </button>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <span class="S_no"> 4</span>
+                           </td>
+                           <td>
+                              <span class="Style_1">Company Name4</span>
+                           </td>
+                           <td>
+                              <span class="Style_1">may 12,2017</span>
+                           </td>
+                           <td>
+                              <span class="Style_1">+4365565</span>
+                           </td>
+                           <td>
+                              <button [routerLink]="['/View_Call_Schedule']" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                                 <i class="material-icons">zoom_in</i>
+                              </button>
+                              <button  (click)="CreateCallSchedule()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                                 <i class="material-icons">edit</i>
+                              </button>
+                              <button (click)=" DeleteCallSchedule()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                                 <i class="material-icons">delete_forever</i>
+                              </button>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="row" style="margin-top:20px;">
+         <div class="col-sm-12 text-right">
+         </div>
+      </div>
+   </div>
+</div>

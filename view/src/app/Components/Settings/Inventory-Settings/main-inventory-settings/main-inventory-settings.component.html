@@ -1,10 +1,7 @@
 <div class="Page_Section">
    <div class="container-fluid">
       <div class="Page_Identity">
-      <div class="Page_Name">
-        <h5>INVENTORY SETTINGS</h5>
-        </div>
-        <div class="Page_Track">
+      <div class="Page_Track">
             <ul >
               <li class="HeaderName">Settings</li>
               <li class="arrow">>></li>
@@ -19,12 +16,18 @@
                   <li class="Tab" [ngClass]="{'active':Active_Tab === 'Ware_House'}" (click)="Active_Tab_Change('Ware_House')">
                      <span class="Tab_Content">Ware House</span>
                   </li>
+                  <li class="Tab" [ngClass]="{'active':Active_Tab === 'Locations'}" (click)="Active_Tab_Change('Locations')">
+                     <span class="Tab_Content">Locations</span>
+                  </li>
                </ul>
             </div>
             <div class="Right_Section">
                <div *ngIf="Active_Tab === 'Ware_House'">
                     <app-ware-house-inventory-settings></app-ware-house-inventory-settings>
                </div>
+               <div *ngIf="Active_Tab === 'Locations'">
+                     <app-locations-inventory-settings></app-locations-inventory-settings>
+                </div>
            </div>
          </div>
       </div>

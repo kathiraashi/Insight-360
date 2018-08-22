@@ -221,4 +221,128 @@ export class HrSettingsService {
      }
     }
 
+    // Earnings
+   public Earnings_AsyncValidate(Info: any): Observable<any[]> {
+    if (this.Service.If_LoggedIn()) {
+      this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+      sessionStorage.setItem('SessionKey', btoa(Date()));
+     return this.http.post(API_URL + 'Earnings_AsyncValidate', Info, {headers: this.headers })
+     .pipe( map(response => response),  catchError(error => of(error)));
+  } else {
+    return this.ValidateEveryRequest();
+ }
+}
+      public Earnings_Create(Info: any): Observable<any[]> {
+        if (this.Service.If_LoggedIn()) {
+          this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+          sessionStorage.setItem('SessionKey', btoa(Date()));
+         return this.http.post(API_URL + 'Earnings_Create', Info, {headers: this.headers })
+         .pipe( map(response => response),  catchError(error => of(error)));
+      } else {
+        return this.ValidateEveryRequest();
+     }
+    }
+      public Earnings_List(Info: any): Observable<any[]> {
+        if (this.Service.If_LoggedIn()) {
+          this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+          sessionStorage.setItem('SessionKey', btoa(Date()));
+         return this.http.post(API_URL + 'Earnings_List', Info, {headers: this.headers })
+         .pipe( map(response => response), catchError(error => of(error)));
+      } else {
+        return this.ValidateEveryRequest();
+     }
+    }
+      public Earnings_SimpleList(Info: any): Observable<any[]> {
+        if (this.Service.If_LoggedIn()) {
+          this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+          sessionStorage.setItem('SessionKey', btoa(Date()));
+         return this.http.post(API_URL + 'Earnings_SimpleList', Info, {headers: this.headers })
+         .pipe( map(response => response),  catchError(error => of(error)));
+      } else {
+        return this.ValidateEveryRequest();
+     }
+    }
+      public Earnings_Update(Info: any): Observable<any[]> {
+        if (this.Service.If_LoggedIn()) {
+          this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+          sessionStorage.setItem('SessionKey', btoa(Date()));
+         return this.http.post(API_URL + 'Earnings_Update', Info, {headers: this.headers })
+         .pipe( map(response => response), catchError(error => of(error)));
+      } else {
+        return this.ValidateEveryRequest();
+     }
+    }
+      public Earnings_Delete(Info: any): Observable<any[]> {
+        if (this.Service.If_LoggedIn()) {
+          this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+          sessionStorage.setItem('SessionKey', btoa(Date()));
+         return this.http.post(API_URL + 'Earnings_Delete', Info, {headers: this.headers })
+         .pipe( map(response => response),  catchError(error => of(error)));
+      } else {
+        return this.ValidateEveryRequest();
+     }
+    }
+
+    // Detections
+   public Detections_AsyncValidate(Info: any): Observable<any[]> {
+    if (this.Service.If_LoggedIn()) {
+      this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+      sessionStorage.setItem('SessionKey', btoa(Date()));
+     return this.http.post(API_URL + 'Detections_AsyncValidate', Info, {headers: this.headers })
+     .pipe( map(response => response),  catchError(error => of(error)));
+  } else {
+    return this.ValidateEveryRequest();
+ }
+}
+      public Detections_Create(Info: any): Observable<any[]> {
+        if (this.Service.If_LoggedIn()) {
+          this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+          sessionStorage.setItem('SessionKey', btoa(Date()));
+         return this.http.post(API_URL + 'Detections_Create', Info, {headers: this.headers })
+         .pipe( map(response => response),  catchError(error => of(error)));
+      } else {
+        return this.ValidateEveryRequest();
+     }
+    }
+      public Detections_List(Info: any): Observable<any[]> {
+        if (this.Service.If_LoggedIn()) {
+          this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+          sessionStorage.setItem('SessionKey', btoa(Date()));
+         return this.http.post(API_URL + 'Detections_List', Info, {headers: this.headers })
+         .pipe( map(response => response), catchError(error => of(error)));
+      } else {
+        return this.ValidateEveryRequest();
+     }
+    }
+      public Detections_SimpleList(Info: any): Observable<any[]> {
+        if (this.Service.If_LoggedIn()) {
+          this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+          sessionStorage.setItem('SessionKey', btoa(Date()));
+         return this.http.post(API_URL + 'Detections_SimpleList', Info, {headers: this.headers })
+         .pipe( map(response => response),  catchError(error => of(error)));
+      } else {
+        return this.ValidateEveryRequest();
+     }
+    }
+      public Detections_Update(Info: any): Observable<any[]> {
+        if (this.Service.If_LoggedIn()) {
+          this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+          sessionStorage.setItem('SessionKey', btoa(Date()));
+         return this.http.post(API_URL + 'Detections_Update', Info, {headers: this.headers })
+         .pipe( map(response => response), catchError(error => of(error)));
+      } else {
+        return this.ValidateEveryRequest();
+     }
+    }
+      public Detections_Delete(Info: any): Observable<any[]> {
+        if (this.Service.If_LoggedIn()) {
+          this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
+          sessionStorage.setItem('SessionKey', btoa(Date()));
+         return this.http.post(API_URL + 'Detections_Delete', Info, {headers: this.headers })
+         .pipe( map(response => response),  catchError(error => of(error)));
+      } else {
+        return this.ValidateEveryRequest();
+     }
+    }
+
 }

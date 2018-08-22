@@ -1,33 +1,33 @@
 <app-header></app-header>
 <div class="Main_Section">
-<div class="Page_Section">
+   <div class="Page_Section">
       <div class="container-fluid">
-          <div class="Page_Identity">
-              <div class="Page_Name">
-                 <h5>Invoice</h5>
-              </div>
-              <div class="Page_Track">
-                 <ul >
-                   <li class="HeaderName">CRM</li>
-                   <li class="arrow">>></li>
-                   <li class="LinkName">Invoice</li>
-                   <li class="arrow">>></li>
-                   <li>Invoice List</li>
-                 </ul>
-              </div>
-           </div>
-           <div class="row header_part">
-               <div class="col-sm-6">
-                 <button class="Create_Button" mat-raised-button [routerLink]="['/crm_invoice_create']"> + Create </button>
+         <!-- Page identity -->
+         <div class="Page_Identity">
+            <div class="Page_Track">
+               <ul>
+                  <li class="HeaderName">Home</li>
+                  <li class="arrow">>></li>
+                  <li class="LinkName">CRM</li>
+                  <li class="arrow">>></li>
+                  <li>Invoice</li>
+               </ul>
+            </div>
+         </div>
+         <!-- Header Part -->
+         <div class="row header_part">
+            <div class="col-sm-6">
+               <button class="Create_Button" mat-raised-button [routerLink]="['/crm_invoice_create']"> + Create </button>
+            </div>
+            <div class="col-sm-6">
+               <div class="Search_Section">
+                  <input type="text" placeholder="Search.." name="search">
+                  <i class="material-icons">search</i>
                </div>
-               <div class="col-sm-6">
-                 <div class="Search_Section">
-                   <input type="text" placeholder="Search.." name="search">
-                   <i class="material-icons">search</i>
-                 </div>
-               </div>
-             </div>
-        <div class="Table_Section">
+            </div>
+         </div>
+         <!-- Table section -->
+         <div class="Table_Section">
             <table>
                <thead>
                   <tr>
@@ -43,28 +43,28 @@
                <tbody>
                   <tr>
                      <td>
-                     <span class="S_no"> 1 </span>
+                        <span class="S_no"> 1 </span>
                      </td>
                      <td>
-                     <span class="Style_2">Invoice-ddeb9b10
-                        <h6 class="Style_3">Invoice Date : 12/07/2017</h6>
-                     </span>
+                        <span class="Style_2">Invoice-ddeb9b10
+                           <h6 class="Style_3">Invoice Date : 12/07/2017</h6>
+                        </span>
                      </td>
                      <td>
-                     <span class="Style_2">SaleOrder-a1653d4d
-                        <h6 class="Style_3">Quote-a1653d4d</h6>
-                     </span>
+                        <span class="Style_2">SaleOrder-a1653d4d
+                           <h6 class="Style_3">Quote-a1653d4d</h6>
+                        </span>
                      </td>
                      <td>
-                     <span class="Style_2">Customer Name
-                        <h6 class="Style_3">ganapathy, coimboture, Tamil Nadu</h6>
-                     </span>
+                        <span class="Style_2">Customer Name
+                           <h6 class="Style_3">ganapathy, coimboture, Tamil Nadu</h6>
+                        </span>
                      </td>
                      <td>
-                     <span class="Style_3">Admin Name</span>
+                        <span class="Style_3">Admin Name</span>
                      </td>
                      <td>
-                     <span class="Style_3">Rs.2500</span>
+                        <span class="Style_3">Rs.2500</span>
                      </td>
                      <td>
                         <button color="primary" mat-raised-button [matMenuTriggerFor]="Action">Action
@@ -100,7 +100,7 @@
                         <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
                      </td>
                   </tr>
-                     <tr>
+                  <tr>
                      <td>
                         <span class="S_no"> 3 </span>
                      </td>
@@ -253,7 +253,16 @@
 </div>
 <!-- Dropdown menus -->
 <mat-menu #Action="matMenu">
-   <button mat-menu-item [routerLink]="['/crm_invoice_view']">
-      <span>Invoice View</span>
-   </button>
-</mat-menu>
+      <button mat-menu-item>
+         <span>Edit</span>
+      </button>
+      <button mat-menu-item [routerLink]="['/crm_invoice_view']">
+         <span>View</span>
+      </button>
+      <button mat-menu-item>
+         <span>Delete</span>
+      </button>
+      <button mat-menu-item>
+         <span>Register Payment</span>
+      </button>
+   </mat-menu>

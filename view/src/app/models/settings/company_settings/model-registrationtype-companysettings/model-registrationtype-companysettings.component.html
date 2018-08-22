@@ -1,19 +1,29 @@
-<div class="Modal_Content" *ngIf="Type && Type === 'Create'">
+<div class="Modal_Content" *ngIf="Type &&  (Type === 'Create' || Type === 'Edit')">
   <div class="Modal_Header">
-     <p>Create Registration Type</p>
-     <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+     <p>{{ Type }} Registration Type</p>
+     <span *ngIf="!Uploading" data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
  </div>
+<form [formGroup]="Form" (ngSubmit)="onSubmit()">
  <div class="Model_Body">
   <div class="row">
-   <div class="col-sm-6 Form_Input">
+   <div class="col-sm-10 Form_Input" [ngClass]="{'Form_Err': Form.controls['Registration_Type'].errors && !Form.controls['Registration_Type'].pristine, 'Form_Success': Form.controls['Registration_Type'].valid && !Form.controls['Registration_Type'].pristine }">
           <label>Registration Type:</label>
-        <input type="text" >
+        <input type="text" formControlName="Registration_Type">
+        <p class="error" *ngIf="Form.controls['Registration_Type'].errors && !Form.controls['Registration_Type'].pristine">
+        <span *ngIf="Form.controls['Registration_Type'].errors.required">Registration Type is required</span>
+            <span *ngIf="Form.controls['Registration_Type'].errors.RegistrationType_NotAvailable"> Registration Type Already Exist </span>
+        </p>
      </div>
  </div>
 </div>
 <div class="Model_Footer">
-    <button mat-raised-button color="primary" > Submit </button>
+    <button type="submit"  [disabled]="Form.status !== 'VALID' || Uploading"  mat-raised-button color="primary" >
+        <span *ngIf="Type === 'Create' && !Uploading"> Submit </span>
+        <span *ngIf="Type === 'Edit' && !Uploading"> Update </span> 
+        <span *ngIf="Uploading" class="UploadingBtn"> <i class="fa fa-refresh fa-spin"></i> Loading... </span>
+     </button>
  </div>
+</form>
 </div>
 <div class="Modal_Content" *ngIf="Type && Type === 'View'">
     <div class="Modal_Header">
@@ -21,10 +31,31 @@
        <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
    </div>
    <div class="Model_Body">
-         <div class="row">
-               <div class="col-sm-6 text-right Static"> Registration Type : </div>
-               <div class="col-sm-6 text-left Data"> registration type</div>
-            </div>
+    <div class="view_item">
+        <div class="Static">Registration Type </div>
+        <div class="dots"> : </div>
+        <div class="Data"> {{Data.Registration_Type}}</div>
+     </div>
+     <div class="view_item">
+        <div class="Static">Created By </div>
+        <div class="dots"> : </div>
+        <div class="Data"> {{Data.Created_By.Name}}</div>
+     </div>
+     <div class="view_item">
+        <div class="Static">Last Modified By </div>
+        <div class="dots"> : </div>
+        <div class="Data"> {{Data.Last_Modified_By.Name}}</div>
+     </div>
+     <div class="view_item">
+        <div class="Static"> Created Date </div>
+        <div class="dots"> : </div>
+        <div class="Data"> {{Data.createdAt | date:'medium'}}</div>
+     </div>
+     <div class="view_item">
+        <div class="Static">Last Modified Date  </div>
+        <div class="dots"> : </div>
+        <div class="Data"> {{Data.updatedAt | date:'medium'}}</div>
+     </div>
 </div>
 </div>
   

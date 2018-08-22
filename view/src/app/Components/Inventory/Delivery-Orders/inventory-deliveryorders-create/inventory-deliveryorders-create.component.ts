@@ -6,12 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./inventory-deliveryorders-create.component.css']
 })
 export class InventoryDeliveryordersCreateComponent implements OnInit {
-Active_Tab = 'Courier';
+
   constructor() { }
 
   ngOnInit() {
   }
-Active_Tab_Change(name) {
-  this.Active_Tab = name;
-}
+
 }
