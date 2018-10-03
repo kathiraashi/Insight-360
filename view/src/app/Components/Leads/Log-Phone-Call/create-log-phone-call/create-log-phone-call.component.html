@@ -26,7 +26,8 @@
             </div>
             <div class="col-sm-4 Form_Input">
                <label>Date & Time: </label>
-               <input type="text">
+               <input matInput [matDatepicker]="DatePicker1" (click)="DatePicker1.open()">
+               <mat-datepicker #DatePicker1></mat-datepicker>
             </div>
             <br>
             <div class="col-sm-4 Form_Select">

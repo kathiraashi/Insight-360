@@ -77,6 +77,7 @@ import { AuthGuard } from './Authentication/auth.guard';
    import { AccountsPayrollListComponent } from './Components/Accounts/Payroll/accounts-payroll-list/accounts-payroll-list.component';
    import { AccountsInvestmentComponent } from './Components/Accounts/Income/Investment/accounts-investment/accounts-investment.component';
    import { AccountsLoanComponent } from './Components/Accounts/Income/Loan/accounts-loan/accounts-loan.component';
+   import { AccountsExpensesComponent } from './Components/Accounts/Expenses/accounts-expenses/accounts-expenses.component';
 // Product
    import { MainProductSettingsComponent } from './Components/Settings/Product-Settings/main-product-settings/main-product-settings.component';
    import { ListProductComponent } from './Components/Product/list-product/list-product.component';
@@ -626,6 +627,12 @@ import { AuthGuard } from './Authentication/auth.guard';
          component: VendorPaymentsViewComponent,
          canActivate: [AuthGuard],
          data: {   animation: { value: 'vendor_payment_view'}   }
+      },
+      {
+         path: 'Accounts_Expense',
+         component: AccountsExpensesComponent,
+         canActivate: [AuthGuard],
+         data: {   animation: { value: 'Accounts_Expense'}   }
       },
    // Product
       {

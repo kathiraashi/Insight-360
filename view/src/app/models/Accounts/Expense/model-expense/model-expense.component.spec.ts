@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModelOndutyHrmsComponent } from './model-onduty-hrms.component';
+import { ModelExpenseComponent } from './model-expense.component';
 
-describe('ModelOndutyHrmsComponent', () => {
-  let component: ModelOndutyHrmsComponent;
-  let fixture: ComponentFixture<ModelOndutyHrmsComponent>;
+describe('ModelExpenseComponent', () => {
+  let component: ModelExpenseComponent;
+  let fixture: ComponentFixture<ModelExpenseComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ModelOndutyHrmsComponent ]
+      declarations: [ ModelExpenseComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ModelOndutyHrmsComponent);
+    fixture = TestBed.createComponent(ModelExpenseComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

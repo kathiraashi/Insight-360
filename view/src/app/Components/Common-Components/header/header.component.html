@@ -7,9 +7,9 @@
          <button mat-button color="primary" [matMenuTriggerFor] = "Action"> + Create </button>
       </span>
       <!-- Search Section -->
-      <span class="Search_Section" [ngClass]="{'Show': Button}" (click)="ButtonClick()">
+      <span class="Search_Section" [ngClass]="{'Show': Button}">
          <!-- <input type="text" placeholder="search"> -->
-         <button mat-mini-fab>
+         <button mat-mini-fab (click)="ButtonClick()">
             <i class="material-icons">search</i>
          </button>
          <input type="text" placeholder="Search..." />
@@ -276,9 +276,12 @@
                         </li>
                      </ul>
                   </li>
-                  <li *ngIf="SubModulesValidate('Accounts_VendorPayments_List')" [routerLinkActive]="'active'" class="Menu_Tree_List"><a>Expenses</a></li>
                   <li *ngIf="SubModulesValidate('Accounts_VendorPayments_List')" [routerLinkActive]="'active'" class="Menu_Tree_List">
-                     <a (click)="Income()">Income</a></li>
+                     <a (click)="Income()">Income</a>
+                  </li>
+                  <li *ngIf="SubModulesValidate('Accounts_VendorPayments_List')" [routerLinkActive]="'active'" class="Menu_Tree_List">
+                     <a [routerLink]="['/Accounts_Expense']">Expenses</a>
+                  </li>
                   <li *ngIf="SubModulesValidate('Accounts_VendorPayments_List')" [routerLinkActive]="'active'" class="Menu_Tree_List">
                      <a [routerLink]="['/Accounts_Payroll_List']">Pay Roll</a>
                   </li>

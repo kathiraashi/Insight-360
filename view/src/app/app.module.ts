@@ -199,11 +199,6 @@
          import { CallScheduleLeadComponent } from './models/Leads/call-schedule-lead/call-schedule-lead.component';
          import { LogPhoneCallLeadComponent } from './models/Leads/log-phone-call-lead/log-phone-call-lead.component';
 // models
-      // HRMS
-        import { ModelLeavesHrmsComponent } from './models/HRMS/model-leaves-hrms/model-leaves-hrms.component';
-        import { ModelOndutyHrmsComponent } from './models/HRMS/model-onduty-hrms/model-onduty-hrms.component';
-        import { ModelPermissionsHrmsComponent } from './models/HRMS/model-permissions-hrms/model-permissions-hrms.component';
-        import { ModelAdvanceHrmsComponent } from './models/HRMS/model-advance-hrms/model-advance-hrms.component';
       // Purchase folder ---------------------------------------------------
          // Purchase_Request
             import { PurchaseRequestListComponent } from './Components/Purchase/PurchaseRequest/purchase-request-list/purchase-request-list.component';
@@ -307,10 +302,7 @@
          import { ViewAdvanceComponent } from './Components/HRMS/Advance/view-advance/view-advance.component';
 
 
-import { ModelEmployeesCreateComponent } from './models/HR/model-employees-create/model-employees-create.component';
-import { ModelAttendanceLogCreateComponent } from './models/HR/model-attendance-log-create/model-attendance-log-create.component';
 import { ModelAttendanceReportCreateComponent } from './models/HR/model-attendance-report-create/model-attendance-report-create.component';
-import { ModelPayrollMasterViewComponent } from './models/HR/model-payroll-master-view/model-payroll-master-view.component';
 import { EarningsHrSettingsComponent } from './Components/Settings/HR-Settings/SubComponents/earnings-hr-settings/earnings-hr-settings.component';
 import { DetectionsHrSettingsComponent } from './Components/Settings/HR-Settings/SubComponents/detections-hr-settings/detections-hr-settings.component';
 import { ModelEarningsHrsettingsComponent } from './models/settings/hr_settings/model-earnings-hrsettings/model-earnings-hrsettings.component';
@@ -332,6 +324,8 @@ import { ModelAccouttypeCrmSettingsComponent } from './models/settings/crm_setti
 
 import { HrConfigComponent } from './Components/HR/HR-Config/hr-config/hr-config.component';
 import { DashboardComponent } from './Components/DashBoard/dashboard/dashboard.component';
+import { AccountsExpensesComponent } from './Components/Accounts/Expenses/accounts-expenses/accounts-expenses.component';
+import { ModelExpenseComponent } from './models/Accounts/Expense/model-expense/model-expense.component';
 
 
 
@@ -488,12 +482,6 @@ import { DashboardComponent } from './Components/DashBoard/dashboard/dashboard.c
             CrmInvoiceViewComponent,
          // Config
             CrmConfigComponent,
-   // models
-      // HRMS
-         ModelLeavesHrmsComponent,
-         ModelOndutyHrmsComponent,
-         ModelPermissionsHrmsComponent,
-         ModelAdvanceHrmsComponent,
       // Leads Folder
             CallScheduleLeadComponent,
             LogPhoneCallLeadComponent,
@@ -603,10 +591,7 @@ import { DashboardComponent } from './Components/DashBoard/dashboard/dashboard.c
                ModelContactCustomersViewComponent,
                ModelActivitiesCustomersViewComponent,
                ModelPaymentsCustomersViewComponent,
-               ModelEmployeesCreateComponent,
-               ModelAttendanceLogCreateComponent,
                ModelAttendanceReportCreateComponent,
-               ModelPayrollMasterViewComponent,
                ModelEarningsHrsettingsComponent,
                ModelDetectionsHrsettingsComponent,
                CurrencyAccountSettingsComponent,
@@ -616,7 +601,9 @@ import { DashboardComponent } from './Components/DashBoard/dashboard/dashboard.c
                ModelOthersCustomerViewComponent,
                ModelIncomeComponent,
                ModelConfirmOrderComponent,
-               DashboardComponent
+               DashboardComponent,
+               AccountsExpensesComponent,
+               ModelExpenseComponent
 
 
    ],
@@ -678,18 +665,11 @@ import { DashboardComponent } from './Components/DashBoard/dashboard/dashboard.c
       ModelAssettypeAccountsettingsComponent,
       ModelPaymenttermsAccountsettingsComponent,
       DeleteConfirmationComponent,
-      ModelLeavesHrmsComponent,
-      ModelOndutyHrmsComponent,
-      ModelPermissionsHrmsComponent,
-      ModelAdvanceHrmsComponent,
       ModelUserCreateUserManagementComponent,
       ModelContactCustomersViewComponent,
       ModelActivitiesCustomersViewComponent,
       ModelPaymentsCustomersViewComponent,
-      ModelEmployeesCreateComponent,
-      ModelAttendanceLogCreateComponent,
       ModelAttendanceReportCreateComponent,
-      ModelPayrollMasterViewComponent,
       ModelEarningsHrsettingsComponent,
       ModelDetectionsHrsettingsComponent,
       LogPhoneCallLeadComponent,
@@ -699,7 +679,8 @@ import { DashboardComponent } from './Components/DashBoard/dashboard/dashboard.c
       ModelAccouttypeCrmSettingsComponent,
       ModelOthersCustomerViewComponent,
       ModelIncomeComponent,
-      ModelConfirmOrderComponent
+      ModelConfirmOrderComponent,
+      ModelExpenseComponent
     ],
    bootstrap: [AppComponent]
 })

@@ -2,13 +2,12 @@
 <!-- Page section -->
 <div class="Page_Section">
    <div class="container-fluid">
-      <!-- Page Identity -->
       <div class="Page_Identity">
          <div class="Page_Track">
             <ul>
                <li class="HeaderName">Home</li>
                <li class="arrow">>></li>
-               <li>Attendance Log</li>
+               <li>Expense</li>
             </ul>
          </div>
       </div>
@@ -16,9 +15,8 @@
       <!-- Create and search Section -->
       <div class="row header_part">
          <div class="col-sm-6">
-            <a [routerLink]="['/Create_Attendance_Log']"><button class="Create_Button" mat-raised-button> + Create</button></a>   
-            <button mat-raised-button color="primary" style="margin-left: 10px;"> Import </button>
-         </div>
+            <button (click)="CreateExpRequest()" class="Create_Button" mat-raised-button> + Create</button>       
+          </div>
          <div class="col-sm-6">
             <div class="Search_Section">
                <input type="text" placeholder="Search.." name="search">
@@ -32,11 +30,10 @@
             <thead>
                <tr>
                   <th>S.no</th>
-                  <th>Employee Name</th>
-                  <th>Code</th>
+                  <th>Type</th>
                   <th>Date</th>
-                  <th>Total Hours</th>
-                  <th>Attendance Code</th>
+                  <th>Amount</th>
+                  <th>Status</th>
                   <th>Action</th>
                </tr>
             </thead>
@@ -46,19 +43,16 @@
                      <span class="S_no"> 1 </span>
                   </td>
                   <td>
-                     <span class="Style_1">Employee Name</span>
+                     <span class="Style_1">Type-1</span>
                   </td>
                   <td>
-                     <span class="Style_1"> code</span>
+                     <span class="Style_1">25/08/18</span>
                   </td>
                   <td>
-                     <span class="Style_1">25.08.17</span>
+                     <span class="Style_1">30000</span>
                   </td>
                   <td>
-                     <span class="Style_1">3hours</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">Attendance Code</span>
+                     <span class="Style_1">Approved</span>
                   </td>
                   <td>
                      <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
@@ -69,19 +63,16 @@
                      <span class="S_no"> 2 </span>
                   </td>
                   <td>
-                     <span class="Style_1">Employee Name</span>
+                     <span class="Style_1">Type-1</span>
                   </td>
                   <td>
-                     <span class="Style_1"> code</span>
+                     <span class="Style_1">25/08/18</span>
                   </td>
                   <td>
-                     <span class="Style_1">25.08.17</span>
+                     <span class="Style_1">30000</span>
                   </td>
                   <td>
-                     <span class="Style_1">3hours</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">Attendance Code</span>
+                     <span class="Style_1">Reject</span>
                   </td>
                   <td>
                      <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
@@ -92,19 +83,16 @@
                      <span class="S_no"> 3 </span>
                   </td>
                   <td>
-                     <span class="Style_1">Employee Name</span>
+                     <span class="Style_1">Type-1</span>
                   </td>
                   <td>
-                     <span class="Style_1"> code</span>
+                     <span class="Style_1">25/08/18</span>
                   </td>
                   <td>
-                     <span class="Style_1">25.08.17</span>
+                     <span class="Style_1">30000</span>
                   </td>
                   <td>
-                     <span class="Style_1">3hours</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">Attendance Code</span>
+                     <span class="Style_1">Approved</span>
                   </td>
                   <td>
                      <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
@@ -115,19 +103,16 @@
                      <span class="S_no"> 4 </span>
                   </td>
                   <td>
-                     <span class="Style_1">Employee Name</span>
+                     <span class="Style_1">Type-1</span>
                   </td>
                   <td>
-                     <span class="Style_1"> code</span>
+                     <span class="Style_1">25/08/18</span>
                   </td>
                   <td>
-                     <span class="Style_1">25.08.17</span>
+                     <span class="Style_1">30000</span>
                   </td>
                   <td>
-                     <span class="Style_1">3hours</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">Attendance Code</span>
+                     <span class="Style_1">Reject</span>
                   </td>
                   <td>
                      <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
@@ -136,19 +121,17 @@
             </tbody>
          </table>
       </div>
+      <br>
    </div>
 </div>
 
 <!-- Dropdown menus -->
 <mat-menu class="MenuStyleOne" #Action="matMenu" [overlapTrigger]="false" xPosition="after" yPosition="below" class="MenuStyleOne">
-   <a [routerLink]="['/Create_Attendance_Log']"><button mat-menu-item>
+   <button mat-menu-item (click)="CreateExpRequest()">
       <span>Edit</span>
-   </button></a>
-   <a [routerLink]="['/View_Attendance_Log']"><button mat-menu-item>
+   </button>
+   <button mat-menu-item (click)="ViewExpRequest()">
       <span>View</span>
-   </button></a>
-   <button mat-menu-item  (click)="DeleteAttendanceLog()">
-      <span>Delete</span>
    </button>
 </mat-menu>
 

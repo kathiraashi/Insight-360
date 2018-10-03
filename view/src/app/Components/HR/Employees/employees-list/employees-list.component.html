@@ -159,7 +159,7 @@
    <a [routerLink]="['/View_Employees']"><button mat-menu-item>
       <span>View</span>
    </button></a>
-   <button mat-menu-item>
+   <button mat-menu-item (click)="DeleteEmployee()">
       <span>Delete</span>
    </button>
 </mat-menu>

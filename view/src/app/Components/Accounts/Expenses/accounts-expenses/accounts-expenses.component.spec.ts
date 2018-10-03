@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModelLeavesHrmsComponent } from './model-leaves-hrms.component';
+import { AccountsExpensesComponent } from './accounts-expenses.component';
 
-describe('ModelLeavesHrmsComponent', () => {
-  let component: ModelLeavesHrmsComponent;
-  let fixture: ComponentFixture<ModelLeavesHrmsComponent>;
+describe('AccountsExpensesComponent', () => {
+  let component: AccountsExpensesComponent;
+  let fixture: ComponentFixture<AccountsExpensesComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ModelLeavesHrmsComponent ]
+      declarations: [ AccountsExpensesComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ModelLeavesHrmsComponent);
+    fixture = TestBed.createComponent(AccountsExpensesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
