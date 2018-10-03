@@ -1,66 +1,88 @@
+<!-- page -->
 <div class="page" style="margin-top:100px;">
-    <div class="container-fluid">
-       <!-- page Identity -->
-       <div class="Page_Identity">
-          <div class="Page_Track">
-             <ul>
-                <li class="HeaderName">Home</li>
-                <li class="arrow">>></li>
-                <li>Product</li>
-               </ul>
-          </div>
-       </div>
-       <form>
-          <div class="row">
-             <!-- Company details -->
-             <div class="Company_Details">
-                <h5>
-                  <span><button class="Add_Product_Button pull-left">Update Quantity</button></span>
-                  <span><button class="Add_Product_Button pull-right">On Hand</button></span>
-                  <span><button class="Add_Product_Button pull-right">Purchase Order</button></span>
-                  <span><button class="Add_Product_Button pull-right">Sale Order</button></span>
-                </h5>
-                <br>
-                <div class="col-sm-12">
-                   <div class="view_item">
-                      <div class="Static"> Name </div>
-                      <div class="dots"> : </div>
-                      <div class="Data">  Name</div>
-                   </div>
-                   <div class="view_item">
-                      <div class="Static">Item Code </div>
-                      <div class="dots"> : </div>
-                      <div class="Data"> Item Code</div>
-                   </div>
-                   <div class="view_item">
-                      <div class="Static">HSN Code </div>
-                      <div class="dots"> : </div>
-                      <div class="Data"> HSN Code </div>
-                   </div>
-                   <div class="view_item">
-                      <div class="Static">Price </div>
-                      <div class="dots"> : </div>
-                      <div class="Data"> Price </div>
-                   </div>
-                   <div class="view_item">
-                      <div class="Static">UOM </div>
-                      <div class="dots"> : </div>
-                      <div class="Data"> UOM </div>
-                   </div>
-                   <div class="view_item">
-                      <div class="Static">Product Type </div>
-                      <div class="dots"> : </div>
-                      <div class="Data"> Product Type </div>
-                   </div>
+   <div class="container-fluid">
+      <!-- page Identity -->
+      <div class="Page_Identity">
+         <div class="Page_Track">
+            <ul>
+               <li class="HeaderName">Home</li>
+               <li class="arrow">>></li>
+               <li class="LinkName"><a [routerLink]="['/List_Product']">Product List</a></li>
+               <li class="arrow">>></li>
+               <li>Product</li>
+            </ul>
+         </div>
+      </div>
+      <form>
+         <div class="row">
+            <div class="col-sm-3" >
+               <!-- Left Section -->
+               <div class="left_section" style="background-color:#fff;margin-bottom:150px; height:100%">
+                  <div class="row">
+                     <div class="col-sm-12 text-center">
+                        <img src="../../../../assets/images/basic/cpu.png" alt="Company Image" style="width:150px; height:150px; margin-top: 40px; box-shadow:0 1px 5px 1px rgba(0,0,0,.2);">
+                     </div>
+                     <div class="col-sm-12 text-center Name_Section">
+                        <h3>CPU</h3>
+                     </div><br><br>
                   </div>
-                <br>
-             </div>
-          </div>
-          <div class="row" style="margin-top:20px;">
-             <div class="col-sm-12 text-right">
-             </div>
-          </div>
-       </form>
-    </div>
- </div>
+               </div>
+            </div>
+            <div class="col-sm-9">
+               <div class="Company_Details">
+                  <div>
+                     <span><button mat-raised-button color="primary" class="pull-Left"> Update Quantity </button></span>
+                     <span><button mat-raised-button color="primary" class="pull-right Sale_Order"> Sale Order </button></span>
+                     <span><button mat-raised-button color="primary" class="pull-right Purchase_Order"> Purchase Order </button></span>
+                     <span><button mat-raised-button color="primary" class="pull-right On_Hand"> On Hand </button></span>
+                  </div><br><br>
+                  <div class="row">
+                     <div class="col-sm-4" >
+                        <div class="view_item">
+                           <div class="Static"> Name </div>
+                           <div class="dots"> : </div>
+                           <div class="Data"> xxx </div>
+                        </div>
+                        <div class="view_item">
+                           <div class="Static"> Item Code </div>
+                           <div class="dots"> : </div>
+                           <div class="Data"> IE757 </div>
+                        </div>
+                        <div class="view_item">
+                           <div class="Static">Description</div>
+                           <div class="dots"> : </div>
+                           <div class="Data"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. </div>
+                        </div>
+                     </div>
+                     <div class="col-sm-4" >
+                        <div class="view_item">
+                           <div class="Static"> HSN Code </div>
+                           <div class="dots"> : </div>
+                           <div class="Data"> yy536 </div>
+                        </div>
+                        <div class="view_item">
+                           <div class="Static"> Price </div>
+                           <div class="dots"> : </div>
+                           <div class="Data"> 3000 </div>
+                        </div>
+                     </div>
+                     <div class="col-sm-4" >
+                        <div class="view_item">
+                           <div class="Static">Unit Of Mesure</div>
+                           <div class="dots"> : </div>
+                           <div class="Data"> 10 </div>
+                        </div>
+                        <div class="view_item">
+                           <div class="Static">Product Type</div>
+                           <div class="dots"> : </div>
+                           <div class="Data"> Serviceable </div>
+                        </div>
+                     </div>
+                  </div> 
+               </div>  
+            </div>
+         </div>
+      </form>
+   </div>
+</div>
  

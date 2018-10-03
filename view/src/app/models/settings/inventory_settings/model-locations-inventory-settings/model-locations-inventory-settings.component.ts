@@ -7,8 +7,8 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
   styleUrls: ['./model-locations-inventory-settings.component.css']
 })
 export class ModelLocationsInventorySettingsComponent implements OnInit {
-
-  constructor(public bsModalRef: BsModalRef) { }
+   Type: string;
+   constructor(public bsModalRef: BsModalRef) { }
 
   ngOnInit() {
   }

@@ -1,45 +1,85 @@
+<!-- Page Section -->
 <div class="page_section">
-      <div class="container-fluid">
-         <!-- Page Identity -->
-         <div class="Page_Identity">
-            <div class="Page_Track">
-               <ul>
-               <li class="HeaderName">Home</li>
-               <li class="arrow">>></li>
-               <li class= "LinkName">Inventory</li>
-               <li class="arrow">>></li>
-               <li >Configuration</li>
-               </ul>
-            </div>
+   <div class="container-fluid">
+      <!-- Page Identity -->
+      <div class="Page_Identity">
+         <div class="Page_Track">
+            <ul>
+            <li class="HeaderName">Home</li>
+            <li class="arrow">>></li>
+            <li class= "LinkName">Inventory</li>
+            <li class="arrow">>></li>
+            <li >Configuration</li>
+            </ul>
          </div>
-         <div class="container-content">
-            <div class="content_gap">
-                  <h5 class="Header">Inventory</h5>
-               <div class="row">
-                  <div class="col-sm-4 Left_Date">
-                     <p>Multi Locations</p>
-                  </div>
-                  <div class="col-sm-6 Right_data">
-                     <form>
-                        <input type="radio" name="radiobutton"> Do Not Record Internal Moves Within a Ware House <br>
-                        <input type="radio" name="radiobutton"> Manage Several Locations per ware House<br>
-                     </form>
-                  </div>
-               </div><br>
-               <div class="row">
-                  <div class="col-sm-4 Left_Date">
-                     <p>DropShipping</p>
-                  </div>
-                  <div class="col-sm-6 Right_data">
-                     <form>
-                        <input type="radio" name="radiobutton"> Suppliers Always Deliver to Your Ware House<br>
-                        <input type="radio" name="radiobutton">Allow Suppliers To Deliver Directly To Your Customers<br>
-                     </form>
-                  </div>
-               </div><br>
-            </div>
+      </div>
+      <!-- Container Content -->
+      <div class="container-content">
+         <div class="content_gap">
+            <div class="row">
+               <div class="col-sm-4 Left_Date">
+                  <p>Multiple WareHouse</p>
+               </div>
+               <div class="col-sm-6 Right_data">
+                  <mat-radio-group>
+                     <mat-radio-button value="1">Yes</mat-radio-button><br>
+                     <mat-radio-button value="2">No</mat-radio-button>
+                  </mat-radio-group>
+               </div>
+            </div><br><hr>
+            <h5 class="Header">Sales</h5>
+            <div class="row">
+               <div class="col-sm-4 Left_Date">
+                  <p>Update Stock By</p>
+               </div>
+               <div class="col-sm-6 Right_data">
+                  <mat-radio-group>
+                     <mat-radio-button value="1">Sale Order</mat-radio-button><br>
+                     <mat-radio-button value="2">Delivery Order</mat-radio-button>
+                  </mat-radio-group>
+               </div>
+            </div><br><hr>
+            <div class="row">
+               <div class="col-sm-4 Left_Date">
+                  <p>Create Back Order</p>
+               </div>
+               <div class="col-sm-6 Right_data">
+                  <mat-radio-group>
+                     <mat-radio-button value="1">Yes</mat-radio-button><br>
+                     <mat-radio-button value="2">No</mat-radio-button>
+                  </mat-radio-group>
+               </div>
+               </div><br><hr>
+            <h5 class="Header">Purchase</h5>
+            <div class="row">
+               <div class="col-sm-4 Left_Date">
+                  <p>Update Stock By</p>
+               </div>
+               <div class="col-sm-6 Right_data">
+                  <!-- <form>
+                     <input type="radio" name="radiobutton" checked="true"> Purchase Order<br>
+                     <input type="radio" name="radiobutton"> To Receive<br>
+                  </form> -->
+                  <mat-radio-group>
+                     <mat-radio-button value="1">Purchase Order</mat-radio-button><br>
+                     <mat-radio-button value="2">To Receive</mat-radio-button>
+                  </mat-radio-group>
+               </div>
+            </div><br><hr>
+            <div class="row">
+               <div class="col-sm-4 Left_Date">
+                  <p>Create Back Order</p>
+               </div>
+               <div class="col-sm-6 Right_data">
+                  <mat-radio-group>
+                     <mat-radio-button value="1">Yes</mat-radio-button><br>
+                     <mat-radio-button value="2">No</mat-radio-button>
+                  </mat-radio-group>
+               </div>
+            </div><br><hr>
          </div>
       </div>
    </div>
+</div>
    
 

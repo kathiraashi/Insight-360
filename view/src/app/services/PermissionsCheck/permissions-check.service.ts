@@ -9,8 +9,8 @@ export class PermissionsCheckService {
   constructor() { }
 
    public SubModulePermissionValidate(SubModuleKey) {
-      if (sessionStorage.getItem('Token')) {
-         const SessionData = sessionStorage.getItem('Token');
+      if (localStorage.getItem('Token')) {
+         const SessionData = localStorage.getItem('Token');
          const Security = (SessionData.slice(0, -2)).slice(-32);
          const encData = (SessionData.slice(0, -34));
          const CryptoBytes  = CryptoJS.AES.decrypt(encData, Security);
@@ -24,7 +24,7 @@ export class PermissionsCheckService {
          });
          return SubModule;
       } else {
-         sessionStorage.clear();
+         localStorage.clear();
          return {Status: false};
       }
    }

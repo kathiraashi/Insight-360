@@ -8,18 +8,18 @@
             <ul>
                <li class="HeaderName">Home</li>
                <li class="arrow">>></li>
-               <li class="LinkName" [routerLink]="['/List_Call_Schedule']">Call Schedule List</li>
+               <li class="LinkName"><a [routerLink]="['/List_Call_Schedule']">Call Schedule List</a></li>
                <li class="arrow">>></li>
                <li>Call Schedule</li>
             </ul>
          </div>
       </div>
       <form>
-         <div class="row">
-            <!-- Company details -->
-            <div class="Company_Details">
-               <br>
-               <div class="col-sm-12">
+         <!-- Company details -->
+         <div class="Company_Details">
+            <br>
+            <div class="row">
+               <div class="col-sm-6">
                   <div class="view_item">
                      <div class="Static">Company Name </div>
                      <div class="dots"> : </div>
@@ -30,6 +30,8 @@
                      <div class="dots"> : </div>
                      <div class="Data"> 28.05.18 & 4pm</div>
                   </div>
+               </div>
+               <div class="col-sm-6">
                   <div class="view_item">
                      <div class="Static">Contact </div>
                      <div class="dots"> : </div>
@@ -42,10 +44,6 @@
                   </div>
                </div>
                <br>
-            </div>
-         </div>
-         <div class="row" style="margin-top:20px;">
-            <div class="col-sm-12 text-right">
             </div>
          </div>
       </form>

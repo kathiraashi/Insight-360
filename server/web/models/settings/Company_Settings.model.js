@@ -121,7 +121,6 @@ var VarItInfo= mongoose.model('Itinfo', ItinfoSchema, 'Company_Itinfo');
                                  State_Name: { type : String } },
                         City: {  _id: { type: Schema.Types.ObjectId, ref: 'Global_City' },
                                  City_Name: { type : String } } },
-   Address: { type : String },
    Company_Id: { type: Schema.Types.ObjectId, ref: 'Company_Management', required : true },
    Created_By : { type: Schema.Types.ObjectId, ref: 'User_Management', required : true },
    Last_Modified_By: { type: Schema.Types.ObjectId, ref: 'User_Management', required : true },
@@ -133,6 +132,24 @@ var VarItInfo= mongoose.model('Itinfo', ItinfoSchema, 'Company_Itinfo');
    var VarBranch = mongoose.model('Branches', BranchSchema, 'Company_Branch');
 
 
+   // Contact Info Schema
+   var ContactInfoSchema = mongoose.Schema({
+      Contact_Person_Name: { type : String , required : true},
+      Branches: { type : Schema.Types.ObjectId , ref : 'Branches', required : true},
+      Departments: { type : Schema.Types.ObjectId , ref : 'Departments', required : true},
+      Phone: { type : String , required : true},
+      Email: { type : String , required : true},
+      Company_Id: { type: Schema.Types.ObjectId, ref: 'Company_Management', required : true },
+      Created_By : { type: Schema.Types.ObjectId, ref: 'User_Management', required : true },
+      Last_Modified_By: { type: Schema.Types.ObjectId, ref: 'User_Management', required : true },
+      Active_Status: { type : Boolean , required : true},
+      If_Deleted: { type : Boolean , required : true }
+      },
+      { timestamps: true }
+      );
+      var VarContactInfo = mongoose.model('ContactInfo', ContactInfoSchema, 'Company_Contact_Info');
+   
+
 
    module.exports = {
       RegistrationTypeSchema : VarRegistrationType,
@@ -142,5 +159,6 @@ var VarItInfo= mongoose.model('Itinfo', ItinfoSchema, 'Company_Itinfo');
       EsiinfoSchema : VarEsiInfo,
       PtinfoSchema : VarPtInfo,
       ItinfoSchema : VarItInfo,
-      BranchSchema : VarBranch
+      BranchSchema : VarBranch,
+      ContactInfoSchema : VarContactInfo
    }

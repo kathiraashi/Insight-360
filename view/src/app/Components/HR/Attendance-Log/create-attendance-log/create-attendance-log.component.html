@@ -1,4 +1,4 @@
-
+<!-- page -->
 <div class="page" style="margin-top:100px;">
    <div class="container-fluid">
       <!-- page identity -->
@@ -7,59 +7,55 @@
             <ul>
                <li class="HeaderName">Home</li>
                <li class="arrow">>></li>
-               <li class="HeaderName">HR</li>
+               <li class="LinkName"><a [routerLink]="['/List_Attendance_Log']">Attendance Log List</a></li>
                <li class="arrow">>></li>
-               <li>Attendance Log</li>
-            </ul>
+               <li>Attendance Log Create</li>
+            </ul> 
          </div>
       </div>
-      <div class="row">
-         <!-- Company details -->
-         <div class="Company_Details">
-            <div class="row">
-               <div class="col-sm-4 Form_Select">
-                 <label>Employee Name:</label>
-                  <select>
-                     <option disabled> Employee Name</option>
-                     <option> Employee Name</option>
-                     <option>Employee Name </option>
-                     <option> Employee Name </option>
-                  </select>
-               </div>
-               <div class="col-sm-4 Form_Input">
-                 <label>Code:</label>
-                 <input type="text">
-               </div>
-               <div class="col-sm-4 Form_Input">
-                 <label>Date:</label>
-                 <input type="text">
-               </div>
-               <div class="col-sm-4 Form_Input">
-                 <label>In Time:</label>
-                 <input type="text">
-               </div>
-               <div class="col-sm-4 Form_Input">
-                 <label>Out Time:</label>
-                 <input type="text">
-               </div>
-               <div class="col-sm-4 Form_Select">
-                 <label>Attendance Code:</label>
-                 <select>
-                  <option disabled> A</option>
-                  <option> P</option>
-                  <option>H </option>
-                  <option> W </option>
-                </select>
-               </div>
-              </div>
-         </div>
-      </div>
-      <div class="row" style="margin-top:20px;"> 
-         <div class="col-sm-12 text-right">
-               <button mat-raised-button color="primary" style = "bottom: 20px;"> Submit </button>
+      <!-- Attendance details -->
+      <div class="Company_Details">
+         <div class="row">
+            <div class="col-sm-4 Form_Select">
+               <label>Employee Name:</label>
+               <ng-select class="NgSelect" 
+                  [items]="_EmployeeName" 
+                  [searchable]="true" 
+                  placeholder="Employee Name">
+               </ng-select>
+            </div>
+            <div class="col-sm-4 Form_Input">
+               <label>Code:</label>
+               <input type="text">
+            </div>
+            <div class="col-sm-4 Form_Input">
+               <label>Date:</label>
+               <input matInput [matDatepicker]="picker" (click)="picker.open()" placeholder="Date">
+               <mat-datepicker #picker></mat-datepicker>
+            </div>
+            <div class="col-sm-4 Form_Input">
+               <label>In Time:</label>
+               <input type="text">
+            </div>
+            <div class="col-sm-4 Form_Input">
+               <label>Out Time:</label>
+               <input type="text">
+            </div>
+            <div class="col-sm-4 Form_Select">
+               <label>Attendance Code:</label>
+               <ng-select class="NgSelect" 
+               [items]="_AttendanceCode" 
+               [searchable]="true" 
+               placeholder="Attendance Code">
+            </ng-select>
+            </div>
          </div>
       </div>
    </div>
+</div>
+<!-- Footer -->
+<div class="Footer">
+   <button mat-raised-button color="primary" style = "top: 5px;"> Submit </button>
 </div>
          
       

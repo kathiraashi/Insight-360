@@ -1,6 +1,6 @@
-<div class="Modal_Content" *ngIf="_Data?.Type && (_Data?.Type === 'Create' || _Data?.Type === 'Edit')">
+<div class="Modal_Content" *ngIf="_Data['Type'] && (_Data['Type'] === 'Create' || _Data['Type'] === 'Edit')">
   <div class="Modal_Header">
-     <p>{{_Data?.Type}} Registration Info</p>
+     <p>{{_Data['Type']}} Registration Info</p>
      <span *ngIf="!Uploading" data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
  </div>
  <form [formGroup]="Form" (ngSubmit)="onSubmit()">
@@ -33,15 +33,15 @@
   </div>
   <div class="Model_Footer">
     <button type="submit" [disabled]="Form.status !== 'VALID' || Uploading" mat-raised-button color="primary">
-      <span *ngIf="_Data?.Type === 'Create' && !Uploading">Submit</span>
-      <span *ngIf="_Data?.Type === 'Edit' && !Uploading">Update</span>
+      <span *ngIf="_Data['Type'] === 'Create' && !Uploading">Submit</span>
+      <span *ngIf="_Data['Type']  === 'Edit' && !Uploading">Update</span>
       <span *ngIf="Uploading" class="UploadingBtn"> <i class="fa fa-refresh fa-spin"></i> Loading... </span>
    </button>
 </div>
 </form>
 </div>
 
-<div class="Modal_Content" *ngIf="_Data?.Type && _Data?.Type === 'View'">
+<div class="Modal_Content" *ngIf="_Data['Type']  && _Data['Type'] === 'View'">
     <div class="Modal_Header">
        <p>View Registration Info</p>
        <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
@@ -50,41 +50,41 @@
       <div class="view_item">
          <div class="Static"> Registration Type </div>
          <div class="dots"> : </div>
-         <div class="Data"> {{_Registration_Info.RegistrationType?.Registration_Type}}  </div>
+         <div class="Data"> {{_Registration_Info['RegistrationType']?.Registration_Type}}  </div>
       </div>
       <div class="view_item">
          <div class="Static"> Incorporate Date </div>
          <div class="dots"> : </div>
-         <div class="Data">  {{_Registration_Info.Incorporate_Date}} </div>
+         <div class="Data">  {{_Registration_Info['Incorporate_Date']}} </div>
       </div>
       <div class="view_item">
          <div class="Static"> Number </div>
          <div class="dots"> : </div>
-         <div class="Data">  {{_Registration_Info.Number}} </div>
+         <div class="Data">  {{_Registration_Info['Number']}} </div>
       </div>
       <div class="view_item">
          <div class="Static">Created By </div>
          <div class="dots"> : </div>
-         <div class="Data"> {{_Registration_Info.Created_By?.Name}}
+         <div class="Data"> {{_Registration_Info['Created_By']?.Name}}
             <!-- <span class="Badge"> {{Data.Created_By.User_Type.User_Type}} </span> -->
          </div>
       </div>
       <div class="view_item">
          <div class="Static">Last Modified By </div>
          <div class="dots"> : </div>
-         <div class="Data">  {{_Registration_Info.Last_Modified_By?.Name}}
+         <div class="Data">  {{_Registration_Info['Last_Modified_By']?.Name}}
             <!-- <span class="Badge"> {{Data.Last_Modified_By.User_Type.User_Type}} </span> -->
          </div>
       </div>
       <div class="view_item">
          <div class="Static"> Created Date </div>
          <div class="dots"> : </div>
-         <div class="Data"> {{_Registration_Info.createdAt | date:'medium' }} </div>
+         <div class="Data"> {{_Registration_Info['createdAt'] | date:'medium' }} </div>
       </div>
       <div class="view_item">
          <div class="Static">Last Modified Date  </div>
          <div class="dots"> : </div>
-         <div class="Data"> {{_Registration_Info.updatedAt | date:'medium' }} </div>
+         <div class="Data"> {{_Registration_Info['updatedAt'] | date:'medium' }} </div>
       </div>
     </div>
    </div>

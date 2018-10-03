@@ -1,3 +1,4 @@
+<!-- Page -->
 <div class="page" style="margin-top:100px;">
    <div class="container-fluid">
       <!-- Page Identity -->
@@ -6,51 +7,71 @@
             <ul>
                <li class="HeaderName">Home</li>
                <li class="arrow">>></li>
-               <li class= "LinkName">Purchase</li>
+               <li class= "LinkName"><a [routerLink]="['/Purchase_Quotations_List']">Purchase Quotations List</a></li>
                <li class="arrow">>></li>
-               <li >Purchase Quotations</li>
+               <li >Purchase Quotations View</li>
             </ul>
          </div>
       </div>
       <form>
-         <div class="row">
-            <!-- Company Details -->
-            <div class="Company_Details">
-               <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Purchase 
-                  <span style="color:#516570;font-size:20px;font-weight: 600;">Quotations</span>
-                  <button class="create_invoice" mat-raised-button> Confirm Order </button>
-               </h5>
-               <br>
-               <div class="col-sm-12">
-                  <div class="row">
-                     <div class="col-sm-6 text-right Style"> <b> Date: </b></div>
-                     <div class="col-sm-6 text-left Style1">  25/04/17 </div>
+         <!-- Company Details -->
+         <div class="Company_Details">
+            <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Purchase 
+               <span style="color:#516570;font-size:20px;font-weight: 600;">Quotations</span>
+               <button mat-raised-button color="primary" class="pull-right"> Confirm Order </button>
+               <button mat-raised-button color="primary" class="pull-right Edit"> Edit </button><br>
+            </h5>
+            <br>
+            <div class="row">
+               <div class="col-sm-4">
+                  <div class="view_item">
+                     <div class="Static">Vendor Name</div>
+                     <div class="dots"> : </div>
+                     <div class="Data">  xxxx </div>
                   </div>
-                  <div class="row">
-                     <div class="col-sm-6 text-right Style"> <b> Company Name : </b></div>
-                     <div class="col-sm-6 text-left Style1">  aashi </div>
+                  <div class="view_item">
+                     <div class="Static"> Purchase Request</div>
+                     <div class="dots"> : </div>
+                     <div class="Data"> Purchase Request</div>
                   </div>
-                  <div class="row"> 
-                     <div class="col-sm-6 text-right Style"> <b> Contact Person : </b></div>
-                     <div class="col-sm-6 text-left Style1">  Contact Person </div>
+                  <div class="view_item">
+                     <div class=" Static">Subject</div>
+                     <div class="dots"> : </div>
+                     <div class=" Data"> Lorem ipsum dolor sit amet consectetur adipisicing elit</div>
                   </div>
-                  <div class="row">
-                     <div class="col-sm-6 text-right Style"> <b> Quote Ref No: </b></div>
-                     <div class="col-sm-6 text-left Style1"> 123 </div>
+               </div>
+               <div class="col-sm-4">
+                  <div class="view_item"> 
+                     <div class="Static">Contact Person</div>
+                     <div class="dots"> : </div>
+                     <div class="Data">  Contact Person </div>
                   </div>
-                  <div class="row">
-                     <div class="col-sm-6 text-right Style"> <b> Valid Till: </b></div>
-                     <div class="col-sm-6 text-left Style1"> 25/05/17</div>
+                  <div class="view_item">
+                     <div class="Static"> Date</div>
+                     <div class="dots"> : </div>
+                     <div class="Data">  25/04/17 </div>
                   </div>
-                  <div class="row">
-                     <div class="col-sm-6 text-right Style"> <b> Purchase Request: </b></div>
-                     <div class="col-sm-6 text-left Style1"> Purchase Request</div>
+               </div>
+               <div class="col-sm-4">
+                  <div class="view_item">
+                     <div class="Static">Quote Ref No</div>
+                     <div class="dots"> : </div>
+                     <div class="Data"> 123 </div>
+                  </div>
+                  <div class="view_item">
+                     <div class=" Static">Valid Till</div>
+                     <div class="dots"> : </div>
+                     <div class=" Data"> 25/05/17</div>
                   </div>
                </div>
             </div>
-              <!-- Tabs -->
-         <div class="Company_Details">
-               <div class="Tabs">
+         </div>
+         <br>
+         <!-- Tabs -->
+         <div class="row">
+            <div class="col-sm-12">
+               <div class="Company_Details">
+                  <div class="Tabs">
                      <div class="Tab" [ngClass]="{'active': Active_Tab === 'Product_Details'}" (click)="Active_Tab_Change('Product_Details')">
                         <span >Product Details</span>
                      </div>
@@ -58,89 +79,76 @@
                         <span >Terms & Conditions</span>
                      </div>
                   </div>
-            <!-- <span><button class="Add_Product_Button">Add Product</button></span><br> -->
-            <br>
-            <!-- Product details -->
-            <div class="Product_Details" *ngIf="Active_Tab === 'Product_Details'">
-               <table class="table_section">
-                  <thead class="table_head">
-                     <tr>
-                        <th>S.No</th>  
-                        <th>Product</th>  
-                        <th>Description</th>  
-                        <th>Price</th>  
-                        <th>Quantity</th>  
-                        <th>Tax</th> 
-                        <th>Total</th> 
-                        <th>Action</th> 
-                     </tr>
-                  </thead>
-                  <tbody>
-                     <tr>
-                        <td  colspan="8"><span> No Records found</span></td>
-                     </tr>
-                  </tbody>
-               </table><br>
-               <div class="row">
-                  <div class="col-sm-8">
-                  </div>
-                  <div class="col-sm-2">
-                     <div class="Title">
-                        <h5>SubTotal:</h5>
+                  <!-- <span><button class="Add_Product_Button">Add Product</button></span><br> -->
+                  <br>
+                  <!-- Product details -->
+                  <div class="Product_Details" *ngIf="Active_Tab === 'Product_Details'">
+                     <table class="table_section">
+                        <thead class="table_head">
+                           <tr>
+                              <th>S.No</th>  
+                              <th>Product</th>  
+                              <th>Description</th>  
+                              <th>Quantity</th> 
+                              <th>Price</th>  
+                              <th>Tax</th> 
+                              <th>Total</th> 
+                              <th>Action</th> 
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td  colspan="8"><span> No Records found</span></td>
+                           </tr>
+                        </tbody>
+                     </table><br>
+                     <!-- Result Section -->
+                     <div class="row" style="margin-top: 20px;">
+                        <div class="col-sm-8">
+                        </div>
+                        <div class="col-sm-4">
+                           <div class="ResultSection">
+                              <span class="Title"> Sub Total </span>
+                              <span class="Split"> : </span>
+                              <span class="Value"> Rs.0000 </span>
+                           </div>
+                           <div class="ResultSection">
+                              <span class="Title"> Total Tax</span>
+                              <span class="Split"> : </span>
+                              <span class="Value"> Rs.0000 </span>
+                           </div>
+                           <div class="ResultSection">
+                              <span class="Title"> Total </span>
+                              <span class="Split"> : </span>
+                              <span class="Value"> Rs.0000 </span>
+                           </div>
+                        </div>
                      </div>
                   </div>
-                  <div class="col-sm-2">
-                     <div class="Value">
-                        <h5>RS. 0</h5>
+                  <!-- Quote Terms -->
+                  <div class="Done_Section" *ngIf="Active_Tab === 'quote_Terms'">
+                     <div class="row">
+                        <div class="col-sm-4">
+                           <div class="view_item">
+                              <div class="Static"> Quote Terms </div>
+                              <div class="dots"> : </div>
+                              <div class="Data"> Term-1 </div>
+                           </div>
+                        </div>
+                        <div class="col-sm-4">
+                           <div class="view_item">
+                              <div class="Static"> Notes </div>
+                              <div class="dots"> : </div>
+                              <div class="Data"> Lorem ipsum dolor sit, amet consectetur adipisicing elit. </div>
+                           </div>
+                        </div>
                      </div>
-                  </div>
-                  <div class="col-sm-8">
-                  </div>
-                  <div class="col-sm-2">
-                     <div class="Title">
-                        <h5>Total Tax:</h5>
-                     </div>
-                  </div>
-                  <div class="col-sm-2">
-                     <div class="Value">
-                        <h5>RS. 0</h5>
-                     </div>
-                  </div>
-                  <div class="col-sm-8">
-                  </div>
-                  <div class="col-sm-2">
-                     <div class="Title">
-                        <h5>Total:</h5>
-                     </div>
-                  </div>
-                  <div class="col-sm-2">
-                     <div class="Value">
-                        <h5>RS. 0</h5>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <!-- Quote Terms -->
-            <div class="Done_Section" *ngIf="Active_Tab === 'quote_Terms'">
-               <div class="row">
-                  <div class="col-sm-4 Form_Select">
-                     <select>
-                        <option checked>Select Quote Terms</option>
-                        <option> QuoteTermOptions-One</option>
-                        <option> QuoteTermOptions-Two </option>
-                        <option> QuoteTermOptions-Three </option>
-                        <option> QuoteTermOptions-Four </option>
-                        <option> QuoteTermOptions-Five </option>
-                     </select>
-                  </div>
-                  <div class="col-sm-4 Form_TextArea" >
-                     <textarea  type="text" row="4" placeholder="Notes"></textarea>
                   </div>
                </div>
             </div>
          </div>
-            <!-- Table section -->
-            <!-- <div class="Table_Section">
+         <!-- Table section -->
+         <!-- <div class="Table_Section">
                <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Product
                   <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span>
                 </h5>
@@ -227,9 +235,6 @@
                   </div>
                </div>
             </div> -->
-         </div>
-         <div class="row" style="margin-top:20px;">
-         </div>
       </form>
    </div>
 </div>

@@ -8,6 +8,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
   styleUrls: ['./model-payments-customers-view.component.css']
 })
 export class ModelPaymentsCustomersViewComponent implements OnInit {
+   _PaymentMethod: any[] =  ['Bank', 'Cash'];
 
   Type: String;
   constructor(public bsModalRef: BsModalRef) {}

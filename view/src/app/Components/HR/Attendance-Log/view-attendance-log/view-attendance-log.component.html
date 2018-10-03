@@ -1,3 +1,4 @@
+<!-- Page -->
 <div class="page" style="margin-top:100px;">
    <div class="container-fluid">
       <!-- page Identity -->
@@ -6,18 +7,17 @@
             <ul>
                <li class="HeaderName">Home</li>
                <li class="arrow">>></li>
-               <li class="HeaderName">HR</li>
+               <li class="LinkName"><a [routerLink]="['/List_Attendance_Log']">Attendance Log List</a></li>
                <li class="arrow">>></li>
-               <li>Attendance Log</li>
+               <li>Attendance Log View</li>
             </ul>
          </div>
       </div>
       <form>
-         <div class="row">
-            <!-- Company details -->
-            <div class="Company_Details">
-               <br>
-               <div class="col-sm-12">
+         <div class="Company_Details">
+            <br>
+            <div class="row">
+               <div class="col-sm-4">
                   <div class="view_item">
                      <div class="Static">Employee Name </div>
                      <div class="dots"> : </div>
@@ -28,6 +28,8 @@
                      <div class="dots"> : </div>
                      <div class="Data"> Code</div>
                   </div>
+               </div>
+               <div class="col-sm-4">
                   <div class="view_item">
                      <div class="Static">Date </div>
                      <div class="dots"> : </div>
@@ -38,6 +40,8 @@
                      <div class="dots"> : </div>
                      <div class="Data"> 9am </div>
                   </div>
+               </div>
+               <div class="col-sm-4">
                   <div class="view_item">
                      <div class="Static">Out Time </div>
                      <div class="dots"> : </div>
@@ -49,12 +53,8 @@
                      <div class="Data"> P </div>
                   </div>
                </div>
-               <br>
             </div>
-         </div>
-         <div class="row" style="margin-top:20px;">
-            <div class="col-sm-12 text-right">
-            </div>
+            <br>
          </div>
       </form>
    </div>

@@ -9,6 +9,9 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 })
 export class ModelContactCustomersViewComponent implements OnInit {
 
+   _Title: any[] =  ['Mr.', 'Miss.', 'Mrs.', 'Dr.'];
+   _ContactRole: any[] =  ['Person-1', 'Person-2', 'Person-3'];
+
   Type: string;
   constructor(public bsModalRef: BsModalRef) {}
 

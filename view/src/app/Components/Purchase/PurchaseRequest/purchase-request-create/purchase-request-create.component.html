@@ -1,3 +1,4 @@
+<!-- Page -->
 <div class="page" style="margin-top:100px;">
    <div class="container-fluid">
       <!-- Page Identity -->
@@ -6,42 +7,37 @@
             <ul>
                <li class="HeaderName">Home</li>
                <li class="arrow">>></li>
-               <li class= "LinkName">Purchase</li>
+               <li class= "LinkName"><a [routerLink]="['/purchase_request_list']">Purchase Request List</a></li>
                <li class="arrow">>></li>
-               <li >Purchase Request</li>
+               <li >Purchase Request Create</li>
             </ul>
          </div>
       </div>
       <form>
          <div class="row">
-            <!-- Company details -->
-            <div class="Company_Details">
-               <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Purchase 
-                  <span style="color:#516570;font-size:20px;font-weight: 600;">Request</span>
-               </h5>
-               <br>
-               <div class="col-sm-12">
+            <div class="col-sm-12">
+               <!-- Company details -->
+               <div class="Company_Details">
+                  <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Request 
+                     <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span>
+                  </h5>
+                  <br>
                   <div class="row">
-                  <div class="col-sm-5 Form_Input">
-                     <label>Request No:</label>
-                     <br>
-                     <input type="text">
-                  </div>
-                  <div class="col-sm-5 Form_Input">
-                     <label>Request Date:</label>
-                     <br>
-                     <input type="text">
-                  </div>
-                  <div class="col-sm-5 Form_Input">
-                     <label>Requested By:</label>
-                     <br>
-                     <input type="text" readonly="true">
-                  </div>
-                  <div class="col-sm-5 Form_TextArea">
-                     <label>Description:</label>
-                     <br>
-                     <textarea class="Description" rows="3"></textarea>
-                  </div>
+                     <div class="col-sm-4 Form_Input">
+                        <label>Request No:</label>
+                        <br>
+                        <input type="text">
+                     </div>
+                     <div class="col-sm-4 Form_Input">
+                        <label>Request Date:</label>
+                        <input matInput [matDatepicker]="picker" (click)="picker.open()" placeholder="Request Date">
+                        <mat-datepicker #picker></mat-datepicker>
+                     </div>
+                     <div class="col-sm-4 Form_Input">
+                        <label>Requested By:</label>
+                        <br>
+                        <input type="text" readonly="true">
+                     </div>
                   </div>
                </div>
             </div>
@@ -49,7 +45,7 @@
             <div class="Table_Section">
                <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Product
                   <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span>
-                  <span><button class="Add_Product_Button">Add Product</button></span>
+                  <button mat-raised-button color="primary" class="pull-right"> Add Product </button><br>
                </h5>
                <br>
                <table class="table_section">
@@ -61,7 +57,6 @@
                         <th>Required Quantity</th>
                         <th>Required Date</th>
                         <th>Approved Quantity</th>
-                        <th>Tax</th>
                         <th>Status</th>
                         <th class="Action">Action</th>
                      </tr>
@@ -70,19 +65,14 @@
                      <tr>
                         <td >1</td>
                         <td class="Form_Select">
-                           <select>
-                              <option checked>Select one Product</option>
-                              <option> Product1</option>
-                              <option> Product2</option>
-                              <option> Product3</option>
-                              <option> Product4</option>
-                           </select>
+                           <ng-select class="NgSelect" 
+                              [items]="_Product" 
+                              [searchable]="true" 
+                              placeholder="Product">
+                           </ng-select>
                         </td>
                         <td class="Form_TextArea">
                            <textarea class="Description" rows="2"></textarea>
-                        </td>
-                        <td class="Form_Input">
-                           <input type="text">
                         </td>
                         <td class="Form_Input">
                            <input type="text">
@@ -107,11 +97,10 @@
                <br>
             </div>
          </div>
-         <div class="row" style="margin-top:20px;">
-            <div class="col-sm-12 text-right">
-               <button mat-raised-button color="primary" > Submit </button>
-            </div>
-         </div>
       </form>
    </div>
+</div>
+<!-- Footer -->
+<div class="Footer">
+   <button mat-raised-button color="primary" style = "top: 5px;"> Submit </button>
 </div>

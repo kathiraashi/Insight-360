@@ -1,49 +1,48 @@
-<div class="about_section">
-  <div class="row About_Section">
-     <div class="col-sm-12">
-        <div class="row">
-           <div class="col-sm-4 Form_Input">
-               <label>GST No:</label>
-            </div>
-           <div class="col-sm-4 Form_Input">
-              <input type="text">
-           </div>
-        </div>
-        <div class="row">
-         <div class="col-sm-4 Form_Input">
-             <label>TIN No:</label>
-          </div>
-         <div class="col-sm-4 Form_Input">
-            <input type="text">
-         </div>
-      </div>
-      <div class="row">
-         <div class="col-sm-4 Form_Input">
-             <label>CST No:</label>
-          </div>
-         <div class="col-sm-4 Form_Input">
-            <input type="text">
-         </div>
-      </div>
-      <div class="row">
-         <div class="col-sm-4 Form_Input">
-             <label>Service Tax Code:</label>
-          </div>
-         <div class="col-sm-4 Form_Input">
-            <input type="text">
-         </div>
-      </div>
-      <div class="row">
-         <div class="col-sm-4 Form_Input">
-             <label>PAN No:</label>
-          </div>
-         <div class="col-sm-4 Form_Input">
-            <input type="text">
-         </div>
-      </div>
+<!-- Header Part -->
+<div class="row header_part">
+   <div class="col-sm-6">
+      <button class="Create_Button" mat-raised-button (click)="RegistrationType()"> + Create </button>
    </div>
-   </div>
+   <!-- <div class="col-sm-6">
+      <div class="Search_Section">
+         <input type="text" placeholder="Search.." name="search">
+         <i class="material-icons">search</i>
+      </div>
+   </div> -->
 </div>
-
-
- 
+<!-- Table Section -->
+<div class="Table_Section">
+   <table>
+      <thead>
+         <tr>
+            <th>S.no</th>
+            <th>Type</th>
+            <th>Value </th>
+         </tr>
+      </thead>
+      <tbody>
+         <tr>
+            <td>
+               <span class="S_no"> 1 </span>
+            </td>
+            <td>
+               <span class="Style_1">GST</span>
+            </td>
+            <td>
+               <span class="Style_1">234 </span>
+            </td>
+         </tr>
+         <tr>
+            <td>
+               <span class="S_no"> 2 </span>
+            </td>
+            <td>
+               <span class="Style_1">PAN</span>
+            </td>
+            <td>
+               <span class="Style_1">4356547 </span>
+            </td>
+         </tr>
+      </tbody>
+   </table>
+</div>

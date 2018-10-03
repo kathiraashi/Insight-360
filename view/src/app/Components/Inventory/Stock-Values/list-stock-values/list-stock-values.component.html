@@ -1,0 +1,148 @@
+<!-- Main Section -->
+<div class="Main_Section">
+   <div class="page_section">
+      <div class="container-fluid">
+         <!-- Page Identity -->
+         <div class="Page_Identity">
+            <div class="Page_Track">
+               <ul >
+                  <li class="HeaderName">Inventory</li>
+                  <li class="arrow">>></li>
+                  <li> Stock Values</li>
+               </ul>
+            </div>
+         </div>
+         <!-- Header Part -->
+         <div class="row header_part">
+            <div class="col-sm-6">
+             </div>
+            <div class="col-sm-6">
+               <div class="Search_Section">
+                  <input type="text" placeholder="Search.." name="search">
+                  <i class="material-icons">search</i>
+               </div>
+            </div>
+         </div>
+         <!-- Table section -->
+         <div class="Table_Section">
+            <table>
+               <thead>
+                  <tr>
+                     <th>S.no</th>
+                     <th>WareHouse</th>
+                     <th>Product</th>
+                     <th>Quantity</th>
+                     <th>Location</th>
+                     <th>Incoming Date</th>
+                     <th>Action</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>
+                        <span class="S_no"> 1 </span>
+                     </td>
+                     <td>
+                        <span class="Style_1">WareHouse1</span>
+                     </td>
+                     <td>
+                        <span class="Style_1"> xxxx</span>
+                     </td>
+                     <td>
+                        <span class="Style_1">20</span>
+                     </td>
+                     <td>
+                        <span class="Style_1">Chennai</span>
+                     </td>
+                     <td>
+                        <span class="Style_1">25/05/2017</span>
+                     </td>
+                     <td>
+                        <button color="primary" mat-raised-button [matMenuTriggerFor]="Action">Action</button>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <span class="S_no"> 2 </span>
+                     </td>
+                     <td>
+                        <span class="Style_1">WareHouse1</span>
+                     </td>
+                     <td>
+                        <span class="Style_1"> xxxx</span>
+                     </td>
+                     <td>
+                        <span class="Style_1">20</span>
+                     </td>
+                     <td>
+                        <span class="Style_1">Chennai</span>
+                     </td>
+                     <td>
+                        <span class="Style_1">25/05/2017</span>
+                     </td>
+                     <td>
+                        <button color="primary" mat-raised-button [matMenuTriggerFor]="Action">Action</button>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <span class="S_no"> 3 </span>
+                     </td>
+                     <td>
+                        <span class="Style_1">WareHouse1</span>
+                     </td>
+                     <td>
+                        <span class="Style_1"> xxxx</span>
+                     </td>
+                     <td>
+                        <span class="Style_1">20</span>
+                     </td>
+                     <td>
+                        <span class="Style_1">Chennai</span>
+                     </td>
+                     <td>
+                        <span class="Style_1">25/05/2017</span>
+                     </td>
+                     <td>
+                        <button color="primary" mat-raised-button [matMenuTriggerFor]="Action">Action</button>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <span class="S_no"> 4 </span>
+                     </td>
+                     <td>
+                        <span class="Style_1">WareHouse1</span>
+                     </td>
+                     <td>
+                        <span class="Style_1"> xxxx</span>
+                     </td>
+                     <td>
+                        <span class="Style_1">20</span>
+                     </td>
+                     <td>
+                        <span class="Style_1">Chennai</span>
+                     </td>
+                     <td>
+                        <span class="Style_1">25/05/2017</span>
+                     </td>
+                     <td>
+                        <button color="primary" mat-raised-button [matMenuTriggerFor]="Action">Action</button>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </div>
+</div>
+
+<!-- Dropdown menus -->
+<mat-menu class="MenuStyleOne" #Action="matMenu" [overlapTrigger]="false" xPosition="after" yPosition="below" class="MenuStyleOne">
+   <a [routerLink]="['/Stock_Values_View']"><button mat-menu-item>
+      <span>View</span>
+   </button></a>
+</mat-menu>
+   
+   
+

@@ -6,6 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./vendor-create.component.css']
 })
 export class VendorCreateComponent implements OnInit {
+   _Country: any[] =  ['India', 'America', 'Australia'];
+   _State: any[] =  ['Tamil Nadu', 'Karnataka', 'Kerala'];
+   _City: any[] =  ['Chennai', 'Bangalore'];
+
 
   constructor() { }
 

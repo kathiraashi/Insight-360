@@ -1,0 +1,24 @@
+<div class="Modal_Content" *ngIf="Type && Type === 'Create'">
+   <div class="Modal_Header">
+      <p>Payments</p>
+      <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+   </div>
+   <div class="Model_Body">
+      <div class="row">
+         <div class="col-sm-6 Form_Select">
+            <label>Type:</label>
+            <ng-select class="NgSelect" 
+               [items]="_Type" 
+               [searchable]="true" 
+               placeholder="Type" 
+               (change)="TypeChange($event)">
+            </ng-select>
+         </div>
+      </div>
+   </div>
+</div>
+    
+    
+    
+    
+

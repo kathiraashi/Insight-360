@@ -16,18 +16,18 @@
                   <li class="Tab" [ngClass]="{'active':Active_Tab === 'Ware_House'}" (click)="Active_Tab_Change('Ware_House')">
                      <span class="Tab_Content">Ware House</span>
                   </li>
-                  <li class="Tab" [ngClass]="{'active':Active_Tab === 'Locations'}" (click)="Active_Tab_Change('Locations')">
+                  <!-- <li class="Tab" [ngClass]="{'active':Active_Tab === 'Locations'}" (click)="Active_Tab_Change('Locations')">
                      <span class="Tab_Content">Locations</span>
-                  </li>
+                  </li> -->
                </ul>
             </div>
             <div class="Right_Section">
                <div *ngIf="Active_Tab === 'Ware_House'">
                     <app-ware-house-inventory-settings></app-ware-house-inventory-settings>
                </div>
-               <div *ngIf="Active_Tab === 'Locations'">
+               <!-- <div *ngIf="Active_Tab === 'Locations'">
                      <app-locations-inventory-settings></app-locations-inventory-settings>
-                </div>
+                </div> -->
            </div>
          </div>
       </div>

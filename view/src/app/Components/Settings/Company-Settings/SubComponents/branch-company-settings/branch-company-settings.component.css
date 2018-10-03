@@ -24,6 +24,9 @@
     align-items: center;
     border-bottom: 1px solid #eaeaea;
  }
+ .Table_Section table tbody tr {
+    height:50px;
+ }
  .Table_Section table tbody tr:nth-child(odd) {
     background-color: #f1f1f185;
  }

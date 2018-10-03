@@ -7,148 +7,152 @@
             <ul>
                <li class="HeaderName">Home</li>
                <li class="arrow">>></li>
-               <li class="LinkName">HRMS</li>
-               <li class="arrow">>></li>
                <li>Leaves</li>
             </ul>
          </div>
       </div>
       <!--  Header Part -->
-<!-- Create and search Section -->
-<div class="row header_part">
-   <div class="col-sm-6">
-      <button class="Create_Button" mat-button [routerLink]="['/Create_Leaves']"> + Create </button>
-   </div>
-   <div class="col-sm-6">
-      <div class="Search_Section">
-         <input type="text" placeholder="Search.." name="search">
-         <i class="material-icons">search</i>
+      <!-- Create and search Section -->
+      <div class="row header_part">
+         <div class="col-sm-6">
+            <a [routerLink]="['/Create_Leaves']"><button class="Create_Button" mat-raised-button> + Create</button></a> 
+         </div>
+         <div class="col-sm-6">
+            <div class="Search_Section">
+               <input type="text" placeholder="Search.." name="search">
+               <i class="material-icons">search</i>
+            </div>
+         </div>
+      </div>
+      <!-- Table Section -->
+      <div class="Table_Section">
+            <table>
+               <thead>
+                  <tr>
+                     <th>S.no</th>
+                     <th>Name</th>
+                     <th>Leave Type</th>
+                     <th>From Date</th>
+                     <th>To Date</th>
+                     <th>Status</th>
+                     <th>Action</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td>
+                        <span class="S_no"> 1 </span>
+                     </td>
+                     <td>
+                        <span class="Style_1">Employee Name</span>
+                     </td>
+                     <td>
+                        <span class="Style_1"> Leave Type</span>
+                     </td>
+                     <td>
+                        <span class="Style_1">24/05/17</span>
+                     </td>
+                     <td>
+                        <span class="Style_1">25/05/2017</span>
+                     </td>
+                     <td>
+                        <span class="Style_1">Requested</span>
+                     </td>
+                     <td>
+                           <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <span class="S_no"> 2 </span>
+                     </td>
+                     <td>
+                        <span class="Style_1">Employee Name</span>
+                     </td>
+                     <td>
+                        <span class="Style_1"> Leave Type</span>
+                     </td>
+                     <td>
+                        <span class="Style_1">24/05/17</span>
+                     </td>
+                     <td>
+                        <span class="Style_1">25/05/2017</span>
+                     </td>
+                     <td>
+                        <span class="Style_1">Requested</span>
+                     </td>
+                     <td>
+                           <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <span class="S_no"> 3 </span>
+                     </td>
+                     <td>
+                        <span class="Style_1">Employee Name</span>
+                     </td>
+                     <td>
+                        <span class="Style_1"> Leave Type</span>
+                     </td>
+                     <td>
+                        <span class="Style_1">24/05/17</span>
+                     </td>
+                     <td>
+                        <span class="Style_1">25/05/2017</span>
+                     </td>
+                     <td>
+                        <span class="Style_1">Requested</span>
+                     </td>
+                     <td>
+                           <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <span class="S_no"> 4 </span>
+                     </td>
+                     <td>
+                        <span class="Style_1">Employee Name</span>
+                     </td>
+                     <td>
+                        <span class="Style_1"> Leave Type</span>
+                     </td>
+                     <td>
+                        <span class="Style_1">24/05/17</span>
+                     </td>
+                     <td>
+                        <span class="Style_1">25/05/2017</span>
+                     </td>
+                     <td>
+                        <span class="Style_1">Requested</span>
+                     </td>
+                     <td>
+                           <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
       </div>
    </div>
 </div>
-<!-- Table Section -->
-<div class="Table_Section">
-      <table>
-         <thead>
-            <tr>
-               <th>S.no</th>
-               <th>Name</th>
-               <th>Leave Type</th>
-               <th>From Date</th>
-               <th>To Date</th>
-               <th>Status</th>
-               <th>Action</th>
-            </tr>
-         </thead>
-         <tbody>
-            <tr>
-               <td>
-                  <span class="S_no"> 1 </span>
-               </td>
-               <td>
-                  <span class="Style_1">Employee Name</span>
-               </td>
-               <td>
-                  <span class="Style_1"> Leave Type</span>
-               </td>
-               <td>
-                  <span class="Style_1">24/05/17</span>
-               </td>
-               <td>
-                  <span class="Style_1">25/05/2017</span>
-               </td>
-               <td>
-                  <span class="Style_1">Requested</span>
-               </td>
-               <td>
-                     <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
-                </td>
-            </tr>
-            <tr>
-               <td>
-                  <span class="S_no"> 2 </span>
-               </td>
-               <td>
-                  <span class="Style_1">Employee Name</span>
-               </td>
-               <td>
-                  <span class="Style_1"> Leave Type</span>
-               </td>
-               <td>
-                  <span class="Style_1">24/05/17</span>
-               </td>
-               <td>
-                  <span class="Style_1">25/05/2017</span>
-               </td>
-               <td>
-                  <span class="Style_1">Requested</span>
-               </td>
-               <td>
-                     <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
-                </td>
-            </tr>
-            <tr>
-               <td>
-                  <span class="S_no"> 3 </span>
-               </td>
-               <td>
-                  <span class="Style_1">Employee Name</span>
-               </td>
-               <td>
-                  <span class="Style_1"> Leave Type</span>
-               </td>
-               <td>
-                  <span class="Style_1">24/05/17</span>
-               </td>
-               <td>
-                  <span class="Style_1">25/05/2017</span>
-               </td>
-               <td>
-                  <span class="Style_1">Requested</span>
-               </td>
-               <td>
-                     <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
-                </td>
-            </tr>
-            <tr>
-               <td>
-                  <span class="S_no"> 4 </span>
-               </td>
-               <td>
-                  <span class="Style_1">Employee Name</span>
-               </td>
-               <td>
-                  <span class="Style_1"> Leave Type</span>
-               </td>
-               <td>
-                  <span class="Style_1">24/05/17</span>
-               </td>
-               <td>
-                  <span class="Style_1">25/05/2017</span>
-               </td>
-               <td>
-                  <span class="Style_1">Requested</span>
-               </td>
-               <td>
-                     <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
-                </td>
-            </tr>
-         </tbody>
-      </table>
-   </div>
-</div>
-</div>
 
 <!-- Dropdown menus -->
-<mat-menu #Action="matMenu">
-   <button mat-menu-item [routerLink]="['/Create_Leaves']">
+<mat-menu class="MenuStyleOne" #Action="matMenu" [overlapTrigger]="false" xPosition="after" yPosition="below" class="MenuStyleOne">
+   <a [routerLink]="['/Create_Leaves']"><button mat-menu-item>
       <span>Edit</span>
-   </button>
-   <button mat-menu-item [routerLink]="['/View_Leaves']">
+   </button></a>
+   <a [routerLink]="['/View_Leaves']"><button mat-menu-item>
       <span>View</span>
+   </button></a>
+   <button mat-menu-item>
+      <span>Approve</span>
    </button>
    <button mat-menu-item>
-      <span>Delete</span>
+      <span>Modify</span>
+   </button>
+   <button mat-menu-item>
+      <span>Reject</span>
    </button>
 </mat-menu>
 

@@ -80,7 +80,7 @@ CreatePfInfo() {
        Type: 'Edit',
        Data: this._List[_index]
     };
-    this.bsModalRef = this.modalService.show(ModelPfinfoCompanysettingsComponent, Object.assign({initialState}, { ignoreBackdropClick: true, class: '' }));
+    this.bsModalRef = this.modalService.show(ModelPfinfoCompanysettingsComponent, Object.assign({initialState}, { ignoreBackdropClick: true, class: 'modal-lg' }));
     this.bsModalRef.content.onClose.subscribe(response => {
        if (response.Status) {
           this._List[_index] = response.Response;
@@ -92,7 +92,7 @@ CreatePfInfo() {
       Type: 'View',
       Data: this._List[_index]
     };
-    this.bsModalRef = this.modalService.show(ModelPfinfoCompanysettingsComponent, Object.assign({initialState}, { class: 'modal-lg' }));
+    this.bsModalRef = this.modalService.show(ModelPfinfoCompanysettingsComponent, Object.assign({initialState}, { class: '' }));
   }
   DeletePfInfo(_index) {
     const initialState = {

@@ -37,40 +37,40 @@ export class ModelBranchCompanysettingsComponent implements OnInit {
       public Toastr: ToastrService,
       public Service: AdminService
  ) {
-   // Get Country List
-   const Data = { 'Company_Id': this.Company_Id, 'User_Id' : this.User_Id };
-    let Info = CryptoJS.AES.encrypt(JSON.stringify(Data), 'SecretKeyIn@123');
-    Info = Info.toString();
-   this.Service.Country_List({'Info': Info}).subscribe( response => {
-    const ResponseData = JSON.parse(response['_body']);
-    if (response['status'] === 200 && ResponseData['Status'] ) {
-       const CryptoBytes  = CryptoJS.AES.decrypt(ResponseData['Response'], 'SecretKeyOut@123');
-       const DecryptedData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
-       this.AllCountry = DecryptedData;
-       this.AllCountry = DecryptedData;
-    } else if (response['status'] === 400 || response['status'] === 417 && !ResponseData['Status']) {
-       this.Toastr.NewToastrMessage({ Type: 'Error', Message: ResponseData['Message'] });
-    } else if (response['status'] === 401 && !ResponseData['Status']) {
-       this.Toastr.NewToastrMessage({ Type: 'Error',  Message: ResponseData['Message'] });
-    } else {
-       this.Toastr.NewToastrMessage({ Type: 'Error', Message: 'Ownership Types Simple List Getting Error!, But not Identify!' });
-    }
- });
   }
    ngOnInit() {
     this.onClose = new Subject();
-
-    if (this._Data['Type'] === 'Create' || 'Edit') {
-
+    if (this._Data['Type'] === 'Create' || this._Data['Type'] === 'Edit' ) {
+      // Get Country List
       const Data = { 'Company_Id': this.Company_Id, 'User_Id' : this.User_Id };
       let Info = CryptoJS.AES.encrypt(JSON.stringify(Data), 'SecretKeyIn@123');
       Info = Info.toString();
+      this.Service.Country_List({'Info': Info}).subscribe( response => {
+         const ResponseData = JSON.parse(response['_body']);
+         if (response['status'] === 200 && ResponseData['Status'] ) {
+            const CryptoBytes  = CryptoJS.AES.decrypt(ResponseData['Response'], 'SecretKeyOut@123');
+            const DecryptedData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+            this.AllCountry = DecryptedData;
+            if (this._Data['Type'] === 'Edit') {
+               this.Form.controls['AllCountry'].setValue(this._Data['Branch_Info']['AllAddress']['Country']);
+            }
+         } else if (response['status'] === 400 || response['status'] === 417 && !ResponseData['Status']) {
+            this.Toastr.NewToastrMessage({ Type: 'Error', Message: ResponseData['Message'] });
+         } else if (response['status'] === 401 && !ResponseData['Status']) {
+            this.Toastr.NewToastrMessage({ Type: 'Error',  Message: ResponseData['Message'] });
+         } else {
+            this.Toastr.NewToastrMessage({ Type: 'Error', Message: 'Country List Simple List Getting Error!, But not Identify!' });
+         }
+      });
       this.service.Departments_Simple_List({ 'Info': Info }).subscribe( response => {
          const ResponseData = JSON.parse(response['_body']);
          if (response['status'] === 200 && ResponseData['Status'] ) {
             const CryptoBytes  = CryptoJS.AES.decrypt(ResponseData['Response'], 'SecretKeyOut@123');
             const DecryptedData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
             this._Departments = DecryptedData;
+            if (this._Data['Type'] === 'Edit') {
+               this.Form.controls['Departments'].setValue(this._Data['Branch_Info']['Departments']);
+            }
          } else if (response['status'] === 400 || response['status'] === 417 && !ResponseData['Status']) {
             this.Toastr.NewToastrMessage({ Type: 'Error', Message: ResponseData['Message'] });
          } else if (response['status'] === 401 && !ResponseData['Status']) {
@@ -79,6 +79,9 @@ export class ModelBranchCompanysettingsComponent implements OnInit {
             this.Toastr.NewToastrMessage({ Type: 'Error', Message: ' Departments Simple List Getting Error!, But not Identify!' });
          }
       });
+   }
+
+    if (this._Data['Type'] === 'Create') {
          this.Form = new FormGroup({
          Branch_Name: new FormControl('', Validators.required),
          Branch_Head: new FormControl('', Validators.required),
@@ -86,14 +89,29 @@ export class ModelBranchCompanysettingsComponent implements OnInit {
          AllStreet: new FormControl('', Validators.required),
          AllArea: new FormControl('', Validators.required),
          AllCountry: new FormControl(null, Validators.required),
-         AllState: new FormControl(null, Validators.required),
-         AllCity: new FormControl(null, Validators.required),
+         AllState: new FormControl(null),
+         AllCity: new FormControl(null),
          AllZipCode: new FormControl('', Validators.required),
-         Address: new FormControl(''),
         Company_Id: new FormControl(this.Company_Id),
         User_Id: new FormControl(this.User_Id),
      });
   }
+  if (this._Data['Type'] === 'Edit') {
+     console.log(this._Data);
+   this.Form = new FormGroup({
+      Branch_Name: new FormControl(this._Data['Branch_Info']['Branch_Name'], Validators.required ),
+      Branch_Id: new FormControl(this._Data['Branch_Info']['_id'], Validators.required),
+      Branch_Head: new FormControl(this._Data['Branch_Info']['Branch_Head'], Validators.required),
+      Departments: new FormControl(null, Validators.required),
+      AllStreet: new FormControl(this._Data['Branch_Info']['AllAddress']['Street'], Validators.required),
+      AllArea: new FormControl(this._Data['Branch_Info']['AllAddress']['Area'], Validators.required),
+      AllCountry: new FormControl(null, Validators.required),
+      AllState: new FormControl(null),
+      AllCity: new FormControl(null),
+      AllZipCode: new FormControl(this._Data['Branch_Info']['AllAddress']['ZipCode'], Validators.required),
+      Modified_By: new FormControl(this.User_Id, Validators.required)
+   });
+ }
   if (this._Data['Type'] === 'View') {
     this._Branch_Info = this._Data['Branch_Info'];
  }

@@ -1,4 +1,5 @@
 <app-header></app-header>
+<!-- Main Section -->
 <div class="Main_Section">
    <div class="Page_Section">
       <div class="container-fluid">
@@ -6,18 +7,16 @@
          <div class="Page_Identity">
             <div class="Page_Track">
                <ul>
-                  <li class="Home">Home</li>
-                  <li class="arrow">>></li>
                   <li class="HeaderName">CRM</li>
                   <li class="arrow">>></li>
-                  <li class= "LinkName">Quotations</li>
+                  <li>Quotations</li>
                </ul>
             </div>
          </div>
          <!-- Header part -->
          <div class="row header_part">
             <div class="col-sm-6">
-               <button class="Create_Button" mat-raised-button [routerLink]="['/crm_quotations_create']"> + Create </button>
+               <a [routerLink]="['/crm_quotations_create']"><button class="Create_Button" mat-raised-button> + Create </button></a>
             </div>
             <div class="col-sm-6">
                <div class="Search_Section">
@@ -61,7 +60,7 @@
                         <span class="Style_3">Admin Name</span>
                      </td>
                      <td>
-                        <span class="Style_3">White</span>
+                        <span class="Style_3">Draft</span>
                      </td>
                      <td>
                         <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
@@ -87,7 +86,7 @@
                         <span class="Style_3">Admin Name</span>
                      </td>
                      <td>
-                        <span class="Style_3">green</span>
+                        <span class="Style_3">Draft</span>
                      </td>
                      <td>
                         <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
@@ -113,7 +112,7 @@
                         <span class="Style_3">Admin Name</span>
                      </td>
                      <td>
-                        <span class="Style_3">red</span>
+                        <span class="Style_3">Sending</span>
                      </td>
                      <td>
                         <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
@@ -139,7 +138,7 @@
                         <span class="Style_3">Admin Name</span>
                      </td>
                      <td>
-                        <span class="Style_3">green</span>
+                        <span class="Style_3">Sending</span>
                      </td>
                      <td>
                         <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
@@ -165,7 +164,7 @@
                         <span class="Style_3">Admin Name</span>
                      </td>
                      <td>
-                        <span class="Style_3">red</span>
+                        <span class="Style_3">Send</span>
                      </td>
                      <td>
                         <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
@@ -191,7 +190,7 @@
                         <span class="Style_3">Admin Name</span>
                      </td>
                      <td>
-                        <span class="Style_3">blue</span>
+                        <span class="Style_3">Send</span>
                      </td>
                      <td>
                         <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action"> Action </button>
@@ -217,7 +216,7 @@
                         <span class="Style_3">Admin Name</span>
                      </td>
                      <td>
-                        <span class="Style_3">green</span>
+                        <span class="Style_3">Sending</span>
                      </td>
                      <td>
                         <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action"> Action </button>
@@ -230,25 +229,21 @@
    </div>
 </div>
    
-
 <!-- Dropdown menus -->
-<mat-menu #Action="matMenu">
-     <button mat-menu-item [routerLink]="['/crm_quotations_create']">
-         <span>Edit</span>
-      </button>
-      <button mat-menu-item [routerLink]="['/crm_quotations_view']">
-         <span>View</span>
-      </button>
-      <button mat-menu-item>
-         <span>Delete</span>
-      </button>
-      <button mat-menu-item>
-         <span>Quote</span>
-      </button>
-      <button mat-menu-item>
-         <span>Sale order</span>
-      </button>
-      <button mat-menu-item>
-         <span>Invoice</span>
-      </button>
-   </mat-menu>
+<mat-menu class="MenuStyleOne" #Action="matMenu" [overlapTrigger]="false" xPosition="after" yPosition="below" class="MenuStyleOne">
+   <a [routerLink]="['/crm_quotations_create']"><button mat-menu-item>
+      <span>Edit</span>
+   </button></a>
+   <a [routerLink]="['/crm_quotations_view']"><button mat-menu-item>
+      <span>View</span>
+   </button></a>
+   <button mat-menu-item>
+      <span>Cancel</span>
+   </button>
+   <button mat-menu-item>
+      <span>Revise</span>
+   </button>
+   <button mat-menu-item (click)="ConfirmOrder()">
+      <span>Confirm order</span>
+   </button>
+</mat-menu>

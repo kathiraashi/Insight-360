@@ -1,6 +1,6 @@
-<div class="Modal_Content" *ngIf="_Data?.Type && (_Data?.Type === 'Create' || _Data?.Type === 'Edit')">
+<div class="Modal_Content" *ngIf="_Data['Type'] && (_Data['Type'] === 'Create' || _Data['Type'] === 'Edit')">
    <div class="Modal_Header">
-      <p> {{_Data?.Type}} Taxes</p>
+      <p> {{_Data['Type']}} Taxes</p>
       <span *ngIf="!Uploading" data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
    </div>
    <form [formGroup]="Form" (ngSubmit)="onSubmit()">
@@ -46,14 +46,14 @@
       </div>
 <div class="Model_Footer">
    <button type="submit" [disabled]="Form.status !== 'VALID' || Uploading" mat-raised-button color="primary">
-      <span *ngIf="_Data?.Type === 'Create' && !Uploading">Submit</span>
-      <span *ngIf="_Data?.Type === 'Edit' && !Uploading">Update</span>
+      <span *ngIf="_Data['Type'] === 'Create' && !Uploading">Submit</span>
+      <span *ngIf="_Data['Type'] === 'Edit' && !Uploading">Update</span>
       <span *ngIf="Uploading" class="UploadingBtn"> <i class="fa fa-refresh fa-spin"></i> Loading... </span>
    </button>
   </div>
 </form>
   </div>
-<div class="Modal_Content" *ngIf="_Data?.Type && _Data?.Type === 'View'">
+<div class="Modal_Content" *ngIf="_Data['Type'] && _Data['Type'] === 'View'">
   <div class="Modal_Header">
     <p>View Taxes</p>
     <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
@@ -62,51 +62,51 @@
    <div class="view_item">
       <div class="Static"> Tax Name </div>
       <div class="dots"> : </div>
-      <div class="Data"> {{_Taxes_Info.Tax_Name}}  </div>
+      <div class="Data"> {{_Taxes_Info['Tax_Name']}}  </div>
    </div>
    <div class="view_item">
       <div class="Static"> Tax Scope </div>
       <div class="dots"> : </div>
-      <div class="Data">  {{_Taxes_Info.Tax_Scope}} </div>
+      <div class="Data">  {{_Taxes_Info['Tax_Scope']}} </div>
    </div>
    <div class="view_item">
       <div class="Static"> Tax Computation </div>
       <div class="dots"> : </div>
-      <div class="Data">  {{_Taxes_Info.Tax_Computation?.Value}} </div>
+      <div class="Data">  {{_Taxes_Info['Tax_Computation'].Value}} </div>
    </div>
    <div class="view_item">
       <div class="Static"> Amount </div>
       <div class="dots"> : </div>
-      <div class="Data">  {{_Taxes_Info.Amount}} </div>
+      <div class="Data">  {{_Taxes_Info['Amount']}} </div>
    </div>
    <div class="view_item">
       <div class="Static"> Notes </div>
       <div class="dots"> : </div>
-      <div class="Data">  {{_Taxes_Info.Notes}} </div>
+      <div class="Data">  {{_Taxes_Info['Notes']}} </div>
    </div>
    <div class="view_item">
       <div class="Static">Created By </div>
       <div class="dots"> : </div>
-      <div class="Data"> {{_Taxes_Info.Created_By?.Name}}
+      <div class="Data"> {{_Taxes_Info['Created_By'].Name}}
          <!-- <span class="Badge"> {{Data.Created_By.User_Type.User_Type}} </span> -->
       </div>
    </div>
    <div class="view_item">
       <div class="Static">Last Modified By </div>
       <div class="dots"> : </div>
-      <div class="Data">  {{_Taxes_Info.Last_Modified_By?.Name}}
+      <div class="Data">  {{_Taxes_Info['Last_Modified_By'].Name}}
          <!-- <span class="Badge"> {{Data.Last_Modified_By.User_Type.User_Type}} </span> -->
       </div>
    </div>
    <div class="view_item">
       <div class="Static"> Created Date </div>
       <div class="dots"> : </div>
-      <div class="Data"> {{_Taxes_Info.createdAt | date:'medium' }} </div>
+      <div class="Data"> {{_Taxes_Info['createdAt'] | date:'medium' }} </div>
    </div>
    <div class="view_item">
       <div class="Static">Last Modified Date  </div>
       <div class="dots"> : </div>
-      <div class="Data"> {{_Taxes_Info.updatedAt | date:'medium' }} </div>
+      <div class="Data"> {{_Taxes_Info['updatedAt'] | date:'medium' }} </div>
    </div>
 </div>
 </div>

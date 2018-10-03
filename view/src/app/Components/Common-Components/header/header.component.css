@@ -1,9 +1,10 @@
+/* Header Page */
 .Header_Page{
-    width: 100%;
-      height: 90px;
-      position: fixed;
-      top: 0px;
-      z-index: 1000;
+   width: 100%;
+   height: 90px;
+   position: fixed;
+   top: 0px;
+   z-index: 1000;
 }
 /* Header one */
 .Header_Page .Header_One{
@@ -21,35 +22,60 @@
 }
 /*  Header Button  */
 .Header_Button{
-    margin: 0px 20px;
+   margin: 0px 20px;
+}
+/* search section */
+.Search_Section input[type=text]{
+   height: 40px;
+   background: #fff;
+   border: none;
+   font-size: 10pt;
+   float: right;
+   color: #262626;
+   padding-left: 15px;
+   border-radius: 5px;
+   color:#000;
+   transition: left width .55s ease;
+   display:none;
+}
+/* .Search_Section .icon{
+   position: absolute;
+   top: 50%;
+   margin-left: 17px;
+   margin-top: 17px;
+   z-index: 1;
+   color: #4f5b66;
+ } */
+ 
+.Search_Section input[type=text]:focus, .Search_Section input[type=text]:active{
+   outline:none;
+   width: 300px;
+}
+  
+.Search_Section.Show input[type=text]{
+   width: 400px;
+   display:inline-flex;
+   margin-left:3px;
+}
+  
+/* .Search_Section:hover .icon{
+   color: #93a2ad;
+} */
+ /* .Search{
+   margin-left: 5px;
+   margin-top: 2px;
  }
- /* search section */
- .search_section{
-    margin-left: 50px;
-    width: 42%;
-    position: relative;
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid #262d31;
-    margin-top: 6px;
- }
- .search_section input{
-    height: 26px;
-    position: relative;
-    background-color: transparent;
-    border: none;
-    width: calc(100% - 31px);
-    padding: 0px 10px;
-    
- }
- .search_section input::placeholder{
-    color:#343b40;
- }
- .search_section i{
-    color:#343b40;
- }
+ .Search_Section{
+   height: 40px;
+}
+.Search_Section:hover{
+   width:60%;
+   transition: Left 2s ease;
+   background-color:#fff;
+   border-radius:3px;
+} */
 /* Logout */
-.Header_Page .Header_One .Logout_Btn{
+/* .Header_Page .Header_One .Logout_Btn{
    color: #ffffff;
    line-height: 50px;
    float: right;
@@ -64,6 +90,39 @@
    font-weight: 600;
    font-size: 20px;
    cursor: pointer;
+} */
+/* Notification */
+.Header_Page .Header_One .notification{
+   line-height: 50px;
+   float: right;
+   font-size: 30px;
+   position: absolute;
+   right: 75px;
+}
+.Header_Page .Header_One .notify {
+   text-decoration: none;
+   color: #4f6a7a;
+   font-weight: 500;
+   font-size: 23px;
+   cursor: pointer;
+   outline: none;
+}
+/* User */
+.Header_Page .Header_One .User{
+   line-height: 50px;
+   float: right;
+   font-size: 30px;
+   margin-right: 15px;
+   position: absolute;
+   right: 10px;
+}
+.Header_Page .Header_One .person {
+   text-decoration: none;
+   color: #4f6a7a;
+   font-weight: 500;
+   font-size: 23px;
+   cursor: pointer;
+   outline: none;
 }
 /* Header two */
 .Header_Page .Header_Two{
@@ -84,6 +143,13 @@
    float: left;
    min-width: 100px;
 }
+.Header_Page .Header_Two .Menus .Menu_List.active{
+   height: 40px;
+   line-height: 40px;
+   float: left;
+   min-width: 100px;
+   background-color:#4f6a7a;
+}
 /* Menus */
 .Header_Page .Header_Two .Menus .Menu_List .Menu{
    color: #ffffff;
@@ -98,6 +164,10 @@
    height: 40px;
    line-height: 40px;
    text-align: center;
+}
+.Header_Page .Header_Two .Menus .Menu_List a:hover{
+   text-decoration: none;
+   color:#4f6a7a;
 }
 .Header_Page .Header_Two .Menus .Menu_List .Menu:hover,
 .Header_Page .Header_Two .Menus .Menu_List.active > .Menu{
@@ -154,4 +224,47 @@
 .Header_Page .Menu_Tree .Menu_Tree_View .Menu_Tree_List > .Menu_Tree > .Menu_Tree_View{
    left: 102%;
    top: 0px;
+}
+.Header_Page .Hidden_Links{
+   display: none;
+}
+
+/* SubMenu */
+.Header_Page .Menu_Tree .Menu_Tree_View .Menu_Tree_List .Sub_Menu{
+   position: absolute;
+   display: none;
+   list-style: none;
+   min-width: 175px;
+   left: 100%;
+   padding-left: 0px;
+   padding-top: 2px;
+   z-index: 1;
+   top: 0px;
+   margin-left: 1px;
+}
+.Header_Page .Menu_Tree .Menu_Tree_View .Menu_Tree_List .Sub_Menu .Sub_Menu_List{
+   width: 100%;
+   display: block;
+   height: 40px;
+   float: left;
+   background-color: rgb(73, 182, 96);
+}
+.Header_Page .Menu_Tree .Menu_Tree_View .Menu_Tree_List .Sub_Menu .Sub_Menu_List a{
+   display: block;
+   color: #ffffff;
+   text-decoration: none;
+   font-weight: 600;
+   line-height: 40px;
+   text-align: left;
+   width: 100%;
+   padding: 0px 10px;
+   cursor: pointer;
+}
+.Header_Page .Menu_Tree .Menu_Tree_View .Menu_Tree_List .Sub_Menu .Sub_Menu_List a:hover
+.Header_Page .Menu_Tree .Menu_Tree_View .Menu_Tree_List .Sub_Menu .Sub_Menu_List.active>a{
+   background-color: #4f6a7a;
+   color: #ffffff;
+}
+.Header_Page .Menu_Tree .Menu_Tree_View .Menu_Tree_List:hover > .Sub_Menu{
+   display: block;
 }

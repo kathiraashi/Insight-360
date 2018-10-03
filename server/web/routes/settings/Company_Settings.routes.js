@@ -57,9 +57,16 @@ module.exports = function(app) {
       app.post('/API/Company_Settings/ItInfo_Update', Controller.ItInfo_Update);
       app.post('/API/Company_Settings/ItInfo_Delete', Controller.ItInfo_Delete);
 
-   // Registration Info -----------------------------------------------
+   // Branch Info -----------------------------------------------
       app.post('/API/Company_Settings/Branch_Create', Controller.Branch_Create);
       app.post('/API/Company_Settings/Branch_List', Controller.Branch_List);
+      app.post('/API/Company_Settings/Branch_Simple_List', Controller.Branch_Simple_List);
       app.post('/API/Company_Settings/Branch_Update', Controller.Branch_Update);
       app.post('/API/Company_Settings/Branch_Delete', Controller.Branch_Delete);
+
+   // Contact Info -----------------------------------------------
+      app.post('/API/Company_Settings/Contact_Info_Create', Controller.Contact_Info_Create);
+      app.post('/API/Company_Settings/Contact_Info_List', Controller.Contact_Info_List);
+      app.post('/API/Company_Settings/Contact_Info_Update', Controller.Contact_Info_Update);
+      app.post('/API/Company_Settings/Contact_Info_Delete', Controller.Contact_Info_Delete);
 }

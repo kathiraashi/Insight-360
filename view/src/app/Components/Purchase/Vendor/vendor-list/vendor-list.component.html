@@ -1,70 +1,84 @@
+<!-- Main Section -->
 <div class="Main_Section">
-    <div class="page_section">
-    <div class="container-fluid">
-        <div class="Page_Identity">
+   <div class="page_section">
+      <div class="container-fluid">
+         <!-- Page Identity -->
+         <div class="Page_Identity">
             <div class="Page_Track">
-               <ul >
-                 <li class="HeaderName">Home</li>
-                 <li class="arrow">>></li>
-                 <li class="LinkName">Purchase</li>
-                 <li class="arrow">>></li>
-                 <li>Vendor</li>
+               <ul>
+                  <li class="HeaderName">Home</li>
+                  <li class="arrow">>></li>
+                  <li>Vendor</li>
                </ul>
             </div>
          </div>
-            <div class="row header_part">
-                  <div class="col-sm-6">
-                    <button class="Create_Button" mat-raised-button [routerLink]="['/Vendor_Create']"> + Create </button>
+         <!-- Header Part -->
+         <div class="row header_part">
+            <div class="col-sm-6">
+               <a [routerLink]="['/Vendor_Create']"><button class="Create_Button" mat-raised-button> + Create </button></a>
+            </div>
+            <div class="col-sm-6">
+               <div class="Search_Section">
+                  <input type="text" placeholder="Search.." name="search">
+                  <i class="material-icons">search</i>
+               </div>
+            </div>
+         </div>
+         <!-- Content Style -->
+         <div class="row Content_Style">
+            <div class="col-sm-4 Page_Content" >
+               <div class="Sub_Content">
+                  <div class="image_section">
+                     <img src="../../../../assets/images/basic/company.png">
                   </div>
-                  <div class="col-sm-6">
-                    <div class="Search_Section">
-                      <input type="text" placeholder="Search.." name="search">
-                      <i class="material-icons">search</i>
-                    </div>
+                  <div class=" Content_Section">
+                     <h5>Vendor_aashi</h5>
+                     <h5>india coimbatore</h5>
+                     <h5>v_aashi@gmail.com</h5>
                   </div>
-                </div>
-<div class="row Content_Style">
- <div class="col-sm-4 Page_Content" >
-    <div class="Sub_Content" [routerLink]="['/main_vendor_view']">
-       <div class="image_section">
-          <img src="../../../../assets/images/basic/company.png">
-       </div>
-       <div class=" Content_Section">
-          <h5>Vendor_aashi</h5>
-          <h5>india coimbatore</h5>
-          <h5>v_aashi@gmail.com</h5>
-       </div>
-       <span><i class="material-icons settings">settings</i></span>
-    </div>
- </div>
- <div class="col-sm-4 Page_Content">
-    <div class="Sub_Content"  [routerLink]="['/main_vendor_view']">
-       <div class="image_section">
-          <img src="../../../../assets/images/basic/company.png">
-       </div>
-       <div class=" Content_Section">
-          <h5>Vendor_aashi</h5>
-          <h5>india coimbatore</h5>
-          <h5>v_aashi@gmail.com</h5>
-       </div>
-       <span><i class="material-icons settings">settings</i></span>
-    </div>
- </div>
- <div class="col-sm-4 Page_Content">
-    <div class="Sub_Content"  [routerLink]="['/main_vendor_view']">
-       <div class="image_section">
-          <img src="../../../../assets/images/basic/company.png">
-       </div>
-       <div class=" Content_Section">
-          <h5>Vendor_aashi</h5>
-          <h5>india coimbatore</h5>
-          <h5>v_aashi@gmail.com</h5>
-       </div>
-       <span><i class="material-icons settings">settings</i></span>
-    </div>
- </div>
+                  <span><a [routerLink]="['/main_vendor_view']"><i class="material-icons View">remove_red_eye</i></a>
+                  <i class="material-icons settings" [matMenuTriggerFor] = "Action">settings</i></span>
+               </div>
+            </div>
+            <div class="col-sm-4 Page_Content">
+               <div class="Sub_Content">
+                  <div class="image_section">
+                     <img src="../../../../assets/images/basic/company.png">
+                  </div>
+                  <div class=" Content_Section">
+                     <h5>Vendor_aashi</h5>
+                     <h5>india coimbatore</h5>
+                     <h5>v_aashi@gmail.com</h5>
+                  </div>
+                  <span><a [routerLink]="['/main_vendor_view']"><i class="material-icons View">remove_red_eye</i></a>
+                  <i class="material-icons settings" [matMenuTriggerFor] = "Action">settings</i></span>
+               </div>
+            </div>
+            <div class="col-sm-4 Page_Content">
+               <div class="Sub_Content">
+                  <div class="image_section">
+                     <img src="../../../../assets/images/basic/company.png">
+                  </div>
+                  <div class=" Content_Section">
+                     <h5>Vendor_aashi</h5>
+                     <h5>india coimbatore</h5>
+                     <h5>v_aashi@gmail.com</h5>
+                  </div>
+                  <span><a  [routerLink]="['/main_vendor_view']"><i class="material-icons View">remove_red_eye</i></a>
+                  <i class="material-icons settings" [matMenuTriggerFor] = "Action">settings</i></span>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
 </div>
-</div>
-</div>
-</div>
+<!-- Dropdown menus -->
+<mat-menu class="MenuStyleOne" #Action="matMenu" [overlapTrigger]="false" xPosition="after" yPosition="below" class="MenuStyleOne">
+   <button mat-menu-item (click)="CreateContact()">
+      <span>Add Contact</span>
+   </button>
+   <a [routerLink]="['/Purchase_Quotation_Create']"><button mat-menu-item>
+      <span>Create Quote</span>
+   </button></a>
+</mat-menu>
  

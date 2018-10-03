@@ -24,9 +24,9 @@ export class LoginService {
             const encData = (ReceivingData['Response'].slice(0, -34));
             const CryptoBytes  = CryptoJS.AES.decrypt(encData, Security);
             const DecryptedData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
-            sessionStorage.setItem('Token', ReceivingData['Response']);
-            sessionStorage.setItem('SessionToken', btoa(DecryptedData._id + Security));
-            sessionStorage.setItem('SessionKey', btoa(Date()));
+            localStorage.setItem('Token', ReceivingData['Response']);
+            localStorage.setItem('SessionToken', btoa(DecryptedData._id + Security));
+            localStorage.setItem('SessionKey', btoa(Date()));
          }
          delete ReceivingData['Response'];
          response['_body'] = JSON.stringify(ReceivingData);
@@ -36,17 +36,17 @@ export class LoginService {
    }
 
    public If_LoggedIn() {
-      if (sessionStorage.getItem('Token') && sessionStorage.getItem('SessionKey') && sessionStorage.getItem('SessionToken') ) {
-         const LastSession = new Date(atob(sessionStorage.getItem('SessionKey'))).getTime();
+      if (localStorage.getItem('Token') && localStorage.getItem('SessionKey') && localStorage.getItem('SessionToken') ) {
+         const LastSession = new Date(atob(localStorage.getItem('SessionKey'))).getTime();
          const NowSession = new Date().getTime();
          const SessionDiff: number = NowSession - LastSession;
          const SessionDiffMinutes: number = SessionDiff / 1000 / 60 ;
          if (SessionDiffMinutes < 20 ) { return true;
          } else {
-            sessionStorage.clear();
+            localStorage.clear();
             return false;
          }
-      } else { sessionStorage.clear(); return false;  }
+      } else { localStorage.clear(); return false;  }
    }
 
 }

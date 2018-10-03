@@ -1,24 +1,32 @@
 
-<div class="Modal_Content" *ngIf="_Data?.Type && (_Data?.Type === 'Create' || _Data?.Type === 'Edit')">
+<div class="Modal_Content" *ngIf="_Data['Type'] && (_Data['Type'] === 'Create' || _Data['Type']=== 'Edit')">
    <div class="Modal_Header">
-      <p> {{Type}} Bank</p>
+      <p> {{_Data['Type']}} Bank</p>
       <span *ngIf="!Uploading" data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
    </div>
    <form [formGroup] ="Form" (ngSubmit)="onSubmit()">
       <div class="Model_Body">
          <div class="row">
-            <div class="col-sm-6 Form_Input" [ngClass]="{'Form_Err': Form.controls['Bank_Name'].errors && !Form.controls['Bank_Name'].pristine, 'Form_Success': Form.controls['Bank_Name'].valid && !Form.controls['Bank_Name'].pristine}">
-               <label>Bank Name:</label>
-               <input type="text" formControlName="Bank_Name">
-               <p class="error" *ngIf="Form.controls['Bank_Name'].errors && !Form.controls['Bank_Name'].pristine">
-                  <span *ngIf="Form.controls['Bank_Name'].errors.required">!Bank Name is Required</span>
-               </p>
-            </div>
             <div class="col-sm-6 Form_Input" [ngClass]="{'Form_Err': Form.controls['Account_Name'].errors && !Form.controls['Account_Name'].pristine, 'Form_Success': Form.controls['Account_Name'].valid && !Form.controls['Account_Name'].pristine}">
                <label> Account Name:</label>
                <input type="text" formControlName="Account_Name">
                <p class="error" *ngIf="Form.controls['Account_Name'].errors && !Form.controls['Account_Name'].pristine">
                   <span *ngIf="Form.controls['Account_Name'].errors.required">!Account Name is Required</span>
+               </p>
+            </div>
+            <div class="col-sm-6 Form_Input"  [ngClass]="{'Form_Err': Form.controls['Account_No'].errors && !Form.controls['Account_No'].pristine, 'Form_Success': Form.controls['Account_No'].valid && !Form.controls['Account_No'].pristine}">
+               <label>Account No:</label>
+               <input type="text" formControlName = "Account_No">
+               <p class="error" *ngIf="Form.controls['Account_No'].errors && !Form.controls['Account_No'].pristine">
+                  <span *ngIf="Form.controls['Account_No'].errors.required">!Account No is Required</span>
+                  <span *ngIf="Form.controls['Account_No'].errors.Bank_NotAvailable"> Account No Already Exist </span>
+               </p>
+            </div>
+            <div class="col-sm-6 Form_Input" [ngClass]="{'Form_Err': Form.controls['Bank_Name'].errors && !Form.controls['Bank_Name'].pristine, 'Form_Success': Form.controls['Bank_Name'].valid && !Form.controls['Bank_Name'].pristine}">
+               <label>Bank Name:</label>
+               <input type="text" formControlName="Bank_Name">
+               <p class="error" *ngIf="Form.controls['Bank_Name'].errors && !Form.controls['Bank_Name'].pristine">
+                  <span *ngIf="Form.controls['Bank_Name'].errors.required">!Bank Name is Required</span>
                </p>
             </div>
             <div class="col-sm-6 Form_Input" [ngClass]="{'Form_Err': Form.controls['Account_Type'].errors && !Form.controls['Account_Type'].pristine, 'Form_Success': Form.controls['Account_Type'].valid && !Form.controls['Account_Type'].pristine}">
@@ -30,14 +38,6 @@
                   <span *ngIf="Form.controls['Account_Type'].errors.required">!Account Type is Required</span>
                </p>
             </div>
-            <div class="col-sm-6 Form_Input"  [ngClass]="{'Form_Err': Form.controls['Account_No'].errors && !Form.controls['Account_No'].pristine, 'Form_Success': Form.controls['Account_No'].valid && !Form.controls['Account_No'].pristine}">
-               <label>Account No:</label>
-               <input type="text" formControlName = "Account_No">
-               <p class="error" *ngIf="Form.controls['Account_No'].errors && !Form.controls['Account_No'].pristine">
-                     <span *ngIf="Form.controls['Account_No'].errors.required">!Account No is Required</span>
-                     <span *ngIf="Form.controls['Account_No'].errors.Bank_NotAvailable"> Account No Already Exist </span>
-                  </p>
-             </div>
             <div class="col-sm-6 Form_Input"  [ngClass]="{'Form_Err': Form.controls['IFSC_Code'].errors && !Form.controls['IFSC_Code'].pristine, 'Form_Success': Form.controls['IFSC_Code'].valid && !Form.controls['IFSC_Code'].pristine}">
                <label>IFSC Code:</label>
                <input type="text" formControlName = "IFSC_Code">
@@ -53,14 +53,14 @@
       </div>
    <div class="Model_Footer">
       <button type="submit" [disabled]="Form.status !== 'VALID' || Uploading" mat-raised-button color="primary">
-         <span *ngIf="_Data?.Type === 'Create' && !Uploading">Submit</span>
-         <span *ngIf="_Data?.Type === 'Edit' && !Uploading">Update</span>
+         <span *ngIf="_Data['Type']=== 'Create' && !Uploading">Submit</span>
+         <span *ngIf="_Data['Type']=== 'Edit' && !Uploading">Update</span>
          <span *ngIf="Uploading" class="UploadingBtn"> <i class="fa fa-refresh fa-spin"></i> Loading... </span>
       </button>
    </div>
 </form>
 </div>
-<div class="Modal_Content" *ngIf="_Data?.Type && _Data?.Type === 'View'">
+<div class="Modal_Content" *ngIf="_Data['Type']&& _Data['Type']=== 'View'">
    <div class="Modal_Header">
       <p>View Bank</p>
       <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
@@ -69,52 +69,52 @@
       <div class="view_item">
          <div class="Static">Bank Name </div>
          <div class="dots">: </div>
-         <div class="Data">{{_Accounts_Info.Bank_Name}}</div>
+         <div class="Data">{{_Accounts_Info['Bank_Name']}}</div>
       </div>
       <div class="view_item">
          <div class="Static">Account Name: </div>
          <div class="dots">: </div>
-         <div class=" Data">{{_Accounts_Info.Account_Name}}</div>
+         <div class=" Data">{{_Accounts_Info['Account_Name']}}</div>
       </div>
       <div class="view_item">
          <div class="Static">Account Type: </div>
          <div class="dots">: </div>
-         <div class=" Data">{{_Accounts_Info.Account_Type}}</div>
+         <div class=" Data">{{_Accounts_Info['Account_Type']}}</div>
       </div>
       <div class="view_item">
          <div class="Static">Account No: </div>
          <div class="dots">: </div>
-         <div class="Data">{{_Accounts_Info.Account_No}}</div>
+         <div class="Data">{{_Accounts_Info['Account_No']}}</div>
       </div>
       <div class="view_item">
          <div class=" Static">IFSC Code </div>
          <div class="dots">: </div>
-         <div class=" Data">{{_Accounts_Info.IFSC_Code}}</div>
+         <div class=" Data">{{_Accounts_Info['IFSC_Code']}}</div>
       </div>
       <div class="view_item">
          <div class="Static">Address </div>
          <div class="dots">: </div>
-         <div class="Data">{{_Accounts_Info.Address}}</div>
+         <div class="Data">{{_Accounts_Info['Address']}}</div>
       </div>
       <div class="view_item">
             <div class="Static">Created By </div>
             <div class="dots"> : </div>
-            <div class="Data"> {{_Accounts_Info.Created_By.Name}}</div>
+            <div class="Data"> {{_Accounts_Info['Created_By.Name']}}</div>
          </div>
          <div class="view_item">
             <div class="Static">Last Modified By </div>
             <div class="dots"> : </div>
-            <div class="Data"> {{_Accounts_Info.Last_Modified_By.Name}}</div>
+            <div class="Data"> {{_Accounts_Info['Last_Modified_By.Name']}}</div>
          </div>
          <div class="view_item">
             <div class="Static"> Created Date </div>
             <div class="dots"> : </div>
-            <div class="Data"> {{_Accounts_Info.createdAt | date:'medium'}}</div>
+            <div class="Data"> {{_Accounts_Info['createdAt'] | date:'medium'}}</div>
          </div>
          <div class="view_item">
             <div class="Static">Last Modified Date  </div>
             <div class="dots"> : </div>
-            <div class="Data"> {{_Accounts_Info.updatedAt | date:'medium'}}</div>
+            <div class="Data"> {{_Accounts_Info['updatedAt'] | date:'medium'}}</div>
          </div>
    </div>
 </div>

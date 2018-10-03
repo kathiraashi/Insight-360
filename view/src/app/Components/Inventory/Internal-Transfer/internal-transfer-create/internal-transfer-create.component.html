@@ -1,106 +1,89 @@
-
+<!-- Page -->
 <div class="page" style="margin-top:100px;">
-      <div class="container-fluid">
-        <div class="Page_Identity">
+   <div class="container-fluid">
+      <!-- Page Identity -->
+      <div class="Page_Identity">
          <div class="Page_Track">
-            <ul>
-              <li class="HeaderName">Home</li>
-              <li class="arrow">>></li>
-              <li class="LinkName">Inventory </li>
-              <li class="arrow">>></li>
-              <li>Internal Transfer</li>
-            </ul>
-          </div>
-        </div>
-        <div class="row">
-          <div class="Company_Details">
-            <div class="col-sm-12">
-              <div class="row">
-                <div class="col-sm-4 Form_Select">
-                  <label>From:</label>
-                  <select>
-                        <option checked>List Of WareHouse</option>
-                        <option> WareHouse</option>
-                        <option> WareHouse</option>
-                        <option> WareHouse</option>
-                        <option> WareHouse</option>
-                     </select>
-                </div>
-                <div class="col-sm-4 Form_Select">
-                  <label>To   :</label>
-                  <select>
-                        <option checked>List Of WareHouse</option>
-                        <option> WareHouse</option>
-                        <option> WareHouse</option>
-                        <option> WareHouse</option>
-                        <option> WareHouse</option>
-                     </select>
-                </div>
-                <div class="col-sm-4 Form_Input">
-                  <label>Date:</label>
-                  <input type="text">
-                </div>
-                <div class="col-sm-4 Form_Select">
-                  <label>Delivery Method:</label>
-                  <select>
-                        <option checked> Delivery Method</option>
-                        <option> Delivery Method</option>
-                        <option> Delivery Method</option>
-                        <option> Delivery Method</option>
-                        <option> Delivery Method</option>
-                     </select>
-                </div>
-              </div>
-            </div><br>
-           </div>
-          <div class="Table_Section">
-               <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Product
-                 <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span>
-                 <span><button class="Add_Product_Button">Add Product</button></span>
-               </h5>
-               <br>
-               <table class="table_section">
-                 <thead class="table_head">
-                   <tr>
-                     <th class="S_No">S.No</th>
-                     <th>Product Name</th>
-                     <th>Quantity</th>
-                     <th>Status</th>
-                     <th class="Action">Action</th>
-                   </tr>
-                 </thead>
-                 <tbody>
-                   <tr>
-                     <td >1</td>
-                     <td class="Form_Select">
-                       <select>
-                       <option checked>Select any one product</option>
-                       <option> product1</option>
-                       <option> product2</option>
-                       <option> product3</option>
-                       <option> product4</option>
-                    </select>
-                   </td>
-                   <td class="Form_Input">
-                          <input type="text">
-                        </td>
-                        <td class="Form_Input">
-                             <input type="text">
-                           </td>
-                           <td>
-                                      <span class="Action_Section Bg_Danger">
-                                            <i class="material-icons">delete</i>
-                                         </span> 
-                                    </td>
-                   </tr>
-                 </tbody>
-               </table>
-              </div>
+         <ul>
+            <li class="HeaderName">Home</li>
+            <li class="arrow">>></li>
+            <li class="LinkName"><a [routerLink]="['/internal_transfer_list']">Internal Transfer List</a></li>
+            <li class="arrow">>></li>
+            <li>Internal Transfer create</li>
+         </ul>
          </div>
-        <div class="row" style="margin-top:20px;">
-          <div class="col-sm-12 text-right">
-            <button mat-raised-button color="primary"> Submit </button>
-          </div>
-        </div>
       </div>
-    </div>
+      <div class="Company_Details">
+         <div class="row">
+            <div class="col-sm-4 Form_Select">
+               <label>From:</label>
+               <ng-select class="NgSelect" 
+                  [items]="_WareHouse" 
+                  [searchable]="true" 
+                  placeholder="Ware House">
+               </ng-select>
+            </div>
+            <div class="col-sm-4 Form_Select">
+               <label>To   :</label>
+               <ng-select class="NgSelect" 
+                  [items]="_WareHouse" 
+                  [searchable]="true" 
+                  placeholder="Ware House">
+               </ng-select>
+            </div>
+            <div class="col-sm-4 Form_Input">
+               <label>Date:</label>
+               <input matInput [matDatepicker]="picker" (click)="picker.open()" placeholder="Date">
+               <mat-datepicker #picker></mat-datepicker>
+            </div>
+         </div>
+      </div><br>
+      <!-- Table Section -->
+      <div class="Table_Section">
+         <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Product
+            <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span>
+            <button mat-raised-button color="primary" class="pull-right"> Add Product </button><br>
+            <br>
+         </h5>
+         <br>
+         <table class="table_section">
+            <thead class="table_head">
+               <tr>
+               <th class="S_No">S.No</th>
+               <th>Product Name</th>
+               <th>Quantity</th>
+               <th>Status</th>
+               <th class="Action">Action</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td >1</td>
+                  <td class="Form_Select">
+                     <ng-select class="NgSelect" 
+                        [items]="_Product" 
+                        [searchable]="true" 
+                        placeholder="Product">
+                     </ng-select>
+                  </td>
+                  <td class="Form_Input">
+                     <input type="text">
+                  </td>
+                  <td class="Form_Input">
+                     <input type="text">
+                  </td>
+                  <td>
+                     <span class="Action_Section Bg_Danger">
+                        <i class="material-icons">delete</i>
+                     </span> 
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </div>
+</div>
+<!-- Footer -->
+<div class="Footer">
+   <button mat-raised-button color="primary" style = "top: 5px;"> Submit </button>
+</div>

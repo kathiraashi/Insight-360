@@ -1,0 +1,25 @@
+<!-- If create Activities -->
+<div class="Modal_Content" *ngIf="Type && Type === 'Create'">
+   <div class="Modal_Header">
+      <p>Registration</p>
+      <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+   </div>
+   <div class="Model_Body">
+      <div class="row">
+         <div class="col-sm-6 Form_Select">
+            <label>Registration Type:</label>
+            <ng-select class="NgSelect" 
+               [items]="_RegistrationType" 
+               [searchable]="true" 
+               placeholder="Registration Type">
+            </ng-select>   
+         </div>
+      </div>
+   </div>
+   <div class="Model_Footer">
+      <button mat-raised-button color="primary"> Submit </button>
+   </div>
+</div>
+   
+   
+   

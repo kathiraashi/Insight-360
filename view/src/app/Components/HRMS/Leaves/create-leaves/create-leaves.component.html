@@ -1,79 +1,80 @@
-
+<!-- page -->
 <div class="page" style="margin-top:100px;">
-      <div class="container-fluid">
-         <!-- page identity -->
-         <div class="Page_Identity">
-            <div class="Page_Track">
-               <ul>
-                  <li class="HeaderName">Home</li>
-                  <li class="arrow">>></li>
-                  <li class="HeaderName">HRMS</li>
-                  <li class="arrow">>></li>
-                  <li>Leaves</li>
-               </ul>
-            </div>
+   <div class="container-fluid">
+      <!-- page identity -->
+      <div class="Page_Identity">
+         <div class="Page_Track">
+            <ul>
+               <li class="HeaderName">Home</li>
+               <li class="arrow">>></li>
+               <li class="LinkName"><a [routerLink]="['/List_Leaves']">Leaves List</a></li>
+               <li class="arrow">>></li>
+               <li>Leaves Create</li>
+            </ul>
          </div>
+      </div>
+      <!-- Company details -->
+      <div class="Company_Details">
+         <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Personal <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span></h5><br>
          <div class="row">
-            <!-- Company details -->
-            <div class="Company_Details">
-                  <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Personal <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span></h5><br>
-                  <div class="row">
-                        <div class="col-sm-6 Form_Input" >
-                           <label>Name:</label>
-                           <input type="text" placeholder="Name">
-                        </div>
-                        <div class="col-sm-6 Form_Input" >
-                           <label>Department:</label>
-                              <input type="text" placeholder="Department">
-                           </div>
-                           <div class="col-sm-6 Form_Input" >
-                              <label>Designation:</label>
-                                 <input type="text" placeholder="Designation">
-                              </div>
-                        <div class="col-sm-6 Form_Input" >
-                           <label>Email Id:</label>
-                           <input type="text" placeholder="emailid"> 
-                        </div>
-                        <div class="col-sm-6 Form_Input" >
-                           <label>Contact Number:</label>
-                           <input type="text" placeholder="contactnumber"> 
-                        </div>
-                     </div>
+            <div class="col-sm-4 Form_Select" >
+               <label>Name:</label>
+               <ng-select class="NgSelect" 
+                  [items]="_Name" 
+                  [searchable]="true" 
+                  placeholder="Name">
+               </ng-select>
             </div>
-            <!-- Company details -->
-            <div class="Company_Details">
-                  <h5 style="color:#49B660;font-size:20px;font-weight: 600;"> Application <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span></h5><br>
-                  <div class="row">
-                        <div class="col-sm-6 Form_Select">
-                           <label>Leave Type:</label>
-                           <select>
-                              <option checked>Select Leave Type</option>
-                              <option> Leave Type1</option>
-                              <option> Leave Type2</option>
-                              <option> Leave Type3</option>
-                              <option> Leave Type4</option>
-                           </select>
-                        </div>
-                        <div class="col-sm-6 Form_Input" >
-                           <label>From:</label>
-                              <input type="text" placeholder="from">
-                           </div>
-                           <div class="col-sm-6 Form_Input" >
-                              <label>To:</label>
-                                 <input type="text" placeholder="Designation">
-                              </div>
-                        <div class="col-sm-6 Form_Input" >
-                           <label>Purpose:</label>
-                           <input type="text" placeholder="purpose"> 
-                        </div>
-                     </div>
+            <div class="col-sm-4 Form_Input" >
+               <label>Department:</label>
+               <input type="text" placeholder="Department">
+            </div>
+            <div class="col-sm-4 Form_Input" >
+               <label>Designation:</label>
+               <input type="text" placeholder="Designation">
+            </div>
+            <div class="col-sm-4 Form_Input" >
+               <label>Email Id:</label>
+               <input type="text" placeholder="emailid"> 
+            </div>
+            <div class="col-sm-4 Form_Input" >
+               <label>Contact Number:</label>
+               <input type="text" placeholder="contactnumber"> 
             </div>
          </div>
-         <div class="row" style="margin-top:20px;"> 
-            <div class="col-sm-12 text-right">
-                  <button mat-raised-button color="primary" style = "bottom: 20px;"> Submit </button>
+      </div>
+      <!-- Company details -->
+      <div class="Company_Details">
+         <h5 style="color:#49B660;font-size:20px;font-weight: 600;"> Application <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span></h5><br>
+         <div class="row">
+            <div class="col-sm-4 Form_Select">
+               <label>Leave Type:</label>
+               <ng-select class="NgSelect" 
+                  [items]="_LeaveType" 
+                  [searchable]="true" 
+                  placeholder="Leave Type">
+               </ng-select>
+            </div>
+            <div class="col-sm-4 Form_Input" >
+               <label>From:</label>
+               <input matInput [matDatepicker]="DatePicker1" (click)="DatePicker1.open()" placeholder="From Date">
+               <mat-datepicker #DatePicker1></mat-datepicker>
+            </div>
+            <div class="col-sm-4 Form_Input" >
+               <label>To:</label>
+               <input matInput [matDatepicker]="DatePicker2" (click)="DatePicker2.open()" placeholder="To Date">
+               <mat-datepicker #DatePicker2></mat-datepicker>
+            </div>
+            <div class="col-sm-4 Form_Input" >
+               <label>Purpose:</label>
+               <input type="text" placeholder="purpose"> 
             </div>
          </div>
       </div>
    </div>
+</div>
+<!-- Footer -->
+<div class="Footer">
+   <button mat-raised-button color="primary" style = "top: 5px;"> Submit </button>
+</div>
 

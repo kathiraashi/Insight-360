@@ -1,0 +1,44 @@
+<div class="Modal_Content" *ngIf="Type && Type === 'Create'">
+   <div class="Modal_Header">
+      <p>Confirm Order</p>
+      <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+   </div>
+   <div class="Model_Body">
+      <div class="row">
+         <div class="col-sm-6 Form_Select">
+            <label>Order Confirm By:</label>
+            <ng-select class="NgSelect" 
+               [(ngModel)]="Type1"
+               [items]="_OrderConfirmBy" 
+               [searchable]="true" 
+               placeholder="Order Confirm By">
+            </ng-select>   
+         </div>
+         <div class="col-sm-6 Form_Input" *ngIf="Type1 === 'Email'">
+            <label>Date:</label>
+            <input matInput [matDatepicker]="picker" (click)="picker.open()" placeholder="Date">
+            <mat-datepicker #picker></mat-datepicker>
+         </div>
+         <div class="col-sm-6 Form_Input" *ngIf="Type1 === 'Telephonic'">
+            <label>TelePhonic:</label>
+            <input matInput [matDatepicker]="picker" (click)="picker.open()" placeholder="Date">
+            <mat-datepicker #picker></mat-datepicker>
+         </div>
+         <div class="col-sm-6 Form_Input" *ngIf="Type1 === 'Po'">
+            <label>PO No:</label>
+            <input type="text">
+         </div>
+         <div class="col-sm-6 Form_Input" *ngIf="Type1 === 'Po'">
+            <label>PO Date:</label>
+            <input matInput [matDatepicker]="picker" (click)="picker.open()" placeholder="Date">
+            <mat-datepicker #picker></mat-datepicker>
+         </div>
+      </div>
+   </div>
+   <div class="Model_Footer">
+      <button mat-raised-button color="primary" style="margin-left:75%"> Confirm </button>
+      <button mat-raised-button class="cancel"> Cancel </button>
+   </div>
+</div>
+
+

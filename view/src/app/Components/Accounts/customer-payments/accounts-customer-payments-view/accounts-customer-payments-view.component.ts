@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./accounts-customer-payments-view.component.css']
 })
 export class AccountsCustomerPaymentsViewComponent implements OnInit {
+   Type: string;
 
   constructor() { }
 

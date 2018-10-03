@@ -7,7 +7,7 @@
             <ul>
                <li class="HeaderName">CRM</li>
                <li class="arrow">>></li>
-               <li class="LinkName" [routerLink]="['/Crm_Customers_List']">Customers</li>
+               <li class="LinkName"><a [routerLink]="['/Crm_Customers_List']">Customers</a></li>
                <li class="arrow">>></li>
                <li>Customers Create</li>
             </ul>
@@ -17,14 +17,16 @@
          <div class="row">
             <div class="col-sm-3" >
                <!-- Left Section -->
-               <div class="left_section" style="background-color:#fff;margin-bottom:150px;">
+               <div class="left_section" style=" background-color:#fff; margin-bottom:150px; box-shadow: 1px 1px 10px #d4d4d4;">
                   <div class="row">
                      <div class="col-sm-12 text-center">
-                        <img src="../../../../../assets/images/basic/company.png" alt="Company Image" style="width:150px; height:150px; margin:10px; box-shadow:0 1px 5px 1px rgba(0,0,0,.2);">
-                     </div>
-                     <div class="col-sm-12 text-center">
-                        <button type="button" class="change_button"> Change Picture </button>
-                     </div><br><br>
+                        <img src="../../../../../assets/images/basic/company.png" alt="Company Image" style="width:150px; height:150px; margin-top:40px; box-shadow:0 1px 5px 1px rgba(0,0,0,.2);">
+                     </div></div><br>
+                     <!-- <div class="col-sm-12 text-center file_Section"> -->
+                        <!-- <button type="button" class="change_button"> Choose Picture </button> -->
+                        <!-- <input type="file">
+                     </div><br><br> -->
+                     <div class="row">
                      <div class="col-sm-12 Form_Input">
                         <input type="text"  placeholder="Company Name" style="width:90%;margin-left:15px;">
                      </div>
@@ -41,151 +43,117 @@
                </div>
             </div>
             <div class="col-sm-9">
-               <h5 class="text-style-1" style="margin-top:0px;"> Company Details </h5>
-               <div class="row" style="padding:10px;background-color:#ffffff;border-radius: 3px;border-top: 2px solid #08a92c;width:100%;">
-                  <div class="col-sm-4 Form_Select" >
-                     <select>
-                        <option checked>Industry Type</option>
-                        <option> Industry1</option>
-                        <option> Industry2 </option>
-                        <option> Industry3 </option>
-                        <option> Industry4 </option>
-                        <option> Industry5 </option>
-                     </select>
-                  </div>
-                  <div class="col-sm-4 Form_Input" >
-                     <input type="text" placeholder="No.Of Eployees">
-                  </div>
-                  <div class="col-sm-4 Form_Select" >
-                     <select>
-                        <option checked> Account Type</option>
-                        <option> Account1</option>
-                        <option>  Account2 </option>
-                        <option>  Account3 </option>
-                        <option>  Account4 </option>
-                        <option>  Account5 </option>
-                     </select>
-                  </div>
-                  <div class="col-sm-4 Form_Select" >
-                     <select>
-                        <option checked> Ownership Type</option>
-                        <option> Ownership Type1 </option>
-                        <option> Ownership Type2 </option>
-                        <option> Ownership Type3 </option>
-                        <option> Ownership Type4 </option>
-                        <option> Ownership Type5 </option>
-                     </select>
-                  </div>
-                  <div class="col-sm-4 Form_TextArea" >
-                     <textarea  type="text" row="5" placeholder="Notes"></textarea>
-                  </div>
-               </div>
-               <br>
-               <h5 class="text-style-1"> Billing Address </h5>
-               <div class="row" style="padding:10px;background-color:#ffffff;border-radius: 3px;border-top: 2px solid #08a92c;width:100%;">
-                  <div class="col-sm-4 Form_Input" >
-                     <input type="text" placeholder="No / Street">
-                  </div>
-                  <div class="col-sm-4 Form_Input" >
-                     <input type="text"  placeholder="Area">
-                  </div>
-                  <div class="col-sm-4 Form_Select" >
-                     <select>
-                        <option checked> Country</option>
-                        <option> Country1 </option>
-                        <option> Country2 </option>
-                        <option> Country3 </option>
-                        <option> Country4 </option>
-                        <option> Country5 </option>
-                     </select>                             
-                  </div>
-                  <div class="col-sm-4 Form_Select" >
-                     <select>
-                        <option disabled> State</option>
-                        <option> State1 </option>
-                        <option> State2</option>
-                        <option> State3 </option>
-                        <option> State4</option>
-                        <option> State5</option>
-                     </select>
-                  </div>
-                  <div class="col-sm-4 Form_Select" >
-                     <select>
-                        <option Checked> City</option>
-                        <option> city1 </option>
-                        <option> city2 </option>
-                        <option> city3 </option>
-                        <option> city4 </option>
-                        <option> city5 </option>
-                     </select>
-                  </div>
-                  <div class="col-sm-4 Form_Input" >
-                     <input matInput type="text"  placeholder="Zip Code">
-                  </div>
-                  <div class="col-sm-4 Form_Input" >
-                     <input matInput type="text"  placeholder="GST NO">
-                  </div>
-               </div>
-               <div class="row">
-                  <div class="col-sm-12">
-                     <div style="margin-top:20px;font-size: 16px;font-weight: 600;">
-                        <input type="checkbox" > Same As Billing Address
+               <div class="Company_Details">
+                  <h5 class="text-style-1"> Company Details </h5>
+                  <div class="row" >
+                     <div class="col-sm-4 Form_Select" >
+                        <ng-select class="NgSelect" 
+                           [items]="_IndustryType" 
+                           [searchable]="true" 
+                           placeholder="Industry Type">
+                        </ng-select>
+                     </div>
+                     <div class="col-sm-4 Form_Input" >
+                        <input type="text" placeholder="No.Of Employees">
+                     </div>
+                     <div class="col-sm-4 Form_Select" >
+                        <ng-select class="NgSelect" 
+                           [items]="_AccountType" 
+                           [searchable]="true" 
+                           placeholder="Account Type">
+                        </ng-select>
+                     </div>
+                     <div class="col-sm-4 Form_Select" >
+                        <ng-select class="NgSelect" 
+                           [items]="_OwnershipType" 
+                           [searchable]="true" 
+                           placeholder="Ownership Type">
+                        </ng-select>
+                     </div>
+                     <div class="col-sm-4 Form_TextArea" >
+                        <textarea  type="text" row="5" placeholder="Notes"></textarea>
                      </div>
                   </div>
                </div>
-               <br>
-               <h5 class="text-style-1" style="margin-top:10px;"> Shipping Address </h5>
-               <div class="row" style="padding:10px;background-color:#ffffff;border-radius: 3px;border-top: 2px solid #08a92c;width:100%;">
-                  <div class="col-sm-4 Form_Input" >
-                     <input  type="text"  placeholder="No / Street">
-                  </div>
-                  <div class="col-sm-4 Form_Input" >
-                     <input  type="text" placeholder="Area">
-                  </div>
-                  <div class="col-sm-4 Form_Select" >
-                     <select>
-                        <option checked>Country</option>
-                        <option> Country1 </option>
-                        <option> Country2 </option>
-                        <option> Country3 </option>
-                        <option> Country4 </option>
-                        <option> Country5 </option>
-                     </select>
-                  </div>
-                  <div class="col-sm-4 Form_Select" >
-                     <select>
-                        <option checked> State</option>
-                        <option> State1 </option>
-                        <option> State2 </option>
-                        <option> State3 </option>
-                        <option> State4 </option>
-                        <option> State5 </option>
-                     </select>
-                  </div>
-                  <div class="col-sm-4 Form_Select" >
-                     <select>
-                        <option checked>City </option>
-                        <option> City1 </option>
-                        <option> City2 </option>
-                        <option> City3 </option>
-                        <option> City4 </option>
-                        <option> City5 </option>
-                     </select>
-                  </div>
-                  <div class="col-sm-4 Form_Input" >
-                     <input type="text"  placeholder="Zip Code">
-                  </div>
-                  <div class="col-sm-4 Form_Input" >
-                     <input matInput type="text"  placeholder="GST NO">
+               <div class="Company_Details">
+                  <h5 class="text-style-1"> Billing Address </h5>
+                  <div class="row">
+                     <div class="col-sm-4 Form_Input" >
+                        <input type="text" placeholder="No / Street">
+                     </div>
+                     <div class="col-sm-4 Form_Input" >
+                        <input type="text"  placeholder="Area">
+                     </div>
+                     <div class="col-sm-4 Form_Select" >
+                        <ng-select class="NgSelect" 
+                           [items]="_Country" 
+                           [searchable]="true" 
+                           placeholder="Country">
+                        </ng-select>                       
+                     </div>
+                     <div class="col-sm-4 Form_Select" >
+                        <ng-select class="NgSelect" 
+                           [items]="_State" 
+                           [searchable]="true" 
+                           placeholder="State">
+                        </ng-select>
+                     </div>
+                     <div class="col-sm-4 Form_Select" >
+                        <ng-select class="NgSelect" 
+                           [items]="_City" 
+                           [searchable]="true" 
+                           placeholder="City">
+                        </ng-select>
+                     </div>
+                     <div class="col-sm-4 Form_Input" >
+                        <input matInput type="text"  placeholder="Zip Code">
+                     </div>
                   </div>
                </div>
+                  <div class="Company_Details">
+                     <h5 class="text-style-1"> Shipping Address 
+                     <span class="pull-right"><mat-checkbox>Same As Billing Address</mat-checkbox></span></h5>
+                     <div class="row" >   
+                     <div class="col-sm-4 Form_Input" >
+                        <input  type="text"  placeholder="No / Street">
+                     </div>
+                     <div class="col-sm-4 Form_Input" >
+                        <input  type="text" placeholder="Area">
+                     </div>
+                     <div class="col-sm-4 Form_Select" >
+                        <ng-select class="NgSelect" 
+                           [items]="_Country" 
+                           [searchable]="true" 
+                           placeholder="Country">
+                        </ng-select>   
+                     </div>
+                     <div class="col-sm-4 Form_Select" >
+                        <ng-select class="NgSelect" 
+                           [items]="_State" 
+                           [searchable]="true" 
+                           placeholder="State">
+                        </ng-select>
+                     </div>
+                     <div class="col-sm-4 Form_Select" >
+                        <ng-select class="NgSelect" 
+                           [items]="_City" 
+                           [searchable]="true" 
+                           placeholder="City">
+                        </ng-select>
+                     </div>
+                     <div class="col-sm-4 Form_Input" >
+                        <input type="text"  placeholder="Zip Code">
+                     </div>
+                  </div>
+               </div>
+               </div>
             </div>
-         </div>
+         
       </form>
    </div>
 </div>
 <!-- Footer -->
 <div class="Footer">
-        <button mat-raised-button color="primary" style = "top: 5px;"> Submit </button>
-     </div>
+   <button mat-raised-button color="primary" style = "top: 5px;"> Submit </button>
+</div>
      

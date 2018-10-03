@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./vendor-payments-view.component.css']
 })
 export class VendorPaymentsViewComponent implements OnInit {
-
+   Type: string;
   constructor() { }
 
   ngOnInit() {

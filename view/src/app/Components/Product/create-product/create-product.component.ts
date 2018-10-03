@@ -6,12 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-product.component.css']
 })
 export class CreateProductComponent implements OnInit {
-Active_Tab = 'Sales';
+   _UnitOfMeasure: any[] =  ['10', '20'];
+   _ProductType: any[] =  ['Cunsumable', 'Stockable', 'Serviceable'];
+
   constructor() { }
 
   ngOnInit() {
   }
-Active_Tab_Change(name) {
-  this.Active_Tab = name;
-}
+
 }

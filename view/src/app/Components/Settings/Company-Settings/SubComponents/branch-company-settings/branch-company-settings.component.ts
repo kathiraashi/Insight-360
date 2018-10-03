@@ -50,6 +50,7 @@ export class BranchCompanySettingsComponent implements OnInit {
             const CryptoBytes  = CryptoJS.AES.decrypt(ResponseData['Response'], 'SecretKeyOut@123');
             const DecryptedData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
             this._List = DecryptedData;
+            console.log(this._List);
          } else if (response['status'] === 400 || response['status'] === 417  && !ResponseData['Status']) {
            this.Toastr.NewToastrMessage({ Type: 'Error', Message: response['Message'] });
          } else if (response['status'] === 401 && !ResponseData['Status']) {
@@ -83,23 +84,24 @@ export class BranchCompanySettingsComponent implements OnInit {
       };
       this.bsModalRef = this.modalService.show(ModelBranchCompanysettingsComponent, Object.assign({initialState}, { ignoreBackdropClick: true, class: 'modal-lg' }));
       this.bsModalRef.content.onClose.subscribe(response => {
-         if (response.Status) {
-            this._List[_index] = response.Response;
+         if (response['Status']) {
+            this._List[_index] = response['Response'];
+               console.log(this._List);
          }
-      });
+       });
    }
   Viewbranch(_index) {
    const initialState = {
       _Data: {
-         Branch_Info: this._List[_index],
+         _Branch_Info: this._List[_index],
          Type: 'View'
          }
     };
     this.bsModalRef = this.modalService.show(ModelBranchCompanysettingsComponent, Object.assign({initialState}, { class: '' }));
   }
-  DeleteBranch(_index) {
+   DeleteBranch(_index) {
     const initialState = {
-      Text: 'Branch company settings'
+      Text: 'Branch '
     };
     this.bsModalRef = this.modalService.show(DeleteConfirmationComponent, Object.assign({initialState}, { ignoreBackdropClick: true, class: 'modal-sm' }));
     this.bsModalRef.content.onClose.subscribe(response => {

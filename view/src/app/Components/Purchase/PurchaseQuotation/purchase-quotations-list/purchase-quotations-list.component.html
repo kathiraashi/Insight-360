@@ -1,3 +1,4 @@
+<!-- Main Section -->
 <div class="Main_Section">
    <div class="page_section">
       <div class="container-fluid">
@@ -5,18 +6,16 @@
          <div class="Page_Identity">
             <div class="Page_Track">
                <ul>
-               <li class="HeaderName">Home</li>
-               <li class="arrow">>></li>
-               <li class= "LinkName">Purchase</li>
-               <li class="arrow">>></li>
-               <li >Purchase Quotations</li>
+                  <li class="HeaderName">Home</li>
+                  <li class="arrow">>></li>
+                  <li>Purchase Quotations</li>
                </ul>
             </div>
          </div>
          <!-- Header part -->
          <div class="row header_part">
             <div class="col-sm-6">
-               <button class="Create_Button" mat-raised-button [routerLink]="['/Purchase_Quotation_Create']"> + Create </button>
+               <a [routerLink]="['/Purchase_Quotation_Create']"><button class="Create_Button" mat-raised-button> + Create </button></a>
             </div>
             <div class="col-sm-6">
                <div class="Search_Section">
@@ -144,19 +143,19 @@
 </div>
 
 <!-- Dropdown menus -->
-<mat-menu #Action="matMenu">
-   <button mat-menu-item>
+<mat-menu class="MenuStyleOne" #Action="matMenu" [overlapTrigger]="false" xPosition="after" yPosition="below" class="MenuStyleOne">
+   <a [routerLink]="['/Purchase_Quotation_Create']"><button mat-menu-item>
       <span>Edit</span>
-   </button>
-   <button mat-menu-item [routerLink]="['/Purchase_Quotation_View']">
+   </button></a>
+   <a [routerLink]="['/Purchase_Quotation_View']"><button mat-menu-item>
       <span>View</span>
+   </button></a>
+   <button mat-menu-item>
+      <span>Cancel</span>
    </button>
    <button mat-menu-item>
-      <span>Delete</span>
+      <span>Confirm Order</span>
    </button>
-   <button mat-menu-item>
-        <span>Confirm Order</span>
-     </button>
 </mat-menu>
    
    

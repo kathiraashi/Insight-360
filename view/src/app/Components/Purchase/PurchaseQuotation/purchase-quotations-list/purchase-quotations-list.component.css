@@ -22,15 +22,16 @@
       float: right;
    }
    .Page_Identity .Page_Track ul li {
-      color: #a5adb1;
       font-size: 13px;
       font-weight: 500;
       margin-left: 5px;
+      color: #4e6a7a;
    }
    .Page_Identity .Page_Track ul li.arrow{
       letter-spacing: -4px;
       font-size: 19px;
       transform: scale(.6, 1);
+      color: #4e6a7a;
    }
    .Page_Identity .Page_Track ul li.arrowGreen{
       letter-spacing: -4px;
@@ -45,7 +46,12 @@
       color: #4ab65f;
       cursor: pointer;
    }
-   /* ----------- Create and Search Section ---------- */
+   a {
+      text-decoration:none;
+      color: #4ab65f;
+      cursor: pointer;
+   }
+/* ----------- Create and Search Section ---------- */
    .header_part{
       margin-bottom: 15px;
    }

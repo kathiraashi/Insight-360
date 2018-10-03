@@ -18,14 +18,14 @@ export class AccountSettingsService {
 
   ValidateEveryRequest() {
     let Message = JSON.stringify({Status: false, Message: 'Your Login Expired! Please Login Again'});
-    if (sessionStorage.getItem('Token') && sessionStorage.getItem('SessionKey') && sessionStorage.getItem('SessionToken') ) {
-       const LastSession = new Date(atob(sessionStorage.getItem('SessionKey'))).getTime();
+    if (localStorage.getItem('Token') && localStorage.getItem('SessionKey') && localStorage.getItem('SessionToken') ) {
+       const LastSession = new Date(atob(localStorage.getItem('SessionKey'))).getTime();
        const NowSession = new Date().getTime();
        const SessionDiff: number = NowSession - LastSession;
        const SessionDiffMinutes: number = SessionDiff / 1000 / 60 ;
        if (SessionDiffMinutes >= 20 ) {
           Message = JSON.stringify({Status: false, Message: 'Your Session Expired! Please Login Again'});
-          sessionStorage.clear();
+          localStorage.clear();
        }
     }
     return Observable.create(observer => {
@@ -38,8 +38,8 @@ export class AccountSettingsService {
    // Income Type
         public IncomeType_AsyncValidate(Info: any): Observable<any[]> {
           if (this.Service.If_LoggedIn()) {
-            this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
-            sessionStorage.setItem('SessionKey', btoa(Date()));
+            this.headers.set('Authorization', atob(localStorage.getItem('SessionToken')));
+            localStorage.setItem('SessionKey', btoa(Date()));
           return this.http.post(API_URL + 'IncomeType_AsyncValidate', Info, {headers: this.headers })
           .pipe( map(response => response),  catchError(error => of(error)));
       } else {
@@ -48,8 +48,8 @@ export class AccountSettingsService {
     }
       public Income_Type_Create(Info: any): Observable<any[]> {
         if (this.Service.If_LoggedIn()) {
-          this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
-          sessionStorage.setItem('SessionKey', btoa(Date()));
+          this.headers.set('Authorization', atob(localStorage.getItem('SessionToken')));
+          localStorage.setItem('SessionKey', btoa(Date()));
          return this.http.post(API_URL + 'Income_Type_Create', Info, {headers: this.headers })
          .pipe( map(response => response),  catchError(error => of(error)));
       } else {
@@ -58,8 +58,8 @@ export class AccountSettingsService {
     }
       public Income_Type_List(Info: any): Observable<any[]> {
         if (this.Service.If_LoggedIn()) {
-          this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
-          sessionStorage.setItem('SessionKey', btoa(Date()));
+          this.headers.set('Authorization', atob(localStorage.getItem('SessionToken')));
+          localStorage.setItem('SessionKey', btoa(Date()));
          return this.http.post(API_URL + 'Income_Type_List', Info, {headers: this.headers })
          .pipe( map(response => response), catchError(error => of(error)));
       } else {
@@ -68,8 +68,8 @@ export class AccountSettingsService {
     }
       public Income_Type_SimpleList(Info: any): Observable<any[]> {
         if (this.Service.If_LoggedIn()) {
-          this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
-          sessionStorage.setItem('SessionKey', btoa(Date()));
+          this.headers.set('Authorization', atob(localStorage.getItem('SessionToken')));
+          localStorage.setItem('SessionKey', btoa(Date()));
          return this.http.post(API_URL + 'Income_Type_SimpleList', Info, {headers: this.headers })
          .pipe( map(response => response),  catchError(error => of(error)));
       } else {
@@ -78,8 +78,8 @@ export class AccountSettingsService {
     }
       public Income_Type_Update(Info: any): Observable<any[]> {
         if (this.Service.If_LoggedIn()) {
-          this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
-          sessionStorage.setItem('SessionKey', btoa(Date()));
+          this.headers.set('Authorization', atob(localStorage.getItem('SessionToken')));
+          localStorage.setItem('SessionKey', btoa(Date()));
          return this.http.post(API_URL + 'Income_Type_Update', Info, {headers: this.headers })
          .pipe( map(response => response), catchError(error => of(error)));
       } else {
@@ -88,8 +88,8 @@ export class AccountSettingsService {
     }
       public Income_Type_Delete(Info: any): Observable<any[]> {
         if (this.Service.If_LoggedIn()) {
-          this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
-          sessionStorage.setItem('SessionKey', btoa(Date()));
+          this.headers.set('Authorization', atob(localStorage.getItem('SessionToken')));
+          localStorage.setItem('SessionKey', btoa(Date()));
          return this.http.post(API_URL + 'Income_Type_Delete', Info, {headers: this.headers })
          .pipe( map(response => response),  catchError(error => of(error)));
       } else {
@@ -122,8 +122,8 @@ export class AccountSettingsService {
 // Bank
       public Bank_AsyncValidate(Info: any): Observable<any[]> {
          if (this.Service.If_LoggedIn()) {
-         this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
-         sessionStorage.setItem('SessionKey', btoa(Date()));
+         this.headers.set('Authorization', atob(localStorage.getItem('SessionToken')));
+         localStorage.setItem('SessionKey', btoa(Date()));
          return this.http.post(API_URL + 'Bank_AsyncValidate', Info, {headers: this.headers })
          .pipe(map(response => response), catchError(error => of(error)));
    } else {
@@ -132,8 +132,8 @@ export class AccountSettingsService {
    }
       public Bank_Create(Info: any): Observable<any[]> {
         if (this.Service.If_LoggedIn()) {
-          this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
-          sessionStorage.setItem('SessionKey', btoa(Date()));
+          this.headers.set('Authorization', atob(localStorage.getItem('SessionToken')));
+          localStorage.setItem('SessionKey', btoa(Date()));
          return this.http.post(API_URL + 'Bank_Create', Info, {headers: this.headers })
          .pipe(map(response => response), catchError(error => of(error)));
       } else {
@@ -142,8 +142,8 @@ export class AccountSettingsService {
     }
       public Bank_List(Info: any): Observable<any[]> {
         if (this.Service.If_LoggedIn()) {
-          this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
-          sessionStorage.setItem('SessionKey', btoa(Date()));
+          this.headers.set('Authorization', atob(localStorage.getItem('SessionToken')));
+          localStorage.setItem('SessionKey', btoa(Date()));
          return this.http.post(API_URL + 'Bank_List', Info, {headers: this.headers })
          .pipe(map(response => response), catchError(error => of(error)));
       } else {
@@ -152,8 +152,8 @@ export class AccountSettingsService {
     }
       public Bank_Simple_List(Info: any): Observable<any[]> {
         if (this.Service.If_LoggedIn()) {
-          this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
-          sessionStorage.setItem('SessionKey', btoa(Date()));
+          this.headers.set('Authorization', atob(localStorage.getItem('SessionToken')));
+          localStorage.setItem('SessionKey', btoa(Date()));
          return this.http.post(API_URL + 'Bank_Simple_List', Info, {headers: this.headers })
          .pipe(map(response => response), catchError(error => of(error)));
       } else {
@@ -162,8 +162,8 @@ export class AccountSettingsService {
     }
       public Bank_Update(Info: any): Observable<any[]> {
         if (this.Service.If_LoggedIn()) {
-          this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
-          sessionStorage.setItem('SessionKey', btoa(Date()));
+          this.headers.set('Authorization', atob(localStorage.getItem('SessionToken')));
+          localStorage.setItem('SessionKey', btoa(Date()));
          return this.http.post(API_URL + 'Bank_Update', Info, {headers: this.headers })
          .pipe(map(response => response), catchError(error => of(error)));
       } else {
@@ -172,8 +172,8 @@ export class AccountSettingsService {
     }
       public Bank_Delete(Info: any): Observable<any[]> {
         if (this.Service.If_LoggedIn()) {
-          this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
-          sessionStorage.setItem('SessionKey', btoa(Date()));
+          this.headers.set('Authorization', atob(localStorage.getItem('SessionToken')));
+          localStorage.setItem('SessionKey', btoa(Date()));
          return this.http.post(API_URL + 'Bank_Delete', Info, {headers: this.headers })
          .pipe(map(response => response), catchError(error => of(error)));
       } else {
@@ -184,8 +184,8 @@ export class AccountSettingsService {
 // Taxes
 //     public Bank_AsyncValidate(Info: any): Observable<any[]> {
 //       if (this.Service.If_LoggedIn()) {
-//         this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
-//         sessionStorage.setItem('SessionKey', btoa(Date()));
+//         this.headers.set('Authorization', atob(localStorage.getItem('SessionToken')));
+//         localStorage.setItem('SessionKey', btoa(Date()));
 //       return this.http.post(API_URL + 'Bank_AsyncValidate', Info, {headers: this.headers })
 //       .pipe(map(response => response), catchError(error => of(error)));
 //   } else {
@@ -194,8 +194,8 @@ export class AccountSettingsService {
 // }
   public Taxes_Create(Info: any): Observable<any[]> {
     if (this.Service.If_LoggedIn()) {
-      this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
-      sessionStorage.setItem('SessionKey', btoa(Date()));
+      this.headers.set('Authorization', atob(localStorage.getItem('SessionToken')));
+      localStorage.setItem('SessionKey', btoa(Date()));
      return this.http.post(API_URL + 'Taxes_Create', Info, {headers: this.headers })
      .pipe(map(response => response), catchError(error => of(error)));
   } else {
@@ -204,8 +204,8 @@ export class AccountSettingsService {
 }
   public Taxes_List(Info: any): Observable<any[]> {
     if (this.Service.If_LoggedIn()) {
-      this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
-      sessionStorage.setItem('SessionKey', btoa(Date()));
+      this.headers.set('Authorization', atob(localStorage.getItem('SessionToken')));
+      localStorage.setItem('SessionKey', btoa(Date()));
      return this.http.post(API_URL + 'Taxes_List', Info, {headers: this.headers })
      .pipe(map(response => response), catchError(error => of(error)));
   } else {
@@ -214,8 +214,8 @@ export class AccountSettingsService {
 }
   public Taxes_Simple_List(Info: any): Observable<any[]> {
     if (this.Service.If_LoggedIn()) {
-      this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
-      sessionStorage.setItem('SessionKey', btoa(Date()));
+      this.headers.set('Authorization', atob(localStorage.getItem('SessionToken')));
+      localStorage.setItem('SessionKey', btoa(Date()));
      return this.http.post(API_URL + 'Taxes_Simple_List', Info, {headers: this.headers })
      .pipe(map(response => response), catchError(error => of(error)));
   } else {
@@ -224,8 +224,8 @@ export class AccountSettingsService {
 }
   public Taxes_Update(Info: any): Observable<any[]> {
     if (this.Service.If_LoggedIn()) {
-      this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
-      sessionStorage.setItem('SessionKey', btoa(Date()));
+      this.headers.set('Authorization', atob(localStorage.getItem('SessionToken')));
+      localStorage.setItem('SessionKey', btoa(Date()));
      return this.http.post(API_URL + 'Taxes_Update', Info, {headers: this.headers })
      .pipe(map(response => response), catchError(error => of(error)));
   } else {
@@ -234,8 +234,8 @@ export class AccountSettingsService {
 }
   public Taxes_Delete(Info: any): Observable<any[]> {
     if (this.Service.If_LoggedIn()) {
-      this.headers.set('Authorization', atob(sessionStorage.getItem('SessionToken')));
-      sessionStorage.setItem('SessionKey', btoa(Date()));
+      this.headers.set('Authorization', atob(localStorage.getItem('SessionToken')));
+      localStorage.setItem('SessionKey', btoa(Date()));
      return this.http.post(API_URL + 'Taxes_Delete', Info, {headers: this.headers })
      .pipe(map(response => response), catchError(error => of(error)));
   } else {

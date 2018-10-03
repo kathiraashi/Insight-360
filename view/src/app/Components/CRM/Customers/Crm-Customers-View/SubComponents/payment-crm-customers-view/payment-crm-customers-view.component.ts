@@ -29,7 +29,7 @@ export class PaymentCrmCustomersViewComponent implements OnInit {
     const initialState = {
       Type: 'View'
     };
-    this.bsModalRef = this.modalService.show(ModelPaymentsCustomersViewComponent, Object.assign({initialState}, { class: 'modal-lg' }));
+    this.bsModalRef = this.modalService.show(ModelPaymentsCustomersViewComponent, Object.assign({initialState}, { class: '' }));
   }
   DeletePayments() {
     const initialState = {

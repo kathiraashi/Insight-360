@@ -1,0 +1,219 @@
+<!-- page -->
+<div class="page" style="margin-top:100px;">
+   <div class="container-fluid">
+      <!-- page Identity -->
+      <div class="Page_Identity">
+         <div class="Page_Track">
+            <ul>
+               <li class="HeaderName">Home</li>
+               <li class="arrow">>></li>
+               <li class="LinkName">Income</li>
+               <li class="arrow">>></li>
+               <li>Loan</li>
+            </ul>
+         </div>
+      </div>
+      <div class="Company_Details">
+         <div class="row">
+            <div class="col-sm-4 Form_Input">
+               <label>Lendor Name:</label>
+               <input type="text">
+            </div>
+            <div class="col-sm-4 Form_Input">
+               <label>Amount:</label>
+               <input type="text">
+            </div>
+            <div class="col-sm-4 Form_Input">
+               <label>Loan Account No:</label>
+               <input type="text">
+            </div>
+            <div class="col-sm-4 Form_Input">
+               <label>Date:</label>
+               <input type="text">
+            </div>
+            <div class="col-sm-4 Form_Input">
+               <label>Interest Rate:</label>
+               <input type="text">
+            </div>
+            <div class="col-sm-4 Form_Select">
+               <label>Cycle Of Prepayment:</label>
+               <ng-select class="NgSelect" 
+                  [(ngModel)]="Type"
+                  [items]="_CycleOfPrepayment" 
+                  [searchable]="true" 
+                  placeholder="Cycle Of Prepayment">
+               </ng-select>
+            </div>
+            <div class="col-sm-4 Form_Input" *ngIf="Type === 'Weekly'">
+               <label>No Of Weeks:</label>
+               <input type="text">
+            </div>
+            <div class="col-sm-4 Form_Select" *ngIf="Type === 'Weekly'">
+               <label>Day:</label>
+               <ng-select class="NgSelect" 
+                  [items]="_Day" 
+                  [searchable]="true" 
+                  placeholder="Day">
+               </ng-select>
+            </div>
+            <!-- <div class="col-sm-4 Form_Input" *ngIf="Type === 'Weekly'">
+               <label>Starts From:</label>
+               <input type="text">
+            </div> -->
+            <div class="col-sm-4 Form_Input" *ngIf="Type === 'Weekly'">
+               <label>Starts From:</label>
+               <input matInput [matDatepicker]="picker" (click)="picker.open()" placeholder="Choose a date">
+               <mat-datepicker #picker></mat-datepicker>
+            </div>
+            <div class="col-sm-4 Form_Input" *ngIf="Type === 'Bi-Weekly'">
+               <label>No Of Weeks:</label>
+               <input type="text">
+            </div>
+            <div class="col-sm-4 Form_Select" *ngIf="Type === 'Bi-Weekly'">
+               <label>Day:</label>
+               <ng-select class="NgSelect" 
+                  [items]="_Day" 
+                  [searchable]="true" 
+                  placeholder="Day">
+               </ng-select>
+            </div>
+            <div class="col-sm-4 Form_Input" *ngIf="Type === 'Bi-Weekly'">
+               <label>Starts From:</label>
+               <input matInput [matDatepicker]="picker" (click)="picker.open()" placeholder="Choose a date">
+               <mat-datepicker #picker></mat-datepicker>
+            </div>
+            <div class="col-sm-4 Form_Input" *ngIf="Type === 'Monthly(interest)'">
+               <label>Date:</label>
+               <input type="text">
+            </div>
+            <div class="col-sm-4 Form_Input" *ngIf="Type === 'Monthly(interest)'">
+               <label>Starts From:</label>
+               <input matInput [matDatepicker]="picker" (click)="picker.open()" placeholder="Choose a date">
+               <mat-datepicker #picker></mat-datepicker>
+            </div>
+            <div class="col-sm-4 Form_Input" *ngIf="Type === 'Monthly(EMI)'">
+               <label>Date:</label>
+               <input type="text">
+            </div>
+            <div class="col-sm-4 Form_Input" *ngIf="Type === 'Monthly(EMI)'">
+               <label>Starts From:</label>
+               <input matInput [matDatepicker]="picker" (click)="picker.open()" placeholder="Choose a date">
+               <mat-datepicker #picker></mat-datepicker>
+            </div>
+         </div>
+      </div>
+      <div class="Company_Details" >
+         <div class="row">
+            <div class="col-sm-12">
+               <h5>Mode Of Payments</h5>
+               <br>
+            </div>
+         </div>
+         <mat-radio-group class="example-radio-group" [(ngModel)]="Type">
+            <mat-radio-button class="example-radio-button" [value]="'Bank'">
+              Bank
+            </mat-radio-button>
+            <mat-radio-button class="example-radio-button" [value]="'cash'">
+               cash
+            </mat-radio-button>
+            <mat-radio-button class="example-radio-button" [value]="'Cheque'">
+               Cheque
+            </mat-radio-button>
+         </mat-radio-group>
+         <div *ngIf="Type === 'Cheque'">
+            <br>
+            <div class="row">
+               <div class="col-sm-4 Form_Input">
+                  <label>Amount:</label>
+                  <input type="text">
+               </div>
+               <div class="col-sm-4 Form_Input">
+                  <label>Cheque No:</label>
+                  <input type="text">
+               </div>
+               <div class="col-sm-4 Form_Input">
+                  <label>Date:</label>
+                  <input matInput [matDatepicker]="picker" (click)="picker.open()" placeholder="Choose a date">
+                  <mat-datepicker #picker></mat-datepicker>
+               </div>
+               <div class="col-sm-4 Form_Input">
+                  <label>Bank:</label>
+                  <input type="text">
+               </div>
+               <div class="col-sm-4 Form_Input">
+                  <label>Branch:</label>
+                  <input type="text">
+               </div>
+               <div class="col-sm-4 Form_Input">
+                  <label>Expected date of clearing:</label>
+                  <input type="text">
+               </div>
+            </div>
+         </div>
+         <div *ngIf="Type === 'cash' ">
+         <br>
+            <div class="row">
+               <div class="col-sm-4 Form_Input">
+                  <label>Amount:</label>
+                  <input type="text">
+               </div>
+               <div class="col-sm-4 Form_Input">
+                  <label>Date:</label>
+                  <input matInput [matDatepicker]="picker" (click)="picker.open()" placeholder="Choose a date">
+                  <mat-datepicker #picker></mat-datepicker>
+               </div>
+            </div>
+         </div>
+         <div *ngIf="Type === 'Bank' ">
+            <br> 
+            <mat-radio-group class="example-radio-group" [(ngModel)]="Type1">
+               <mat-radio-button class="example-radio-button" [value]="'online_payment'">
+                  Online Payments
+               </mat-radio-button>
+               <mat-radio-button class="example-radio-button" [value]="'Neft'">
+                  NEFT/RTGS
+               </mat-radio-button>
+            </mat-radio-group>
+            <div *ngIf="Type1 === 'online_payment'">
+               <div class="row">
+                  <div class="col-sm-4 Form_Input">
+                     <label>Amount:</label>
+                     <input type="text">
+                  </div>
+                  <div class="col-sm-4 Form_Input">
+                     <label>Reference No:</label>
+                     <input type="text">
+                  </div>
+                  <div class="col-sm-4 Form_Input">
+                     <label>Date:</label>
+                     <input matInput [matDatepicker]="picker" (click)="picker.open()" placeholder="Choose a date">
+                     <mat-datepicker #picker></mat-datepicker>
+                  </div>
+               </div>
+            </div>
+            <div *ngIf="Type1 === 'Neft'">
+               <div class="row">
+                  <div class="col-sm-4 Form_Input">
+                     <label>Amount:</label>
+                     <input type="text">
+                  </div>
+                  <div class="col-sm-4 Form_Input">
+                     <label>Starts From:</label>
+                     <input matInput [matDatepicker]="picker" (click)="picker.open()" placeholder="Choose a date">
+                     <mat-datepicker #picker></mat-datepicker>
+                  </div>
+                  <div class="col-sm-4 Form_Input">
+                     <label>Reference No:</label>
+                     <input type="text">
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- Footer -->
+<div class="Footer">
+   <button mat-raised-button color="primary" style = "top: 5px;"> Submit </button>
+</div>
+   

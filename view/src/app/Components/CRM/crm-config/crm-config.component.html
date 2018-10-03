@@ -1,3 +1,4 @@
+<!-- Page Section -->
 <div class="page_section">
    <div class="container-fluid">
       <!-- Page Identity -->
@@ -6,160 +7,236 @@
             <ul>
             <li class="HeaderName">Home</li>
             <li class="arrow">>></li>
-            <li class= "LinkName">CRM</li>
+            <li class= "HeaderName">CRM</li>
             <li class="arrow">>></li>
             <li >Configuration</li>
             </ul>
          </div>
       </div>
+      <!-- Container Content -->
       <div class="container-content">
          <div class="content_gap">
-               <h5 class="Header">Products</h5>
-            <div class="row">
-               <div class="col-sm-4 Left_Date">
-                  <p>Product Varients</p>
-               </div>
-               <div class="col-sm-6 Right_data">
-                  <form>
-                     <input type="radio" name="radiobutton"> no varients on products<br>
-                     <input type="radio" name="radiobutton"> Products can have several attributes,defining varients.<br>
-                  </form>
-               </div>
-            </div><br>
-            <div class="row">
-               <div class="col-sm-4 Left_Date">
-                  <p>BarCode</p>
-               </div>
-               <div class="col-sm-6 Right_data">
-                  <form>
-                     <input type="radio" name="radiobutton"> use BarCode for products<br>
-                     <input type="radio" name="radiobutton"> No need to use BarCode<br>
-                  </form>
-               </div>
-            </div><br>
-            <div class="row">
-               <div class="col-sm-4 Left_Date">
-                  <p>ItemCode</p>
-               </div>
-               <div class="col-sm-6 Right_data">
-                  <form>
-                     <input type="radio" name="radiobutton"> Use ItemCode for Products<br>
-                     <input type="radio" name="radiobutton"> No Need to use IteCode<br>
-                  </form>
-               </div>
-            </div><br>
-            <div class="row">
-               <div class="col-sm-4 Left_Date">
-                  <p>HSN Code</p>
-               </div>
-               <div class="col-sm-6 Right_data">
-                  <form>
-                     <input type="radio" name="radiobutton"> Use HSN code for products<br>
-                     <input type="radio" name="radiobutton"> No need to use HSN Code<br>
-                  </form>
-               </div>
-            </div><br>
             <h5 class="Header">Quotations</h5>
             <div class="row">
                <div class="col-sm-4 Left_Date">
                   <p>Employee Name Added In Quotations</p>
                </div>
                <div class="col-sm-6 Right_data">
-                  <form>
-                     <input type="radio" name="radiobutton"> Yes<br>
-                     <input type="radio" name="radiobutton">No<br>
-                  </form>
+                  <mat-radio-group>
+                     <mat-radio-button value="1">Yes</mat-radio-button><br>
+                     <mat-radio-button value="2">No</mat-radio-button>
+                  </mat-radio-group>
                </div>
-            </div><br>
+            </div><br><hr>
             <div class="row">
                <div class="col-sm-4 Left_Date">
                   <p>Tax</p>
                </div>
                <div class="col-sm-6 Right_data">
-                  <form>
-                     <input type="radio" name="radiobutton"> Allow Tax On Lines<br>
-                     <input type="radio" name="radiobutton"> Global Tax<br>
-                  </form>
+                  <mat-radio-group>
+                     <mat-radio-button value="1">Allow Tax On Lines</mat-radio-button><br>
+                     <mat-radio-button value="2">lobal Tax</mat-radio-button>
+                  </mat-radio-group>
                </div>
-            </div><br>
+            </div><br><hr>
             <div class="row">
                <div class="col-sm-4 Left_Date">
                   <p>Discount</p>
                </div>
                <div class="col-sm-6 Right_data">
-                  <form>
-                     <input type="radio" name="radiobutton"> Allow Discount On Sale Order Lines<br>
-                     <input type="radio" name="radiobutton">Global Discount Only<br>
-                  </form>
+                  <mat-radio-group>
+                     <mat-radio-button value="1">Allow Discount On Sale Order Lines</mat-radio-button><br>
+                     <mat-radio-button value="2">Global Discount Only</mat-radio-button>
+                  </mat-radio-group>
                </div>
-            </div><br>
+            </div><br><hr>
             <div class="row">
                <div class="col-sm-4 Left_Date">
                   <p>Discount Value In</p>
                </div>
                <div class="col-sm-6 Right_data">
-                  <form>
-                     <input type="radio" name="radiobutton"> %(Percentage)<br>
+                  <!-- <form>
+                     <input type="radio" name="radiobutton" checked> %(Percentage)<br>
                      <input type="radio" name="radiobutton"> Amount<br>
-                  </form>
+                  </form> -->
+                  <mat-radio-group>
+                     <mat-radio-button value="1">%(Percentage)</mat-radio-button><br>
+                     <mat-radio-button value="2">Amount</mat-radio-button>
+                  </mat-radio-group>
                </div>
-            </div><br>
+            </div><br><hr>
             <div class="row">
                <div class="col-sm-4 Left_Date">
                   <p>Generate Quote Ref No By</p>
                </div>
                <div class="col-sm-6 Right_data">
-                  <form>
-                     <input type="radio" name="radiobutton"> Auto Increment<br>
-                     <input type="radio" name="radiobutton"> Manual Entry<br>
-                  </form>
+                  <mat-radio-group class="example-radio-group" [(ngModel)]="Type">
+                     <mat-radio-button class="example-radio-button" *ngFor="let Generate of _Generate" [value]="Generate">
+                        {{Generate}}
+                     </mat-radio-button>
+                  </mat-radio-group>
+                  <div class="row">
+                     <div class="col-sm-6 Form_Input" *ngIf="Type === 'Auto Increment'">
+                        <input type="text" placeholder="Prefix">
+                     </div>
+                     <div class="col-sm-6 Form_Input" *ngIf="Type === 'Auto Increment'">
+                        <input type="text" placeholder="Suffix">
+                     </div>
+                     <div class="col-sm-6 Form_Input" *ngIf="Type === 'Auto Increment'">
+                        <input type="text" placeholder="Starting With">
+                     </div>
+                     <div class="col-sm-6 Form_Input" *ngIf="Type === 'Auto Increment'">
+                        <input type="text" placeholder="Prefix">
+                     </div>
+                     <div class="col-sm-6 Form_Select" *ngIf="Type === 'Auto Increment'">
+                        <ng-select class="NgSelect" 
+                           [(ngModel)]="Type5"
+                           [items]="_BasedOn" 
+                           [searchable]="true" 
+                           placeholder="Based">
+                        </ng-select>
+                     </div>
+                     </div><br>
+                     <div class="row">
+                     <div class="col-sm-6 Form_Select" *ngIf="Type5 === 'Custom'">
+                        <ng-select class="NgSelect" 
+                           [items]="_Date" 
+                           [searchable]="true" 
+                           placeholder="Date">
+                        </ng-select>   
+                     </div>
+                     <div class="col-sm-6 Form_Select" *ngIf="Type5 === 'Custom'">
+                        <ng-select class="NgSelect" 
+                           [items]="_Month" 
+                           [searchable]="true" 
+                           placeholder="Month">
+                        </ng-select>   
+                     </div>
+                  </div>
                </div>
-            </div><br>
+            </div><br><hr>
             <div class="row">
                <div class="col-sm-4 Left_Date">
                   <p>Generate Invoice Ref No By</p>
                </div>
                <div class="col-sm-6 Right_data">
-                  <form>
-                     <input type="radio" name="radiobutton"> Auto Increment<br>
-                     <input type="radio" name="radiobutton"> Manual Entry<br>
-                  </form>
+                  <mat-radio-group class="example-radio-group" [(ngModel)]="Type1">
+                     <mat-radio-button class="example-radio-button" *ngFor="let Generate of _Generate" [value]="Generate">
+                        {{Generate}}
+                     </mat-radio-button>
+                  </mat-radio-group>
+                  <div class="row">
+                     <div class="col-sm-6 Form_Input" *ngIf="Type1=== 'Auto Increment'">
+                        <input type="text" placeholder="Prefix">
+                     </div>
+                     <div class="col-sm-6 Form_Input" *ngIf="Type1 === 'Auto Increment'">
+                        <input type="text" placeholder="Suffix">
+                     </div>
+                     <div class="col-sm-6 Form_Input" *ngIf="Type1 === 'Auto Increment'">
+                        <input type="text" placeholder="Starting With">
+                     </div>
+                     <div class="col-sm-6 Form_Input" *ngIf="Type1 === 'Auto Increment'">
+                        <input type="text" placeholder="Prefix">
+                     </div>
+                     <div class="col-sm-6 Form_Select" *ngIf="Type1 === 'Auto Increment'">
+                        <ng-select class="NgSelect" 
+                           [(ngModel)]="Type3"
+                           [items]="_BasedOn" 
+                           [searchable]="true" 
+                           placeholder="Based">
+                        </ng-select>
+                     </div>
+                     <div class="col-sm-6 Form_Select" *ngIf="Type3 === 'Custom'">
+                        <ng-select class="NgSelect" 
+                           [items]="_Date" 
+                           [searchable]="true" 
+                           placeholder="Date">
+                        </ng-select>   
+                     </div></div><br>
+                     <div class="row">
+                     <div class="col-sm-6 Form_Select" *ngIf="Type3 === 'Custom'">
+                        <ng-select class="NgSelect" 
+                           [items]="_Month" 
+                           [searchable]="true" 
+                           placeholder="Month">
+                        </ng-select>   
+                     </div>
+                  </div>
                </div>
-            </div><br>
+            </div><br><hr>
             <div class="row">
                <div class="col-sm-4 Left_Date">
                   <p>Customer</p>
                </div>
                <div class="col-sm-6 Right_data">
-                  <form>
+                  <!-- <form>
                      <input type="Checkbox" name="radiobutton"> Allow Pro-Forma Invoices<br>
-                  </form>
+                  </form> -->
+                  <mat-checkbox> Allow Pro-Forma Invoices</mat-checkbox>
                </div>
-            </div><br>
+            </div><br><hr>
             <h5 class="Header">Sale Order</h5>
             <div class="row">
                <div class="col-sm-4 Left_Date">
-                  <p>Generate Sale Order By</p>
+                  <p>Generate Sale Order Ref No By</p>
                </div>
                <div class="col-sm-6 Right_data">
-                  <form>
-                     <input type="radio" name="radiobutton"> Auto Increment<br>
-                     <input type="radio" name="radiobutton">Manual Entry<br>
-                  </form>
+                  <mat-radio-group class="example-radio-group" [(ngModel)]="Type2">
+                        <mat-radio-button class="example-radio-button" *ngFor="let Generate of _Generate" [value]="Generate">
+                           {{Generate}}
+                        </mat-radio-button>
+                  </mat-radio-group>
+                  <div class="row">
+                     <div class="col-sm-6 Form_Input" *ngIf="Type2 === 'Auto Increment'">
+                        <input type="text" placeholder="Prefix">
+                     </div>
+                     <div class="col-sm-6 Form_Input" *ngIf="Type2 === 'Auto Increment'">
+                        <input type="text" placeholder="Suffix">
+                     </div>
+                     <div class="col-sm-6 Form_Input" *ngIf="Type2 === 'Auto Increment'">
+                        <input type="text" placeholder="Starting With">
+                     </div>
+                     <div class="col-sm-6 Form_Input" *ngIf="Type2 === 'Auto Increment'">
+                        <input type="text" placeholder="Prefix">
+                     </div>
+                     <div class="col-sm-6 Form_Select" *ngIf="Type2 === 'Auto Increment'">
+                        <ng-select class="NgSelect" 
+                           [(ngModel)]="Type4"
+                           [items]="_BasedOn" 
+                           [searchable]="true" 
+                           placeholder="Based">
+                        </ng-select>
+                     </div></div><br>
+                     <div class="row">
+                     <div class="col-sm-6 Form_Select" *ngIf="Type4 === 'Custom'">
+                        <ng-select class="NgSelect" 
+                           [items]="_Date" 
+                           [searchable]="true" 
+                           placeholder="Date">
+                        </ng-select>   
+                     </div>
+                     <div class="col-sm-6 Form_Select" *ngIf="Type4 === 'Custom'">
+                        <ng-select class="NgSelect" 
+                           [items]="_Month" 
+                           [searchable]="true" 
+                           placeholder="Month">
+                        </ng-select>   
+                     </div>
+                  </div>
                </div>
-            </div><br>
+            </div><br><hr>
             <h5 class="Header">Invoice</h5>
             <div class="row">
                <div class="col-sm-4 Left_Date">
                   <p>AMC for Invoice</p>
                </div>
                <div class="col-sm-6 Right_data">
-                  <form>
-                     <input type="radio" name="radiobutton"> Yes<br>
-                     <input type="radio" name="radiobutton">No<br>
-                  </form>
+                  <mat-radio-group>
+                     <mat-radio-button value="1">Yes</mat-radio-button><br>
+                     <mat-radio-button value="2">No</mat-radio-button>
+                  </mat-radio-group>
                </div>
-            </div><br>
+            </div><br><hr>
          </div>
       </div>
    </div>

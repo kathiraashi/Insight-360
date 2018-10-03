@@ -14,7 +14,7 @@
       <!-- Header Part -->
       <div class="row header_part">
          <div class="col-sm-6">
-            <button class="Create_Button" mat-raised-button [routerLink]="['/Create_Log_Phone_call']"> + Create </button>
+            <a [routerLink]="['/Create_Log_Phone_call']"><button class="Create_Button" mat-raised-button>+ Create</button></a>
          </div>
          <div class="col-sm-6">
             <div class="Search_Section">
@@ -54,12 +54,14 @@
                      <span class="Style_1">+428765</span>
                   </td>
                   <td>
-                     <button [routerLink]="['/View_Log_Phone_call']"  class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                     <a [routerLink]="['/View_Log_Phone_call']"><button class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
                         <i class="material-icons">zoom_in</i>
-                     </button>
-                     <button  [routerLink]="['/Create_Log_Phone_call']" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                        </button>
+                     </a>
+                     <a [routerLink]="['/Create_Log_Phone_call']"><button  class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
                         <i class="material-icons">edit</i>
-                     </button>
+                        </button>
+                     </a>
                      <button (click)=" DeleteLogPhoneCall()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
                         <i class="material-icons">delete_forever</i>
                      </button>
@@ -82,12 +84,14 @@
                      <span class="Style_1">+53435455</span>
                   </td>
                   <td>
-                     <button [routerLink]="['/View_Log_Phone_call']"  class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                     <a [routerLink]="['/View_Log_Phone_call']"><button class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
                         <i class="material-icons">zoom_in</i>
-                     </button>
-                     <button  [routerLink]="['/Create_Log_Phone_call']" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                        </button>
+                     </a>
+                     <a [routerLink]="['/Create_Log_Phone_call']"><button class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
                         <i class="material-icons">edit</i>
-                     </button>
+                        </button>
+                     </a>
                      <button (click)=" DeleteLogPhoneCall()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
                         <i class="material-icons">delete_forever</i>
                      </button>
@@ -110,12 +114,14 @@
                      <span class="Style_1">+354545</span>
                   </td>
                   <td>
-                     <button [routerLink]="['/View_Log_Phone_call']"  class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                     <a [routerLink]="['/View_Log_Phone_call']"><button class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
                         <i class="material-icons">zoom_in</i>
-                     </button>
-                     <button  [routerLink]="['/Create_Log_Phone_call']" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                        </button>
+                     </a>
+                     <a [routerLink]="['/Create_Log_Phone_call']"><button class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
                         <i class="material-icons">edit</i>
-                     </button>
+                        </button>
+                     </a>
                      <button (click)=" DeleteLogPhoneCall()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
                         <i class="material-icons">delete_forever</i>
                      </button>
@@ -138,12 +144,14 @@
                      <span class="Style_1">+4365565</span>
                   </td>
                   <td>
-                     <button [routerLink]="['/View_Log_Phone_call']" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                     <a [routerLink]="['/View_Log_Phone_call']"><button class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
                         <i class="material-icons">zoom_in</i>
-                     </button>
-                     <button  [routerLink]="['/Create_Log_Phone_call']" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                        </button>
+                     </a>
+                     <a  [routerLink]="['/Create_Log_Phone_call']"><button class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
                         <i class="material-icons">edit</i>
-                     </button>
+                        </button>
+                     </a>
                      <button (click)=" DeleteLogPhoneCall()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
                         <i class="material-icons">delete_forever</i>
                      </button>

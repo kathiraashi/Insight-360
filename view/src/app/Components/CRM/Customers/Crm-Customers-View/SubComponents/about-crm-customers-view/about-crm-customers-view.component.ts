@@ -7,11 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutCrmCustomersViewComponent implements OnInit {
 
-  customClass: String = 'customClass';
+   customClass: String = 'customClass';
 
-  constructor() { }
+   constructor() { }
 
-  ngOnInit() {
-  }
+   ngOnInit() {
+   }
 
 }

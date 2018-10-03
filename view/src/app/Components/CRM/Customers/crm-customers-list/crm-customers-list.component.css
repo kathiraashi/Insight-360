@@ -8,7 +8,6 @@
       display: flex;
       height:40px;
       width: 100%;
-      margin-bottom: 5px;
    }
    .Page_Identity .Page_Track{
       width:100%;
@@ -26,11 +25,13 @@
       font-size: 13px;
       font-weight: 500;
       margin-left: 5px;
+      color: #4e6a7a;
    }
    .Page_Identity .Page_Track ul li.arrow{
       letter-spacing: -4px;
       font-size: 19px;
       transform: scale(.6, 1);
+      color: #4e6a7a;
    }
    .Page_Identity .Page_Track ul li.arrowGreen{
       letter-spacing: -4px;
@@ -47,6 +48,11 @@
    }
    .Page_Identity .Page_Track ul li.Home {
       color:#4ab65f;
+   }
+   a {
+      text-decoration:none;
+      color: #4ab65f;
+      cursor: pointer;
    }
 /* ----------- Create and Search Section ---------- */
    .header_part{
@@ -132,11 +138,17 @@
       top: 5px;
       right: 5px;
    }
-   .Page_Content .Sub_Content span .settings{
+   .Page_Content .Sub_Content .settings{
       color: #516570;
-      font-size:20px;
+      font-size:15px;
+      cursor:pointer;
    }
-
+   .Page_Content .Sub_Content .View{
+      color: #516570;
+      font-size:15px;
+      cursor:pointer;
+      padding: 0px 5px;
+   }
 
 
 

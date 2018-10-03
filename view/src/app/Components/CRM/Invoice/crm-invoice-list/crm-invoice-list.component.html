@@ -1,4 +1,5 @@
 <app-header></app-header>
+<!-- Main Section -->
 <div class="Main_Section">
    <div class="Page_Section">
       <div class="container-fluid">
@@ -8,8 +9,6 @@
                <ul>
                   <li class="HeaderName">Home</li>
                   <li class="arrow">>></li>
-                  <li class="LinkName">CRM</li>
-                  <li class="arrow">>></li>
                   <li>Invoice</li>
                </ul>
             </div>
@@ -17,7 +16,7 @@
          <!-- Header Part -->
          <div class="row header_part">
             <div class="col-sm-6">
-               <button class="Create_Button" mat-raised-button [routerLink]="['/crm_invoice_create']"> + Create </button>
+               <a [routerLink]="['/crm_invoice_create']"><button class="Create_Button" mat-raised-button>+ Create</button></a>
             </div>
             <div class="col-sm-6">
                <div class="Search_Section">
@@ -252,17 +251,17 @@
    </div>
 </div>
 <!-- Dropdown menus -->
-<mat-menu #Action="matMenu">
-      <button mat-menu-item>
-         <span>Edit</span>
-      </button>
-      <button mat-menu-item [routerLink]="['/crm_invoice_view']">
-         <span>View</span>
-      </button>
-      <button mat-menu-item>
-         <span>Delete</span>
-      </button>
-      <button mat-menu-item>
-         <span>Register Payment</span>
-      </button>
-   </mat-menu>
+<mat-menu class="MenuStyleOne" #Action="matMenu" [overlapTrigger]="false" xPosition="after" yPosition="below" class="MenuStyleOne">
+   <a [routerLink]="['/crm_invoice_create']"><button mat-menu-item>
+      <span>Edit</span>
+   </button></a>
+   <a [routerLink]="['/crm_invoice_view']"><button mat-menu-item>
+      <a><span>View</span></a>
+   </button></a>
+   <button mat-menu-item>
+      <span>Cancel</span>
+   </button>
+   <button mat-menu-item>
+      <span>Register Payment</span>
+   </button>
+</mat-menu>

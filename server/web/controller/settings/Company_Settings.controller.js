@@ -206,7 +206,7 @@ var mongoose = require('mongoose');
 
    
 
-   // Registration Info Create -----------------------------------------------
+// Registration Info Create -----------------------------------------------
    exports.Registration_Info_Create = function(req, res) {
     var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
     var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
@@ -260,7 +260,7 @@ var mongoose = require('mongoose');
     }
  };
 
- // Registration Info List -----------------------------------------------
+// Registration Info List -----------------------------------------------
  exports.Registration_Info_List = function(req, res) {
     var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
     var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
@@ -547,7 +547,7 @@ var mongoose = require('mongoose');
       }
    };
 
-   // Departments Delete -----------------------------------------------
+// Departments Delete -----------------------------------------------
    exports.Departments_Delete = function(req, res) {
       var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
       var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
@@ -1474,9 +1474,9 @@ var mongoose = require('mongoose');
       if(!ReceivingData.Branch_Name || ReceivingData.Branch_Name === ''  ) {
           res.status(400).send({Status: false, Message: "Branch Name can not be empty" });
       } else if (!ReceivingData.Branch_Head || ReceivingData.Branch_Head === ''  ) {
-          res.status(400).send({Status: false, Message: "Branch_Headr can not be empty" });
+          res.status(400).send({Status: false, Message: "Branch Headr can not be empty" });
      } else if ( !ReceivingData.Departments || typeof ReceivingData.Departments !== 'object' || Object.keys(ReceivingData.Departments).length < 2) {
-        res.status(400).send({Status: false, Message: "Registration Type can not be empty" });
+        res.status(400).send({Status: false, Message: "Departments can not be empty" });
       } else if (!ReceivingData.Company_Id || ReceivingData.Company_Id === ''  ) {
          res.status(400).send({Status: false, Message: "Company Details can not be empty" });
       } else if (!ReceivingData.User_Id || ReceivingData.User_Id === ''  ) {
@@ -1517,10 +1517,10 @@ var mongoose = require('mongoose');
             } else {
                CompanySettingsModel.BranchSchema
                   .findOne({'_id': result._id, 'If_Deleted': false }, {}, {sort: { updatedAt: -1 }})
-                  .populate({path : 'Departments', select: ['Departments']})
-                  .populate({path : 'Global_Country', select: ['AllCountry']})
-                  .populate({path : 'Global_State', select: ['AllState']})
-                  .populate({path : 'Global_City', select: ['AllCity']})
+                  .populate({path : 'Departments', select: ['Department_Name']})
+                  .populate({path : 'Global_Country', select: ['Country_Name']})
+                  .populate({path : 'Global_State', select: ['State_Name']})
+                  .populate({path : 'Global_City', select: ['City_Name']})
                   .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
                   .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
                   .exec(function(err_1, result_1) { // Branch FindOne Query
@@ -1549,11 +1549,11 @@ var mongoose = require('mongoose');
       res.status(400).send({Status: false, Message: "User Details can not be empty" });
    } else {
       CompanySettingsModel.BranchSchema
-         .find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, { Branch_Name : 1, AllAddress : 1}, {sort: { updatedAt: -1 }})
-         .populate({path : 'Departments', select: ['Departments']})
-         .populate({path : 'Global_Country', select: ['AllCountry']})
-         .populate({path : 'Global_State', select: ['AllState']})
-         .populate({path : 'Global_City', select: ['AllCity']})
+         .find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, { Branch_Name : 1, Branch_Head : 1, AllAddress : 1}, {sort: { updatedAt: -1 }})
+         .populate({path : 'Departments', select: ['Department_Name']})
+         .populate({path : 'Global_Country', select: ['Country_Name']})
+         .populate({path : 'Global_State', select: ['State_Name']})
+         .populate({path : 'Global_City', select: ['City_Name']})
          .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
          .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
          .exec(function(err, result) { // Registration Info FindOne Query
@@ -1562,6 +1562,29 @@ var mongoose = require('mongoose');
             res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Branch!."});
          } else {
            var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result), 'SecretKeyOut@123');
+            ReturnData = ReturnData.toString();
+            res.status(200).send({Status: true, Response: ReturnData });
+         }
+      });
+   }
+};
+
+// Branches Simple List -----------------------------------------------
+exports.Branch_Simple_List = function(req, res) {
+   var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
+   var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+
+   if(!ReceivingData.Company_Id || ReceivingData.Company_Id === '' ) {
+      res.status(400).send({Status: false, Message: "Company details can not be empty" });
+   } else if (!ReceivingData.User_Id || ReceivingData.User_Id === ''  ) {
+      res.status(400).send({Status: false, Message: "User Details can not be empty" });
+   }else {
+      CompanySettingsModel.BranchSchema.find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, { Branch_Name : 1 }, {sort: { updatedAt: -1 }}, function(err, result) { // Branches FindOne Query
+         if(err) {
+            ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Company Settings Branches Find Query Error', 'Company_Settings.model.js', err);
+            res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Branches!."});
+         } else {
+            var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result), 'SecretKeyOut@123');
             ReturnData = ReturnData.toString();
             res.status(200).send({Status: true, Response: ReturnData });
          }
@@ -1620,10 +1643,10 @@ exports.Branch_Update = function(req, res) {
          } else {
               CompanySettingsModel.BranchSchema
                  .findOne({'_id': ReceivingData.Branch_Id})
-                 .populate({path : 'Departments', select: ['Departments']})
-                 .populate({path : 'Global_Country', select: ['AllCountry']})
-                 .populate({path : 'Global_State', select: ['AllState']})
-                 .populate({path : 'Global_City', select: ['AllCity']})
+                 .populate({path : 'Departments', select: ['Department_Name']})
+                 .populate({path : 'Global_Country', select: ['Country_Name']})
+                 .populate({path : 'Global_State', select: ['State_Name']})
+                 .populate({path : 'Global_City', select: ['City_Name']})
                  .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
                  .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
                  .exec(function(err_2, result_2) { // Branch FindOne Query
@@ -1647,7 +1670,7 @@ exports.Branch_Delete = function(req, res) {
    var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
 
    if(!ReceivingData.Branch_Id || ReceivingData.Branch_Id === '' ) {
-      res.status(400).send({Status: false, Message: "Branch Id Id can not be empty" });
+      res.status(400).send({Status: false, Message: "Branch Id  can not be empty" });
    } else if (!ReceivingData.Modified_By || ReceivingData.Modified_By === ''  ) {
       res.status(400).send({Status: false, Message: "Modified User Details can not be empty" });
    }else {
@@ -1669,6 +1692,198 @@ exports.Branch_Delete = function(req, res) {
                });
             } else {
                res.status(400).send({Status: false, Message: "Branch Id can not be valid!" });
+            }
+         }
+      });
+   }
+};
+
+//*************************************************** Contact Info  ***************************************/
+// Contact Info Create -----------------------------------------------
+exports.Contact_Info_Create = function(req, res) {
+   var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
+   var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+
+   if(!ReceivingData.Contact_Person_Name || ReceivingData.Contact_Person_Name === ''  ) {
+       res.status(400).send({Status: false, Message: "Contact Person Name can not be empty" });
+   } else if ( !ReceivingData.Branches || typeof ReceivingData.Branches !== 'object' || Object.keys(ReceivingData.Branches).length < 2) {
+      res.status(400).send({Status: false, Message: "Branches can not be empty" });
+   } else if ( !ReceivingData.Departments || typeof ReceivingData.Departments !== 'object' || Object.keys(ReceivingData.Departments).length < 2) {
+     res.status(400).send({Status: false, Message: "Departments can not be empty" });
+   } if(!ReceivingData.Phone || ReceivingData.Phone === ''  ) {
+      res.status(400).send({Status: false, Message: "Phone can not be empty" });
+   } if(!ReceivingData.Email || ReceivingData.Email === ''  ) {
+       res.status(400).send({Status: false, Message: "Email can not be empty" });
+   } else if (!ReceivingData.Company_Id || ReceivingData.Company_Id === ''  ) {
+      res.status(400).send({Status: false, Message: "Company Details can not be empty" });
+   } else if (!ReceivingData.User_Id || ReceivingData.User_Id === ''  ) {
+      res.status(400).send({Status: false, Message: "Creator Details can not be empty" });
+   }else {
+       if( ReceivingData.Branches && typeof ReceivingData.Branches === 'object' && Object.keys(ReceivingData.Branches).length > 0){
+           ReceivingData.Branches = mongoose.Types.ObjectId(ReceivingData.Branches._id)
+       }
+       if( ReceivingData.Departments && typeof ReceivingData.Departments === 'object' && Object.keys(ReceivingData.Departments).length > 0){
+           ReceivingData.Departments._id = mongoose.Types.ObjectId(ReceivingData.Departments._id)
+       } 
+       var Create_Contact_Info = new CompanySettingsModel.ContactInfoSchema({
+         Contact_Person_Name: ReceivingData.Contact_Person_Name, 
+         Branches: ReceivingData.Branches, 
+         Departments: ReceivingData.Departments, 
+         Phone: ReceivingData.Phone, 
+         Email: ReceivingData.Email, 
+         Company_Id: mongoose.Types.ObjectId(ReceivingData.Company_Id),
+         Created_By: mongoose.Types.ObjectId(ReceivingData.User_Id),
+         Last_Modified_By: mongoose.Types.ObjectId(ReceivingData.User_Id),
+         Active_Status: ReceivingData.Active_Status || true,
+         If_Deleted: false
+      });
+      Create_Contact_Info.save(function(err, result) { // Contact Info Save Query
+         if(err) {
+            ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Company Settings Contact Info Creation Query Error', 'Company_Settings.model.js');
+            res.status(417).send({Status: false, Message: "Some error occurred while creating the Contact Info!."});
+         } else {
+            CompanySettingsModel.ContactInfoSchema
+               .findOne({'_id': result._id, 'If_Deleted': false }, {}, {sort: { updatedAt: -1 }})
+               .populate({path : 'Departments', select: ['Department_Name']})
+               .populate({path : 'Branches', select: ['Branch_Name']})
+               .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
+               .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
+               .exec(function(err_1, result_1) { // Contact Info FindOne Query
+               if(err_1) {
+                  ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Company Settings Contact Info Find Query Error', 'Company_Settings.model.js', err_1);
+                  res.status(417).send({status: false, Message: "Some error occurred while Find The Contact Info!."});
+               } else {
+                  var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result_1), 'SecretKeyOut@123');
+                     ReturnData = ReturnData.toString();
+                  res.status(200).send({Status: true, Response: ReturnData });
+               }
+            });
+         }
+      });
+   }
+};
+
+// Contact Info List -----------------------------------------------
+exports.Contact_Info_List = function(req, res) {
+   var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
+   var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+
+   if(!ReceivingData.Company_Id || ReceivingData.Company_Id === '' ) {
+      res.status(400).send({Status: false, Message: "Company details can not be empty" });
+   } else if (!ReceivingData.User_Id || ReceivingData.User_Id === ''  ) {
+      res.status(400).send({Status: false, Message: "User Details can not be empty" });
+   } else {
+      CompanySettingsModel.ContactInfoSchema
+         .find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, { Contact_Person_Name : 1, Branches : 1, Departments : 1}, {sort: { updatedAt: -1 }})
+         .populate({path : 'Departments', select: ['Department_Name']})
+         .populate({path : 'Branches', select: ['Branch_Name']})
+         .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
+         .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
+         .exec(function(err, result) { // Contact Info FindOne Query
+         if(err) {
+            ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Company Settings Contact Info Find Query Error', 'Company_Settings.model.js', err);
+            res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Contact Info!."});
+         } else {
+           var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result), 'SecretKeyOut@123');
+            ReturnData = ReturnData.toString();
+            res.status(200).send({Status: true, Response: ReturnData });
+         }
+      });
+   }
+};
+
+// Contact Info Update -----------------------------------------------
+exports.Contact_Info_Update = function(req, res) {
+   var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
+   var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+
+   if(!ReceivingData.Contact_Person_Id || ReceivingData.Contact_Person_Id === ''  ) {
+     res.status(400).send({Status: false, Message: " Branch Id Details can not be empty" });
+   } else if(!ReceivingData.Contact_Person_Name || ReceivingData.Contact_Person_Name === ''  ) {
+     res.status(400).send({Status: false, Message: "Contact Person Name can not be empty" });
+  } else if ( !ReceivingData.Branches || typeof ReceivingData.Branches !== 'object' || Object.keys(ReceivingData.Branches).length < 2) {
+     res.status(400).send({Status: false, Message: "Branches can not be empty" });
+  } else if ( !ReceivingData.Departments || typeof ReceivingData.Departments !== 'object' || Object.keys(ReceivingData.Departments).length < 2) {
+   res.status(400).send({Status: false, Message: "Departments can not be empty" });
+   } if(!ReceivingData.Phone || ReceivingData.Phone === ''  ) {
+      res.status(400).send({Status: false, Message: "Phone can not be empty" });
+   } if(!ReceivingData.Email || ReceivingData.Email === ''  ) {
+       res.status(400).send({Status: false, Message: "Email can not be empty" });
+   } else if (!ReceivingData.Company_Id || ReceivingData.Company_Id === ''  ) {
+     res.status(400).send({Status: false, Message: "Company Details can not be empty" });
+  } else if (!ReceivingData.Modified_By || ReceivingData.Modified_By === ''  ) {
+      res.status(400).send({Status: false, Message: "Modified User Details can not be empty" });
+   }else {
+        if( ReceivingData.Branches && typeof ReceivingData.Branches === 'object' && Object.keys(ReceivingData.Branches).length > 0){
+           ReceivingData.Branches = mongoose.Types.ObjectId(ReceivingData.Branches._id)
+        }
+        if( ReceivingData.Departments && typeof ReceivingData.Departments === 'object' && Object.keys(ReceivingData.Departments).length > 0){
+             ReceivingData.Departments._id = mongoose.Types.ObjectId(ReceivingData.Departments._id)
+         } 
+      CompanySettingsModel.ContactInfoSchema.update( 
+         {'_id': mongoose.Types.ObjectId(ReceivingData.Contact_Person_Id)}, 
+         { $set: { 
+                    Departments: ReceivingData.Departments, 
+                    Contact_Person_Name: ReceivingData.Contact_Person_Name, 
+                    Branches: ReceivingData.Branches,
+                    Phone: ReceivingData.Phone,
+                    Email: ReceivingData.Email,
+                    Last_Modified_By: mongoose.Types.ObjectId(ReceivingData.Modified_By)
+                 } 
+        }).exec( function(err, result) {
+         if(err) {
+            ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Company Settings Contact Info FindOne Query Error', 'Company_Settings.model.js', err);
+            res.status(417).send({status: false, Message: "Some error occurred while Find The Contact Info!."});
+         } else {
+              CompanySettingsModel.ContactInfoSchema
+                 .findOne({'_id': ReceivingData.Contact_Person_Id})
+                 .populate({path : 'Departments', select: ['Department_Name']})
+                 .populate({path : 'Branches', select: ['Branch_Name']})
+                 .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
+                 .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
+                 .exec(function(err_2, result_2) { // Contact Info FindOne Query
+                 if(err_2) {
+                    ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Company Settings Contact Info Find Query Error', 'Company_Settings.model.js', err_2);
+                    res.status(417).send({status: false, Message: "Some error occurred while Find The Contact Info!."});
+                 } else {
+                    var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result_2), 'SecretKeyOut@123');
+                       ReturnData = ReturnData.toString();
+                    res.status(200).send({Status: true, Response: ReturnData });
+                 }
+              });
+         }
+      });
+   }
+};
+
+// Contact Info Delete -----------------------------------------------
+exports.Contact_Info_Delete = function(req, res) {
+   var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
+   var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+
+   if(!ReceivingData.Contact_Person_Id || ReceivingData.Contact_Person_Id === '' ) {
+      res.status(400).send({Status: false, Message: "Contact_Person_Id can not be empty" });
+   } else if (!ReceivingData.Modified_By || ReceivingData.Modified_By === ''  ) {
+      res.status(400).send({Status: false, Message: "Modified User Details can not be empty" });
+   }else {
+      CompanySettingsModel.ContactInfoSchema.findOne({'_id': ReceivingData.Contact_Person_Id}, {}, {}, function(err, result) { // Contact Info FindOne Query
+         if(err) {
+            ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Company Settings Contact Info FindOne Query Error', 'Company_Settings.model.js', err);
+            res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Contact Info!."});
+         } else {
+            if (result !== null) {
+               result.If_Deleted = true;
+               result.Last_Modified_By = mongoose.Types.ObjectId(ReceivingData.Modified_By);
+               result.save(function(err_1, result_1) { // Contact Info Delete Query
+                  if(err_1) {
+                     ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Company Settings Contact Info Delete Query Error', 'Company_Settings.model.js');
+                     res.status(417).send({Status: false, Error: err_1, Message: "Some error occurred while Delete the Contact Info!."});
+                  } else {
+                     res.status(200).send({Status: true, Message: 'Successfully Deleted' });
+                  }
+               });
+            } else {
+               res.status(400).send({Status: false, Message: "Contact Person Id can not be valid!" });
             }
          }
       });

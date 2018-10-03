@@ -18,15 +18,16 @@
       float: right;
    }
    .Page_Identity .Page_Track ul li {
-      color: #a5adb1;
       font-size: 13px;
       font-weight: 500;
       margin-left: 5px;
+      color: #4e6a7a;
    }
    .Page_Identity .Page_Track ul li.arrow{
       letter-spacing: -4px;
       font-size: 19px;
       transform: scale(.6, 1);
+      color: #4e6a7a;
    }
    .Page_Identity .Page_Track ul li.arrowGreen{
       letter-spacing: -4px;
@@ -38,6 +39,11 @@
       color: #4ab65f;
    }
    .Page_Identity .Page_Track ul li.LinkName{
+      color: #4ab65f;
+      cursor: pointer;
+   }
+   a {
+      text-decoration:none;
       color: #4ab65f;
       cursor: pointer;
    }
@@ -121,15 +127,13 @@
 /* Company Details */
    .Company_Details{
       background-color: #fff;
-      margin: 10px;
+      margin: 0px;
       padding: 20px;
-      margin-left: 15px;
       width: 100%;
-      border-radius: 5px;
-      border-top: 2px solid #49B660;
+      box-shadow: 1px 1px 10px #d4d4d4;
+      margin-bottom: 20px;
    }
 /* Table Section */
-  
    .table_section{
       border-collapse: collapse;
       width: 100%;
@@ -158,14 +162,14 @@
       width:100%;
       text-align:center;
       padding:0px 10px;
-   
+
    }
    .table_section tbody td span{
       font-size:16px;
       font-weight:400;
       color:#6d6868;
    }
-    table tbody tr td .Action_Section{
+   table tbody tr td .Action_Section{
       color: #ffffff;
       height: 35px;
       width: 35px;
@@ -180,47 +184,42 @@
       width: 100%;
       line-height: 35px;
    }
-/* Product Button */
-   .Add_Product_Button{
-      float: right;
-      font-size: 16px;
-      font-weight: 400;
-      background-color: #49B660;
-      color: #fff;
-      border: 1px solid #49B660;
-      padding: 5px 10px;
-      border-radius: 4px;
+/* Tabs */
+   .Tabs{
+      display: flex;
+      width: 100%;
+      height:30px;
    }
-   /* Tabs */
-.Tabs{
-    display: flex;
-    width: 100%;
-}
-.Tabs .Tab{
-    color: #4d6a7a;
-    width: 14%;
-    line-height: 35px;
-    background-color: #80808038;
-    margin-top: -10px;
-    text-align: center;
-    margin-right: 5px;
-    font-size: 15px;
-    font-weight: 600;
-    letter-spacing: 0.4px;
-    cursor: pointer;
-}
-.Tabs .Tab:hover{
-    background-color: #49B660;
-    border-bottom: 2px solid #49B660;
-    color:#fff
-}
-
-.Tabs .Tab.active{
-    border-bottom: 2px solid #49B660;
-    color: #49B660;
-    cursor: default;
-}
-.Tabs .Tab.active:hover{
-      background-color: #49B660;
-      color:#fff;
-}
+   .Tabs .Tab{
+      color: #4d6a7a;
+      width: 14%;
+      line-height: 35px;
+      background-color: #80808038;
+      margin-top: -10px;
+      text-align: center;
+      margin-right: 5px;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.4px;
+      cursor: pointer;
+      width:200px;
+   }
+   .Tabs .Tab:hover{
+      border-bottom: 2px solid #4d6a7a;
+      color:#4d6a7a
+   }
+   .Tabs .Tab.active{
+      border-bottom: 2px solid #49B660;
+      color: #49B660;
+      cursor: default;
+   }
+/* Footer */
+   .Footer {
+      position: fixed;
+      bottom: 0px;
+      width: 100%;
+      padding: 0px 15px;
+      background-color: rgba(62, 59, 59, 0.13);
+      height: 45px;
+      text-align: right
+   }

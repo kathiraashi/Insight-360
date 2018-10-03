@@ -1,131 +1,144 @@
+<!-- Main Section -->
 <div class="Main_Section" style="margin-top:100px">
    <div class="container-fluid">
-         <div class="container-fluid">
-               <div class="Page_Identity">
-                  <div class="Page_Track">
-                     <ul>
-                        <li class="HeaderName">Home</li>
-                        <li class="arrow">>></li>
-                        <li class="LinkName">HR</li>
-                        <li class="arrow">>></li>
-                        <li>Payroll</li>
-                     </ul>
-                  </div>
-               </div>
-      <div class="View_Section">
+      <div class="container-fluid">
+         <!-- page Identity -->
+         <div class="Page_Identity">
+            <div class="Page_Track">
+               <ul>
+                  <li class="HeaderName">Home</li>
+                  <li class="arrow">>></li>
+                  <li class="LinkName"><a [routerLink]="['/List_Payroll']">Payroll List</a></li>
+                  <li class="arrow">>></li>
+                  <li>Payroll View</li>
+               </ul>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-sm-4">
             <div class="Company_Details">
-        <div class="row">
-           <div class="col-sm-4">
-              <div class="row">
-               <div class="col-sm-6 text-right Static">Employee: </div>
-               <div class="col-sm-6 text-left Data"> Employee</div>
-               </div>
+               <!-- <div class="row"> -->
+                  <!-- <div class="col-sm-4"> -->
+                     <div class="view_item">
+                        <div class=" Static">Employee </div>
+                        <div class="dots"> : </div>
+                        <div class=" Data"> Employee</div>
+                     </div>
+                  <!-- </div> -->
+                  <!-- <div class="col-sm-4"> -->
+                     <div class="view_item">
+                        <div class=" Static">Code </div>
+                        <div class="dots"> : </div>
+                        <div class=" Data"> code</div>
+                     </div>
+                  <!-- </div> -->
+                  <!-- <div class="col-sm-4"> -->
+                     <div class="view_item">
+                     <div class="Static">Payslip Month </div>
+                     <div class="dots"> : </div>
+                     <div class=" Data">jan</div>
+                  <!-- </div> -->
+               <!-- </div> -->
             </div>
-            <div class="col-sm-4">
+            </div>
+            <br>
+         </div>
+         <div class="col-sm-8">
+            <!-- table section -->
+            <div class="Company_Details">
+               <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Earnings &
+                  <span style="color:#516570;font-size:20px;font-weight: 600;">Detections</span>
+               </h5><br>
+               <div class="Table_Section1">
+                  <table class="table_section">
+                     <thead class="table_head">
+                        <tr>
+                           <th colspan="2" scope="colgroup">Earnings</th>
+                           <th colspan="2" scope="colgroup">Detection</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td scope="col" style="color:#4E6A7A;">Basic Pay:</td>
+                           <td class="Form_Input" scope="col">2000.00</td>
+                           <td scope="col" style="color:#4E6A7A;">ESI:</td>
+                           <td scope="col" class="Form_Input">3000.00</td>
+                        </tr>
+                        <tr>
+                           <td scope="col"></td>
+                           <td class="Form_Input" scope="col"></td>
+                           <td scope="col" style="color:#4E6A7A;">PF:</td>
+                           <td scope="col" class="Form_Input">4500.00</td>  
+                        </tr>
+                     </tbody>
+                  </table>
+                  <br>
                   <div class="row">
-               <div class="col-sm-6 text-right Static">Code: </div>
-               <div class="col-sm-6 text-left Data"> code</div>
-               </div>
-            </div>
-            <div class="col-sm-4">
+                     <div class="col-sm-6">
+                        <div class="row">
+                           <div class="col-sm-6 Form_Input">
+                              <label>Total Earnings:</label>
+                           </div>
+                           <div class="col-sm-6">
+                              100000.00
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-sm-6">
+                        <div class="row">
+                           <div class="col-sm-6 Form_Input" >
+                              <label>Total Detections:</label>
+                           </div>
+                           <div class="col-sm-6">
+                              2000.00
+                           </div>
+                        </div>
+                     </div>
+                  </div>
                   <div class="row">
-               <div class="col-sm-6 text-right Static">Payslip Month: </div>
-               <div class="col-sm-6 text-left Data">jan</div>
-               </div>
-            </div>
-            </div>
-      </div>
-      <br>
-      <!-- table section -->
-      
-         <div class="Table_Section1">
-         <table class="table_section">
-            <thead class="table_head">
-               <tr>
-               <th colspan="2" scope="colgroup">Earnings</th>
-               <th colspan="2" scope="colgroup">Detection</th>
-               </tr>
-            </thead>
-            <tbody>
-               <tr>
-                  <td scope="col" style="color:#4E6A7A;">Basic Pay:</td>
-                  <td class="Form_Input" scope="col"><input type="text"></td>
-                  <td scope="col" style="color:#4E6A7A;">ESI:</td>
-                  <td scope="col" class="Form_Input"><input type="text"></td>
-               </tr>
-               <tr>
-                  <td scope="col"></td>
-                  <td class="Form_Input" scope="col"></td>
-                  <td scope="col" style="color:#4E6A7A;">PF:</td>
-                  <td scope="col" class="Form_Input"><input type="text"></td>  
-               </tr>
-            </tbody>
-         </table>
-         <br>
-         <div class="row">
-            <div class="col-sm-6">
-               <div class="row">
-                  <div class="col-sm-6 Form_Input">
-                     <label>Total Earnings:</label>
+                     <div class="col-sm-6">
+                        <div class="row">
+                           <div class="col-sm-6">
+                           </div>
+                           <div class="col-sm-6 ">
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-sm-6">
+                        <div class="row">
+                           <div class="col-sm-6 Form_Input" >
+                              <label>Net Income:</label>
+                           </div>
+                           <div class="col-sm-6 ">
+                              20,000.00
+                           </div>
+                        </div>
+                     </div>
                   </div>
-                  <div class="col-sm-6 Form_Input">
-                     <input type="text">
-                  </div>
-               </div>
-            </div>
-            <div class="col-sm-6">
-               <div class="row">
-                  <div class="col-sm-6 Form_Input" >
-                     <label>Total Detections:</label>
-                  </div>
-                  <div class="col-sm-6 Form_Input">
-                     <input type="text" style="margin-bottom: 20px">
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="row">
-            <div class="col-sm-6">
-               <div class="row">
-                  <div class="col-sm-6">
-                  </div>
-                  <div class="col-sm-6 ">
-                  </div>
-               </div>
-            </div>
-            <div class="col-sm-6">
-               <div class="row">
-                  <div class="col-sm-6 Form_Input" >
-                     <label>Net Income:</label>
-                  </div>
-                  <div class="col-sm-6 Form_Input">
-                     <input type="text" style="margin-bottom: 20px">
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="row">
-            <div class="col-sm-6">
-               <div class="row">
-                  <div class="col-sm-6">
-                  </div>
-                  <div class="col-sm-6 ">
-                  </div>
-               </div>
-            </div>
-            <div class="col-sm-6">
-               <div class="row">
-                  <div class="col-sm-6 Form_Input" >
-                     <label>Amount Payable:</label>
-                  </div>
-                  <div class="col-sm-6 Form_Input">
-                     <input type="text" style="margin-bottom: 20px">
+                  <div class="row">
+                     <div class="col-sm-6">
+                        <div class="row">
+                           <div class="col-sm-6">
+                           </div>
+                           <div class="col-sm-6 ">
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-sm-6">
+                        <div class="row">
+                           <div class="col-sm-6 Form_Input" >
+                              <label>Amount Payable:</label>
+                           </div>
+                           <div class="col-sm-6 ">
+                              10,000.00
+                           </div>
+                        </div>
+                     </div>
                   </div>
                </div>
             </div>
          </div>
       </div>
-      
    </div>
 </div>
 

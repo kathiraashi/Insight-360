@@ -16,7 +16,7 @@
          <!-- Header Part -->
          <div class="row header_part">
             <div class="col-sm-6">
-               <button class="Create_Button" mat-raised-button [routerLink]="['/crm_customers_create']"> + Create </button>
+               <a [routerLink]="['/crm_customers_create']"><button class="Create_Button" mat-raised-button>+ Create</button></a>
             </div>
             <div class="col-sm-6">
                <div class="Search_Section">
@@ -28,7 +28,7 @@
          <!-- Content Style -->
          <div class="row Content_Style">
             <div class="col-sm-3 Page_Content" >
-               <div class="Sub_Content"  [routerLink]="['/main_crm_customers_view']">
+               <div class="Sub_Content">
                   <div class="image_section">
                      <img src="../../../../assets/images/basic/company.png">
                   </div>
@@ -38,11 +38,12 @@
                      <h5>+7776546677</h5>
                      <h5>State,Country</h5>
                   </div>
-                  <span><i class="material-icons settings">settings</i></span>
+                  <span><a [routerLink]="['/main_crm_customers_view']"><i class="material-icons View" >remove_red_eye</i></a>
+                  <i class="material-icons settings" [matMenuTriggerFor] = "Action">settings</i></span>
                </div>
             </div>
             <div class="col-sm-3 Page_Content">
-               <div class="Sub_Content"  [routerLink]="['/main_crm_customers_view']">
+               <div class="Sub_Content" >
                   <div class="image_section">
                      <img src="../../../../assets/images/basic/company.png">
                   </div>
@@ -52,11 +53,12 @@
                      <h5>+7776546677</h5>
                      <h5>State,Country</h5>
                   </div>
-                  <span><i class="material-icons settings">settings</i></span>
+                  <span><a [routerLink]="['/main_crm_customers_view']"><i class="material-icons View">remove_red_eye</i></a>
+                  <i class="material-icons settings" [matMenuTriggerFor] = "Action">settings</i></span>
                </div>
             </div>
             <div class="col-sm-3 Page_Content">
-               <div class="Sub_Content"  [routerLink]="['/main_crm_customers_view']">
+               <div class="Sub_Content">
                   <div class="image_section">
                      <img src="../../../../assets/images/basic/company.png">
                   </div>
@@ -66,11 +68,12 @@
                      <h5>+7776546677</h5>
                      <h5>State,Country</h5>
                   </div>
-                  <span><i class="material-icons settings">settings</i></span>
+                  <span ><a [routerLink]="['/main_crm_customers_view']"><i class="material-icons View">remove_red_eye</i></a>
+                  <i class="material-icons settings"  [matMenuTriggerFor] = "Action">settings</i></span>
                </div>
             </div>
             <div class="col-sm-3 Page_Content">
-               <div class="Sub_Content"  [routerLink]="['/main_crm_customers_view']">
+               <div class="Sub_Content">
                   <div class="image_section">
                      <img src="../../../../assets/images/basic/company.png">
                   </div>
@@ -80,10 +83,23 @@
                      <h5>+7776546677</h5>
                      <h5>State,Country</h5>
                   </div>
-                  <span><i class="material-icons settings">settings</i></span>
+                  <span ><a [routerLink]="['/main_crm_customers_view']"><i class="material-icons View">remove_red_eye</i></a>
+                  <i class="material-icons settings" [matMenuTriggerFor] = "Action">settings</i></span>
                </div>
             </div>
          </div>
       </div>
    </div>
 </div>
+<!-- Dropdown menus -->
+<mat-menu class="MenuStyleOne" #Action="matMenu" [overlapTrigger]="false" xPosition="after" yPosition="below" class="MenuStyleOne">
+   <button mat-menu-item (click)="CreateContact()">
+      <span>Add Contact</span>
+   </button>
+   <button mat-menu-item (click)="CreateActivity()">
+      <span>Add Activity</span>
+   </button>
+   <a [routerLink]="['/crm_quotations_create']"><button mat-menu-item>
+      <span>Create Quote</span>
+   </button></a>
+</mat-menu>

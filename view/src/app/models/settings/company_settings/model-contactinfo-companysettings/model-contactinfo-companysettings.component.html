@@ -1,100 +1,105 @@
-<div class="Modal_Content" *ngIf="Type && Type === 'Create'">
+<div class="Modal_Content" *ngIf="_Data['Type'] && (_Data['Type'] === 'Create' || _Data['Type'] === 'Edit')">
    <div class="Modal_Header">
-       <p>Create Contact Info</p>
-       <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+       <p>{{_Data['Type']}} Contact Info</p>
+       <span *ngIf="!Uploading" data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
    </div>
-   <div class="Model_Body">
-     <div class="row">
-       <div class="col-sm-6 Form_Input">
-           <label>Contact Person Name:</label>
-           <input type="text">
-       </div>
-     <div class="col-sm-6 Form_Select">
-         <label>Branch:</label>
-         <select>
-            <option disabled> branch</option>
-            <option> branch </option>
-            <option> branch</option>
-            <option> branch</option>
-            <option>branch </option>
-            <option> branch</option>
-            <option> branch</option>
-         </select>
-       </div><br>
-       <div class="col-sm-6 Form_Select">
-          <label> Department:</label>
-          <select>
-            <option disabled> Department</option>
-            <option> Department </option>
-            <option>Department </option>
-            <option> Department</option>
-            <option> Department</option>
-            <option> Department</option>
-            <option> Department</option>
-         </select>
-       </div>
-       <div class="col-sm-6 Form_Input">
-          <label>Phone:</label>
-           <input type="text"  >
-       </div>
-       <div class="col-sm-6 Form_Input">
-          <label>Email:</label>
-             <input type="text" >
-       </div>
-       <div class="col-sm-6 Form_Input">
-          <label>Phone No:</label>
-           <input type="text" >
-       </div>
-     </div>
-    </div>
-    <div class="Model_Footer">
-       <button mat-raised-button color="primary" > Submit </button>
-    </div>
- </div>
+   <form [formGroup]="Form" (ngSubmit)="onSubmit()">
+      <div class="Model_Body">
+      <div class="row">
+         <div class="col-sm-6 Form_Input" [ngClass]="{'Form_Err': Form.controls['Contact_Person_Name'].errors && !Form.controls['Contact_Person_Name'].pristine, 'Form_Success': Form.controls['Contact_Person_Name'].valid && !Form.controls['Contact_Person_Name'].pristine }">
+            <label>Contact Person Name:</label>
+            <input type="text" formControlName="Contact_Person_Name">
+            <p class="error" *ngIf="Form.controls['Contact_Person_Name'].errors && !Form.controls['Contact_Person_Name'].pristine">
+               <span *ngIf="Form.controls['Contact_Person_Name'].errors.required">Contact Person Name is required</span>
+            </p>
+         </div>
+         <div class="col-sm-6 Form_Select">
+               <label>Branch:</label>
+               <ng-select class="NgSelect ValueBold" 
+               [items]="_Branches" 
+               bindLabel="Branch_Name" 
+               formControlName="Branches" 
+               [searchable]="true" 
+               placeholder="Branch">
+         </ng-select>
+         <p class="error" *ngIf="Form.controls['Branches'].errors && !Form.controls['Branches'].pristine">
+            <span  *ngIf="Form.controls['Branches'].errors.required"> Branch is required</span>
+         </p>
+         </div><br>
+         <div class="col-sm-6 Form_Select">
+            <label> Department:</label>
+            <ng-select class="NgSelect ValueBold" 
+               [items]="_Departments" 
+               bindLabel="Department_Name" 
+               formControlName="Departments" 
+               [searchable]="true" 
+               placeholder="Departments">
+            </ng-select>
+            <p class="error" *ngIf="Form.controls['Departments'].errors && !Form.controls['Departments'].pristine">
+               <span  *ngIf="Form.controls['Departments'].errors.required"> Department is required</span>
+            </p>
+         </div>
+         <div class="col-sm-6 Form_Input" [ngClass]="{'Form_Err': Form.controls['Phone'].errors && !Form.controls['Phone'].pristine, 'Form_Success': Form.controls['Phone'].valid && !Form.controls['Phone'].pristine }">
+            <label>Phone:</label>
+            <input type="text" formControlName="Phone">
+            <p class="error" *ngIf="Form.controls['Phone'].errors && !Form.controls['Phone'].pristine">
+               <span *ngIf="Form.controls['Phone'].errors.required">Phone is required</span>
+            </p>
+         </div>
+         <div class="col-sm-6 Form_Input"  [ngClass]="{'Form_Err': Form.controls['Email'].errors && !Form.controls['Email'].pristine, 'Form_Success': Form.controls['Email'].valid && !Form.controls['Email'].pristine }">
+            <label>Email:</label>
+               <input type="text" formControlName="Email">
+               <p class="error" *ngIf="Form.controls['Email'].errors && !Form.controls['Email'].pristine">
+                  <span *ngIf="Form.controls['Email'].errors.required">Email is required</span>
+               </p>
+         </div>
+         </div>
+      </div>
+      <div class="Model_Footer">
+         <button type="submit" [disabled]="Form.status !== 'VALID' || Uploading" mat-raised-button color="primary">
+            <span *ngIf="_Data['Type'] === 'Create' && !Uploading">Submit</span>
+            <span *ngIf="_Data['Type'] === 'Edit' && !Uploading">Update</span>
+            <span *ngIf="Uploading" class="UploadingBtn"> <i class="fa fa-refresh fa-spin"></i> Loading... </span>
+         </button>
+      </div>
+   </form>
+</div>
 
  
-<div class="Modal_Content" *ngIf="Type && Type === 'View'">
+<div class="Modal_Content" *ngIf="_Data['Type'] && _Data['Type'] === 'View'">
   <div class="Modal_Header">
      <p>View Contact Info</p>
      <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
    </div>
    <div class="Model_Body">
-      <div class="row">
-         <div class="col-sm-6 text-right Static">  Phone : </div>
-         <div class="col-sm-6 text-left Data">  +91 98765 43210 </div>
+      <div class="view_item">
+         <div class=" Static">  Contact Person Name  </div>
+         <div class="dots"> : </div>
+         <div class=" Data"> {{_Contact_Info['Contact_Person_Name']}} </div>
       </div>
       <!-- <hr> -->
-      <div class="row">
-         <div class="col-sm-6 text-right Static">  Email : </div>
-         <div class="col-sm-6 text-left Data">  sample@gmail.com </div>
+      <div class="view_item">
+         <div class="Static">  Branches  </div>
+         <div class="dots"> : </div>
+         <div class="Data">  {{_Contact_Info['Branches']?.Branch_Name}} </div>
       </div>
       <!-- <hr> -->
-      <div class="row">
-         <div class="col-sm-6 text-right Static">  Fax : </div>
-         <div class="col-sm-6 text-left Data">  +0427 1234 123 </div>
+      <div class="view_item">
+         <div class="Static">  Departments  </div>
+         <div class="dots"> : </div>
+         <div class=" Data">  {{_Contact_Info['Departments']?.Department_Name}} </div>
+      </div>
+     <!-- <hr> -->
+      <div class="view_item">
+         <div class="Static">  Phone </div>
+         <div class="dots"> : </div>
+         <div class="Data"> {{_Contact_Info['Phone']}} </div>
       </div>
       <!-- <hr> -->
-      <div class="row">
-         <div class="col-sm-6 text-right Static">  Website : </div>
-         <div class="col-sm-6 text-left Data">  www.SampleWebsite.com </div>
+      <div class="view_item">
+         <div class="Static"> Email </div>
+         <div class="dots"> : </div>
+         <div class="Data"> {{_Contact_Info['Email']}}   </div>
       </div>
-      <!-- <hr> -->
-      <div class="row">
-         <div class="col-sm-6 text-right Static">  Company Type : </div>
-         <div class="col-sm-6 text-left Data"> Company Type </div>
-      </div>
-      <!-- <hr> -->
-      <div class="row">
-         <div class="col-sm-6 text-right Static">  Company Registry :</div>
-         <div class="col-sm-6 text-left Data"> May 2017  </div>
-      </div>
-      <!-- <hr> -->
-      <div class="row">
-         <div class="col-sm-6 text-right Static">  Type Of Business :</div>
-         <div class="col-sm-6 text-left Data"> Type Of Business  </div>
-      </div>
-      <!-- <hr> -->
-   </div>
-   <div class="Model_Footer">
    </div>
 </div>

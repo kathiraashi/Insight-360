@@ -1,52 +1,55 @@
+/* page section */
+   .Page_Section{
+      width:100%;
+      margin-top: 100px;
+   }
 /* ----------- Create and Search Section ---------- */
-.header_part{
-   margin-bottom: 15px;
-}
-.Create_Button{
-   letter-spacing: 0.5px;
-   font-weight: 600;
-   font-size: 14px;
-   color: #4ab65f;
-   margin-left: 3%;
-}
-
+   .header_part{
+      margin-bottom: 15px;
+   }
+   .Create_Button{
+      letter-spacing: 0.5px;
+      font-weight: 600;
+      font-size: 14px;
+      color: #4ab65f;
+      margin-left: 3%;
+   }
 /* ---------- Search Section ----------- */
-.Search_Section{
-   position: relative;
-   background-color: #ffffff;
-   height: 36px;
-   box-shadow: 1px 2px 4px 0px rgba(0,0,0,.2);
-   width: 96%;
-}
-.Search_Section input{
-   width: 100%;
-   border-radius: 0;
-   border: none;
-   background-color: transparent;
-   padding: 10px;
-   height: 36px;
-   color: #4f6a7a;
-   font-weight: 500;
-   outline: none;
-}
-.Search_Section input::placeholder{
-   color:#cccccc; 
-   font-weight:400;
-}
-.Search_Section i{
-   position: absolute;
-   right: 0px;
-   padding: 7px 5px;
-   color: #4ab65f;
-   font-weight: 600;
-   cursor: pointer;
-}
+   .Search_Section{
+      position: relative;
+      background-color: #ffffff;
+      height: 36px;
+      box-shadow: 1px 2px 4px 0px rgba(0,0,0,.2);
+      width: 96%;
+   }
+   .Search_Section input{
+      width: 100%;
+      border-radius: 0;
+      border: none;
+      background-color: transparent;
+      padding: 10px;
+      height: 36px;
+      color: #4f6a7a;
+      font-weight: 500;
+      outline: none;
+   }
+   .Search_Section input::placeholder{
+      color:#cccccc; 
+      font-weight:400;
+   }
+   .Search_Section i{
+      position: absolute;
+      right: 0px;
+      padding: 7px 5px;
+      color: #4ab65f;
+      font-weight: 600;
+      cursor: pointer;
+   }
 /* --------------   Page Identity Section  ----------------- */
    .Page_Identity{
       display: flex;
       height:40px;
       width: 100%;
-      margin-bottom: 5px;
    }
    .Page_Identity .Page_Track{
       width:100%;
@@ -61,15 +64,16 @@
       float: right;
    }
    .Page_Identity .Page_Track ul li {
-      color: #a5adb1;
       font-size: 13px;
       font-weight: 500;
       margin-left: 5px;
+      color: #4e6a7a;
    }
    .Page_Identity .Page_Track ul li.arrow{
       letter-spacing: -4px;
       font-size: 19px;
       transform: scale(.6, 1);
+      color: #4e6a7a;
    }
    .Page_Identity .Page_Track ul li.arrowGreen{
       letter-spacing: -4px;
@@ -84,13 +88,10 @@
       color: #516570;
       cursor: pointer;
    }
-   .Page_Identity .Page_Track ul li.Home{
-       color:#4ab65f;
-   }
-/* page section */
-   .Page_Section{
-      width:100%;
-      margin-top: 100px;
+   a {
+      text-decoration:none;
+      color: #4ab65f;
+      cursor: pointer;
    }
 /* Table section */
    .Table_Section table {

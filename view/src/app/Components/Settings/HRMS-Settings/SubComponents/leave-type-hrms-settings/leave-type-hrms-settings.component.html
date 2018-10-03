@@ -1,4 +1,4 @@
-<div [ngClass]="{'Hide': !Loader}" class="DataLoaderStyle_1">
+<!-- <div [ngClass]="{'Hide': !Loader}" class="DataLoaderStyle_1">
     <div class="Loading">
           <div class="spinner">
              <div class="rect1"></div>
@@ -10,7 +10,7 @@
           </div>
     </div>
   </div>
-  <div class="LoadedDataStyle_1" [ngClass]="{'Show': !Loader}">
+  <div class="LoadedDataStyle_1" [ngClass]="{'Show': !Loader}"> -->
 <!-- Page Header Part -->
    <div class="row header_part">
       <div class="col-sm-6">
@@ -29,38 +29,96 @@
          <thead>
             <tr>
                <th>S.no</th>
+               <th>Name</th>
                <th>Leave Type</th>
-               <th>Created By</th>
-               <th>Last Modification Date</th>
                <th>Action</th>
             </tr>
          </thead>
          <tbody>
-            <tr *ngFor="let Item of _List; let i=index">
+            <tr>
                <td>
-                  <span class="S_no"> {{ i + 1}} </span>
+                  <span class="S_no"> 1 </span>
                </td>
                <td>
-                  <span class="Style_1">{{Item.Leave_Type}}</span>
+                  <span class="Style_1">xxxx</span>
                </td>
                <td>
-                  <span class="Style_1">{{Item.Created_By.Name}} </span>
-                  <br>
-                  <span class="Time"> {{Item.createdAt | date:'medium'}}  </span>
+                  <span class="Style_1">paid</span>
                </td>
                <td>
-                  <span class="Style_1"> {{ Item.Last_Modified_By.Name }}</span>
-                  <br> 
-                  <span class="Time"> {{Item.updatedAt | date:'medium'}}  </span>
-               </td>
-               <td>
-                  <button *ngIf="_View" (click)="ViewLeaveType(i)" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                  <button  (click)="ViewLeaveType()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
                      <i class="material-icons">zoom_in</i>
                   </button>
-                  <button  *ngIf="_Edit" (click)="EditLeaveType(i)" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                  <button   (click)="CreateLeaveType()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
                      <i class="material-icons">edit</i>
                   </button>
-                  <button *ngIf="_Delete" (click)=" DeleteLeaveType(i)" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                  <button  (click)=" DeleteLeaveType()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                     <i class="material-icons">delete_forever</i>
+                  </button>
+               </td>
+            </tr>
+            <tr>
+               <td>
+                  <span class="S_no"> 2 </span>
+               </td>
+               <td>
+                  <span class="Style_1">xxxx</span>
+               </td>
+               <td>
+                  <span class="Style_1">paid</span>
+               </td>
+               <td>
+                  <button  (click)="ViewLeaveType()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                     <i class="material-icons">zoom_in</i>
+                  </button>
+                  <button   (click)="CreateLeaveType()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                     <i class="material-icons">edit</i>
+                  </button>
+                  <button  (click)=" DeleteLeaveType()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                     <i class="material-icons">delete_forever</i>
+                  </button>
+               </td>
+            </tr>
+            <tr>
+               <td>
+                  <span class="S_no"> 3 </span>
+               </td>
+               <td>
+                  <span class="Style_1">xxxx</span>
+               </td>
+               <td>
+                  <span class="Style_1">paid</span>
+               </td>
+               <td>
+                  <button  (click)="ViewLeaveType()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                     <i class="material-icons">zoom_in</i>
+                  </button>
+                  <button   (click)="CreateLeaveType()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                     <i class="material-icons">edit</i>
+                  </button>
+                  <button  (click)=" DeleteLeaveType()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                     <i class="material-icons">delete_forever</i>
+                  </button>
+               </td>
+            </tr>
+            <tr>
+               <td>
+                  <span class="S_no"> 4 </span>
+               </td>
+               <td>
+                  <span class="Style_1">xxxx</span>
+               </td>
+               <td>
+                  <span class="Style_1">paid</span>
+               </td>
+               <td>
+                  <button  (click)="ViewLeaveType()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                     <i class="material-icons">zoom_in</i>
+                  </button>
+                  <button   (click)="CreateLeaveType()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                     <i class="material-icons">edit</i>
+                  </button>
+                  <button  (click)=" DeleteLeaveType()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
                      <i class="material-icons">delete_forever</i>
                   </button>
                </td>
@@ -68,4 +126,4 @@
          </tbody>
       </table>
    </div>
-   </div>
+   <!-- </div> -->

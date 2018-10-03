@@ -1,0 +1,83 @@
+<!-- Page -->
+<div class="page" style="margin-top:100px;">
+   <div class="container-fluid">
+      <!-- Page Identity -->
+      <div class="Page_Identity">
+         <div class="Page_Track">
+            <ul>
+            <li class="HeaderName">Home</li>
+            <li class="arrow">>></li>
+            <li class= "LinkName"><a [routerLink]="['/internal_transfer_list']">Internal Transfer List</a></li>
+            <li class="arrow">>></li>
+            <li >Internal Transfer View</li>
+            </ul>
+         </div>
+      </div>
+      <form>
+         <!-- Company details -->
+         <div class="Company_Details">
+            <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Transfer 
+               <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span>
+            </h5>
+            <br>
+            <div class="row">
+               <div class="col-sm-4">
+                  <div class="view_item">
+                     <div class="Static">From</div>
+                     <div class="dots"> : </div>
+                     <div class="Data">  xxx </div>
+                  </div>
+                  <div class="view_item">
+                     <div class="Static"> To</div>
+                     <div class="dots"> : </div>
+                     <div class="Data">  yyyy </div>
+                  </div>
+               </div>
+               <div class="col-sm-4">
+                  <div class="view_item">
+                     <div class="Static"> Date</div>
+                     <div class="dots"> : </div>
+                     <div class="Data">  24.08.18 </div>
+                  </div>
+               </div>
+               <div class="col-sm-4">
+                  <div class="view_item">
+                     <div class="Static">Delivery Method</div>
+                     <div class="dots"> : </div>
+                     <div class="Data"> Method-1</div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <br>
+         <!-- Table Section -->
+         <div class="Table_Section">
+            <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Product
+               <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span>
+               <span><button class="Add_Product_Button">Add Product</button></span>
+            </h5>
+            <br>
+            <table class="table_section">
+               <thead class="table_head">
+                  <tr>
+                     <th class="S_No">S.No</th>
+                     <th>Product</th>
+                     <th>Quantity</th>
+                     <th>Status</th>
+                     <th class="Action">Action</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td  colspan="5"><span> No Records found</span></td>
+                  </tr>
+               </tbody>
+            </table>
+            <br>
+         </div>
+      </form>
+   </div>
+</div>
+         
+      
+   

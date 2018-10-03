@@ -10,7 +10,6 @@
       display: flex;
       height:40px;
       width: 100%;
-      margin-bottom: 5px;
    }
    .Page_Identity .Page_Track{
       width:100%;
@@ -28,11 +27,13 @@
       font-size: 13px;
       font-weight: 500;
       margin-left: 5px;
+      color: #4e6a7a;
    }
    .Page_Identity .Page_Track ul li.arrow{
       letter-spacing: -4px;
       font-size: 19px;
       transform: scale(.6, 1);
+      color: #4e6a7a;
    }
    .Page_Identity .Page_Track ul li.arrowGreen{
       letter-spacing: -4px;
@@ -44,6 +45,11 @@
       color: #4ab65f;
    }
    .Page_Identity .Page_Track ul li.LinkName{
+      color: #4ab65f;
+      cursor: pointer;
+   }
+   a {
+      text-decoration:none;
       color: #4ab65f;
       cursor: pointer;
    }
@@ -116,6 +122,27 @@
    }
    .left_section .Form_Input input{
    width:80%;
+   }
+   .left_section .file_Section input{
+      height: 37px;
+      float: right;
+      font-size: 13px;
+      font-weight: 500;
+      color: #516570;
+   }
+   /* Company details */
+   .Company_Details{
+      background-color: #fff;
+      margin: 0px;
+      padding: 20px;
+      width: 100%;
+      box-shadow: 1px 1px 10px #d4d4d4;
+      margin-bottom: 20px;
+   }
+   .Company_Details .text-style-1{
+      font-size: 19px;
+      font-weight: 600;
+      color: #5c686f;
    }
 /* Footer */
    .Footer {

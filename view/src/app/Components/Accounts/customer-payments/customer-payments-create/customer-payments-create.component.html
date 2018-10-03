@@ -1,101 +1,151 @@
+<!-- page -->
 <div class="page" style="margin-top:100px;">
-  <div class="container-fluid">
-    <div class="Page_Identity">
-      <div class="Page_Track">
-        <ul>
-          <li class="HeaderName">Home</li>
-          <li class="arrow">>></li>
-          <li class="LinkName">Accounts</li>
-          <li class="arrow">>></li>
-          <li>Customer Payments</li>
-        </ul>
+   <div class="container-fluid">
+      <!-- page Identity -->
+      <div class="Page_Identity">
+         <div class="Page_Track">
+            <ul>
+               <li class="HeaderName">Home</li>
+               <li class="arrow">>></li>
+               <li class="LinkName"><a [routerLink]="['/account_customer_payments_list']">Customer Payments List</a></li>
+               <li class="arrow">>></li>
+               <li>Customer Payments Create</li>
+            </ul>
+         </div>
       </div>
-    </div>
-    <div class="row">
       <div class="Company_Details">
-        <div class="col-sm-12">
-          <div class="row">
-            <div class="col-sm-6 Form_Input">
-              <label>Customer:</label>
-              <input type="text">
+         <div class="row">
+            <div class="col-sm-4 Form_Select">
+               <label>Customer:</label>
+               <ng-select class="NgSelect" 
+                  [items]="_Customer" 
+                  [searchable]="true" 
+                  placeholder="Customer">
+               </ng-select>
             </div>
-            <div class="col-sm-6 Form_Select">
-              <label>Invoice No:</label>
-              <select>
-                  <option checked>Invoice No</option>
-                  <option> IVC133</option>
-                  <option> IVC133</option>
-                  <option> IVC133</option>
-                  <option> IVC133</option>
-               </select>
+            <div class="col-sm-4 Form_Select">
+               <label>Invoice No:</label>
+               <ng-select class="NgSelect" 
+                  [items]="_InvoiceNo" 
+                  [searchable]="true" 
+                  placeholder="Invoice No">
+               </ng-select>
             </div>
-            <div class="col-sm-6 Form_Input">
-              <label>Payment Amount:</label>
-              <input type="text">
+            <div class="col-sm-4 Form_Input">
+               <label>Payment Amount:</label>
+               <input type="text">
             </div>
-            <div class="col-sm-6 Form_Input">
-              <label>Date:</label>
-              <input type="text">
+            <div class="col-sm-4 Form_Input">
+               <label>Total Amount:</label>
+               <input type="text">
             </div>
-          </div>
-        </div>
+         </div>
       </div>
-      <div class="Product">
-        <div class="Product_Details" >
-          <div class="row">
+      <div class="Company_Details" >
+         <div class="row">
             <div class="col-sm-12">
-              <h5>Mode Of Payments</h5>
-              <br>
+               <h5>Mode Of Payments</h5>
+               <br>
             </div>
-          </div>
-          <div class="Tabs">
-               <div class="Tab" [ngClass]="{'active': Active_Tab === 'Bank'}" (click)="Active_Tab_Change('Bank')">
-                  <span >Bank</span>
+         </div>
+         <mat-radio-group class="example-radio-group" [(ngModel)]="Type">
+            <mat-radio-button class="example-radio-button" [value]="'cheque'">
+               cheque/DD
+            </mat-radio-button>
+            <mat-radio-button class="example-radio-button" [value]="'cash'">
+               cash
+            </mat-radio-button>
+            <mat-radio-button class="example-radio-button" [value]="'online_payment'">
+               Online Payment
+            </mat-radio-button>
+            <mat-radio-button class="example-radio-button" [value]="'NEFT'">
+               NEFT/RTGS
+            </mat-radio-button>
+         </mat-radio-group>
+         <div *ngIf="Type === 'cheque'">
+            <br>
+            <div class="row">
+               <div class="col-sm-4 Form_Input">
+                  <label>Amount:</label>
+                  <input type="text">
                </div>
-               <div class="Tab" [ngClass]="{'active': Active_Tab === 'Cash'}" (click)="Active_Tab_Change('Cash')">
-                  <span >Cash</span>
+               <div class="col-sm-4 Form_Input">
+                  <label>Cheque No:</label>
+                  <input type="text">
+               </div>
+               <div class="col-sm-4 Form_Input">
+                  <label>Date:</label>
+                  <input matInput [matDatepicker]="picker" (click)="picker.open()" placeholder="Date">
+                  <mat-datepicker #picker></mat-datepicker>
+               </div>
+               <div class="col-sm-4 Form_Input">
+                  <label>Bank:</label>
+                  <input type="text">
+               </div>
+               <div class="col-sm-4 Form_Input">
+                  <label>Branch:</label>
+                  <input type="text">
+               </div>
+               <div class="col-sm-4 Form_Input">
+                  <label>Expected date of clearing:</label>
+                  <input type="text">
                </div>
             </div>
-             <br>
-             <div class="Bank" *ngIf="Active_Tab === 'Bank'">
-          <br>
-          <div class="row">
-            <div class="col-sm-4 Form_Input">
-              <label>Amount:</label>
-              <input type="text">
+         </div>
+         <div *ngIf="Type === 'cash' ">
+         <br>
+            <div class="row">
+               <div class="col-sm-4 Form_Input">
+                  <label>Amount:</label>
+                  <input type="text">
+               </div>
+               <div class="col-sm-4 Form_Input">
+                  <label>Date:</label>
+                  <input matInput [matDatepicker]="picker" (click)="picker.open()" placeholder="Date">
+                  <mat-datepicker #picker></mat-datepicker>
+               </div>
             </div>
-            <div class="col-sm-4 Form_Input">
-              <label>Date:</label>
-              <input type="text">
+         </div>
+         <div *ngIf="Type === 'online_payment' ">
+            <br>
+            <div class="row">
+               <div class="col-sm-4 Form_Input">
+                  <label>Amount:</label>
+                  <input type="text">
+               </div>
+               <div class="col-sm-4 Form_Input">
+                  <label>Reference No:</label>
+                  <input type="text">
+               </div>
+               <div class="col-sm-4 Form_Input">
+                  <label>Date:</label>
+                  <input matInput [matDatepicker]="picker" (click)="picker.open()" placeholder="Date">
+                  <mat-datepicker #picker></mat-datepicker>
+               </div>
             </div>
-            <div class="col-sm-4 Form_Input">
-              <label>Reference No:</label>
-              <input type="text">
+         </div>
+         <div *ngIf="Type === 'NEFT' ">
+            <br>
+            <div class="row">
+               <div class="col-sm-4 Form_Input">
+                  <label>Amount:</label>
+                  <input type="text">
+               </div>
+               <div class="col-sm-4 Form_Input">
+                  <label>Date:</label>
+                  <input matInput [matDatepicker]="picker" (click)="picker.open()" placeholder="Date">
+                  <mat-datepicker #picker></mat-datepicker>
+               </div>
+               <div class="col-sm-4 Form_Input">
+                  <label>Reference No:</label>
+                  <input type="text">
+               </div>
             </div>
-          </div>
-        </div>
-        </div>
-        <div class="Done_Section" >
-         <div class="cash" *ngIf="Active_Tab === 'Cash'">
-          <br>
-          <div class="row">
-            <div class="col-sm-4 Form_Input">
-              <label>Amount:</label>
-              <input type="text">
-            </div>
-            <div class="col-sm-4 Form_Input">
-              <label>Date:</label>
-              <input type="text">
-            </div>
-          </div>
-        </div>
-        </div>
+         </div>
       </div>
-    </div>
-    <div class="row" style="margin-top:20px;">
-      <div class="col-sm-12 text-right">
-        <button mat-raised-button color="primary" style="bottom: 15px;"> Submit </button>
-      </div>
-    </div>
-  </div>
+   </div>
+</div>
+<!-- Footer -->
+<div class="Footer">
+   <button mat-raised-button color="primary" style = "top: 5px;"> Submit </button>
 </div>

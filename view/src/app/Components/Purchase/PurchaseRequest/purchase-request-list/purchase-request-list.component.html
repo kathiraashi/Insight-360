@@ -1,3 +1,4 @@
+<!-- Main Section -->
 <div class="Main_Section">
    <div class="page_section">
       <div class="container-fluid">
@@ -7,16 +8,14 @@
                <ul >
                   <li class="HeaderName">Home</li>
                   <li class="arrow">>></li>
-                  <li class= "LinkName">Purchase</li>
-                  <li class="arrow">>></li>
-                  <li >Purchase Request </li>
+                  <li>Purchase Request</li>
                </ul>
             </div>
          </div>
          <!-- Header Part -->
          <div class="row header_part">
             <div class="col-sm-6">
-               <button class="Create_Button" mat-raised-button [routerLink]="['/purchase_request_create']"> + Create </button>
+               <a [routerLink]="['/purchase_request_create']"><button class="Create_Button" mat-raised-button> + Create </button></a>
             </div>
             <div class="col-sm-6">
                <div class="Search_Section">
@@ -157,15 +156,15 @@
 </div>
 
 <!-- Dropdown menus -->
-<mat-menu #Action="matMenu">
-   <button mat-menu-item>
+<mat-menu class="MenuStyleOne" #Action="matMenu" [overlapTrigger]="false" xPosition="after" yPosition="below" class="MenuStyleOne">
+   <a [routerLink]="['/purchase_request_create']"><button mat-menu-item>
       <span>Edit</span>
-   </button>
-   <button mat-menu-item [routerLink]="['/Purchase_Request_View']">
+   </button></a>
+   <a [routerLink]="['/Purchase_Request_View']"><button mat-menu-item>
       <span>View</span>
-   </button>
+   </button></a>
    <button mat-menu-item>
-      <span>Delete</span>
+      <span>Cancel</span>
    </button>
    <button mat-menu-item>
       <span>Approve</span>

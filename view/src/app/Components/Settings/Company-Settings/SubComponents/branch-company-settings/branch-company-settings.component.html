@@ -30,13 +30,13 @@
         <th>Branch</th>
         <th>Branch Head</th>
         <th>Departments</th>
-        <th>Street</th>
-        <th>Area</th>
+        <!-- <th>Street</th>
+        <th>Area</th> -->
         <th>Country</th>
-        <th>State</th>
-        <th>City</th>
+        <!-- <th>State</th>
+        <th>City</th> -->
         <th>Zipcode</th>
-        <th>Address</th>
+        <!-- <th>Address</th> -->
         <th>Created By</th>
         <th>Last Modification date</th>
         <th>Action</th>
@@ -54,29 +54,29 @@
            <span class="Style_1">{{Items.Branch_Head}}</span>
          </td>
          <td>
-           <span class="Style_1">{{Items.Departments?.Departments}}</span>
+           <span class="Style_1">{{Items.Departments?.Department_Name}}</span>
          </td>
-         <td>
+         <!-- <td>
             <span class="Style_1">{{Items.AllStreet}}</span>
           </td>
           <td>
             <span class="Style_1">{{Items.AllArea}}</span>
-          </td>
+          </td> -->
          <td>
-            <span class="Style_1">{{Items.Global_Country?.AllCountry}}</span>
+            <span class="Style_1">{{Items['AllAddress']?.Country?.Country_Name}}</span>
+          </td>
+          <!-- <td>
+            <span class="Style_1">{{Items.Global_State?.State_Name}}</span>
           </td>
           <td>
-            <span class="Style_1">{{Items.Global_State?.AllState}}</span>
-          </td>
+            <span class="Style_1">{{Items.Global_City?.City_Name}}</span>
+          </td> -->
           <td>
-            <span class="Style_1">{{Items.Global_City?.AllCity}}</span>
+            <span class="Style_1">{{Items['AllAddress']?.ZipCode}}</span>
           </td>
-          <td>
-            <span class="Style_1">{{Items.AllZipCode}</span>
-          </td>
-          <td>
+          <!-- <td>
             <span class="Style_1">{{Items.Address}}</span>
-          </td>
+          </td> -->
          <td>
           <span class="Style_1"> {{Items.Created_By.Name}}</span>
             <br> 
@@ -102,6 +102,6 @@
        </tr>
       </tbody>
   </table>
-  </div>
-  </div>
+</div>
+</div>
 

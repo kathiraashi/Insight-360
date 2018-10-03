@@ -1,29 +1,31 @@
 <app-header></app-header>
+<!-- Main Section -->
 <div class="Main_Section">
-  <div class="Page_Section">
+   <div class="Page_Section">
       <div class="container-fluid">
+         <!-- Page Identity -->
           <div class="Page_Identity">
             <div class="Page_Track">
-                 <ul >
-                   <li class="HeaderName">Home</li>
-                   <li class="arrow">>></li>
-                   <li class= "LinkName">Accounts</li>
-                   <li class="arrow">>></li>
-                   <li >Customer Invoice</li>
-                 </ul>
-              </div>
-           </div>
-           <div class="row header_part">
-              <div class="col-sm-6">
-                <button class="Create_Button" mat-raised-button  [routerLink]="['/crm_invoice_create']" > + Create </button>
-              </div>
-              <div class="col-sm-6">
-                <div class="Search_Section">
+               <ul>
+                  <li class="HeaderName">Home</li>
+                  <li class="arrow">>></li>
+                  <li >Customer Invoice</li>
+               </ul>
+            </div>
+         </div>
+         <!-- Header Part -->
+         <div class="row header_part">
+            <div class="col-sm-6">
+               <a [routerLink]="['/crm_invoice_create']"><button class="Create_Button" mat-raised-button> + Create </button></a>
+            </div>
+            <div class="col-sm-6">
+               <div class="Search_Section">
                   <input type="text" placeholder="Search.." name="search">
                   <i class="material-icons">search</i>
-                </div>
-              </div>
+               </div>
             </div>
+         </div>
+         <!-- Table Section -->
          <div class="Table_Section">
             <table>
                <thead>
@@ -42,10 +44,10 @@
                         <span class="S_no"> 1 </span>
                      </td>
                      <td>
-                      <span class="Style_2">inv-1
-                         <h6 class="Style_3">order no:12345</h6>
-                      </span>
-                   </td>
+                        <span class="Style_2">inv-1
+                           <h6 class="Style_3">order no:12345</h6>
+                        </span>
+                     </td>
                      <td>
                         <span class="Style_2">aashi technologies
                            <h6 class="Style_3">coimbatore,india</h6>
@@ -55,13 +57,13 @@
                         <span class="Style_3">10000
                         </span>
                      </td>
-                    <td>
+                     <td>
                         <span class="Style_2">admin
                         <h6 class="Style_3">last modified:16/05/17</h6>
                         </span>
                      </td>
                      <td>
-                           <button color="primary" mat-raised-button [matMenuTriggerFor]="Action">Action</button>
+                        <button color="primary" mat-raised-button [matMenuTriggerFor]="Action">Action</button>
                      </td>
                   </tr>
                   <tr>
@@ -70,9 +72,9 @@
                      </td>
                      <td>
                       <span class="Style_2">inv-1
-                         <h6 class="Style_3">order no:12345</h6>
+                        <h6 class="Style_3">order no:12345</h6>
                       </span>
-                   </td>
+                     </td>
                      <td>
                         <span class="Style_2">aashi technologies
                            <h6 class="Style_3">coimbatore,india</h6>
@@ -82,13 +84,13 @@
                         <span class="Style_3">10000
                         </span>
                      </td>
-                    <td>
+                     <td>
                         <span class="Style_2">admin
-                        <h6 class="Style_3">last modified:16/05/17</h6>
+                           <h6 class="Style_3">last modified:16/05/17</h6>
                         </span>
                      </td>
                      <td>
-                           <button color="primary" mat-raised-button [matMenuTriggerFor]="Action">Action</button>
+                        <button color="primary" mat-raised-button [matMenuTriggerFor]="Action">Action</button>
                      </td>
                   </tr>
                   <tr>
@@ -96,10 +98,10 @@
                         <span class="S_no"> 3 </span>
                      </td>
                      <td>
-                      <span class="Style_2">inv-1
-                         <h6 class="Style_3">order no:12345</h6>
-                      </span>
-                   </td>
+                        <span class="Style_2">inv-1
+                           <h6 class="Style_3">order no:12345</h6>
+                        </span>
+                     </td>
                      <td>
                         <span class="Style_2">aashi technologies
                            <h6 class="Style_3">coimbatore,india</h6>
@@ -111,11 +113,11 @@
                      </td>
                     <td>
                         <span class="Style_2">admin
-                        <h6 class="Style_3">last modified:16/05/17</h6>
+                           <h6 class="Style_3">last modified:16/05/17</h6>
                         </span>
                      </td>
                      <td>
-                           <button color="primary" mat-raised-button [matMenuTriggerFor]="Action">Action</button>
+                        <button color="primary" mat-raised-button [matMenuTriggerFor]="Action">Action</button>
                      </td>
                   </tr>
                   <tr>
@@ -123,10 +125,10 @@
                         <span class="S_no"> 4 </span>
                      </td>
                      <td>
-                      <span class="Style_2">inv-1
-                         <h6 class="Style_3">order no:12345</h6>
-                      </span>
-                   </td>
+                        <span class="Style_2">inv-1
+                           <h6 class="Style_3">order no:12345</h6>
+                        </span>
+                     </td>
                      <td>
                         <span class="Style_2">aashi technologies
                            <h6 class="Style_3">coimbatore,india</h6>
@@ -136,13 +138,13 @@
                         <span class="Style_3">10000
                         </span>
                      </td>
-                    <td>
+                     <td>
                         <span class="Style_2">admin
-                        <h6 class="Style_3">last modified:16/05/17</h6>
+                           <h6 class="Style_3">last modified:16/05/17</h6>
                         </span>
                      </td>
                      <td>
-                           <button color="primary" mat-raised-button [matMenuTriggerFor]="Action">Action</button>
+                        <button color="primary" mat-raised-button [matMenuTriggerFor]="Action">Action</button>
                      </td>
                   </tr>
                   <tr>
@@ -150,10 +152,10 @@
                         <span class="S_no"> 5 </span>
                      </td>
                      <td>
-                      <span class="Style_2">inv-1
-                         <h6 class="Style_3">order no:12345</h6>
-                      </span>
-                   </td>
+                        <span class="Style_2">inv-1
+                           <h6 class="Style_3">order no:12345</h6>
+                        </span>
+                     </td>
                      <td>
                         <span class="Style_2">aashi technologies
                            <h6 class="Style_3">coimbatore,india</h6>
@@ -163,13 +165,13 @@
                         <span class="Style_3">10000
                         </span>
                      </td>
-                    <td>
+                     <td>
                         <span class="Style_2">admin
-                        <h6 class="Style_3">last modified:16/05/17</h6>
+                           <h6 class="Style_3">last modified:16/05/17</h6>
                         </span>
                      </td>
                      <td>
-                           <button color="primary" mat-raised-button [matMenuTriggerFor]="Action">Action</button>
+                        <button color="primary" mat-raised-button [matMenuTriggerFor]="Action">Action</button>
                      </td>
                   </tr>
                   <tr>
@@ -177,10 +179,10 @@
                         <span class="S_no"> 6 </span>
                      </td>
                      <td>
-                      <span class="Style_2">inv-1
-                         <h6 class="Style_3">order no:12345</h6>
-                      </span>
-                   </td>
+                        <span class="Style_2">inv-1
+                           <h6 class="Style_3">order no:12345</h6>
+                        </span>
+                     </td>
                      <td>
                         <span class="Style_2">aashi technologies
                            <h6 class="Style_3">coimbatore,india</h6>
@@ -190,13 +192,13 @@
                         <span class="Style_3">10000
                         </span>
                      </td>
-                    <td>
+                     <td>
                         <span class="Style_2">admin
-                        <h6 class="Style_3">last modified:16/05/17</h6>
+                           <h6 class="Style_3">last modified:16/05/17</h6>
                         </span>
                      </td>
                      <td>
-                           <button color="primary" mat-raised-button [matMenuTriggerFor]="Action">Action</button>
+                        <button color="primary" mat-raised-button [matMenuTriggerFor]="Action">Action</button>
                      </td>
                   </tr>
                   <tr>
@@ -204,10 +206,10 @@
                         <span class="S_no"> 7 </span>
                      </td>
                      <td>
-                      <span class="Style_2">inv-1
-                         <h6 class="Style_3">order no:12345</h6>
-                      </span>
-                   </td>
+                        <span class="Style_2">inv-1
+                           <h6 class="Style_3">order no:12345</h6>
+                        </span>
+                     </td>
                      <td>
                         <span class="Style_2">aashi technologies
                            <h6 class="Style_3">coimbatore,india</h6>
@@ -217,34 +219,37 @@
                         <span class="Style_3">10000
                         </span>
                      </td>
-                    <td>
+                     <td>
                         <span class="Style_2">admin
-                        <h6 class="Style_3">last modified:16/05/17</h6>
+                           <h6 class="Style_3">last modified:16/05/17</h6>
                         </span>
                      </td>
                      <td>
-                           <button color="primary" mat-raised-button [matMenuTriggerFor]="Action">Action</button>
+                        <button color="primary" mat-raised-button [matMenuTriggerFor]="Action">Action</button>
                      </td>
                   </tr>
-                  </tbody>
-               </table>
-            </div>
+               </tbody>
+            </table>
          </div>
       </div>
    </div>
+</div>
 
-   <!-- Dropdown menus -->
-<mat-menu #Action="matMenu">
-      <button mat-menu-item [routerLink]="['/crm_invoice_create']">
-         <span>Edit</span>
-      </button>
-      <button mat-menu-item [routerLink]="['/account_customer_invoice_view']">
-         <span>View</span>
-      </button>
-      <button mat-menu-item>
-         <span>Delete</span>
-      </button>
-   </mat-menu>
+<!-- Dropdown menus -->
+<mat-menu class="MenuStyleOne" #Action="matMenu" [overlapTrigger]="false" xPosition="after" yPosition="below" class="MenuStyleOne">
+   <a [routerLink]="['/crm_invoice_create']"><button mat-menu-item>
+      <span>Edit</span>
+   </button></a>
+   <a [routerLink]="['/account_customer_invoice_view']"><button mat-menu-item>
+      <span>View</span>
+   </button></a>
+   <button mat-menu-item>
+      <span>Cancel</span>
+   </button>
+   <button mat-menu-item>
+      <span>Register Payments</span>
+   </button>
+</mat-menu>
       
 
 

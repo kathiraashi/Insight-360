@@ -7,6 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CrmCustomersCreateComponent implements OnInit {
 
+   _IndustryType: any[] =  ['Software', 'Manufacturing', 'Finance'];
+   _AccountType: any[] =  ['Customer', 'Prospect'];
+   _OwnershipType: any[] =  ['Partnership', 'Proprietorship'];
+   _Country: any[] =  ['India', 'America', 'Australia'];
+   _State: any[] =  ['Tamil Nadu', 'Karnataka', 'Kerala'];
+   _City: any[] =  ['Chennai', 'Bangalore'];
+
    constructor() { }
 
    ngOnInit() {

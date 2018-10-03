@@ -1,29 +1,31 @@
 <app-header></app-header>
+<!-- Main Section -->
 <div class="Main_Section">
-  <div class="Page_Section">
+   <div class="Page_Section">
       <div class="container-fluid">
-          <div class="Page_Identity">
+         <!-- page Identity -->
+         <div class="Page_Identity">
             <div class="Page_Track">
-                 <ul >
-                   <li class="HeaderName">Home</li>
-                   <li class="arrow">>></li>
-                   <li class= "LinkName">Accounts</li>
-                   <li class="arrow">>></li>
-                   <li >Vendor Payments </li>
-                 </ul>
-              </div>
-           </div>
-           <div class="row header_part">
-              <div class="col-sm-6">
-                <button class="Create_Button" mat-raised-button [routerLink]="['/vendor_payment_create']"> + Create </button>
-              </div>
-              <div class="col-sm-6">
-                <div class="Search_Section">
+               <ul>
+                  <li class="HeaderName">Home</li>
+                  <li class="arrow">>></li>
+                  <li >Vendor Payments </li>
+               </ul>
+            </div>
+         </div>
+         <!-- Header Part -->
+         <div class="row header_part">
+            <div class="col-sm-6">
+               <a  [routerLink]="['/vendor_payment_create']"><button class="Create_Button" mat-raised-button> + Create </button></a>
+            </div>
+            <div class="col-sm-6">
+               <div class="Search_Section">
                   <input type="text" placeholder="Search.." name="search">
                   <i class="material-icons">search</i>
-                </div>
-              </div>
+               </div>
             </div>
+         </div>
+         <!-- Table Section -->
          <div class="Table_Section">
             <table>
                <thead>
@@ -32,7 +34,9 @@
                      <th>Date</th>
                      <th>Company</th>
                      <th>Bill No</th>
-                     <th>Amount</th>
+                     <th>Total</th>
+                     <th>Paid Amount</th>
+                     <th>Amount Due</th>
                      <th>Status</th>
                      <th>Action</th>
                   </tr>
@@ -51,12 +55,20 @@
                         </span>
                      </td>
                      <td>
-                      <span class="Style_2">bill-1
-                         <h6 class="Style_3">order no:12345</h6>
-                      </span>
-                   </td>
-                    <td>
+                        <span class="Style_2">bill-1
+                           <h6 class="Style_3">order no:12345</h6>
+                        </span>
+                     </td>
+                     <td>
                         <span class="Style_3">10000
+                        </span>
+                     </td>
+                     <td>
+                        <span class="Style_3">5000
+                        </span>
+                     </td>
+                     <td>
+                        <span class="Style_3">5000
                         </span>
                      </td>
                      <td>
@@ -64,65 +76,7 @@
                         </span>
                      </td>
                      <td>
-                      <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <span class="S_no"> 1 </span>
-                     </td>
-                     <td>
-                        <span class="Style_3">30/07/18 </span>
-                     </td>
-                     <td>
-                        <span class="Style_2">aashi technologies
-                           <h6 class="Style_3">coimbatore,india</h6>
-                        </span>
-                     </td>
-                     <td>
-                      <span class="Style_2">bill-1
-                         <h6 class="Style_3">order no:12345</h6>
-                      </span>
-                   </td>
-                    <td>
-                        <span class="Style_3">10000
-                        </span>
-                     </td>
-                     <td>
-                        <span class="Style_3">waiting for clearing
-                        </span>
-                     </td>
-                     <td>
-                      <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <span class="S_no"> 1 </span>
-                     </td>
-                     <td>
-                        <span class="Style_3">30/07/18 </span>
-                     </td>
-                     <td>
-                        <span class="Style_2">aashi technologies
-                           <h6 class="Style_3">coimbatore,india</h6>
-                        </span>
-                     </td>
-                     <td>
-                      <span class="Style_2">bill-1
-                         <h6 class="Style_3">order no:12345</h6>
-                      </span>
-                   </td>
-                    <td>
-                        <span class="Style_3">10000
-                        </span>
-                     </td>
-                     <td>
-                        <span class="Style_3">waiting for clearing
-                        </span>
-                     </td>
-                     <td>
-                      <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
+                        <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
                      </td>
                   </tr>
                   <tr>
@@ -138,20 +92,28 @@
                         </span>
                      </td>
                      <td>
-                      <span class="Style_2">bill-1
-                         <h6 class="Style_3">order no:12345</h6>
-                      </span>
-                   </td>
-                    <td>
+                        <span class="Style_2">bill-1
+                           <h6 class="Style_3">order no:12345</h6>
+                        </span>
+                     </td>
+                     <td>
                         <span class="Style_3">10000
                         </span>
                      </td>
                      <td>
-                        <span class="Style_3">postponed
+                        <span class="Style_3">5000
                         </span>
                      </td>
                      <td>
-                      <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
+                        <span class="Style_3">5000
+                        </span>
+                     </td>
+                     <td>
+                        <span class="Style_3">waiting for clearing
+                        </span>
+                     </td>
+                     <td>
+                        <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
                      </td>
                   </tr>
                   <tr>
@@ -167,12 +129,20 @@
                         </span>
                      </td>
                      <td>
-                      <span class="Style_2">bill-1
-                         <h6 class="Style_3">order no:12345</h6>
-                      </span>
-                   </td>
-                    <td>
+                        <span class="Style_2">bill-1
+                           <h6 class="Style_3">order no:12345</h6>
+                        </span>
+                     </td>
+                     <td>
                         <span class="Style_3">10000
+                        </span>
+                     </td>
+                     <td>
+                        <span class="Style_3">5000
+                        </span>
+                     </td>
+                     <td>
+                        <span class="Style_3">5000
                         </span>
                      </td>
                      <td>
@@ -180,7 +150,7 @@
                         </span>
                      </td>
                      <td>
-                      <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
+                        <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
                      </td>
                   </tr>
                   <tr>
@@ -196,12 +166,20 @@
                         </span>
                      </td>
                      <td>
-                      <span class="Style_2">bill-1
-                         <h6 class="Style_3">order no:12345</h6>
-                      </span>
-                   </td>
-                    <td>
+                        <span class="Style_2">bill-1
+                           <h6 class="Style_3">order no:12345</h6>
+                        </span>
+                     </td>
+                     <td>
                         <span class="Style_3">10000
+                        </span>
+                     </td>
+                     <td>
+                        <span class="Style_3">5000
+                        </span>
+                     </td>
+                     <td>
+                        <span class="Style_3">5000
                         </span>
                      </td>
                      <td>
@@ -209,7 +187,7 @@
                         </span>
                      </td>
                      <td>
-                      <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
+                        <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
                      </td>
                   </tr>
                   <tr>
@@ -225,12 +203,94 @@
                         </span>
                      </td>
                      <td>
-                      <span class="Style_2">bill-1
-                         <h6 class="Style_3">order no:12345</h6>
-                      </span>
-                   </td>
-                    <td>
+                        <span class="Style_2">bill-1
+                           <h6 class="Style_3">order no:12345</h6>
+                        </span>
+                     </td>
+                     <td>
                         <span class="Style_3">10000
+                        </span>
+                     </td>
+                     <td>
+                        <span class="Style_3">5000
+                        </span>
+                     </td>
+                     <td>
+                        <span class="Style_3">5000
+                        </span>
+                     </td>
+                     <td>
+                        <span class="Style_3">waiting for clearing
+                        </span>
+                     </td>
+                     <td>
+                        <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <span class="S_no"> 6 </span>
+                     </td>
+                     <td>
+                        <span class="Style_3">30/07/18 </span>
+                     </td>
+                     <td>
+                        <span class="Style_2">aashi technologies
+                           <h6 class="Style_3">coimbatore,india</h6>
+                        </span>
+                     </td>
+                     <td>
+                        <span class="Style_2">bill-1
+                           <h6 class="Style_3">order no:12345</h6>
+                        </span>
+                     </td>
+                     <td>
+                        <span class="Style_3">10000
+                        </span>
+                     </td>
+                     <td>
+                        <span class="Style_3">5000
+                        </span>
+                     </td>
+                     <td>
+                        <span class="Style_3">5000
+                        </span>
+                     </td>
+                     <td>
+                        <span class="Style_3">postponed
+                        </span>
+                     </td>
+                     <td>
+                      <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <span class="S_no"> 7 </span>
+                     </td>
+                     <td>
+                        <span class="Style_3">30/07/18 </span>
+                     </td>
+                     <td>
+                        <span class="Style_2">aashi technologies
+                           <h6 class="Style_3">coimbatore,india</h6>
+                        </span>
+                     </td>
+                     <td>
+                        <span class="Style_2">bill-1
+                           <h6 class="Style_3">order no:12345</h6>
+                        </span>
+                     </td>
+                     <td>
+                        <span class="Style_3">10000
+                        </span>
+                     </td>
+                     <td>
+                        <span class="Style_3">5000
+                        </span>
+                     </td>
+                     <td>
+                        <span class="Style_3">5000
                         </span>
                      </td>
                      <td>
@@ -238,27 +298,24 @@
                         </span>
                      </td>
                      <td>
-                      <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
+                        <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
                      </td>
                   </tr>
-                  </tbody>
-               </table>
-            </div>
+               </tbody>
+            </table>
          </div>
       </div>
    </div>
-
-   <mat-menu #Action="matMenu">
-      <button mat-menu-item [routerLink]="['/vendor_payment_create']">
-         <span>Edit</span>
-      </button>
-      <button mat-menu-item [routerLink]="['/vendor_payment_view']">
-         <span>View</span>
-      </button>
-      <button mat-menu-item>
-         <span>Delete</span>
-      </button>
-   </mat-menu>
+</div>
+<!-- Dropdown menus -->
+<mat-menu class="MenuStyleOne" #Action="matMenu" [overlapTrigger]="false" xPosition="after" yPosition="below" class="MenuStyleOne">
+   <a [routerLink]="['/vendor_payment_create']"><button mat-menu-item>
+      <span>Edit</span>
+   </button></a>
+   <a [routerLink]="['/vendor_payment_view']"><button mat-menu-item>
+      <span>View</span>
+   </button></a>
+</mat-menu>
 
 
 

@@ -1,3 +1,4 @@
+<!-- Page -->
 <div class="page" style="margin-top:100px;">
    <div class="container-fluid">
       <!-- Page Identity -->
@@ -6,99 +7,68 @@
             <ul>
             <li class="HeaderName">Home</li>
             <li class="arrow">>></li>
-            <li class= "LinkName">Purchase</li>
+            <li class= "LinkName"><a [routerLink]="['/purchase_request_list']">Purchase Request List</a></li>
             <li class="arrow">>></li>
-            <li >Purchase Request</li>
+            <li >Purchase Request View</li>
             </ul>
          </div>
       </div>
       <form>
-         <div class="row">
-            <!-- Company details -->
-            <div class="Company_Details">
-               <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Purchase 
-                  <span style="color:#516570;font-size:20px;font-weight: 600;">Request</span>
-               </h5>
-               <br>
-               <div class="col-sm-12">
-                  <div class="row">
-                     <div class="col-sm-6 text-right Style"> <b> Request No: </b></div>
-                     <div class="col-sm-6 text-left Style1">  123 </div>
+         <!-- Company details -->
+         <div class="Company_Details">
+            <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Request 
+               <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span>
+            </h5>
+            <br>
+            <div class="row">
+               <div class="col-sm-6">
+                  <div class="view_item">
+                     <div class="Static">Request No</div>
+                     <div class="dots"> : </div>
+                     <div class="Data">  123 </div>
                   </div>
-                  <div class="row">
-                     <div class="col-sm-6 text-right Style"> <b> Request Dte : </b></div>
-                     <div class="col-sm-6 text-left Style1">  25/04/17 </div>
+                  <div class="view_item">
+                     <div class="Static"> Request Date</div>
+                     <div class="dots"> : </div>
+                     <div class="Data">  25/04/17 </div>
                   </div>
-                  <div class="row">
-                     <div class="col-sm-6 text-right Style"> <b> Requested By : </b></div>
-                     <div class="col-sm-6 text-left Style1">  aashi </div>
-                  </div>
-                  <div class="row">
-                     <div class="col-sm-6 text-right Style"> <b> Description : </b></div>
-                     <div class="col-sm-6 text-left Style1"> Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                     <br>Sapiente minima ipsa quisquam, illo nostrum modi ratione. </div>
+               </div>
+               <div class="col-sm-6">
+                  <div class="view_item">
+                     <div class="Static"> Requested By</div>
+                     <div class="dots"> : </div>
+                     <div class="Data">  aashi </div>
                   </div>
                </div>
             </div>
-            <!-- Table Section -->
-            <div class="Table_Section">
+         </div>
+         <br>
+         <!-- Table Section -->
+         <div class="Table_Section">
             <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Product
                <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span>
-               <span><button class="Add_Product_Button">Add Product</button></span>
+               <!-- <span><button class="Add_Product_Button">Add Product</button></span> -->
             </h5>
             <br>
             <table class="table_section">
                <thead class="table_head">
                   <tr>
-                  <th class="S_No">S.No</th>
-                  <th>Product</th>
-                  <th>Required Quantity</th>
-                  <th>Required Date</th>
-                  <th>Approved Quantity</th>
-                  <th>Tax</th>
-                  <th>Status</th>
-                  <th class="Action">Action</th>
+                     <th class="S_No">S.No</th>
+                     <th>Product</th>
+                     <th>Required Quantity</th>
+                     <th>Required Date</th>
+                     <th>Approved Quantity</th>
+                     <th>Status</th>
+                     <th class="Action">Action</th>
                   </tr>
                </thead>
                <tbody>
                   <tr>
-                     <td >1</td>
-                     <td class="Form_Select">
-                        <select>
-                           <option checked>Select one Product</option>
-                           <option> Product1</option>
-                           <option> Product2</option>
-                           <option> Product3</option>
-                           <option> Product4</option>
-                        </select>
-                     </td>
-                     <td class="Form_Input">
-                        <input type="text">
-                     </td>
-                     <td class="Form_Input">
-                        <input type="text">
-                     </td>
-                     <td class="Form_Input">
-                        <input type="text">
-                     </td>
-                     <td class="Form_Input">
-                        <input type="text">
-                     </td>
-                     <td class="Form_Input">
-                        <input type="text">
-                     </td>
-                     <td>
-                        <span class="Action_Section Bg_Danger">
-                           <i class="material-icons">delete</i>
-                        </span> 
-                     </td>
+                     <td  colspan="7"><span> No Records found</span></td>
                   </tr>
                </tbody>
             </table>
             <br>
-            </div>
-         </div>
-         <div class="row" style="margin-top:20px;">
          </div>
       </form>
    </div>

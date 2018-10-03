@@ -1,6 +1,6 @@
-<div class="Modal_Content" *ngIf="_Data?.Type && (_Data?.Type === 'Create' || _Data?.Type === 'Edit')">
+<div class="Modal_Content" *ngIf="_Data['Type'] && (_Data['Type'] === 'Create' || _Data['Type'] === 'Edit')">
    <div class="Modal_Header">
-     <p>{{_Data?.Type}} Branch</p>
+     <p>{{_Data['Type']}} Branch</p>
      <span *ngIf="!Uploading" data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
    </div>
    <form [formGroup]="Form" (ngSubmit)="onSubmit()">
@@ -22,9 +22,14 @@
          </div>
          <div class="col-sm-6 Form_Select">
             <label>Departments:</label>
-            <ng-select class="NgSelect ValueBold" formControlName="Departments" [searchable]="true" placeholder="Departments">
-               <ng-option *ngFor="let Department of _Departments" [value]="Departments">{{ Department?.Departments }}</ng-option>
-            </ng-select>
+            <ng-select class="NgSelect ValueBold" 
+                  [items]="_Departments" 
+                  bindLabel="Department_Name" 
+                  formControlName="Departments" 
+                  [searchable]="true" 
+                  multiple="true"
+                  placeholder="Departments">
+             </ng-select>
             <p class="error" *ngIf="Form.controls['Departments'].errors && !Form.controls['Departments'].pristine">
                <span  *ngIf="Form.controls['Departments'].errors.required"> Department is required</span>
             </p>
@@ -45,8 +50,15 @@
          </div>
          <div class="col-sm-6 Form_Select">
          <label>Select Country:</label>
-         <ng-select class="NgSelect ValueBold" formControlName="AllCountry" [searchable]="true" placeholder="Country" (ngModelChange)="AllCountry_Change();">
+         <!-- <ng-select class="NgSelect ValueBold" formControlName="AllCountry" [searchable]="true" placeholder="Country" (ngModelChange)="AllCountry_Change();">
             <ng-option *ngFor="let Country of AllCountry" [value]="Country">{{Country.Country_Name}}</ng-option>
+         </ng-select> -->
+         <ng-select class="NgSelect ValueBold" 
+               [items]="AllCountry" 
+               bindLabel="Country_Name" 
+               formControlName="AllCountry" 
+               [searchable]="true" 
+               placeholder="Countrry">
          </ng-select>
          <p class="error" *ngIf="Form.controls['AllCountry'].errors && !Form.controls['AllCountry'].pristine">
             <span *ngIf="Form.controls['AllCountry'].errors.required"> Country is required</span>
@@ -57,18 +69,12 @@
          <ng-select class="NgSelect ValueBold" formControlName="AllState" [searchable]="true" placeholder="State" (ngModelChange)="AllState_Change();">
             <ng-option *ngFor="let State of AllStateOfCountry" [value]="State">{{State.State_Name}}</ng-option>
          </ng-select>
-         <p class="error" *ngIf="Form.controls['AllState'].errors && !Form.controls['AllState'].pristine">
-            <span *ngIf="Form.controls['AllState'].errors.required"> State is required</span>
-         </p>
          </div>
          <div class="col-sm-6 Form_Select">
          <label>city:</label>
          <ng-select class="NgSelect ValueBold" formControlName="AllCity" [searchable]="true" placeholder="City" >
             <ng-option *ngFor="let City of AllCityOfState" [value]="City">{{City.City_Name}}</ng-option>
          </ng-select>
-         <p class="error" *ngIf="Form.controls['AllCity'].errors && !Form.controls['AllCity'].pristine">
-            <span *ngIf="Form.controls['AllCity'].errors.required"> City is required</span>
-         </p>
          </div>
          <div class="col-sm-6 Form_Input" [ngClass]="{'Form_Err': Form.controls['AllZipCode'].errors && !Form.controls['AllZipCode'].pristine, 'Form_Success': Form.controls['AllZipCode'].valid && !Form.controls['AllZipCode'].pristine }">
          <label>Zip Code:</label>
@@ -77,23 +83,19 @@
                <span *ngIf="Form.controls['AllZipCode'].errors.required"> ZipCode is required</span>
             </p>
          </div>
-         <div class="col-sm-6 Form_TextArea">
-            <label>Addresss:</label>
-                  <textarea class="message" rows="2" formControlName="Address"></textarea>
-               </div>
       </div>
    </div>
    <div class="Model_Footer">
       <button type="submit" [disabled]="Form.status !== 'VALID' || Uploading" mat-raised-button color="primary">
-         <span *ngIf="_Data?.Type === 'Create' && !Uploading">Submit</span>
-         <span *ngIf="_Data?.Type === 'Edit' && !Uploading">Update</span>
+         <span *ngIf="_Data['Type'] === 'Create' && !Uploading">Submit</span>
+         <span *ngIf="_Data['Type'] === 'Edit' && !Uploading">Update</span>
          <span *ngIf="Uploading" class="UploadingBtn"> <i class="fa fa-refresh fa-spin"></i> Loading... </span>
       </button>
  </div>
 </form>
    </div>
 
-<div class="Modal_Content" *ngIf="_Data?.Type && _Data?.Type === 'View'">
+<div class="Modal_Content" *ngIf="_Data['Type'] && _Data['Type'] === 'View'">
       <div class="Modal_Header">
         <p>View Branch</p>
         <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
@@ -102,74 +104,74 @@
          <div class="view_item">
             <div class="Static">Branch Name</div>
             <div class="dots"> : </div>
-            <div class="Data"> {{_Branch_Info.Branch_Name}}  </div>
+            <div class="Data"> {{_Branch_Info['Branch_Name']}}  </div>
          </div>
          <div class="view_item">
             <div class="Static"> Branch Head </div>
             <div class="dots"> : </div>
-            <div class="Data">  {{_Branch_Info.Branch_Head}} </div>
+            <div class="Data">  {{_Branch_Info['Branch_Head']}} </div>
          </div>
          <div class="view_item">
             <div class="Static"> Departments </div>
             <div class="dots"> : </div>
-            <div class="Data">  {{_Branch_Info.Departments?.Departments}} </div>
+            <div class="Data">  {{_Branch_Info['Departments']?.Department_Name}} </div>
          </div>
-         <div class="view_item">
+         <!-- <div class="view_item">
             <div class="Static"> Street </div>
             <div class="dots"> : </div>
-            <div class="Data">  {{_Branch_Info.AllStreet}} </div>
+            <div class="Data">  {{_Branch_Info['AllStreet']}} </div>
          </div>
          <div class="view_item">
             <div class="Static"> Area </div>
             <div class="dots"> : </div>
-            <div class="Data">  {{_Branch_Info.AllArea}} </div>
-         </div>
-         <div class="view_item">
+            <div class="Data">  {{_Branch_Info['AllArea']}} </div>
+         </div> -->
+         <!-- <div class="view_item">
             <div class="Static"> State </div>
             <div class="dots"> : </div>
-            <div class="Data">  {{_Branch_Info.Global_State?.AllState}} </div>
-         </div>
+            <div class="Data">  {{_Branch_Info['Global_State']?.AllState}} </div>
+         </div> -->
          <div class="view_item">
             <div class="Static"> Country </div>
             <div class="dots"> : </div>
-            <div class="Data">  {{_Branch_Info.Global_Country?.AllCountry}} </div>
+            <div class="Data">  {{_Branch_Info['AllAddress']?.Country?.Country_Name}} </div>
          </div>
-         <div class="view_item">
+         <!-- <div class="view_item">
             <div class="Static"> City </div>
             <div class="dots"> : </div>
-            <div class="Data">  {{_Branch_Info.Global_City?.AllCity}} </div>
-         </div>
+            <div class="Data">  {{_Branch_Info['Global_City']?.AllCity}} </div>
+         </div> -->
          <div class="view_item">
             <div class="Static"> ZipCode </div>
             <div class="dots"> : </div>
-            <div class="Data">  {{_Branch_Info.AllZipCode}} </div>
+            <div class="Data">  {{_Branch_Info['AllAddress']?.ZipCode}} </div>
          </div>
-         <div class="view_item">
+         <!-- <div class="view_item">
             <div class="Static"> Address </div>
             <div class="dots"> : </div>
-            <div class="Data">  {{_Branch_Info.Address}} </div>
-         </div>
+            <div class="Data">  {{_Branch_Info['Address']}} </div>
+         </div> -->
          <div class="view_item">
             <div class="Static">Created By </div>
             <div class="dots"> : </div>
-            <div class="Data"> {{_Branch_Info.Created_By?.Name}}
+            <div class="Data"> {{_Branch_Info['Created_By']?.Name}}
              </div>
          </div>
          <div class="view_item">
             <div class="Static">Last Modified By </div>
             <div class="dots"> : </div>
-            <div class="Data">  {{_Branch_Info.Last_Modified_By?.Name}}
+            <div class="Data">  {{_Branch_Info['Last_Modified_By']?.Name}}
             </div>
          </div>
          <div class="view_item">
             <div class="Static"> Created Date </div>
             <div class="dots"> : </div>
-            <div class="Data"> {{_Branch_Info.createdAt | date:'medium' }} </div>
+            <div class="Data"> {{_Branch_Info['createdAt'] | date:'medium' }} </div>
          </div>
          <div class="view_item">
             <div class="Static">Last Modified Date  </div>
             <div class="dots"> : </div>
-            <div class="Data"> {{_Branch_Info.updatedAt | date:'medium' }} </div>
+            <div class="Data"> {{_Branch_Info['updatedAt'] | date:'medium' }} </div>
          </div>
          </div>
       </div>

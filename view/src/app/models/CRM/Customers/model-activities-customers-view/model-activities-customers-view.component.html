@@ -12,11 +12,11 @@
          </div>
          <div class="col-sm-6 Form_Select">
             <label>Contact Person:</label>
-            <select>
-               <option disabled>xxxxx</option>
-               <option> xxxxx</option>
-               <option>xxxxx</option>
-            </select>
+            <ng-select class="NgSelect" 
+               [items]="_ContactPerson" 
+               [searchable]="true" 
+               placeholder="Contact Person">
+            </ng-select>   
          </div>
          <div class="col-sm-6 Form_Input">
             <label>Subject:</label>
@@ -24,27 +24,27 @@
          </div>
          <div class="col-sm-6 Form_Select">
             <label>Activity Type:</label>
-            <select>
-               <option disabled>Activity Type</option>
-               <option> Activity Type</option>
-               <option>Activity Type</option>
-            </select>
+            <ng-select class="NgSelect" 
+               [items]="_ActivityType" 
+               [searchable]="true" 
+               placeholder="Activity Type">
+            </ng-select>   
          </div>
          <div class="col-sm-6 Form_Select">
             <label>Status:</label>
-            <select>
-               <option disabled>Status</option>
-               <option> Status</option>
-               <option>Status</option>
-            </select>
+            <ng-select class="NgSelect" 
+               [items]="_Status" 
+               [searchable]="true" 
+               placeholder="Status">
+            </ng-select>   
          </div>
          <div class="col-sm-6 Form_Select">
             <label>Priority:</label>
-            <select>
-               <option disabled>Priority</option>
-               <option> Priority</option>
-               <option>Priority</option>
-            </select>
+            <ng-select class="NgSelect" 
+               [items]="_Priority" 
+               [searchable]="true" 
+               placeholder="Priority">
+            </ng-select>   
          </div>
          <div class="col-sm-6 Form_TextArea">
             <label>Description:</label>

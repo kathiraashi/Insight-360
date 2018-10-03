@@ -1,0 +1,94 @@
+<!-- Page -->
+<div class="page" style="margin-top:100px;">
+   <div class="container-fluid">
+      <!-- Page Identity -->
+      <div class="Page_Identity">
+         <div class="Page_Track">
+            <ul>
+            <li class="HeaderName">Home</li>
+            <li class="arrow">>></li>
+            <li class= "LinkName"><a [routerLink]="['/to_receive_list']">To Receive List</a></li>
+            <li class="arrow">>></li>
+            <li >To Receive View</li>
+            </ul>
+         </div>
+      </div>
+      <form>
+         <!-- Company details -->
+         <div class="Company_Details">
+            <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Receive 
+               <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span>
+               <button mat-raised-button color="primary" class="pull-right"> Validate </button><br>
+            </h5>
+            <br>
+            <div class="row">
+               <div class="col-sm-4">
+                  <div class="view_item">
+                     <div class="Static">Ref No</div>
+                     <div class="dots"> : </div>
+                     <div class="Data">  123 </div>
+                  </div>
+                  <div class="view_item">
+                     <div class="Static"> Date</div>
+                     <div class="dots"> : </div>
+                     <div class="Data">  24.08.18 </div>
+                  </div>
+               </div>
+               <div class="col-sm-4">
+                  <div class="view_item">
+                     <div class="Static">Vendor Name</div>
+                     <div class="dots"> : </div>
+                     <div class="Data">  xxx </div>
+                  </div>
+                  <div class="view_item">
+                     <div class="Static"> Source</div>
+                     <div class="dots"> : </div>
+                     <div class="Data">  yyyy </div>
+                  </div>
+               </div>
+               <div class="col-sm-4">
+                  <div class="view_item">
+                     <div class="Static">Order No</div>
+                     <div class="dots"> : </div>
+                     <div class="Data"> 123</div>
+                  </div>
+                  <div class="view_item">
+                     <div class="Static">Destination</div>
+                     <div class="dots"> : </div>
+                     <div class="Data"> yyy</div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <br>
+         <!-- Table Section -->
+         <div class="Table_Section">
+            <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Product
+               <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span>
+               <!-- <span><button class="Add_Product_Button">Add Product</button></span> -->
+            </h5>
+            <br>
+            <table class="table_section">
+               <thead class="table_head">
+                  <tr>
+                     <th class="S_No">S.No</th>
+                     <th>Product</th>
+                     <th>Quantity</th>
+                     <th> Received Quantity</th>
+                     <th>Status</th>
+                     <th class="Action">Action</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr>
+                     <td  colspan="6"><span> No Records found</span></td>
+                  </tr>
+               </tbody>
+            </table>
+            <br>
+         </div>
+      </form>
+   </div>
+</div>
+      
+   

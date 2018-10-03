@@ -1,0 +1,38 @@
+<!-- If Create Or Edit The Activity Type -->
+<div class="Modal_Content" *ngIf="Type &&  Type === 'Create'">
+   <div class="Modal_Header">
+      <p> Create Account Type</p>
+      <span *ngIf="!Uploading" data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+   </div>
+   <form>
+      <div class="Model_Body">
+         <div class="row">
+            <div class="col-sm-10 Form_Input">
+               <label>Account Type:</label>
+               <input type="text">
+            </div>
+         </div>
+      </div>
+      <div class="Model_Footer">
+         <button type="submit" mat-raised-button color="primary">Submit</button>
+      </div>
+   </form>
+</div>
+<!-- If View The Activity Type -->
+<div class="Modal_Content" *ngIf=" Type && Type === 'View'">
+   <div class="Modal_Header">
+      <p>View Account Type</p>
+      <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+   </div>
+   <div class="Model_Body">
+      <div class="view_item">
+         <div class="Static">Account Type </div>
+         <div class="dots"> : </div>
+         <div class="Data"> Type-11</div>
+      </div>
+   </div>
+</div>
+
+
+
+

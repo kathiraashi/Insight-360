@@ -1,55 +1,70 @@
+<!-- page -->
 <div class="page" style="margin-top:100px;">
-      <div class="container-fluid">
-         <!-- page Identity -->
-         <div class="Page_Identity">
-            <div class="Page_Track">
-               <ul>
-                  <li class="HeaderName">Home</li>
-                  <li class="arrow">>></li>
-                  <li class="HeaderName">HRMS</li>
-                  <li class="arrow">>></li>
-                  <li>Leaves</li>
-               </ul>
-            </div>
+   <div class="container-fluid">
+      <!-- page Identity -->
+      <div class="Page_Identity">
+         <div class="Page_Track">
+            <ul>
+               <li class="HeaderName">Home</li>
+               <li class="arrow">>></li>
+               <li class="LinkName"><a [routerLink]="['/List_Leaves']">Leaves List</a></li>
+               <li class="arrow">>></li>
+               <li>Leaves View</li>
+            </ul>
          </div>
-         <form>
-            <div class="row">
+      </div>
+      <form>
+         <div class="row">
+            <div class="col-sm-6">
                <!-- Company details -->
                <div class="Company_Details">
-                  <br>
-                  <div class="col-sm-12">
-                     <div class="view_item">
-                        <div class="Static"> Name </div>
-                        <div class="dots"> : </div>
-                        <div class="Data">  Name</div>
-                     </div>
-                     <div class="view_item">
-                        <div class="Static">Department</div>
-                        <div class="dots"> : </div>
-                        <div class="Data"> Department</div>
-                     </div>
-                     <div class="view_item">
-                        <div class="Static">Designation </div>
-                        <div class="dots"> : </div>
-                        <div class="Data">Designation</div>
-                     </div>
-                     <div class="view_item">
-                        <div class="Static">contact </div>
-                        <div class="dots"> : </div>
-                        <div class="Data"> +536456324 </div>
-                     </div>
-                     <div class="view_item">
-                        <div class="Static">Email </div>
-                        <div class="dots"> : </div>
-                        <div class="Data"> sample@gmail.com </div>
+                  <div class="row">
+                     <div class="col-sm-12">
+                        <button mat-raised-button color="primary" class="pull-right Reject"> Reject </button>
+                        <button mat-raised-button color="primary" class="pull-right Modify"> Modify </button>
+                        <button mat-raised-button color="primary" class="pull-right"> Approve </button>
                      </div>
                   </div>
-                  <br>
+                  <!-- <div class="row"> -->
+                     <!-- <div class="col-sm-4"> -->
+                        <div class="view_item">
+                           <div class="Static"> Name </div>
+                           <div class="dots"> : </div>
+                           <div class="Data">  Name</div>
+                        </div>
+                        <div class="view_item">
+                           <div class="Static">Department</div>
+                           <div class="dots"> : </div>
+                           <div class="Data"> Department</div>
+                        </div>
+                     <!-- </div> -->
+                     <!-- <div class="col-sm-4"> -->
+                        <div class="view_item">
+                           <div class="Static">Designation </div>
+                           <div class="dots"> : </div>
+                           <div class="Data">Designation</div>
+                        </div>
+                        <div class="view_item">
+                           <div class="Static">contact </div>
+                           <div class="dots"> : </div>
+                           <div class="Data"> +536456324 </div>
+                        </div>
+                     <!-- </div> -->
+                     <!-- <div class="col-sm-4"> -->
+                        <div class="view_item">
+                           <div class="Static">Email </div>
+                           <div class="dots"> : </div>
+                           <div class="Data"> sample@gmail.com </div>
+                        </div>
+                     <!-- </div> -->
+                  <!-- </div> -->
                </div>
+            </div><br>
+            <div class="col-sm-6">
                <!-- Company details -->
                <div class="Company_Details">
-                     <br>
-                     <div class="col-sm-12">
+                  <!-- <div class="row"> -->
+                     <!-- <div class="col-sm-4"> -->
                         <div class="view_item">
                            <div class="Static"> Leave Type </div>
                            <div class="dots"> : </div>
@@ -60,6 +75,8 @@
                            <div class="dots"> : </div>
                            <div class="Data">  27/05/18</div>
                         </div>
+                     <!-- </div> -->
+                     <!-- <div class="col-sm-4"> -->
                         <div class="view_item">
                            <div class="Static">To </div>
                            <div class="dots"> : </div>
@@ -70,16 +87,13 @@
                            <div class="dots"> : </div>
                            <div class="Data"> Lorem ipsum dolor sit amet consectetur adipisicing elit. </div>
                         </div>
-                     </div>
-                     <br>
-                  </div>
-            </div>
-            <div class="row" style="margin-top:20px;">
-               <div class="col-sm-12 text-right">
+                     <!-- </div> -->
+                  <!-- </div> -->
                </div>
             </div>
-         </form>
-      </div>
+         </div>
+      </form>
    </div>
-   
+</div>
+
    

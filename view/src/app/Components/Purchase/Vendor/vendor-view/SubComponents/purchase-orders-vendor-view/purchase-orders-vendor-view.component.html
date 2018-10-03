@@ -1,19 +1,20 @@
+<!-- Header part -->
 <div class="row header_part">
-      <div class="col-sm-6">
-        <button class="Create_Button" mat-raised-button [routerLink]="['/Purchase_Order_Create']"> + Create </button>
+   <div class="col-sm-6">
+      <button class="Create_Button" mat-raised-button [routerLink]="['/Purchase_Order_Create']"> + Create </button>
+   </div>
+   <div class="col-sm-6">
+      <div class="Search_Section">
+         <input type="text" placeholder="Search.." name="search">
+         <i class="material-icons">search</i>
       </div>
-      <div class="col-sm-6">
-        <div class="Search_Section">
-          <input type="text" placeholder="Search.." name="search">
-          <i class="material-icons">search</i>
-        </div>
-      </div>
-    </div>
-    
-    <div class="Table_Section">
-      <table>
-        <thead>
-          <tr>
+   </div>
+</div>
+<!-- Table section -->
+<div class="Table_Section">
+   <table>
+      <thead>
+         <tr>
             <th>S.no</th>
             <th>Ref No</th>
             <th>Date </th>
@@ -21,164 +22,164 @@
             <th>Contact Person</th>
             <th>Total</th>
             <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
+         </tr>
+      </thead>
+      <tbody>
+         <tr>
             <td>
-              <span class="S_no"> 1 </span>
+               <span class="S_no"> 1 </span>
             </td>
             <td>
-              <span class="Style_1">122233</span>
+               <span class="Style_1">122233</span>
             </td>
             <td>
-              <span class="Style_1">27/05/18 </span>
+               <span class="Style_1">27/05/18 </span>
             </td>
             <td>
-              <span class="Style_1">Vendor</span>
+               <span class="Style_1">Vendor</span>
             </td>
             <td>
-              <span class="Style_1">Contact Person</span>
+               <span class="Style_1">Contact Person</span>
             </td>
             <td>
-              <span class="Style_1">6000</span>
+               <span class="Style_1">6000</span>
             </td>
             <td>
-              <button [routerLink]="['/Purchase_Order_View']" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
-                <i class="material-icons">zoom_in</i>
-              </button>
-              <button [routerLink]="['/Purchase_Order_Create']" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
-                <i class="material-icons">edit</i>
-              </button>
-              <button (click)="DeleteOrders()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
-                <i class="material-icons">delete_forever</i>
-              </button>
+               <button [routerLink]="['/Purchase_Order_View']" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                  <i class="material-icons">zoom_in</i>
+               </button>
+               <button [routerLink]="['/Purchase_Order_Create']" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                  <i class="material-icons">edit</i>
+               </button>
+               <button (click)="DeleteOrders()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                  <i class="material-icons">delete_forever</i>
+               </button>
             </td>
-          </tr>
-          <tr>
+         </tr>
+         <tr>
             <td>
-              <span class="S_no"> 2 </span>
-            </td>
-            <td>
-              <span class="Style_1">122233</span>
+               <span class="S_no"> 2 </span>
             </td>
             <td>
-              <span class="Style_1">27/05/18 </span>
+               <span class="Style_1">122233</span>
             </td>
             <td>
-              <span class="Style_1">Vendor</span>
+               <span class="Style_1">27/05/18 </span>
             </td>
             <td>
-              <span class="Style_1">Contact Person</span>
+               <span class="Style_1">Vendor</span>
             </td>
             <td>
-              <span class="Style_1">6000</span>
+               <span class="Style_1">Contact Person</span>
             </td>
             <td>
-              <button [routerLink]="['/Purchase_Order_View']" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
-                <i class="material-icons">zoom_in</i>
-              </button>
-              <button [routerLink]="['/Purchase_Order_Create']" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
-                <i class="material-icons">edit</i>
-              </button>
-              <button (click)="DeleteOrders()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
-                <i class="material-icons">delete_forever</i>
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <span class="S_no"> 3 </span>
+               <span class="Style_1">6000</span>
             </td>
             <td>
-              <span class="Style_1">122233</span>
+               <button [routerLink]="['/Purchase_Order_View']" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                  <i class="material-icons">zoom_in</i>
+               </button>
+               <button [routerLink]="['/Purchase_Order_Create']" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                  <i class="material-icons">edit</i>
+               </button>
+               <button (click)="DeleteOrders()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                  <i class="material-icons">delete_forever</i>
+               </button>
+            </td>
+         </tr>
+         <tr>
+            <td>
+               <span class="S_no"> 3 </span>
             </td>
             <td>
-              <span class="Style_1">27/05/18 </span>
+               <span class="Style_1">122233</span>
             </td>
             <td>
-              <span class="Style_1">Vendor</span>
+               <span class="Style_1">27/05/18 </span>
             </td>
             <td>
-              <span class="Style_1">Contact Person</span>
+               <span class="Style_1">Vendor</span>
             </td>
             <td>
-              <span class="Style_1">6000</span>
+               <span class="Style_1">Contact Person</span>
             </td>
             <td>
-              <button [routerLink]="['/Purchase_Order_View']" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
-                <i class="material-icons">zoom_in</i>
-              </button>
-              <button [routerLink]="['/Purchase_Order_Create']" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
-                <i class="material-icons">edit</i>
-              </button>
-              <button (click)="DeleteOrders()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
-                <i class="material-icons">delete_forever</i>
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <span class="S_no"> 4 </span>
+               <span class="Style_1">6000</span>
             </td>
             <td>
-              <span class="Style_1">122233</span>
+               <button [routerLink]="['/Purchase_Order_View']" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                  <i class="material-icons">zoom_in</i>
+               </button>
+               <button [routerLink]="['/Purchase_Order_Create']" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                  <i class="material-icons">edit</i>
+               </button>
+               <button (click)="DeleteOrders()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                  <i class="material-icons">delete_forever</i>
+               </button>
+            </td>
+         </tr>
+         <tr>
+            <td>
+               <span class="S_no"> 4 </span>
             </td>
             <td>
-              <span class="Style_1">27/05/18 </span>
+               <span class="Style_1">122233</span>
             </td>
             <td>
-              <span class="Style_1">Vendor</span>
+               <span class="Style_1">27/05/18 </span>
             </td>
             <td>
-              <span class="Style_1">Contact Person</span>
+               <span class="Style_1">Vendor</span>
             </td>
             <td>
-              <span class="Style_1">6000</span>
+               <span class="Style_1">Contact Person</span>
             </td>
             <td>
-              <button [routerLink]="['/Purchase_Order_View']" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
-                <i class="material-icons">zoom_in</i>
-              </button>
-              <button [routerLink]="['/Purchase_Order_Create']" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
-                <i class="material-icons">edit</i>
-              </button>
-              <button (click)="DeleteOrders()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
-                <i class="material-icons">delete_forever</i>
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <span class="S_no"> 5 </span>
+               <span class="Style_1">6000</span>
             </td>
             <td>
-              <span class="Style_1">122233</span>
+               <button [routerLink]="['/Purchase_Order_View']" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                  <i class="material-icons">zoom_in</i>
+               </button>
+               <button [routerLink]="['/Purchase_Order_Create']" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                  <i class="material-icons">edit</i>
+               </button>
+               <button (click)="DeleteOrders()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                  <i class="material-icons">delete_forever</i>
+               </button>
+            </td>
+         </tr>
+         <tr>
+            <td>
+               <span class="S_no"> 5 </span>
             </td>
             <td>
-              <span class="Style_1">27/05/18 </span>
+               <span class="Style_1">122233</span>
             </td>
             <td>
-              <span class="Style_1">Vendor</span>
+               <span class="Style_1">27/05/18 </span>
             </td>
             <td>
-              <span class="Style_1">Contact Person</span>
+               <span class="Style_1">Vendor</span>
             </td>
             <td>
-              <span class="Style_1">6000</span>
+               <span class="Style_1">Contact Person</span>
             </td>
             <td>
-              <button [routerLink]="['/Purchase_Order_View']" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
-                <i class="material-icons">zoom_in</i>
-              </button>
-              <button [routerLink]="['/Purchase_Order_Create']" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
-                <i class="material-icons">edit</i>
-              </button>
-              <button (click)="DeleteOrders()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
-                <i class="material-icons">delete_forever</i>
-              </button>
+               <span class="Style_1">6000</span>
             </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+            <td>
+               <button [routerLink]="['/Purchase_Order_View']" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                  <i class="material-icons">zoom_in</i>
+               </button>
+               <button [routerLink]="['/Purchase_Order_Create']" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                  <i class="material-icons">edit</i>
+               </button>
+               <button (click)="DeleteOrders()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                  <i class="material-icons">delete_forever</i>
+               </button>
+            </td>
+         </tr>
+      </tbody>
+   </table>
+</div>

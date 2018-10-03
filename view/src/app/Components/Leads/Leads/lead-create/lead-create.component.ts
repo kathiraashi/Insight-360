@@ -15,6 +15,11 @@ import { LogPhoneCallLeadComponent } from '../../../../models/Leads/log-phone-ca
 })
 export class LeadCreateComponent implements OnInit {
    Active_Tab = 'Log_Phone_Call';
+
+   _Product: any[] =  ['product-1', 'product-2', ' product-3', 'product-4'];
+   _LeadSource: any[] =  ['Source-1', 'Source-2', ' Source-3', 'Source-4'];
+   _Priority: any[] =  ['High', 'Medium', 'Low'];
+   _Employee: any[] =  ['employee-1', 'employee-2', ' employee-3', 'employee-4'];
    bsModalRef: BsModalRef;
    constructor( private modalService: BsModalService) { }
 

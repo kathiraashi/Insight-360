@@ -10,7 +10,7 @@
                <ul>
                   <li class="HeaderName">CRM</li>
                   <li class="arrow">>></li>
-                  <li class="LinkName" [routerLink]="['/Crm_Customers_List']">Customers</li>
+                  <li class="LinkName"><a [routerLink]="['/Crm_Customers_List']">Customers</a></li>
                   <li class="arrow">>></li>
                   <li>Customers View</li>
                </ul>
@@ -205,7 +205,7 @@
    </div>
 </div>
 <!-- Dropdown menus -->
-<mat-menu #Action="matMenu">
+<mat-menu class="MenuStyleOne" #Action="matMenu" [overlapTrigger]="false" xPosition="after" yPosition="below" class="MenuStyleOne">
    <button mat-menu-item (click)="CreateContact()">
       <span>Contacts</span>
    </button>

@@ -1,83 +1,102 @@
 <app-header></app-header>
+<!-- Main Section -->
 <div class="Main_Section">
-  <div class="Page_Section">
+   <div class="Page_Section">
       <div class="container-fluid">
-          <div class="Page_Identity">
+         <!-- Page Identity -->
+         <div class="Page_Identity">
             <div class="Page_Track">
-                 <ul >
-                   <li class="HeaderName">Home</li>
-                   <li class="arrow">>></li>
-                   <li  class="LinkName">Accounts</li>
-                   <li class="arrow">>></li>
-                   <li>Customer</li>
-                 </ul>
-              </div>
-           </div>
-           <div class="row header_part">
-              <div class="col-sm-6">
-                <button class="Create_Button" mat-raised-button [routerLink]="['/crm_customers_create']"> + Create</button>
-              </div>
-              <div class="col-sm-6">
-                <div class="Search_Section">
+               <ul>
+                  <li class="HeaderName">Home</li>
+                  <li class="arrow">>></li>
+                  <li>Customer</li>
+               </ul>
+            </div>
+         </div>
+         <!-- Header Part -->
+         <div class="row header_part">
+            <div class="col-sm-6">
+               <a [routerLink]="['/crm_customers_create']"><button class="Create_Button" mat-raised-button> + Create</button></a>
+            </div>
+            <div class="col-sm-6">
+               <div class="Search_Section">
                   <input type="text" placeholder="Search.." name="search">
                   <i class="material-icons">search</i>
-                </div>
-              </div>
+               </div>
             </div>
+         </div>
+         <!-- Content Style -->
          <div class="row Content_Style">
             <div class="col-sm-3 Page_Content" >
-               <div class="Sub_Content"  [routerLink]="['/main_crm_customers_view']">
-               <div class="image_section">
-                  <img src="../../../../assets/images/basic/company.png">
+               <div class="Sub_Content">
+                  <div class="image_section">
+                     <img src="../../../../assets/images/basic/company.png">
+                  </div>
+                  <div class=" Content_Section">
+                     <h5>Customer Name</h5>
+                     <h5>Customer@gmail.com</h5>
+                     <h5>State,Country</h5>
+                  </div>
+                  <span><a [routerLink]="['/main_crm_customers_view']"><i class="material-icons View">remove_red_eye</i></a>
+                  <i class="material-icons settings" [matMenuTriggerFor] = "Action">settings</i></span>
                </div>
-               <div class=" Content_Section">
-                  <h5>Customer Name</h5>
-                  <h5>Customer@gmail.com</h5>
-                 <h5>State,Country</h5>
-               </div>
-               <span><i class="material-icons settings">settings</i></span>
             </div>
-         </div>
-        <div class="col-sm-3 Page_Content">
-            <div class="Sub_Content"  [routerLink]="['/main_crm_customers_view']">
-               <div class="image_section">
-                  <img src="../../../../assets/images/basic/company.png">
+            <div class="col-sm-3 Page_Content">
+               <div class="Sub_Content">
+                  <div class="image_section">
+                     <img src="../../../../assets/images/basic/company.png">
+                  </div>
+                  <div class=" Content_Section">
+                     <h5>Customer Name</h5>
+                     <h5>Customer@gmail.com</h5>
+                     <h5>State,Country</h5>
+                  </div>
+                  <span><a [routerLink]="['/main_crm_customers_view']"><i class="material-icons View">remove_red_eye</i></a>
+                  <i class="material-icons settings" [matMenuTriggerFor] = "Action">settings</i></span>
                </div>
-               <div class=" Content_Section">
-                  <h5>Customer Name</h5>
-                  <h5>Customer@gmail.com</h5>
-                  <h5>State,Country</h5>
-               </div>
-               <span><i class="material-icons settings">settings</i></span>
             </div>
-         </div>
-         <div class="col-sm-3 Page_Content">
-            <div class="Sub_Content"  [routerLink]="['/main_crm_customers_view']">
-               <div class="image_section">
-                  <img src="../../../../assets/images/basic/company.png">
+            <div class="col-sm-3 Page_Content">
+               <div class="Sub_Content">
+                  <div class="image_section">
+                     <img src="../../../../assets/images/basic/company.png">
+                  </div>
+                  <div class=" Content_Section">
+                     <h5>Customer Name</h5>
+                     <h5>Customer@gmail.com</h5>
+                     <h5>State,Country</h5>
+                  </div>
+                  <span><a [routerLink]="['/main_crm_customers_view']"><i class="material-icons View">remove_red_eye</i></a>
+                  <i class="material-icons settings" [matMenuTriggerFor] = "Action">settings</i></span>
                </div>
-               <div class=" Content_Section">
-                  <h5>Customer Name</h5>
-                  <h5>Customer@gmail.com</h5>
-                  <h5>State,Country</h5>
-               </div>
-               <span><i class="material-icons settings">settings</i></span>
             </div>
-         </div>
-        <div class="col-sm-3 Page_Content">
-            <div class="Sub_Content"  [routerLink]="['/main_crm_customers_view']">
-               <div class="image_section">
-                  <img src="../../../../assets/images/basic/company.png">
+            <div class="col-sm-3 Page_Content">
+               <div class="Sub_Content">
+                  <div class="image_section">
+                     <img src="../../../../assets/images/basic/company.png">
+                  </div>
+                  <div class=" Content_Section">
+                     <h5>Customer Name</h5>
+                     <h5>Customer@gmail.com</h5>
+                     <h5>State,Country</h5>
+                  </div>
+                  <span><a [routerLink]="['/main_crm_customers_view']"><i class="material-icons View">remove_red_eye</i></a>
+                  <i class="material-icons settings" [matMenuTriggerFor] = "Action">settings</i></span><span><i class="material-icons settings">settings</i></span>
                </div>
-               <div class=" Content_Section">
-                  <h5>Customer Name</h5>
-                  <h5>Customer@gmail.com</h5>
-                  <h5>State,Country</h5>
-               </div>
-               <span><i class="material-icons settings">settings</i></span>
             </div>
          </div>
       </div>
    </div>
 </div>
+<!-- Dropdown menus -->
+<mat-menu class="MenuStyleOne" #Action="matMenu" [overlapTrigger]="false" xPosition="after" yPosition="below" class="MenuStyleOne">
+   <button mat-menu-item (click)="CreateContact()">
+      <span>Add Contact</span>
+   </button>
+   <button mat-menu-item (click)="CreateActivity()">
+      <span>Add Activity</span>
+   </button>
+   <button mat-menu-item [routerLink]="['/crm_quotations_create']">
+      <span>Create Quote</span>
+   </button>
+</mat-menu>
 

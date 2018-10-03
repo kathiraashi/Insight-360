@@ -7,7 +7,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
   styleUrls: ['./model-currency-account-settings.component.css']
 })
 export class ModelCurrencyAccountSettingsComponent implements OnInit {
-
+   Type: string;
   constructor(public bsModalRef: BsModalRef) { }
 
   ngOnInit() {

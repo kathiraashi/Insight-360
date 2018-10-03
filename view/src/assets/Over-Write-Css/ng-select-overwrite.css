@@ -3,6 +3,8 @@
    border:0px;
    min-height: 0px;
    border-radius: 0;
+   line-height:25px;
+   text-align:left;
 }
 .ng-select.NgSelect .ng-select-container  {            
    min-height: 0px;
@@ -15,11 +17,14 @@
 .ng-select.NgSelect .ng-select-container:hover{
    box-shadow: none;
 }
-
+.ng-select.NgSelect .ng-dropdown-panel.ng-select-top{
+   left:0px;
+}
 .ng-select.NgSelect .ng-dropdown-panel.ng-select-bottom{
    border-radius: 0px;
    border: 1px solid #e2e2e2;
    box-shadow: 2px 2px 7px 0px #00000042;
+   left:0px;
 }
 .ng-select.NgSelect .ng-dropdown-panel .ng-dropdown-panel-items{
    margin: 0px;
@@ -51,48 +56,48 @@
 }
 .ng-select.NgSelect.ng-select-single .ng-select-container .ng-value-container .ng-value{
    font-size: 14px;
-    font-weight: 400;
-    color: #516570;
+   font-weight: 400;
+   color: #516570;
 }
 
 
 
 /* Multiple Select */
 .ng-select-multiple.NgSelect .ng-select-container{
-    height: auto;
-    min-height: 37px;
+   height: auto;
+   min-height: 37px;
  }
 .ng-select.ng-select-multiple.NgSelect .ng-select-container .ng-value-container{
-    padding-left: 5px;
-    padding-top: 5px;
+   padding-left: 5px;
+   padding-top: 5px;
 }
 .ng-select.ng-select-multiple.NgSelect .ng-select-container .ng-value-container .ng-value{
-    font-size: 0.9em;
-    margin-right: 5px;
-    margin-bottom: 5px;
-    background-color: #ffffff;
-    border: 1px solid #4e6a7a75;
-    padding: 3px 7px;
-    letter-spacing: 0.2px;
-    border-radius: 25px;
+   font-size: 0.9em;
+   margin-right: 5px;
+   margin-bottom: 5px;
+   background-color: #ffffff;
+   border: 1px solid #4e6a7a75;
+   padding: 3px 7px;
+   letter-spacing: 0.2px;
+   border-radius: 25px;
 }
 .ng-select.ng-select-multiple.NgSelect .ng-select-container .ng-value-container .ng-value .ng-value-icon.left{
-    font-weight: 800;
-    font-size: 17px;
-    line-height: 17px;
-    height: 21px;
-    color: #8f8f8f;
-    margin: 0px;
-    float: right;
-    border-radius: 20px;
-    background-color: #d8d8d8;
+   font-weight: 800;
+   font-size: 17px;
+   line-height: 17px;
+   height: 21px;
+   color: #8f8f8f;
+   margin: 0px;
+   float: right;
+   border-radius: 20px;
+   background-color: #d8d8d8;
 }
 .ng-select.ng-select-multiple.NgSelect .ng-select-container .ng-value-container .ng-value .ng-value-label{
-    display: inline-block;
-    padding: 0px;
-    font-size: 14px;
-    font-weight: 500;
-    color: #4e6a7a;
-    letter-spacing: 0.4px;
-    padding-right: 5px;
+   display: inline-block;
+   padding: 0px;
+   font-size: 14px;
+   font-weight: 500;
+   color: #4e6a7a;
+   letter-spacing: 0.4px;
+   padding-right: 5px;
 }

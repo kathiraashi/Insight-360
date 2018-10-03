@@ -1,146 +1,147 @@
+<!-- Page -->
 <div class="page" style="margin-top:100px;">
-      <div class="container-fluid">
-          <div class="Page_Identity">
-              <div class="Page_Track">
-                  <ul>
-                    <li class="HeaderName">Home</li>
-                    <li class="arrow">>></li>
-                    <li class= "LinkName">Purchase</li>
-                    <li class="arrow">>></li>
-                    <li >Vendor Bills</li>
-                  </ul>
-               </div>
-           </div>
-        <form>
-          <div class="row">
-            <div class="Company_Details">
-              <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Purchase 
-                <span style="color:#516570;font-size:20px;font-weight: 600;">Order</span>
-              </h5>
-              <div class="col-sm-12">
-                  <div class="row">
-                      <div class="col-sm-6 text-right"> <b> Bill No: </b></div>
-                      <div class="col-sm-6 text-left">  123 </div>
-                   </div>
-                   <div class="row">
-                      <div class="col-sm-6 text-right"> <b> Bill Date : </b></div>
-                      <div class="col-sm-6 text-left">  24/05/2017 </div>
-                   </div>
-                  <div class="row">
-                      <div class="col-sm-6 text-right"> <b> Account Name : </b></div>
-                      <div class="col-sm-6 text-left">  aashi </div>
-                   </div>
-                  <div class="row">
-                      <div class="col-sm-6 text-right"> <b> Purchase Order: </b></div>
-                      <div class="col-sm-6 text-left"> order1 
-                          </div>
-                   </div>
-                  <div class="row">
-                      <div class="col-sm-6 text-right"> <b> Contact: </b></div>
-                      <div class="col-sm-6 text-left"> +5757475478
-                          </div>
-                   </div>
-                   <div class="row">
-                      <div class="col-sm-6 text-right"> <b> Validity Till: </b></div>
-                      <div class="col-sm-6 text-left"> 24/05/17
-                          </div>
-                   </div>
-              </div>
-            </div>
-            <div class="Table_Section">
-              <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Product
-                <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span>
-                <span><button class="Add_Product_Button">Add Product</button></span>
-              </h5>
-              <br>
-              <table class="table_section">
-                <thead class="table_head">
-                  <tr>
-                    <th class="S_No">S.No</th>
-                    <th>Product</th>
-                    <th>Description</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Tax</th>
-                    <th>Total</th>
-                    <th class="Action">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td >1</td>
-                    <td class="Form_Select">
-                      <select>
-                      <option checked>Select an option</option>
-                      <option> option1</option>
-                      <option> option2</option>
-                      <option> option3</option>
-                      <option> option4</option>
-                   </select>
-                  </td>
-                   <td class="Form_TextArea">
-                     <textarea class="" rows="1"></textarea>
-                    </td>
-                    <td class="Form_Input">
-                         <input type="text">
-                       </td>
-                       <td class="Form_Input">
-                            <input type="text">
-                          </td>
-                          <td class="Form_Select">
-                                <select>
-                                      <option checked>Select</option>
-                                      <option> Tax</option>
-                                      <option> Tax</option>
-                                      <option> Tax</option>
-                                      <option> Tax</option>
-                                   </select>
-                             </td>
-                             <td class="Form_Input">
-                                  <input type="text">
-                                </td>
-                                <td>
-                                     <span class="Action_Section Bg_Danger">
-                                           <i class="material-icons">delete</i>
-                                        </span> 
-                                   </td>
-                  </tr>
-                </tbody>
-              </table>
-              <br>
-              <div class="row">
-                 <div class="col-sm-4">
-                    </div>
-                    <div class="col-sm-4">
-                       </div>
-                       <div class="col-sm-4 Form_Input">
-                           <label>Sub Total:</label>
-                          <input type="text">
-                          </div>
-                          <div class="col-sm-4">
-                             </div>
-                             <div class="col-sm-4">
-                                </div>
-                                <div class="col-sm-4 Form_Input">
-                                    <label>Tax:</label>
-                                   <input type="text">
-                                   </div>
-                                   <div class="col-sm-4">
-                                      </div>
-                                      <div class="col-sm-4">
-                                         </div>
-                                         <div class="col-sm-4 Form_Input">
-                                            <label>Total:</label>
-                                            <input type="text">
-                                            </div>
-                 </div>
-            </div>
-          </div>
-          <div class="row" style="margin-top:20px;">
-          </div>
-        </form>
+   <div class="container-fluid">
+      <!-- Page Identity -->
+      <div class="Page_Identity">
+         <div class="Page_Track">
+            <ul>
+               <li class="HeaderName">Home</li>
+               <li class="arrow">>></li>
+               <li class= "LinkName"><a [routerLink]="['/Vendor_Bills_List']">Vendor Bills List</a></li>
+               <li class="arrow">>></li>
+               <li >Vendor Bills View</li>
+            </ul>
+         </div>
       </div>
-    </div>
+      <form>
+         <div class="Company_Details">
+            <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Bill 
+               <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span>
+               <button mat-raised-button color="primary" class="pull-right" [routerLink]="['/Vendor_Bills_Create']"> Edit </button><br>
+            </h5>
+            <div class="row">
+               <div class="col-sm-4">
+                  <div class="view_item">
+                     <div class="Static">  Vendor Name </div>
+                     <div class="dots"> : </div>
+                     <div class="Data">  xxx </div>
+                  </div>
+                  <div class="view_item">
+                     <div class="Static">  Purchase Order</div>
+                     <div class="dots"> : </div>
+                     <div class="Data"> order1</div>
+                  </div>
+               </div>
+               <div class="col-sm-4">
+                  <div class="view_item">
+                     <div class="Static">  Contact</div>
+                     <div class="dots"> : </div>
+                     <div class="Data"> +5757475478</div>
+                  </div>
+                  <div class="view_item">
+                     <div class="Static">  Bill Date </div>
+                     <div class="dots"> : </div>
+                     <div class="Data">  24/05/2017 </div>
+                  </div>
+               </div>
+               <div class="col-sm-4">
+                  <div class="view_item">
+                     <div class="Static"> Seller Ref No </div>
+                     <div class="dots"> : </div>
+                     <div class="Data"> 123</div>
+                  </div>
+                  <div class="view_item">
+                     <div class="Static"> Validity Till</div>
+                     <div class="dots"> : </div>
+                     <div class="Data"> 24/05/17</div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <br>
+         <!-- Tabs -->
+         <div class="row">
+            <div class="col-sm-12">
+               <div class="Company_Details">
+                  <div class="Tabs">
+                     <div class="Tab" [ngClass]="{'active': Active_Tab === 'Product_Details'}" (click)="Active_Tab_Change('Product_Details')">
+                        <span >Product Details</span>
+                     </div>
+                     <div class="Tab" [ngClass]="{'active': Active_Tab === 'quote_Terms'}" (click)="Active_Tab_Change('quote_Terms')">
+                        <span >Terms & Conditions</span>
+                     </div>
+                  </div>
+                  <!-- <span><button class="Add_Product_Button">Add Product</button></span><br> -->
+                  <br>
+                  <!-- Product details -->
+                  <div class="Product_Details" *ngIf="Active_Tab === 'Product_Details'">
+                     <table class="table_section">
+                        <thead class="table_head">
+                           <tr>
+                              <th>S.No</th>  
+                              <th>Product</th>  
+                              <th>Description</th>  
+                              <th>Quantity</th> 
+                              <th>Price</th>  
+                              <th>Tax</th> 
+                              <th>Total</th> 
+                              <th>Action</th> 
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td  colspan="8"><span> No Records found</span></td>
+                           </tr>
+                        </tbody>
+                     </table><br>
+                     <!-- Result Section -->
+                     <div class="row" style="margin-top: 20px;">
+                        <div class="col-sm-8">
+                        </div>
+                        <div class="col-sm-4">
+                           <div class="ResultSection">
+                              <span class="Title"> Sub Total </span>
+                              <span class="Split"> : </span>
+                              <span class="Value"> Rs.0000 </span>
+                           </div>
+                           <div class="ResultSection">
+                              <span class="Title"> Total Tax</span>
+                              <span class="Split"> : </span>
+                              <span class="Value"> Rs.0000 </span>
+                           </div>
+                           <div class="ResultSection">
+                              <span class="Title"> Total </span>
+                              <span class="Split"> : </span>
+                              <span class="Value"> Rs.0000 </span>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- Quote Terms -->
+                  <div class="Done_Section" *ngIf="Active_Tab === 'quote_Terms'">
+                     <div class="row">
+                        <div class="col-sm-4">
+                           <div class="view_item">
+                              <div class="Static"> Quote Terms </div>
+                              <div class="dots"> : </div>
+                              <div class="Data"> Term-1 </div>
+                           </div>
+                        </div>
+                        <div class="col-sm-4">
+                           <div class="view_item">
+                              <div class="Static"> Notes </div>
+                              <div class="dots"> : </div>
+                              <div class="Data"> Lorem ipsum dolor sit, amet consectetur adipisicing elit. </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </form>
+   </div>
+</div>
   
   
   

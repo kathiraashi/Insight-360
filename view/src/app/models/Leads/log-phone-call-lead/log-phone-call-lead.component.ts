@@ -7,7 +7,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
   styleUrls: ['./log-phone-call-lead.component.css']
 })
 export class LogPhoneCallLeadComponent implements OnInit {
-
+Type: string;
   constructor(public bsModalRef: BsModalRef) { }
 
   ngOnInit() {

@@ -13,16 +13,16 @@ import { DeleteConfirmationComponent } from '../../../../Components/Common-Compo
 })
 export class VendorBillsListComponent implements OnInit {
 
-  bsModalRef: BsModalRef;
-  constructor( private modalService: BsModalService) { }
+   bsModalRef: BsModalRef;
+   constructor( private modalService: BsModalService) { }
 
 
-  ngOnInit() {
-  }
-  DeleteVendorBills() {
-    const initialState = {
+   ngOnInit() {
+   }
+   DeleteVendorBills() {
+      const initialState = {
       Text: 'Vendor Bills'
-    };
-    this.bsModalRef = this.modalService.show(DeleteConfirmationComponent, Object.assign({initialState}, { class: 'modal-sm' }));
-  }
+      };
+      this.bsModalRef = this.modalService.show(DeleteConfirmationComponent, Object.assign({initialState}, { class: 'modal-sm' }));
+   }
 }

@@ -1,62 +1,50 @@
+<!-- Page Section -->
 <div class="page_section">
    <div class="container-fluid">
       <!-- Page Identity -->
       <div class="Page_Identity">
          <div class="Page_Track">
             <ul>
-            <li class="HeaderName">Home</li>
-            <li class="arrow">>></li>
-            <li class= "LinkName">Accounts</li>
-            <li class="arrow">>></li>
-            <li >Configuration</li>
+               <li class="HeaderName">Home</li>
+               <li class="arrow">>></li>
+               <li class= "LinkName">Accounts</li>
+               <li class="arrow">>></li>
+               <li >Configuration</li>
             </ul>
          </div>
       </div>
+      <!-- Container Content -->
       <div class="container-content">
-         <div class="col-sm-12">
-            <div class="row">
-               <div class="col-sm-4 Form_Select">
-                  <select>
-                     <option checked>Default Sale Tax</option>
-                     <option> Taxes List With Sale</option>
-                  </select>
-               </div>
+         <h5 class="Header">Fiscal Year:</h5>
+         <div class="row">
+            <div class="col-sm-4 Left_Date">
+               <p>Fiscal Year Last Day:</p>
             </div>
-            <div class="row">
-               <div class="col-sm-4 Form_Select">
-                  <select>
-                     <option checked>Default Purchase Tax</option>
-                     <option> Taxes List With Purchase</option>
-                  </select>
-               </div>
+            <div class="col-sm-4 Right_data Form_Select">
+               <span>
+                  <ng-select class="NgSelect" 
+                     [items]="_Date" 
+                     [searchable]="true" 
+                     placeholder="Date">
+                  </ng-select>   <br>
+                  <ng-select class="NgSelect" 
+                     [items]="_Month" 
+                     [searchable]="true" 
+                     placeholder="Date">
+                  </ng-select>   
+               </span>
             </div>
-            <h5 class="Header">Fiscal Year:</h5>
-            <div class="row">
-               <div class="col-sm-4 Left_Date">
-                  <p>Fiscal Year Last Day:</p>
-               </div>
-               <div class="col-sm-4 Right_data Form_Select">
-                  <form>
-                     <span><select>
-                        <option checked>Select Month</option>
-                        <option> Jan</option>
-                        <option> Feb</option>
-                        <option> Mar</option>
-                        <option> Apr</option>
-                        <option> May</option>
-                     </select></span>
-                     <span><select>
-                           <option checked>Select Day</option>
-                           <option> 1</option>
-                           <option> 2</option>
-                           <option> 3</option>
-                           <option> 4</option>
-                           <option> 5</option>
-                     </select></span>
-                  </form>
-               </div>
-            </div><br>
-         </div>
+         </div><br>
+         <div class="row">
+            <div class="col-sm-4 Left_Date">
+               <p>Default Currency:</p>
+            </div>
+            <div class="col-sm-4 Right_data Form_Input">
+               <span>
+                  <input type="text" value="INR" readonly="true">
+               </span>
+            </div>
+         </div><br>
       </div>
    </div>
 </div>
