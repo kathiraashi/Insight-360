@@ -10,7 +10,7 @@ module.exports = function(app){
       app.post('/API/Hrms_Settings/Leave_Type_Update', Controller.Leave_Type_Update);
       app.post('/API/Hrms_Settings/Leave_Type_Delete', Controller.Leave_Type_Delete);
 
-   // Leave Type
+   // Expenses Type
       app.post('/API/Hrms_Settings/ExpensesType_AsyncValidate', Controller.ExpensesType_AsyncValidate);
       app.post('/API/Hrms_Settings/Expenses_Type_Create', Controller.Expenses_Type_Create);
       app.post('/API/Hrms_Settings/Expenses_Type_List', Controller.Expenses_Type_List);

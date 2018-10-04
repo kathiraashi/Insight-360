@@ -1,47 +1,79 @@
 <!-- If Create Or Edit The Leave Type -->
-   <div class="Modal_Content" *ngIf="Type && Type === 'Create'">
+   <div class="Modal_Content" *ngIf="Type && ( Type === 'Create' || Type === 'Edit')">
       <div class="Modal_Header">
-            <p> Leave Type</p>
+            <p>{{Type}} Leave Type</p>
             <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
       </div>
-      <form >
+      <form [formGroup]="Form" (ngSubmit)="onSubmit()">
          <div class="Model_Body">
             <div class="row">
                <div class="col-sm-6 Form_Input">
                   <label>Name:</label>
-                  <input type="text">
+                  <input type="text" formControlName="LeaveType_Name">
+                  <p class="error" *ngIf="Form.controls['LeaveType_Name'].errors && !Form.controls['LeaveType_Name'].pristine">
+                     <span *ngIf="Form.controls['LeaveType_Name'].errors.required"> Name is required </span>
+                     <span *ngIf="Form.controls['LeaveType_Name'].errors.LeaveType_NotAvailable"> Name Already Exist </span>   
+                  </p>
                </div>
                <div class="col-sm-6 Form_Select">
                   <label>Leave Type:</label>
                   <ng-select class="NgSelect" 
                      [items]="_LeaveType" 
                      [searchable]="true" 
+                     formControlName="Leave_Type"
                      placeholder="Leave Type">
                   </ng-select>
+                  <p class="error" *ngIf="Form.controls['Leave_Type'].errors && Form.controls['Leave_Type'].touched">
+                     <span *ngIf="Form.controls['Leave_Type'].errors.required"> Leave type is required </span>
+                  </p>
                </div>
             </div>
          </div>
          <div class="Model_Footer">
-            <button type="submit" mat-raised-button color="primary">Submit</button>
+               <button type="submit"  [disabled]="Form.status !== 'VALID' || Uploading"  mat-raised-button color="primary">
+                  <span *ngIf="Type === 'Create' && !Uploading">Submit</span>
+                  <span *ngIf="Type === 'Edit' && !Uploading">Update</span>
+                  <span *ngIf="Uploading" class="UploadingBtn"> <i class="fa fa-refresh fa-spin"></i> Loading... </span>
+               </button>
          </div>
       </form>
    </div>
 <!-- If View The Leave Type-->
    <div class="Modal_Content" *ngIf=" Type && Type === 'View'">
       <div class="Modal_Header">
-         <p>Leave Type</p>
+         <p>View Leave Type</p>
          <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
       </div>
       <div class="Model_Body">
          <div class="view_item">
-            <div class="Static">Name</div>
+            <div class="Static"> Name </div>
             <div class="dots"> : </div>
-            <div class="Data"> xxxx</div>
+            <div class="Data"> {{Data.LeaveType_Name}}</div>
          </div>
          <div class="view_item">
-            <div class="Static">Leave Type </div>
+            <div class="Static"> Leave Type </div>
             <div class="dots"> : </div>
-            <div class="Data">Paid</div>
+            <div class="Data"> {{Data.Leave_Type}}</div>
+         </div>
+         <div class="view_item">
+            <div class="Static">Created By </div>
+            <div class="dots"> : </div>
+            <div class="Data"> {{Data.Created_By.Name}}</div>
+         </div>
+         <div class="view_item">
+            <div class="Static">Last Modified By </div>
+            <div class="dots"> : </div>
+            <div class="Data"> {{Data.Last_Modified_By.Name}}</div>
+         </div>
+         <div class="view_item">
+            <div class="Static"> Created Date </div>
+            <div class="dots"> : </div>
+            <div class="Data"> {{Data.createdAt | date:'medium'}}</div>
+         </div>
+         <div class="view_item">
+            <div class="Static">Last Modified Date  </div>
+            <div class="dots"> : </div>
+            <div class="Data"> {{Data.updatedAt | date:'medium'}}</div>
          </div>
       </div>
    </div>

@@ -19,6 +19,14 @@ module.exports = function(app) {
       app.post('/API/CRM_Settings/Ownership_Type_Update', Controller.Ownership_Type_Update);
       app.post('/API/CRM_Settings/Ownership_Type_Delete', Controller.Ownership_Type_Delete);
 
+   // Account Type --------------------------------------------------
+      app.post('/API/CRM_Settings/AccountType_AsyncValidate', Controller.AccountType_AsyncValidate);
+      app.post('/API/CRM_Settings/Account_Type_Create', Controller.Account_Type_Create); 
+      app.post('/API/CRM_Settings/Account_Type_List', Controller.Account_Type_List); 
+      app.post('/API/CRM_Settings/Account_Type_SimpleList', Controller.Account_Type_SimpleList); 
+      app.post('/API/CRM_Settings/Account_Type_Update', Controller.Account_Type_Update); 
+      app.post('/API/CRM_Settings/Account_Type_Delete', Controller.Account_Type_Delete);  
+
    // Activity Type --------------------------------------------------
       app.post('/API/CRM_Settings/ActivityType_AsyncValidate', Controller.ActivityType_AsyncValidate);
       app.post('/API/CRM_Settings/Activity_Type_Create', Controller.Activity_Type_Create); 

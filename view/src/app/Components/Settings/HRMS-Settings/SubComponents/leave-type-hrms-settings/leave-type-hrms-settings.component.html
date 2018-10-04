@@ -35,90 +35,24 @@
             </tr>
          </thead>
          <tbody>
-            <tr>
+            <tr *ngFor="let Item of _List; let i=index">
                <td>
-                  <span class="S_no"> 1 </span>
+                  <span class="S_no"> {{ i + 1}} </span>
                </td>
                <td>
-                  <span class="Style_1">xxxx</span>
+                  <span class="Style_1">{{Item.LeaveType_Name}}</span>
                </td>
                <td>
-                  <span class="Style_1">paid</span>
+                  <span class="Style_1">{{Item.Leave_Type}} </span>
                </td>
                <td>
-                  <button  (click)="ViewLeaveType()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                  <button *ngIf="_View" (click)="ViewLeaveType(i)" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
                      <i class="material-icons">zoom_in</i>
                   </button>
-                  <button   (click)="CreateLeaveType()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                  <button  *ngIf="_Edit" (click)="EditLeaveType(i)" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
                      <i class="material-icons">edit</i>
                   </button>
-                  <button  (click)=" DeleteLeaveType()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
-                     <i class="material-icons">delete_forever</i>
-                  </button>
-               </td>
-            </tr>
-            <tr>
-               <td>
-                  <span class="S_no"> 2 </span>
-               </td>
-               <td>
-                  <span class="Style_1">xxxx</span>
-               </td>
-               <td>
-                  <span class="Style_1">paid</span>
-               </td>
-               <td>
-                  <button  (click)="ViewLeaveType()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
-                     <i class="material-icons">zoom_in</i>
-                  </button>
-                  <button   (click)="CreateLeaveType()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
-                     <i class="material-icons">edit</i>
-                  </button>
-                  <button  (click)=" DeleteLeaveType()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
-                     <i class="material-icons">delete_forever</i>
-                  </button>
-               </td>
-            </tr>
-            <tr>
-               <td>
-                  <span class="S_no"> 3 </span>
-               </td>
-               <td>
-                  <span class="Style_1">xxxx</span>
-               </td>
-               <td>
-                  <span class="Style_1">paid</span>
-               </td>
-               <td>
-                  <button  (click)="ViewLeaveType()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
-                     <i class="material-icons">zoom_in</i>
-                  </button>
-                  <button   (click)="CreateLeaveType()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
-                     <i class="material-icons">edit</i>
-                  </button>
-                  <button  (click)=" DeleteLeaveType()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
-                     <i class="material-icons">delete_forever</i>
-                  </button>
-               </td>
-            </tr>
-            <tr>
-               <td>
-                  <span class="S_no"> 4 </span>
-               </td>
-               <td>
-                  <span class="Style_1">xxxx</span>
-               </td>
-               <td>
-                  <span class="Style_1">paid</span>
-               </td>
-               <td>
-                  <button  (click)="ViewLeaveType()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
-                     <i class="material-icons">zoom_in</i>
-                  </button>
-                  <button   (click)="CreateLeaveType()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
-                     <i class="material-icons">edit</i>
-                  </button>
-                  <button  (click)=" DeleteLeaveType()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                  <button  *ngIf="_Delete" (click)=" DeleteLeaveType(i)" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
                      <i class="material-icons">delete_forever</i>
                   </button>
                </td>

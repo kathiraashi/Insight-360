@@ -18,7 +18,7 @@ export class ModelActivitytypeCrmsettingsComponent implements OnInit {
 
    onClose: Subject<any>;
 
-   Type: String;
+   Type: string;
    Data;
    Uploading: Boolean = false;
    Company_Id = '5b3c66d01dd3ff14589602fe';
@@ -75,7 +75,7 @@ export class ModelActivitytypeCrmsettingsComponent implements OnInit {
            if (response['status'] === 200 && ReceivingData['Status'] && ReceivingData['Available']) {
               return null;
            } else {
-              return { ActivityStatus_NotAvailable: true };
+              return { ActivityType_NotAvailable: true };
            }
         }));
      }

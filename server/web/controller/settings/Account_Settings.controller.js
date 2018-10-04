@@ -213,7 +213,6 @@ exports.IncomeType_AsyncValidate = function(req, res) {
       exports.Payment_Terms_Create = function(req, res) {
          var CryptoBytes = CryptoJS.AES.decrypt( req.body.Info , 'SecretKeyIn@123' );
          var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
-         
          if(!ReceivingData.Payment_Terms || ReceivingData.Payment_Terms === '' ) {
             res.status(400).send({Status: false, Message: "Payment Terms can not be empty" });
          } else if (!ReceivingData.Company_Id || ReceivingData.Company_Id === ''  ) {
@@ -234,9 +233,20 @@ exports.IncomeType_AsyncValidate = function(req, res) {
                   ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Account Payment Terms Creation Query Error', 'Account_Settings.controller.js');
                   res.status(417).send({Status: false, Error: err, Message: "Some error occurred while creating the Payment Terms!."});
                } else {
-                  var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result), 'SecretKeyOut@123');
-                  ReturnData = ReturnData.toString();
-                  res.status(200).send({Status: true, Response: ReturnData });
+                  AccountSettingsModel.PaymentTermsSchema
+                     .findOne({'_id': result._id})
+                     .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
+                     .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
+                     .exec(function(err_1, result_1) { // Payment Term FindOne Query
+                     if(err_1) {
+                        ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Account Settings Payment Terms Find Query Error', 'Account_Settings.controller.js', err_1);
+                        res.status(417).send({status: false, Message: "Some error occurred while Find The Payment Terms!."});
+                     } else {
+                        var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result_1), 'SecretKeyOut@123');
+                           ReturnData = ReturnData.toString();
+                        res.status(200).send({Status: true, Response: ReturnData });
+                     }
+                  });
                }
             });
          }
@@ -246,13 +256,15 @@ exports.IncomeType_AsyncValidate = function(req, res) {
       exports.Payment_Terms_List = function(req, res) {
          var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
          var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
-
          if(!ReceivingData.Company_Id || ReceivingData.Company_Id === '' ) {
             res.status(400).send({Status: false, Message: "Company Details can not be empty" });
          } else if (!ReceivingData.User_Id || ReceivingData.User_Id === ''  ) {
             res.status(400).send({Status: false, Message: "User Details can not be empty" });
          }else {
-            AccountSettingsModel.PaymentTermsSchema.find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, {}, {sort: { updatedAt: -1 }}, function(err, result) { // Payment Terms FindOne Query
+            AccountSettingsModel.PaymentTermsSchema.find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, {}, {sort: { updatedAt: -1 }})
+            .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
+            .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
+            .exec(function(err, result) { // Payment Terms FindOne Query
                if(err) {
                   ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Account Payment Terms Find Query Error', 'Account_Settings.controller.js', err);
                   res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Payment Terms!."});

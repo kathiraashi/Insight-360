@@ -7,9 +7,9 @@
          <button mat-button color="primary" [matMenuTriggerFor] = "Action"> + Create </button>
       </span>
       <!-- Search Section -->
-      <span class="Search_Section" [ngClass]="{'Show': Button}" (click)="ButtonClick()">
+      <span class="Search_Section" [ngClass]="{'Show': Button}" >
          <!-- <input type="text" placeholder="search"> -->
-         <button mat-mini-fab>
+         <button mat-mini-fab (click)="ButtonClick()">
             <i class="material-icons">search</i>
          </button>
          <input type="text" placeholder="Search..." />

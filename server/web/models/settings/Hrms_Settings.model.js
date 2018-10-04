@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 
 // Leave Type schema
    var LeaveTypeSchema = mongoose.Schema({
+      LeaveType_Name: { type : String , require : true},
       Leave_Type: { type : String , require : true},
       Company_Id: { type : Schema.Types.ObjectId,ref: 'Company_Management' , required: true },
       Created_By: { type : Schema.Types.ObjectId, ref: 'User_Management' , required : true },

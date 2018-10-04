@@ -9,14 +9,14 @@ var mongoose = require('mongoose');
       var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
       var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
 
-      if(!ReceivingData.Leave_Type || ReceivingData.Leave_Type === '' ) {
+      if(!ReceivingData.LeaveType_Name || ReceivingData.LeaveType_Name === '' ) {
          res.status(400).send({Status: false, Message: "Leave Type can not be empty" });
       } else if (!ReceivingData.Company_Id || ReceivingData.Company_Id === ''  ) {
          res.status(400).send({Status: false, Message: "Company Details can not be empty" });
       } else if (!ReceivingData.User_Id || ReceivingData.User_Id === ''  ) {
          res.status(400).send({Status: false, Message: "User Details can not be empty" });
       }else {
-         HrmsSettingsModel.LeaveTypeSchema.findOne({'Company_Id': ReceivingData.Company_Id, 'Leave_Type': { $regex : new RegExp("^" + ReceivingData.Leave_Type + "$", "i") }, 'If_Deleted': false }, {}, {}, function(err, result) {
+         HrmsSettingsModel.LeaveTypeSchema.findOne({'Company_Id': ReceivingData.Company_Id, 'LeaveType_Name': { $regex : new RegExp("^" + ReceivingData.LeaveType_Name + "$", "i") }, 'If_Deleted': false }, {}, {}, function(err, result) {
             if(err) {
                ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Leave Type Find Query Error', 'Hrms_Settings.controller.js', err);
                res.status(417).send({status: false, Message: "Some error occurred while Find Leave Type!."});
@@ -34,8 +34,9 @@ var mongoose = require('mongoose');
       exports.Leave_Type_Create = function(req, res) {
          var CryptoBytes = CryptoJS.AES.decrypt( req.body.Info , 'SecretKeyIn@123' );
          var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
-         
-         if(!ReceivingData.Leave_Type || ReceivingData.Leave_Type === '' ) {
+         if(!ReceivingData.LeaveType_Name || ReceivingData.LeaveType_Name === ''){
+            res.status(400).send({Status: false, Message: "Name can not be empty" });
+         } else if(!ReceivingData.Leave_Type || ReceivingData.Leave_Type === '' ) {
             res.status(400).send({Status: false, Message: "Leave Type can not be empty" });
          } else if (!ReceivingData.Company_Id || ReceivingData.Company_Id === ''  ) {
             res.status(400).send({Status: false, Message: "Company Details can not be empty" });
@@ -43,6 +44,7 @@ var mongoose = require('mongoose');
             res.status(400).send({Status: false, Message: "Creator Details can not be empty" });
          }else {
             var Create_LeaveType = new HrmsSettingsModel.LeaveTypeSchema({
+               LeaveType_Name: ReceivingData.LeaveType_Name,
                Leave_Type: ReceivingData.Leave_Type, 
                Company_Id: mongoose.Types.ObjectId(ReceivingData.Company_Id),
                Created_By: mongoose.Types.ObjectId(ReceivingData.Created_By),
@@ -111,7 +113,7 @@ var mongoose = require('mongoose');
          } else if (!ReceivingData.User_Id || ReceivingData.User_Id === ''  ) {
             res.status(400).send({Status: false, Message: "User Details can not be empty" });
          }else {
-            HrmsSettingsModel.LeaveTypeSchema.find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, { Leave_Type : 1 }, {sort: { updatedAt: -1 }}, function(err, result) { // Leave Type FindOne Query
+            HrmsSettingsModel.LeaveTypeSchema.find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, { Name: 1, Leave_Type : 1 }, {sort: { updatedAt: -1 }}, function(err, result) { // Leave Type FindOne Query
                if(err) {
                   ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Hrms Leave Type Find Query Error', 'Hrms_Settings.controller.js', err);
                   res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Leave Type!."});
@@ -131,7 +133,9 @@ var mongoose = require('mongoose');
 
          if(!ReceivingData.Leave_Type_Id || ReceivingData.Leave_Type_Id === '' ) {
             res.status(400).send({Status: false, Message: "Leave Type Id can not be empty" });
-         }else if(!ReceivingData.Leave_Type || ReceivingData.Leave_Type === '' ) {
+         } else if(!ReceivingData.LeaveType_Name || ReceivingData.LeaveType_Name === '' ) {
+            res.status(400).send({Status: false, Message: "Name can not be empty" });
+         } else if(!ReceivingData.Leave_Type || ReceivingData.Leave_Type === '' ) {
             res.status(400).send({Status: false, Message: "Leave Type can not be empty" });
          } else if (!ReceivingData.Modified_By || ReceivingData.Modified_By === ''  ) {
             res.status(400).send({Status: false, Message: "Modified User Details can not be empty" });

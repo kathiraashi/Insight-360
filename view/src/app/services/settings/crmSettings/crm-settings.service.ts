@@ -148,6 +148,61 @@ export class CrmSettingsService {
          }
       }
 
+   // Account Type
+      public AccountType_AsyncValidate(Info: any): Observable<any[]> {
+         if (this.Service.If_LoggedIn()) {
+            this.headers.set('Authorization', atob(localStorage.getItem('SessionToken')));
+            localStorage.setItem('SessionKey', btoa(Date()));
+            return this.http.post(API_URL + 'AccountType_AsyncValidate', Info, {headers: this.headers }).pipe( map(response => response),  catchError(error => of(error)));
+         } else {
+            return this.ValidateEveryRequest();
+         }
+      }
+      public Account_Type_Create(Info: any): Observable<any[]> {
+         if (this.Service.If_LoggedIn()) {
+            this.headers.set('Authorization', atob(localStorage.getItem('SessionToken')));
+            localStorage.setItem('SessionKey', btoa(Date()));
+            return this.http.post(API_URL + 'Account_Type_Create', Info, {headers: this.headers }).pipe( map(response => response),  catchError(error => of(error)));
+         } else {
+            return this.ValidateEveryRequest();
+         }
+      }
+      public Account_Type_List(Info: any): Observable<any[]> {
+         if (this.Service.If_LoggedIn()) {
+            this.headers.set('Authorization', atob(localStorage.getItem('SessionToken')));
+            localStorage.setItem('SessionKey', btoa(Date()));
+            return this.http.post(API_URL + 'Account_Type_List', Info, {headers: this.headers }).pipe( map(response => response), catchError(error => of(error)));
+         } else {
+            return this.ValidateEveryRequest();
+         }
+      }
+      public Account_Type_SimpleList(Info: any): Observable<any[]> {
+         if (this.Service.If_LoggedIn()) {
+            this.headers.set('Authorization', atob(localStorage.getItem('SessionToken')));
+            localStorage.setItem('SessionKey', btoa(Date()));
+            return this.http.post(API_URL + 'Account_Type_SimpleList', Info, {headers: this.headers }).pipe( map(response => response),  catchError(error => of(error)));
+         } else {
+            return this.ValidateEveryRequest();
+         }
+      }
+      public Account_Type_Update(Info: any): Observable<any[]> {
+         if (this.Service.If_LoggedIn()) {
+            this.headers.set('Authorization', atob(localStorage.getItem('SessionToken')));
+            localStorage.setItem('SessionKey', btoa(Date()));
+            return this.http.post(API_URL + 'Account_Type_Update', Info, {headers: this.headers }).pipe( map(response => response), catchError(error => of(error)));
+         } else {
+            return this.ValidateEveryRequest();
+         }
+      }
+      public Account_Type_Delete(Info: any): Observable<any[]> {
+         if (this.Service.If_LoggedIn()) {
+            this.headers.set('Authorization', atob(localStorage.getItem('SessionToken')));
+            localStorage.setItem('SessionKey', btoa(Date()));
+            return this.http.post(API_URL + 'Account_Type_Delete', Info, {headers: this.headers }).pipe( map(response => response),  catchError(error => of(error)));
+         } else {
+            return this.ValidateEveryRequest();
+         }
+      }
 
    // Activity Type
       public ActivityType_AsyncValidate(Info: any): Observable<any[]> {

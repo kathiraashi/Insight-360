@@ -27,6 +27,18 @@ var Schema = mongoose.Schema;
       { timestamps: true }
    );
    var VarOwnershipType = mongoose.model('OwnershipType', OwnershipTypeSchema, 'CRM_Ownership_Type');
+// Account Type
+    var AccountTypeSchema = mongoose.Schema({
+        Account_Type: { type: String, required: true},
+        Company_Id: { type: Schema.Types.ObjectId, ref: 'Company_Management', required: true},
+        Created_By: { type : Schema.Types.ObjectId, ref: 'User_Management' , required : true },
+        Last_Modified_By: { type : Schema.Types.ObjectId, ref: 'User_Management' , required : true },
+        Active_Status: { type : Boolean , required : true },
+        If_Deleted: { type : Boolean , required : true },
+        },
+        { timestamps: true }
+    );
+    var VarAccountType = mongoose.model('AccountType', AccountTypeSchema, 'CRM_Account_Type')
 
 // Activity Type
    var ActivityTypeSchema = mongoose.Schema({
@@ -98,6 +110,7 @@ var Schema = mongoose.Schema;
 module.exports = {
    IndustryTypeSchema : VarIndustryType,
    OwnershipTypeSchema : VarOwnershipType,
+   AccountTypeSchema: VarAccountType,
    ActivityTypeSchema : VarActivityType,
    ActivityStatusSchema : VarActivityStatus,
    ActivityPrioritySchema : VarActivityPriority,

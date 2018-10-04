@@ -18,15 +18,15 @@ export class ModelExpensestypeHrmssettingsComponent implements OnInit {
 
    onClose: Subject<any>;
 
-   Type: String;
+   Type: string;
    Data;
    Uploading: Boolean = false;
    Company_Id = '5b3c66d01dd3ff14589602fe';
    User_Id = '5b530ef333fc40064c0db31e';
    Form: FormGroup;
-   constructor  (  public bsModalRef: BsModalRef,
-                     public Service: HrmsSettingsService,
-                     public Toastr: ToastrService
+   constructor  ( public bsModalRef: BsModalRef,
+                  public Service: HrmsSettingsService,
+                  public Toastr: ToastrService
                   ) {}
 
    ngOnInit() {

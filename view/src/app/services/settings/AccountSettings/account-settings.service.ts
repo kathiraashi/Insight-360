@@ -99,24 +99,54 @@ export class AccountSettingsService {
 
    // Payment Terms
       public Payment_Terms_Create(Info: any): Observable<any[]> {
-         return this.http.post(API_URL + 'Payment_Terms_Create', Info)
-         .pipe( map(response => response),  catchError(error => of(error)));
+         if (this.Service.If_LoggedIn()) {
+            this.headers.set('Authorization', atob(localStorage.getItem('SessionToken')));
+            localStorage.setItem('SessionKey', btoa(Date()));
+            return this.http.post(API_URL + 'Payment_Terms_Create', Info, {headers: this.headers })
+            .pipe( map(response => response), catchError(error => of(error)));
+         } else {
+            return this.ValidateEveryRequest();
+         }
       }
       public Payment_Terms_List(Info: any): Observable<any[]> {
-         return this.http.post(API_URL + 'Payment_Terms_List', Info)
-         .pipe( map(response => response), catchError(error => of(error)));
+         if (this.Service.If_LoggedIn()) {
+            this.headers.set('Authorization', atob(localStorage.getItem('SessionToken')));
+            localStorage.setItem('SessionKey', btoa(Date()));
+            return this.http.post(API_URL + 'Payment_Terms_List', Info, {headers: this.headers })
+            .pipe( map(response => response), catchError(error => of(error)));
+         } else {
+            return this.ValidateEveryRequest();
+         }
       }
       public Payment_Terms_SimpleList(Info: any): Observable<any[]> {
-         return this.http.post(API_URL + 'Payment_Terms_SimpleList', Info)
-         .pipe( map(response => response),  catchError(error => of(error)));
+         if (this.Service.If_LoggedIn()) {
+            this.headers.set('Authorization', atob(localStorage.getItem('SessionToken')));
+            localStorage.setItem('SessionKey', btoa(Date()));
+            return this.http.post(API_URL + 'Payment_Terms_SimpleList', Info, {headers: this.headers })
+            .pipe( map(response => response), catchError(error => of(error)));
+         } else {
+            return this.ValidateEveryRequest();
+         }
       }
       public Payment_Terms_Update(Info: any): Observable<any[]> {
-         return this.http.post(API_URL + 'Payment_Terms_Update', Info)
-         .pipe( map(response => response), catchError(error => of(error)));
+         if (this.Service.If_LoggedIn()) {
+            this.headers.set('Authorization', atob(localStorage.getItem('SessionToken')));
+            localStorage.setItem('SessionKey', btoa(Date()));
+            return this.http.post(API_URL + 'Payment_Terms_Update', Info, {headers: this.headers })
+            .pipe( map(response => response), catchError(error => of(error)));
+         } else {
+            return this.ValidateEveryRequest();
+         }
       }
       public Payment_Terms_Delete(Info: any): Observable<any[]> {
-         return this.http.post(API_URL + 'Payment_Terms_Delete', Info)
-         .pipe( map(response => response),  catchError(error => of(error)));
+         if (this.Service.If_LoggedIn()) {
+            this.headers.set('Authorization', atob(localStorage.getItem('SessionToken')));
+            localStorage.setItem('SessionKey', btoa(Date()));
+            return this.http.post(API_URL + 'Payment_Terms_Delete', Info, {headers: this.headers })
+            .pipe( map(response => response), catchError(error => of(error)));
+         } else {
+            return this.ValidateEveryRequest();
+         }
       }
 
 // Bank
