@@ -3,6 +3,7 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
 import { ModelAttendanceReportCreateComponent } from '../../../../models/HR/model-attendance-report-create/model-attendance-report-create.component';
+import { DeleteConfirmationComponent } from '../../../Common-Components/delete-confirmation/delete-confirmation.component';
 @Component({
   selector: 'app-list-attendance-report',
   templateUrl: './list-attendance-report.component.html',
@@ -17,11 +18,16 @@ export class ListAttendanceReportComponent implements OnInit {
   ngOnInit() {
   }
 
-  CreateAttendanceReport() {
-    const initialState = {
-      Type: 'Create'
-    };
-    this.bsModalRef = this.modalService.show(ModelAttendanceReportCreateComponent, Object.assign({initialState}, { class: 'modal-lg' }));
-    }
-
+   CreateAttendanceReport() {
+      const initialState = {
+         Type: 'Create'
+      };
+      this.bsModalRef = this.modalService.show(ModelAttendanceReportCreateComponent, Object.assign({initialState}, { class: 'modal-lg' }));
+   }
+   DeleteAttendanceReport() {
+      const initialState = {
+         Text: 'Attendance Report'
+      };
+      this.bsModalRef = this.modalService.show(DeleteConfirmationComponent, Object.assign({initialState}, { class: 'modal-sm' }));
+   }
 }

@@ -138,7 +138,7 @@
    <a [routerLink]="['/View_Product']"><button mat-menu-item>
       <span>View</span>
    </button></a>
-   <button mat-menu-item>
+   <button mat-menu-item (click)="DeleteProduct()">
       <span>Delete</span>
    </button>
    <button mat-menu-item>
