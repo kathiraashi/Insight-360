@@ -2,6 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var cors = require('cors');
+var path = require('path');
 
 var ErrorManagement = require('./server/handling/ErrorHandling.js');
 var LogManagement = require('./server/handling/LogHandling.js');
@@ -103,6 +104,11 @@ app.use('/API/', function (req, res, next) {
     require('./server/web/routes/settings/Inventory_Settings.routes.js')(app);
 
 
+app.use(express.static(__dirname + '/view/dist/view/'));
+
+app.use(function(req, res) {
+   res.sendFile(path.join(__dirname, '/view/dist/view', 'index.html'));
+});
 
 app.get('*', function(req, res){
     res.send('This is Server Side Page');

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+
 import {NativeDateAdapter} from '@angular/material';
 import {DateAdapter} from '@angular/material/core';
 export class MyDateAdapter extends NativeDateAdapter {
@@ -12,19 +14,21 @@ export class MyDateAdapter extends NativeDateAdapter {
 }
 
 @Component({
-  selector: 'app-create-call-schedule',
-  templateUrl: './create-call-schedule.component.html',
-  styleUrls: ['./create-call-schedule.component.css'],
+  selector: 'app-model-expense',
+  templateUrl: './model-expense.component.html',
+  styleUrls: ['./model-expense.component.css'],
   providers: [{provide: DateAdapter, useClass: MyDateAdapter}]
-
 })
-export class CreateCallScheduleComponent implements OnInit {
+export class ModelExpenseComponent implements OnInit {
 
-   _Company: any[] =  ['Company-1', 'Company-2', ' Company-3', 'Company-4'];
+   _AdvancePaid: any[] =  ['Yes', 'No'];
 
-   constructor() { }
+   Type: string;
+   Type1: string;
+   constructor(public bsModalRef: BsModalRef) { }
 
-   ngOnInit() {
-   }
+
+  ngOnInit() {
+  }
 
 }

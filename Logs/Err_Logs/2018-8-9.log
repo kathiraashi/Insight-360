@@ -1,5 +1,0 @@
-[2018-08-09T10:03:54.893] [ERROR] Error - {"Error_Name":"Mongodb Connection Error","Error_Address":"Server.js","Error_Message":{"name":"MongoNetworkError","message":"failed to connect to server [ds121871.mlab.com:21871] on first connect [MongoNetworkError: getaddrinfo ENOTFOUND ds121871.mlab.com ds121871.mlab.com:21871]"}}
-[2018-08-09T10:03:54.925] [ERROR] Error - {"Error_Name":"","Error_Address":"","Error_Message":{"name":"MongoNetworkError","message":"failed to connect to server [ds121871.mlab.com:21871] on first connect [MongoNetworkError: getaddrinfo ENOTFOUND ds121871.mlab.com ds121871.mlab.com:21871]"}}
-[2018-08-09T11:15:40.790] [ERROR] Error - {"Error_Name":"","Error_Address":"","Error_Message":"Error: listen EADDRINUSE :::3000"}
-[2018-08-09T11:15:56.882] [ERROR] Error - {"Error_Name":"","Error_Address":"","Error_Message":"Error: listen EADDRINUSE :::3000"}
-[2018-08-09T11:19:30.278] [ERROR] Error - {"Error_Name":"","Error_Address":"","Error_Message":"Error: listen EADDRINUSE :::3000"}

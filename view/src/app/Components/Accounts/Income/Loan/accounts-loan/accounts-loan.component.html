@@ -29,7 +29,8 @@
             </div>
             <div class="col-sm-4 Form_Input">
                <label>Date:</label>
-               <input type="text">
+               <input matInput [matDatepicker]="picker" (click)="picker.open()" placeholder="Date">
+               <mat-datepicker #picker></mat-datepicker>
             </div>
             <div class="col-sm-4 Form_Input">
                <label>Interest Rate:</label>
@@ -62,7 +63,7 @@
             </div> -->
             <div class="col-sm-4 Form_Input" *ngIf="Type === 'Weekly'">
                <label>Starts From:</label>
-               <input matInput [matDatepicker]="picker" (click)="picker.open()" placeholder="Choose a date">
+               <input matInput [matDatepicker]="picker" (click)="picker.open()" placeholder="Starts From">
                <mat-datepicker #picker></mat-datepicker>
             </div>
             <div class="col-sm-4 Form_Input" *ngIf="Type === 'Bi-Weekly'">
@@ -79,25 +80,27 @@
             </div>
             <div class="col-sm-4 Form_Input" *ngIf="Type === 'Bi-Weekly'">
                <label>Starts From:</label>
-               <input matInput [matDatepicker]="picker" (click)="picker.open()" placeholder="Choose a date">
+               <input matInput [matDatepicker]="picker" (click)="picker.open()" placeholder="Starts From">
                <mat-datepicker #picker></mat-datepicker>
             </div>
             <div class="col-sm-4 Form_Input" *ngIf="Type === 'Monthly(interest)'">
                <label>Date:</label>
-               <input type="text">
+               <input matInput [matDatepicker]="picker" (click)="picker.open()" placeholder="Date">
+               <mat-datepicker #picker></mat-datepicker>
             </div>
             <div class="col-sm-4 Form_Input" *ngIf="Type === 'Monthly(interest)'">
                <label>Starts From:</label>
-               <input matInput [matDatepicker]="picker" (click)="picker.open()" placeholder="Choose a date">
+               <input matInput [matDatepicker]="picker" (click)="picker.open()" placeholder="Starts From">
                <mat-datepicker #picker></mat-datepicker>
             </div>
             <div class="col-sm-4 Form_Input" *ngIf="Type === 'Monthly(EMI)'">
                <label>Date:</label>
-               <input type="text">
+               <input matInput [matDatepicker]="picker" (click)="picker.open()" placeholder="Date">
+               <mat-datepicker #picker></mat-datepicker>
             </div>
             <div class="col-sm-4 Form_Input" *ngIf="Type === 'Monthly(EMI)'">
                <label>Starts From:</label>
-               <input matInput [matDatepicker]="picker" (click)="picker.open()" placeholder="Choose a date">
+               <input matInput [matDatepicker]="picker" (click)="picker.open()" placeholder="Starts From">
                <mat-datepicker #picker></mat-datepicker>
             </div>
          </div>

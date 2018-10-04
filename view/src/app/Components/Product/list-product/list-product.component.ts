@@ -17,9 +17,9 @@ export class ListProductComponent implements OnInit {
 
   ngOnInit() {
   }
-  DeleteLeads() {
+  DeleteProduct() {
    const initialState = {
-      Text: 'Leads'
+      Text: 'Product'
    };
    this.bsModalRef = this.modalService.show(DeleteConfirmationComponent, Object.assign({initialState}, { class: 'modal-sm' }));
 }

@@ -1,2 +1,0 @@
-[2018-08-20T09:53:06.517] [ERROR] Error - {"Error_Name":"Mongodb Connection Error","Error_Address":"Server.js","Error_Message":{"name":"MongoNetworkError","message":"failed to connect to server [ds121871.mlab.com:21871] on first connect [MongoNetworkError: connect ETIMEDOUT 35.184.244.117:21871]"}}
-[2018-08-20T09:53:06.523] [ERROR] Error - {"Error_Name":"","Error_Address":"","Error_Message":{"name":"MongoNetworkError","message":"failed to connect to server [ds121871.mlab.com:21871] on first connect [MongoNetworkError: connect ETIMEDOUT 35.184.244.117:21871]"}}
