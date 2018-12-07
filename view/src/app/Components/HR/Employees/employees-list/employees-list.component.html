@@ -5,9 +5,9 @@
       <div class="Page_Identity">
          <div class="Page_Track">
             <ul>
-               <li class="HeaderName">Home</li>
+               <li class="HeaderName">Hr</li>
                <li class="arrow">>></li>
-               <li>Employees</li>
+               <li>Employees List</li>
             </ul>
          </div>
       </div>
@@ -40,99 +40,21 @@
                </tr>
             </thead>
             <tbody>
-               <tr>
+               <tr *ngFor="let item of _List; let i = index">
                   <td>
-                     <span class="S_no"> 1 </span>
+                     <span class="S_no"> {{i + 1}} </span>
                   </td>
                   <td>
-                     <span class="Style_1">Employee Name</span>
+                     <span class="Style_1">{{item?.Employee_Name}}</span>
                   </td>
                   <td>
-                     <span class="Style_1"> code</span>
+                     <span class="Style_1">{{item?.Employee_Code}}</span>
                   </td>
                   <td>
-                     <span class="Style_1">+4546546547</span>
+                     <span class="Style_1">{{item?.General_Info_Mobile_Number}}</span>
                   </td>
                   <td>
-                     <span class="Style_1">Department</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">Job Title</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">Manager</span>
-                  </td>
-                  <td>
-                     <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
-                  </td>
-               </tr>
-               <tr>
-                  <td>
-                     <span class="S_no"> 2 </span>
-                  </td>
-                  <td>
-                     <span class="Style_1">Employee Name</span>
-                  </td>
-                  <td>
-                     <span class="Style_1"> code</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">+4546546547</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">Department</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">Job Title</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">Manager</span>
-                  </td>
-                  <td>
-                     <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
-                  </td>
-               </tr>
-               <tr>
-                  <td>
-                     <span class="S_no"> 3 </span>
-                  </td>
-                  <td>
-                     <span class="Style_1">Employee Name</span>
-                  </td>
-                  <td>
-                     <span class="Style_1"> code</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">+4546546547</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">Department</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">Job Title</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">Manager</span>
-                  </td>
-                  <td>
-                     <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
-                  </td>
-               </tr>
-               <tr>
-                  <td>
-                     <span class="S_no"> 4 </span>
-                  </td>
-                  <td>
-                     <span class="Style_1">Employee Name</span>
-                  </td>
-                  <td>
-                     <span class="Style_1"> code</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">+4546546547</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">Department</span>
+                     <span class="Style_1"></span>
                   </td>
                   <td>
                      <span class="Style_1">Job Title</span>

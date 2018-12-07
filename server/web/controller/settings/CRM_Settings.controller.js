@@ -83,9 +83,7 @@ var mongoose = require('mongoose');
 
          if(!ReceivingData.Company_Id || ReceivingData.Company_Id === '' ) {
             res.status(400).send({Status: false, Message: "Industry Type Id can not be empty" });
-         } else if (!ReceivingData.User_Id || ReceivingData.User_Id === ''  ) {
-            res.status(400).send({Status: false, Message: "User Details can not be empty" });
-         }else {
+         } else {
             CRMSettingsModel.IndustryTypeSchema
                .find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, {}, {sort: { updatedAt: -1 }})
                .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
@@ -1320,7 +1318,7 @@ var mongoose = require('mongoose');
          var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
 
          if(!ReceivingData.Company_Id || ReceivingData.Company_Id === '') {
-               res.status(400).send({status: false ,Message: "Contact Role Id can not be empty" });
+               res.status(400).send({status: false ,Message: "Company Details can not be empty" });
          } else if(!ReceivingData.User_Id || ReceivingData.User_Id === ''){
             res.status(400).send({Status: false, Message: "User Details Can not be Empty" });
          } else {

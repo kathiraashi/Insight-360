@@ -1,3 +1,16 @@
+<div [ngClass]="{'Hide': !Loader}" class="DataLoaderStyle_1" style="width: 100%">
+   <div class="Loading">
+         <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+            <div class="rect6"></div>
+         </div>
+   </div>
+ </div>
+ <div class="LoadedDataStyle_1" [ngClass]="{'Show': !Loader}">
 <!-- Page -->
 <div class="page" style="margin-top:100px;">
    <div class="container-fluid">
@@ -5,11 +18,11 @@
       <div class="Page_Identity">
          <div class="Page_Track">
             <ul>
-            <li class="HeaderName">Home</li>
+            <li class="HeaderName">Purchase</li>
             <li class="arrow">>></li>
-            <li class= "LinkName"><a [routerLink]="['/purchase_request_list']">Purchase Request List</a></li>
+            <li class= "LinkName"><a [routerLink]="['/purchase_request_list']">Request List</a></li>
             <li class="arrow">>></li>
-            <li >Purchase Request View</li>
+            <li>{{Purchase_Request_Details?.Requested_Number}}</li>
             </ul>
          </div>
       </div>
@@ -18,6 +31,13 @@
          <div class="Company_Details">
             <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Request 
                <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span>
+               <span *ngIf="Purchase_Request_Details?.Status === 'Approved'"><button class="register_Payment pull-right" mat-raised-button (click)="CancelApproval()"> Cancel Approval </button></span>
+               <span *ngIf="Purchase_Request_Details?.Status !== 'Approved' && Purchase_Request_Details?.Status !== 'Rejected' && Purchase_Request_Details?.Status !== 'Canceled' && Purchase_Request_Details?.Status === 'Waiting for approval'"><button class="register_Payment pull-right" mat-raised-button (click)="Approve()"> Approve </button></span>
+               <span *ngIf="Purchase_Request_Details?.Status !== 'Approved' && Purchase_Request_Details?.Status !== 'Rejected' && Purchase_Request_Details?.Status !== 'Canceled' && Purchase_Request_Details?.Status !== 'Waiting for approval'"><button class="register_Payment pull-right" mat-raised-button (click)="RequestApprove()"> Request Approval </button></span>
+               <span *ngIf="Purchase_Request_Details?.Status !== 'Approved' && Purchase_Request_Details?.Status !== 'Rejected' && Purchase_Request_Details?.Status !== 'Canceled' && Purchase_Request_Details?.Status === 'Waiting for approval'"><button class="register_Payment pull-right" mat-raised-button (click)="Modify()"> Modify </button></span>
+               <span *ngIf="Purchase_Request_Details?.Status !== 'Approved' && Purchase_Request_Details?.Status !== 'Waiting for approval'  && Purchase_Request_Details?.Status !== 'Modification'"><button class="register_Payment pull-right" mat-raised-button (click)="Cancel()"> Cancel </button></span>
+               <span *ngIf="Purchase_Request_Details?.Status !== 'Approved' && Purchase_Request_Details?.Status !== 'Rejected' && Purchase_Request_Details?.Status !== 'Canceled' && Purchase_Request_Details?.Status === 'Waiting for approval'"><button class="register_Payment pull-right" mat-raised-button (click)="Reject()"> Reject </button></span>
+               <span *ngIf="Purchase_Request_Details?.Status !== 'Approved' && Purchase_Request_Details?.Status !== 'Rejected' && Purchase_Request_Details?.Status !== 'Canceled' && Purchase_Request_Details?.Status !== 'Waiting for approval'"><button class="register_Payment pull-right" mat-raised-button (click)="Edit()"> Edit  </button></span>
             </h5>
             <br>
             <div class="row">
@@ -25,19 +45,19 @@
                   <div class="view_item">
                      <div class="Static">Request No</div>
                      <div class="dots"> : </div>
-                     <div class="Data">  123 </div>
+                     <div class="Data">{{Purchase_Request_Details?.Requested_Number}}</div>
                   </div>
                   <div class="view_item">
                      <div class="Static"> Request Date</div>
                      <div class="dots"> : </div>
-                     <div class="Data">  25/04/17 </div>
+                     <div class="Data">{{Purchase_Request_Details?.Requested_Date | date: 'dd/MM/yyyy'}}</div>
                   </div>
                </div>
                <div class="col-sm-6">
                   <div class="view_item">
                      <div class="Static"> Requested By</div>
                      <div class="dots"> : </div>
-                     <div class="Data">  aashi </div>
+                     <div class="Data">  {{Purchase_Request_Details?.Last_Modified_By?.Name}} </div>
                   </div>
                </div>
             </div>
@@ -55,16 +75,32 @@
                   <tr>
                      <th class="S_No">S.No</th>
                      <th>Product</th>
+                     <th>Description</th>
                      <th>Required Quantity</th>
                      <th>Required Date</th>
-                     <th>Approved Quantity</th>
-                     <th>Status</th>
-                     <th class="Action">Action</th>
+                     <th *ngIf="Purchase_Request_Details?.Status === 'Approved'">Approved Quantity</th>
                   </tr>
                </thead>
                <tbody>
-                  <tr>
-                     <td  colspan="7"><span> No Records found</span></td>
+                  <tr *ngFor="let item of Product_Details; let i =index">
+                     <td>
+                        <span class="S_no"> {{i+1}} </span>
+                     </td>
+                     <td>
+                        <span class="Style_1">{{item?.Product_Id?.Product_Name_withAttribute}}</span>
+                     </td>
+                     <td>
+                        <span class="Style_1">{{item?.Description}}</span>
+                     </td>
+                     <td>
+                        <span class="Style_1">{{item?.Required_Quantity}}</span>
+                     </td>
+                     <td>
+                        <span class="Style_1">{{item?.Required_Date | date: 'dd/MM/yyyy'}}</span>
+                     </td>
+                     <td *ngIf="Purchase_Request_Details?.Status === 'Approved'">
+                        <span class="Style_1">{{item?.Approved_Quantity}}</span>
+                     </td>
                   </tr>
                </tbody>
             </table>

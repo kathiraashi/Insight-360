@@ -59,7 +59,7 @@
       width: 100%;
       height: 37px;
       outline: none;
-      margin-bottom: 25px;
+      margin-bottom: 30px;
       border: 1px solid gainsboro;
       color: #484848;
       font-weight: 500;
@@ -86,9 +86,9 @@
       height: 37px;
       color: #999;
       outline: none;
-      padding: 0px 10px;
+      padding: 0px 0px;
       border: 1px solid #dcdcdc;
-      margin-bottom: 25px;
+      margin-bottom: 30px;
    }
    .Form_Select select option{
       color: #999999;
@@ -154,3 +154,25 @@
       height: 45px;
       text-align: right
       }
+/* error */
+.error{
+   margin: 0px;
+   color: rgb(221, 10, 10);
+   font-weight: 500;
+   text-align: left;
+   font-size: 13px;
+   word-spacing: 1px;
+   letter-spacing: 0.4px;
+}
+.Form_Input.Form_Err input{
+  border-color: rgb(221, 10, 10);
+}
+.Form_Input.Form_Success input{
+  border-color: #4ab65f;
+}
+.Form_Select.Form_Err select{
+   border-color: rgb(221, 10, 10);
+}
+.Form_Select.Form_Success select{
+   border-color: #4ab65f;
+}

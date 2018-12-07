@@ -54,6 +54,7 @@ var mongoose = require('mongoose');
             Company_Id: mongoose.Types.ObjectId(ReceivingData.Company_Id),
             Created_By: mongoose.Types.ObjectId(ReceivingData.Created_By),
             Last_Modified_By: mongoose.Types.ObjectId(ReceivingData.Created_By),
+            Default_WareHouse: false,
             Active_Status: true,
             If_Deleted: false
          });

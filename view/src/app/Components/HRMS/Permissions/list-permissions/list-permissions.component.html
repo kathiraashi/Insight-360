@@ -1,14 +1,26 @@
 <app-header></app-header>
 <!-- Page section -->
+<div [ngClass]="{'Hide': !Loader}" class="DataLoaderStyle_1" style="width: 100%">
+   <div class="Loading">
+         <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+            <div class="rect6"></div>
+         </div>
+   </div>
+</div>
 <div class="Page_Section">
    <div class="container-fluid">
       <!-- page Identity -->
       <div class="Page_Identity">
          <div class="Page_Track">
             <ul>
-               <li class="HeaderName">Home</li>
+               <li class="HeaderName">Permissions</li>
                <li class="arrow">>></li>
-               <li>Permissions</li>
+               <li>List</li>
             </ul>
          </div>
       </div>
@@ -25,134 +37,124 @@
             </div>
          </div>
       </div>
-      <!-- Table Section -->
-      <div class="Table_Section">
-         <table>
-            <thead>
-               <tr>
-                  <th>S.no</th>
-                  <th>Name</th>
-                  <th>Request Date</th>
-                  <th>Out Time</th>
-                  <th>In Time</th>
-                  <th>Status</th>
-                  <th>Action</th>
-               </tr>
-            </thead>
-            <tbody>
-               <tr>
-                  <td>
-                     <span class="S_no"> 1 </span>
-                  </td>
-                  <td>
-                     <span class="Style_1">Employee Name</span>
-                  </td>
-                  <td>
-                     <span class="Style_1"> 24/05/2017</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">12:05AM</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">12:05AM</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">Requested</span>
-                  </td>
-                  <td>
-                     <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
-                  </td>
-               </tr>
-               <tr>
-                  <td>
-                     <span class="S_no"> 2 </span>
-                  </td>
-                  <td>
-                     <span class="Style_1">Employee Name</span>
-                  </td>
-                  <td>
-                     <span class="Style_1"> 24/05/2017</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">12:05AM</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">12:05AM</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">Requested</span>
-                  </td>
-                  <td>
-                     <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
-                  </td>
-               </tr>
-               <tr>
-                  <td>
-                     <span class="S_no"> 3 </span>
-                  </td>
-                  <td>
-                     <span class="Style_1">Employee Name</span>
-                  </td>
-                  <td>
-                     <span class="Style_1"> 24/05/2017</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">12:05AM</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">12:05AM</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">Requested</span>
-                  </td>
-                  <td>
-                     <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
-                  </td>
-               </tr>
-               <tr>
-                  <td>
-                     <span class="S_no"> 4 </span>
-                  </td>
-                  <td>
-                     <span class="Style_1">Employee Name</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">24/05/2017</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">12:05AM</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">12:05AM</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">Requested</span>
-                  </td>
-                  <td>
-                     <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
-                  </td>
-               </tr>
-            </tbody>
-         </table>
+      <div class="Company_Details">
+         <div class="Tabs">
+            <div class="Tab" [ngClass]="{'active': Active_Tab === 'other_request'}" (click)="Active_Tab_Change('other_request')">
+               <span >Other List</span>
+            </div>
+            <div class="Tab" [ngClass]="{'active': Active_Tab === 'my_request'}" (click)="Active_Tab_Change('my_request')">
+               <span >My  List</span>
+            </div>
+         </div>
+         <br>
+         <div class="page" *ngIf="Active_Tab === 'other_request'">
+            <!-- Table Section -->
+            <div class="Table_Section">
+               <table>
+                  <thead>
+                     <tr>
+                        <th>S.no</th>
+                        <th>Name</th>
+                        <th>Request Date</th>
+                        <th>Out Time</th>
+                        <th>In Time</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr *ngFor="let item of _OtherList; let i = index">
+                        <td>
+                           <span class="S_no"> {{i + 1}} </span>
+                        </td>
+                        <td>
+                           <span class="Style_1">{{item?.Requested_By?.Employee_Name}}</span>
+                        </td>
+                        <td>
+                           <span class="Style_1">{{item?.Requested_Date | date: 'dd/MM/yyyy'}}</span>
+                        </td>
+                        <td>
+                           <span class="Style_1">{{item?.Out_Time}}</span>
+                        </td>
+                        <td>
+                           <span class="Style_1">{{item?.In_Time}}</span>
+                        </td>
+                        <td>
+                           <span class="Style_1">{{item?.Permission_Status}}</span>
+                        </td>
+                        <td>
+                           <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" (click)="ActionIndex(i)"> Action </button>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+         <div class="page" *ngIf="Active_Tab === 'my_request'">
+            <!-- Table Section -->
+            <div class="Table_Section">
+               <table>
+                  <thead>
+                     <tr>
+                        <th>S.no</th>
+                        <th>Name</th>
+                        <th>Request Date</th>
+                        <th>Out Time</th>
+                        <th>In Time</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr *ngFor="let item of _MyList; let i = index">
+                        <td>
+                           <span class="S_no"> {{i + 1}} </span>
+                        </td>
+                        <td>
+                           <span class="Style_1">{{item?.Requested_By?.Employee_Name}}</span>
+                        </td>
+                        <td>
+                           <span class="Style_1">{{item?.Requested_Date | date: 'dd/MM/yyyy'}}</span>
+                        </td>
+                        <td>
+                           <span class="Style_1">{{item?.Out_Time}}</span>
+                        </td>
+                        <td>
+                           <span class="Style_1">{{item?.In_Time}}</span>
+                        </td>
+                        <td>
+                           <span class="Style_1">{{item?.Permission_Status}}</span>
+                        </td>
+                        <td>
+                           <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" (click)="ActionIndex(i)"> Action </button>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
       </div>
    </div>
 </div>
 
 <!-- Dropdown menus -->
 <mat-menu class="MenuStyleOne" #Action="matMenu" [overlapTrigger]="false" xPosition="after" yPosition="below" class="MenuStyleOne">
-   <a [routerLink]="['/Create_Permissions']"><button mat-menu-item>
+   <a><button *ngIf="showEditButton" mat-menu-item (click)="Edit()">
       <span>Edit</span>
    </button></a>
-   <a [routerLink]="['/View_Permissions']"><button mat-menu-item>
+   <a><button mat-menu-item (click)="View()">
       <span>View</span>
    </button></a>
-   <button mat-menu-item>
+   <button *ngIf="showRequestButton" mat-menu-item (click)="Request()">
+      <span>Send Request</span>
+   </button>
+   <button *ngIf="showApproveButton" mat-menu-item (click)="Approve()">
       <span>Approve</span>
    </button>
-   <button mat-menu-item>
+   <button *ngIf="showModifyButton" mat-menu-item (click)="Modify()">
       <span>Modify</span>
    </button>
-   <button mat-menu-item>
+   <button *ngIf="showRejectButton" mat-menu-item (click)="Reject()">
       <span>Reject</span>
    </button>
 </mat-menu>

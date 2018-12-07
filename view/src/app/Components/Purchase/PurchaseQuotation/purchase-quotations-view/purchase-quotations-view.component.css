@@ -1,253 +1,296 @@
 /* --------------   Page Identity Section  ----------------- */
-   .Page_Identity{
-      display: flex;
-      height:40px;
-      width: 100%;
-      margin-bottom: 5px;
-   }
-   .Page_Identity .Page_Track{
-      width:100%;
-      line-height: 35px;
-   }
-   .Page_Identity .Page_Track ul{
-      display: flex;
-      list-style-type: none;
-      padding: 0px;
-      margin: 0px;
-      align-items: center;
-      float: right;
-   }
-   .Page_Identity .Page_Track ul li {
-      font-size: 13px;
-      font-weight: 500;
-      margin-left: 5px;
-      color: #4e6a7a;
-   }
-   .Page_Identity .Page_Track ul li.arrow{
-      letter-spacing: -4px;
-      font-size: 19px;
-      transform: scale(.6, 1);
-      color: #4e6a7a;
-   }
-   .Page_Identity .Page_Track ul li.arrowGreen{
-      letter-spacing: -4px;
-      font-size: 19px;
-      transform: scale(.6, 1);
-      color: #4ab65f;
-   }
-   .Page_Identity .Page_Track ul li.HeaderName{
-      color: #4ab65f;
-   }
-   .Page_Identity .Page_Track ul li.LinkName{
-      color: #4ab65f;
-      cursor: pointer;
-   }
-   a {
-      text-decoration:none;
-      color: #4ab65f;
-      cursor: pointer;
-   }
-/* Form style */
-   .Form_Input input {
-      padding: 10px;
-      width: 100%;
-      height: 40px;
-      outline: none;
-      margin-bottom: 5px;
-      border: 1px solid gainsboro;
-      color: #484848;
-      font-weight: 500;
-      font-size: 14px;
-      margin-top: 5px;
-   }
-   .Form_Input label {
-      font-size: 14px;
-      margin-bottom: 5px;
-      font-weight: 700;
-      color: #4e6a7a;
-   }
-   .Form_Input input:-moz-placeholder{
-      color: #999999;
-      font-weight: 400;
-   }
-   .Form_Input input::-moz-placeholder{
-      color: #999999;
-      font-weight: 400;
-   }
-   .Form_Input input::-webkit-input-placeholder{
-      color: #999999;
-      font-weight: 400;
-   }
-   .Form_Input input:-ms-input-placeholder{
-      color: #999999;
-      font-weight: 400;
-   }
-   .Form_Select select{
-      width: 100%;
-      height: 40px;
-      color: #999;
-      outline: none;
-      padding: 0px 10px;
-      border: 1px solid #dcdcdc;
-      margin-bottom: 5px;
-      margin-top: 5px;
-   }
-   .Form_Select select option{
-      color: #999999;
-      width: 100%;
-   }
-   .Form_TextArea textarea {
-      padding: 10px;
-      width: 100%;
-      outline: none;
-      margin-bottom: 25px;
-      border: 1px solid gainsboro;
-      color: #484848;
-      font-weight: 500;
-      font-size: 14px;
-      margin-bottom: 5px;
-      margin-top: 5px;
-   }
-   .Form_TextArea textarea:-moz-placeholder{
-      color: #999999;
-      font-weight: 400;
-   }
-   .Form_TextArea textarea::-moz-placeholder{
-      color: #999999;
-      font-weight: 400;
-   }
-   .Form_TextArea textarea::-webkit-input-placeholder{
-      color: #999999;
-      font-weight: 400;
-   }
-   .Form_TextArea textarea:-ms-input-placeholder{
-      color: #999999;
-      font-weight: 400;
-   }
-/* Company Details */
-   .Company_Details{
-      background-color: #fff;
-      margin: 0px;
-      padding: 20px;
-      width: 100%;
-      box-shadow: 1px 1px 10px #d4d4d4;
-      margin-bottom: 20px;
-   }
-/* ************************************ View Style ******************************* */
-   .view_item {
-      display: grid;
-      grid-template-columns: 150px 15px auto;
-      margin-left: 20px;
-   }
-   .view_item .Static{
-      font-weight: 700;
-      color: #4f6a7a;
-      margin-bottom: 10px;
-      font-size: 15px;
-   }
-   .view_item .dots{
-      font-weight: 800;
-      color: #4f6a7a;
-      margin-bottom: 10px;
-      font-size: 15px;
-   }
-   .view_item .Data{
-      font-weight: 500;
-      color: #4f6a7a;
-      margin-bottom: 10px;
-      font-size: 14px;
-   }
+.Page_Identity{
+   display: flex;
+   height:40px;
+   width: 100%;
+}
+.Page_Identity .Page_Track{
+   width:100%;
+   line-height: 35px;
+}
+.Page_Identity .Page_Track ul{
+   display: flex;
+   list-style-type: none;
+   padding: 0px;
+   margin: 0px;
+   align-items: center;
+   float: right;
+}
+.Page_Identity .Page_Track ul li {
+   font-size: 13px;
+   font-weight: 500;
+   margin-left: 5px;
+   color: #4e6a7a;
+}
+.Page_Identity .Page_Track ul li.arrow{
+   letter-spacing: -4px;
+   font-size: 19px;
+   transform: scale(.6, 1);
+   color: #4e6a7a;
+}
+.Page_Identity .Page_Track ul li.arrowGreen{
+   letter-spacing: -4px;
+   font-size: 19px;
+   transform: scale(.6, 1);
+   color: #4ab65f;
+}
+.Page_Identity .Page_Track ul li.HeaderName{
+   color: #4ab65f;
+}
+.Page_Identity .Page_Track ul li.LinkName{
+   color: #4ab65f;
+   cursor: pointer;
+}
+a {
+   text-decoration:none;
+   color: #4ab65f;
+   cursor: pointer;
+}
+/* Form styles */
+.Form_Input input {
+   padding: 10px;
+   width: 100%;
+   height: 37px;
+   outline: none;
+   border: 1px solid gainsboro;
+   color: #484848;
+   font-weight: 500;
+   font-size: 14px;
+}
+.Form_Input label {
+   font-size: 14px;
+   margin-bottom: 5px;
+   font-weight: 700;
+   color: #4e6a7a;
+}
+.Form_Input input:-moz-placeholder{
+   color: #999999;
+   font-weight: 400;
+}
+.Form_Input input::-moz-placeholder{
+   color: #999999;
+   font-weight: 400;
+}
+.Form_Input input::-webkit-input-placeholder{
+   color: #999999;
+   font-weight: 400;
+}
+.Form_Input input:-ms-input-placeholder{
+   color: #999999;
+   font-weight: 400;
+}
+.Form_Select select{
+   width: 100%;
+   height: 37px;
+   color: #999;
+   outline: none;
+   padding: 0px 10px;
+   border: 1px solid #dcdcdc;
+}
+.Form_Select label {
+   font-size: 14px;
+   margin-bottom: 5px;
+   font-weight: 700;
+   color: #4e6a7a;
+}
+.Form_Select select option{
+   color: #999999;
+   width: 100%;
+}
+.Form_TextArea textarea {
+   padding: 10px;
+   width: 100%;
+   outline: none;
+   border: 1px solid gainsboro;
+   color: #484848;
+   font-weight: 500;
+   font-size: 14px;
+}
+.Form_TextArea label {
+   font-size: 14px;
+   margin-bottom: 5px;
+   font-weight: 700;
+   color: #4e6a7a;
+}
+.Form_TextArea textarea:-moz-placeholder{
+   color: #999999;
+   font-weight: 400;
+}
+.Form_TextArea textarea::-moz-placeholder{
+   color: #999999;
+   font-weight: 400;
+}
+.Form_TextArea textarea::-webkit-input-placeholder{
+   color: #999999;
+   font-weight: 400;
+}
+.Form_TextArea textarea:-ms-input-placeholder{
+   color: #999999;
+   font-weight: 400;
+}
+/* Company details */
+.Company_Details{
+   background-color: #fff;
+   margin: 0px;
+   padding: 20px;
+   width: 100%;
+   box-shadow: 1px 1px 10px #d4d4d4;
+   margin-bottom: 20px;
+}
 /* Table section */
-   .Table_Section{
-      background-color: #fff;
-      margin: 10px;
-      padding: 20px;
-      margin-left: 15px;
-      width: 100%;
-      border-radius: 5px;
-      border-top: 2px solid #49B660;
-   }
-   .table_section{
-      border-collapse: collapse;
-      width: 100%;
-      table-layout: fixed;
-      margin-right:10px;
-   }
-   .table_section .table_head{
-      font-size:16px;
-      color:#A6A6A6;
-      cursor:pointer;
-   }
-   .table_section tr{
-      border:1px solid #e4dcdc;
-      height: 45px;
-   }
-   .table_section tbody td{
-      background-color:#F5F5F5;
-      width:100%;
-      height:45px;
-      text-align:center;
-   }
-   .table_section tbody td span{
-      font-size:16px;
-      font-weight:400;
-      color:#6d6868;
-   }
-/* Edit */
-   .Edit{
-      margin-right:20px;
-   }
+.Table_Section{
+   background-color: #fff;
+   margin: 10px;
+   padding: 20px;
+   margin-left: 15px;
+   width: 100%;
+   border-radius: 5px;
+   border-top: 2px solid #49B660;
+}
+.table_section{
+   border-collapse: collapse;
+   width: 100%;
+   table-layout: fixed;
+   box-shadow: 2px 2px 3px #bdbcbc;
+}
+.table_section .table_head{
+   font-size:16px;
+   color:#A6A6A6;
+   cursor:pointer;
+   text-align:center;
+}
+.table_section tr{
+   border:1px solid #e8e2e2;
+   height: 45px;
+}
+.table_section tbody td{
+   background-color:#f3f3f3;
+   width:100%;
+   height:45px;
+   text-align:center;
+
+}
+.table_section tbody td span{
+   font-size:16px;
+   font-weight:400;
+   color:#6d6868;
+}
+.table_section tbody td .Style_2{
+   font-size: 16px;
+   font-weight: 600;
+   word-spacing: 1.88; 
+}
+/* ************************************ View Style ******************************* */
+.view_item {
+   display: grid;
+   grid-template-columns: 150px 15px auto;
+   margin-left: 20px;
+}
+.view_item .Static{
+   font-weight: 700;
+   color: #4f6a7a;
+   margin-bottom: 10px;
+   font-size: 15px;
+}
+.view_item .dots{
+   font-weight: 800;
+   color: #4f6a7a;
+   margin-bottom: 10px;
+   font-size: 15px;
+}
+.view_item .Data{
+   font-weight: 500;
+   color: #4f6a7a;
+   margin-bottom: 10px;
+   font-size: 14px;
+}
+.register_Payment{
+   letter-spacing: 0.5px;
+   font-weight: 600;
+   font-size: 14px;
+   color: #4ab65f;
+   color: #fff;
+   background-color: #49b660;
+   margin-right: 20px;
+   
+}
+.create_invoice{
+   letter-spacing: 0.5px;
+   font-weight: 600;
+   font-size: 14px;
+   color: #4ab65f;
+   color: #fff;
+   background-color: #49b660;
+   margin-right: 20px;
+}
+.Edit{
+   letter-spacing: 0.5px;
+   font-weight: 600;
+   font-size: 24px;
+   color: #49b660;
+   float: right;
+   padding: 10px;
+   cursor: pointer;
+}
 /* Tabs */
-   .Tabs{
-      display: flex;
-      width: 100%;
-      height:30px;
-   }
-   .Tabs .Tab{
-      color: #4d6a7a;
-      width: 14%;
-      line-height: 35px;
-      background-color: #80808038;
-      margin-top: -10px;
-      text-align: center;
-      margin-right: 5px;
-      font-size: 15px;
-      font-weight: 600;
-      letter-spacing: 0.4px;
-      cursor: pointer;
-      width:200px;
-   }
-   .Tabs .Tab:hover{
-      border-bottom: 2px solid #4d6a7a;
-      color:#4d6a7a
-   }
-   .Tabs .Tab.active{
-      border-bottom: 2px solid #49B660;
-      color: #49B660;
-      cursor: default;
-   }
+.Tabs{
+   display: flex;
+   width: 100%;
+   height:30px;
+}
+.Tabs .Tab{
+   color: #4d6a7a;
+   width: 14%;
+   line-height: 35px;
+   background-color: #80808038;
+   margin-top: -10px;
+   text-align: center;
+   margin-right: 5px;
+   font-size: 15px;
+   font-weight: 600;
+   letter-spacing: 0.4px;
+   cursor: pointer;
+   width:200px;
+}
+.Tabs .Tab:hover{
+   border-bottom: 2px solid #4d6a7a;
+   color:#4d6a7a
+}
+.Tabs .Tab.active{
+   border-bottom: 2px solid #49B660;
+   color: #49B660;
+   cursor: default;
+}
 /* Result Section */
-   .ResultSection {
-      display: flex;
-      width: 100%;
-      height: 35px;
-      align-items: center;
-   }
-   .ResultSection span.Title {
-      width: 35%;
-      color: #4E6A7A;
-      font-weight: 700;
-      font-size: 16px;
-   }
-   .ResultSection span.Split {
-      width: 5%;
-      color: #4E6A7A;
-      font-weight: 700;
-      font-size: 16px;
-   }
-   .ResultSection span.Value {
-      width: 60%;
-      color: #4E6A7A;
-      font-weight: 500;
-      font-size: 15px;
-   }
+.ResultSection {
+   display: flex;
+   width: 100%;
+   height: 35px;
+   align-items: center;
+}
+.ResultSection span.Title {
+   width: 55%;
+   color: #4E6A7A;
+   font-weight: 700;
+   font-size: 16px;
+}
+.ResultSection span.Split {
+   width: 5%;
+   color: #4E6A7A;
+   font-weight: 700;
+   font-size: 16px;
+}
+.ResultSection span.Value {
+   width: 12%;
+   color: #4E6A7A;
+   font-weight: 500;
+   font-size: 15px;
+}
+
+
+
+
+
+
+
+

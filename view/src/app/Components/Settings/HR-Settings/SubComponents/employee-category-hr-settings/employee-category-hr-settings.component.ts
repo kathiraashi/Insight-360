@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { BsModalService } from 'ngx-bootstrap/modal';
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { BsModalRef } from 'ngx-bootstrap';
 
 import { ModelEmployeecategoryHrsettingsComponent } from '../../../../../models/settings/hr_settings/model-employeecategory-hrsettings/model-employeecategory-hrsettings.component';
 import { DeleteConfirmationComponent } from '../../../../Common-Components/delete-confirmation/delete-confirmation.component';

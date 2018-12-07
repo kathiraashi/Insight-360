@@ -65,7 +65,7 @@ exports.IncomeType_AsyncValidate = function(req, res) {
                         res.status(417).send({status: false, Message: "Some error occurred while Find The Income Type!."});
                      } else {
                         var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result_1), 'SecretKeyOut@123');
-                           ReturnData = ReturnData.toString();
+                        ReturnData = ReturnData.toString();
                         res.status(200).send({Status: true, Response: ReturnData });
                      }
                   });
@@ -80,9 +80,9 @@ exports.IncomeType_AsyncValidate = function(req, res) {
          var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
 
          if(!ReceivingData.Company_Id || ReceivingData.Company_Id === '' ) {
-            res.status(400).send({Status: false, Message: "Company Details can not be empty" });
+            res.status(400).send({Status: false, Message: "Company Details cannot be empty" });
          } else if (!ReceivingData.User_Id || ReceivingData.User_Id === ''  ) {
-            res.status(400).send({Status: false, Message: "User Details can not be empty" });
+            res.status(400).send({Status: false, Message: "User Details cannot be empty" });
          }else {
             AccountSettingsModel.IncomeTypeSchema
             .find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false }, {}, {sort: { updatedAt: -1 }})
@@ -125,11 +125,11 @@ exports.IncomeType_AsyncValidate = function(req, res) {
       };
 
    // Income Type Update -----------------------------------------------
-      exports. Income_Type_Update = function(req, res) {
+      exports.Income_Type_Update = function(req, res) {
          var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
          var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
 
-         if(!ReceivingData. Income_Type_Id || ReceivingData.Income_Type_Id === '' ) {
+         if(!ReceivingData.Income_Type_Id || ReceivingData.Income_Type_Id === '' ) {
             res.status(400).send({Status: false, Message: "Income Type Id can not be empty" });
          }else if(!ReceivingData.Income_Type || ReceivingData.Income_Type === '' ) {
             res.status(400).send({Status: false, Message: "Income Typecan not be empty" });
@@ -684,7 +684,58 @@ exports.Taxes_List = function(req, res){
    });
    }
 };
-
+// Taxes Sale Scope List
+exports.Taxes_SalesList = function(req, res){
+   var CryptoBytes = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
+   var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+   
+   if(!ReceivingData.Company_Id || ReceivingData.Company_Id === ''){
+      res.status(400).send({ Status: false, Message: "Company Details Cannot be empty"});
+   }else if(!ReceivingData.User_Id || ReceivingData.User_Id === ''){
+      res.status(400).send({ Status: false, Message: "User Details Cannot Be empty"});
+   }else{
+      AccountSettingsModel.TaxesSchema
+      .find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false, Tax_Scope: 'Sales' }, {}, {sort: { updatedAt: -1 }})
+      .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
+      .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
+      .exec(function(err, result) { // Taxes FindOne Query
+      if(err) {
+         ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Account Settings Taxes Find Query Error', 'Account_Settings.controller.js', err);
+         res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Taxes!."});
+      } else {
+         var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result), 'SecretKeyOut@123');
+         ReturnData = ReturnData.toString();
+         res.status(200).send({Status: true, Response: ReturnData });
+      }
+   });
+   }
+};
+// Taxes Purchase List
+exports.Taxes_PurchaseList = function(req, res){
+   var CryptoBytes = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
+   var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+   
+   if(!ReceivingData.Company_Id || ReceivingData.Company_Id === ''){
+      res.status(400).send({ Status: false, Message: "Company Details Cannot be empty"});
+   }else if(!ReceivingData.User_Id || ReceivingData.User_Id === ''){
+      res.status(400).send({ Status: false, Message: "User Details Cannot Be empty"});
+   }else{
+      AccountSettingsModel.TaxesSchema
+      .find({'Company_Id': ReceivingData.Company_Id, 'If_Deleted': false, Tax_Scope: 'Purchase' }, {}, {sort: { updatedAt: -1 }})
+      .populate({ path: 'Created_By', select: ['Name', 'User_Type'] })
+      .populate({ path: 'Last_Modified_By', select: ['Name', 'User_Type'] })
+      .exec(function(err, result) { // Taxes FindOne Query
+      if(err) {
+         ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Account Settings Taxes Find Query Error', 'Account_Settings.controller.js', err);
+         res.status(417).send({status: false, Error:err, Message: "Some error occurred while Find The Taxes!."});
+      } else {
+         var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result), 'SecretKeyOut@123');
+         ReturnData = ReturnData.toString();
+         res.status(200).send({Status: true, Response: ReturnData });
+      }
+   });
+   }
+};
 // Taxes Simple List
 exports.Taxes_Simple_List = function(req, res){
 var CryptoBytes = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');

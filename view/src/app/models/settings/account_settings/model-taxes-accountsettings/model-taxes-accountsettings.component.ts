@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 
 import * as CryptoJS from 'crypto-js';
 
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { BsModalRef } from 'ngx-bootstrap';
 
 import { AccountSettingsService } from './../../../../services/settings/AccountSettings/account-settings.service';
 import { ToastrService } from './../../../../services/common-services/toastr-service/toastr.service';
@@ -28,6 +28,7 @@ export class ModelTaxesAccountsettingsComponent implements OnInit {
 
       Company_Id = '5b3c66d01dd3ff14589602fe';
       User_Id = '5b530ef333fc40064c0db31e';
+      inputType: any = 'Fixed';
    constructor( public bsModalRef: BsModalRef,
       private Toastr: ToastrService,
       public Service: AccountSettingsService,
@@ -40,20 +41,30 @@ export class ModelTaxesAccountsettingsComponent implements OnInit {
     if (this._Data['Type'] === 'Create' || 'Edit') {
 
       this.Form = new FormGroup({
-        Tax_Name: new FormControl('', Validators.required),
-        Tax_Scope: new FormControl(null, Validators.required),
-        Tax_Computation: new FormControl(null, Validators.required),
-        Amount: new FormControl('', Validators.required),
-        Notes: new FormControl(''),
-        Company_Id: new FormControl(this.Company_Id),
-        User_Id: new FormControl(this.User_Id),
-     });
-  }
-  if (this._Data['Type'] === 'View') {
-    this._Taxes_Info = this._Data['Taxes_Info'];
-    console.log(this._Taxes_Info);
- }
-  }
+         Tax_Name: new FormControl('', Validators.required),
+         Tax_Scope: new FormControl(null, Validators.required),
+         Tax_Computation: new FormControl(null, Validators.required),
+         Amount: new FormControl('', Validators.required),
+         Notes: new FormControl(''),
+         Company_Id: new FormControl(this.Company_Id),
+         User_Id: new FormControl(this.User_Id),
+      });
+      }
+      if (this._Data['Type'] === 'View') {
+         this._Taxes_Info = this._Data['Taxes_Info'];
+         console.log(this._Taxes_Info);
+      }
+   }
+
+   typeOfAmount(value) {
+     console.log(value['Value']);
+     this.inputType = value['Value'];
+      if (value['Value'] !== 'Fixed') {
+         this.Form.controls['Amount'].setValidators(Validators.pattern('([0-9]{0,3})([.]{1})?([0-9]{1,2})'));
+      } else {
+         this.Form.controls['Amount'].setValidators(Validators.pattern('([0-9]{0,})([.]{1})?([0-9]{1,2})'));
+      }
+   }
 
   onSubmit() {
     if (this._Data['Type'] === 'Create') {

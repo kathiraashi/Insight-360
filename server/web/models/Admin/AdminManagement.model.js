@@ -46,6 +46,8 @@ var UserManagementSchema = mongoose.Schema({
    LoginTime: { type : Date },
    LastActiveTime: { type : Date },
    LogOutTime: { type : Date },
+   If_Employee_Linked: { type: Boolean },
+   Hrms_Employee_Id: { type: Schema.Types.ObjectId, ref: 'HrEmployee'}
    },
    { timestamps: true }
 );

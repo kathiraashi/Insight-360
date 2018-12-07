@@ -1,0 +1,258 @@
+<div [ngClass]="{'Hide': !Loader}" class="DataLoaderStyle_1" style="height: 100%; width: 100%;">
+   <div class="Loading">
+         <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+            <div class="rect6"></div>
+         </div>
+   </div>
+</div>
+   <!-- Page -->
+<div class="page" style="margin-top:100px;margin-bottom:100px;">
+   <div class="container-fluid">
+      <!-- page identity -->
+      <div class="Page_Identity">
+         <div class="Page_Track">
+            <ul>
+               <li class="HeaderName">CRM</li>
+               <li class="arrow">>></li>
+               <li class= "LinkName"><a [routerLink]="['/crm_quotations_list']"> List</a></li>
+               <li class="arrow">>></li>
+               <li >Revise</li>
+            </ul>
+         </div>
+      </div>
+      <form [formGroup]="Form">
+      <!-- Company details -->
+      <div class="Company_Details">
+         <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Revise <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span></h5><br>
+         <div class="row">
+            <div class="col-sm-4 Form_Input" >
+               <input matInput [matDatepicker]="picker" (click)="picker.open()" formControlName="Quote_Date" placeholder="Date">
+               <mat-datepicker #picker></mat-datepicker>
+            </div>
+            <div class="col-sm-4 Form_Select" >
+               <ng-select class="NgSelect" 
+                  [items]="_CompanyName"
+                  [bindLabel]="'Company_Name'"
+                  [bindValue]="'_id'"
+                  [searchable]="true"
+                  formControlName="Company_Name"
+                  placeholder="Company Name">
+               </ng-select>
+            </div>
+            <div class="col-sm-4 Form_Select" >
+               <ng-select class="NgSelect" 
+                  [items]="_ContactPerson"
+                  [bindLabel]="'Name'"
+                  [bindValue]="'_id'"
+                  [searchable]="true"
+                  formControlName="Contact_Person" 
+                  placeholder="Contact Person">
+               </ng-select>
+            </div>
+            <div class="col-sm-4 Form_Input" *ngIf="_OldConfig?.Quote_Ref_Number === 'Manual'">
+               <input type="text" placeholder="Revise Reference Number" formControlName="Quote_Ref_Number">
+            </div>
+            <div class="col-sm-4 Form_Input" >
+               <input matInput [matDatepicker]="picker1" [min]="toDay" (click)="picker1.open()" formControlName="Valid_Date" placeholder="Valid Till">
+               <mat-datepicker #picker1></mat-datepicker>
+            </div>
+            <!-- <div class="col-sm-4 Form_Select" >
+               <ng-select class="NgSelect" 
+                  [items]="_OpportunityName" 
+                  [searchable]="true" 
+                  placeholder="Opportunity Name">
+               </ng-select>
+            </div> -->
+            <div class="col-sm-4 Form_Select" >
+               <ng-select class="NgSelect" 
+                  [items]="_EmployeeName" 
+                  [searchable]="true" 
+                  formControlName="Employee_Name"
+                  placeholder="Employee Name">
+               </ng-select>                         
+            </div>
+         </div>
+      </div>
+      <br>
+      <div class="Company_Details">
+      <!-- Tabs -->
+      <div clas="row">
+         <div class="col-sm-12">
+            <div class="Tabs">
+               <div class="Tab" [ngClass]="{'active': Active_Tab === 'Product_Details'}" (click)="Active_Tab_Change('Product_Details')">
+                  <span >Product Details</span>
+               </div>
+               <div class="Tab" [ngClass]="{'active': Active_Tab === 'quote_Terms'}" (click)="Active_Tab_Change('quote_Terms')">
+                  <span >Terms & Conditions</span>
+               </div>
+            </div>
+            <!-- Product details -->
+            <div class="Product_Details" *ngIf="Active_Tab === 'Product_Details'">
+               <button mat-raised-button color="primary" class="pull-right" (click)="addItem()"> Add Product </button>
+               <br>
+               <br>
+               <table class="table_section">
+                  <thead class="table_head">
+                     <tr>
+                     <th class="S_No">S.No</th>
+                     <th>Product</th>
+                     <th>Description</th>
+                     <th>Quantity</th>
+                     <th>Price</th>
+                     <th *ngIf="_OldConfig?.Discount !== 'Global'">
+                        <span *ngIf="_OldConfig?.Discount_Value === 'Percent'">Discount(%)</span>
+                        <span *ngIf="_OldConfig?.Discount_Value !== 'Percent'">Discount(Amount)</span>
+                     </th>
+                     <th *ngIf="_OldConfig?.Tax !== 'Global'">Tax</th>
+                     <th>Total</th>
+                     <th class="Action" >Action</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <ng-container formArrayName="items" *ngFor="let item of Form.controls['items'].controls; let i = index;" >
+                        <tr [formGroupName]="i">
+                           <td >{{i+1}}</td>
+                           <td class="Form_Select">
+                              <ng-select class="NgSelect DisabledHide" 
+                                 [items]="_temProductList" 
+                                 [bindLabel]="'Product_Name_withAttribute'"
+                                 [bindValue]="'_id'"
+                                 [searchable]="true" 
+                                 formControlName="Product"
+                                 (ngModelChange)="setProductDetails($event, i)"
+                                 placeholder="Product">
+                              </ng-select>
+                           </td>
+                           <td class="Form_TextArea">
+                              <textarea class="" rows="2" formControlName="Description" ></textarea>
+                           </td>
+                           <td class="Form_Input">
+                              <input type="text" formControlName="Quantity" (ngModelChange)="getInlineTaxValue(i); getGlobalTaxValue(i);">
+                           </td>
+                           <td class="Form_Input">
+                              <input type="text" formControlName="Price" (ngModelChange)="getInlineTaxValue(i); getGlobalTaxValue(i);">
+                           </td>
+                           <td class="Form_Input" *ngIf="_OldConfig?.Discount !== 'Global'">
+                              <input type="text" formControlName="Product_Discount" (ngModelChange)="getInlineTaxValue(i); getGlobalTaxValue(i);">
+                           </td>
+                           <td class="Form_Select" *ngIf="_OldConfig?.Tax !== 'Global'">
+                              <ng-select class="NgSelect" 
+                                 [items]="_Tax" 
+                                 [bindLabel]="'Tax_Name'"
+                                 [bindValue]="'_id'"
+                                 [searchable]="true" 
+                                 [multiple]="true"
+                                 [hideSelected]="true"
+                                 (change)="getInlineTaxValue(i);"
+                                 formControlName="Product_Tax"
+                                 placeholder="Tax">
+                              </ng-select>
+                           </td>
+                           <td class="Form_Input">
+                              <input type="text" formControlName="Product_Total" [readOnly]="true">
+                           </td>
+                           <td>
+                              <button (click)="Delete(i)" *ngIf="items?.length > 1" class="Bg_Danger" mat-mini-fab color="primary" >
+                                 <i class="material-icons">delete</i>
+                              </button> 
+                           </td>
+                        </tr>
+                     </ng-container>
+                  </tbody>
+               </table><br>
+               <div class="row">
+                  <div class="col-sm-4" *ngIf="_OldConfig?.Discount === 'Global'">
+                  </div>
+                  <div class="col-sm-4 Form_Input" *ngIf="_OldConfig?.Discount === 'Global'" style="text-align: right; top: 11px">
+                     <label>Sub Total without Discount:</label>
+                  </div>
+                  <div class="col-sm-4 Form_Input" *ngIf="_OldConfig?.Discount === 'Global'">
+                     <input type="text" formControlName="Sub_Total_WithOut_GlobalDiscount">
+                  </div>
+                  <div class="col-sm-4" *ngIf="_OldConfig?.Discount === 'Global'">
+                  </div>
+                  <div class="col-sm-4 Form_Input" *ngIf="_OldConfig?.Discount === 'Global'" style="text-align: right; top: 11px">
+                     <span *ngIf="_OldConfig?.Discount_Value === 'Percent'"><label>Discount(%):</label></span>
+                     <span *ngIf="_OldConfig?.Discount_Value !== 'Percent'"><label>Discount(Amount):</label></span>
+                  </div>
+                  <div class="col-sm-4 Form_Input" *ngIf="_OldConfig?.Discount === 'Global'">
+                     <input type="text" formControlName="Global_Discount" (ngModelChange)="globalOverAllCalculation(); inlineOverAllCalculation();">
+                  </div>
+                  <div class="col-sm-4">
+                  </div>
+                  <div class="col-sm-4 Form_Input" style="text-align: right; top: 11px">
+                     <label>Sub Total:</label>
+                  </div>
+                  <div class="col-sm-4 Form_Input">
+                     <input type="text" formControlName="Sub_Total">
+                  </div>
+                  <div class="col-sm-4" *ngIf="_OldConfig?.Tax === 'Global'">
+                  </div>
+                  <div class="col-sm-4 Form_Input" *ngIf="_OldConfig?.Tax === 'Global'" style="text-align: right; top: 11px">
+                     <label>Tax:</label>
+                  </div>
+                  <div class="col-sm-4 Form_Select" *ngIf="_OldConfig?.Tax === 'Global'" style="margin: 5px 0 5px 0">
+                     <ng-select class="NgSelect" 
+                        [items]="_Tax" 
+                        [bindLabel]="'Tax_Name'"
+                        [bindValue]="'_id'"
+                        [searchable]="true" 
+                        [multiple]="true"
+                        [hideSelected]="true"
+                        (change)="globalOverAllCalculation();"
+                        formControlName="Global_Product_Tax"
+                        placeholder="Tax">
+                     </ng-select>
+                  </div>
+                  <div class="col-sm-4">
+                  </div>
+                  <div class="col-sm-4 Form_Input" style="text-align: right; top: 11px">
+                     <label>Total Tax:</label>
+                  </div>
+                  <div class="col-sm-4 Form_Input">
+                     <input type="text" formControlName="Tax">
+                  </div>
+                  <div class="col-sm-4">
+                  </div>
+                  <div class="col-sm-4 Form_Input" style="text-align: right; top: 11px">
+                     <label>Total:</label>
+                  </div>
+                  <div class="col-sm-4 Form_Input">
+                     <input type="text" formControlName="Total">
+                  </div>
+               </div>
+            </div>
+            <br>
+            <!-- Quote Terms -->
+            <div class="Done_Section" *ngIf="Active_Tab === 'quote_Terms'">
+               <div class="row">
+                  <div class="col-sm-4 Form_Select">
+                     <ng-select class="NgSelect" 
+                        [items]="_QuoteTerms" 
+                        [searchable]="true" 
+                        placeholder="Quote Terms">
+                     </ng-select>
+                  </div>
+                  <div class="col-sm-4 Form_TextArea" >
+                     <textarea  type="text" row="4" placeholder="Notes"></textarea>
+                  </div>
+               </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      </form>
+   </div>
+</div>
+<!-- Footer -->
+<div class="Footer">
+   <button mat-raised-button color="primary" style = "top: 5px;" [disabled]="!Form.valid || Uploading" (click)="Submit()" >
+      <span *ngIf="!Uploading">Submit</span>
+      <span *ngIf="Uploading" class="UploadingBtn"> <i class="fa fa-refresh fa-spin"></i> Loading... </span>
+   </button>
+</div>

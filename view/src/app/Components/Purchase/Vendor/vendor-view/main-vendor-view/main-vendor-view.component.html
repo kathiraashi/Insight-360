@@ -11,7 +11,7 @@
                   <li class="arrow">>></li>
                   <li class="LinkName"><a [routerLink]="['/Vendor_List']">Vendor List</a></li>
                   <li class="arrow">>></li>
-                  <li>Vendor View</li>
+                  <li>{{_Data?.Vendor_Name}}</li>
                </ul>
             </div>
          </div>
@@ -25,7 +25,7 @@
                   <div class="col-sm-10 ">
                      <div class="row">
                         <div class="col-sm-12">
-                           <h5 class="customer_name">VENDOR NAME <span><i class="material-icons" [routerLink]="['/Vendor_Create']"> border_color</i></span>
+                           <h5 class="customer_name">{{_Data?.Vendor_Name}}<span><i class="material-icons" [routerLink]="['/Vendor_Create']"> border_color</i></span>
                            <span class="Create_Button" [matMenuTriggerFor] = "Action" > +Create</span></h5>
                         </div>
                         <div class="col-sm-3">
@@ -113,7 +113,7 @@
                </div>
                <div class="row" *ngIf=" Active_Tab === 'About' ">
                   <div class="col-sm-12">
-                     <app-about-vendor-view></app-about-vendor-view>
+                     <app-about-vendor-view [CustomerData]="_Data"></app-about-vendor-view>
                   </div>
                </div>
                <div class="row" *ngIf=" Active_Tab === 'Contacts' ">

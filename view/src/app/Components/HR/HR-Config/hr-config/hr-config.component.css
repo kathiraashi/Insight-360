@@ -145,3 +145,13 @@
       color: #73c184;
       letter-spacing: 0.5px;
    }
+/* Footer */
+.Footer {
+   position: fixed;
+   bottom: 0px;
+   width: 100%;
+   padding: 0px 15px;
+   background-color: rgba(62, 59, 59, 0.13);
+   height: 45px;
+   text-align: right
+}

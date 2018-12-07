@@ -1,3 +1,15 @@
+<div [ngClass]="{'Hide': !Loader}" class="DataLoaderStyle_1" style="height: 100%; width: 100%;">
+   <div class="Loading">
+         <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+            <div class="rect6"></div>
+         </div>
+   </div>
+</div>
 <!-- page -->
 <div class="page" style="margin-top:100px;">
    <div class="container-fluid">
@@ -5,11 +17,11 @@
       <div class="Page_Identity">
          <div class="Page_Track">
             <ul>
-               <li class="HeaderName">Home</li>
+               <li class="HeaderName">Product</li>
                <li class="arrow">>></li>
-               <li class="LinkName"><a [routerLink]="['/List_Product']">Product List</a></li>
+               <li class="LinkName"><a [routerLink]="['/List_Product']">List</a></li>
                <li class="arrow">>></li>
-               <li>Product</li>
+               <li>{{ _Data['Product_Name_withAttribute'] }}</li>
             </ul>
          </div>
       </div>
@@ -20,11 +32,8 @@
                <div class="left_section" style="background-color:#fff;margin-bottom:150px; height:100%">
                   <div class="row">
                      <div class="col-sm-12 text-center">
-                        <img src="../../../../assets/images/basic/cpu.png" alt="Company Image" style="width:150px; height:150px; margin-top: 40px; box-shadow:0 1px 5px 1px rgba(0,0,0,.2);">
+                        <img src="../../../../assets/images/basic/product.png" alt="Company Image" style="width:150px; height:150px; margin-top: 40px; box-shadow:0 1px 5px 1px rgba(0,0,0,.2);">
                      </div>
-                     <div class="col-sm-12 text-center Name_Section">
-                        <h3>CPU</h3>
-                     </div><br><br>
                   </div>
                </div>
             </div>
@@ -36,49 +45,58 @@
                      <span><button mat-raised-button color="primary" class="pull-right Purchase_Order"> Purchase Order </button></span>
                      <span><button mat-raised-button color="primary" class="pull-right On_Hand"> On Hand </button></span>
                   </div><br><br>
+
+                  <h5 class="text-style-1" style="margin-top:0px;"> Product Details </h5><br>
                   <div class="row">
-                     <div class="col-sm-4" >
-                        <div class="view_item">
-                           <div class="Static"> Name </div>
-                           <div class="dots"> : </div>
-                           <div class="Data"> xxx </div>
-                        </div>
-                        <div class="view_item">
-                           <div class="Static"> Item Code </div>
-                           <div class="dots"> : </div>
-                           <div class="Data"> IE757 </div>
-                        </div>
-                        <div class="view_item">
-                           <div class="Static">Description</div>
-                           <div class="dots"> : </div>
-                           <div class="Data"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. </div>
-                        </div>
+                     <div class="view_item col-sm-4">
+                        <div class="Static"> Product Name </div>
+                        <div class="dots"> : </div>
+                        <div class="Data"> {{ _Data['Product_Name_withAttribute'] }} </div>
                      </div>
-                     <div class="col-sm-4" >
-                        <div class="view_item">
-                           <div class="Static"> HSN Code </div>
-                           <div class="dots"> : </div>
-                           <div class="Data"> yy536 </div>
-                        </div>
-                        <div class="view_item">
+                     <br>
+                  </div>
+                  <div class="row">
+                     <div class="view_item col-sm-4">
+                        <p *ngIf="_Data['Can_Be_Sold'] === true" class="Data"><i class="material-icons View"  style="color: #4ab65f; line-height: 1px; font-size: 12px">check_circle</i> can be sold</p>
+                     </div>                  
+                  </div>
+                  <div class="row">
+                     <div class="view_item col-sm-6">
+                        <p *ngIf="_Data['Can_Be_Purchased'] === true" class="Data"><i class="material-icons View" style="color: #4ab65f; line-height: 1px; font-size: 12px">check_circle</i> can be purchased</p>
+                     </div>                  
+                  </div><hr>
+                  <div class="row">
+                        <div class="view_item col-sm-4">
                            <div class="Static"> Price </div>
                            <div class="dots"> : </div>
-                           <div class="Data"> 3000 </div>
+                           <div class="Data"> {{_Data['Price']}} </div>
                         </div>
-                     </div>
-                     <div class="col-sm-4" >
-                        <div class="view_item">
-                           <div class="Static">Unit Of Mesure</div>
+                        <div class="view_item col-sm-4">
+                           <div class="Static">Unit Of Measure</div>
                            <div class="dots"> : </div>
-                           <div class="Data"> 10 </div>
+                           <div class="Data"> {{_Data['UOM']?.UOM}} </div>
                         </div>
-                        <div class="view_item">
+                        <div class="view_item col-sm-4">
                            <div class="Static">Product Type</div>
                            <div class="dots"> : </div>
-                           <div class="Data"> Serviceable </div>
+                           <div class="Data"> {{_Data['Product_Type']}} </div>
                         </div>
-                     </div>
-                  </div> 
+                        <div class="view_item col-sm-4" *ngIf="_Data['Item_Code'] !== null">
+                           <div class="Static"> Item Code </div>
+                           <div class="dots"> : </div>
+                           <div class="Data"> {{_Data['Item_Code']}} </div>
+                        </div>
+                        <div class="view_item col-sm-4" *ngIf="_Data['HSN_Code'] !== null">
+                           <div class="Static"> HSN Code </div>
+                           <div class="dots"> : </div>
+                           <div class="Data"> {{_Data['HSN_Code']}} </div>
+                        </div>
+                        <div class="view_item col-sm-4" *ngIf="_Data['Description'] !== null">
+                           <div class="Static">Description</div>
+                           <div class="dots"> : </div>
+                           <div class="Data"> {{_Data['Description']}} </div>
+                        </div>
+                  </div>
                </div>  
             </div>
          </div>

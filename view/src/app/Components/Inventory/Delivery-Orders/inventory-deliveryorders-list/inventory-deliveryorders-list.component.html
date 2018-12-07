@@ -1,4 +1,16 @@
 <app-header></app-header>
+<div [ngClass]="{'Hide': !Loader}" class="DataLoaderStyle_1" style="height: 100%; width: 100%;">
+   <div class="Loading">
+         <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+            <div class="rect6"></div>
+         </div>
+   </div>
+</div>
 <!-- Main Section -->
 <div class="Main_Section">
    <div class="Page_Section">
@@ -7,7 +19,7 @@
          <div class="Page_Identity">
             <div class="Page_Track">
                <ul>
-                  <li class="HeaderName">Home</li>
+                  <li class="HeaderName">Inventory</li>
                   <li class="arrow">>></li>
                   <li>Delivery Orders</li>
                </ul>
@@ -30,178 +42,42 @@
                <thead>
                   <tr>
                      <th>S.no</th>
+                     <th>Order no</th>
                      <th>Ref no</th>
                      <th>Date</th>
-                     <th>Partner</th>
-                     <th>Destination location</th>
+                     <th>Company Details</th>
+                     <th>Created By</th>
                      <th>Status</th>
                      <th>Action</th>
                   </tr>
                </thead>
                <tbody>
-                  <tr>
+                  <tr *ngFor="let item of _List; let i = index">
                      <td>
-                        <span class="S_no"> 1 </span>
+                        <span class="S_no"> {{i+1}} </span>
+                     </td>
+                     <td>
+                        <span class="Style_2">{{item?.SaleOrder_Id?.SaleOrder_Ref_Number}}</span>
+                     </td>
+                     <td>
+                        <span class="Style_2">{{item?.DeliverOrder_Ref_Number}}</span>
+                     </td>
+                     <td>
+                        <span class="Style_3">{{item?.updatedAt | date: 'dd/MM/yyyy'}}</span>
                      </td>
                      <td>
 
-                        <span class="Style_3"> 4567</span>
+                        <span class="Style_2">{{item?.SaleOrder_Id?.Quote_Id?.Company_Name?.Company_Name}}</span>
                      </td>
                      <td>
 
-                        <span class="Style_3"> 12/01/2017</span>
+                        <span class="Style_3">{{item?.Created_By?.Name}}</span>
                      </td>
                      <td>
-
-                        <span class="Style_3">aabbcc</span>
+                        <span class="Style_3">{{item?.DeliverOrder_Status}}</span>
                      </td>
                      <td>
-
-                        <span class="Style_3">sample location</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">Draft</span>
-                     </td>
-                     <td>
-                        <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <span class="S_no"> 2 </span>
-                     </td>
-                     <td>
-                        <span class="Style_3"> 4567</span>
-                     </td>
-                     <td>
-                        <span class="Style_3"> 12/01/2017</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">aabbcc</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">sample location</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">Draft</span>
-                     </td>
-                     <td>
-                        <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <span class="S_no"> 3 </span>
-                     </td>
-                     <td>
-                        <span class="Style_3"> 4567</span>
-                     </td>
-                     <td>
-                        <span class="Style_3"> 12/01/2017</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">aabbcc</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">sample location</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">Draft</span>
-                     </td>
-                     <td>
-                        <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <span class="S_no"> 4 </span>
-                     </td>
-                     <td>
-                        <span class="Style_3"> 4567</span>
-                     </td>
-                     <td>
-                        <span class="Style_3"> 12/01/2017</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">aabbcc</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">sample location</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">Draft</span>
-                     </td>
-                     <td> 
-                        <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <span class="S_no"> 5 </span>
-                     </td>
-                     <td>
-                        <span class="Style_3"> 4567</span>
-                     </td>
-                     <td>
-                        <span class="Style_3"> 12/01/2017</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">aabbcc</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">sample location</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">Draft</span>
-                     </td>
-                     <td>
-                        <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <span class="S_no"> 6 </span>
-                     </td>
-                     <td>
-                        <span class="Style_3"> 4567</span>
-                     </td>
-                     <td>
-                        <span class="Style_3"> 12/01/2017</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">aabbcc</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">sample location</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">Draft</span>
-                     </td>
-                     <td>
-                        <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <span class="S_no"> 7 </span>
-                     </td>
-                     <td>
-                        <span class="Style_3"> 4567</span>
-                     </td>
-                     <td>
-                        <span class="Style_3"> 12/01/2017</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">aabbcc</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">sample location</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">Draft</span>
-                     </td>
-                     <td>
-                        <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
+                        <button mat-raised-button color="primary" [matMenuTriggerFor]="Action" (click)="ActionGetId(i)" > Action </button>
                      </td>
                   </tr>
                </tbody>
@@ -216,7 +92,13 @@
    <!-- <button mat-menu-item [routerLink]="['/inventory_deliveryorder_create']">
       <span>Edit</span>
    </button> -->
-   <a  [routerLink]="['/Inventory_deliveryorder_View']"><button mat-menu-item>
+   <button mat-menu-item (click)="View()">
       <span>View</span>
-   </button></a>
+   </button>
+   <button mat-menu-item (click)="Edit()">
+      <span>Edit</span>
+   </button>
+   <button *ngIf="ReceiveButtonShow" mat-menu-item (click)="View()">
+      <span>Validate</span>
+   </button>
 </mat-menu>

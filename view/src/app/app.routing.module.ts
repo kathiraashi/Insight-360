@@ -79,7 +79,6 @@ import { AuthGuard } from './Authentication/auth.guard';
    import { AccountsLoanComponent } from './Components/Accounts/Income/Loan/accounts-loan/accounts-loan.component';
    import { AccountsExpensesComponent } from './Components/Accounts/Expenses/accounts-expenses/accounts-expenses.component';
 // Product
-   import { MainProductSettingsComponent } from './Components/Settings/Product-Settings/main-product-settings/main-product-settings.component';
    import { ListProductComponent } from './Components/Product/list-product/list-product.component';
    import { CreateProductComponent } from './Components/Product/create-product/create-product.component';
    import { ViewProductComponent } from './Components/Product/view-product/view-product.component';
@@ -118,6 +117,24 @@ import { AuthGuard } from './Authentication/auth.guard';
    import { UserManagementListComponent } from './Components/Settings/UserManagement/user-management-list/user-management-list.component';
    import { UserPermissionsComponent } from './Components/Settings/UserPermissions/user-permissions/user-permissions.component';
    import { UserPermissionsGroupCreateComponent } from './Components/Settings/UserPermissions/user-permissions-group-create/user-permissions-group-create.component';
+   import { ProductConfigComponent } from './Components/Product/product-config/product-config.component';
+   import { MainProductSettingComponent } from './Components/Settings/Product-Settings/main-product-setting/main-product-setting.component';
+   import { UpdateProductComponent } from './Components/Product/update-product/update-product.component';
+import { CrmReviseCreateComponent } from './Components/CRM/Revise/crm-revise-create/crm-revise-create.component';
+import { CrmQuatationEditComponent } from './Components/CRM/Quotations/crm-quatation-edit/crm-quatation-edit.component';
+import { PurchaseRequestEditComponent } from './Components/Purchase/PurchaseRequest/purchase-request-edit/purchase-request-edit.component';
+import { PurchaseRequestApproveComponent } from './Components/Purchase/PurchaseRequest/purchase-request-approve/purchase-request-approve.component';
+import { PurchaseQuotationsEditComponent } from './Components/Purchase/PurchaseQuotation/purchase-quotations-edit/purchase-quotations-edit.component';
+import { ToReceiveEditComponent } from './Components/Inventory/To-Receive/to-receive-edit/to-receive-edit.component';
+import { InventoryDeliveryOrdersEditComponent } from './Components/Inventory/Delivery-Orders/inventory-delivery-orders-edit/inventory-delivery-orders-edit.component';
+import { EditLeavesComponent } from './Components/HRMS/Leaves/edit-leaves/edit-leaves.component';
+import { EditOndutyComponent } from './Components/HRMS/On-Duty/edit-onduty/edit-onduty.component';
+import { EditPermissionsComponent } from './Components/HRMS/Permissions/edit-permissions/edit-permissions.component';
+import { EditAdvanceComponent } from './Components/HRMS/Advance/edit-advance/edit-advance.component';
+import { AccountsIncomeComponent } from './Components/Accounts/Income/accounts-income/accounts-income.component';
+import { AccountsIncomeViewComponent } from './Components/Accounts/Income/accounts-income-view/accounts-income-view.component';
+import { AccountsBankRegisterComponent } from './Components/Accounts/Registers/accounts-bank-register/accounts-bank-register.component';
+import { AccountsCashRegisterComponent } from './Components/Accounts/Registers/accounts-cash-register/accounts-cash-register.component';
 
    const appRoutes: Routes = [
    {
@@ -151,7 +168,7 @@ import { AuthGuard } from './Authentication/auth.guard';
          data: {   animation: { value: 'List_leads'}   }
       },
       {
-         path: 'View_leads',
+         path: 'View_leads/:Lead_Id',
          component: LeadViewComponent,
          canActivate: [AuthGuard],
          data: {   animation: { value: 'View_leads'}   }
@@ -206,7 +223,7 @@ import { AuthGuard } from './Authentication/auth.guard';
          data: {   animation: { value: 'Crm_Customers_List'}   }
       },
       {
-         path: 'main_crm_customers_view',
+         path: 'main_crm_customers_view/:crm_customer_id',
          component: MainCrmCustomersViewComponent,
          canActivate: [AuthGuard],
          data: {   animation: { value: 'main_crm_customers_view'}   }
@@ -260,13 +277,25 @@ import { AuthGuard } from './Authentication/auth.guard';
        data: {   animation: { value: 'crm_config'}   }
       },
       {
-         path: 'crm_quotations_view',
+         path: 'crm_quotations_view/:Quote_Id',
          component: CrmQuatationsViewComponent,
          canActivate: [AuthGuard],
          data: {   animation: { value: 'crm_quotations_view'}   }
       },
       {
-         path: 'crm_saleorder_view',
+         path: 'crm_revise_create/:Quote_Id',
+         component: CrmReviseCreateComponent,
+         canActivate: [AuthGuard],
+         data: {   animation: { value: 'crm_revise_create'}   }
+      },
+      {
+         path: 'crm_quatation_edit/:Quote_Id',
+         component: CrmQuatationEditComponent,
+         canActivate: [AuthGuard],
+         data: {   animation: { value: 'crm_quatation_edit'}   }
+      },
+      {
+         path: 'crm_saleorder_view/:SaleOrder_Id',
          component: CrmSaleorderViewComponent,
          canActivate: [AuthGuard],
          data: {   animation: { value: 'crm_saleorder_view'}   }
@@ -327,16 +356,34 @@ import { AuthGuard } from './Authentication/auth.guard';
          data: {   animation: { value: 'Purchase_Quotation_Create'}   }
       },
       {
-         path: 'Purchase_Request_View',
+         path: 'Purchase_Request_View/:PurchaseRequest_Id',
          component: PurchaseRequestViewComponent,
          canActivate: [AuthGuard],
          data: {   animation: { value: 'Purchase_Request_View'}   }
       },
       {
-         path: 'Purchase_Quotation_View',
+         path: 'Purchase_Request_Edit/:PurchaseRequest_Id',
+         component: PurchaseRequestEditComponent,
+         canActivate: [AuthGuard],
+         data: {   animation: { value: 'Purchase_Request_Edit'}   }
+      },
+      {
+         path: 'Purchase_Request_Approve/:PurchaseRequest_Id',
+         component: PurchaseRequestApproveComponent,
+         canActivate: [AuthGuard],
+         data: {   animation: { value: 'Purchase_Request_Approve'}   }
+      },
+      {
+         path: 'Purchase_Quotation_View/:PurchaseQuote_Id',
          component: PurchaseQuotationsViewComponent,
          canActivate: [AuthGuard],
          data: {   animation: { value: 'Purchase_Quotation_View'}   }
+      },
+      {
+         path: 'Purchase_Quotation_Edit/:PurchaseQuote_Id',
+         component: PurchaseQuotationsEditComponent,
+         canActivate: [AuthGuard],
+         data: {   animation: { value: 'Purchase_Quotation_Edit'}   }
       },
       {
          path: 'Purchase_Order_Create',
@@ -369,7 +416,7 @@ import { AuthGuard } from './Authentication/auth.guard';
          data: {   animation: { value: 'Vendor_Bills_Create'}   }
       },
       {
-         path: 'main_vendor_view',
+         path: 'main_vendor_view/:Vendor_Id',
          component: MainVendorViewComponent,
          canActivate: [AuthGuard],
          data: {   animation: { value: 'main_vendor_view'}   }
@@ -400,10 +447,16 @@ import { AuthGuard } from './Authentication/auth.guard';
          data: {   animation: { value: 'Inventory_deliveryorder_list'}   }
       },
       {
-         path: 'Inventory_deliveryorder_View',
+         path: 'Inventory_deliveryorder_View/:Order_Id',
          component: InventoryDeliveryOrdersViewComponent,
          canActivate: [AuthGuard],
          data: {   animation: { value: 'Inventory_deliveryorder_View'}   }
+      },
+      {
+         path: 'Inventory_deliveryorder_Edit/:Order_Id',
+         component: InventoryDeliveryOrdersEditComponent,
+         canActivate: [AuthGuard],
+         data: {   animation: { value: 'Inventory_deliveryorder_Edit'}   }
       },
       {
          path: 'Stock_Values_List',
@@ -412,7 +465,7 @@ import { AuthGuard } from './Authentication/auth.guard';
          data: {   animation: { value: 'Stock_Values_List'}   }
       },
       {
-         path: 'Stock_Values_View',
+         path: 'Stock_Values_View/:Stock_Id',
          component: ViewStockValuesComponent,
          canActivate: [AuthGuard],
          data: {   animation: { value: 'Stock_Values_View'}   }
@@ -448,10 +501,16 @@ import { AuthGuard } from './Authentication/auth.guard';
          data: {   animation: { value: 'to_receive_list'}   }
       },
       {
-         path: 'to_receive_View',
+         path: 'to_receive_View/:ToReceive_Id',
          component: ToReceiveViewComponent,
          canActivate: [AuthGuard],
          data: {   animation: { value: 'to_receive_View'}   }
+      },
+      {
+         path: 'to_receive_Edit/:ToReceive_Id',
+         component: ToReceiveEditComponent,
+         canActivate: [AuthGuard],
+         data: {   animation: { value: 'to_receive_Edit'}   }
       },
    // Accounts
       {
@@ -629,15 +688,39 @@ import { AuthGuard } from './Authentication/auth.guard';
          data: {   animation: { value: 'vendor_payment_view'}   }
       },
       {
+         path: 'Accounts_Income',
+         component: AccountsIncomeComponent,
+         canActivate: [AuthGuard],
+         data: {   animation: { value: 'Accounts_Income'}   }
+      },
+      {
+         path: 'Accounts_Income_View',
+         component: AccountsIncomeViewComponent,
+         canActivate: [AuthGuard],
+         data: {   animation: { value: 'Accounts_Income_View'}   }
+      },
+      {
          path: 'Accounts_Expense',
          component: AccountsExpensesComponent,
          canActivate: [AuthGuard],
          data: {   animation: { value: 'Accounts_Expense'}   }
       },
+      {
+         path: 'Accounts_Bank_Register',
+         component: AccountsBankRegisterComponent,
+         canActivate: [AuthGuard],
+         data: {   animation: { value: 'Accounts_Bank_Register'}   }
+      },
+      {
+         path: 'Accounts_Cash_Register',
+         component: AccountsCashRegisterComponent,
+         canActivate: [AuthGuard],
+         data: {   animation: { value: 'Accounts_Cash_Register'}   }
+      },
    // Product
       {
          path: 'Product_Settings',
-         component: MainProductSettingsComponent,
+         component: MainProductSettingComponent,
          canActivate: [AuthGuard],
          data: {   animation: { value: 'Product_Settings'}   }
       },
@@ -654,11 +737,24 @@ import { AuthGuard } from './Authentication/auth.guard';
          data: {   animation: { value: 'Create_Product'}   }
       },
       {
-         path: 'View_Product',
+         path: 'View_Product/:Product_Id',
          component: ViewProductComponent,
          canActivate: [AuthGuard],
          data: {   animation: { value: 'View_Product'}   }
       },
+      {
+         path: 'Update_Product/:Product_Id',
+         component: UpdateProductComponent,
+         canActivate: [AuthGuard],
+         data: {   animation: { value: 'Update_Product'}   }
+      },
+      {
+         path: 'Product_config',
+         component: ProductConfigComponent,
+         canActivate: [AuthGuard],
+         data: {   animation: { value: 'Product_config'}   }
+      },
+
    // HR
       {
          path: 'Hr_Settings',
@@ -770,7 +866,13 @@ import { AuthGuard } from './Authentication/auth.guard';
          data: {   animation: { value: 'Create_Leaves'}   }
       },
       {
-         path: 'View_Leaves',
+         path: 'Edit_Leaves/:Leaves_Id',
+         component: EditLeavesComponent,
+         canActivate: [AuthGuard],
+         data: {   animation: { value: 'Edit_Leaves'}   }
+      },
+      {
+         path: 'View_Leaves/:Leaves_Id',
          component: ViewLeavesComponent,
          canActivate: [AuthGuard],
          data: {   animation: { value: 'View_Leaves'}   }
@@ -788,10 +890,16 @@ import { AuthGuard } from './Authentication/auth.guard';
          data: {   animation: { value: 'Create_Onduty'}   }
       },
       {
-         path: 'View_Onduty',
+         path: 'View_Onduty/:OnDuty_Id',
          component: ViewOnDutyComponent,
          canActivate: [AuthGuard],
          data: {   animation: { value: 'View_Onduty'}   }
+      },
+      {
+         path: 'Edit_Onduty/:OnDuty_Id',
+         component: EditOndutyComponent,
+         canActivate: [AuthGuard],
+         data: {   animation: { value: 'Edit_Onduty'}   }
       },
       {
          path: 'List_Permissions',
@@ -806,10 +914,16 @@ import { AuthGuard } from './Authentication/auth.guard';
          data: {   animation: { value: 'Create_Permissions'}   }
       },
       {
-         path: 'View_Permissions',
+         path: 'View_Permissions/:Permission_Id',
          component: ViewPermissionsComponent,
          canActivate: [AuthGuard],
          data: {   animation: { value: 'View_Permissions'}   }
+      },
+      {
+         path: 'Edit_Permissions/:Permission_Id',
+         component: EditPermissionsComponent,
+         canActivate: [AuthGuard],
+         data: {   animation: { value: 'Edit_Permissions'}   }
       },
       {
          path: 'List_Advance',
@@ -824,10 +938,16 @@ import { AuthGuard } from './Authentication/auth.guard';
          data: {   animation: { value: 'Create_Permissions'}   }
       },
       {
-         path: 'View_Advance',
+         path: 'View_Advance/:Advance_Id',
          component: ViewAdvanceComponent,
          canActivate: [AuthGuard],
          data: {   animation: { value: 'View_Advance'}   }
+      },
+      {
+         path: 'Edit_Advance/:Advance_Id',
+         component: EditAdvanceComponent,
+         canActivate: [AuthGuard],
+         data: {   animation: { value: 'Edit_Advance'}   }
       },
    // Settings
       {

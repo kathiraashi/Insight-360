@@ -265,6 +265,41 @@
    background-color: #4f6a7a;
    color: #ffffff;
 }
+.Sub_Menu_List.active>a{
+   background-color: #4f6a7a;
+   color: #ffffff;
+}
 .Header_Page .Menu_Tree .Menu_Tree_View .Menu_Tree_List:hover > .Sub_Menu{
    display: block;
 }
+.badge {
+   display: block;
+   position: absolute;
+   top: 6px;
+   left: 6px;
+   right: 0px;
+   margin-left: 0px;
+   font-size: 10px;
+   line-height: 16px;
+   height: 16px;
+   padding: 0 5px;
+   font-family: Arial, sans-serif;
+   color: #ffffff;
+   text-shadow: 0 1px rgba(0, 0, 0, 0.25);
+   border: 1px solid;
+   border-radius: 10px;
+   -webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.3), 0 1px 1px rgba(0, 0, 0, 0.08);
+   box-shadow: inset 0 1px rgba(255, 255, 255, 0.3), 0 1px 1px rgba(0, 0, 0, 0.08);
+ }
+ .badge {
+   background: #49b660;
+   border-color: #49b660;
+   background-image: -webkit-linear-gradient(top, #49b660, #49b660);
+   background-image: -moz-linear-gradient(top, #49b660, #49b660);
+   background-image: -o-linear-gradient(top, #49b660, #49b660);
+   background-image: linear-gradient(to bottom, #49b660, #49b660);
+ }
+ .sidecontent {
+   padding: 20px;
+ }
+ 

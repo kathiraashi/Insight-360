@@ -1,0 +1,84 @@
+<!-- page -->
+<div [ngClass]="{'Hide': !Loader}" class="DataLoaderStyle_1" style="width: 100%">
+   <div class="Loading">
+         <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+            <div class="rect6"></div>
+         </div>
+   </div>
+</div>
+<div class="page" style="margin-top:100px;">
+   <div class="container-fluid">
+      <!-- page identity -->
+      <div class="Page_Identity">
+         <div class="Page_Track">
+            <ul>
+               <li class="HeaderName">Advance</li>
+               <li class="arrow">>></li>
+               <li class="LinkName"><a [routerLink]="['/List_Advance']">List</a></li>
+               <li class="arrow">>></li>
+               <li>{{_Data?.Requested_By?.Employee_Name}} Edit</li>
+            </ul>
+         </div>
+      </div>
+      <form [formGroup]="Form">
+         <!-- Company details -->
+         <div class="Company_Details">
+            <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Personal <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span></h5><br>
+            <div class="row">
+               <div class="col-sm-4 Form_Input" >
+                  <label>Name:</label>
+                  <input type="text" placeholder="Department" formControlName="Requested_By">
+               </div>
+               <div class="col-sm-4 Form_Input" >
+                  <label>Department:</label>
+                  <input type="text" placeholder="Department" formControlName="Department">
+               </div>
+               <div class="col-sm-4 Form_Input" >
+                  <label>Designation:</label>
+                  <input type="text" placeholder="Designation" formControlName="Designation">
+               </div>
+               <!-- <div class="col-sm-4 Form_Input" >
+                  <label>Email Id:</label>
+                  <input type="text" placeholder="emailid" formControlName= > 
+               </div> -->
+               <div class="col-sm-4 Form_Input" >
+                  <label>Contact Number:</label>
+                  <input type="text" placeholder="contact number" formControlName="Contact_Number"> 
+               </div>
+            </div>
+         </div>
+         <!-- Company details -->
+         <div class="Company_Details">
+            <h5 style="color:#49B660;font-size:20px;font-weight: 600;"> Application <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span></h5><br>
+            <div class="row">
+               <div class="col-sm-4 Form_Input" >
+                  <label>Date:</label>
+                  <input matInput [matDatepicker]="DatePicker1" (click)="DatePicker1.open()" placeholder="From Date" formControlName="Advance_Date">
+                  <mat-datepicker #DatePicker1></mat-datepicker>
+               </div>
+               <div class="col-sm-4 Form_Input" >
+                  <label>Amount:</label>
+                  <input type="number" placeholder="Amount" formControlName="Amount"> 
+               </div>
+               <div class="col-sm-4 Form_TextArea" >
+                  <label>Description:</label>
+                  <textarea class="Description" rows="3" formControlName="Description"></textarea>
+               </div>
+            </div>
+         </div>
+      </form>
+   </div>
+</div>
+<!-- Footer -->
+<div class="Footer">
+   <button mat-raised-button color="primary" style = "top: 5px;" [disabled]="!Form.valid" (click)="Submit()"> Submit </button>
+</div>
+
+
+
+

@@ -1,4 +1,16 @@
 <app-header></app-header>
+<div [ngClass]="{'Hide': !Loader}" class="DataLoaderStyle_1" style="height: 100%; width: 100%;">
+   <div class="Loading">
+         <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+            <div class="rect6"></div>
+         </div>
+   </div>
+</div>
 <!-- Main Section -->
 <div class="Main_Section">
    <div class="Page_Section">
@@ -7,16 +19,16 @@
          <div class="Page_Identity">
             <div class="Page_Track">
                <ul>
-                  <li class="HeaderName">Home</li>
+                  <li class="HeaderName">CRM</li>
                   <li class="arrow">>></li>
-                  <li>CRM</li>
+                  <li>SaleOrder</li>
                </ul>
             </div>
          </div>
          <!-- Header part -->
          <div class="row header_part">
             <div class="col-sm-6">
-               <a [routerLink]="['/crm_saleorder_create']"><button class="Create_Button" mat-raised-button> + Create </button></a>
+               <a [routerLink]="['/crm_quotations_create']"><button class="Create_Button" mat-raised-button> + Create </button></a>
             </div>
             <div class="col-sm-6">
                <div class="Search_Section">
@@ -40,207 +52,32 @@
                   </tr>
                </thead>
                <tbody>
-                  <tr>
+                  <tr *ngFor="let item of _List; let i = index">
                      <td>
-                        <span class="S_no"> 1 </span>
+                        <span class="S_no"> {{ i+1 }} </span>
                      </td>
                      <td>
-                        <span class="Style_2">SaleOrder-a1653d4d
-                           <h6 class="Style_3">Create Date : 12/07/2017</h6>
+                        <span class="Style_2">{{item?.SaleOrder_Ref_Number}}
+                           <h6 class="Style_3">{{item?.updatedAt | date: 'dd/MM/yyyy'}}</h6>
                         </span>
                      </td>
                      <td>
-                        <span class="Style_2">Quote-a1653d4d
-                           <h6 class="Style_3">Valid Till : 12/01/1998</h6>
+                        <span class="Style_2">{{ item?.Quote_Id['Quote_Ref_Number']}}
+                           <h6 class="Style_3">{{item?.Quote_Id['Valid_Date'] | date: 'dd/MM/yyyy'}}</h6>
                         </span>
                      </td>
                      <td>
-                        <span class="Style_2">Customer Name
-                           <h6 class="Style_3">ganapathy, coimboture, Tamil Nadu</h6>
+                        <span class="Style_2">{{item?.Quote_Id['Company_Name'].Company_Name}}
                         </span>
                      </td>
                      <td>
-                        <span class="Style_3">Admin Name</span>
+                        <span class="Style_3">{{item?.Created_By.Name}}</span>
                      </td>
                      <td>
-                        <span class="Style_3">Draft</span>
+                        <span class="Style_3">{{item?.SaleOrder_Status}}</span>
                      </td>
                      <td>
-                        <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action"> Action </button>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <span class="S_no"> 2 </span>
-                     </td>
-                     <td>
-                        <span class="Style_2">SaleOrder-a1653d4d
-                           <h6 class="Style_3">Create Date : 12/07/2017</h6>
-                        </span>
-                     </td>
-                     <td>
-                        <span class="Style_2">Quote-a1653d4d
-                           <h6 class="Style_3">Valid Till : 12/01/1998</h6>
-                        </span>
-                     </td>
-                     <td>
-                        <span class="Style_2">Customer Name
-                           <h6 class="Style_3">ganapathy, coimboture, Tamil Nadu</h6>
-                        </span>
-                     </td>
-                     <td>
-                        <span class="Style_3">Admin Name</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">Sending</span>
-                     </td>
-                     <td>
-                        <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action"> Action </button>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <span class="S_no"> 3 </span>
-                     </td>
-                     <td>
-                        <span class="Style_2">SaleOrder-a1653d4d
-                           <h6 class="Style_3">Create Date : 12/07/2017</h6>
-                        </span>
-                     </td>
-                     <td>
-                        <span class="Style_2">Quote-a1653d4d
-                           <h6 class="Style_3">Valid Till : 12/01/1998</h6>
-                        </span>
-                     </td>
-                     <td>
-                        <span class="Style_2">Customer Name
-                           <h6 class="Style_3">ganapathy, coimboture, Tamil Nadu</h6>
-                        </span>
-                     </td>
-                     <td>
-                        <span class="Style_3">Admin Name</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">Send</span>
-                     </td>
-                     <td>
-                        <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action"> Action </button>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <span class="S_no"> 4 </span>
-                     </td>
-                     <td>
-                        <span class="Style_2">SaleOrder-a1653d4d
-                           <h6 class="Style_3">Create Date : 12/07/2017</h6>
-                        </span>
-                     </td>
-                     <td>
-                        <span class="Style_2">Quote-a1653d4d
-                           <h6 class="Style_3">Valid Till : 12/01/1998</h6>
-                        </span>
-                     </td>
-                     <td>
-                        <span class="Style_2">Customer Name
-                           <h6 class="Style_3">ganapathy, coimboture, Tamil Nadu</h6>
-                        </span>
-                     </td>
-                     <td>
-                        <span class="Style_3">Admin Name</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">Draft</span>
-                     </td>
-                     <td>
-                        <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action"> Action </button>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <span class="S_no"> 5 </span>
-                     </td>
-                     <td>
-                        <span class="Style_2">SaleOrder-a1653d4d
-                           <h6 class="Style_3">Create Date : 12/07/2017</h6>
-                        </span>
-                     </td>
-                     <td>
-                        <span class="Style_2">Quote-a1653d4d
-                           <h6 class="Style_3">Valid Till : 12/01/1998</h6>
-                        </span>
-                     </td>
-                     <td>
-                        <span class="Style_2">Customer Name
-                           <h6 class="Style_3">ganapathy, coimboture, Tamil Nadu</h6>
-                        </span>
-                     </td>
-                     <td>
-                        <span class="Style_3">Admin Name</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">Draft</span>
-                     </td>
-                     <td>
-                        <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action"> Action </button>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <span class="S_no"> 6 </span>
-                     </td>
-                     <td>
-                        <span class="Style_2">SaleOrder-a1653d4d
-                           <h6 class="Style_3">Create Date : 12/07/2017</h6>
-                        </span>
-                     </td>
-                     <td>
-                        <span class="Style_2">Quote-a1653d4d
-                           <h6 class="Style_3">Valid Till : 12/01/1998</h6>
-                        </span>
-                     </td>
-                     <td>
-                        <span class="Style_2">Customer Name
-                           <h6 class="Style_3">ganapathy, coimboture, Tamil Nadu</h6>
-                        </span>
-                     </td>
-                     <td>
-                        <span class="Style_3">Admin Name</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">Sending</span>
-                     </td>
-                     <td>
-                        <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <span class="S_no"> 7 </span>
-                     </td>
-                     <td>
-                        <span class="Style_2">SaleOrder-a1653d4d
-                           <h6 class="Style_3">Create Date : 12/07/2017</h6>
-                        </span>
-                     </td>
-                     <td>
-                        <span class="Style_2">Quote-a1653d4d
-                           <h6 class="Style_3">Valid Till : 12/01/1998</h6>
-                        </span>
-                     </td>
-                     <td>
-                        <span class="Style_2">Customer Name
-                           <h6 class="Style_3">ganapathy, coimboture, Tamil Nadu</h6>
-                        </span>
-                     </td>
-                     <td>
-                        <span class="Style_3">Admin Name</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">Sending</span>
-                     </td>
-                     <td>
-                        <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
+                        <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" (click)="ActionGetId(i)" > Action </button>
                      </td>
                   </tr>
                </tbody>
@@ -253,16 +90,16 @@
 
 <!-- Dropdown menus -->
 <mat-menu class="MenuStyleOne" #Action="matMenu" [overlapTrigger]="false" xPosition="after" yPosition="below" class="MenuStyleOne">
-   <a [routerLink]="['/crm_saleorder_create']"><button mat-menu-item>
+   <!-- <a [routerLink]="['/crm_saleorder_create']"><button mat-menu-item>
       <span>Edit</span>
-   </button></a>
-   <a [routerLink]="['/crm_saleorder_view']"><button mat-menu-item>
+   </button></a> -->
+   <a><button mat-menu-item (click)="View()">
       <span>View</span>
    </button></a>
    <button mat-menu-item>
       <span>Cancel</span>
    </button>
-   <button mat-menu-item>
+   <button *ngIf="DeliverButtonShow" mat-menu-item (click)="DeliverOrder()">
       <span>Deliver</span>
    </button>
    <button mat-menu-item>

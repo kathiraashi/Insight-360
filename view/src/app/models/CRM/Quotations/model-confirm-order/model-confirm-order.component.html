@@ -4,40 +4,45 @@
       <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
    </div>
    <div class="Model_Body">
-      <div class="row">
-         <div class="col-sm-6 Form_Select">
-            <label>Order Confirm By:</label>
-            <ng-select class="NgSelect" 
-               [(ngModel)]="Type1"
-               [items]="_OrderConfirmBy" 
-               [searchable]="true" 
-               placeholder="Order Confirm By">
-            </ng-select>   
+     <div [formGroup]="Form">
+         <div class="row">
+            <div class="col-sm-6 Form_Input" style="margin-bottom: 30px;" *ngIf="_CrmConfigList?.Sale_Ref_Number === 'Manual'" [ngClass]="{'Form_Err': !Form.controls['SaleOrder_Ref_Number'].pristine && Form.controls['SaleOrder_Ref_Number'].errors, 'Form_Success': Form.controls['SaleOrder_Ref_Number'].valid && !Form.controls['SaleOrder_Ref_Number'].pristine }">
+               <label>Sale Order Number:</label>
+               <input type="text" formControlName="SaleOrder_Ref_Number" style="margin-bottom: 0px;">
+               <p class="error" style="margin-bottom: -19px;" *ngIf="Form.controls['SaleOrder_Ref_Number'].errors && !Form.controls['SaleOrder_Ref_Number'].pristine">
+                  <span *ngIf="Form.controls['SaleOrder_Ref_Number'].errors.required"> Sale Order Number is required</span>
+                  <span *ngIf="Form.controls['SaleOrder_Ref_Number'].errors.SaleOrder_Ref_Number_NotAvailable">This Number already exist</span>
+               </p>  
+            </div>
+            <div class="col-sm-6 Form_Select">
+               <label>Order Confirm By:</label>
+               <ng-select class="NgSelect" 
+                  [items]="_OrderConfirmBy" 
+                  [searchable]="true"
+                  (change)="checkTypeConfirmation($event)"
+                  placeholder="Order Confirm By">
+               </ng-select>  
+            </div>
+            <div class="col-sm-6 Form_Input" *ngIf="selectedConfirmType === 'Email' || selectedConfirmType === 'Telephonic' || selectedConfirmType === 'Po'">
+               <label *ngIf="selectedConfirmType === 'Email'">Date:</label>
+               <label *ngIf="selectedConfirmType === 'Telephonic'">Telephonic:</label>
+               <label *ngIf="selectedConfirmType === 'Po'">PO Date:</label>
+               <input formControlName="Date" matInput [matDatepicker]="picker" (click)="picker.open()" placeholder="Date">
+               <mat-datepicker #picker></mat-datepicker>
+            </div>
+            <div class="col-sm-6 Form_Input" *ngIf="selectedConfirmType === 'Po'">
+                  <label>PO No:</label>
+                  <input type="text" formControlName="PO_Number">
+            </div>
          </div>
-         <div class="col-sm-6 Form_Input" *ngIf="Type1 === 'Email'">
-            <label>Date:</label>
-            <input matInput [matDatepicker]="picker" (click)="picker.open()" placeholder="Date">
-            <mat-datepicker #picker></mat-datepicker>
-         </div>
-         <div class="col-sm-6 Form_Input" *ngIf="Type1 === 'Telephonic'">
-            <label>TelePhonic:</label>
-            <input matInput [matDatepicker]="picker" (click)="picker.open()" placeholder="Date">
-            <mat-datepicker #picker></mat-datepicker>
-         </div>
-         <div class="col-sm-6 Form_Input" *ngIf="Type1 === 'Po'">
-            <label>PO No:</label>
-            <input type="text">
-         </div>
-         <div class="col-sm-6 Form_Input" *ngIf="Type1 === 'Po'">
-            <label>PO Date:</label>
-            <input matInput [matDatepicker]="picker" (click)="picker.open()" placeholder="Date">
-            <mat-datepicker #picker></mat-datepicker>
-         </div>
-      </div>
+     </div>
    </div>
    <div class="Model_Footer">
-      <button mat-raised-button color="primary" style="margin-left:75%"> Confirm </button>
-      <button mat-raised-button class="cancel"> Cancel </button>
+      <button mat-raised-button class="cancel" [disabled]="Uploading" (click)="Cancel()" > Cancel </button>
+      <button mat-raised-button color="primary" style="margin-left:75%" [disabled]="!Form.valid || Uploading" (click)="Confirm()" > 
+         <span *ngIf="!Uploading"> Confirm </span> 
+         <span *ngIf="Uploading" class="UploadingBtn"> <i class="fa fa-refresh fa-spin"></i> Loading... </span>
+      </button>
    </div>
 </div>
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalService } from 'ngx-bootstrap/modal';
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { BsModalRef } from 'ngx-bootstrap';
 
 import { ModelAccouttypeCrmSettingsComponent } from '../../../../../models/settings/crm_settings/model-accouttype-crm-settings/model-accouttype-crm-settings.component';
 import { DeleteConfirmationComponent } from '../../../../../Components/Common-Components/delete-confirmation/delete-confirmation.component';
@@ -51,7 +51,6 @@ export class AccountTypeCrmSettingsComponent implements OnInit {
                const CryptoBytes  = CryptoJS.AES.decrypt(ResponseData['Response'], 'SecretKeyOut@123');
                const DecryptedData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
                this._List = DecryptedData;
-               console.log(this._List);
             } else if (response['status'] === 400 || response['status'] === 417 && !ResponseData['Status']) {
                this.Toastr.NewToastrMessage({ Type: 'Error', Message: response['Message'] });
             } else if (response['status'] === 401 && !ResponseData['Status']) {

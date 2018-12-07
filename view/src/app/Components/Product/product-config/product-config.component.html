@@ -1,0 +1,95 @@
+<div [ngClass]="{'Hide': !Loader}" class="DataLoaderStyle_1" style="height: 100%; width: 100%;">
+   <div class="Loading">
+         <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+            <div class="rect6"></div>
+         </div>
+   </div>
+</div>
+<!-- Page Section -->
+<div class="page_section">
+   <div class="container-fluid">
+      <!-- Page Identity -->
+      <div class="Page_Identity">
+         <div class="Page_Track">
+            <ul>
+            <li class="HeaderName">Product</li>
+            <li class="arrow">>></li>
+            <li class= "LinkName">Product Configuration</li>
+            </ul>
+         </div>
+      </div>
+      <!-- Container Content -->
+      <div class="container-content">
+         <div class="content_gap">
+            <form [formGroup]="Form">
+               <div class="row">
+                  <div class="col-sm-4 Left_Date">
+                     <p>Product Variants</p>
+                  </div>
+                  <div class="col-sm-6 Right_data">
+                     <mat-radio-group formControlName="Product_Variants">
+                        <mat-radio-button value="No_ProductVariants"> No variants on products </mat-radio-button><br>
+                        <mat-radio-button value="Yes_ProductVariants"> Products can have several attributes,defining variants. </mat-radio-button>
+                     </mat-radio-group>
+                  </div>
+               </div><br><hr>
+               <div class="row">
+                  <div class="col-sm-4 Left_Date">
+                     <p>Bar Code</p>
+                  </div>
+                  <div class="col-sm-6 Right_data">
+                     <mat-radio-group formControlName="Bar_Code" (change)="BarCodeAndItemCodeDynamic($event.value)">
+                        <mat-radio-button value="No_BarCode"> No need to use Bar Code</mat-radio-button><br>
+                        <mat-radio-button value="Yes_BarCode"> Use Bar Code for products</mat-radio-button>
+                     </mat-radio-group>
+                  </div>
+               </div><br><hr>
+               <div class="row">
+                  <div class="col-sm-4 Left_Date">
+                     <p>Item Code</p>
+                  </div>
+                  <div class="col-sm-6 Right_data">
+                     <mat-radio-group formControlName="Item_Code">
+                        <mat-radio-button value="No_ItemCode"> No Need to use Item Code</mat-radio-button><br>
+                        <mat-radio-button value="Yes_ItemCode"> Use Item Code for Products</mat-radio-button>
+                     </mat-radio-group>
+                  </div>
+                  </div><br><hr>
+               <div class="row">
+                  <div class="col-sm-4 Left_Date">
+                     <p>HSN Code</p>
+                  </div>
+                  <div class="col-sm-6 Right_data">
+                     <mat-radio-group formControlName="HSN_Code">
+                        <mat-radio-button value="No_HSNCode"> No need to use HSN Code</mat-radio-button><br>
+                        <mat-radio-button value="Yes_HSNCode"> Use HSN code for products</mat-radio-button>
+                     </mat-radio-group>
+                  </div>
+               </div><br><hr>
+               <div class="row">
+                  <div class="col-sm-4 Left_Date">
+                     <p>Price List</p>
+                  </div>
+                  <div class="col-sm-6 Right_data">
+                     <mat-radio-group formControlName="Price_List">
+                        <mat-radio-button value="No_PriceList"> No need to use Price List</mat-radio-button><br>
+                        <mat-radio-button value="Yes_PriceList"> Use Price List for products</mat-radio-button>
+                     </mat-radio-group>
+                  </div>
+               </div><br>
+            </form>
+         </div>
+      </div>
+   </div>
+</div>
+
+<!-- Footer -->
+<div class="Footer">
+   <button *ngIf="_Create" mat-raised-button color="primary" style = "top: 5px;" (click)="Submit()" [disabled]="Form.status !== 'VALID'"> Submit </button>
+   <button *ngIf="_Update" mat-raised-button color="primary" style = "top: 5px;" (click)="Update()" [disabled]="!Form.touched || !Form.valid"> Update </button>
+</div>

@@ -1,3 +1,16 @@
+<!-- Loader -->
+<div [ngClass]="{'Hide': !Loader}" class="DataLoaderStyle_1" style="width: 100%; height: 100%; top: 15%">
+   <div class="Loading">
+         <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+            <div class="rect6"></div>
+         </div>
+   </div>
+</div>
 <!-- page -->
 <div class="page" style="margin-top:100px;margin-bottom:100px">
    <div class="container-fluid">
@@ -7,71 +20,153 @@
             <ul>
                <li class="HeaderName">Leads</li>
                <li class="arrow">>></li>
-               <li class="LinkName" ><a [routerLink]="['/List_leads']">Leads List</a></li>
+               <li class="LinkName" ><a [routerLink]="['/List_leads']">List</a></li>
                <li class="arrow">>></li>
-               <li>Leads Create</li>
+               <li>Create</li>
             </ul>
          </div>
       </div>
       <!-- Company details -->
-      <div class="Company_Details">
-         <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Lead <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span></h5><br>
-         <div class="row">
-            <div class="col-sm-4 Form_Input">
-               <label>Company Name: </label>
-               <input type="text">
-            </div>
-            <div class="col-sm-4 Form_Input">
-               <label>Email: </label>
-               <input type="text">
-            </div><br>
-            <div class="col-sm-4 Form_Select">
-               <label>Product: </label>
-               <ng-select class="NgSelect" 
-                  [items]="_Product" 
-                  [searchable]="true" 
-                  placeholder="Product">
-               </ng-select>
-            </div>
-            <div class="col-sm-4 Form_Input">
-               <label>Phone: </label>
-               <input type="text" >
-            </div>
-            <div class="col-sm-4 Form_Select">
-               <label>Lead Source: </label>
-               <ng-select class="NgSelect" 
-                  [items]="_LeadSource" 
-                  [searchable]="true" 
-                  placeholder="Lead source">
-               </ng-select>
-            </div>
-            <div class="col-sm-4 Form_Select">
-               <label>Priority: </label>
-               <ng-select class="NgSelect" 
-                  [items]="_Priority" 
-                  [searchable]="true" 
-                  placeholder="Priority">
-               </ng-select>
-            </div>
-            <div class="col-sm-4 Form_Select">
-               <label>Assign To: </label>
-               <ng-select class="NgSelect" 
-                  [items]="_Employee" 
-                  [searchable]="true" 
-                  placeholder="Employee">
-               </ng-select>
-            </div>
-            <div class="col-sm-4 Form_TextArea ">
-               <label>Address: </label>
-               <textarea class="message" rows="3"></textarea>
+      <form [formGroup]="Form">
+         <div class="Company_Details">
+            <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Lead <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span></h5><br>
+            <div class="row">
+               <div class="col-sm-4 Form_Input" [ngClass]="{'Form_Err': !Form.controls['Company_Name'].pristine && Form.controls['Company_Name'].errors, 'Form_Success': Form.controls['Company_Name'].valid && !Form.controls['Company_Name'].pristine }">
+                  <label>Company Name: </label>
+                  <input type="text" formControlName="Company_Name" >
+                  <p class="error" style="margin-top: -20px" *ngIf="Form.controls['Company_Name'].errors && !Form.controls['Company_Name'].pristine">
+                     <span *ngIf="Form.controls['Company_Name'].errors.required"> Company Name is required</span>
+                  </p>   
+               </div>
+               <div class="col-sm-4 Form_Input">
+                  <label>Email: </label>
+                  <input type="text" formControlName="Email">
+               </div><br>
+               <div class="col-sm-4 Form_Select">
+                  <label>Product: </label>
+                  <ng-select class="NgSelect" 
+                     [items]="_Product"
+                     bindLabel="Product_Name_withAttribute"
+                     bindValue="_id" 
+                     [multiple]= "true"
+                     [hideSelected]="true"
+                     [searchable]="true" 
+                     placeholder="Product"
+                     formControlName="Product">
+                  </ng-select>
+                  <p class="error" *ngIf="Form.controls['Product'].errors && !Form.controls['Product'].pristine">
+                     <span *ngIf="Form.controls['Product'].errors.required"> Product is required</span>
+                  </p>   
+               </div>
+               <div class="col-sm-4 Form_Input" [ngClass]="{'Form_Err': !Form.controls['Phone'].pristine && Form.controls['Phone'].errors, 'Form_Success': Form.controls['Phone'].valid && !Form.controls['Phone'].pristine }">
+                  <label>Phone: </label>
+                  <input type="text" formControlName="Phone" >
+                  <p class="error" style="margin-top: -20px" *ngIf="Form.controls['Phone'].errors && !Form.controls['Phone'].pristine">
+                     <span *ngIf="Form.controls['Phone'].errors.required"> Phone Number is required</span>
+                     <span *ngIf="Form.controls['Phone'].errors.Phone_NotAvailable"> Phone Number Already Exist!</span>
+                  </p>  
+               </div>
+               <div class="col-sm-4 Form_Select">
+                  <label>Lead Source: </label>
+                  <ng-select class="NgSelect" 
+                     [items]="_LeadSource"
+                     [bindValue]="'_id'"
+                     [bindLabel]="'Lead_Source'" 
+                     [searchable]="true"
+                     [addTag]="CreateNewLeadSource"
+                     placeholder="Lead source" 
+                     formControlName="Lead_Source">
+                     <!-- <ng-template ng-tag-tmp let-search="searchTerm"><b>Create New</b></ng-template> -->
+                  </ng-select>
+               </div>
+               <div class="col-sm-4 Form_Select">
+                  <label>Priority: </label>
+                  <ng-select class="NgSelect" 
+                     [items]="_Priority" 
+                     [searchable]="true" 
+                     placeholder="Priority" 
+                     formControlName="Priority">
+                  </ng-select>
+               </div>
+               <div class="col-sm-4 Form_Select">
+                  <label>Assign To: </label>
+                  <ng-select class="NgSelect" 
+                     [items]="_Employee" 
+                     [searchable]="true" 
+                     placeholder="Employee"
+                     formControlName="Assign_To">
+                  </ng-select>
+               </div>
             </div>
          </div>
-      </div>
+            <div class="Company_Details">
+               <h5 class="text-style-1"> Address </h5>
+               <div class="row">
+                  <div class="col-sm-4 Form_Input"  style="margin-top: 10px;" [ngClass]="{'Form_Err': !Form.controls['Street'].pristine && Form.controls['Street'].errors, 'Form_Success': Form.controls['Street'].valid && !Form.controls['Street'].pristine }">
+                     <input type="text" formControlName="Street" placeholder="No / Street">
+                     <p class="error" style="margin-top: -20px" *ngIf="Form.controls['Street'].errors && !Form.controls['Street'].pristine">
+                        <span *ngIf="Form.controls['Street'].errors.required"> Street Type is required</span>
+                     </p>
+                  </div>
+                  <div class="col-sm-4 Form_Input" style="margin-top: 10px;" [ngClass]="{'Form_Err': !Form.controls['Area'].pristine && Form.controls['Area'].errors, 'Form_Success': Form.controls['Area'].valid && !Form.controls['Area'].pristine }">
+                     <input type="text" formControlName="Area" placeholder="Area">
+                     <p class="error" style="margin-top: -20px" *ngIf="Form.controls['Area'].errors && !Form.controls['Area'].pristine">
+                        <span *ngIf="Form.controls['Area'].errors.required"> Area is required</span>
+                     </p>
+                  </div>
+                  <div class="col-sm-4 Form_Select" style="margin-top: 15px;">
+                     <ng-select class="NgSelect ValueBold"
+                                 [items]="AllCountry"
+                                 [bindLabel]="'Country_Name'" 
+                                 formControlName="Country" 
+                                 [searchable]="true" 
+                                 placeholder="Country" 
+                                 (ngModelChange)="Country_Change()">
+                     </ng-select>
+                     <p class="error" style="margin-top: 0px" *ngIf="Form.controls['Country'].errors && Form.controls['Country'].touched">
+                        <span *ngIf="Form.controls['Country'].errors.required"> Country is required</span>
+                     </p>
+                  </div>
+                  <div class="col-sm-4 Form_Select" style="margin-top: 10px;" >
+                     <ng-select class="NgSelect ValueBold"
+                                 [items]="AllStateOfCountry"
+                                 [bindLabel]="'State_Name'" 
+                                 formControlName="State" 
+                                 [searchable]="true" 
+                                 placeholder="State" 
+                                 (ngModelChange)="State_Change()">
+                     </ng-select>
+                     <p class="error" style="margin-top: 0px" *ngIf="Form.controls['State'].errors && Form.controls['State'].touched">
+                        <span *ngIf="Form.controls['State'].errors.required"> State is required</span>
+                     </p>
+                  </div>
+                  <div class="col-sm-4 Form_Select" style="margin-top: 10px;">
+                     <ng-select class="NgSelect ValueBold" 
+                                 [items]="AllCityOfState"
+                                 [bindLabel]="'City_Name'" 
+                                 formControlName="City" 
+                                 [searchable]="true" 
+                                 placeholder="City">
+                     </ng-select>
+                     <p class="error" style="margin-top: 0px" *ngIf="Form.controls['City'].errors && Form.controls['City'].touched">
+                        <span *ngIf="Form.controls['City'].errors.required"> City is required</span>
+                     </p>
+                  </div>
+                  <div class="col-sm-4 Form_Input" style="margin-top: 10px;" [ngClass]="{'Form_Err': !Form.controls['ZipCode'].pristine && Form.controls['ZipCode'].errors, 'Form_Success': Form.controls['ZipCode'].valid && !Form.controls['ZipCode'].pristine }">
+                     <input type="text" formControlName="ZipCode" placeholder="Zip Code" style="margin-top: 0">
+                     <p class="error" style="margin-top: -20px" *ngIf="Form.controls['ZipCode'].errors && !Form.controls['ZipCode'].pristine">
+                        <span *ngIf="Form.controls['ZipCode'].errors.required"> Zip Code is required</span>
+                        <span *ngIf="Form.controls['ZipCode'].errors.pattern"> Zip Code must be in numbers</span>
+                     </p>
+                  </div>
+               </div>
+            </div>
+      </form>
    </div>
 </div>
 <!-- Footer -->
 <div class="Footer">
-   <button mat-raised-button color="primary" style = "top: 5px;"> Submit </button>
+   <button mat-raised-button color="primary" style = "top: 5px;" (click)="Submit()" [disabled]="!Form.valid"> Submit </button>
 </div>
    
    

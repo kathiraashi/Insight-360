@@ -1,3 +1,16 @@
+<div [ngClass]="{'Hide': !Loader}" class="DataLoaderStyle_1" style="width: 100%">
+   <div class="Loading">
+         <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+            <div class="rect6"></div>
+         </div>
+   </div>
+ </div>
+ <div class="LoadedDataStyle_1" [ngClass]="{'Show': !Loader}">
 <!-- Main Section -->
 <div class="Main_Section">
    <div class="page_section">
@@ -6,9 +19,9 @@
          <div class="Page_Identity">
             <div class="Page_Track">
                <ul >
-                  <li class="HeaderName">Home</li>
+                  <li class="HeaderName">Purchase</li>
                   <li class="arrow">>></li>
-                  <li>Purchase Request</li>
+                  <li>Request</li>
                </ul>
             </div>
          </div>
@@ -32,119 +45,30 @@
                      <th>S.no</th>
                      <th>Request No</th>
                      <th>Requested By</th>
-                     <th>Vendor</th>
-                     <th>Date</th>
+                     <th>Requested Date</th>
                      <th>Status</th>
-                     <th>Total</th>
                      <th>Action</th>
                   </tr>
                </thead>
                <tbody>
-                  <tr>
+                  <tr *ngFor=" let item of _List; let i = index">
                      <td>
-                        <span class="S_no"> 1 </span>
+                        <span class="S_no"> {{i+1}} </span>
                      </td>
                      <td>
-                        <span class="Style_1">344354</span>
+                        <span class="Style_1">{{item?.Requested_Number}}</span>
                      </td>
                      <td>
-                        <span class="Style_1"> aashi</span>
+                        <span class="Style_1">{{item?.Last_Modified_By['Name']}}</span>
                      </td>
                      <td>
-                        <span class="Style_1">xxx</span>
+                        <span class="Style_1">{{item?.Requested_Date | date: 'dd/MM/yyyy'}}</span>
                      </td>
                      <td>
-                        <span class="Style_1">25/05/2017</span>
+                        <span class="Style_1">{{item?.Request_Status}}</span>
                      </td>
                      <td>
-                        <span class="Style_1">Requested</span>
-                     </td>
-                     <td>
-                        <span class="Style_1">35000</span>
-                     </td>
-                     <td>
-                        <button color="primary" mat-raised-button [matMenuTriggerFor]="Action">Action
-                        </button>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <span class="S_no"> 2 </span>
-                     </td>
-                     <td>
-                        <span class="Style_1">344354</span>
-                     </td>
-                     <td>
-                        <span class="Style_1"> aashi</span>
-                     </td>
-                     <td>
-                        <span class="Style_1">xxx</span>
-                     </td>
-                     <td>
-                        <span class="Style_1">25/05/2017</span>
-                     </td>
-                     <td>
-                        <span class="Style_1">Requested</span>
-                     </td>
-                     <td>
-                        <span class="Style_1">35000</span>
-                     </td>
-                     <td>
-                        <button color="primary" mat-raised-button [matMenuTriggerFor]="Action">Action
-                        </button>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <span class="S_no"> 3 </span>
-                     </td>
-                     <td>
-                        <span class="Style_1">344354</span>
-                     </td>
-                     <td>
-                        <span class="Style_1"> aashi</span>
-                     </td>
-                     <td>
-                        <span class="Style_1">xxx</span>
-                     </td>
-                     <td>
-                        <span class="Style_1">25/05/2017</span>
-                     </td>
-                     <td>
-                        <span class="Style_1">Requested</span>
-                     </td>
-                     <td>
-                        <span class="Style_1">35000</span>
-                     </td>
-                     <td>
-                        <button color="primary" mat-raised-button [matMenuTriggerFor]="Action">Action
-                        </button>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <span class="S_no"> 4 </span>
-                     </td>
-                     <td>
-                        <span class="Style_1">344354</span>
-                     </td>
-                     <td>
-                        <span class="Style_1"> aashi</span>
-                     </td>
-                     <td>
-                        <span class="Style_1">xxx</span>
-                     </td>
-                     <td>
-                        <span class="Style_1">25/05/2017</span>
-                     </td>
-                     <td>
-                        <span class="Style_1">Requested</span>
-                     </td>
-                     <td>
-                        <span class="Style_1">35000</span>
-                     </td>
-                     <td>
-                        <button color="primary" mat-raised-button [matMenuTriggerFor]="Action">Action
+                        <button color="primary" mat-raised-button [matMenuTriggerFor]="Action" (click)="ActionIndex(i)">Action
                         </button>
                      </td>
                   </tr>
@@ -157,24 +81,30 @@
 
 <!-- Dropdown menus -->
 <mat-menu class="MenuStyleOne" #Action="matMenu" [overlapTrigger]="false" xPosition="after" yPosition="below" class="MenuStyleOne">
-   <a [routerLink]="['/purchase_request_create']"><button mat-menu-item>
+   <a *ngIf="Editable"><button mat-menu-item (click)="EditPurchaseRequest()">
       <span>Edit</span>
    </button></a>
-   <a [routerLink]="['/Purchase_Request_View']"><button mat-menu-item>
+   <a><button mat-menu-item (click)="ViewPurchaseRequest()">
       <span>View</span>
    </button></a>
-   <button mat-menu-item>
+   <a *ngIf="Cancelable"><button mat-menu-item (click)="CancelPurchaseRequest()">
       <span>Cancel</span>
-   </button>
-   <button mat-menu-item>
+   </button></a>
+   <a *ngIf="RequestApprove"><button mat-menu-item (click)="ApprovePurchaseRequest()">
+      <span>Send to approve</span>
+   </button></a>
+   <a *ngIf="Approve"><button mat-menu-item (click)="ViewPurchaseRequest()">
       <span>Approve</span>
-   </button>
-   <button mat-menu-item>
+   </button></a>
+   <a *ngIf="Modification"><button mat-menu-item (click)="ModifyPurchaseRequest()">
       <span>Modify</span>
-   </button>
-   <button mat-menu-item>
+   </button></a>
+   <a *ngIf="Rejectable"><button mat-menu-item (click)="RejectPurchaseRequest()">
       <span>Reject</span>
-   </button>
+   </button></a>
+   <a *ngIf="CancelApproval"><button mat-menu-item (click)="CancelApprovalPurchaseRequest()">
+      <span>Cancel Approval</span>
+   </button></a>
 </mat-menu>
    
    

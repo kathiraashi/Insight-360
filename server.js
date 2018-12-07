@@ -16,6 +16,7 @@ var app = express();
    process.setMaxListeners(0);
    process.on('unhandledRejection', (reason, promise) => {
       ErrorManagement.ErrorHandling.ErrorLogCreation('', '', '', reason);
+      console.log(reason);
       console.error("'Un Handled Rejection' Error Log File - " + new Date().toLocaleDateString());
    });
    process.on('uncaughtException', function (err) {
@@ -42,15 +43,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Every request Log Creation
-app.use('/API/', function (req, res, next) {
-   if (req.body.Info !== '' && req.body.Info){
-      LogManagement.LogHandling.LogCreation(req);
-      return next();
-   }else {
-      ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Security Error For Every Request Log Creation', 'Server.js');
-      return res.status(406).send({Status: false, Message: 'Invalid Arguments'});
-   }
-});
+// app.use('/API/', function (req, res, next) {
+//    if (req.body.Info !== '' && req.body.Info){
+//       LogManagement.LogHandling.LogCreation(req);
+//       return next();
+//    }else {
+//       ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Security Error For Every Request Log Creation', 'Server.js');
+//       return res.status(406).send({Status: false, Message: 'Invalid Arguments'});
+//    }
+// });
 
  require('./server/web/routes/Admin/RegisterAndLogin.routes.js')(app); // Without Company Id, User Id and Authorization
 
@@ -87,6 +88,26 @@ app.use('/API/', function (req, res, next) {
 
 // Admin
    require('./server/web/routes/Admin/AdminManagement.routes.js')(app);
+// Configuration
+   require('./server/web/routes/Configuration/Configuration.routes.js')(app);
+// Product
+   require('./server/web/routes/Product/Product.routes.js')(app);
+// Leads
+   require('./server/web/routes/Lead/Lead.routes.js')(app);
+// Crm
+   require('./server/web/routes/CRM/Crm.routes.js')(app);
+// Hr
+   require('./server/web/routes/HR/Hr.routes.js')(app);
+// Hrms
+   require('./server/web/routes/HRMS/Hrms.routes.js')(app);
+// Purchase
+   require('./server/web/routes/Purchase/Purchase.routes.js')(app);
+// Inventory
+   require('./server/web/routes/Inventory/Inventory.routes.js')(app);
+// Accounts
+   require('./server/web/routes/Accounts/Accounts.routes.js')(app);
+// Notification
+   require('./server/web/routes/Notification/Notify.routes.js')(app);
 // Settings
    // CRM Settings
       require('./server/web/routes/settings/CRM_Settings.routes.js')(app);
@@ -102,6 +123,8 @@ app.use('/API/', function (req, res, next) {
     require('./server/web/routes/settings/Company_Settings.routes.js')(app);
     // Inventory Settings
     require('./server/web/routes/settings/Inventory_Settings.routes.js')(app);
+    // Product Settings
+    require('./server/web/routes/settings/Product_Settings.routes.js')(app);
 
 
 app.use(express.static(__dirname + '/view/dist/view/'));

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { BsModalService } from 'ngx-bootstrap/modal';
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { BsModalRef } from 'ngx-bootstrap';
 
 import { ModelCompanyinfoCompanysettingsComponent } from '../../../../../models/settings/company_settings/model-companyinfo-companysettings/model-companyinfo-companysettings.component';
 

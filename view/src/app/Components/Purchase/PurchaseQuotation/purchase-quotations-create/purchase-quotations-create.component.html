@@ -1,3 +1,16 @@
+<div [ngClass]="{'Hide': !Loader}" class="DataLoaderStyle_1" style="width: 100%">
+      <div class="Loading">
+            <div class="spinner">
+               <div class="rect1"></div>
+               <div class="rect2"></div>
+               <div class="rect3"></div>
+               <div class="rect4"></div>
+               <div class="rect5"></div>
+               <div class="rect6"></div>
+            </div>
+      </div>
+   </div>
+   <div class="LoadedDataStyle_1" [ngClass]="{'Show': !Loader}"></div>
 <!-- Page -->
 <div class="page" style="margin-top:100px;">
    <div class="container-fluid">
@@ -5,15 +18,15 @@
       <div class="Page_Identity">
          <div class="Page_Track">
             <ul >
-               <li class="HeaderName">Home</li>
+               <li class="HeaderName">Purchase</li>
                <li class="arrow">>></li>
-               <li class= "LinkName"><a [routerLink]="['/Purchase_Quotations_List']">Purchase Quotations List</a></li>
+               <li class= "LinkName"><a [routerLink]="['/Purchase_Quotations_List']">Quotations List</a></li>
                <li class="arrow">>></li>
-               <li >Purchase Quotations Create</li>
+               <li >Create</li>
             </ul>
          </div>
       </div>
-      <form>
+      <form [formGroup]="Form">
          <!-- Company details -->
          <div class="Company_Details">
             <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Purchase 
@@ -21,50 +34,71 @@
             </h5>
             <br>
             <div class="row">
-               <div class="col-sm-4 Form_Select">
+               <div class="col-sm-4 Form_Select" >
                   <label>Vendor Name:</label>
                   <ng-select class="NgSelect" 
-                     [items]="_VendorName" 
-                     [searchable]="true" 
+                     [items]="_VendorList" 
+                     [bindLabel]="'Vendor_Name'"
+                     [bindValue]="'_id'"
+                     [searchable]="true"
+                     (ngModelChange)="getContact($event)"
+                     formControlName="Vendor_Name"
                      placeholder="Vendor Name">
                   </ng-select>
+                   <p class="error" *ngIf="Form.controls['Vendor_Name'].errors && !Form.controls['Vendor_Name'].pristine">
+                     <span *ngIf="Form.controls['Vendor_Name'].errors.required"> Vendor Name is required</span>
+                  </p>  
                </div>
-               <div class="col-sm-4 Form_Select">
+               <div class="col-sm-4 Form_Select" >
                   <label>Contact:</label>
                   <ng-select class="NgSelect" 
-                     [items]="_Contact" 
+                     [items]="_ContactList"
+                     [bindLabel]="'Name'"
+                     [bindValue]="'_id'" 
                      [searchable]="true" 
+                     formControlName="Contact"
                      placeholder="Contact">
                   </ng-select>
+                  <p class="error" *ngIf="Form.controls['Contact'].errors && !Form.controls['Contact'].pristine">
+                     <span *ngIf="Form.controls['Contact'].errors.required"> Contact is required</span>
+                  </p>  
                </div>
-               <div class="col-sm-4 Form_Select">
+               <div *ngIf="_ConfigList.Purchase_Quotation !== 'Auto'" style="margin-bottom: 30px" class="col-sm-4 Form_Input" [ngClass]="{'Form_Err': !Form.controls['Quote_Ref_Number'].pristine && Form.controls['Quote_Ref_Number'].errors, 'Form_Success': Form.controls['Quote_Ref_Number'].valid && !Form.controls['Quote_Ref_Number'].pristine }">
                   <label>Quote Ref No:</label>
-                  <ng-select class="NgSelect" 
-                     [items]="_QuoteRefNo" 
-                     [searchable]="true" 
-                     placeholder="Quote Ref No">
-                  </ng-select>
+                  <input type="text" formControlName="Quote_Ref_Number">
+                  <p class="error" *ngIf="Form.controls['Quote_Ref_Number'].errors && !Form.controls['Quote_Ref_Number'].pristine">
+                     <span *ngIf="Form.controls['Quote_Ref_Number'].errors.required"> Quote Number is required</span>
+                     <span *ngIf="Form.controls['Quote_Ref_Number'].errors.QuoteNumber_NotAvailable"> Quote Number Already Exist!</span>
+                  </p>  
                </div>
                <div class="col-sm-4 Form_Select">
                   <label>Purchase Request:</label>
                   <ng-select class="NgSelect" 
-                     [items]="_PurchaseRequest" 
-                     [searchable]="true" 
+                     [items]="PurchaseRequest_Ref_Number"
+                     [bindValue]="'_id'"
+                     [bindLabel]="'Requested_Number'" 
+                     [searchable]="true"
+                     (ngModelChange)="getPurchaseRequest_ProductDetails($event)"
+                     formControlName="Purchase_Request_Number" 
                      placeholder="Purchase Request">
                   </ng-select>
                </div>
                <div class="col-sm-4 Form_Input">
                   <label>Date:</label>
-                  <input matInput [matDatepicker]="picker" (click)="picker.open()" placeholder="Date">
-                  <mat-datepicker #picker></mat-datepicker>
+                  <input matInput [matDatepicker]="picker1" formControlName="Quote_Date" (click)="picker1.open()" placeholder="Date" >
+                  <mat-datepicker #picker1></mat-datepicker>
+                  <p class="error" style="margin-bottom: -19px" *ngIf="Form.controls['Quote_Date'].errors && !Form.controls['Quote_Date'].pristine">
+                     <span *ngIf="Form.controls['Quote_Date'].errors.required"> Date is required</span>
+                  </p> 
                </div>
                <div class="col-sm-4 Form_Input">
                   <label>Subject:</label>
-                  <input type="text">
+                  <input type="text" formControlName="Subject">
                </div>
                <div class="col-sm-4 Form_Input">
                   <label>Validity Till:</label>
-                  <input type="text">
+                  <input matInput [matDatepicker]="picker2" formControlName="Valid_Date" (click)="picker2.open()" placeholder="Date">
+                  <mat-datepicker #picker2></mat-datepicker>
                </div>
             </div>
          </div>
@@ -83,7 +117,7 @@
                   </div>
                   <!-- Product details -->
                   <div class="Product_Details" *ngIf="Active_Tab === 'Product_Details'">
-                     <button mat-raised-button color="primary" class="pull-right"> Add Product </button><br>
+                     <button mat-raised-button color="primary" class="pull-right" (click)="addItem()"> Add Product </button><br>
                      <br>
                      <table class="table_section">
                         <thead class="table_head">
@@ -99,66 +133,113 @@
                            </tr>
                         </thead>
                         <tbody>
-                           <tr>
-                              <td >1</td>
-                              <td class="Form_Select">
-                                 <ng-select class="NgSelect" 
-                                    [items]="_Product" 
-                                    [searchable]="true" 
-                                    placeholder="Product">
-                                 </ng-select>
-                              </td>
-                              <td class="Form_TextArea">
-                                 <textarea class="" rows="2"></textarea>
-                              </td>
-                              <td class="Form_Input">
-                                 <input type="text">
-                              </td>
-                              <td class="Form_Input">
-                                 <input type="text">
-                              </td>
-                              <td class="Form_Select">
-                                 <ng-select class="NgSelect" 
-                                    [items]="_Tax" 
-                                    [searchable]="true" 
-                                    placeholder="Tax">
-                                 </ng-select>
-                              </td>
-                              <td class="Form_Input">
-                                 <input type="text">
-                              </td>
-                              <td>
-                                 <span class="Action_Section Bg_Danger">
-                                    <i class="material-icons">delete</i>
-                                 </span> 
-                              </td>
-                           </tr>
+                           <ng-container formArrayName="items" *ngFor="let item of Form.controls['items'].controls; let i = index;" >
+                                 <tr *ngIf="!SubLoader" [formGroupName]="i">
+                                       <td >{{i+1}}</td>
+                                       <td class="Form_Select">
+                                          <ng-select class="NgSelect DisabledHide" 
+                                             [items]="_temProductList" 
+                                             [bindLabel]="'Product_Name_withAttribute'"
+                                             [bindValue]="'_id'"
+                                             [searchable]="true" 
+                                             formControlName="Product"
+                                             (ngModelChange)="setProductDetails($event, i)"
+                                             placeholder="Product">
+                                          </ng-select>
+                                       </td>
+                                       <td class="Form_TextArea">
+                                          <textarea class="" rows="2" formControlName="Description" ></textarea>
+                                       </td>
+                                       <td class="Form_Input">
+                                          <input type="text" formControlName="Quantity" (ngModelChange)="getInlineTaxValue(i);">
+                                       </td>
+                                       <td class="Form_Input">
+                                          <input type="text" formControlName="Price" (ngModelChange)="getInlineTaxValue(i);">
+                                       </td>
+                                       <td class="Form_Select">
+                                          <ng-select class="NgSelect" 
+                                             [items]="_Tax" 
+                                             [bindLabel]="'Tax_Name'"
+                                             [bindValue]="'_id'"
+                                             [searchable]="true" 
+                                             [multiple]="true"
+                                             [hideSelected]="true"
+                                             formControlName="Product_Tax"
+                                             (ngModelChange)="getInlineTaxValue(i);"
+                                             placeholder="Tax">
+                                          </ng-select>
+                                       </td>
+                                       <td class="Form_Input">
+                                          <input type="text" formControlName="Product_Total" [readOnly]="true">
+                                       </td>
+                                       <td>
+                                          <button (click)="Delete(i)" *ngIf="items?.length > 1" class="Bg_Danger" mat-mini-fab color="primary" >
+                                             <i class="material-icons">delete</i>
+                                          </button> 
+                                       </td>
+                                 </tr>
+                                 <tr *ngIf="SubLoader">
+                                    <td colspan="8">
+                                          <div [ngClass]="{'Hide': !SubLoader}" class="DataLoaderStyle_1" style="min-height: 10px; max-height: 150px; height: 100%; width: 100%; top: 105px; border: none">
+                                             <div class="Loading">
+                                                   <div class="spinner">
+                                                      <div class="rect1"></div>
+                                                      <div class="rect2"></div>
+                                                      <div class="rect3"></div>
+                                                      <div class="rect4"></div>
+                                                      <div class="rect5"></div>
+                                                      <div class="rect6"></div>
+                                                   </div>
+                                             </div>
+                                          </div>
+                                          <div class="LoadedDataStyle_1" [ngClass]="{'Show': !SubLoader}"></div>
+                                       </td>
+                                 </tr>
+                           </ng-container>
                         </tbody>
                      </table><br>
                      <div class="row">
                         <div class="col-sm-4">
                         </div>
-                        <div class="col-sm-4">
-                        </div>
-                        <div class="col-sm-4 Form_Input">
+                        <div class="col-sm-4 Form_Input" style="text-align: right; top: 11px">
                            <label>Sub Total:</label>
-                           <input type="text">
-                        </div>
-                        <div class="col-sm-4">
-                        </div>
-                        <div class="col-sm-4">
                         </div>
                         <div class="col-sm-4 Form_Input">
+                           <input type="text" formControlName="Sub_Total">
+                        </div>
+                        <div class="col-sm-4">
+                        </div>
+                        <div class="col-sm-4 Form_Input" style="text-align: right; top: 11px">
                            <label>Tax:</label>
-                           <input type="text">
+                        </div>
+                        <div class="col-sm-4 Form_Select" style="margin: 5px 0 5px 0">
+                           <ng-select class="NgSelect" 
+                              [items]="_Tax" 
+                              [bindLabel]="'Tax_Name'"
+                              [bindValue]="'_id'"
+                              [searchable]="true" 
+                              [multiple]="true"
+                              [hideSelected]="true"
+                              formControlName="Global_Product_Tax"
+                              (change)="globalOverAllCalculation()"
+                              placeholder="Tax">
+                           </ng-select>
                         </div>
                         <div class="col-sm-4">
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-4 Form_Input" style="text-align: right; top: 11px">
+                           <label>Total Tax:</label>
                         </div>
                         <div class="col-sm-4 Form_Input">
+                           <input type="text" formControlName="Tax">
+                        </div>
+                        <div class="col-sm-4">
+                        </div>
+                        <div class="col-sm-4 Form_Input" style="text-align: right; top: 11px">
                            <label>Total:</label>
-                           <input type="text">
+                        </div>
+                        <div class="col-sm-4 Form_Input">
+                           <input type="text" formControlName="Total">
                         </div>
                      </div>
                   </div>
@@ -168,7 +249,6 @@
                      <div class="row">
                         <div class="col-sm-4 Form_Select">
                            <ng-select class="NgSelect" 
-                              [items]="_QuoteTerms" 
                               [searchable]="true" 
                               placeholder="Quote Terms">
                            </ng-select>
@@ -186,7 +266,7 @@
 </div>
 <!-- Footer -->
 <div class="Footer">
-   <button mat-raised-button color="primary" style = "top: 5px;"> Submit </button>
+   <button mat-raised-button color="primary" style = "top: 5px;" [disabled]="!Form.valid" (click)="Submit()"> Submit </button>
 </div>
    
 

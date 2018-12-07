@@ -5,72 +5,80 @@
       <div class="Page_Identity">
          <div class="Page_Track">
             <ul>
-               <li class="HeaderName">Home</li>
+               <li class="HeaderName">Permissions</li>
                <li class="arrow">>></li>
-               <li class="LinkName"><a [routerLink]="['/List_Permissions']">Permissions List</a></li>
+               <li class="LinkName"><a [routerLink]="['/List_Permissions']">List</a></li>
                <li class="arrow">>></li>
-               <li>Permissions Create</li>
+               <li>Create</li>
             </ul>
          </div>
       </div>
-      <!-- Company details -->
-      <div class="Company_Details">
-         <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Personal <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span></h5><br>
-         <div class="row">
-            <div class="col-sm-4 Form_Input" >
-               <label>Name:</label>
-               <ng-select class="NgSelect" 
-                  [items]="_Name" 
-                  [searchable]="true" 
-                  placeholder="Name">
-               </ng-select>
-            </div>
-            <div class="col-sm-4 Form_Input" >
-               <label>Department:</label>
-               <input type="text" placeholder="Department">
-            </div>
-            <div class="col-sm-4 Form_Input" >
-               <label>Designation:</label>
-               <input type="text" placeholder="Designation">
-            </div>
-            <div class="col-sm-4 Form_Input" >
-               <label>Email Id:</label>
-               <input type="text" placeholder="emailid"> 
-            </div>
-            <div class="col-sm-4 Form_Input" >
-               <label>Contact Number:</label>
-               <input type="text" placeholder="contactnumber"> 
+      <form [formGroup]="Form">
+         <!-- Company details -->
+         <div class="Company_Details">
+            <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Personal <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span></h5><br>
+            <div class="row">
+               <div class="col-sm-4 Form_Input" >
+                  <label>Name:</label>
+                  <ng-select class="NgSelect" 
+                        [items]="_Name"
+                        [bindLabel]="'Employee_Name'"
+                        [bindValue]="'_id'"
+                        [searchable]="true" 
+                        placeholder="Name"
+                        (change)="selectedEmployee($event)"
+                     formControlName="Requested_By">
+                  </ng-select>
+               </div>
+               <div class="col-sm-4 Form_Input" >
+                  <label>Department:</label>
+                  <input type="text" placeholder="Department" formControlName="Department">
+               </div>
+               <div class="col-sm-4 Form_Input" >
+                  <label>Designation:</label>
+                  <input type="text" placeholder="Designation" formControlName="Designation">
+               </div>
+               <!-- <div class="col-sm-4 Form_Input" >
+                  <label>Email Id:</label>
+                  <input type="text" placeholder="emailid" formControlName= > 
+               </div> -->
+               <div class="col-sm-4 Form_Input" >
+                  <label>Contact Number:</label>
+                  <input type="text" placeholder="contact number" formControlName="Contact_Number"> 
+               </div>
             </div>
          </div>
-      </div>
-      <!-- Company details -->
-      <div class="Company_Details">
+         <!-- Company details -->
+         <div class="Company_Details">
          <h5 style="color:#49B660;font-size:20px;font-weight: 600;"> Application <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span></h5><br>
          <div class="row">
             <div class="col-sm-4 Form_Input" >
                <label>Request Date:</label>
-               <input matInput [matDatepicker]="DatePicker1" (click)="DatePicker1.open()" placeholder="Request Date">
+               <input matInput [matDatepicker]="DatePicker1" (click)="DatePicker1.open()" placeholder="Request Date" formControlName="Requested_Date">
                <mat-datepicker #DatePicker1></mat-datepicker>
             </div>
             <div class="col-sm-4 Form_Input" >
                <label>Out Time:</label>
-               <input type="text" placeholder="out time"> 
+               <input [ngxTimepicker]="picker1" formControlName="Out_Time" placeholder="Out time">
+               <ngx-material-timepicker #picker1></ngx-material-timepicker>
             </div>
             <div class="col-sm-4 Form_Input" >
                <label>In Time:</label>
-               <input type="text" placeholder="in time"> 
+               <input [ngxTimepicker]="picker2" formControlName="In_Time" placeholder="In time">
+               <ngx-material-timepicker #picker2></ngx-material-timepicker>
             </div>
             <div class="col-sm-4 Form_TextArea" >
-               <label>Purpose:</label>
-               <textarea class="purpose" rows="3"></textarea>
+               <label>Description:</label>
+               <textarea class="purpose" rows="3" formControlName="Description"></textarea>
             </div>
          </div>
-      </div>
+         </div>
+      </form>
    </div>
 </div>
 <!-- Footer -->
 <div class="Footer">
-   <button mat-raised-button color="primary" style = "top: 5px;"> Submit </button>
+   <button mat-raised-button color="primary" style = "top: 5px;" [disabled]="!Form.valid" (click)="Submit()"> Submit </button>
 </div>
 
 

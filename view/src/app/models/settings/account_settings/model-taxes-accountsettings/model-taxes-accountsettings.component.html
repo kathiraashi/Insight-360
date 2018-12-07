@@ -24,7 +24,7 @@
             </div>
             <div class="col-sm-6 Form_Select">
             <label>Tax Computation: </label>
-            <ng-select class="NgSelect ValueBold" formControlName="Tax_Computation" [searchable]="true" placeholder="Tax Computation">
+            <ng-select class="NgSelect ValueBold" formControlName="Tax_Computation" [searchable]="true" placeholder="Tax Computation" (change)="typeOfAmount($event)">
                   <ng-option *ngFor="let TaxComputation of _Tax_Computation" [value]="TaxComputation">{{ TaxComputation?.Value }}</ng-option>
                </ng-select>
                <p class="error" *ngIf="Form.controls['Tax_Computation'].errors && !Form.controls['Tax_Computation'].pristine">
@@ -33,9 +33,11 @@
             </div>
             <div class="col-sm-6 Form_Input" [ngClass]="{'Form_Err': Form.controls['Amount'].errors && !Form.controls['Amount'].pristine , 'Form_Success': Form.controls['Amount'].valid && !Form.controls['Amount'].pristine}">
             <label>Amount/Percent: </label>
-            <input type="text" formControlName = "Amount">
+               <span *ngIf="inputType === 'Fixed'" ><input type="text" formControlName = "Amount" placeholder="1000.00"></span>
+               <span *ngIf="inputType !== 'Fixed'" ><input type="text" formControlName = "Amount" placeholder="100.00" style="width: 90%"><input type="text" [readOnly]="true" style="width: 10%" placeholder="%"></span>
             <p class="error" *ngIf="Form.controls['Amount'].errors && !Form.controls['Amount'].pristine">
-               <span *ngIf="Form.controls['Amount'].errors.required">!Amount is required</span>
+               <span *ngIf="Form.controls['Amount'].errors.required">Amount is required</span>
+               <span *ngIf="Form.controls['Amount'].errors.pattern">invalid entry</span>
             </p>
             </div>
            <div class="col-sm-6 Form_TextArea">

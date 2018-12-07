@@ -40,3 +40,44 @@
     height: 35px;
     width: 35px;
 }
+
+/* chips class */
+.ChipStyle_One .ui-chips > ul.ui-inputtext{
+   height: auto;
+   min-height: 37px;
+   border-radius: 0;
+   box-shadow: none;
+   border-color: #e8e8e8;
+   padding-top: 3px;
+}
+.ChipStyle_One .ui-chips > ul.ui-inputtext.ui-state-disabled{
+   opacity: 1;
+   background-color: #efefef;
+}
+.ChipStyle_One .ui-chips .ui-chips-input-token{
+   padding: 0px;
+}
+.ChipStyle_One .ui-chips .ui-chips-token{
+   margin-right: 5px;
+   margin-bottom: 4px;
+   background-color: #ffffff;
+   border: 1px solid #4e6a7a75;
+   padding: 3px 7px;
+   letter-spacing: 0.2px;
+   border-radius: 25px;
+   color: #4d6a7a;
+   padding-right: 30px;
+   font-size: 14px;
+}
+.ChipStyle_One .ui-chips .ui-chips-token .ui-chips-token-icon{
+   font-weight: 400;
+   font-size: 15px;
+   line-height: 20px;
+   height: 20px;
+   color: #8f8f8f;
+   margin: 0px;
+   border-radius: 20px;
+   background-color: #d8d8d8;
+   top: 4px;
+   right: 5px;
+}

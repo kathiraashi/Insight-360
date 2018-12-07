@@ -1,3 +1,16 @@
+<!-- Loader -->
+<div [ngClass]="{'Hide': !Loader}" class="DataLoaderStyle_1" style="width: 100%; height: 100%; top: 15%">
+   <div class="Loading">
+         <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+            <div class="rect6"></div>
+         </div>
+   </div>
+</div>
 <!-- page -->
 <div class="page" style="margin-top:100px;margin-bottom:100px;">
    <div class="container-fluid">
@@ -5,11 +18,11 @@
       <div class="Page_Identity">
          <div class="Page_Track">
             <ul>
-               <li class="HeaderName">Inventory</li>
+               <li class="HeaderName">Stock Details</li>
                <li class="arrow">>></li>
-               <li class= "LinkName"><a [routerLink]="['/Stock_Values_List']">Stock Values List</a></li>
+               <li class= "LinkName"><a [routerLink]="['/Stock_Values_List']">List</a></li>
                <li class="arrow">>></li>
-               <li >Stock Value View</li>
+               <li >{{Stock_Details?.Product_Id?.Product_Name_withAttribute}}</li>
             </ul>
          </div>
       </div>
@@ -26,21 +39,28 @@
                      <div class="view_item">
                         <div class="Static">Product Name </div>
                         <div class="dots"> : </div>
-                        <div class="Data"> Product Name </div>
+                        <div class="Data"> {{Stock_Details?.Product_Id?.Product_Name_withAttribute}} </div>
+                     </div>
+                  </div>
+                  <div class="col-sm-4">
+                     <div class="view_item">
+                        <div class="Static"> WareHouse </div>
+                        <div class="dots"> : </div>
+                        <div class="Data"> {{Stock_Details?.WareHouse_Id?.Ware_House_Name}} </div>
                      </div>
                   </div>
                   <div class="col-sm-4">
                      <div class="view_item">
                         <div class="Static"> Location </div>
                         <div class="dots"> : </div>
-                        <div class="Data"> Location </div>
+                        <div class="Data"> {{Stock_Details?.WareHouse_Id?.Address}} </div>
                      </div>
                   </div>
                   <div class="col-sm-4">
                      <div class="view_item">
                         <div class="Static"> Quantity </div>
                         <div class="dots"> : </div>
-                        <div class="Data"> Quantity </div>
+                        <div class="Data"> {{Stock_Details?.End_Quantity}} </div>
                      </div>
                   </div>
                </div>
@@ -68,108 +88,30 @@
                         </tr>
                      </thead>
                      <tbody>
-                        <tr>
+                        <tr *ngFor="let item of Stock_History_Details; let i = index">
                            <td>
-                              <span class="S_no"> 1 </span>
+                              <span class="S_no"> {{i + 1}} </span>
                            </td>
                            <td>
-                              <span class="Style_1">25/05/2017</span>
+                              <span class="Style_1">{{item?.createdAt | date: 'dd/MM/yyyy'}}</span>
                            </td>
                            <td>
-                              <span class="Style_1">reference</span>
+                              <span class="Style_1">{{item?.Reference_Key}}</span>
                            </td>
                            <td>
-                              <span class="Style_1"> 20</span>
+                              <span class="Style_1">{{item?.Start_Quantity}}</span>
                            </td>
                            <td>
-                              <span class="Style_1"> 10</span>
+                              <span class="Style_1">{{item?.Processed_Quantity}}</span>
                            </td>
                            <td>
-                              <span class="Style_1"> 30</span>
+                              <span class="Style_1">{{item?.End_Quantity}}</span>
                            </td>
                            <td>
-                              <span class="Style_1">WareHouse</span>
+                              <span class="Style_1">{{item?.WareHouse_Id?.Ware_House_Name}}</span>
                            </td>
                            <td>
-                              <span class="Style_1">Coimbatore</span>
-                           </td>
-                        </tr>
-                        <tr>
-                           <td>
-                              <span class="S_no"> 2 </span>
-                           </td>
-                           <td>
-                              <span class="Style_1">25/05/2017</span>
-                           </td>
-                           <td>
-                              <span class="Style_1">reference</span>
-                           </td>
-                           <td>
-                              <span class="Style_1"> 20</span>
-                           </td>
-                           <td>
-                              <span class="Style_1"> 10</span>
-                           </td>
-                           <td>
-                              <span class="Style_1"> 30</span>
-                           </td>
-                           <td>
-                              <span class="Style_1">WareHouse</span>
-                           </td>
-                           <td>
-                              <span class="Style_1">Coimbatore</span>
-                           </td>
-                        </tr>
-                        <tr>
-                           <td>
-                              <span class="S_no"> 3 </span>
-                           </td>
-                           <td>
-                              <span class="Style_1">25/05/2017</span>
-                           </td>
-                           <td>
-                              <span class="Style_1">reference</span>
-                           </td>
-                           <td>
-                              <span class="Style_1"> 20</span>
-                           </td>
-                           <td>
-                              <span class="Style_1"> 10</span>
-                           </td>
-                           <td>
-                              <span class="Style_1"> 30</span>
-                           </td>
-                           <td>
-                              <span class="Style_1">WareHouse</span>
-                           </td>
-                           <td>
-                              <span class="Style_1">Coimbatore</span>
-                           </td>
-                        </tr>
-                        <tr>
-                           <td>
-                              <span class="S_no"> 4 </span>
-                           </td>
-                           <td>
-                              <span class="Style_1">25/05/2017</span>
-                           </td>
-                           <td>
-                              <span class="Style_1">reference</span>
-                           </td>
-                           <td>
-                              <span class="Style_1"> 20</span>
-                           </td>
-                           <td>
-                              <span class="Style_1"> 10</span>
-                           </td>
-                           <td>
-                              <span class="Style_1"> 30</span>
-                           </td>
-                          <td>
-                              <span class="Style_1">WareHouse</span>
-                           </td>
-                           <td>
-                              <span class="Style_1">Coimbatore</span>
+                              <span class="Style_1">{{item?.WareHouse_Id?.Address}}</span>
                            </td>
                         </tr>
                      </tbody>

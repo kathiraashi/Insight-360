@@ -13,13 +13,13 @@
                <span  *ngIf="Form.controls['Branch_Name'].errors.required"> Branch Name is required</span>
             </p>
          </div>
-         <div class="col-sm-6 Form_Input" [ngClass]="{'Form_Err': Form.controls['Branch_Head'].errors && !Form.controls['Branch_Head'].pristine, 'Form_Success': Form.controls['Branch_Head'].valid && !Form.controls['Branch_Head'].pristine }">
+         <!-- <div class="col-sm-6 Form_Input" [ngClass]="{'Form_Err': Form.controls['Branch_Head'].errors && !Form.controls['Branch_Head'].pristine, 'Form_Success': Form.controls['Branch_Head'].valid && !Form.controls['Branch_Head'].pristine }">
             <label>Branch Head:</label>
             <input type="text" formControlName="Branch_Head">
             <p class="error" *ngIf="Form.controls['Branch_Head'].errors && !Form.controls['Branch_Head'].pristine">
                <span  *ngIf="Form.controls['Branch_Head'].errors.required"> Branch Head is required</span>
             </p>
-         </div>
+         </div> -->
          <div class="col-sm-6 Form_Select">
             <label>Departments:</label>
             <ng-select class="NgSelect ValueBold" 
@@ -50,15 +50,13 @@
          </div>
          <div class="col-sm-6 Form_Select">
          <label>Select Country:</label>
-         <!-- <ng-select class="NgSelect ValueBold" formControlName="AllCountry" [searchable]="true" placeholder="Country" (ngModelChange)="AllCountry_Change();">
-            <ng-option *ngFor="let Country of AllCountry" [value]="Country">{{Country.Country_Name}}</ng-option>
-         </ng-select> -->
          <ng-select class="NgSelect ValueBold" 
                [items]="AllCountry" 
                bindLabel="Country_Name" 
                formControlName="AllCountry" 
-               [searchable]="true" 
-               placeholder="Countrry">
+               [searchable]="true"
+               (ngModelChange)="AllCountry_Change()"
+               placeholder="Country">
          </ng-select>
          <p class="error" *ngIf="Form.controls['AllCountry'].errors && !Form.controls['AllCountry'].pristine">
             <span *ngIf="Form.controls['AllCountry'].errors.required"> Country is required</span>
@@ -66,17 +64,32 @@
          </div>
          <div class="col-sm-6 Form_Select">
          <label>Select State:</label>   
-         <ng-select class="NgSelect ValueBold" formControlName="AllState" [searchable]="true" placeholder="State" (ngModelChange)="AllState_Change();">
-            <ng-option *ngFor="let State of AllStateOfCountry" [value]="State">{{State.State_Name}}</ng-option>
+         <ng-select class="NgSelect ValueBold"
+            [items]="AllStateOfCountry"
+            [bindLabel]="'State_Name'" 
+            formControlName="AllState" 
+            [searchable]="true" 
+            placeholder="State" 
+            (ngModelChange)="AllState_Change()">
          </ng-select>
+         <p class="error" *ngIf="Form.controls['AllState'].errors && Form.controls['AllState'].touched">
+            <span *ngIf="Form.controls['AllState'].errors.required"> State is required</span>
+         </p>
          </div>
-         <div class="col-sm-6 Form_Select">
-         <label>city:</label>
-         <ng-select class="NgSelect ValueBold" formControlName="AllCity" [searchable]="true" placeholder="City" >
-            <ng-option *ngFor="let City of AllCityOfState" [value]="City">{{City.City_Name}}</ng-option>
+         <div class="col-sm-6 Form_Select" style="margin-top: 20px">
+         <label>City:</label>
+         <ng-select class="NgSelect ValueBold" 
+            [items]="AllCityOfState"
+            [bindLabel]="'City_Name'" 
+            formControlName="AllCity" 
+            [searchable]="true" 
+            placeholder="City">
          </ng-select>
+         <p class="error" *ngIf="Form.controls['AllCity'].errors && Form.controls['AllCity'].touched">
+            <span *ngIf="Form.controls['AllCity'].errors.required"> City is required</span>
+         </p>
          </div>
-         <div class="col-sm-6 Form_Input" [ngClass]="{'Form_Err': Form.controls['AllZipCode'].errors && !Form.controls['AllZipCode'].pristine, 'Form_Success': Form.controls['AllZipCode'].valid && !Form.controls['AllZipCode'].pristine }">
+         <div class="col-sm-6 Form_Input" style="margin-top: 20px" [ngClass]="{'Form_Err': Form.controls['AllZipCode'].errors && !Form.controls['AllZipCode'].pristine, 'Form_Success': Form.controls['AllZipCode'].valid && !Form.controls['AllZipCode'].pristine }">
          <label>Zip Code:</label>
             <input type="text" formControlName="AllZipCode">
             <p class="error" *ngIf="Form.controls['AllZipCode'].errors && !Form.controls['AllZipCode'].pristine">

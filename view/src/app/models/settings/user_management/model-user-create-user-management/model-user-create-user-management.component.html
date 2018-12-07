@@ -67,6 +67,15 @@
                   <span *ngIf="Form.controls['AccessPermissions_Groups'].errors.required"> User Access Permissions is required</span>
                </p>
             </div>
+            <div class="col-sm-6 Form_Select" *ngIf="Form.controls['User_Type'].value !== null">
+               <label>Link Employee:</label>
+               <ng-select class="NgSelect" [searchable]="true" [items]="_LinkEmployee" [bindLabel]="'Employee_Name'" [bindValue]="'_id'" formControlName="Hrms_Employee_Id">
+                  <!-- <ng-option *ngFor="let User of _ReportUsers" [value]="User">{{User.Name}}</ng-option> -->
+               </ng-select>
+               <p class="error" *ngIf="Form.controls['Reports_To'].errors && !Form.controls['Reports_To'].pristine">
+                  <span *ngIf="Form.controls['Reports_To'].errors.required"> Reporting User is required</span>
+               </p>
+            </div>
          </div>
       </Form>
    </div>

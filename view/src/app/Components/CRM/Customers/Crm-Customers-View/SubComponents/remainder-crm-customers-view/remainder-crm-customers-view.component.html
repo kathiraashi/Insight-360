@@ -1,4 +1,74 @@
-<!-- Remainder Section -->
-<div class="remainder_section">
-   <h5>Francis Ford Coppola's legendary continuation and sequel to his landmark 1972 film,</h5>
+
+<div [ngClass]="{'Hide': !Loader}" class="DataLoaderStyle_1" style="height: 100%; width: 98%; min-height: 425px; margin-left: 15px">
+   <div class="Loading">
+         <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+            <div class="rect6"></div>
+         </div>
+   </div>
+</div>
+<!-- Header Part -->
+<div class="row header_part">
+   <div class="col-sm-6">
+      <button class="Create_Button" mat-raised-button (click)="Create()"> + Create </button>
+   </div>
+   <div class="col-sm-6">
+      <div class="Search_Section">
+         <input type="text" placeholder="Search.." name="search">
+         <i class="material-icons">search</i>
+      </div>
+   </div>
+</div>
+<!-- Table Section -->
+<div class="Table_Section">
+   <table>
+      <thead>
+         <tr>
+            <th>S.no</th>
+            <th>Date</th>
+            <th>Contact Person</th>
+            <th>Subject </th>
+            <th>Description</th>
+            <th>Activity Type</th>
+            <th>Action</th>
+         </tr>
+      </thead>
+      <tbody>
+         <tr *ngFor="let item of _RemindersList; let i = index">
+            <td>
+               <span class="S_no"> {{i+1}} </span>
+            </td>
+            <td>
+               <span class="Style_1">{{item?.Date | date: 'short'}}</span>
+            </td>
+            <td>
+               <span class="Style_1">{{item?.Contact_Person['Name']}}</span>
+            </td>
+            <td>
+               <span class="Style_1">{{item?.Subject}} </span>
+            </td>
+            <td>
+               <span class="Style_1">{{item?.Description}}</span>
+            </td>
+            <td>
+               <span class="Style_1">{{item?.Activity_Type['Activity_Type']}}</span>
+            </td>
+            <td>
+               <button (click)="View(i)" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                  <i class="material-icons">zoom_in</i>
+               </button>
+               <button (click)="Create(i)" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                  <i class="material-icons">edit</i>
+               </button>
+               <button (click)="Delete(i)" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                  <i class="material-icons">delete_forever</i>
+               </button>
+            </td>
+         </tr>
+      </tbody>
+   </table>
 </div>

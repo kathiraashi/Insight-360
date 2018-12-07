@@ -1,3 +1,16 @@
+<div [ngClass]="{'Hide': !Loader}" class="DataLoaderStyle_1" style="width: 100%; height: 100%; overflow-x: hidden;">
+   <div class="Loading">
+         <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+            <div class="rect6"></div>
+         </div>
+   </div>
+</div>
+<div class="LoadedDataStyle_1" [ngClass]="{'Show': !Loader}"></div>
 <!-- Page -->
 <div class="page" style="margin-top:100px;">
    <div class="container-fluid">
@@ -5,11 +18,12 @@
       <div class="Page_Identity">
          <div class="Page_Track">
             <ul>
-               <li class="HeaderName">Home</li>
+               <li class="HeaderName">Purchase</li>
                <li class="arrow">>></li>
-               <li class= "LinkName"><a [routerLink]="['/Purchase_Quotations_List']">Purchase Quotations List</a></li>
+               <li *ngIf="Quote_Details?.Status !== 'Order_Confirmed'" class= "LinkName"><a [routerLink]="['/Purchase_Quotations_List']">Quotations List</a></li>
+               <li *ngIf="Quote_Details?.Status === 'Order_Confirmed' || Quote_Details?.Status === 'Awaiting_Receive' || Quote_Details?.Status === 'Received'" class= "LinkName"><a [routerLink]="['/Purchase_Orders_List']">Orders List</a></li>
                <li class="arrow">>></li>
-               <li >Purchase Quotations View</li>
+               <li >{{Quote_Details?.Vendor_Name?.Vendor_Name}}</li>
             </ul>
          </div>
       </div>
@@ -17,9 +31,12 @@
          <!-- Company Details -->
          <div class="Company_Details">
             <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Purchase 
-               <span style="color:#516570;font-size:20px;font-weight: 600;">Quotations</span>
-               <button mat-raised-button color="primary" class="pull-right"> Confirm Order </button>
-               <button mat-raised-button color="primary" class="pull-right Edit"> Edit </button><br>
+               <span *ngIf="Quote_Details?.Status !== 'Order_Confirmed'" style="color:#516570;font-size:20px;font-weight: 600;">Quotations</span>
+               <span *ngIf="Quote_Details?.Status === 'Order_Confirmed'" style="color:#516570;font-size:20px;font-weight: 600;">Order</span>
+               <button *ngIf="ReceiveButtonShow" mat-raised-button color="primary" class="pull-right" style="margin-left: 16px" (click)="ReceiveOrder()"> Receive </button>
+               <button *ngIf="ConfirmOrderButtonShow" mat-raised-button color="primary" class="pull-right" style="margin-left: 16px" (click)="ConfirmOrder()"> Confirm Order </button>
+               <button *ngIf="CancelButtonShow" mat-raised-button color="primary" class="pull-right" style="margin-left: 16px"> Cancel </button>
+               <button *ngIf="EditButtonShow" mat-raised-button color="primary" class="pull-right" style="margin-left: 16px" (click)="Edit()"> Edit </button><br>
             </h5>
             <br>
             <div class="row">
@@ -27,41 +44,41 @@
                   <div class="view_item">
                      <div class="Static">Vendor Name</div>
                      <div class="dots"> : </div>
-                     <div class="Data">  xxxx </div>
+                     <div class="Data">{{Quote_Details?.Vendor_Name?.Vendor_Name}}</div>
                   </div>
                   <div class="view_item">
-                     <div class="Static"> Purchase Request</div>
+                     <div class="Static"> Quote Date</div>
                      <div class="dots"> : </div>
-                     <div class="Data"> Purchase Request</div>
-                  </div>
-                  <div class="view_item">
-                     <div class=" Static">Subject</div>
-                     <div class="dots"> : </div>
-                     <div class=" Data"> Lorem ipsum dolor sit amet consectetur adipisicing elit</div>
+                     <div class="Data"> {{Quote_Details?.Quote_Date | date: 'dd/MM/yyyy'}} </div>
                   </div>
                </div>
                <div class="col-sm-4">
                   <div class="view_item"> 
                      <div class="Static">Contact Person</div>
                      <div class="dots"> : </div>
-                     <div class="Data">  Contact Person </div>
+                     <div class="Data"> {{Quote_Details?.Contact?.Name}} </div>
                   </div>
                   <div class="view_item">
-                     <div class="Static"> Date</div>
+                     <div class=" Static">Valid Till</div>
                      <div class="dots"> : </div>
-                     <div class="Data">  25/04/17 </div>
+                     <div class=" Data"> {{Quote_Details?.Valid_Date | date: 'dd/MM/yyyy'}}</div>
                   </div>
                </div>
                <div class="col-sm-4">
                   <div class="view_item">
                      <div class="Static">Quote Ref No</div>
                      <div class="dots"> : </div>
-                     <div class="Data"> 123 </div>
+                     <div class="Data"> {{Quote_Details?.Quote_Ref_Number}} </div>
                   </div>
-                  <div class="view_item">
-                     <div class=" Static">Valid Till</div>
+                  <div *ngIf="Quote_Details?.Purchase_Request_Number?.Requested_Number" class="view_item">
+                     <div class="Static"> Purchase Request</div>
                      <div class="dots"> : </div>
-                     <div class=" Data"> 25/05/17</div>
+                     <div class="Data">{{Quote_Details?.Purchase_Request_Number?.Requested_Number}}</div>
+                  </div>
+                  <div *ngIf="Quote_Details?.Subject" class="view_item">
+                     <div class=" Static">Subject</div>
+                     <div class="dots"> : </div>
+                     <div class=" Data"> {{Quote_Details?.Subject}}</div>
                   </div>
                </div>
             </div>
@@ -93,12 +110,37 @@
                               <th>Price</th>  
                               <th>Tax</th> 
                               <th>Total</th> 
-                              <th>Action</th> 
+                              <!-- <th>Action</th>  -->
                            </tr>
                         </thead>
                         <tbody>
-                           <tr>
-                              <td  colspan="8"><span> No Records found</span></td>
+                           <tr *ngFor="let item of Product_Details; let i = index">
+                              <td>
+                                 <span class="S_no">{{ i+1 }}</span>
+                              </td>
+                              <td>
+                                 <span class="Style_2">{{item?.Product_Id['Product_Name_withAttribute']}}</span>
+                              </td>
+                              <td>
+                                 <span class="Style_3">{{item?.Description}}</span>
+                              </td>
+                              <td>
+                                 <span class="Style_3">{{item?.Quantity}}</span>
+                              </td>
+                              <td>
+                                 <span class="Style_3">{{item?.Price}}</span>
+                              </td>
+                              <td>
+                                 <span class="Style_3" *ngFor = "let ProductTax of item?.Product_Tax; let j = index">{{ ProductTax?.Tax_Name }} 
+                                    <span *ngIf="j+1 < item?.Product_Tax.length"> , </span>
+                                 </span>
+                              </td>
+                              <td>
+                                 <span class="Style_3">{{item?.Product_Total}}</span>
+                              </td>
+                              <!-- <td>
+                                 <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action"> Action </button>
+                              </td> -->
                            </tr>
                         </tbody>
                      </table><br>
@@ -110,17 +152,24 @@
                            <div class="ResultSection">
                               <span class="Title"> Sub Total </span>
                               <span class="Split"> : </span>
-                              <span class="Value"> Rs.0000 </span>
+                              <span class="Value"> {{Quote_Details?.Sub_Total}} </span>
+                           </div>
+                           <div class="ResultSection" *ngIf="Quote_Details?.Global_Product_Tax !== null">
+                              <span class="Title"> Tax </span>
+                              <span class="Split"> : </span>
+                              <span class="Value" *ngFor = "let GlobalTax of Quote_Details?.Global_Product_Tax; let j = index">{{ GlobalTax?.Tax_Name }}
+                                    <span *ngIf="j+1 < Quote_Details?.Global_Product_Tax.length"> , </span>
+                              </span>
                            </div>
                            <div class="ResultSection">
                               <span class="Title"> Total Tax</span>
                               <span class="Split"> : </span>
-                              <span class="Value"> Rs.0000 </span>
+                              <span class="Value"> {{Quote_Details?.Tax}} </span>
                            </div>
                            <div class="ResultSection">
                               <span class="Title"> Total </span>
                               <span class="Split"> : </span>
-                              <span class="Value"> Rs.0000 </span>
+                              <span class="Value"> {{Quote_Details?.Total}} </span>
                            </div>
                         </div>
                      </div>

@@ -1,3 +1,15 @@
+<div [ngClass]="{'Hide': !Loader}" class="DataLoaderStyle_1" style="height: 100%; width: 100%;">
+   <div class="Loading">
+         <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+            <div class="rect6"></div>
+         </div>
+   </div>
+</div>
 <!-- Page -->
 <div class="page" style="margin-top:100px;">
    <div class="container-fluid">
@@ -5,188 +17,142 @@
       <div class="Page_Identity">
          <div class="Page_Track">
             <ul>
-               <li class="HeaderName">Home</li>
+               <li class="HeaderName">Product</li>
                <li class="arrow">>></li>
-               <li class="LinkName"><a [routerLink]="['/List_Product']">Product List</a></li>
+               <li class="LinkName"><a [routerLink]="['/List_Product']">List</a></li>
                <li class="arrow">>></li>
-               <li>Product Create</li>
+               <li>Create</li>
             </ul>
          </div>
       </div>
-      <form>
+      <form [formGroup]="Form">
          <div class="row">
             <div class="col-sm-3" >
                <!-- Left Section -->
-               <div class="left_section" style="background-color:#fff;margin-bottom:150px; height:93%">
+               <div class="left_section" style="background-color:#fff;margin-bottom:150px; height:50%">
                   <div class="row">
                      <div class="col-sm-12 text-center">
-                        <img src="../../../../assets/images/basic/cpu.png" alt="Company Image" style="width:150px; height:150px; margin-top: 40px; box-shadow:0 1px 5px 1px rgba(0,0,0,.2);">
+                        <img src="../../../../assets/images/basic/product.png" alt="Company Image" style="width:150px; height:150px; margin-top: 40px; box-shadow:0 1px 5px 1px rgba(0,0,0,.2);">
                      </div>
-                     <div class="col-sm-12 text-center Form_Input">
-                        <input type="text" placeholder="Product Name">
-                     </div><br>
-                     <div class="col-sm-12 checkbox" style="text-align:left;margin-left:50px;">
-                        <input type="Checkbox"> Can Be Sold<br>
-                        <input type="Checkbox"> Can Be Purchased
-                     </div><br>
+                     
                   </div>
                </div>
             </div>
             <div class="col-sm-9">
                <div class="Company_Details">
+                  <h5 class="text-style-1" style="margin-top:0px;"> Product Name </h5>
+                  <div class="row">
+                     <div class="col-sm-4 text-center Form_Input" [ngClass]="{'Form_Err': !Form.controls['Product_Name'].pristine && Form.controls['Product_Name'].errors, 'Form_Success': Form.controls['Product_Name'].valid && !Form.controls['Product_Name'].pristine }">
+                        <input type="text" placeholder="Product Name" formControlName="Product_Name" style="margin-bottom: 0px">
+                        <p class="error" style="margin-top: -20px" *ngIf="Form.controls['Product_Name'].errors && !Form.controls['Product_Name'].pristine">
+                           <span *ngIf="Form.controls['Product_Name'].errors.required"> Product Name is required</span>
+                           <span *ngIf="Form.controls['Product_Name'].errors.Product_Name_NotAvailable"> Product Name Already Exist!</span>
+                        </p>   
+                     </div><br>
+                     <div class="col-sm-8 checkbox Form_Select" style="line-height: 45px">
+                        <mat-checkbox value="true" formControlName="Can_Be_Sold"> Can Be Sold </mat-checkbox> &nbsp;
+                        <mat-checkbox value="true" formControlName="Can_Be_Purchased"> Can Be Purchased</mat-checkbox>
+                        <p style="line-height: 5px" class="error" *ngIf="!Form.controls['Can_Be_Sold'].value && !Form.controls['Can_Be_Purchased'].value">
+                           mandatory to check any one of these checkbox 
+                        </p>
+                     </div><br>
+                  </div><br><hr>
                   <h5 class="text-style-1" style="margin-top:0px;"> Product Details </h5>
                   <div class="row">
-                     <div class="col-sm-4 Form_Input" >
-                        <input type="text" placeholder="Item Code">
+                     <div *ngIf="_Data?.Item_Code === 'Yes_ItemCode'" class="col-sm-4 Form_Input" >
+                        <input type="text" placeholder="Item Code" formControlName="Item_Code">
                      </div>
-                     <div class="col-sm-4 Form_Input" >
-                        <input type="text" placeholder="HSN Code">
+                     <div *ngIf="_Data?.HSN_Code === 'Yes_HSNCode'" class="col-sm-4 Form_Input" >
+                        <input type="text" placeholder="HSN Code" formControlName="HSN_Code">
                      </div>
-                     <div class="col-sm-4 Form_Input" >
-                        <input type="text" placeholder="Price">
+                     <div class="col-sm-4 Form_Input" [ngClass]="{'Form_Err': !Form.controls['Price'].pristine && Form.controls['Price'].errors, 'Form_Success': Form.controls['Price'].valid && !Form.controls['Price'].pristine }">
+                        <input type="text" placeholder="Price" formControlName="Price"> 
+                        <p class="error" *ngIf="Form.controls['Price'].errors && !Form.controls['Price'].pristine"  style="margin-bottom: 10px; margin-top: -20px">
+                           <span *ngIf="Form.controls['Price'].errors.required"> Price is required</span>
+                        </p>   
                      </div>
-                     <div class="col-sm-4 Form_Select" >
+                     <div class="col-sm-4 Form_Select">
                         <ng-select class="NgSelect" 
-                           [items]="_UnitOfMeasure" 
+                           [items]="_UnitOfMeasures"
+                           bindLabel="UOM"
+                           bindValue="_id"
                            [searchable]="true" 
-                           placeholder="Unit Of Measure">
+                           placeholder="Unit Of Measure"
+                           formControlName="UOM">
                         </ng-select>
+                        <p class="error" *ngIf="Form.controls['UOM'].errors && !Form.controls['UOM'].pristine">
+                           <span *ngIf="Form.controls['UOM'].errors.required"> Unit Of Measure is required</span>
+                        </p>
                      </div>
-                     <div class="col-sm-4 Form_Select" >
+                     <div class="col-sm-4 Form_Select" [ngClass]="{'Form_Err': !Form.controls['Product_Type'].pristine && Form.controls['Product_Type'].errors, 'Form_Success': Form.controls['Product_Type'].valid && !Form.controls['Product_Type'].pristine }">
                         <ng-select class="NgSelect" 
-                           [items]="_ProductType" 
+                           [items]="_ProductType"
+                           [bindLabel]="'value'"
+                           [bindValue]="'key'"
                            [searchable]="true" 
-                           placeholder="Product Type">
+                           placeholder="Product Type"
+                           formControlName="Product_Type">
                         </ng-select>
+                        <p class="error" *ngIf="Form.controls['Product_Type'].errors && !Form.controls['Product_Type'].pristine">
+                           <span *ngIf="Form.controls['Product_Type'].errors.required"> Product Type is required</span>
+                        </p>
                      </div>
                      <div class="col-sm-4 Form_TextArea" >
-                        <textarea  type="text" row="5" placeholder="Description"></textarea>
+                        <textarea  type="text" row="5" placeholder="Description" formControlName="Description"></textarea>
                      </div>
                   </div>
-                  <div class="row">
-                  <div class="col-sm-6 checkbox">
-                     <div class="row">
-                        <div class="col-sm-4 Left_Data">
-                           <p>Invoicing Policy</p>
-                        </div>
-                        <div class="col-sm-6 Right_data">
-                           <form>
-                              <input type="radio" name="radiobutton" checked> Ordered Quantity<br>
-                              <input type="radio" name="radiobutton"> Delivered Quantity<br>
-                              <input type="radio" name="radiobutton">Invoice based On Time & Material<br>
-                           </form>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col-sm-6 checkbox">
-                     <div class="row">
-                        <div class="col-sm-4 Left_Data">
-                           <p>Control Purchase Bills</p>
-                        </div>
-                        <div class="col-sm-6 Right_data">
-                           <form>
-                              <input type="radio" name="radiobutton" checked> On Ordered Quantity<br>
-                              <input type="radio" name="radiobutton"> On Received Quantity<br>
-                           </form>
-                        </div>
-                     </div>
-                  </div>
-                  </div><br><br>
-                  <div class="row">
-                     <div class="col-sm-2 Left_Data">
+                  <div class="row" *ngIf="_Data?.Bar_Code === 'Yes_BarCode'">
+                     <div class="col-sm-1 Left_Data" style="width: auto">
                         <p>BarCode</p>
                      </div>
-                     <div class="col-sm-2">
-                        <img src="../../../../assets/images/basic/images.png">
+                     <div class="col-sm-3">
+                        <img src="../../../../assets/images/basic/images.png" style="width: 120px; height: auto">
+                     </div>
+                  </div>
+                  <hr>
+                  <div *ngIf="_Data?.Product_Variants === 'Yes_ProductVariants'">
+                     <div class="row">
+                        <div class="col-sm-12">
+                           <h5 class="text-style-1" style="margin-top:0px;"> Product Variants 
+                              <button style="float: right" mat-raised-button color="primary" (click)="AddVariant()"> Add Variant </button> 
+                           </h5> 
+                           <!-- Variant Table -->
+                           <form [formGroup]="Form">
+                                 <div formArrayName="Variants_List" *ngFor="let item of Form.controls['Variants_List'].controls; let i = index;">
+                                    <div class="row" [formGroupName]="i" style="width: 100%">
+                                       <div class="col-sm-1">
+                                          <label style="line-height: 78px; text-align: center; width: 100%;"> {{i + 1}} ) </label>
+                                       </div>
+                                       <div class="col-sm-4 Form_Input">
+                                          <label>Attribute:</label>
+                                          <input type="text" placeholder="Product Variant" formControlName="Attribute">
+                                       </div>
+                                       <div class="col-sm-4 Form_Input">
+                                          <label>value:</label>
+                                          <p-chips formControlName="Attribute_Values" [allowDuplicate]="false" Class="ChipStyle_One" >
+                                             <ng-template let-item pTemplate="item">{{item}}</ng-template>
+                                          </p-chips>
+                                       </div>
+                                       <div class="col-sm-2 Form_Input">
+                                          <button class="Table_Action_mini" (click)="Remove_Variant(i)" mat-mini-fab color="primary" style="margin-top: 28px;">
+                                             <i class="material-icons">remove</i>
+                                          </button>
+                                       </div>
+                                    </div>
+                                 </div>                              
+                           </form>
+                        </div>
                      </div>
                   </div>
                </div>  
             </div>
          </div>
       </form>
-      <!-- Company details -->
-      <!-- <div class="Company_Details">
-         <div class="row">
-            <div class="col-sm-4 Form_Input">
-               <label>Name:</label>
-               <input type="text">
-            </div>
-            <div class="col-sm-4 Form_Input">
-               <label>Image:</label>
-               <input type="file">
-            </div>
-            <div class="col-sm-4 Form_Input">
-               <label>Item Code:</label>
-               <input type="text">
-            </div>
-            <div class="col-sm-4 Form_Input">
-               <label>HSN Code:</label>
-               <input type="text">
-            </div>
-            <div class="col-sm-4 Form_Input">
-               <label>Price:</label>
-               <input type="text">
-            </div>
-            <div class="col-sm-4 Form_TextArea">
-               <label>Description:</label>
-               <textarea type="text" row="4"></textarea>
-            </div>
-            <div class="col-sm-4 Form_Select">
-               <label>UOM:</label>
-               <ng-select class="NgSelect" 
-                  [items]="_UnitOfMeasure" 
-                  [searchable]="true" 
-                  placeholder="Unit Of Measure">
-               </ng-select>
-            </div>
-            <div class="col-sm-4 Form_Select">
-               <label>Product type:</label>
-               <ng-select class="NgSelect" 
-                  [items]="_ProductType" 
-                  [searchable]="true" 
-                  placeholder="Product Type">
-               </ng-select>
-            </div>
-            <div class="col-sm-4 checkbox">
-               <input type="Checkbox"> Can Be Sold
-            </div><br>
-            <div class="col-sm-4 checkbox">
-               <input type="Checkbox"> Can Be Purchased
-            </div>
-            <div class="col-sm-6 checkbox">
-               <div class="row">
-                  <div class="col-sm-4 Left_Data">
-                     <p>Invoicing Policy</p>
-                  </div>
-                  <div class="col-sm-6 Right_data">
-                     <form>
-                        <input type="radio" name="radiobutton"> Ordered Quantity<br>
-                        <input type="radio" name="radiobutton"> Delivered Quantity<br>
-                        <input type="radio" name="radiobutton">Invoice based On Time & Material<br>
-                     </form>
-                  </div>
-               </div>
-            </div><br>
-            <div class="col-sm-6 checkbox">
-               <div class="row">
-                  <div class="col-sm-4 Left_Data">
-                     <p>Control Purchase Bills</p>
-                  </div>
-                  <div class="col-sm-6 Right_data">
-                     <form>
-                        <input type="radio" name="radiobutton"> On Ordered Quantity<br>
-                        <input type="radio" name="radiobutton"> On Received Quantity<br>
-                     </form>
-                  </div>
-               </div>
-            </div><br>
-         </div>
-      </div> -->
    </div>
 </div>
 <!-- Footer -->
 <div class="Footer">
-   <button mat-raised-button color="primary" style = "top: 5px;"> Submit </button>
+   <button mat-raised-button color="primary" style = "top: 5px;" (click)="Submit()" [disabled]="Form.status !== 'VALID' || (!Form.controls['Can_Be_Sold'].value && !Form.controls['Can_Be_Purchased'].value)"> Submit </button>
 </div>
 
             

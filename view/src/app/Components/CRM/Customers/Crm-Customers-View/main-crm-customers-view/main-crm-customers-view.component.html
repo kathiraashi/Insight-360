@@ -1,4 +1,16 @@
 <app-header></app-header>
+<div [ngClass]="{'Hide': !Loader}" class="DataLoaderStyle_1" style="height: 110%; width: 100%; top: 15%">
+   <div class="Loading">
+         <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+            <div class="rect6"></div>
+         </div>
+   </div>
+</div>
 <!-- Main Section -->
 <div class="Main_Section">
    <div class="container-fluid">
@@ -12,7 +24,7 @@
                   <li class="arrow">>></li>
                   <li class="LinkName"><a [routerLink]="['/Crm_Customers_List']">Customers</a></li>
                   <li class="arrow">>></li>
-                  <li>Customers View</li>
+                  <li>{{_Data?.Company_Name}}</li>
                </ul>
             </div>
          </div>
@@ -26,7 +38,7 @@
                   <div class="col-sm-10 ">
                      <div class="row">
                         <div class="col-sm-12">
-                           <h5 class="customer_name"> CUSTOMER NAME <span><i class="material-icons" [routerLink]="['/crm_customers_create']"> border_color</i></span>
+                           <h5 class="customer_name"> {{_Data?.Company_Name}} <span><i class="material-icons" [routerLink]="['/crm_customers_create']"> border_color</i></span>
                            <span class="Create_Button" [matMenuTriggerFor] = "Action" > +Create </span></h5>
                         </div>
                         <div class="col-sm-3">
@@ -115,8 +127,8 @@
                   </div>
                </div>
                <div class="row" *ngIf=" Active_Tab === 'About' ">
-                  <div class="col-sm-12">
-                     <app-about-crm-customers-view></app-about-crm-customers-view>
+                  <div class="col-sm-12" *ngIf="_Data">
+                     <app-about-crm-customers-view [CustomerData]="_Data"></app-about-crm-customers-view>
                   </div>
                </div>
                <div class="row" *ngIf=" Active_Tab === 'Contact' ">

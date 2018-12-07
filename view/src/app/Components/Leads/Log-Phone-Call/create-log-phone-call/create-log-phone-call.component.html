@@ -1,3 +1,16 @@
+<!-- Loader -->
+<div [ngClass]="{'Hide': !Loader}" class="DataLoaderStyle_1" style="width: 100%; height: 100%; top: 15%">
+   <div class="Loading">
+         <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+            <div class="rect6"></div>
+         </div>
+   </div>
+</div>
 <!-- page -->
 <div class="page" style="margin-top:100px;">
    <div class="container-fluid">
@@ -7,62 +20,91 @@
             <ul>
                <li class="HeaderName">Leads</li>
                <li class="arrow"> >> </li>
-               <li class="LinkName"><a [routerLink]="['/List_Log_Phone_call']">Log Phone call List</a></li>
+               <li class="LinkName"><a [routerLink]="['/List_Log_Phone_call']">Activities</a></li>
                <li class="arrow">>></li>
-               <li>Log Phone call Create</li>
+               <li>Create</li>
             </ul>
          </div>
       </div>
       <!-- Company details -->
-      <div class="Company_Details">
-         <div class="row">
-            <div class="col-sm-4 Form_Select">
-               <label>Company Name: </label>
-               <ng-select class="NgSelect" 
-                  [items]="_Company" 
-                  [searchable]="true" 
-                  placeholder="Company Name">
-               </ng-select>
-            </div>
-            <div class="col-sm-4 Form_Input">
-               <label>Date & Time: </label>
-               <input matInput [matDatepicker]="DatePicker1" (click)="DatePicker1.open()">
-               <mat-datepicker #DatePicker1></mat-datepicker>
-            </div>
-            <br>
-            <div class="col-sm-4 Form_Select">
-               <label>Product: </label>
-               <ng-select class="NgSelect" 
-                  [items]="_Product" 
-                  [searchable]="true" 
-                  [multiple]="true"
-                  placeholder="Product">
-               </ng-select>
-            </div>
-            <div class="col-sm-4 Form_Input">
-               <label>Contact: </label>
-               <input type="text">
-            </div>
-            <div class="col-sm-4 Form_Input">
-               <label>Email Id: </label>
-               <input type="text">
-            </div>
-            <div class="col-sm-4 Form_Input">
-               <label>Mobile Number: </label>
-               <input type="text">
-            </div>
-            <div class="col-sm-4 Form_TextArea">
-               <label>Description: </label>
-               <textarea class="Description" rows="3"></textarea>
+      <form [formGroup]="Form">
+         <div class="Company_Details">
+            <div class="row">
+               <div *ngIf="toWhom === null" class="col-sm-4 Form_Select" [ngClass]="{'Form_Err': !Form.controls['Company_Name'].pristine && Form.controls['Company_Name'].errors, 'Form_Success': Form.controls['Company_Name'].valid && !Form.controls['Company_Name'].pristine }">
+                  <label>Company Name: </label>
+                  <ng-select class="NgSelect" 
+                     [items]="_Company"
+                     bindLabel="Company_Name"
+                     bindValue="_id"
+                     [searchable]="true"
+                     formControlName="Company_Name"
+                     placeholder="Company Name">
+                  </ng-select>
+                  <p class="error" style="margin-top: 0px" *ngIf="Form.controls['Company_Name'].errors && Form.controls['Company_Name'].touched">
+                     <span *ngIf="Form.controls['Company_Name'].errors.required"> Company Name is required</span>
+                  </p>   
+               </div>
+               
+               <div *ngIf="toWhom !== null" class="col-sm-4 Form_Input" [ngClass]="{'Form_Err': !Form.controls['Company_Name'].pristine && Form.controls['Company_Name'].errors, 'Form_Success': Form.controls['Company_Name'].valid && !Form.controls['Company_Name'].pristine }">
+                  <label>Company Name: </label>
+                  <input type="text" value="{{_Company['Company_Name']}}" readonly>
+               </div>
+
+               <div class="col-sm-4 Form_Input" [ngClass]="{'Form_Err': !Form.controls['Date'].pristine && Form.controls['Date'].errors, 'Form_Success': Form.controls['Date'].valid && !Form.controls['Date'].pristine }">
+                  <label>Date: </label>
+                  <input matInput [matDatepicker]="DatePicker1" [max]="maxDate" (click)="DatePicker1.open()" formControlName="Date">
+                  <mat-datepicker #DatePicker1></mat-datepicker>
+                  <p class="error" style="margin-top: -20px" *ngIf="Form.controls['Date'].errors && !Form.controls['Date'].pristine">
+                     <span *ngIf="Form.controls['Date'].errors.required"> Date is required</span>
+                  </p>  
+               </div>
+               <br>
+               <div class="col-sm-4 Form_Select" [ngClass]="{'Form_Err': !Form.controls['Product'].pristine && Form.controls['Product'].errors, 'Form_Success': Form.controls['Product'].valid && !Form.controls['Product'].pristine }">
+                  <label>Product: </label>
+                  <ng-select class="NgSelect" 
+                     [items]="_Product"
+                     bindLabel="Product_Name_withAttribute"
+                     bindValue="_id" 
+                     [multiple]= "true"
+                     [hideSelected]="true"
+                     [searchable]="true" 
+                     formControlName="Product"
+                     placeholder="Product">
+                  </ng-select>
+                  <p class="error" *ngIf="Form.controls['Product'].errors && !Form.controls['Product'].pristine">
+                     <span *ngIf="Form.controls['Product'].errors.required"> Product is required</span>
+                  </p> 
+               </div>
+               <div class="col-sm-4 Form_Input" [ngClass]="{'Form_Err': !Form.controls['Contact_Person'].pristine && Form.controls['Contact_Person'].errors, 'Form_Success': Form.controls['Contact_Person'].valid && !Form.controls['Contact_Person'].pristine }">
+                  <label>Contact Person: </label>
+                  <input type="text" formControlName="Contact_Person" >
+                  <p class="error" style="margin-top: -20px" *ngIf="Form.controls['Contact_Person'].errors && !Form.controls['Contact_Person'].pristine">
+                     <span *ngIf="Form.controls['Contact_Person'].errors.required"> Contact Person is required</span>
+                  </p> 
+               </div>
+               <div class="col-sm-4 Form_Input">
+                  <label>Email Id: </label>
+                  <input type="text" formControlName="Email">
+               </div>
+               <div class="col-sm-4 Form_Input" [ngClass]="{'Form_Err': !Form.controls['Phone'].pristine && Form.controls['Phone'].errors, 'Form_Success': Form.controls['Phone'].valid && !Form.controls['Phone'].pristine }">
+                  <label>Mobile Number: </label>
+                  <input type="text" formControlName="Phone" >
+                  <p class="error" style="margin-top: -20px" *ngIf="Form.controls['Phone'].errors && !Form.controls['Phone'].pristine">
+                     <span *ngIf="Form.controls['Phone'].errors.required"> Phone is required</span>
+                  </p> 
+               </div>
+               <div class="col-sm-4 Form_TextArea">
+                  <label>Description: </label>
+                  <textarea class="Description" rows="3" formControlName="Description"></textarea>
+               </div>
             </div>
          </div>
-      </div>
-      <div class="row" style="margin-top:30px;"> 
-         <div class="col-sm-12 text-right">
-            <button mat-raised-button color="primary" style = "bottom: 20px;"> Submit </button>
-         </div>
-      </div>
+      </form>
    </div>
 </div>
-      
+   
+<!-- Footer -->
+<div class="Footer">
+   <button mat-raised-button color="primary" style = "top: 5px;" (click)="Submit()" [disabled]="!Form.valid"> Submit </button>
+</div>
    

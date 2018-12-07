@@ -1,3 +1,16 @@
+<div [ngClass]="{'Hide': !Loader}" class="DataLoaderStyle_1" style="width: 100%">
+   <div class="Loading">
+         <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+            <div class="rect6"></div>
+         </div>
+   </div>
+</div>
+<div class="LoadedDataStyle_1" [ngClass]="{'Show': !Loader}"></div>
 <!-- Page section -->
 <div class="page_section">
    <div class="container-fluid">
@@ -16,122 +29,125 @@
       <!-- Container Content -->
       <div class="container-content">
          <div class="content_gap">
-            <h5 class="Header">Purchase Quotation</h5>
-            <div class="row">
-               <div class="col-sm-4 Left_Date">
-                  <p>Generate Quotation By</p>
-               </div>
-               <div class="col-sm-6 Right_data">
-                  <mat-radio-group class="example-radio-group" [(ngModel)]="Type">
-                     <mat-radio-button class="example-radio-button" *ngFor="let Generate of _Generate" [value]="Generate">
-                        {{Generate}}
-                     </mat-radio-button>
-                  </mat-radio-group>
-                  <div class="row">
-                     <div class="col-sm-6 Form_Input" *ngIf="Type === 'Auto Increment'">
-                        <input type="text" placeholder="Prefix">
-                     </div>
-                     <div class="col-sm-6 Form_Input" *ngIf="Type === 'Auto Increment'">
-                        <input type="text" placeholder="Suffix">
-                     </div>
-                     <div class="col-sm-6 Form_Input" *ngIf="Type === 'Auto Increment'">
-                        <input type="text" placeholder="Starting With">
-                     </div>
-                     <div class="col-sm-6 Form_Input" *ngIf="Type === 'Auto Increment'">
-                        <input type="text" placeholder="Prefix">
-                     </div>
-                     <div class="col-sm-6 Form_Select" *ngIf="Type === 'Auto Increment'">
-                        <ng-select class="NgSelect" 
-                           [(ngModel)]="Type1"
-                           [items]="_BasedOn" 
-                           [searchable]="true" 
-                           placeholder="Based">
-                        </ng-select>
-                     </div>
-                  </div><br>
-                  <div class="row">
-                     <div class="col-sm-6 Form_Select" *ngIf="Type1 === 'Custom'">
-                        <ng-select class="NgSelect" 
-                           [items]="_Date" 
-                           [searchable]="true" 
-                           placeholder="Date">
-                        </ng-select>   
-                     </div>
-                     <div class="col-sm-6 Form_Select" *ngIf="Type1 === 'Custom'">
-                        <ng-select class="NgSelect" 
-                           [items]="_Month" 
-                           [searchable]="true" 
-                           placeholder="Month">
-                        </ng-select>   
+            <form [formGroup]="Form" (change)="anyChange()" >
+               <h5 class="Header">Purchase Quotation</h5>
+               <div class="row">
+                  <div class="col-sm-4 Left_Date">
+                     <p>Generate Quotation By</p>
+                  </div>
+                  <div class="col-sm-6 Right_data">
+                     <mat-radio-group class="example-radio-group" formControlName="Purchase_Quotation" (ngModelChange)="QuotationChange($event)">
+                           <mat-radio-button class="example-radio-button" value="Auto">Auto Increment</mat-radio-button>
+                           <mat-radio-button class="example-radio-button" value="Manual">Manual Increment</mat-radio-button>
+                     </mat-radio-group>
+                     <div class="row">
+                        <div class="col-sm-6 Form_Input" *ngIf="Quotation_Type === 'Auto'">
+                           <input type="text" placeholder="Prefix" formControlName="Purchase_Quotation_Prefix">
+                        </div>
+                        <div class="col-sm-6 Form_Input" *ngIf="Quotation_Type === 'Auto'">
+                           <input type="text" placeholder="Suffix" formControlName="Purchase_Quotation_Suffix">
+                        </div>
+                        <div class="col-sm-6 Form_Input" *ngIf="Quotation_Type === 'Auto'">
+                           <input type="text" placeholder="Starting With" formControlName="Purchase_Quotation_Starting">
+                        </div>
+                        <div class="col-sm-6 Form_Select" *ngIf="Quotation_Type === 'Auto'">
+                           <ng-select class="NgSelect" 
+                              [items]="_BasedOn" 
+                              [searchable]="true" 
+                              (ngModelChange)="QuotationChange_Custom($event)"
+                              formControlName="Purchase_Quotation_Based"
+                              placeholder="Based">
+                           </ng-select>
+                        </div>
+                     </div><br>
+                     <div class="row">
+                        <div class="col-sm-6 Form_Select" *ngIf="Quotation_Based_Type === 'Custom'">
+                           <ng-select class="NgSelect" 
+                              [items]="_Date" 
+                              [searchable]="true"
+                              formControlName="Purchase_Quotation_Custom_Date"
+                              placeholder="Date">
+                           </ng-select>   
+                        </div>
+                        <div class="col-sm-6 Form_Select" *ngIf="Quotation_Based_Type === 'Custom'">
+                           <ng-select class="NgSelect" 
+                              [items]="_Month" 
+                              [searchable]="true" 
+                              formControlName="Purchase_Quotation_Custom_Month"
+                              placeholder="Month">
+                           </ng-select>   
+                        </div>
                      </div>
                   </div>
-               </div>
-            </div><br><hr>
-            <h5 class="Header">Purchase Order</h5>
-            <div class="row">
-               <div class="col-sm-4 Left_Date">
-                  <p>Generate Order By</p>
-               </div>
-               <div class="col-sm-6 Right_data">
-                  <mat-radio-group class="example-radio-group" [(ngModel)]="Type2">
-                     <mat-radio-button class="example-radio-button" *ngFor="let Generate of _Generate" [value]="Generate">
-                        {{Generate}}
-                     </mat-radio-button>
-                  </mat-radio-group>
-                  <div class="row">
-                     <div class="col-sm-6 Form_Input" *ngIf="Type2 === 'Auto Increment'">
-                        <input type="text" placeholder="Prefix">
-                     </div>
-                     <div class="col-sm-6 Form_Input" *ngIf="Type2 === 'Auto Increment'">
-                        <input type="text" placeholder="Suffix">
-                     </div>
-                     <div class="col-sm-6 Form_Input" *ngIf="Type2 === 'Auto Increment'">
-                        <input type="text" placeholder="Starting With">
-                     </div>
-                     <div class="col-sm-6 Form_Input" *ngIf="Type2 === 'Auto Increment'">
-                        <input type="text" placeholder="Prefix">
-                     </div>
-                     <div class="col-sm-6 Form_Select" *ngIf="Type2 === 'Auto Increment'">
-                        <ng-select class="NgSelect" 
-                           [(ngModel)]="Type3"
-                           [items]="_BasedOn" 
-                           [searchable]="true" 
-                           placeholder="Based">
-                        </ng-select>
-                     </div>
-                  </div><br>
-                  <div class="row">
-                     <div class="col-sm-6 Form_Select" *ngIf="Type3 === 'Custom'">
-                        <ng-select class="NgSelect" 
-                           [items]="_Date" 
-                           [searchable]="true" 
-                           placeholder="Date">
-                        </ng-select>   
-                     </div>
-                     <div class="col-sm-6 Form_Select" *ngIf="Type3 === 'Custom'">
-                        <ng-select class="NgSelect" 
-                           [items]="_Month" 
-                           [searchable]="true" 
-                           placeholder="Month">
-                        </ng-select>   
+               </div><br><hr>
+               <h5 class="Header">Purchase Order</h5>
+               <div class="row">
+                  <div class="col-sm-4 Left_Date">
+                     <p>Generate Order By</p>
+                  </div>
+                  <div class="col-sm-6 Right_data">
+                     <mat-radio-group class="example-radio-group" formControlName="Purchase_Order" (ngModelChange)="OrderChange($event)">
+                        <mat-radio-button class="example-radio-button" value="Auto">Auto Increment</mat-radio-button>
+                        <mat-radio-button class="example-radio-button" value="Manual">Manual Increment</mat-radio-button>
+                     </mat-radio-group>
+                     <div class="row">
+                        <div class="col-sm-6 Form_Input" *ngIf="Order_Type === 'Auto'">
+                           <input type="text" placeholder="Prefix" formControlName="Purchase_Order_Prefix">
+                        </div>
+                        <div class="col-sm-6 Form_Input" *ngIf="Order_Type === 'Auto'">
+                           <input type="text" placeholder="Suffix" formControlName="Purchase_Order_Suffix">
+                        </div>
+                        <div class="col-sm-6 Form_Input" *ngIf="Order_Type === 'Auto'">
+                           <input type="text" placeholder="Starting With" formControlName="Purchase_Order_Starting">
+                        </div>
+                        <div class="col-sm-6 Form_Select" *ngIf="Order_Type === 'Auto'">
+                           <ng-select class="NgSelect" 
+                              [items]="_BasedOn" 
+                              [searchable]="true"
+                              (ngModelChange)="OrderChange_Custom($event)"
+                              formControlName="Purchase_Order_Based" 
+                              placeholder="Based">
+                           </ng-select>
+                        </div>
+                     </div><br>
+                     <div class="row">
+                        <div class="col-sm-6 Form_Select" *ngIf="Order_Based_Type === 'Custom'">
+                           <ng-select class="NgSelect" 
+                              [items]="_Date" 
+                              [searchable]="true" 
+                              formControlName="Purchase_Order_Custom_Date"
+                              placeholder="Date">
+                           </ng-select>   
+                        </div>
+                        <div class="col-sm-6 Form_Select" *ngIf="Order_Based_Type === 'Custom'">
+                           <ng-select class="NgSelect" 
+                              [items]="_Month" 
+                              [searchable]="true" 
+                              formControlName="Purchase_Order_Custom_Month"
+                              placeholder="Month">
+                           </ng-select>   
+                        </div>
                      </div>
                   </div>
-               </div>
-            </div><br><hr>
-            <h5 class="Header">Purchase Request</h5>
-            <div class="row">
-               <div class="col-sm-4 Left_Date">
-                  <p>Create Back Order</p>
-               </div>
-               <div class="col-sm-6 Right_data">
-                  <mat-radio-group>
-                     <mat-radio-button value="1" checked>Yes</mat-radio-button><br>
-                     <mat-radio-button value="2">No</mat-radio-button>
-                  </mat-radio-group>
-               </div>
-            </div><br>
+               </div><br><hr>
+               <!-- <h5 class="Header">Purchase Request</h5>
+               <div class="row">
+                  <div class="col-sm-4 Left_Date">
+                     <p>Create Back Order</p>
+                  </div>
+                  <div class="col-sm-6 Right_data">
+                     <mat-radio-group formControlName="Purchase_Request">
+                        <mat-radio-button value="Yes">Yes</mat-radio-button><br>
+                        <mat-radio-button value="No">No</mat-radio-button>
+                     </mat-radio-group>
+                  </div>
+               </div><br> -->
+            </form>
          </div>
       </div>
    </div>
 </div>
-   
+<div class="Footer">
+   <button *ngIf="_Create" mat-raised-button color="primary" style = "top: 5px;" (click)="Submit()" [disabled]="Form.status !== 'VALID'"> Submit </button>
+   <button *ngIf="_Update" mat-raised-button color="primary" style = "top: 5px;" (click)="Update()" [disabled]="!Form.touched || !Form.valid "> Update </button>
+</div> 

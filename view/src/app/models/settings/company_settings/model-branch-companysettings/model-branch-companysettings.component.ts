@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 
 import * as CryptoJS from 'crypto-js';
 import { AdminService } from './../../../../services/Admin/admin.service';
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { BsModalRef } from 'ngx-bootstrap';
 import { CompanySettingsService } from './../../../../services/settings/CompanySettings/company-settings.service';
 import { ToastrService } from './../../../../services/common-services/toastr-service/toastr.service';
 
@@ -84,7 +84,6 @@ export class ModelBranchCompanysettingsComponent implements OnInit {
     if (this._Data['Type'] === 'Create') {
          this.Form = new FormGroup({
          Branch_Name: new FormControl('', Validators.required),
-         Branch_Head: new FormControl('', Validators.required),
          Departments: new FormControl(null, Validators.required),
          AllStreet: new FormControl('', Validators.required),
          AllArea: new FormControl('', Validators.required),
@@ -101,7 +100,6 @@ export class ModelBranchCompanysettingsComponent implements OnInit {
    this.Form = new FormGroup({
       Branch_Name: new FormControl(this._Data['Branch_Info']['Branch_Name'], Validators.required ),
       Branch_Id: new FormControl(this._Data['Branch_Info']['_id'], Validators.required),
-      Branch_Head: new FormControl(this._Data['Branch_Info']['Branch_Head'], Validators.required),
       Departments: new FormControl(null, Validators.required),
       AllStreet: new FormControl(this._Data['Branch_Info']['AllAddress']['Street'], Validators.required),
       AllArea: new FormControl(this._Data['Branch_Info']['AllAddress']['Area'], Validators.required),
@@ -129,7 +127,7 @@ export class ModelBranchCompanysettingsComponent implements OnInit {
   AllCountry_Change() {
    const SelectedCountry = this.Form.controls['AllCountry'].value;
    if (SelectedCountry !== null && typeof SelectedCountry === 'object' && Object.keys(SelectedCountry).length > 0) {
-      const Data = {Country_Id: SelectedCountry._id, 'Company_Id': this.Company_Id, 'User_Id' : this.User_Id };
+      const Data = {'Country_Id': SelectedCountry._id, 'Company_Id': this.Company_Id, 'User_Id' : this.User_Id };
        let Info = CryptoJS.AES.encrypt(JSON.stringify(Data), 'SecretKeyIn@123');
        Info = Info.toString();
        // Get State List
@@ -165,6 +163,7 @@ AllState_Change() {
             const CryptoBytes  = CryptoJS.AES.decrypt(ResponseData['Response'], 'SecretKeyOut@123');
             const DecryptedData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
             this.AllCityOfState = DecryptedData;
+            console.log(this.AllCityOfState);
          } else if (response['status'] === 400 || response['status'] === 417 && !ResponseData['Status']) {
             this.Toastr.NewToastrMessage({ Type: 'Error', Message: ResponseData['Message'] });
          } else if (response['status'] === 401 && !ResponseData['Status']) {

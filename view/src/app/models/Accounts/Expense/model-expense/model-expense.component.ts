@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { BsModalRef } from 'ngx-bootstrap';
 
 import {NativeDateAdapter} from '@angular/material';
 import {DateAdapter} from '@angular/material/core';

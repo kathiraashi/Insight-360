@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { BsModalService } from 'ngx-bootstrap/modal';
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { BsModalRef } from 'ngx-bootstrap';
 
 import { ModelDepartmentHrsettingsComponent } from '../../../../../models/settings/hr_settings/model-department-hrsettings/model-department-hrsettings.component';
 import { DeleteConfirmationComponent } from '../../../../Common-Components/delete-confirmation/delete-confirmation.component';
@@ -43,26 +43,26 @@ export class DepartmentHrSettingsComponent implements OnInit {
                   this._Edit = Permissions['Edit_Permission'];
                   this._Delete = Permissions['Delete_Permission'];
                 }
-                  // Get Department List
-                     const Data = { 'Company_Id' : this.Company_Id, 'User_Id' : this.User_Id, };
-                     let Info = CryptoJS.AES.encrypt(JSON.stringify(Data), 'SecretKeyIn@123');
-                     Info = Info.toString();
-                     this.Service.Department_List({'Info': Info}).subscribe( response => {
-                        const ResponseData = JSON.parse(response['_body']);
-                        this.Loader = false;
-                        if (response['status'] === 200 && ResponseData['Status'] ) {
-                           const CryptoBytes  = CryptoJS.AES.decrypt(ResponseData['Response'], 'SecretKeyOut@123');
-                           const DecryptedData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
-                           this._List = DecryptedData;
-                        } else if (response['status'] === 400 || response['status'] === 417 && !ResponseData['Status']) {
-                          this.Toastr.NewToastrMessage({Type: 'Error', Message: response['Message']});
-                        } else if (response['status'] === 401 && !ResponseData['Status']) {
-                          this.Toastr.NewToastrMessage({ Type: 'Error',  Message: ResponseData['Message'] });
-                       } else {
-                        this.Toastr.NewToastrMessage( {  Type: 'Error', Message: 'Some Error Occurred!, But not Identify!'  });
-                        }
-                     });
-                  }
+               // Get Department List
+                  const Data = { 'Company_Id' : this.Company_Id, 'User_Id' : this.User_Id, };
+                  let Info = CryptoJS.AES.encrypt(JSON.stringify(Data), 'SecretKeyIn@123');
+                  Info = Info.toString();
+                  this.Service.Department_List({'Info': Info}).subscribe( response => {
+                     const ResponseData = JSON.parse(response['_body']);
+                     this.Loader = false;
+                     if (response['status'] === 200 && ResponseData['Status'] ) {
+                        const CryptoBytes  = CryptoJS.AES.decrypt(ResponseData['Response'], 'SecretKeyOut@123');
+                        const DecryptedData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+                        this._List = DecryptedData;
+                     } else if (response['status'] === 400 || response['status'] === 417 && !ResponseData['Status']) {
+                        this.Toastr.NewToastrMessage({Type: 'Error', Message: response['Message']});
+                     } else if (response['status'] === 401 && !ResponseData['Status']) {
+                        this.Toastr.NewToastrMessage({ Type: 'Error',  Message: ResponseData['Message'] });
+                     } else {
+                     this.Toastr.NewToastrMessage( {  Type: 'Error', Message: 'Some Error Occurred!, But not Identify!'  });
+                     }
+                  });
+               }
 
    ngOnInit() {
    }

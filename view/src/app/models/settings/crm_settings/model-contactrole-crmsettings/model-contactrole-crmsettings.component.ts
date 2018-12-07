@@ -3,7 +3,7 @@ import { Subject } from 'rxjs';
 import { FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { map } from 'rxjs/operators';
 
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { BsModalRef } from 'ngx-bootstrap';
 
 import * as CryptoJS from 'crypto-js';
 
@@ -19,7 +19,7 @@ export class ModelContactroleCrmsettingsComponent implements OnInit {
 
    onClose: Subject<any>;
 
-   Type: String;
+   Type: string;
    Data;
    Uploading: Boolean = false;
    Company_Id = '5b3c66d01dd3ff14589602fe';
@@ -106,7 +106,6 @@ export class ModelContactroleCrmsettingsComponent implements OnInit {
                 this.Toastr.NewToastrMessage( {  Type: 'Error', Message: 'Error Not Identify!, Creating Contact Role!' });
                   this.onClose.next({Status: false, Message: 'UnExpected Error!'});
                   this.bsModalRef.hide();
-                  console.log(ReceivingData);
                }
             });
          }

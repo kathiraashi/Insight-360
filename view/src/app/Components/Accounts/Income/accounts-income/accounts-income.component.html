@@ -1,0 +1,173 @@
+<app-header></app-header>
+<!-- Page section -->
+<div [ngClass]="{'Hide': !Loader}" class="DataLoaderStyle_1" style="width: 100%">
+   <div class="Loading">
+         <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+            <div class="rect6"></div>
+         </div>
+   </div>
+</div>
+<div class="Page_Section">
+   <div class="container-fluid">
+      <!-- page Identity -->
+      <div class="Page_Identity">
+         <div class="Page_Track">
+            <ul>
+               <li class="HeaderName">Income</li>
+               <li class="arrow">>></li>
+               <li>List</li>
+            </ul>
+         </div>
+      </div>
+      <!--  Header Part -->
+      <!-- Create and search Section -->
+      <form [formGroup]="Form" >
+         <div class="row header_part">
+            <div class="col-sm-1">
+                  <a><button class="Create_Button" mat-raised-button (click)="Create()">+ Create</button></a>
+            </div>
+            <div class="col-sm-2">
+               <div class="Form_Select">
+                  <ng-select class="NgSelect" 
+                     [items]="_Tab"
+                     [bindLabel]="'value'"
+                     [bindValue]="'type'"
+                     [searchable]="true"
+                     [markFirst]="true"
+                     formControlName="selected"
+                     (change)="selectTab($event.type)"
+                     placeholder="Type">
+                  </ng-select>
+               </div>
+            </div>
+            <div class="col-sm-3">
+            </div>
+            <div class="col-sm-6">
+               <div class="Search_Section">
+                  <input type="text" placeholder="Search.." name="search">
+                  <i class="material-icons">search</i>
+               </div>
+            </div>
+         </div>
+      </form>
+      <div class="Company_Details">
+         <!-- <div class="Tabs">
+            <div class="Tab" [ngClass]="{'active': Active_Tab === 'Income'}" (click)="Active_Tab_Change('Income')">
+               <span >Income/Investment List</span>
+            </div>
+            <div class="Tab" [ngClass]="{'active': Active_Tab === 'Loan'}" (click)="Active_Tab_Change('Loan')">
+               <span>Loan List</span>
+            </div>
+         </div>
+         <br> -->
+         <div class="page" *ngIf="Active_Tab === 'Income'">
+            <!-- Table Section -->
+            <div class="Table_Section">
+               <table>
+                  <thead>
+                     <tr>
+                        <th>S.no</th>
+                        <th>Income Type</th>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr *ngFor="let item of _InComeList; let i = index">
+                        <td>
+                           <span class="S_no"> {{i + 1}} </span>
+                        </td>
+                        <td>
+                           <span class="Style_1">{{item?.Income_Type?.Income_Type}}</span>
+                        </td>
+                        <td>
+                           <span class="Style_1">{{item?.Date | date: 'dd/MM/yyyy'}}</span>
+                        </td>
+                        <td>
+                           <span class="Style_1">{{item?.Amount}}</span>
+                        </td>
+                        <td>
+                           <span class="Style_1">{{item?.Income_Status}}</span>
+                        </td>
+                        <td>
+                           <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" (click)="ActionIndex(i)"> Action </button>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+         <div class="page" *ngIf="Active_Tab === 'Loan'">
+            <!-- Table Section -->
+            <div class="Table_Section">
+               <table>
+                  <thead>
+                     <tr>
+                        <th>S.no</th>
+                        <th>Lender Name</th>
+                        <th>Lender A/C No</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                        <th>Cycle Of Prepayment</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr *ngFor="let item of _LoanList; let i = index">
+                        <td>
+                           <span class="S_no"> {{i + 1}} </span>
+                        </td>
+                        <td>
+                           <span class="Style_1">{{item?.Lender_Name}}</span>
+                        </td>
+                        <td>
+                           <span class="Style_1">{{item?.Lender_Account_Number}}</span>
+                        </td>
+                        <td>
+                           <span class="Style_1">{{item?.Amount}}</span>
+                        </td>
+                        <td>
+                           <span class="Style_1">{{item?.Date | date: 'dd/MM/yyyy'}}</span>
+                        </td>
+                        <td>
+                           <span class="Style_1">{{item?.Cycle_Of_Prepayment}}</span>
+                        </td>
+                        <td>
+                           <span class="Style_1">{{item?.Loan_Status}}</span>
+                        </td>
+                        <td>
+                           <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" (click)="ActionIndex(i)"> Action </button>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>  
+   </div>
+</div>
+
+<!-- Dropdown menus -->
+<mat-menu class="MenuStyleOne" #Action="matMenu" [overlapTrigger]="false" xPosition="after" yPosition="below" class="MenuStyleOne">
+   <!-- <a><button *ngIf="showEditButton" mat-menu-item (click)="Edit()">
+      <span>Edit</span>
+   </button></a> -->
+   <a><button mat-menu-item (click)="View()">
+      <span>View</span>
+   </button></a>
+   <button *ngIf="showValidateButton" mat-menu-item (click)="View()">
+      <span>Validate</span>
+   </button>
+</mat-menu>
+
+
+
+

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-about-vendor-view',
@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./about-vendor-view.component.css']
 })
 export class AboutVendorViewComponent implements OnInit {
+   @Input() CustomerData: Object;
+   _Data;
+   constructor() {
+   }
 
-  constructor() { }
-
-  ngOnInit() {
-  }
+   ngOnInit() {
+      setTimeout(() => {
+         this._Data = this.CustomerData;
+         console.log(this._Data);
+      }, 1000);
+   }
 
 }

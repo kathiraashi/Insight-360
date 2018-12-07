@@ -15,7 +15,7 @@
             </div>
          </div>
       </div>
-      <form>
+      <form [formGroup]="Form">
          <div class="row">
             <div class="col-sm-3" >
                <!-- Left Section -->
@@ -29,16 +29,16 @@
                         <!-- <input type="file"> -->
                      </div><br><br>
                      <div class="col-sm-12 Form_Input">
-                        <input type="text"  placeholder="Vendor Name" style="width:90%;margin-left:15px;">
+                        <input type="text" [value]="VendorName" placeholder="Vendor Name" style="width:90%;margin-left:15px;">
                      </div>
                      <div class="col-sm-12 Form_Input">
-                        <input type="text"  placeholder="Phone Number"  style="width:90%;margin-left:15px;">
+                        <input type="text" [value]="PhoneNumber" placeholder="Phone Number"  style="width:90%;margin-left:15px;">
                      </div>
                      <div class="col-sm-12 Form_Input" >
-                        <input  type="text" placeholder="Email Address" style="width:90%;margin-left:15px;">
+                        <input  type="text" [value]="Email" placeholder="Email Address" style="width:90%;margin-left:15px;">
                      </div>
                      <div class="col-sm-12 Form_Input">
-                        <input  type="text" placeholder="Website" style="width:90%;margin-left:15px;">
+                        <input  type="text" [value]="Website" placeholder="Website" style="width:90%;margin-left:15px;">
                      </div>
                   </div>
                </div>
@@ -47,93 +47,127 @@
                <div class="Company_Details">
                   <h5 class="text-style-1"> Vendor Details </h5>
                   <div class="row">
-                     <div class="col-sm-4 Form_Input" >
-                        <input type="text" placeholder="Vendor Name">
+                     <div class="col-sm-6 Form_Input" [ngClass]="{'Form_Err': !Form.controls['Vendor_Name'].pristine && Form.controls['Vendor_Name'].errors, 'Form_Success': Form.controls['Vendor_Name'].valid && !Form.controls['Vendor_Name'].pristine }">
+                        <input type="text" formControlName="Vendor_Name" placeholder="Vendor Name">
+                        <p class="error" *ngIf="Form.controls['Vendor_Name'].errors && !Form.controls['Vendor_Name'].pristine">
+                           <span *ngIf="Form.controls['Vendor_Name'].errors.required"> Vendor Name required</span>
+                        </p>
                      </div>
-                     <div class="col-sm-4 Form_Input" >
-                        <input type="text" placeholder="Phone Number">
+                     <div class="col-sm-6 Form_Input" [ngClass]="{'Form_Err': !Form.controls['Phone_Number'].pristine && Form.controls['Phone_Number'].errors, 'Form_Success': Form.controls['Phone_Number'].valid && !Form.controls['Phone_Number'].pristine }">
+                        <input type="text" formControlName="Phone_Number" placeholder="Phone Number">
+                        <p class="error" *ngIf="Form.controls['Phone_Number'].errors && !Form.controls['Phone_Number'].pristine">
+                           <span *ngIf="Form.controls['Phone_Number'].errors.required"> Phone Number required</span>
+                        </p>
                      </div>
-                     <div class="col-sm-4 Form_Input" >
-                        <input type="text" placeholder="Email Id">
+                     <div class="col-sm-6 Form_Input" [ngClass]="{'Form_Err': !Form.controls['Email'].pristine && Form.controls['Email'].errors, 'Form_Success': Form.controls['Email'].valid && !Form.controls['Email'].pristine }">
+                        <input type="text" formControlName="Email" placeholder="Email Id">
+                        <p class="error" *ngIf="Form.controls['Email'].errors && !Form.controls['Email'].pristine">
+                           <span *ngIf="Form.controls['Email'].errors.required"> Email required</span>
+                        </p>
                      </div>
-                     <div class="col-sm-4 Form_Input" >
-                        <input type="text" placeholder="Website">
-                     </div>
-                     <div class="col-sm-4 Form_Input" >
-                        <input type="text" placeholder="Created By">
+                     <div class="col-sm-6 Form_Input" [ngClass]="{'Form_Err': !Form.controls['Website'].pristine && Form.controls['Website'].errors, 'Form_Success': Form.controls['Website'].valid && !Form.controls['Website'].pristine }">
+                        <input type="text" formControlName="Website" placeholder="Website">
+                        <p class="error" *ngIf="Form.controls['Website'].errors && !Form.controls['Website'].pristine">
+                           <span *ngIf="Form.controls['Website'].errors.required"> Website required</span>
+                        </p>
                      </div>
                   </div>
                   <br>
                </div>
                <div class="Company_Details">
-                  <h5 class="text-style-1"> Billing Address </h5>
+                  <h5 class="text-style-1"> Address 
+                     <span class="pull-right"><mat-checkbox formControlName="If_Subcontract" (change)="SubContract()">Sub Contract</mat-checkbox></span>
+                  </h5>
                   <div class="row">
-                     <div class="col-sm-4 Form_Input" >
-                        <input type="text" placeholder="No / Street">
+                     <div class="col-sm-4 Form_Input" [ngClass]="{'Form_Err': !Form.controls['Street'].pristine && Form.controls['Street'].errors, 'Form_Success': Form.controls['Street'].valid && !Form.controls['Street'].pristine }">
+                        <input type="text" formControlName="Street" placeholder="No / Street" (input)="AddressAny_Changes()">
+                        <p class="error" *ngIf="Form.controls['Street'].errors && !Form.controls['Street'].pristine">
+                           <span *ngIf="Form.controls['Street'].errors.required"> Street Type is required</span>
+                        </p>
                      </div>
-                     <div class="col-sm-4 Form_Input" >
-                        <input type="text"  placeholder="Area">
+                     <div class="col-sm-4 Form_Input" [ngClass]="{'Form_Err': !Form.controls['Area'].pristine && Form.controls['Area'].errors, 'Form_Success': Form.controls['Area'].valid && !Form.controls['Area'].pristine }">
+                        <input type="text" formControlName="Area" placeholder="Area" (input)="AddressAny_Changes()">
+                        <p class="error" *ngIf="Form.controls['Area'].errors && !Form.controls['Area'].pristine">
+                           <span *ngIf="Form.controls['Area'].errors.required"> Area is required</span>
+                        </p>
                      </div>
                      <div class="col-sm-4 Form_Select" >
-                        <ng-select class="NgSelect" 
-                           [items]="_Country" 
-                           [searchable]="true" 
-                           placeholder="Country">
-                        </ng-select>                       
-                     </div>
-                     <div class="col-sm-4 Form_Select" >
-                        <ng-select class="NgSelect" 
-                           [items]="_State" 
-                           [searchable]="true" 
-                           placeholder="State">
+                        <ng-select class="NgSelect ValueBold" formControlName="Country" [searchable]="true" placeholder="Country" (ngModelChange)="Country_Change(); AddressAny_Changes()">
+                           <ng-option *ngFor="let Country of AllCountry" [value]="Country">{{Country.Country_Name}}</ng-option>
                         </ng-select>
+                        <p class="error" *ngIf="Form.controls['Country'].errors && !Form.controls['Country'].pristine">
+                           <span *ngIf="Form.controls['Country'].errors.required"> Country is required</span>
+                        </p>
                      </div>
                      <div class="col-sm-4 Form_Select" >
-                        <ng-select class="NgSelect" 
-                           [items]="_City" 
-                           [searchable]="true" 
-                           placeholder="City">
+                        <ng-select class="NgSelect ValueBold" formControlName="State" [searchable]="true" placeholder="State" (ngModelChange)="State_Change(); AddressAny_Changes()">
+                           <ng-option *ngFor="let State of AllStateOfCountry" [value]="State">{{State.State_Name}}</ng-option>
                         </ng-select>
+                        <p class="error" *ngIf="Form.controls['State'].errors && !Form.controls['State'].pristine">
+                           <span *ngIf="Form.controls['State'].errors.required"> State is required</span>
+                        </p>
                      </div>
-                     <div class="col-sm-4 Form_Input" >
-                        <input matInput type="text"  placeholder="Zip Code">
+                     <div class="col-sm-4 Form_Select" >
+                        <ng-select class="NgSelect ValueBold" formControlName="City" [searchable]="true" placeholder="City" (ngModelChange)="AddressAny_Changes()" >
+                           <ng-option *ngFor="let City of AllCityOfState" [value]="City">{{City.City_Name}}</ng-option>
+                        </ng-select>
+                        <p class="error" *ngIf="Form.controls['City'].errors && !Form.controls['City'].pristine">
+                           <span *ngIf="Form.controls['City'].errors.required"> City is required</span>
+                        </p>
+                     </div>
+                     <div class="col-sm-4 Form_Input" [ngClass]="{'Form_Err': !Form.controls['ZipCode'].pristine && Form.controls['ZipCode'].errors, 'Form_Success': Form.controls['ZipCode'].valid && !Form.controls['ZipCode'].pristine }">
+                        <input type="text" formControlName="ZipCode" placeholder="Zip Code" (input)="AddressAny_Changes()" >
+                        <p class="error" *ngIf="Form.controls['ZipCode'].errors && !Form.controls['ZipCode'].pristine">
+                           <span *ngIf="Form.controls['ZipCode'].errors.required"> Zip Code is required</span>
+                        </p>
                      </div>
                   </div>
                </div>
-               <div class="Company_Details">
-                  <h5 class="text-style-1"> Shipping Address 
-                     <span class="pull-right"><mat-checkbox>Same As Billing Address</mat-checkbox></span>
+               <div class="Company_Details" *ngIf="showSubContractAddress">
+                  <h5 class="text-style-1"> Sub Contractor Address 
+                     <span class="pull-right"><mat-checkbox formControlName="SameAddresses" (change)="SameAddresses_Change()">Same As SubContractor Address</mat-checkbox></span>
                   </h5>
-                  <div class="row">
-                     <div class="col-sm-4 Form_Input" >
-                        <input  type="text"  placeholder="No / Street">
+                  <div class="row" >   
+                     <div class="col-sm-4 Form_Input" [ngClass]="{'Form_Err': !Form.controls['SubContractStreet'].pristine && Form.controls['SubContractStreet'].errors, 'Form_Success': Form.controls['SubContractStreet'].valid && !Form.controls['SubContractStreet'].pristine }">
+                        <input type="text" formControlName="SubContractStreet" placeholder="No / Street">
+                        <p class="error" *ngIf="Form.controls['SubContractStreet'].errors && !Form.controls['SubContractStreet'].pristine">
+                           <span *ngIf="Form.controls['SubContractStreet'].errors.required"> No / Street is required</span>
+                        </p>
                      </div>
-                     <div class="col-sm-4 Form_Input" >
-                        <input  type="text" placeholder="Area">
+                     <div class="col-sm-4 Form_Input" [ngClass]="{'Form_Err': !Form.controls['SubContractArea'].pristine && Form.controls['SubContractArea'].errors, 'Form_Success': Form.controls['SubContractArea'].valid && !Form.controls['SubContractArea'].pristine }">
+                        <input type="text" formControlName="SubContractArea" placeholder="Area" >
+                        <p class="error" *ngIf="Form.controls['SubContractArea'].errors && !Form.controls['SubContractArea'].pristine">
+                           <span *ngIf="Form.controls['SubContractArea'].errors.required"> Area is required</span>
+                        </p>
                      </div>
                      <div class="col-sm-4 Form_Select" >
-                        <ng-select class="NgSelect" 
-                           [items]="_Country" 
-                           [searchable]="true" 
-                           placeholder="Country">
-                        </ng-select>   
+                        <ng-select class="NgSelect ValueBold" formControlName="SubContractCountry" [searchable]="true" placeholder="Country" (ngModelChange)="SubContractCountry_Change()">
+                           <ng-option *ngFor="let Country of SubContractAllCountry" [value]="Country">{{Country.Country_Name}}</ng-option>
+                        </ng-select>SubContract                <p class="error" *ngIf="Form.controls['SubContractCountry'].errors && !Form.controls['SubContractCountry'].pristine">
+                           <span *ngIf="Form.controls['SubContractCountry'].errors.required"> Country is required</span>
+                        </p>                    
                      </div>
                      <div class="col-sm-4 Form_Select" >
-                        <ng-select class="NgSelect" 
-                           [items]="_State" 
-                           [searchable]="true" 
-                           placeholder="State">
+                        <ng-select class="NgSelect ValueBold" formControlName="SubContractState" [searchable]="true" placeholder="State" (ngModelChange)="SubContractState_Change()">
+                           <ng-option *ngFor="let State of SubContractAllStateOfCountry" [value]="State">{{State.State_Name}}</ng-option>
                         </ng-select>
+                        <p class="error" *ngIf="Form.controls['SubContractState'].errors && !Form.controls['SubContractState'].pristine">
+                           <span *ngIf="Form.controls['SubContractState'].errors.required"> State is required</span>
+                        </p>
                      </div>
                      <div class="col-sm-4 Form_Select" >
-                        <ng-select class="NgSelect" 
-                           [items]="_City" 
-                           [searchable]="true" 
-                           placeholder="City">
+                        <ng-select class="NgSelect ValueBold" formControlName="SubContractCity" [searchable]="true" placeholder="City">
+                           <ng-option *ngFor="let City of SubContractAllCityOfState" [value]="City">{{City.City_Name}}</ng-option>
                         </ng-select>
+                        <p class="error" *ngIf="Form.controls['SubContractCity'].errors && !Form.controls['SubContractCity'].pristine">
+                           <span *ngIf="Form.controls['SubContractCity'].errors.required"> City is required</span>
+                        </p>
                      </div>
-                     <div class="col-sm-4 Form_Input" >
-                        <input type="text"  placeholder="Zip Code">
+                     <div class="col-sm-4 Form_Input" [ngClass]="{'Form_Err': !Form.controls['SubContractZipCode'].pristine && Form.controls['SubContractZipCode'].errors, 'Form_Success': Form.controls['SubContractZipCode'].valid && !Form.controls['SubContractZipCode'].pristine }" >
+                        <input matInput type="text" formControlName="SubContractZipCode" placeholder="Zip Code">
+                        <p class="error" *ngIf="Form.controls['SubContractZipCode'].errors && !Form.controls['SubContractZipCode'].pristine">
+                           <span *ngIf="Form.controls['SubContractZipCode'].errors.required"> Zip Code is required</span>
+                        </p>
                      </div>
                   </div>
                </div>
@@ -144,7 +178,7 @@
 </div>
 <!-- Footer -->
 <div class="Footer">
-   <button mat-raised-button color="primary" style = "top: 5px;"> Submit </button>
+   <button mat-raised-button color="primary" style = "top: 5px;" [disabled]="!Form.valid" (click)="Submit()"> Submit </button>
 </div>
   
   

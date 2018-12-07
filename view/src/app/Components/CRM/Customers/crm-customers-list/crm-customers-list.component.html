@@ -1,4 +1,16 @@
 <app-header></app-header>
+<div [ngClass]="{'Hide': !Loader}" class="DataLoaderStyle_1" style="height: 100%; width: 100%">
+   <div class="Loading">
+         <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+            <div class="rect6"></div>
+         </div>
+   </div>
+</div>
 <!-- Main Section -->
 <div class="Main_Section">
    <div class="Page_Section">
@@ -25,69 +37,24 @@
                </div>
             </div>
          </div>
-         <!-- Content Style -->
-         <div class="row Content_Style">
-            <div class="col-sm-3 Page_Content" >
+             <!-- content style -->
+      <div class="row Content_Style">
+         <div class="col-sm-3 Page_Content" *ngFor="let item of _CrmList; let i = index">
+              <a (click)="View(i)">
                <div class="Sub_Content">
                   <div class="image_section">
                      <img src="../../../../assets/images/basic/company.png">
                   </div>
-                  <div class=" Content_Section">
-                     <h5>Customer Name</h5>
-                     <h5>Customer@gmail.com</h5>
-                     <h5>+7776546677</h5>
-                     <h5>State,Country</h5>
+                  <div class="Content_Section">
+                     <h5>{{item?.Company_Name}}</h5>
+                     <h5>{{item?.Email}}</h5>
+                     <h5 *ngIf="item?.Email !== null">{{item?.Phone_Number}}</h5>
+                     <h5 *ngIf="item?.Email !== null">{{item?.Website}}</h5>
                   </div>
-                  <span><a [routerLink]="['/main_crm_customers_view']"><i class="material-icons View" >remove_red_eye</i></a>
-                  <i class="material-icons settings" [matMenuTriggerFor] = "Action">settings</i></span>
-               </div>
-            </div>
-            <div class="col-sm-3 Page_Content">
-               <div class="Sub_Content" >
-                  <div class="image_section">
-                     <img src="../../../../assets/images/basic/company.png">
-                  </div>
-                  <div class=" Content_Section">
-                     <h5>Customer Name</h5>
-                     <h5>Customer@gmail.com</h5>
-                     <h5>+7776546677</h5>
-                     <h5>State,Country</h5>
-                  </div>
-                  <span><a [routerLink]="['/main_crm_customers_view']"><i class="material-icons View">remove_red_eye</i></a>
-                  <i class="material-icons settings" [matMenuTriggerFor] = "Action">settings</i></span>
-               </div>
-            </div>
-            <div class="col-sm-3 Page_Content">
-               <div class="Sub_Content">
-                  <div class="image_section">
-                     <img src="../../../../assets/images/basic/company.png">
-                  </div>
-                  <div class=" Content_Section">
-                     <h5>Customer Name</h5>
-                     <h5>Customer@gmail.com</h5>
-                     <h5>+7776546677</h5>
-                     <h5>State,Country</h5>
-                  </div>
-                  <span ><a [routerLink]="['/main_crm_customers_view']"><i class="material-icons View">remove_red_eye</i></a>
-                  <i class="material-icons settings"  [matMenuTriggerFor] = "Action">settings</i></span>
-               </div>
-            </div>
-            <div class="col-sm-3 Page_Content">
-               <div class="Sub_Content">
-                  <div class="image_section">
-                     <img src="../../../../assets/images/basic/company.png">
-                  </div>
-                  <div class=" Content_Section">
-                     <h5>Customer Name</h5>
-                     <h5>Customer@gmail.com</h5>
-                     <h5>+7776546677</h5>
-                     <h5>State,Country</h5>
-                  </div>
-                  <span ><a [routerLink]="['/main_crm_customers_view']"><i class="material-icons View">remove_red_eye</i></a>
-                  <i class="material-icons settings" [matMenuTriggerFor] = "Action">settings</i></span>
-               </div>
-            </div>
+                  <a style="margin-bottom: 60px"><i class="material-icons View" >border_color</i></a> 
+               </div> </a>
          </div>
+      </div>
       </div>
    </div>
 </div>

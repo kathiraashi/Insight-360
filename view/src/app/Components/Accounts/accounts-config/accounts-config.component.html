@@ -16,37 +16,64 @@
       <!-- Container Content -->
       <div class="container-content">
          <h5 class="Header">Fiscal Year:</h5>
-         <div class="row">
-            <div class="col-sm-4 Left_Date">
-               <p>Fiscal Year Last Day:</p>
-            </div>
-            <div class="col-sm-4 Right_data Form_Select">
-               <span>
-                  <ng-select class="NgSelect" 
-                     [items]="_Date" 
-                     [searchable]="true" 
-                     placeholder="Date">
-                  </ng-select>   <br>
-                  <ng-select class="NgSelect" 
-                     [items]="_Month" 
-                     [searchable]="true" 
-                     placeholder="Date">
-                  </ng-select>   
-               </span>
-            </div>
-         </div><br>
-         <div class="row">
-            <div class="col-sm-4 Left_Date">
-               <p>Default Currency:</p>
-            </div>
-            <div class="col-sm-4 Right_data Form_Input">
-               <span>
-                  <input type="text" value="INR" readonly="true">
-               </span>
-            </div>
-         </div><br>
+         <form [formGroup]="Form">
+            <div class="row">
+               <div class="col-sm-4 Left_Date">
+                  <p>Fiscal Year Last Day:</p>
+               </div>
+               <div class="col-sm-4 Right_data Form_Select">
+                  <span>
+                     <ng-select class="NgSelect" 
+                        [items]="_Date" 
+                        [searchable]="true" 
+                        formControlName="Date"
+                        placeholder="Date">
+                     </ng-select>
+                     <p class="error" style="margin-top: -20px" *ngIf="Form.controls['Date'].errors && !Form.controls['Date'].pristine">
+                        <span *ngIf="Form.controls['Date'].errors.required"> Date is required</span>
+                     </p>
+                     <br>
+                     <ng-select class="NgSelect" 
+                        [items]="_Month" 
+                        [searchable]="true" 
+                        formControlName="Month"
+                        placeholder="Month">
+                     </ng-select>   
+                     <p class="error" style="margin-top: -20px" *ngIf="Form.controls['Month'].errors && !Form.controls['Month'].pristine">
+                        <span *ngIf="Form.controls['Month'].errors.required"> Month is required</span>
+                     </p>
+                  </span>
+               </div>
+               <!-- <div class="col-sm-4 Form_Input" [ngClass]="{'Form_Err': !Form.controls['Date'].pristine && Form.controls['Date'].errors, 'Form_Success': Form.controls['Date'].valid && !Form.controls['Date'].pristine }">
+                  <label>Date: </label>
+                  <input matInput [matDatepicker]="DatePicker1" (click)="DatePicker1.open()" formControlName="Date">
+                  <mat-datepicker #DatePicker1></mat-datepicker>
+                  <p class="error" style="margin-top: -20px" *ngIf="Form.controls['Date'].errors && !Form.controls['Date'].pristine">
+                     <span *ngIf="Form.controls['Date'].errors.required"> Date is required</span>
+                  </p>  
+               </div> -->
+            </div><br>
+            <div class="row">
+               <div class="col-sm-4 Left_Date">
+                  <p>Default Currency:</p>
+               </div>
+               <div class="col-sm-4 Right_data Form_Input">
+                  <span>
+                     <input type="text" value="INR" formControlName="Currency">
+                     <p class="error" style="margin-top: -20px" *ngIf="Form.controls['Currency'].errors && !Form.controls['Currency'].pristine">
+                        <span *ngIf="Form.controls['Currency'].errors.required"> Currency is required</span>
+                     </p>  
+                  </span>
+               </div>
+            </div><br>
+         </form>
       </div>
    </div>
 </div>
-   
+<!-- Footer -->
+<div class="Footer">
+   <button *ngIf="_Create" mat-raised-button color="primary" style = "top: 5px;" (click)="Submit()" [disabled]="Form.status !== 'VALID'"> Submit </button>
+   <button *ngIf="_Update" mat-raised-button color="primary" style = "top: 5px;" (click)="Update()" [disabled]="!Form.touched || !Form.valid"> Update </button>
+</div>
+
 

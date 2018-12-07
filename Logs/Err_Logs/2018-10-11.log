@@ -1,0 +1,1 @@
+[2018-10-11T16:44:22.889] [ERROR] Error - {"Error_Name":"","Error_Address":"","Error_Message":"MongoError: E11000 duplicate key error index: insight-360.Lead_List.$Email_1 dup key: { : \"company_1@mail.com\" }"}

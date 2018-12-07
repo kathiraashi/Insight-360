@@ -49,6 +49,9 @@
       cursor: pointer;
    }
 /* Form designs  */
+   .Form_Input {
+      margin-bottom: 30px;
+   }
    .Form_Input label {
       font-size: 14px;
       margin-bottom: 5px;
@@ -59,6 +62,7 @@
       padding: 4px 10px;
       width: 100%;
       height: 37px;
+      margin-top: 0px;
       outline: none;
       border: 1px solid #e8e8e8;
       color: rgb(79, 107, 123);
@@ -99,6 +103,9 @@
       color: #999999;
       font-weight: 400;
    }
+   .Form_Select {
+      margin-bottom: 30px;
+   }
    .Form_Select label {
       font-size: 14px;
       margin-bottom: 5px;
@@ -134,7 +141,7 @@
       background-color:#fff;
       border-radius: 3px;
       width:100%;
-      height:300px;
+      height:435px;
       text-align:center;
    }
    .left_Section img{
@@ -260,13 +267,13 @@
       width: 100%;
       height: 37px;
       outline: none;
-      margin-bottom: 20px;
+      margin-bottom: 0px;
       border: 1px solid #e8e8e8;
       color: rgb(79, 107, 123);
       font-weight: 400;
       font-size: 14px;
       letter-spacing: 0.3px;
-      margin-top: 10px;
+      margin-top: 0px;
    }
    .Form_Input input:-moz-placeholder{
       color: #999999;
@@ -294,3 +301,26 @@
       height: 45px;
       text-align: right
    }
+   /* error */
+.error{
+   margin: 0px;
+   margin-bottom: -19px;
+   color: rgb(221, 10, 10);
+   font-weight: 500;
+   text-align: left;
+   font-size: 13px;
+   word-spacing: 1px;
+   letter-spacing: 0.4px;
+}
+.Form_Input.Form_Err input{
+  border-color: rgb(221, 10, 10) !important;
+}
+.Form_Input.Form_Success input{
+  border-color: #4ab65f !important;
+}
+.Form_Select.Form_Err select{
+   border-color: rgb(221, 10, 10);
+}
+.Form_Select.Form_Success select{
+   border-color: #4ab65f;
+}

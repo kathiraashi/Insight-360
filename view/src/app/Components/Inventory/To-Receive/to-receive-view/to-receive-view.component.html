@@ -1,3 +1,16 @@
+<div [ngClass]="{'Hide': !Loader}" class="DataLoaderStyle_1" style="width: 100%; height: 100%; overflow-x: hidden;">
+   <div class="Loading">
+         <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+            <div class="rect6"></div>
+         </div>
+   </div>
+</div>
+<div class="LoadedDataStyle_1" [ngClass]="{'Show': !Loader}"></div>
 <!-- Page -->
 <div class="page" style="margin-top:100px;">
    <div class="container-fluid">
@@ -5,90 +18,171 @@
       <div class="Page_Identity">
          <div class="Page_Track">
             <ul>
-            <li class="HeaderName">Home</li>
-            <li class="arrow">>></li>
-            <li class= "LinkName"><a [routerLink]="['/to_receive_list']">To Receive List</a></li>
-            <li class="arrow">>></li>
-            <li >To Receive View</li>
+               <li class="HeaderName">To Receive</li>
+               <li class="arrow">>></li>
+               <li class= "LinkName"><a [routerLink]="['/to_receive_list']">List</a></li>
+               <li class="arrow">>></li>
+               <li >{{ToReceive_Details?.Vendor_Name?.Vendor_Name}}</li>
             </ul>
          </div>
       </div>
       <form>
-         <!-- Company details -->
+         <!-- Company Details -->
          <div class="Company_Details">
-            <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Receive 
-               <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span>
-               <button mat-raised-button color="primary" class="pull-right"> Validate </button><br>
+            <h5 style="color:#49B660;font-size:20px;font-weight: 600;">To
+               <span style="color:#516570;font-size:20px;font-weight: 600;">Receive</span>
+               <button *ngIf="ToReceive_Details?.Status === 'Awaiting_Receive'" mat-raised-button color="primary" class="pull-right" (click)="validate()"> Validate </button>
             </h5>
             <br>
             <div class="row">
                <div class="col-sm-4">
                   <div class="view_item">
-                     <div class="Static">Ref No</div>
-                     <div class="dots"> : </div>
-                     <div class="Data">  123 </div>
-                  </div>
-                  <div class="view_item">
-                     <div class="Static"> Date</div>
-                     <div class="dots"> : </div>
-                     <div class="Data">  24.08.18 </div>
-                  </div>
-               </div>
-               <div class="col-sm-4">
-                  <div class="view_item">
                      <div class="Static">Vendor Name</div>
                      <div class="dots"> : </div>
-                     <div class="Data">  xxx </div>
+                     <div class="Data">{{ToReceive_Details?.Vendor_Name?.Vendor_Name}}</div>
                   </div>
                   <div class="view_item">
-                     <div class="Static"> Source</div>
+                     <div class="Static"> Quote Date</div>
                      <div class="dots"> : </div>
-                     <div class="Data">  yyyy </div>
+                     <div class="Data"> {{ToReceive_Details?.Quote_Date | date: 'dd/MM/yyyy'}} </div>
+                  </div>
+               </div>
+               <div class="col-sm-4">
+                  <div class="view_item"> 
+                     <div class="Static">Contact Person</div>
+                     <div class="dots"> : </div>
+                     <div class="Data"> {{ToReceive_Details?.Contact?.Name}} </div>
+                  </div>
+                  <div class="view_item">
+                     <div class=" Static">Valid Till</div>
+                     <div class="dots"> : </div>
+                     <div class=" Data"> {{ToReceive_Details?.Valid_Date | date: 'dd/MM/yyyy'}}</div>
                   </div>
                </div>
                <div class="col-sm-4">
                   <div class="view_item">
-                     <div class="Static">Order No</div>
+                     <div class="Static">Quote Ref No</div>
                      <div class="dots"> : </div>
-                     <div class="Data"> 123</div>
+                     <div class="Data"> {{ToReceive_Details?.Quote_Ref_Number}} </div>
                   </div>
-                  <div class="view_item">
-                     <div class="Static">Destination</div>
+                  <div *ngIf="ToReceive_Details?.Purchase_Request_Number?.Requested_Number" class="view_item">
+                     <div class="Static"> Purchase Request</div>
                      <div class="dots"> : </div>
-                     <div class="Data"> yyy</div>
+                     <div class="Data">{{ToReceive_Details?.Purchase_Request_Number?.Requested_Number}}</div>
+                  </div>
+                  <div *ngIf="ToReceive_Details?.Subject" class="view_item">
+                     <div class=" Static">Subject</div>
+                     <div class="dots"> : </div>
+                     <div class=" Data"> {{ToReceive_Details?.Subject}}</div>
                   </div>
                </div>
             </div>
          </div>
          <br>
-         <!-- Table Section -->
-         <div class="Table_Section">
-            <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Product
-               <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span>
-               <!-- <span><button class="Add_Product_Button">Add Product</button></span> -->
-            </h5>
-            <br>
-            <table class="table_section">
-               <thead class="table_head">
-                  <tr>
-                     <th class="S_No">S.No</th>
-                     <th>Product</th>
-                     <th>Quantity</th>
-                     <th> Received Quantity</th>
-                     <th>Status</th>
-                     <th class="Action">Action</th>
-                  </tr>
-               </thead>
-               <tbody>
-                  <tr>
-                     <td  colspan="6"><span> No Records found</span></td>
-                  </tr>
-               </tbody>
-            </table>
-            <br>
+         <!-- Tabs -->
+         <div class="row">
+            <div class="col-sm-12">
+               <div class="Company_Details">
+                  <div class="Tabs">
+                     <div class="Tab" [ngClass]="{'active': Active_Tab === 'Product_Details'}" (click)="Active_Tab_Change('Product_Details')">
+                        <span >Product Details</span>
+                     </div>
+                     <div class="Tab" [ngClass]="{'active': Active_Tab === 'quote_Terms'}" (click)="Active_Tab_Change('quote_Terms')">
+                        <span >Terms & Conditions</span>
+                     </div>
+                  </div>
+                  <!-- <span><button class="Add_Product_Button">Add Product</button></span><br> -->
+                  <br>
+                  <!-- Product details -->
+                  <div class="Product_Details" *ngIf="Active_Tab === 'Product_Details'">
+                     <table class="table_section">
+                        <thead class="table_head">
+                           <tr>
+                              <th>S.No</th>  
+                              <th>Product</th>  
+                              <th>Description</th>  
+                              <th>Quantity</th> 
+                              <th>Approved Quantity</th>  
+                              <!-- <th>Action</th>  -->
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr *ngFor="let item of Product_Details; let i = index">
+                              <td>
+                                 <span class="S_no">{{ i+1 }}</span>
+                              </td>
+                              <td>
+                                 <span class="Style_2">{{item?.Product_Id['Product_Name_withAttribute']}}</span>
+                              </td>
+                              <td>
+                                 <span class="Style_3">{{item?.Description}}</span>
+                              </td>
+                              <td>
+                                 <span class="Style_3">{{item?.Quantity}}</span>
+                              </td>
+                              <td>
+                                    <span class="Style_3">{{item?.Approved_Quantity}}</span>
+                                 </td>
+                              <!-- <td>
+                                 <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action"> Action </button>
+                              </td> -->
+                           </tr>
+                        </tbody>
+                     </table><br>
+                     <!-- Result Section -->
+                     <!-- <div class="row" style="margin-top: 20px;">
+                        <div class="col-sm-8">
+                        </div>
+                        <div class="col-sm-4">
+                           <div class="ResultSection">
+                              <span class="Title"> Sub Total </span>
+                              <span class="Split"> : </span>
+                              <span class="Value"> {{ToReceive_Details?.Sub_Total}} </span>
+                           </div>
+                           <div class="ResultSection" *ngIf="ToReceive_Details?.Global_Product_Tax !== null">
+                              <span class="Title"> Tax </span>
+                              <span class="Split"> : </span>
+                              <span class="Value" *ngFor = "let GlobalTax of ToReceive_Details?.Global_Product_Tax; let j = index">{{ GlobalTax?.Tax_Name }}
+                                    <span *ngIf="j+1 < ToReceive_Details?.Global_Product_Tax.length"> , </span>
+                              </span>
+                           </div>
+                           <div class="ResultSection">
+                              <span class="Title"> Total Tax</span>
+                              <span class="Split"> : </span>
+                              <span class="Value"> {{ToReceive_Details?.Tax}} </span>
+                           </div>
+                           <div class="ResultSection">
+                              <span class="Title"> Total </span>
+                              <span class="Split"> : </span>
+                              <span class="Value"> {{ToReceive_Details?.Total}} </span>
+                           </div>
+                        </div>
+                     </div> -->
+                  </div>
+                  <!-- Quote Terms -->
+                  <div class="Done_Section" *ngIf="Active_Tab === 'quote_Terms'">
+                     <div class="row">
+                        <div class="col-sm-4">
+                           <div class="view_item">
+                              <div class="Static"> Quote Terms </div>
+                              <div class="dots"> : </div>
+                              <div class="Data"> Term-1 </div>
+                           </div>
+                        </div>
+                        <div class="col-sm-4">
+                           <div class="view_item">
+                              <div class="Static"> Notes </div>
+                              <div class="dots"> : </div>
+                              <div class="Data"> Lorem ipsum dolor sit, amet consectetur adipisicing elit. </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
          </div>
       </form>
    </div>
 </div>
-      
-   
+
+

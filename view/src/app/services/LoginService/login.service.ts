@@ -48,5 +48,24 @@ export class LoginService {
          }
       } else { localStorage.clear(); return false;  }
    }
+   public LoggedUserInfo() {
+      if (localStorage.getItem('Token') && localStorage.getItem('SessionKey') && localStorage.getItem('SessionToken') ) {
+         const LastSession = new Date(atob(localStorage.getItem('SessionKey'))).getTime();
+         const NowSession = new Date().getTime();
+         const SessionDiff: number = NowSession - LastSession;
+         const SessionDiffMinutes: number = SessionDiff / 1000 / 60 ;
+         if (SessionDiffMinutes < 20 ) {
+            const User_Data = localStorage.getItem('Token');
+            const Security = (User_Data.slice(0, -2)).slice(-32);
+            const encData = (User_Data.slice(0, -34));
+            const CryptoBytes  = CryptoJS.AES.decrypt(encData, Security);
+            const DecryptedData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+            return DecryptedData;
+         } else {
+            localStorage.clear();
+            return false;
+         }
+      } else { localStorage.clear(); return false;  }
+   }
 
 }

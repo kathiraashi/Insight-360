@@ -95,6 +95,7 @@
   font-size: 13px;
   word-spacing: 1px;
   letter-spacing: 0.4px;
+  margin-top: -19px
 }
 .Form_Field.Form_Err{
   border-color: rgb(221, 10, 10);

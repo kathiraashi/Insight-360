@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 
 
 import * as CryptoJS from 'crypto-js';
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { BsModalRef } from 'ngx-bootstrap';
 import { CompanySettingsService } from './../../../../services/settings/CompanySettings/company-settings.service';
 import { ToastrService } from './../../../../services/common-services/toastr-service/toastr.service';
 
@@ -82,7 +82,8 @@ export class ModelContactinfoCompanysettingsComponent implements OnInit {
       });
    }
    if (this._Data['Type'] === 'View') {
-      this._Contact_Info = this._Data['Contact_Info'];
+      this._Contact_Info = this._Data['_Contact_Info'];
+      console.log(this._Contact_Info);
    }
 }
 

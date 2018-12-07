@@ -4,7 +4,7 @@ import { FormGroup, Validators, FormControl, AbstractControl } from '@angular/fo
 import { map } from 'rxjs/operators';
 
 
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { BsModalRef } from 'ngx-bootstrap';
 import * as CryptoJS from 'crypto-js';
 import { CompanySettingsService } from '../../../../services/settings/CompanySettings/company-settings.service';
 import { ToastrService } from './../../../../services/common-services/toastr-service/toastr.service';

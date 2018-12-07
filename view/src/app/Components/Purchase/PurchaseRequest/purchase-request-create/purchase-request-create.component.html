@@ -1,3 +1,16 @@
+<div [ngClass]="{'Hide': !Loader}" class="DataLoaderStyle_1" style="width: 100%">
+   <div class="Loading">
+         <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+            <div class="rect6"></div>
+         </div>
+   </div>
+</div>
+<div class="LoadedDataStyle_1" [ngClass]="{'Show': !Loader}">
 <!-- Page -->
 <div class="page" style="margin-top:100px;">
    <div class="container-fluid">
@@ -5,15 +18,15 @@
       <div class="Page_Identity">
          <div class="Page_Track">
             <ul>
-               <li class="HeaderName">Home</li>
+               <li class="HeaderName">Purchase</li>
                <li class="arrow">>></li>
-               <li class= "LinkName"><a [routerLink]="['/purchase_request_list']">Purchase Request List</a></li>
+               <li class= "LinkName"><a [routerLink]="['/purchase_request_list']">Request List</a></li>
                <li class="arrow">>></li>
-               <li >Purchase Request Create</li>
+               <li >Create</li>
             </ul>
          </div>
       </div>
-      <form>
+      <form [formGroup]="Form">
          <div class="row">
             <div class="col-sm-12">
                <!-- Company details -->
@@ -23,20 +36,27 @@
                   </h5>
                   <br>
                   <div class="row">
-                     <div class="col-sm-4 Form_Input">
+                     <div class="col-sm-4 Form_Input" [ngClass]="{'Form_Err': !Form.controls['Requested_Number'].pristine && Form.controls['Requested_Number'].errors, 'Form_Success': Form.controls['Requested_Number'].valid && !Form.controls['Requested_Number'].pristine }">
                         <label>Request No:</label>
                         <br>
-                        <input type="text">
+                        <input type="text" formControlName="Requested_Number">
+                        <p class="error" style="margin-top: 0px" *ngIf="Form.controls['Requested_Number'].errors && !Form.controls['Requested_Number'].pristine">
+                           <span *ngIf="Form.controls['Requested_Number'].errors.required"> Requested Number is required</span>
+                           <span *ngIf="Form.controls['Requested_Number'].errors.Number_NotAvailable"> Requested Number Already Exist!</span>
+                        </p>  
                      </div>
-                     <div class="col-sm-4 Form_Input">
+                     <div class="col-sm-4 Form_Input" [ngClass]="{'Form_Err': !Form.controls['Requested_Date'].pristine && Form.controls['Requested_Date'].errors, 'Form_Success': Form.controls['Requested_Date'].valid && !Form.controls['Requested_Date'].pristine }">
                         <label>Request Date:</label>
-                        <input matInput [matDatepicker]="picker" (click)="picker.open()" placeholder="Request Date">
+                        <input matInput [matDatepicker]="picker" (click)="picker.open()" placeholder="Request Date" formControlName="Requested_Date">
                         <mat-datepicker #picker></mat-datepicker>
+                        <p class="error" style="margin-top: 0px" *ngIf="Form.controls['Requested_Number'].errors && !Form.controls['Requested_Number'].pristine">
+                           <span *ngIf="Form.controls['Requested_Date'].errors.required"> Date is required</span>
+                        </p> 
                      </div>
                      <div class="col-sm-4 Form_Input">
                         <label>Requested By:</label>
                         <br>
-                        <input type="text" readonly="true">
+                        <input type="text" readonly="true" formControlName="Requested_By">
                      </div>
                   </div>
                </div>
@@ -45,7 +65,7 @@
             <div class="Table_Section">
                <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Product
                   <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span>
-                  <button mat-raised-button color="primary" class="pull-right"> Add Product </button><br>
+                  <button mat-raised-button color="primary" class="pull-right" (click)="addItem()"> Add Product </button><br>
                </h5>
                <br>
                <table class="table_section">
@@ -56,42 +76,43 @@
                         <th>Description</th>
                         <th>Required Quantity</th>
                         <th>Required Date</th>
-                        <th>Approved Quantity</th>
-                        <th>Status</th>
                         <th class="Action">Action</th>
                      </tr>
                   </thead>
                   <tbody>
-                     <tr>
-                        <td >1</td>
-                        <td class="Form_Select">
-                           <ng-select class="NgSelect" 
-                              [items]="_Product" 
-                              [searchable]="true" 
-                              placeholder="Product">
-                           </ng-select>
-                        </td>
-                        <td class="Form_TextArea">
-                           <textarea class="Description" rows="2"></textarea>
-                        </td>
-                        <td class="Form_Input">
-                           <input type="text">
-                        </td>
-                        <td class="Form_Input">
-                           <input type="text">
-                        </td>
-                        <td class="Form_Input">
-                           <input type="text">
-                        </td>
-                        <td class="Form_Input">
-                           <input type="text">
-                        </td>
-                        <td>
-                           <span class="Action_Section Bg_Danger">
-                              <i class="material-icons">delete</i>
-                           </span> 
-                        </td>
-                     </tr>
+                     <ng-container formArrayName="items" *ngFor="let item of Form.controls['items'].controls; let i = index;" >
+                        <tr [formGroupName]="i">
+                           <td> {{ i+1 }} </td>
+                           <td class="Form_Select">
+                              <ng-select class="NgSelect DisabledHide" 
+                                 [items]="_temProductList"
+                                 [bindLabel]="'Product_Name_withAttribute'"
+                                 [bindValue]="'_id'" 
+                                 [searchable]="true"
+                                 formControlName="Product"
+                                 (ngModelChange) = "setProductDetails($event, i)" 
+                                 placeholder="Product">
+                              </ng-select>
+                           </td>
+                           <td class="Form_TextArea">
+                              <textarea class="Description" rows="2" formControlName="Description"></textarea>
+                           </td>
+                           <td class="Form_Input" >
+                              <input type="text" formControlName="Required_Quantity">
+                             
+                           </td>
+                           <td class="Form_Input">
+                              <input matInput [matDatepicker]="picker" (click)="picker.open()" formControlName="Required_Date">
+                              <mat-datepicker #picker></mat-datepicker>
+                              
+                           </td>
+                           <td>
+                              <span *ngIf="items?.length > 1" class="Action_Section Bg_Danger" (click)="Delete(i)">
+                                 <i class="material-icons">delete</i>
+                              </span> 
+                           </td>
+                        </tr>
+                     </ng-container>
                   </tbody>
                </table>
                <br>
@@ -102,5 +123,8 @@
 </div>
 <!-- Footer -->
 <div class="Footer">
-   <button mat-raised-button color="primary" style = "top: 5px;"> Submit </button>
+   <button mat-raised-button color="primary" style = "top: 5px;" [disabled]="!Form.valid || Uploading" (click)="Submit()" >
+      <span *ngIf="!Uploading">Submit</span>
+      <span *ngIf="Uploading" class="UploadingBtn"> <i class="fa fa-refresh fa-spin"></i> Loading... </span>
+   </button>
 </div>

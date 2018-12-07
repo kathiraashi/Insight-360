@@ -150,6 +150,76 @@ a {
    height: 45px;
    text-align: right
 }
+/* Table Section */
+.table_section{
+   border-collapse: collapse;
+   width: 100%;
+   table-layout: fixed;
+   margin-right:10px;
+}
+.table_section .table_head{
+   font-size:16px;
+   color:#A6A6A6;
+   cursor:pointer;
+}
+.table_section tr{
+   border:1px solid #e4dcdc;
+}
+.table_section thead th{
+text-align:center;
+}
+.table_section thead .S_No{
+   width:50px;
+}
+.table_section thead .Action{
+   width:60px;
+}
+.table_section tbody td{
+   background-color:#F5F5F5;
+   width:100%;
+   text-align:center;
+   padding:0px 10px;
 
-
-
+}
+.table_section tbody td span{
+   font-size:16px;
+   font-weight:400;
+   color:#6d6868;
+}
+table tbody tr td .Action_Section{
+   color: #ffffff;
+   height: 35px;
+   width: 35px;
+   line-height: 30px;
+   display: flex;
+   border-radius: 5px;
+   cursor: pointer;
+   float: right;
+   margin-right: 10px;
+}
+table tbody tr td .Action_Section i {
+   width: 100%;
+   line-height: 35px;
+}
+/* error */
+.error{
+   margin: 0px;
+   color: rgb(221, 10, 10);
+   font-weight: 500;
+   text-align: left;
+   font-size: 13px;
+   word-spacing: 1px;
+   letter-spacing: 0.4px;
+}
+.Form_Input.Form_Err input{
+  border-color: rgb(221, 10, 10);
+}
+.Form_Input.Form_Success input{
+  border-color: #4ab65f;
+}
+.Form_Select.Form_Err select{
+   border-color: rgb(221, 10, 10);
+}
+.Form_Select.Form_Success select{
+   border-color: #4ab65f;
+}

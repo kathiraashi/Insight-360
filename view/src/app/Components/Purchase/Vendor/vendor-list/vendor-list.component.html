@@ -1,21 +1,22 @@
+<app-header></app-header>
 <!-- Main Section -->
 <div class="Main_Section">
-   <div class="page_section">
+   <div class="Page_Section">
       <div class="container-fluid">
-         <!-- Page Identity -->
+         <!-- page Identity -->
          <div class="Page_Identity">
             <div class="Page_Track">
                <ul>
-                  <li class="HeaderName">Home</li>
+                  <li class="HeaderName">CRM</li>
                   <li class="arrow">>></li>
-                  <li>Vendor</li>
+                  <li>Customers</li>
                </ul>
             </div>
          </div>
          <!-- Header Part -->
          <div class="row header_part">
             <div class="col-sm-6">
-               <a [routerLink]="['/Vendor_Create']"><button class="Create_Button" mat-raised-button> + Create </button></a>
+               <a [routerLink]="['/Vendor_Create']"><button class="Create_Button" mat-raised-button>+ Create</button></a>
             </div>
             <div class="col-sm-6">
                <div class="Search_Section">
@@ -24,61 +25,36 @@
                </div>
             </div>
          </div>
-         <!-- Content Style -->
-         <div class="row Content_Style">
-            <div class="col-sm-4 Page_Content" >
+             <!-- content style -->
+      <div class="row Content_Style">
+         <div class="col-sm-3 Page_Content" *ngFor="let item of _List; let i = index">
+              <a (click)="View(i)">
                <div class="Sub_Content">
                   <div class="image_section">
                      <img src="../../../../assets/images/basic/company.png">
                   </div>
-                  <div class=" Content_Section">
-                     <h5>Vendor_aashi</h5>
-                     <h5>india coimbatore</h5>
-                     <h5>v_aashi@gmail.com</h5>
+                  <div class="Content_Section">
+                     <h5>{{item?.Vendor_Name}}</h5>
+                     <h5>{{item?.Website}}</h5>
+                     <h5 *ngIf="item?.Email !== null">{{item?.Phone_Number}}</h5>
+                     <h5 *ngIf="item?.Email !== null">{{item?.Email}}</h5>
                   </div>
-                  <span><a [routerLink]="['/main_vendor_view']"><i class="material-icons View">remove_red_eye</i></a>
-                  <i class="material-icons settings" [matMenuTriggerFor] = "Action">settings</i></span>
-               </div>
-            </div>
-            <div class="col-sm-4 Page_Content">
-               <div class="Sub_Content">
-                  <div class="image_section">
-                     <img src="../../../../assets/images/basic/company.png">
-                  </div>
-                  <div class=" Content_Section">
-                     <h5>Vendor_aashi</h5>
-                     <h5>india coimbatore</h5>
-                     <h5>v_aashi@gmail.com</h5>
-                  </div>
-                  <span><a [routerLink]="['/main_vendor_view']"><i class="material-icons View">remove_red_eye</i></a>
-                  <i class="material-icons settings" [matMenuTriggerFor] = "Action">settings</i></span>
-               </div>
-            </div>
-            <div class="col-sm-4 Page_Content">
-               <div class="Sub_Content">
-                  <div class="image_section">
-                     <img src="../../../../assets/images/basic/company.png">
-                  </div>
-                  <div class=" Content_Section">
-                     <h5>Vendor_aashi</h5>
-                     <h5>india coimbatore</h5>
-                     <h5>v_aashi@gmail.com</h5>
-                  </div>
-                  <span><a  [routerLink]="['/main_vendor_view']"><i class="material-icons View">remove_red_eye</i></a>
-                  <i class="material-icons settings" [matMenuTriggerFor] = "Action">settings</i></span>
-               </div>
-            </div>
+                  <a style="margin-bottom: 60px"><i class="material-icons View" >border_color</i></a> 
+               </div> </a>
          </div>
+      </div>
       </div>
    </div>
 </div>
 <!-- Dropdown menus -->
-<mat-menu class="MenuStyleOne" #Action="matMenu" [overlapTrigger]="false" xPosition="after" yPosition="below" class="MenuStyleOne">
+<!-- <mat-menu class="MenuStyleOne" #Action="matMenu" [overlapTrigger]="false" xPosition="after" yPosition="below" class="MenuStyleOne">
    <button mat-menu-item (click)="CreateContact()">
       <span>Add Contact</span>
    </button>
-   <a [routerLink]="['/Purchase_Quotation_Create']"><button mat-menu-item>
+   <button mat-menu-item (click)="CreateActivity()">
+      <span>Add Activity</span>
+   </button>
+   <a [routerLink]="['/crm_quotations_create']"><button mat-menu-item>
       <span>Create Quote</span>
    </button></a>
-</mat-menu>
- 
+</mat-menu> -->

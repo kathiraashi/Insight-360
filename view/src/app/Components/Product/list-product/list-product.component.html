@@ -1,13 +1,25 @@
 <app-header></app-header>
+<div [ngClass]="{'Hide': !Loader}" class="DataLoaderStyle_1" style="height: 100%; width: 100%;">
+   <div class="Loading">
+         <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+            <div class="rect6"></div>
+         </div>
+   </div>
+</div>
 <!-- Page section -->
 <div class="Page_Section">
    <div class="container-fluid">
       <div class="Page_Identity">
          <div class="Page_Track">
             <ul>
-               <li class="HeaderName">Home</li>
+               <li class="HeaderName">Product</li>
                <li class="arrow">>></li>
-               <li>Product</li>
+               <li>List</li>
             </ul>
          </div>
       </div>
@@ -24,107 +36,25 @@
             </div>
          </div>
       </div>
-      <!-- Table Section -->
-      <div class="Table_Section">
-         <table>
-            <thead>
-               <tr>
-                  <th>S.no</th>
-                  <th>Name</th>
-                  <th>Type</th>
-                  <th>Price</th>
-                  <th>UOM</th>
-                  <th>Available Stock</th>
-                  <th>Action</th>
-               </tr>
-            </thead>
-            <tbody>
-               <tr>
-                  <td>
-                     <span class="S_no"> 1 </span>
-                  </td>
-                  <td>
-                     <span class="Style_1">Name</span>
-                  </td>
-                  <td>
-                     <span class="Style_1"> Type-11</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">1000</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">Unit of measure</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">10</span>
-                  </td>
-                     <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
-               </tr>
-               <tr>
-                  <td>
-                     <span class="S_no"> 2 </span>
-                  </td>
-                  <td>
-                     <span class="Style_1">Name</span>
-                  </td>
-                  <td>
-                     <span class="Style_1"> Type-11</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">1000</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">Unit of measure</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">10</span>
-                  </td>
-                     <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
-               </tr>
-               <tr>
-                  <td>
-                     <span class="S_no"> 3 </span>
-                  </td>
-                  <td>
-                     <span class="Style_1">Name</span>
-                  </td>
-                  <td>
-                     <span class="Style_1"> Type-11</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">1000</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">Unit of measure</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">10</span>
-                  </td>
-                     <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
-               </tr>
-               <tr>
-                  <td>
-                     <span class="S_no"> 4 </span>
-                  </td>
-                  <td>
-                     <span class="Style_1">Name</span>
-                  </td>
-                  <td>
-                     <span class="Style_1"> Type-11</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">1000</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">Unit of measure</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">10</span>
-                  </td>
-                     <button mat-raised-button color="primary" [matMenuTriggerFor]="Action"> Action </button>
-               </tr>
-            </tbody>
-         </table>
+      <!-- content style -->
+      <div class="row Content_Style">
+         <div class="col-sm-3 Page_Content" *ngFor="let item of _List; let i = index">
+              <a (click)="View(i)"> 
+               <div class="Sub_Content">
+                  <div class="image_section">
+                     <img src="../../../../assets/images/basic/company.png">
+                  </div>
+                  <div class="Content_Section">
+                     <h5>{{item?.Product_Name_withAttribute}}</h5>
+                     <!-- <p *ngIf="item?.Can_Be_Sold === true" style="line-height: 0; font-size: 10px"><i class="material-icons View"  style="line-height: 0; font-size: 10px; color: #4ab65f">check_circle</i>can be sold</p> -->
+                     <!-- <p *ngIf="item?.Can_Be_Purchased === true" style="line-height: 0; font-size: 10px"><i class="material-icons View" style="line-height: 0; font-size: 10px; color: #4ab65f">check_circle</i>can be purchased</p> -->
+                     <h5>Stock: xx</h5>
+                     <h5>{{item?.Product_Type}}</h5>
+                     <h5>{{item?.Price}}</h5>
+                  </div>
+                  <a (click)="Edit(i)" style="margin-bottom: 60px"><i class="material-icons View" >border_color</i></a>
+               </div> </a>
+         </div>
       </div>
       <br>
    </div>

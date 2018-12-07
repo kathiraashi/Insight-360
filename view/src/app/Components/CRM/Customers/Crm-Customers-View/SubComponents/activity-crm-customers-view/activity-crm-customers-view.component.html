@@ -1,3 +1,15 @@
+<div [ngClass]="{'Hide': !Loader}" class="DataLoaderStyle_1" style="height: 100%; width: 98%; min-height: 425px; margin-left: 15px">
+   <div class="Loading">
+         <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+            <div class="rect6"></div>
+         </div>
+   </div>
+</div>
 <!-- Header Part -->
 <div class="row header_part">
    <div class="col-sm-6">
@@ -17,181 +29,41 @@
          <tr>
             <th>S.no</th>
             <th>Date</th>
-            <th>Subject </th>
             <th>Contact Person</th>
+            <th>Subject </th>
+            <th>Description</th>
             <th>Activity Type</th>
-            <th>Priority</th>
-            <th>Status</th>
             <th>Action</th>
          </tr>
       </thead>
       <tbody>
-         <tr>
+         <tr *ngFor="let item of _ActivitiesList; let i = index">
             <td>
-               <span class="S_no"> 1 </span>
+               <span class="S_no"> {{i+1}} </span>
             </td>
             <td>
-               <span class="Style_1">25/05/18</span>
+               <span class="Style_1">{{item?.Date | date: 'mediumDate'}}</span>
             </td>
             <td>
-               <span class="Style_1">subject </span>
+               <span class="Style_1">{{item?.Contact_Person['Name']}}</span>
             </td>
             <td>
-               <span class="Style_1">contact person</span>
+               <span class="Style_1">{{item?.Subject}} </span>
             </td>
             <td>
-               <span class="Style_1">Activity Type</span>
+               <span class="Style_1">{{item?.Description}}</span>
             </td>
             <td>
-               <span class="Style_1">Priority</span>
+               <span class="Style_1">{{item?.Activity_Type['Activity_Type']}}</span>
             </td>
             <td>
-               <span class="Style_1">green</span>
-            </td>
-            <td>
-               <button (click)="ViewActivity()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+               <button (click)="ViewActivity(i)" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
                   <i class="material-icons">zoom_in</i>
                </button>
-               <button (click)="CreateActivity()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+               <button (click)="CreateActivity(i)" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
                   <i class="material-icons">edit</i>
                </button>
-               <button (click)="DeleteActivity()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
-                  <i class="material-icons">delete_forever</i>
-               </button>
-            </td>
-         </tr>
-         <tr>
-            <td>
-               <span class="S_no"> 2 </span>
-            </td>
-            <td>
-               <span class="Style_1">25/05/18</span>
-            </td>
-            <td>
-               <span class="Style_1">subject </span>
-            </td>
-            <td>
-               <span class="Style_1">contact person</span>
-            </td>
-            <td>
-               <span class="Style_1">Activity Type</span>
-            </td>
-            <td>
-               <span class="Style_1">Priority</span>
-            </td>
-            <td>
-               <span class="Style_1">blue</span>
-            </td>
-            <td>
-               <button (click)="ViewActivity()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
-                  <i class="material-icons">zoom_in</i>
-               </button>
-               <button (click)="CreateActivity()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
-                  <i class="material-icons">edit</i>
-               </button>
-               <button (click)="DeleteActivity()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
-                  <i class="material-icons">delete_forever</i>
-               </button>
-            </td>
-         </tr>
-         <tr>
-            <td>
-               <span class="S_no"> 3 </span>
-            </td>
-            <td>
-               <span class="Style_1">25/05/18</span>
-            </td>
-            <td>
-               <span class="Style_1">subject </span>
-            </td>
-            <td>
-               <span class="Style_1">contact person</span>
-            </td>
-            <td>
-               <span class="Style_1">Activity Type</span>
-            </td>
-            <td>
-               <span class="Style_1">Priority</span>
-            </td>
-            <td>
-               <span class="Style_1">red</span>
-            </td>
-            <td>
-               <button (click)="ViewActivity()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
-                  <i class="material-icons">zoom_in</i>
-               </button>
-               <button (click)="CreateActivity()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
-                  <i class="material-icons">edit</i>
-               </button>
-               <button (click)="DeleteActivity()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
-                  <i class="material-icons">delete_forever</i>
-               </button>
-            </td>
-         </tr>
-         <tr>
-            <td>
-               <span class="S_no"> 4 </span>
-            </td>
-            <td>
-               <span class="Style_1">25/05/18</span>
-            </td>
-            <td>
-               <span class="Style_1">subject </span>
-            </td>
-            <td>
-               <span class="Style_1">contact person</span>
-            </td>
-            <td>
-               <span class="Style_1">Activity Type</span>
-            </td>
-            <td>
-               <span class="Style_1">Priority</span>
-            </td>
-            <td>
-               <span class="Style_1">blue</span>
-            </td>
-            <td>
-               <button (click)="ViewActivity()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
-                  <i class="material-icons">zoom_in</i>
-               </button>
-               <button (click)="CreateActivity()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
-                  <i class="material-icons">edit</i>
-               </button>
-               <button (click)="DeleteActivity()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
-                  <i class="material-icons">delete_forever</i>
-               </button>
-            </td>
-         </tr>
-         <tr>
-            <td>
-               <span class="S_no"> 5 </span>
-            </td>
-            <td>
-               <span class="Style_1">25/05/18</span>
-            </td>
-            <td>
-               <span class="Style_1">subject </span>
-            </td>
-            <td>
-               <span class="Style_1">contact person</span>
-            </td>
-            <td>
-               <span class="Style_1">Activity Type</span>
-            </td>
-            <td>
-               <span class="Style_1">Priority</span>
-            </td>
-            <td>
-               <span class="Style_1">white</span>
-            </td>
-            <td>
-               <button (click)="ViewActivity()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
-                  <i class="material-icons">zoom_in</i>
-               </button>
-               <button (click)="CreateActivity()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
-                  <i class="material-icons">edit</i>
-               </button>
-               <button (click)="DeleteActivity()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+               <button (click)="DeleteActivity(i)" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
                   <i class="material-icons">delete_forever</i>
                </button>
             </td>

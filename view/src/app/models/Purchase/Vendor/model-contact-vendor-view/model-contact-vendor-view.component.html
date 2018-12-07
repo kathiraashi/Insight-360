@@ -1,0 +1,105 @@
+<div class="Modal_Content" *ngIf="Type && Type === 'Create'">
+   <div class="Modal_Header">
+     <p> Contact</p>
+     <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+   </div>
+   <div class="Model_Body">
+      <form [formGroup]="Form">
+         <div class="row">
+               <div class="col-sm-6 Form_Select">
+                  <label>Title:</label>
+                  <ng-select class="NgSelect" 
+                     [items]="_Title" 
+                     [searchable]="true" 
+                     placeholder="Title"
+                     formControlName="Title">
+                  </ng-select>
+                  <p class="error" style="margin-top: -20px" *ngIf="Form.controls['Title'].errors && !Form.controls['Title'].pristine">
+                     <span *ngIf="Form.controls['Title'].errors.required"> Mobile Number is required</span>
+                  </p>     
+               </div>
+               <div class="col-sm-6 Form_Input" [ngClass]="{'Form_Err': !Form.controls['Mobile'].pristine && Form.controls['Mobile'].errors, 'Form_Success': Form.controls['Mobile'].valid && !Form.controls['Mobile'].pristine }">
+                  <label>Name:</label>
+                  <input type="text" formControlName="Name">
+                  <p class="error" style="margin-top: -20px" *ngIf="Form.controls['Name'].errors && !Form.controls['Name'].pristine">
+                     <span *ngIf="Form.controls['Name'].errors.required"> Name Number is required</span>
+                     <span *ngIf="Form.controls['Name'].errors.Name_NotAvailable"> Name Number Already Exist!</span>
+                  </p> 
+               </div>
+               <div class="col-sm-6 Form_Input">
+                  <label>Email:</label>
+                  <input type="text" formControlName="Email">
+               </div>
+               <div class="col-sm-6 Form_Input" [ngClass]="{'Form_Err': !Form.controls['Mobile'].pristine && Form.controls['Mobile'].errors, 'Form_Success': Form.controls['Mobile'].valid && !Form.controls['Mobile'].pristine }">
+                  <label>Mobile:</label>
+                  <input type="text" formControlName="Mobile" >
+                  <p class="error" style="margin-top: -20px" *ngIf="Form.controls['Mobile'].errors && !Form.controls['Mobile'].pristine">
+                     <span *ngIf="Form.controls['Mobile'].errors.required"> Mobile Number is required</span>
+                     <span *ngIf="Form.controls['Mobile'].errors.Mobile_NotAvailable"> Mobile Number Already Exist!</span>
+                  </p>  
+               </div>
+               <div class="col-sm-6 Form_Input">
+                  <label>Job Position:</label>
+                  <input type="text" formControlName="Job_Position">
+               </div>
+            </div>
+      </form>
+   </div>
+   <div class="Model_Footer">
+     <button mat-raised-button color="primary" (click)="Submit()" [disabled]="!Form.valid"> Submit </button> <br>
+   </div>
+ </div>
+ <div class="Modal_Content" *ngIf=" Type && Type === 'View'">
+   <div class="Modal_Header">
+     <p>Contact</p>
+     <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+   </div>
+   <div class="Model_Body">
+     <!-- <div class="view_item">
+       <div class=" Static">Title </div>
+       <div class="dots"> : </div>
+       <div class=" Data"> {{Data?.Title}}</div>
+     </div> -->
+     <div class="view_item">
+       <div class=" Static">Name </div>
+       <div class="dots"> : </div>
+       <div class=" Data"> {{Data?.Title}} {{Data?.Name}}</div>
+     </div>
+     <div class="view_item">
+       <div class=" Static">Email </div>
+       <div class="dots"> : </div>
+       <div class=" Data"> {{Data?.Email}}</div>
+     </div>
+     <div class="view_item">
+       <div class=" Static">Mobile </div>
+       <div class="dots"> : </div>
+       <div class=" Data"> {{Data?.Mobile}}</div>
+     </div>
+     <div class="view_item">
+       <div class="Static">Job Position </div>
+       <div class="dots"> : </div>
+       <div class=" Data"> {{Data?.Job_Position}}</div>
+     </div>
+     <div class="view_item">
+      <div class="Static">Create By </div>
+      <div class="dots"> : </div>
+      <div class=" Data"> {{Data?.Created_By['Name']}}</div>
+    </div>
+    <div class="view_item">
+      <div class="Static">Last Modified By </div>
+      <div class="dots"> : </div>
+      <div class=" Data"> {{Data?.Last_Modified_By['Name']}}</div>
+    </div>
+    <div class="view_item" *ngIf="Data?.createdAt !== null">
+      <div class="Static">Created at </div>
+      <div class="dots"> : </div>
+      <div class=" Data"> {{Data?.createdAt | date: 'medium'}}</div>
+    </div>
+    <div class="view_item" *ngIf="Data?.updatedAt !== null">
+      <div class="Static">Updated at </div>
+      <div class="dots"> : </div>
+      <div class=" Data"> {{Data?.updatedAt | date: 'medium'}}</div>
+    </div>
+   </div>
+ </div>
+

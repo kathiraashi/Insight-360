@@ -1,3 +1,15 @@
+<div [ngClass]="{'Hide': !Loader}" class="DataLoaderStyle_1" style="height: 135%; width: 100%;">
+   <div class="Loading">
+         <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+            <div class="rect6"></div>
+         </div>
+   </div>
+</div>
 <!-- page -->
 <div class="page" style="margin-top:100px;margin-bottom:100px;">
    <div class="container-fluid">
@@ -9,11 +21,11 @@
                <li class="arrow">>></li>
                <li class="LinkName"><a [routerLink]="['/Crm_Customers_List']">Customers</a></li>
                <li class="arrow">>></li>
-               <li>Customers Create</li>
+               <li>Create</li>
             </ul>
          </div>
       </div>
-      <form>
+      <form [formGroup]="Form">
          <div class="row">
             <div class="col-sm-3" >
                <!-- Left Section -->
@@ -27,17 +39,24 @@
                         <!-- <input type="file">
                      </div><br><br> -->
                      <div class="row">
-                     <div class="col-sm-12 Form_Input">
-                        <input type="text"  placeholder="Company Name" style="width:90%;margin-left:15px;">
+                     <div class="col-sm-12 Form_Input" style="margin-bottom: 30px" [ngClass]="{'Form_Err': !Form.controls['Company_Name'].pristine && Form.controls['Company_Name'].errors, 'Form_Success': Form.controls['Company_Name'].valid && !Form.controls['Company_Name'].pristine }">
+                        <input type="text" formControlName="Company_Name" placeholder="Company Name" style="width:90%;margin-left:15px;margin-bottom: 0px;">
+                        <p class="error" style="margin-left:15px;margin-bottom: -19px" *ngIf="Form.controls['Company_Name'].errors && !Form.controls['Company_Name'].pristine">
+                           <span *ngIf="Form.controls['Company_Name'].errors.required"> Company Name is required</span>
+                        </p>  
                      </div>
-                     <div class="col-sm-12 Form_Input">
-                        <input type="text"  placeholder="Phone Number"  style="width:90%;margin-left:15px;">
+                     <div class="col-sm-12 Form_Input" style="margin-bottom: 30px" [ngClass]="{'Form_Err': !Form.controls['Phone_Number'].pristine && Form.controls['Phone_Number'].errors, 'Form_Success': Form.controls['Phone_Number'].valid && !Form.controls['Phone_Number'].pristine }">
+                        <input type="text" formControlName="Phone_Number" placeholder="Phone Number" style="width:90%;margin-left:15px;margin-bottom: 0px;">
+                        <p class="error" style="margin-left:15px;margin-bottom: -19px" *ngIf="Form.controls['Phone_Number'].errors && !Form.controls['Phone_Number'].pristine">
+                           <span *ngIf="Form.controls['Phone_Number'].errors.required"> Phone Number is required</span>
+                           <span *ngIf="Form.controls['Phone_Number'].errors.Phone_NotAvailable"> Phone Number Already Exist!</span>
+                        </p>  
                      </div>
-                     <div class="col-sm-12 Form_Input" >
-                        <input  type="text" placeholder="Email Address" style="width:90%;margin-left:15px;">
+                     <div class="col-sm-12 Form_Input" style="margin-bottom: 30px">
+                        <input  type="text" formControlName="Email" placeholder="Email Address" style="width:90%;margin-left:15px;margin-bottom: 0px;">
                      </div>
-                     <div class="col-sm-12 Form_Input">
-                        <input  type="text" placeholder="Website" style="width:90%;margin-left:15px;">
+                     <div class="col-sm-12 Form_Input" style="margin-bottom: 30px">
+                        <input  type="text" formControlName="Website" placeholder="Website" style="width:90%;margin-left:15px;margin-bottom: 0px;">
                      </div>
                   </div>
                </div>
@@ -48,104 +67,184 @@
                   <div class="row" >
                      <div class="col-sm-4 Form_Select" >
                         <ng-select class="NgSelect" 
-                           [items]="_IndustryType" 
-                           [searchable]="true" 
+                           [items]="_IndustryType"
+                           bindLabel="Industry_Type"
+                           bindValue="_id" 
+                           [searchable]="true"
+                           formControlName="Industry_Type" 
                            placeholder="Industry Type">
                         </ng-select>
+                        <p class="error" *ngIf="Form.controls['Industry_Type'].errors && !Form.controls['Industry_Type'].pristine">
+                           <span *ngIf="Form.controls['Industry_Type'].errors.required"> Industry Type is required</span>
+                        </p>   
                      </div>
-                     <div class="col-sm-4 Form_Input" >
-                        <input type="text" placeholder="No.Of Employees">
+                     <div class="col-sm-4 Form_Input" style="margin-bottom: 30px" [ngClass]="{'Form_Err': !Form.controls['No_Of_Employee'].pristine && Form.controls['No_Of_Employee'].errors, 'Form_Success': Form.controls['No_Of_Employee'].valid && !Form.controls['No_Of_Employee'].pristine }">
+                        <input type="text" formControlName="No_Of_Employee" placeholder="No.Of Employees" style="margin-bottom: 0px">
+                        <p class="error" style="margin-bottom: -19px" *ngIf="Form.controls['No_Of_Employee'].errors && !Form.controls['No_Of_Employee'].pristine">
+                           <span *ngIf="Form.controls['No_Of_Employee'].errors.required"> No Of Employee is required</span>
+                        </p>   
                      </div>
                      <div class="col-sm-4 Form_Select" >
                         <ng-select class="NgSelect" 
-                           [items]="_AccountType" 
+                           [items]="_AccountType"
+                           bindLabel="Account_Type"
+                           bindValue="_id" 
                            [searchable]="true" 
+                           formControlName="Account_Type"
                            placeholder="Account Type">
                         </ng-select>
+                        <p class="error" *ngIf="Form.controls['Account_Type'].errors && !Form.controls['Account_Type'].pristine">
+                           <span *ngIf="Form.controls['Account_Type'].errors.required"> Account Type is required</span>
+                        </p>
                      </div>
                      <div class="col-sm-4 Form_Select" >
                         <ng-select class="NgSelect" 
-                           [items]="_OwnershipType" 
+                           [items]="_OwnershipType"
+                           bindLabel="Ownership_Type"
+                           bindValue="_id"  
                            [searchable]="true" 
+                           formControlName="Ownership_Type"
                            placeholder="Ownership Type">
                         </ng-select>
+                        <p class="error" *ngIf="Form.controls['Ownership_Type'].errors && !Form.controls['Ownership_Type'].pristine">
+                           <span *ngIf="Form.controls['Ownership_Type'].errors.required"> Ownership Type is required</span>
+                        </p>
                      </div>
                      <div class="col-sm-4 Form_TextArea" >
-                        <textarea  type="text" row="5" placeholder="Notes"></textarea>
+                        <textarea formControlName="Notes" type="text" row="5" placeholder="Notes"></textarea>
                      </div>
                   </div>
                </div>
                <div class="Company_Details">
                   <h5 class="text-style-1"> Billing Address </h5>
                   <div class="row">
-                     <div class="col-sm-4 Form_Input" >
-                        <input type="text" placeholder="No / Street">
+                     <div class="col-sm-4 Form_Input" style="margin-bottom: 30px" [ngClass]="{'Form_Err': !Form.controls['BillingStreet'].pristine && Form.controls['BillingStreet'].errors, 'Form_Success': Form.controls['BillingStreet'].valid && !Form.controls['BillingStreet'].pristine }">
+                        <input type="text" formControlName="BillingStreet" placeholder="No / Street" (input)="BillingAddressAny_Changes()" style="margin-bottom: 0px">
+                        <p class="error" style="margin-bottom: -19px" *ngIf="Form.controls['BillingStreet'].errors && !Form.controls['BillingStreet'].pristine">
+                           <span *ngIf="Form.controls['BillingStreet'].errors.required"> Street Type is required</span>
+                        </p>
                      </div>
-                     <div class="col-sm-4 Form_Input" >
-                        <input type="text"  placeholder="Area">
+                     <div class="col-sm-4 Form_Input" style="margin-bottom: 30px" [ngClass]="{'Form_Err': !Form.controls['BillingArea'].pristine && Form.controls['BillingArea'].errors, 'Form_Success': Form.controls['BillingArea'].valid && !Form.controls['BillingArea'].pristine }">
+                        <input type="text" formControlName="BillingArea" placeholder="Area" (input)="BillingAddressAny_Changes()" style="margin-bottom: 0px">
+                        <p class="error" style="margin-bottom: -19px" *ngIf="Form.controls['BillingArea'].errors && !Form.controls['BillingArea'].pristine">
+                           <span *ngIf="Form.controls['BillingArea'].errors.required"> Area is required</span>
+                        </p>
                      </div>
                      <div class="col-sm-4 Form_Select" >
-                        <ng-select class="NgSelect" 
-                           [items]="_Country" 
-                           [searchable]="true" 
-                           placeholder="Country">
-                        </ng-select>                       
-                     </div>
-                     <div class="col-sm-4 Form_Select" >
-                        <ng-select class="NgSelect" 
-                           [items]="_State" 
-                           [searchable]="true" 
-                           placeholder="State">
+                        <ng-select class="NgSelect ValueBold"
+                                    [items]="AllCountry"
+                                    [bindLabel]="'Country_Name'" 
+                                    formControlName="BillingCountry" 
+                                    [searchable]="true" 
+                                    placeholder="Country" 
+                                    (ngModelChange)="BillingCountry_Change(); BillingAddressAny_Changes()">
                         </ng-select>
+                        <p class="error" *ngIf="Form.controls['BillingCountry'].errors && !Form.controls['BillingCountry'].pristine">
+                           <span *ngIf="Form.controls['BillingCountry'].errors.required"> Country is required</span>
+                        </p>
                      </div>
                      <div class="col-sm-4 Form_Select" >
-                        <ng-select class="NgSelect" 
-                           [items]="_City" 
-                           [searchable]="true" 
-                           placeholder="City">
+                        <ng-select class="NgSelect ValueBold"
+                                    [items]="AllStateOfCountry"
+                                    [bindLabel]="'State_Name'" 
+                                    formControlName="BillingState" 
+                                    [searchable]="true" 
+                                    placeholder="State" 
+                                    (ngModelChange)="BillingState_Change(); BillingAddressAny_Changes()">
                         </ng-select>
+                        <p class="error" *ngIf="Form.controls['BillingState'].errors && !Form.controls['BillingState'].pristine">
+                           <span *ngIf="Form.controls['BillingState'].errors.required"> State is required</span>
+                        </p>
                      </div>
-                     <div class="col-sm-4 Form_Input" >
-                        <input matInput type="text"  placeholder="Zip Code">
+                     <div class="col-sm-4 Form_Select" >
+                        <ng-select class="NgSelect ValueBold" 
+                                    [items]="AllCityOfState"
+                                    [bindLabel]="'City_Name'" 
+                                    formControlName="BillingCity" 
+                                    [searchable]="true" 
+                                    placeholder="City" 
+                                    (ngModelChange)="BillingAddressAny_Changes()" >
+                        </ng-select>
+                        <p class="error" *ngIf="Form.controls['BillingCity'].errors && !Form.controls['BillingCity'].pristine">
+                           <span *ngIf="Form.controls['BillingCity'].errors.required"> City is required</span>
+                        </p>
+                     </div>
+                     <div class="col-sm-4 Form_Input" style="margin-bottom: 30px" [ngClass]="{'Form_Err': !Form.controls['BillingZipCode'].pristine && Form.controls['BillingZipCode'].errors, 'Form_Success': Form.controls['BillingZipCode'].valid && !Form.controls['BillingZipCode'].pristine }">
+                        <input type="text" formControlName="BillingZipCode" placeholder="Zip Code" (input)="BillingAddressAny_Changes()" style="margin-bottom: 0px">
+                        <p class="error" style="margin-bottom: -19px" *ngIf="Form.controls['BillingZipCode'].errors && !Form.controls['BillingZipCode'].pristine">
+                           <span *ngIf="Form.controls['BillingZipCode'].errors.required"> Zip Code is required</span>
+                        </p>
                      </div>
                   </div>
                </div>
                   <div class="Company_Details">
-                     <h5 class="text-style-1"> Shipping Address 
-                     <span class="pull-right"><mat-checkbox>Same As Billing Address</mat-checkbox></span></h5>
-                     <div class="row" >   
-                     <div class="col-sm-4 Form_Input" >
-                        <input  type="text"  placeholder="No / Street">
+                     <div>
+                        <h5 class="text-style-1"> Shipping Address 
+                        <span class="pull-right">
+                              <mat-checkbox formControlName="SameAddresses" (change)="SameAddresses_Change()"> 
+                                    Same As Billing Address 
+                              </mat-checkbox>
+                        </span></h5>
                      </div>
-                     <div class="col-sm-4 Form_Input" >
-                        <input  type="text" placeholder="Area">
-                     </div>
-                     <div class="col-sm-4 Form_Select" >
-                        <ng-select class="NgSelect" 
-                           [items]="_Country" 
-                           [searchable]="true" 
-                           placeholder="Country">
-                        </ng-select>   
-                     </div>
-                     <div class="col-sm-4 Form_Select" >
-                        <ng-select class="NgSelect" 
-                           [items]="_State" 
-                           [searchable]="true" 
-                           placeholder="State">
-                        </ng-select>
-                     </div>
-                     <div class="col-sm-4 Form_Select" >
-                        <ng-select class="NgSelect" 
-                           [items]="_City" 
-                           [searchable]="true" 
-                           placeholder="City">
-                        </ng-select>
-                     </div>
-                     <div class="col-sm-4 Form_Input" >
-                        <input type="text"  placeholder="Zip Code">
+                     <div class="row" style="width: 100%; margin: 0px">   
+                        <div class="col-sm-4 Form_Input" style="margin-bottom: 30px" [ngClass]="{'Form_Err': !Form.controls['ShopFloorStreet'].pristine && Form.controls['ShopFloorStreet'].errors, 'Form_Success': Form.controls['ShopFloorStreet'].valid && !Form.controls['ShopFloorStreet'].pristine }">
+                           <input type="text" formControlName="ShopFloorStreet" placeholder="No / Street" style="margin-bottom: 0px">
+                           <p class="error" style="margin-bottom: -19px" *ngIf="Form.controls['ShopFloorStreet'].errors && !Form.controls['ShopFloorStreet'].pristine">
+                              <span *ngIf="Form.controls['ShopFloorStreet'].errors.required"> No / Street is required</span>
+                           </p>
+                        </div>
+                        <div class="col-sm-4 Form_Input" style="margin-bottom: 30px" [ngClass]="{'Form_Err': !Form.controls['ShopFloorArea'].pristine && Form.controls['ShopFloorArea'].errors, 'Form_Success': Form.controls['ShopFloorArea'].valid && !Form.controls['ShopFloorArea'].pristine }">
+                           <input type="text" formControlName="ShopFloorArea" placeholder="Area" style="margin-bottom: 0px">
+                           <p class="error" style="margin-bottom: -19px" *ngIf="Form.controls['ShopFloorArea'].errors && !Form.controls['ShopFloorArea'].pristine">
+                              <span *ngIf="Form.controls['ShopFloorArea'].errors.required"> Area is required</span>
+                           </p>
+                        </div>
+                        <div class="col-sm-4 Form_Select">
+                           <ng-select class="NgSelect ValueBold"
+                                       [items]="ShopFloorAllCountry"
+                                       [bindLabel]="'Country_Name'"
+                                       formControlName="ShopFloorCountry"
+                                       [searchable]="true"
+                                       placeholder="Country" 
+                                       (ngModelChange)="ShopFloorCountry_Change()">
+                           </ng-select>
+                           <p class="error" *ngIf="Form.controls['ShopFloorCountry'].errors && !Form.controls['ShopFloorCountry'].pristine">
+                              <span *ngIf="Form.controls['ShopFloorCountry'].errors.required"> Country is required</span>
+                           </p>                    
+                        </div>
+                        <div class="col-sm-4 Form_Select" >
+                           <ng-select class="NgSelect ValueBold" 
+                                       [items]="ShopFloorAllStateOfCountry"
+                                       [bindLabel]="'State_Name'"
+                                       formControlName="ShopFloorState" 
+                                       [searchable]="true" 
+                                       placeholder="State" 
+                                       (ngModelChange)="ShopFloorState_Change()">
+                           </ng-select>
+                           <p class="error" *ngIf="Form.controls['ShopFloorState'].errors && !Form.controls['ShopFloorState'].pristine">
+                              <span *ngIf="Form.controls['ShopFloorState'].errors.required"> State is required</span>
+                           </p>
+                        </div>
+                        <div class="col-sm-4 Form_Select" >
+                           <ng-select class="NgSelect ValueBold" 
+                                       [items]="ShopFloorAllCityOfState"
+                                       [bindLabel]="'City_Name'"
+                                       formControlName="ShopFloorCity" 
+                                       [searchable]="true" 
+                                       placeholder="City">
+                           </ng-select>
+                           <p class="error" *ngIf="Form.controls['ShopFloorCity'].errors && !Form.controls['ShopFloorCity'].pristine">
+                              <span *ngIf="Form.controls['ShopFloorCity'].errors.required"> City is required</span>
+                           </p>
+                        </div>
+                        <div class="col-sm-4 Form_Input" style="margin-bottom: 30px" [ngClass]="{'Form_Err': !Form.controls['ShopFloorZipCode'].pristine && Form.controls['ShopFloorZipCode'].errors, 'Form_Success': Form.controls['ShopFloorZipCode'].valid && !Form.controls['ShopFloorZipCode'].pristine }" >
+                           <input matInput type="text" formControlName="ShopFloorZipCode" placeholder="Zip Code" style="margin-bottom: 0px">
+                           <p class="error" style="margin-bottom: -19px" *ngIf="Form.controls['ShopFloorZipCode'].errors && !Form.controls['ShopFloorZipCode'].pristine">
+                              <span *ngIf="Form.controls['ShopFloorZipCode'].errors.required"> Zip Code is required</span>
+                           </p>
+                        </div>
                      </div>
                   </div>
-               </div>
                </div>
             </div>
          
@@ -154,6 +253,6 @@
 </div>
 <!-- Footer -->
 <div class="Footer">
-   <button mat-raised-button color="primary" style = "top: 5px;"> Submit </button>
+   <button mat-raised-button color="primary"  [disabled]="!Form.valid" (click)="Submit()" style = "top: 5px;"> Submit </button>
 </div>
      

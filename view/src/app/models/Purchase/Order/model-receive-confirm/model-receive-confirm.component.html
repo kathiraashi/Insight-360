@@ -1,0 +1,125 @@
+<div class="Modal_Content" *ngIf= "Type && (Type === 'Confirm_Receive' || Type === 'Create_BackOrder' || Type === 'No_Create_BackOrder')">
+   <div class="Modal_Header">
+      <p>WareHouse Details</p>
+      <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+   </div>
+   <div class="Model_Body" style="text-align: center">
+     <div [formGroup]="Form">
+         <div class="row">
+            <div class="col-sm-12 Form_Input" [ngClass]="{'Form_Err': !Form.controls['WareHouse_Id'].pristine && Form.controls['WareHouse_Id'].errors, 'Form_Success': Form.controls['WareHouse_Id'].valid && !Form.controls['WareHouse_Id'].pristine }">
+               <label>WareHouse:</label>
+               <ng-select class="NgSelect" 
+                  [items]="_warehouse"
+                  [bindValue]="'_id'"
+                  [bindLabel]="'Ware_House_Name'" 
+                  [searchable]="true"
+                  formControlName="WareHouse_Id" 
+                  placeholder="WareHouse">
+               </ng-select>
+               <p class="error" style="margin-top: -20px" *ngIf="Form.controls['WareHouse_Id'].errors && !Form.controls['WareHouse_Id'].pristine">
+                  <span *ngIf="Form.controls['WareHouse_Id'].errors.required"> Ware House is required</span>
+               </p>  
+            </div>
+         </div>
+     </div>
+   </div>
+   <div class="Model_Footer">
+      <button mat-raised-button class="cancel" style="float: left" (click)="Cancel()"> Cancel </button>
+      <button *ngIf="Type === 'Confirm_Receive'" mat-raised-button color="primary" style="margin-left: 295px" [disabled]="!Form.valid || !nextButton" (click)="Next()" > Next </button>
+      <button *ngIf="Type === 'Create_BackOrder'" mat-raised-button color="primary" style="margin-left: 295px" (click)="CreateBackOrderNext()" > Next </button>
+      <button *ngIf="Type === 'No_Create_BackOrder'" mat-raised-button color="primary" style="margin-left: 295px" (click)="NoCreateBackOrderNext()" > Next </button>
+   </div>
+</div>
+<div class="Modal_Content" *ngIf= "Type && Type === 'Confirm'">
+   <div class="Modal_Header">
+      <p>Confirm Order</p>
+      <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+   </div>
+   <div class="Model_Body">
+     <div style="text-align: center; color: #4e6a7a">
+         <p> Are you sure !</p>
+         <p> you want to confirm this order </p>
+     </div>
+   </div>
+   <div class="Model_Footer">
+      <button mat-raised-button class="cancel" (click)="Cancel()" style="float: left"> Cancel </button>
+      <button  *ngIf="Type !== 'No_Create_BackOrder'" mat-raised-button color="primary" style="margin-left: 295px" (click)="Confirm()" > Confirm </button>
+   </div>
+</div>
+<div class="Modal_Content" *ngIf= "Type && Type === 'To_Receive'">
+   <div class="Modal_Header">
+      <p>Confirm ToReceive</p>
+      <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+   </div>
+   <div class="Model_Body">
+     <div style="text-align: center; color: #4e6a7a">
+         <p> Are You Sure ! </p>
+         <p> You want to confirm</p>
+     </div>
+   </div>
+   <div class="Model_Footer">
+      <button mat-raised-button class="cancel" (click)="Cancel()" style="float: left"> Cancel </button>
+      <button mat-raised-button color="primary" style="margin-left:61.5%" [disabled]="!Form.valid || Uploading" (click)="CreateToReceive()" > 
+         <span *ngIf="!Uploading"> Confirm </span> 
+         <span *ngIf="Uploading" class="UploadingBtn"> <i class="fa fa-refresh fa-spin"></i> Loading... </span>
+      </button>
+   </div>
+</div>
+<div class="Modal_Content" *ngIf= "Type && Type === 'Yes_BackOrder_Confirm'">
+   <div class="Modal_Header">
+      <p>Confirm Order</p>
+      <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+   </div>
+   <div class="Model_Body">
+      <div style="text-align: center; color: #4e6a7a">
+         <p> Are you sure !</p>
+         <p> Create BackOrder and Update stock</p>
+      </div>
+   </div>
+   <div class="Model_Footer">
+      <button mat-raised-button class="cancel" (click)="Cancel()" style="float: left"> Cancel </button>
+      <button mat-raised-button style="margin-left: 201px" (click)="UpdateStock('No')" > No </button>
+      <button mat-raised-button color="primary" style="margin-left: 5px" (click)="UpdateStock('Yes')" > Confirm </button>
+   </div>
+</div>
+<div class="Modal_Content" *ngIf= "Type && Type === 'confirm_creating_backOrder'">
+      <div class="Modal_Header">
+         <p>Creating BackOrder</p>
+      </div>
+      <div class="Model_Body">
+         <div style="text-align: center; color: #4e6a7a">
+            <p> Hold for while</p>
+            <p> Back Order Creating</p>
+         </div>
+      </div>
+</div>
+<div class="Modal_Content" *ngIf= "Type && Type === 'Confirm_stock_update'">
+      <div class="Modal_Header">
+         <p>Stock Updating</p>
+      </div>
+      <div class="Model_Body">
+         <div style="text-align: center; color: #4e6a7a">
+            <p> Stock Updating</p>
+            <p>few more seconds</p>
+         </div>
+      </div>
+</div>
+<div class="Modal_Content" *ngIf= "Type && Type === 'No_BackOrder_Confirm'">
+   <div class="Modal_Header">
+      <p>Confirm Order</p>
+      <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+   </div>
+   <div class="Model_Body">
+     <div style="text-align: center; color: #4e6a7a">
+         <p> Are you sure !</p>
+         <p> you want to confirm this order </p>
+     </div>
+   </div>
+   <div class="Model_Footer">
+      <button mat-raised-button class="cancel" (click)="Cancel()" style="float: left"> Cancel </button>
+      <button mat-raised-button color="primary" style="margin-left:61.5%" [disabled]="!Form.valid || Uploading" (click)="UpdateStock()" > 
+         <span *ngIf="!Uploading"> Confirm </span> 
+         <span *ngIf="Uploading" class="UploadingBtn"> <i class="fa fa-refresh fa-spin"></i> Loading... </span>
+      </button>
+   </div>
+</div>

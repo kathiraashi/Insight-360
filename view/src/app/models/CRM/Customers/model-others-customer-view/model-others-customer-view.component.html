@@ -1,25 +1,76 @@
 <!-- If create Activities -->
 <div class="Modal_Content" *ngIf="Type && Type === 'Create'">
    <div class="Modal_Header">
-      <p>Registration</p>
+      <p>Registration create</p>
       <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
    </div>
    <div class="Model_Body">
-      <div class="row">
-         <div class="col-sm-6 Form_Select">
-            <label>Registration Type:</label>
-            <ng-select class="NgSelect" 
-               [items]="_RegistrationType" 
-               [searchable]="true" 
-               placeholder="Registration Type">
-            </ng-select>   
+      <form [formGroup]="Form">
+         <div class="row">
+            <div class="col-sm-6 Form_Select">
+               <label>Registration Type:</label>
+               <ng-select class="NgSelect" 
+                  [items]="_RegistrationTypeList" 
+                  [bindLabel]= "'Registration_Type'"
+                  [bindValue]= "'_id'"
+                  [searchable]="true" 
+                  formControlName="Registration_Type"
+                  placeholder="Registration Type">
+               </ng-select>
+               <p class="error" style="margin-top: 0px" *ngIf="Form.controls['Registration_Type'].errors && !Form.controls['Registration_Type'].pristine">
+                  <span *ngIf="Form.controls['Registration_Type'].errors.required"> Registration Type is required</span>
+               </p>     
+            </div>
+            <div class="col-sm-6 Form_Input" [ngClass]="{'Form_Err': !Form.controls['Number'].pristine && Form.controls['Number'].errors, 'Form_Success': Form.controls['Number'].valid && !Form.controls['Number'].pristine }">
+               <label>Number:</label>
+               <input type="text" formControlName="Number" >
+               <p class="error" style="margin-top: -19px" *ngIf="Form.controls['Number'].errors && !Form.controls['Number'].pristine">
+                  <span *ngIf="Form.controls['Number'].errors.required"> Number is required</span>
+                  <span *ngIf="Form.controls['Number'].errors.pattern">No Special characters</span>
+               </p>  
+            </div>
          </div>
-      </div>
+      </form>
    </div>
    <div class="Model_Footer">
-      <button mat-raised-button color="primary"> Submit </button>
+      <button mat-raised-button color="primary" [disabled]="!Form.valid" (click)="Submit()"> Submit </button>
    </div>
 </div>
-   
-   
-   
+<div class="Modal_Content" *ngIf=" Type && Type === 'View'">
+   <div class="Modal_Header">
+      <p>Contact View</p>
+      <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+   </div>
+   <div class="Model_Body">
+      <div class="view_item">
+         <div class=" Static">Registration Type </div>
+         <div class="dots"> : </div>
+         <div class=" Data"> {{Data?.Registration_Type['Registration_Type']}}</div>
+      </div>
+      <div class="view_item">
+         <div class="Static">Number </div>
+         <div class="dots"> : </div>
+         <div class=" Data"> {{Data?.Number}}</div>
+      </div>
+      <div class="view_item">
+         <div class="Static">Create By </div>
+         <div class="dots"> : </div>
+         <div class=" Data"> {{Data?.Created_By['Name']}}</div>
+      </div>
+      <!-- <div class="view_item">
+         <div class="Static">Last Modified By </div>
+         <div class="dots"> : </div>
+         <div class=" Data"> {{Data?.Last_Modified_By['Name']}}</div>
+      </div>
+      <div class="view_item" *ngIf="Data?.createdAt !== null">
+         <div class="Static">Created at </div>
+         <div class="dots"> : </div>
+         <div class=" Data"> {{Data?.createdAt | date: 'medium'}}</div>
+      </div>
+      <div class="view_item" *ngIf="Data?.updatedAt !== null">
+         <div class="Static">Updated at </div>
+         <div class="dots"> : </div>
+         <div class=" Data"> {{Data?.updatedAt | date: 'medium'}}</div>
+      </div> -->
+   </div>
+</div>

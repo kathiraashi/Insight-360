@@ -1,15 +1,27 @@
 <!-- page -->
+<div [ngClass]="{'Hide': !Loader}" class="DataLoaderStyle_1" style="width: 100%">
+   <div class="Loading">
+         <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+            <div class="rect6"></div>
+         </div>
+   </div>
+</div>
 <div class="page" style="margin-top:100px;">
    <div class="container-fluid">
       <!-- page Identity -->
       <div class="Page_Identity">
          <div class="Page_Track">
             <ul>
-               <li class="HeaderName">Home</li>
+               <li class="HeaderName">Permissions</li>
                <li class="arrow">>></li>
-               <li class="LinkName"><a [routerLink]="['/List_Permissions']">Permissions List</a></li>
+               <li class="LinkName"><a [routerLink]="['/List_Permissions']">List</a></li>
                <li class="arrow">>></li>
-               <li>Permissions View</li>
+               <li>{{_Data?.Requested_By?.Employee_Name}}</li>
             </ul>
          </div>
       </div>
@@ -19,50 +31,41 @@
                <!-- Company details -->
                <div class="Company_Details">
                   <div class="row">
-                     <div class="col-sm-12">
-                        <button mat-raised-button color="primary" class="pull-right Reject"> Reject </button>
-                        <button mat-raised-button color="primary" class="pull-right Modify"> Modify </button>
-                        <button mat-raised-button color="primary" class="pull-right"> Approve </button>
+                     <div class="col-sm-12" style="margin-bottom: 10px">
+                        <button *ngIf="showRequestButton" mat-raised-button color="primary" class="pull-right Reject" (click)="Request()"> Send Request </button>
+                        <button *ngIf="showEditButton" mat-raised-button color="primary" class="pull-right Modify" (click)="Edit()"> Edit </button>
+                        <button *ngIf="showRejectButton" mat-raised-button color="primary" class="pull-right Reject" (click)="Reject()"> Reject </button>
+                        <button *ngIf="showModifyButton" mat-raised-button color="primary" class="pull-right Modify" (click)="Modify()"> Modify </button>
+                        <button *ngIf="showApproveButton" mat-raised-button color="primary" class="pull-right" (click)="Approve()"> Approve </button>
                      </div>
                   </div>
-                  <!-- <div class="row"> -->
-                     <!-- <div class="col-sm-4"> -->
-                        <div class="view_item">
-                           <div class="Static"> Name </div>
-                           <div class="dots"> : </div>
-                           <div class="Data">  Name</div>
-                        </div>
-                        <div class="view_item">
-                           <div class="Static">UserName</div>
-                           <div class="dots"> : </div>
-                           <div class="Data"> UserName</div>
-                        </div>
-                     <!-- </div> -->
-                     <!-- <div class="col-sm-4"> -->
-                        <div class="view_item">
-                           <div class="Static">Department </div>
-                           <div class="dots"> : </div>
-                           <div class="Data">Department</div>
-                        </div>
-                        <div class="view_item">
-                           <div class="Static">Designation </div>
-                           <div class="dots"> : </div>
-                           <div class="Data"> +Designation </div>
-                        </div>
-                     <!-- </div> -->
-                     <!-- <div class="col-sm-4"> -->
-                        <div class="view_item">
-                           <div class="Static">Email Id </div>
-                           <div class="dots"> : </div>
-                           <div class="Data"> sample@gmail.com </div>
-                        </div>
-                        <div class="view_item">
-                           <div class="Static">Contact Number </div>
-                           <div class="dots"> : </div>
-                           <div class="Data"> +3453254 </div>
-                        </div>
-                     <!-- </div> -->
-                  <!-- </div> -->
+                  <div class="view_item">
+                     <div class="Static"> Name </div>
+                     <div class="dots"> : </div>
+                     <div class="Data">  {{_Data?.Requested_By?.Employee_Name}}</div>
+                  </div>
+                  <div class="view_item">
+                     <div class="Static"> Employee Code </div>
+                     <div class="dots"> : </div>
+                     <div class="Data">  {{_Data?.Requested_By?.Employee_Code}}</div>
+                  </div>
+                  <div class="view_item">
+                     <div class="Static">Department</div>
+                     <div class="dots"> : </div>
+                     <div class="Data"> {{_Data?.Requested_By?.General_Info_Department?.Department_Name}}</div>
+                  </div>
+               <!-- </div> -->
+               <!-- <div class="col-sm-4"> -->
+                  <div class="view_item">
+                     <div class="Static">Designation </div>
+                     <div class="dots"> : </div>
+                     <div class="Data">{{_Data?.Requested_By?.General_Info_Designation?.Designation}}</div>
+                  </div>
+                  <div class="view_item">
+                     <div class="Static">contact </div>
+                     <div class="dots"> : </div>
+                     <div class="Data"> {{_Data?.Requested_By?.General_Info_Mobile_Number}} </div>
+                  </div>
                </div>
             </div>
             <div class="col-sm-6">
@@ -71,26 +74,26 @@
                   <!-- <div class="row"> -->
                      <!-- <div class="col-sm-4"> -->
                         <div class="view_item">
-                           <div class="Static"> Request Date </div>
+                           <div class="Static"> Permission Date </div>
                            <div class="dots"> : </div>
-                           <div class="Data">  27/05/18</div>
+                           <div class="Data">{{_Data?.Requested_Date | date: 'dd/MM/yyyy'}}</div>
                         </div>
                         <div class="view_item">
                            <div class="Static">Out Time </div>
                            <div class="dots"> : </div>
-                           <div class="Data"> 5pm </div>
+                           <div class="Data"> {{_Data?.Out_Time}} </div>
                         </div>
                      <!-- </div> -->
                      <!-- <div class="col-sm-4"> -->
                         <div class="view_item">
                            <div class="Static">In Time </div>
                            <div class="dots"> : </div>
-                           <div class="Data"> 9am </div>
+                           <div class="Data"> {{_Data?.In_Time}} </div>
                         </div>
                         <div class="view_item">
-                           <div class="Static">Purpose</div>
+                           <div class="Static">Description</div>
                            <div class="dots"> : </div>
-                           <div class="Data"> Purpose </div>
+                           <div class="Data"> {{_Data?.Description}} </div>
                         </div>
                      <!-- </div> -->
                   <!-- </div> -->

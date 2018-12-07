@@ -36,66 +36,66 @@ export class AccountSettingsService {
  }
 
    // Income Type
-        public IncomeType_AsyncValidate(Info: any): Observable<any[]> {
-          if (this.Service.If_LoggedIn()) {
+      public IncomeType_AsyncValidate(Info: any): Observable<any[]> {
+         if (this.Service.If_LoggedIn()) {
             this.headers.set('Authorization', atob(localStorage.getItem('SessionToken')));
             localStorage.setItem('SessionKey', btoa(Date()));
-          return this.http.post(API_URL + 'IncomeType_AsyncValidate', Info, {headers: this.headers })
-          .pipe( map(response => response),  catchError(error => of(error)));
-      } else {
-        return this.ValidateEveryRequest();
-     }
-    }
+            return this.http.post(API_URL + 'IncomeType_AsyncValidate', Info, {headers: this.headers })
+            .pipe( map(response => response),  catchError(error => of(error)));
+         } else {
+            return this.ValidateEveryRequest();
+         }
+      }
       public Income_Type_Create(Info: any): Observable<any[]> {
-        if (this.Service.If_LoggedIn()) {
-          this.headers.set('Authorization', atob(localStorage.getItem('SessionToken')));
-          localStorage.setItem('SessionKey', btoa(Date()));
-         return this.http.post(API_URL + 'Income_Type_Create', Info, {headers: this.headers })
-         .pipe( map(response => response),  catchError(error => of(error)));
-      } else {
-        return this.ValidateEveryRequest();
-     }
-    }
+         if (this.Service.If_LoggedIn()) {
+            this.headers.set('Authorization', atob(localStorage.getItem('SessionToken')));
+            localStorage.setItem('SessionKey', btoa(Date()));
+            return this.http.post(API_URL + 'Income_Type_Create', Info, {headers: this.headers })
+            .pipe( map(response => response),  catchError(error => of(error)));
+         } else {
+            return this.ValidateEveryRequest();
+         }
+      }
       public Income_Type_List(Info: any): Observable<any[]> {
-        if (this.Service.If_LoggedIn()) {
-          this.headers.set('Authorization', atob(localStorage.getItem('SessionToken')));
-          localStorage.setItem('SessionKey', btoa(Date()));
-         return this.http.post(API_URL + 'Income_Type_List', Info, {headers: this.headers })
-         .pipe( map(response => response), catchError(error => of(error)));
-      } else {
-        return this.ValidateEveryRequest();
-     }
-    }
+         if (this.Service.If_LoggedIn()) {
+            this.headers.set('Authorization', atob(localStorage.getItem('SessionToken')));
+            localStorage.setItem('SessionKey', btoa(Date()));
+            return this.http.post(API_URL + 'Income_Type_List', Info, {headers: this.headers })
+            .pipe( map(response => response), catchError(error => of(error)));
+         } else {
+            return this.ValidateEveryRequest();
+         }
+      }
       public Income_Type_SimpleList(Info: any): Observable<any[]> {
-        if (this.Service.If_LoggedIn()) {
-          this.headers.set('Authorization', atob(localStorage.getItem('SessionToken')));
-          localStorage.setItem('SessionKey', btoa(Date()));
-         return this.http.post(API_URL + 'Income_Type_SimpleList', Info, {headers: this.headers })
-         .pipe( map(response => response),  catchError(error => of(error)));
-      } else {
-        return this.ValidateEveryRequest();
-     }
-    }
+         if (this.Service.If_LoggedIn()) {
+            this.headers.set('Authorization', atob(localStorage.getItem('SessionToken')));
+            localStorage.setItem('SessionKey', btoa(Date()));
+            return this.http.post(API_URL + 'Income_Type_SimpleList', Info, {headers: this.headers })
+            .pipe( map(response => response),  catchError(error => of(error)));
+         } else {
+            return this.ValidateEveryRequest();
+         }
+      }
       public Income_Type_Update(Info: any): Observable<any[]> {
-        if (this.Service.If_LoggedIn()) {
-          this.headers.set('Authorization', atob(localStorage.getItem('SessionToken')));
-          localStorage.setItem('SessionKey', btoa(Date()));
-         return this.http.post(API_URL + 'Income_Type_Update', Info, {headers: this.headers })
-         .pipe( map(response => response), catchError(error => of(error)));
-      } else {
-        return this.ValidateEveryRequest();
-     }
-    }
+         if (this.Service.If_LoggedIn()) {
+               this.headers.set('Authorization', atob(localStorage.getItem('SessionToken')));
+               localStorage.setItem('SessionKey', btoa(Date()));
+               return this.http.post(API_URL + 'Income_Type_Update', Info, {headers: this.headers })
+               .pipe( map(response => response), catchError(error => of(error)));
+         } else {
+            return this.ValidateEveryRequest();
+         }
+      }
       public Income_Type_Delete(Info: any): Observable<any[]> {
-        if (this.Service.If_LoggedIn()) {
-          this.headers.set('Authorization', atob(localStorage.getItem('SessionToken')));
-          localStorage.setItem('SessionKey', btoa(Date()));
-         return this.http.post(API_URL + 'Income_Type_Delete', Info, {headers: this.headers })
-         .pipe( map(response => response),  catchError(error => of(error)));
-      } else {
-        return this.ValidateEveryRequest();
-     }
-    }
+         if (this.Service.If_LoggedIn()) {
+            this.headers.set('Authorization', atob(localStorage.getItem('SessionToken')));
+            localStorage.setItem('SessionKey', btoa(Date()));
+            return this.http.post(API_URL + 'Income_Type_Delete', Info, {headers: this.headers })
+            .pipe( map(response => response),  catchError(error => of(error)));
+         } else {
+         return this.ValidateEveryRequest();
+         }
+      }
 
    // Payment Terms
       public Payment_Terms_Create(Info: any): Observable<any[]> {
@@ -241,6 +241,26 @@ export class AccountSettingsService {
   } else {
     return this.ValidateEveryRequest();
  }
+}
+public Taxes_SalesList(Info: any): Observable<any[]> {
+   if (this.Service.If_LoggedIn()) {
+     this.headers.set('Authorization', atob(localStorage.getItem('SessionToken')));
+     localStorage.setItem('SessionKey', btoa(Date()));
+    return this.http.post(API_URL + 'Taxes_SalesList', Info, {headers: this.headers })
+    .pipe(map(response => response), catchError(error => of(error)));
+ } else {
+   return this.ValidateEveryRequest();
+}
+}
+public Taxes_PurchaseList(Info: any): Observable<any[]> {
+   if (this.Service.If_LoggedIn()) {
+     this.headers.set('Authorization', atob(localStorage.getItem('SessionToken')));
+     localStorage.setItem('SessionKey', btoa(Date()));
+    return this.http.post(API_URL + 'Taxes_PurchaseList', Info, {headers: this.headers })
+    .pipe(map(response => response), catchError(error => of(error)));
+ } else {
+   return this.ValidateEveryRequest();
+}
 }
   public Taxes_Simple_List(Info: any): Observable<any[]> {
     if (this.Service.If_LoggedIn()) {

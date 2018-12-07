@@ -1,0 +1,32 @@
+<div class="Page_Section">
+   <div class="container-fluid">
+      <div class="Page_Identity">
+      <div class="Page_Name">
+              <h5>PRODUCT SETTINGS</h5>
+      </div>
+      <div class="Page_Track">
+                   <ul >
+                     <li class="HeaderName">Settings</li>
+                     <li class="arrow">>></li>
+                     <li>Product Settings</li>
+                     </ul>
+                   </div>
+             </div>
+      <div class="Page_Content Product_Settings">
+         <div class="Main_Section">
+            <div class="Left_Section">
+               <ul class="Tabs">
+                  <li class="Tab" [ngClass]="{'active':Active_Tab === 'UOM'}" (click)="Active_Tab_Change('UOM')">
+                     <span class="Tab_Content">Unit Of Measure</span>
+                  </li>
+              </ul>
+            </div>
+            <div class="Right_Section">
+               <div *ngIf="Active_Tab === 'UOM'">
+                     <app-uom-settings></app-uom-settings>
+               </div>
+           </div>
+         </div>
+      </div>
+   </div>
+</div>

@@ -1,3 +1,15 @@
+<div [ngClass]="{'Hide': !Loader}" class="DataLoaderStyle_1" style="height: 100%; width: 100%;">
+   <div class="Loading">
+         <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+            <div class="rect6"></div>
+         </div>
+   </div>
+</div>
 <!-- Page -->
 <div class="page" style="margin-top:100px;">
    <div class="container-fluid">
@@ -13,247 +25,511 @@
             </ul>
          </div>
       </div>
-      <div class="row">
-         <div class="col-sm-3">
-            <div class="left_Section">
-               <img src="../../../../../assets/images/basic/employee.png"><br>
-               <div class="row">
-                  <div class="col-sm-12 Form_Input">
-                     <input type="text" placeholder="Employee Name">
-                  </div>
-                  <div class="col-sm-12 Form_Input">
-                     <input type="text" placeholder="Code">
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="col-sm-9">
-            <!-- Company details -->
-            <div class="Company_Details">
-               <div class="row">
-                  <!-- <div class="col-sm-4 Form_Input">
-                     <label>Employee Name:</label>
-                     <input type="text">
-                  </div> -->
-                  <!-- <div class="col-sm-4 Form_Input">
-                     <label>Code:</label>
-                     <input type="text">
-                  </div> -->
-                  <div class="col-sm-4 Form_Select">
-                     <label>Branch:</label>
-                     <ng-select class="NgSelect" 
-                        [items]="_Branch" 
-                        [searchable]="true" 
-                        placeholder="Branch">
-                     </ng-select>
-                  </div>
-                  <div class="col-sm-4 Form_Select">
-                     <label>Category:</label>
-                     <ng-select class="NgSelect" 
-                        [items]="_Category" 
-                        [searchable]="true" 
-                        placeholder="Category">
-                     </ng-select>
-                  </div>
-                  <div class="col-sm-4 Form_Select">
-                     <label>Department:</label>
-                     <ng-select class="NgSelect" 
-                        [items]="_Department" 
-                        [searchable]="true" 
-                        placeholder="Department">
-                     </ng-select>
-                  </div>
-                  <div class="col-sm-4 Form_Input">
-                     <label>Job Title:</label>
-                     <input type="text">
-                  </div>
-                  <div class="col-sm-4 Form_Select">
-                     <label>Manager:</label>
-                     <ng-select class="NgSelect" 
-                        [items]="_Manager" 
-                        [searchable]="true" 
-                        placeholder="Manager">
-                     </ng-select>
-                  </div>
-                  <div class="col-sm-4 Form_Input">
-                     <label>Mobile No:</label>
-                     <input type="text">
-                  </div>
-                  <div class="col-sm-4 Form_Input">
-                     <label>Date Of Joining:</label>
-                     <input type="text">
-                  </div>
-                  <div class="col-sm-4 Form_Input">
-                     <label>Probation(In A Month):</label>
-                     <input type="text">
-                  </div>
-                  <div class="col-sm-4 ">
-                     <input type="checkbox" style="margin-top:35px"> Is a Manager
-                  </div>
-                  <div class="col-sm-4 ">
-                     <input type="checkbox" style="margin-top:35px" Checked>Active
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-      <!-- Tabs -->
-      <div class="Company_Details">
-         <div class="Tabs">
-            <div class="Tab" [ngClass]="{'active': Active_Tab === 'personal_info'}" (click)="Active_Tab_Change('personal_info')">
-               <span >Personal Info</span>
-            </div>
-            <div class="Tab" [ngClass]="{'active': Active_Tab === 'salary_details'}" (click)="Active_Tab_Change('salary_details')">
-               <span >Salary Details</span>
-            </div>
-         </div>
-         <br>
-         <div class="page" *ngIf="Active_Tab === 'personal_info'">
-            <div class="row">
-               <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Personal <span style="color:#516570;font-size:20px;font-weight: 600;">Info</span></h5><br>
-               <div class="col-sm-12">
+      <form [formGroup]="Form" >
+         <div class="row">
+            <div class="col-sm-3">
+               <div class="left_Section">
+                  <img style="margin-bottom: 30px" src="../../../../../assets/images/basic/employee.png"><br>
                   <div class="row">
-                     <div class="col-sm-4 Form_Input" >
-                        <input type="text" placeholder="No/Street">
+                     <div class="col-sm-12 Form_Input" style="margin-bottom: 20px;" [ngClass]="{'Form_Err': !Form.controls['Employee_Name'].pristine && Form.controls['Employee_Name'].errors, 'Form_Success': Form.controls['Employee_Name'].valid && !Form.controls['Employee_Name'].pristine }">
+                        <input type="text" placeholder="Employee Name" formControlName="Employee_Name" >
+                        <p class="error" style="margin-top: 0px; margin-bottom: -19px; margin-left: 23px" *ngIf="Form.controls['Employee_Name'].errors && !Form.controls['Employee_Name'].pristine">
+                           <span *ngIf="Form.controls['Employee_Name'].errors.required"> Name is required</span>
+                           <span *ngIf="Form.controls['Employee_Name'].errors.pattern"> No special characters allowed </span>
+                        </p>
                      </div>
-                     <div class="col-sm-4 Form_Input" >
-                        <input type="text" placeholder="Area">
+                     <div class="col-sm-12 Form_Input" [ngClass]="{'Form_Err': !Form.controls['Employee_Code'].pristine && Form.controls['Employee_Code'].errors, 'Form_Success': Form.controls['Employee_Code'].valid && !Form.controls['Employee_Code'].pristine }">
+                        <input type="text" placeholder="Code" formControlName="Employee_Code">
+                        <p class="error" style="margin-top: 0px; margin-bottom: -19px; margin-left: 23px" *ngIf="Form.controls['Employee_Code'].errors && !Form.controls['Employee_Code'].pristine">
+                           <span *ngIf="Form.controls['Employee_Code'].errors.required"> Code is required</span>
+                        </p>
                      </div>
-                     <div class="col-sm-4 Form_Input" >
-                        <input type="text" placeholder="Country">
-                     </div>
-                     <div class="col-sm-4 Form_Input" >
-                        <input type="text" placeholder="State">
-                     </div>
-                     <div class="col-sm-4 Form_Input" >
-                        <input type="text" placeholder="City">
-                     </div>
-                     <div class="col-sm-4 Form_Select" >
+                     <div class="col-sm-12 Form_Select" style="padding-left: 37px; padding-right: 39px;">
                         <ng-select class="NgSelect" 
-                           [items]="_MaritalStatus" 
+                           [items]="_Category"
+                           [bindLabel]="'Employee_Category'"
+                           [bindValue]="'_id'"
                            [searchable]="true" 
-                           placeholder="marital Status">
+                           formControlName="Employee_Category"
+                           placeholder="Category">
+                        </ng-select>
+                        <p class="error" style="margin-top: 0px; margin-bottom: -19px;" *ngIf="Form.controls['Employee_Category'].errors && !Form.controls['Employee_Category'].pristine">
+                           <span *ngIf="Form.controls['Employee_Category'].errors.required"> Category is required</span>
+                        </p>
+                     </div>
+                     <div class="col-sm-12 Form_Select" style="padding-left: 37px; padding-right: 39px;">
+                        <ng-select class="NgSelect" 
+                           [items]="_UserManagementList"
+                           [bindLabel]="'Name'"
+                           [bindValue]="'_id'"
+                           [searchable]="true" 
+                           formControlName="UserManagement_Id"
+                           placeholder="User Management Account">
                         </ng-select>
                      </div>
-                     <div class="col-sm-4 Form_Input" >
-                        <input type="text" placeholder="Date Of Birth"> 
+                  </div>
+               </div>
+            </div>
+            <div class="col-sm-9">
+               <!-- Company details -->
+               <!-- Tabs -->
+               <div class="Company_Details">
+                  <div class="Tabs">
+                     <div class="Tab" [ngClass]="{'active': Active_Tab === 'General_info'}" (click)="Active_Tab_Change('General_info')">
+                        <span >General Info</span>
+                     </div>
+                     <!-- <div class="Tab" [ngClass]="{'active': Active_Tab === 'Personal_Info'}" (click)="Active_Tab_Change('Personal_Info')">
+                        <span >Personal Info</span>
+                     </div>
+                     <div class="Tab" [ngClass]="{'active': Active_Tab === 'Bank_Details'}" (click)="Active_Tab_Change('Bank_Details')">
+                        <span >Bank Details</span>
+                     </div>
+                     <div class="Tab" [ngClass]="{'active': Active_Tab === 'Salary_Details'}" (click)="Active_Tab_Change('Salary_Details')">
+                        <span >Salary Details</span>
+                     </div>
+                     <div class="Tab" [ngClass]="{'active': Active_Tab === 'Other_Details'}" (click)="Active_Tab_Change('Other_Details')">
+                        <span >Other Details</span>
+                     </div> -->
+                  </div>
+                  <br>
+                  <div class="page" *ngIf="Active_Tab === 'General_info'">
+                     <div class="row">
+                        <div class="col-sm-12">
+                           <h5 style="color:#49B660;font-size:20px;font-weight: 600;">General <span style="color:#516570;font-size:20px;font-weight: 600;">Info</span></h5><br>
+                           <div class="row">
+                              <div class="col-sm-4 Form_Select">
+                                 <label>Branch:</label>
+                                 <ng-select class="NgSelect" 
+                                    [items]="_Branch"
+                                    [bindLabel]="'Branch_Name'"
+                                    [bindValue]="'_id'"
+                                    [searchable]="true"
+                                    (change)="getDepartment($event._id)" 
+                                    formControlName="General_Info_Branch" 
+                                    placeholder="Branch">
+                                 </ng-select>
+                                 <p class="error" style="margin-top: 0px;" *ngIf="Form.controls['General_Info_Branch'].errors && !Form.controls['General_Info_Branch'].pristine">
+                                    <span *ngIf="Form.controls['General_Info_Branch'].errors.required"> Branch is required</span>
+                                 </p>
+                              </div>
+                              <div class="col-sm-4 Form_Select">
+                                 <label>Department:</label>
+                                 <ng-select class="NgSelect" 
+                                    [items]="_Department" 
+                                    [bindLabel]="'Department_Name'"
+                                    [bindValue]="'_id'"
+                                    [searchable]="true"
+                                    formControlName="General_Info_Department"
+                                    placeholder="Department">
+                                 </ng-select>
+                                 <p class="error" style="margin-top: 0px;" *ngIf="Form.controls['General_Info_Department'].errors && !Form.controls['General_Info_Department'].pristine">
+                                    <span *ngIf="Form.controls['General_Info_Department'].errors.required"> Department is required</span>
+                                 </p>
+                              </div>
+                              <div class="col-sm-4 Form_Select">
+                                 <label>Designation:</label>
+                                 <ng-select class="NgSelect" 
+                                    [items]="_Designation" 
+                                    [bindLabel]="'Designation'"
+                                    [bindValue]="'_id'"
+                                    [searchable]="true" 
+                                    formControlName="General_Info_Designation"
+                                    placeholder="Department">
+                                 </ng-select>
+                                 <p class="error" style="margin-top: 0px;" *ngIf="Form.controls['General_Info_Designation'].errors && !Form.controls['General_Info_Designation'].pristine">
+                                    <span *ngIf="Form.controls['General_Info_Designation'].errors.required"> Designation is required</span>
+                                 </p>
+                              </div>
+                              <div class="col-sm-4 Form_Select">
+                                 <label>Report To:</label>
+                                 <ng-select class="NgSelect" 
+                                    [items]="_ReportTo"
+                                    [bindLabel]="'Employee_Name'"
+                                    [bindValue]="'_id'"
+                                    [searchable]="true"
+                                    formControlName="General_Info_Report_To" 
+                                    placeholder="Manager">
+                                 </ng-select>
+                                 <p class="error" style="margin-top: 0px;" *ngIf="Form.controls['General_Info_Report_To'].errors && !Form.controls['General_Info_Report_To'].pristine">
+                                    <span *ngIf="Form.controls['General_Info_Report_To'].errors.required"> Report To is required</span>
+                                 </p>
+                              </div>
+                              <div class="col-sm-4 Form_Input" [ngClass]="{'Form_Err': !Form.controls['General_Info_Mobile_Number'].pristine && Form.controls['General_Info_Mobile_Number'].errors, 'Form_Success': Form.controls['General_Info_Mobile_Number'].valid && !Form.controls['General_Info_Mobile_Number'].pristine }">
+                                 <label>Mobile No:</label>
+                                 <input type="text" formControlName="General_Info_Mobile_Number">
+                                 <p class="error" style="margin-top: 0px" *ngIf="Form.controls['General_Info_Mobile_Number'].errors && !Form.controls['General_Info_Mobile_Number'].pristine">
+                                    <span *ngIf="Form.controls['General_Info_Mobile_Number'].errors.required"> Mobile Number is required</span>
+                                    <span *ngIf="Form.controls['General_Info_Mobile_Number'].errors.pattern"> Not a valid mobile number</span>
+                                    <span *ngIf="Form.controls['General_Info_Mobile_Number'].errors.Mobile_NotAvailable"> Mobile number already registered</span>
+                                 </p>
+                              </div>
+                              <div class="col-sm-4 Form_Input" [ngClass]="{'Form_Err': !Form.controls['General_Info_Date_Of_Joining'].pristine && Form.controls['General_Info_Date_Of_Joining'].errors, 'Form_Success': Form.controls['General_Info_Date_Of_Joining'].valid && !Form.controls['General_Info_Date_Of_Joining'].pristine }">
+                                 <label>Date Of Joining:</label>
+                                 <input matInput [matDatepicker]="picker1" style="margin-top: 0px" (click)="picker1.open()" placeholder="Date" formControlName="General_Info_Date_Of_Joining">
+                                 <mat-datepicker #picker1></mat-datepicker>
+                                 <p class="error" style="margin-top: 0px;" *ngIf="Form.controls['General_Info_Date_Of_Joining'].errors && !Form.controls['General_Info_Date_Of_Joining'].pristine">
+                                    <span *ngIf="Form.controls['General_Info_Date_Of_Joining'].errors.required"> Date of Joining is required</span>
+                                 </p>
+                              </div>
+                              <div class="col-sm-4 Form_Input" [ngClass]="{'Form_Err': !Form.controls['General_Info_Probation_Month'].pristine && Form.controls['General_Info_Probation_Month'].errors, 'Form_Success': Form.controls['General_Info_Probation_Month'].valid && !Form.controls['General_Info_Probation_Month'].pristine }">
+                                 <label>Probation(In A Month):</label>
+                                 <input type="text" formControlName="General_Info_Probation_Month">
+                                 <p class="error" style="margin-top: 0px" *ngIf="Form.controls['General_Info_Probation_Month'].errors && !Form.controls['General_Info_Probation_Month'].pristine">
+                                    <span *ngIf="Form.controls['General_Info_Probation_Month'].errors.required"> Probation Month is required</span>
+                                    <span *ngIf="Form.controls['General_Info_Probation_Month'].errors.pattern"> Only in Numbers</span>
+                                 </p>
+                              </div>
+                              <div class="col-sm-4 Form_Input" style="margin-top: 35px">
+                                 <mat-checkbox value="true" formControlName="General_Info_Is_A_Manager"> Is a Manager </mat-checkbox> 
+                              </div>
+                              <div class="col-sm-4 Form_Input" style="margin-top: 35px">
+                                 <mat-checkbox value="true" formControlName="General_Info_Active"> Active </mat-checkbox>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="page" *ngIf="Active_Tab === 'Personal_Info'">
+                     <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Personal <span style="color:#516570;font-size:20px;font-weight: 600;">Info</span></h5><br>
+                     <div class="row">
+                        <div class="col-sm-12">
+                           <div class="row">
+                              <div class="col-sm-4 Form_Input" >
+                                    <input matInput [matDatepicker]="picker2" style="margin-top: 0px" (click)="picker2.open()" placeholder="Date Of Birth">
+                                    <mat-datepicker #picker2></mat-datepicker> 
+                              </div>
+                              <div class="col-sm-4 Form_Select" >
+                                 <ng-select class="NgSelect" 
+                                    [items]="_MaritalStatus" 
+                                    [searchable]="true" 
+                                    placeholder="marital Status">
+                                 </ng-select>
+                              </div>
+                           </div>
+                           <div class="row">
+                              <div class="col-sm-12 Form_Input">
+                                 <label>Address</label>
+                              </div><br>
+                              <div class="col-sm-4 Form_Input" >
+                                 <input type="text" placeholder="No/Street">
+                              </div>
+                              <div class="col-sm-4 Form_Input" >
+                                 <input type="text" placeholder="Area">
+                              </div>
+                              <div class="col-sm-4 Form_Input" >
+                                 <input type="text" placeholder="Country">
+                              </div>
+                              <div class="col-sm-4 Form_Input" >
+                                 <input type="text" placeholder="State">
+                              </div>
+                              <div class="col-sm-4 Form_Input" >
+                                 <input type="text" placeholder="City">
+                              </div>
+                              <div class="col-sm-4 Form_Input" >
+                                 <input type="text" placeholder="Pin Code">
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <br>
+                     <div class="row">
+                        <div class="col-sm-12">
+                           <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Eduction <span style="color:#516570;font-size:20px;font-weight: 600;">Info</span>
+                              <button mat-raised-button color="primary" class="pull-right"> Add </button>
+                           </h5>
+                           <br>
+                           <div class="Table_Section">
+                                 <table>
+                                    <thead>
+                                       <tr>
+                                          <th class="S_No" style="width: 40px">S.No</th>
+                                          <th>Class/Degree</th>
+                                          <th>School/College</th>
+                                          <th>Year Passed</th>
+                                          <th>Secured (%)</th>
+                                          <th class="Action">Action</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr>
+                                          <td>1</td>
+                                          <td class="Form_Input">
+                                             <input type="text">
+                                          </td>
+                                          <td class="Form_Input">
+                                             <input type="text">
+                                          </td>
+                                          <td class="Form_Input">
+                                             <input type="text">
+                                          </td>
+                                          <td class="Form_Input">
+                                             <input type="text">
+                                          </td>
+                                          <td>
+                                             <span class="Action_Section Bg_Danger">
+                                                <i class="material-icons">delete</i>
+                                             </span> 
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                        </div>
+                     </div>
+                     <br>
+                     <div class="row">
+                           <div class="col-sm-12">
+                              <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Family <span style="color:#516570;font-size:20px;font-weight: 600;">Info</span>
+                                 <button mat-raised-button color="primary" class="pull-right"> Add </button>
+                              </h5>
+                              <br>
+                              <div class="Table_Section">
+                                    <table>
+                                       <thead>
+                                          <tr>
+                                             <th class="S_No" style="width: 40px">S.No</th>
+                                             <th>Name</th>
+                                             <th>Age</th>
+                                             <th>Gender</th>
+                                             <th>Relationship</th>
+                                             <th>Contact Number</th>
+                                             <th class="Action">Action</th>
+                                          </tr>
+                                       </thead>
+                                       <tbody>
+                                          <tr>
+                                             <td>1</td>
+                                             <td class="Form_Input">
+                                                <input type="text">
+                                             </td>
+                                             <td class="Form_Input">
+                                                <input type="text">
+                                             </td>
+                                             <td class="Form_Input">
+                                                <input type="text">
+                                             </td>
+                                             <td class="Form_Input">
+                                                <input type="text">
+                                             </td>
+                                             <td class="Form_Input">
+                                                <input type="text">
+                                             </td>
+                                             <td>
+                                                <span class="Action_Section Bg_Danger">
+                                                   <i class="material-icons">delete</i>
+                                                </span> 
+                                             </td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                 </div>
+                           </div>
+                     </div>
+                     <br>
+                  </div>
+                  <div class="page" *ngIf="Active_Tab === 'Bank_Details'">
+                     <div class="row">
+                        <div class="col-sm-12">
+                           <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Bank <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span>
+                              <button mat-raised-button color="primary" class="pull-right"> Add </button>
+                           </h5>
+                           <br>
+                           <div class="Table_Section">
+                                 <table>
+                                    <thead>
+                                       <tr>
+                                          <th class="S_No" style="width: 40px">S.No</th>
+                                          <th>A/C Number</th>
+                                          <th>A/C Name</th>
+                                          <th>Branch</th>
+                                          <th>IFSC Code</th>
+                                          <th class="Action">Action</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr>
+                                          <td>1</td>
+                                          <td class="Form_Input">
+                                             <input type="text">
+                                          </td>
+                                          <td class="Form_Input">
+                                             <input type="text">
+                                          </td>
+                                          <td class="Form_Input">
+                                             <input type="text">
+                                          </td>
+                                          <td class="Form_Input">
+                                             <input type="text">
+                                          </td>
+                                          <td>
+                                             <span class="Action_Section Bg_Danger">
+                                                <i class="material-icons">delete</i>
+                                             </span> 
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="page" *ngIf="Active_Tab === 'Salary_Details'">
+                     <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Salary <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span></h5>
+                     <div class="row">
+                        <div class="col-sm-4 Form_Select" >
+                           <ng-select class="NgSelect" 
+                              [items]="_SalaryMethod" 
+                              [searchable]="true" 
+                              placeholder="Salary Method">
+                           </ng-select>
+                        </div>
+                     </div>
+                     <br>
+                     <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Earnings
+                        <span style="color:#516570;font-size:20px;font-weight: 600;">Table</span>
+                     </h5>
+                     <div class="row">
+                        <div class="col-sm-12">
+                           <!-- table section -->
+                           <div class="Table_Section">
+                              <table>
+                                 <thead>
+                                    <tr>
+                                       <th>Earnings Type</th>
+                                       <th>Based On</th>
+                                       <th>Amount Or Percentage</th>
+                                       <th>Total</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    <tr>
+                                       <td >Basic Pay</td>
+                                       <td class="Form_Select">
+                                          <ng-select class="NgSelect" 
+                                             [items]="_BasicPay" 
+                                             [searchable]="true" 
+                                             placeholder="Select an Option">
+                                          </ng-select>
+                                       </td>
+                                       <td class="Form_Input">
+                                          <input type="text" style="margin-bottom:10px;">
+                                       </td>
+                                       <td class="Form_Input">
+                                          <input type="text" style="margin-bottom:10px;">
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                     </div><br>
+                     <!-- Detection Table -->
+                     <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Detection
+                        <span style="color:#516570;font-size:20px;font-weight: 600;">Table</span>
+                     </h5>
+                     <!-- <div class="row"> -->
+                        <!-- <div class="col-sm-12"> -->
+                           <div class="Table_Section">
+                              <table>
+                                 <thead>
+                                    <tr>
+                                       <th>Detection Type</th>
+                                       <th>Based On</th>
+                                       <th>Amount Or Percentage</th>
+                                       <th>Total</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    <tr>
+                                       <td >ESI</td>
+                                       <td class="Form_Select">
+                                          <ng-select class="NgSelect" 
+                                             [items]="_ESI" 
+                                             [searchable]="true" 
+                                             placeholder="Select an Option">
+                                          </ng-select>
+                                       </td>
+                                       <td class="Form_Input" >
+                                          <input type="text" style="margin-bottom:10px;">
+                                       </td>
+                                       <td class="Form_Input">
+                                          <input type="text" style="margin-bottom:10px;">
+                                       </td>
+                                    </tr>
+                                    <tr>
+                                       <td >PF</td>
+                                       <td class="Form_Select">
+                                          <ng-select class="NgSelect" 
+                                             [items]="_PF" 
+                                             [searchable]="true" 
+                                             placeholder="Select an Option">
+                                          </ng-select>
+                                       </td>
+                                       <td class="Form_Input" >
+                                          <input type="text" style="margin-bottom:10px;">
+                                       </td>
+                                       <td class="Form_Input">
+                                          <input type="text" style="margin-bottom:10px;">
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        <!-- </div> -->
+                     <!-- </div> -->
+                  </div>
+                  <div class="page" *ngIf="Active_Tab === 'Other_Details'">
+                     <div class="row">
+                        <div class="col-sm-12">
+                           <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Other <span style="color:#516570;font-size:20px;font-weight: 600;">Info</span>
+                              <button mat-raised-button color="primary" class="pull-right"> Add </button>
+                           </h5>
+                           <br>
+                           <div class="Table_Section">
+                                 <table>
+                                    <thead>
+                                       <tr>
+                                          <th class="S_No" style="width: 40px">S.No</th>
+                                          <th>Type</th>
+                                          <th>Number</th>
+                                          <th>File upload</th>
+                                          <th class="Action">Action</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr>
+                                          <td>1</td>
+                                          <td class="Form_Input">
+                                             <input type="text">
+                                          </td>
+                                          <td class="Form_Input">
+                                             <input type="text">
+                                          </td>
+                                          <td class="Form_Input">
+                                             <input type="text">
+                                          </td>
+                                          <td>
+                                             <span class="Action_Section Bg_Danger">
+                                                <i class="material-icons">delete</i>
+                                             </span> 
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                        </div>
                      </div>
                   </div>
                </div>
             </div>
          </div>
-         <div class="page" *ngIf="Active_Tab === 'salary_details'">
-            <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Salary <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span></h5>
-            <div class="row">
-               <div class="col-sm-4 Form_Select" >
-                  <ng-select class="NgSelect" 
-                     [items]="_SalaryMethod" 
-                     [searchable]="true" 
-                     placeholder="Salary Method">
-                  </ng-select>
-               </div>
-            </div>
-            <br>
-            <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Earnings
-               <span style="color:#516570;font-size:20px;font-weight: 600;">Table</span>
-            </h5>
-            <div class="row">
-               <div class="col-sm-12">
-                  <!-- table section -->
-                  <div class="Table_Section">
-                     <table>
-                        <thead>
-                           <tr>
-                              <th>Earnings Type</th>
-                              <th>Based On</th>
-                              <th>Amount Or Percentage</th>
-                              <th>Total</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           <tr>
-                              <td >Basic Pay</td>
-                              <td class="Form_Select">
-                                 <ng-select class="NgSelect" 
-                                    [items]="_BasicPay" 
-                                    [searchable]="true" 
-                                    placeholder="Select an Option">
-                                 </ng-select>
-                              </td>
-                              <td class="Form_Input">
-                                 <input type="text" style="margin-bottom:10px;">
-                              </td>
-                              <td class="Form_Input">
-                                 <input type="text" style="margin-bottom:10px;">
-                              </td>
-                           </tr>
-                        </tbody>
-                     </table>
-                  </div>
-               </div>
-            </div><br>
-            <!-- Detection Table -->
-            <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Detection
-               <span style="color:#516570;font-size:20px;font-weight: 600;">Table</span>
-            </h5>
-            <!-- <div class="row"> -->
-               <!-- <div class="col-sm-12"> -->
-                  <div class="Table_Section">
-                     <table>
-                        <thead>
-                           <tr>
-                              <th>Detection Type</th>
-                              <th>Based On</th>
-                              <th>Amount Or Percentage</th>
-                              <th>Total</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           <tr>
-                              <td >ESI</td>
-                              <td class="Form_Select">
-                                 <ng-select class="NgSelect" 
-                                    [items]="_ESI" 
-                                    [searchable]="true" 
-                                    placeholder="Select an Option">
-                                 </ng-select>
-                              </td>
-                              <td class="Form_Input" >
-                                 <input type="text" style="margin-bottom:10px;">
-                              </td>
-                              <td class="Form_Input">
-                                 <input type="text" style="margin-bottom:10px;">
-                              </td>
-                           </tr>
-                           <tr>
-                              <td >PF</td>
-                              <td class="Form_Select">
-                                 <ng-select class="NgSelect" 
-                                    [items]="_PF" 
-                                    [searchable]="true" 
-                                    placeholder="Select an Option">
-                                 </ng-select>
-                              </td>
-                              <td class="Form_Input" >
-                                 <input type="text" style="margin-bottom:10px;">
-                              </td>
-                              <td class="Form_Input">
-                                 <input type="text" style="margin-bottom:10px;">
-                              </td>
-                           </tr>
-                        </tbody>
-                     </table>
-                  </div>
-               <!-- </div> -->
-            <!-- </div> -->
-         </div>
-      </div>
+      </form>
    </div>
 </div>
 
 <!-- Footer -->
 <div class="Footer">
-   <button mat-raised-button color="primary" style = "top: 5px;"> Submit </button>
+   <button mat-raised-button color="primary" style = "top: 5px;" [disabled]="!Form.valid" (click)="Submit()"> Submit </button>
 </div>
          
       

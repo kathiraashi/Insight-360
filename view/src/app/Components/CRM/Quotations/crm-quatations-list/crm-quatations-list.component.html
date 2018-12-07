@@ -1,4 +1,16 @@
 <app-header></app-header>
+<div [ngClass]="{'Hide': !Loader}" class="DataLoaderStyle_1" style="height: 100%; width: 100%;">
+   <div class="Loading">
+         <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+            <div class="rect6"></div>
+         </div>
+   </div>
+</div>
 <!-- Main Section -->
 <div class="Main_Section">
    <div class="Page_Section">
@@ -40,188 +52,70 @@
                   </tr>
                </thead>
                <tbody>
-                  <tr>
-                     <td>
-                        <span class="S_no"> 1 </span>
-                     </td>
-                     <td>
-                        <h6 class="Style_2">Quote-a1653d4d</h6>
-                        <span class="Style_3">Valid Till : 12/01/1998</span>
-                     </td>
-                     <td>
-                        <h6 class="Style_2">Customer Name</h6>
-                        <span class="Style_3">ganapathy, coimboture, Tamil Nadu</span>
-                     </td>
-                     <td>
-                        <h6 class="Style_2">Contact Name</h6>
-                        <span class="Style_3">ContactPerson@gmail.com</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">Admin Name</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">Draft</span>
-                     </td>
-                     <td>
-                        <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <span class="S_no"> 2 </span>
-                     </td>
-                     <td>
-                        <h6 class="Style_2">Quote-a1653d4d</h6>
-                        <span class="Style_3">Valid Till : 12/01/1998</span>
-                     </td>
-                     <td>
-                        <h6 class="Style_2">Customer Name  </h6>
-                        <span class="Style_3">ganapathy, coimboture, Tamil Nadu</span>
-                     </td>
-                     <td>
-                        <h6 class="Style_2">Contact Name  </h6>
-                        <span class="Style_3">ContactPerson@gmail.com</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">Admin Name</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">Draft</span>
-                     </td>
-                     <td>
-                        <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <span class="S_no"> 3 </span>
-                     </td>
-                     <td>
-                        <h6 class="Style_2">Quote-a1653d4d</h6>
-                        <span class="Style_3">Valid Till : 12/01/1998</span>
-                     </td>
-                     <td>
-                        <h6 class="Style_2">Customer Name </h6>
-                        <span class="Style_3">ganapathy, coimboture, Tamil Nadu</span>
-                     </td>
-                     <td>
-                        <h6 class="Style_2">Contact Name</h6>
-                        <span class="Style_3">ContactPerson@gmail.com</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">Admin Name</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">Sending</span>
-                     </td>
-                     <td>
-                        <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <span class="S_no"> 4 </span>
-                     </td>
-                     <td>
-                        <h6 class="Style_2">Quote-a1653d4d </h6>
-                        <span class="Style_3">Valid Till : 12/01/1998</span>
-                     </td>
-                     <td>
-                        <h6 class="Style_2">Customer Name </h6>
-                        <span class="Style_3">ganapathy, coimboture, Tamil Nadu</span>
-                     </td>
-                     <td>
-                        <h6 class="Style_2">Contact Name </h6>
-                        <span class="Style_3">ContactPerson@gmail.com</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">Admin Name</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">Sending</span>
-                     </td>
-                     <td>
-                        <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <span class="S_no"> 5 </span>
-                     </td>
-                     <td>
-                        <h6 class="Style_2">Quote-a1653d4d  </h6>
-                        <span class="Style_3">Valid Till : 12/01/1998</span>
-                     </td>
-                     <td>
-                        <h6 class="Style_2">Customer Name   </h6>
-                        <span class="Style_3">ganapathy, coimboture, Tamil Nadu</span>
-                     </td>
-                     <td>
-                        <h6 class="Style_2">Contact Name </h6>
-                        <span class="Style_3">ContactPerson@gmail.com</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">Admin Name</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">Send</span>
-                     </td>
-                     <td>
-                        <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action" > Action </button>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <span class="S_no"> 6 </span>
-                     </td>
-                     <td>
-                        <h6 class="Style_2">Quote-a1653d4d   </h6>
-                        <span class="Style_3">Valid Till : 12/01/1998</span>
-                     </td>
-                     <td>
-                        <h6 class="Style_2">Customer Name </h6>
-                        <span class="Style_3">ganapathy, coimboture, Tamil Nadu</span>
-                     </td>
-                     <td>
-                        <h6 class="Style_2">Contact Name   </h6>
-                        <span class="Style_3">ContactPerson@gmail.com</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">Admin Name</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">Send</span>
-                     </td>
-                     <td>
-                        <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action"> Action </button>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <span class="S_no"> 7 </span>
-                     </td>
-                     <td>
-                        <h6 class="Style_2">Quote-a1653d4d </h6>
-                        <span class="Style_3">Valid Till : 12/01/1998</span>
-                     </td>
-                     <td>
-                        <h6 class="Style_2">Customer Name </h6>
-                        <span class="Style_3">ganapathy, coimboture, Tamil Nadu</span>
-                     </td>
-                     <td>
-                        <h6 class="Style_2">Contact Name</h6>
-                        <span class="Style_3">ContactPerson@gmail.com</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">Admin Name</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">Sending</span>
-                     </td>
-                     <td>
-                        <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action"> Action </button>
-                     </td>
-                  </tr>
+                  <ng-container *ngFor="let item of _List; let i = index">
+                     <tr >
+                        <td>
+                           <span class="S_no">{{i + 1}}</span>
+                        </td>
+                        <td>
+                           <h6 class="Style_2">{{item?.Quote_Ref_Number}}</h6>
+                           <span class="Style_3">Valid Till : {{item?.Valid_Date | date: 'dd/MM/yyyy' }}</span>
+                        </td>
+                        <td>
+                           <h6 class="Style_2">{{item?.Company_Name.Company_Name}}</h6>
+                        </td>
+                        <td>
+                           <h6 class="Style_2">{{item?.Contact_Person.Name}}</h6>
+                           <span *ngIf="!item?.Contact_Person.Mobile"class="Style_3">{{item?.Contact_Person.Email}}</span>
+                           <span *ngIf="item?.Contact_Person.Mobile" class="Style_3">{{item?.Contact_Person.Mobile}}</span>
+                        </td>
+                        <td>
+                           <span class="Style_3">{{item?.Created_By.Name}}</span>
+                        </td>
+                        <td>
+                           <span class="Style_3">{{item?.Quote_Status}}</span>
+                        </td>
+                        <td>
+                           <button mat-raised-button color="primary" (click)="ActionGetId(i)" [matMenuTriggerFor] = "Action"> Action </button>
+                        </td>
+                     </tr>
+                     <tr *ngIf="item?.If_Expand">
+                        <td colspan="7" style="padding: 1% 5% 1% 5%">
+                           <div class="Table_Section">
+                              <table>
+                                    <tbody>
+                                       <tr *ngFor="let RevisedItem of _ReviseList; let i = index">
+                                             <td style="width: 100px">
+                                                <span class="S_no">{{i + 1}}</span>
+                                             </td>
+                                             <td>
+                                                <h6 class="Style_2">{{RevisedItem?.Quote_Ref_Number}}</h6>
+                                                <span class="Style_3">Valid Till : {{RevisedItem?.Valid_Date | date: 'dd/MM/yyyy' }}</span>
+                                             </td>
+                                             <td>
+                                                <h6 class="Style_2">{{RevisedItem?.Company_Name.Company_Name}}</h6>
+                                             </td>
+                                             <td>
+                                                <h6 class="Style_2">{{RevisedItem?.Contact_Person.Name}}</h6>
+                                                <span *ngIf="!RevisedItem?.Contact_Person.Mobile"class="Style_3">{{RevisedItem?.Contact_Person.Email}}</span>
+                                                <span *ngIf="RevisedItem?.Contact_Person.Mobile" class="Style_3">{{RevisedItem?.Contact_Person.Mobile}}</span>
+                                             </td>
+                                             <td>
+                                                <span class="Style_3">{{RevisedItem?.Created_By.Name}}</span>
+                                             </td>
+                                             <td>
+                                                <span class="Style_3">{{RevisedItem?.Quote_Status}}</span>
+                                             </td>
+                                             <td style="width: 100px">
+                                                <button mat-raised-button color="primary" (click)="ActionGetId(i); View()"> View </button>
+                                             </td>
+                                          </tr>
+                                    </tbody>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </ng-container>
                </tbody>
             </table>
          </div>
@@ -231,19 +125,20 @@
    
 <!-- Dropdown menus -->
 <mat-menu class="MenuStyleOne" #Action="matMenu" [overlapTrigger]="false" xPosition="after" yPosition="below" class="MenuStyleOne">
-   <a [routerLink]="['/crm_quotations_create']"><button mat-menu-item>
-      <span>Edit</span>
-   </button></a>
-   <a [routerLink]="['/crm_quotations_view']"><button mat-menu-item>
+   <button mat-menu-item (click)="View()">
       <span>View</span>
-   </button></a>
-   <button mat-menu-item>
+   </button>
+   <button *ngIf="!showReviseButton" mat-menu-item>
       <span>Cancel</span>
    </button>
-   <button mat-menu-item>
+   <button *ngIf="showReviseButton" mat-menu-item (click)="Revise()">
       <span>Revise</span>
    </button>
-   <button mat-menu-item (click)="ConfirmOrder()">
+   <button *ngIf="showConfirmButton" mat-menu-item (click)="ConfirmOrder()">
       <span>Confirm order</span>
+   </button>
+   <button *ngIf="showToggleOption" mat-menu-item (click)="ShowRevisedQuotes()">
+      <span *ngIf="!toggleExpandStatus">Show Revised Quotes</span>
+      <span *ngIf="toggleExpandStatus">Hide Revised Quotes</span>
    </button>
 </mat-menu>

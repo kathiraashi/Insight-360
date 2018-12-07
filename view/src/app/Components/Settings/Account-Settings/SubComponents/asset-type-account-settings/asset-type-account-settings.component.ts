@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { BsModalService } from 'ngx-bootstrap/modal';
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { BsModalRef } from 'ngx-bootstrap';
 
 import { ModelAssettypeAccountsettingsComponent } from '../../../../../models/settings/account_settings/model-assettype-accountsettings/model-assettype-accountsettings.component';
 import { DeleteConfirmationComponent } from '../../../../Common-Components/delete-confirmation/delete-confirmation.component';

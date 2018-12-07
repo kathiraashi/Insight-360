@@ -1,3 +1,15 @@
+<div [ngClass]="{'Hide': !Loader}" class="DataLoaderStyle_1" style="height: 100%; width: 100%; top: 15%">
+   <div class="Loading">
+         <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+            <div class="rect6"></div>
+         </div>
+   </div>
+</div>
 <!-- Page -->
 <div class="page" style="margin-top:100px;">
    <div class="container-fluid">
@@ -7,9 +19,9 @@
             <ul>
                <li class="HeaderName">Home</li>
                <li class="arrow">>></li>
-               <li class="LinkName"><a [routerLink]="['/crm_quotations_list']">Quotations List</a></li>
+               <li class="LinkName"><a [routerLink]="['/crm_quotations_list']">Quotations</a></li>
                <li class="arrow">>></li>
-               <li>Quotations</li>
+               <li>{{_QuoteData?.Company_Name['Company_Name']}}</li>
             </ul>
          </div>
       </div>
@@ -20,9 +32,10 @@
                <div class="Company_Details">
                   <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Quotation
                      <span style="color:#516570;font-size:20px;font-weight: 600;">Details</span>
-                     <span><button class="register_Payment pull-right" mat-raised-button> Order  </button></span>
-                     <span><button class="create_invoice pull-right" mat-raised-button [routerLink]="['/crm_quotations_create']"> Revise </button></span>
-                     <span><button class="register_Payment pull-right" mat-raised-button [routerLink]="['/crm_quotations_create']"> Edit  </button></span>
+                     <span *ngIf="_QuoteData?.Status === 'Valid' || _QuoteData?.Status === 'Revised'"><button class="register_Payment pull-right" mat-raised-button (click)="ConfirmOrder()"> Order  </button></span>
+                     <span *ngIf="_QuoteData?.Status === 'Valid' || _QuoteData?.Status === 'Revised'"><button class="create_invoice pull-right" mat-raised-button (click)="Revise()"> Revise </button></span>
+                     <span *ngIf="_QuoteData?.Status === 'Draft'"><button class="register_Payment pull-right" mat-raised-button (click)="Validate()"> Validate </button></span>
+                     <span *ngIf="_QuoteData?.Status === 'Draft'"><button class="register_Payment pull-right" mat-raised-button (click)="Edit()"> Edit  </button></span>
                   </h5>
                   <br>
                   <div class="row">
@@ -30,36 +43,36 @@
                         <div class="view_item"> 
                            <div class="Static">Quote No </div>
                            <div class="dots"> : </div>
-                           <div class="Data"> 123</div>
+                           <div class="Data"> {{_QuoteData?.Quote_Ref_Number}}</div>
                         </div>
                         <div class="view_item">
                            <div class="Static"> Customer </div>
                            <div class="dots"> : </div>
-                           <div class="Data">Customer1 </div>
+                           <div class="Data">{{_QuoteData?.Company_Name['Company_Name']}} </div>
                         </div>
                         </div>
                         <div class="col-sm-4">
                         <div class="view_item">
                            <div class=" Static"> Contact Person </div>
                            <div class="dots"> : </div>
-                           <div class=" Data"> Contact Person1 </div>
+                           <div class=" Data">{{_QuoteData?.Contact_Person['Name']}}</div>
                         </div>
                         <div class="view_item">
                            <div class=" Static"> Date </div>
                            <div class="dots"> : </div>
-                           <div class=" Data"> 22/07/18 </div>
+                           <div class=" Data"> {{_QuoteData?.Quote_Date | date: 'dd/MM/yyyy'}} </div>
                         </div>
                         </div>
                         <div class="col-sm-4">
                         <div class="view_item">
                            <div class=" Static">  Valid Till  </div>
                            <div class="dots"> : </div>
-                           <div class=" Data"> 07/8/17 </div>
+                           <div class=" Data"> {{_QuoteData?.Valid_Date | date: 'dd/MM/yyyy'}}</div>
                         </div>
                         <div class="view_item">
                            <div class=" Static"> Created By  </div>
                            <div class="dots"> : </div>
-                           <div class=" Data"> Admin </div>
+                           <div class=" Data"> {{_QuoteData?.Created_By['Name']}} </div>
                         </div>
                      </div>
                   </div>
@@ -90,15 +103,47 @@
                               <th>Product</th>  
                               <th>Description</th>  
                               <th>Quantity</th> 
-                              <th>Price</th>  
-                              <th>Tax</th> 
+                              <th>Price</th> 
+                              <th *ngIf="_QuoteData?.Quote_Config['Discount'] !== 'Global'">
+                                 <span *ngIf="_QuoteData?.Quote_Config['Discount_Value'] !== 'Percent'">Discount (Amount)</span>
+                                 <span *ngIf="_QuoteData?.Quote_Config['Discount_Value'] === 'Percent'">Discount (%)</span>
+                              </th> 
+                              <th *ngIf="_QuoteData?.Quote_Config['Tax'] !== 'Global'">Tax</th> 
                               <th>Total</th> 
-                              <th>Action</th> 
+                              <!-- <th>Action</th>  -->
                            </tr>
                         </thead>
-                        <tbody>
-                           <tr>
-                              <td  colspan="8"><span> No Records found</span></td>
+                        <tbody style="text-align: left">
+                           <tr *ngFor="let item of _ProductList; let i = index">
+                              <td>
+                                 <span class="S_no">{{ i+1 }}</span>
+                              </td>
+                              <td>
+                                 <span class="Style_2">{{item?.Product_Id['Product_Name_withAttribute']}}</span>
+                              </td>
+                              <td>
+                                 <span class="Style_3">{{item?.Description}}</span>
+                              </td>
+                              <td>
+                                 <span class="Style_3">{{item?.Quantity}}</span>
+                              </td>
+                              <td>
+                                 <span class="Style_3">{{item?.Price}}</span>
+                              </td>
+                              <td *ngIf="_QuoteData?.Quote_Config['Discount'] !== 'Global'">
+                                 <span class="Style_3">{{ item?.Product_Discount }} </span>
+                              </td>
+                              <td *ngIf="_QuoteData?.Quote_Config['Tax'] !== 'Global'">
+                                 <span class="Style_3" *ngFor = "let ProductTax of item?.Product_Tax; let j = index">{{ ProductTax?.Tax_Name }} 
+                                    <span *ngIf="j+1 < item?.Product_Tax.length"> , </span>
+                                 </span>
+                              </td>
+                              <td>
+                                 <span class="Style_3">{{item?.Product_Total}}</span>
+                              </td>
+                              <!-- <td>
+                                 <button mat-raised-button color="primary" [matMenuTriggerFor] = "Action"> Action </button>
+                              </td> -->
                            </tr>
                         </tbody>
                      </table><br>
@@ -108,19 +153,36 @@
                         </div>
                         <div class="col-sm-4">
                            <div class="ResultSection">
+                              <span class="Title"> Sub Total Without Discount </span>
+                              <span class="Split"> : </span>
+                              <span class="Value"> {{_QuoteData?.Sub_Total_WithOut_GlobalDiscount}} </span>
+                           </div>
+                           <div class="ResultSection" *ngIf="_QuoteData?.Quote_Config['Discount'] === 'Global' && _QuoteData?.Global_Discount">
+                              <span class="Title"> Discount </span>
+                              <span class="Split"> : </span>
+                              <span class="Value"> {{_QuoteData?.Global_Discount}} </span>
+                           </div>
+                           <div class="ResultSection">
                               <span class="Title"> Sub Total </span>
                               <span class="Split"> : </span>
-                              <span class="Value"> Rs.0000 </span>
+                              <span class="Value"> {{_QuoteData?.Sub_Total}} </span>
+                           </div>
+                           <div class="ResultSection" *ngIf="_QuoteData?.Quote_Config['Tax'] === 'Global'">
+                              <span class="Title"> Tax </span>
+                              <span class="Split"> : </span>
+                              <span class="Value"*ngFor = "let GlobalTax of _QuoteData?.Global_Product_Tax; let j = index">{{ GlobalTax?.Tax_Name }}
+                                    <span *ngIf="j+1 < _QuoteData?.Global_Product_Tax.length"> , </span>
+                              </span>
                            </div>
                            <div class="ResultSection">
                               <span class="Title"> Total Tax</span>
                               <span class="Split"> : </span>
-                              <span class="Value"> Rs.0000 </span>
+                              <span class="Value"> {{_QuoteData?.Tax}} </span>
                            </div>
                            <div class="ResultSection">
                               <span class="Title"> Total </span>
                               <span class="Split"> : </span>
-                              <span class="Value"> Rs.0000 </span>
+                              <span class="Value"> {{_QuoteData?.Total}} </span>
                            </div>
                         </div>
                      </div>

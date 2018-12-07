@@ -1,109 +1,90 @@
 <!-- About Section -->
 <div class="about_section">
-   <div class="row">
+   <div class="row About_Section">
       <div class="col-sm-6">
-         <div class="row">
-            <div class="col-sm-4">
+         <div class="view_item">
+            <div class="Static">
                <div class="Customer_Details_Title">
-                  <h5> Name</h5>
+                  <h5>Name</h5>
                </div>
             </div>
-            <div class="col-sm-8">
+            <div class="dots"> : </div>
+            <div class="Data">
                <div class="Customer_Details_Value">
-                  <h5>Customer Name</h5>
+                  <h5>{{CustomerData['Vendor_Name']}}</h5>
                </div>
             </div>
          </div>
-         <div class="row">
-            <div class="col-sm-4">
+         <div class="view_item">
+            <div class="Static">
                <div class="Customer_Details_Title">
                   <h5>E-mail</h5>
                </div>
             </div>
-            <div class="col-sm-8">
+            <div class="dots"> : </div>
+            <div class="Data">
                <div class="Customer_Details_Value">
-                  <h5>Customerinfo@gmail.com</h5>
+                  <h5>{{CustomerData['Email']}}</h5>
                </div>
             </div>
          </div>
-         <div class="row">
-            <div class="col-sm-4">
+         <div class="view_item">
+            <div class="Static">
                <div class="Customer_Details_Title">
                   <h5>Phone</h5>
                </div>
             </div>
-            <div class="col-sm-8">
+            <div class="dots"> : </div>
+            <div class="Data">
                <div class="Customer_Details_Value">
-                  <h5>0435678</h5>
+                  <h5>{{CustomerData['Phone_Number']}}</h5>
                </div>
             </div>
          </div>
-         <div class="row">
-            <div class="col-sm-4">
-               <div class="Customer_Details_Title">
-                  <h5>Mobile</h5>
-               </div>
-            </div>
-            <div class="col-sm-8">
-               <div class="Customer_Details_Value">
-                  <h5>+987654321</h5>
-               </div>
-            </div>
-         </div>
-         <div class="row">
-            <div class="col-sm-4">
+         <div class="view_item">
+            <div class="Static">
                <div class="Customer_Details_Title">
                   <h5>Website</h5>
                </div>
             </div>
-            <div class="col-sm-8">
+            <div class="dots"> : </div>
+            <div class="Data">
                <div class="Customer_Details_Value">
-                  <h5>www.sample.com</h5>
-               </div>
-            </div>
-         </div>
-         <div class="row">
-            <div class="col-sm-4">
-               <div class="Customer_Details_Title">
-                  <h5>Notes</h5>
-               </div>
-            </div>
-            <div class="col-sm-8">
-               <div class="Customer_Details_Value">
-                  <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate magni dignissimos minima pariatur consequatur debitis quo laudantium nemo, illo eum odit neque.</h5>
+                  <h5>{{CustomerData['Website']}}</h5>
                </div>
             </div>
          </div>
       </div>
       <div class="col-sm-3">
          <div class="Customer_Details_Title">
-            <h5>Shipping Address</h5>
+            <h5>Address</h5>
          </div>
          <div class="Customer_Details_Value">
-            <h5>No.32 Shri Lakshmi Nagar,
-               Ganapathy,
-               Coimbatore,
-               Tamil Nadu - 641007,
-               India.
+            <h5>
+               {{CustomerData['Address']?.Street}}, 
+               {{CustomerData['Address']?.Area}}, <br/>
+               {{CustomerData['Address']?.City?.City_Name}}, 
+               {{CustomerData['Address']?.State?.State_Name}}, <br/>
+               {{CustomerData['Address']?.Country?.Country_Name}} - {{CustomerData['Address']?.ZipCode}}.
             </h5>
          </div>  
       </div>
       <div class="col-sm-3">
          <div class="Customer_Details_Title">
-            <h5>Billing Address</h5>
+            <h5>Sub Contractor Address</h5>
          </div>
          <div class="Customer_Details_Value">
-            <h5>No.32 Shri Lakshmi Nagar,
-               Ganapathy,
-               Coimbatore,
-               Tamil Nadu - 641007,
-               India.
+            <h5>
+               {{CustomerData['SubContractAddress']?.Street}}
+               {{CustomerData['SubContractAddress']?.Area}} <br/>
+               {{CustomerData['SubContractAddress']?.City?.City_Name}}
+               {{CustomerData['SubContractAddress']?.State?.State_Name}} <br/>
+               {{CustomerData['SubContractAddress']?.Country?.Country_Name}} {{CustomerData['SubContractAddress']?.ZipCode}}
             </h5>
          </div>
       </div>
    </div>
 </div><br>
-<!-- Image Section -->
 <!-- <div class="Image">
    <div class="row Image_Section">
       <div class="col-sm-12">
@@ -113,4 +94,3 @@
 </div> -->
 
   
-

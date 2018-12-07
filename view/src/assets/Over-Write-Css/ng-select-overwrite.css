@@ -59,6 +59,9 @@
    font-weight: 400;
    color: #516570;
 }
+.ng-select.DisabledHide.ng-select-single .ng-dropdown-panel-items .ng-option.ng-option-disabled {
+   display: none;
+}
 
 
 

@@ -1473,18 +1473,17 @@ var mongoose = require('mongoose');
   
       if(!ReceivingData.Branch_Name || ReceivingData.Branch_Name === ''  ) {
           res.status(400).send({Status: false, Message: "Branch Name can not be empty" });
-      } else if (!ReceivingData.Branch_Head || ReceivingData.Branch_Head === ''  ) {
-          res.status(400).send({Status: false, Message: "Branch Headr can not be empty" });
-     } else if ( !ReceivingData.Departments || typeof ReceivingData.Departments !== 'object' || Object.keys(ReceivingData.Departments).length < 2) {
+      } else if ( !ReceivingData.Departments || typeof ReceivingData.Departments !== 'object' || Object.keys(ReceivingData.Departments).length < 2) {
         res.status(400).send({Status: false, Message: "Departments can not be empty" });
       } else if (!ReceivingData.Company_Id || ReceivingData.Company_Id === ''  ) {
          res.status(400).send({Status: false, Message: "Company Details can not be empty" });
       } else if (!ReceivingData.User_Id || ReceivingData.User_Id === ''  ) {
          res.status(400).send({Status: false, Message: "Creator Details can not be empty" });
       }else {
-          if( ReceivingData.Departments && typeof ReceivingData.Departments === 'object' && Object.keys(ReceivingData.Departments).length > 0){
-              ReceivingData.Departments = mongoose.Types.ObjectId(ReceivingData.Departments._id)
-          }
+         const tempDepartment = ReceivingData.Departments.map(x => mongoose.Types.ObjectId(x._id));
+         //  if( ReceivingData.Departments && typeof ReceivingData.Departments === 'object' && Object.keys(ReceivingData.Departments).length > 0){
+         //      ReceivingData.Departments = mongoose.Types.ObjectId(ReceivingData.Departments._id)
+         //  }
           if( ReceivingData.AllCountry && typeof ReceivingData.AllCountry === 'object' && Object.keys(ReceivingData.AllCountry).length > 0){
               ReceivingData.AllCountry._id = mongoose.Types.ObjectId(ReceivingData.AllCountry._id)
           } 
@@ -1496,8 +1495,8 @@ var mongoose = require('mongoose');
           }
            var Create_Branch = new CompanySettingsModel.BranchSchema({
             Branch_Name: ReceivingData.Branch_Name, 
-            Branch_Head: ReceivingData.Branch_Head, 
-            Departments: ReceivingData.Departments, 
+            // Branch_Head: ReceivingData.Branch_Head, 
+            Departments: tempDepartment, 
               "AllAddress.Street" : ReceivingData.AllStreet,
               "AllAddress.Area" : ReceivingData.AllArea,
               "AllAddress.ZipCode" : ReceivingData.AllZipCode,

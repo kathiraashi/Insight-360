@@ -1,0 +1,235 @@
+<div [ngClass]="{'Hide': !Loader}" class="DataLoaderStyle_1" style="width: 100%; height: 100%; overflow-x: hidden;">
+   <div class="Loading">
+         <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+            <div class="rect6"></div>
+         </div>
+   </div>
+</div>
+<div class="LoadedDataStyle_1" [ngClass]="{'Show': !Loader}"></div>
+<!-- Page -->
+<div class="page" style="margin-top:100px;">
+      <div class="container-fluid">
+         <!-- Page Identity -->
+         <div class="Page_Identity">
+            <div class="Page_Track">
+               <ul>
+                  <li class="HeaderName">Income</li>
+                  <li class="arrow">>></li>
+                  <li class= "LinkName"><a [routerLink]="['/Accounts_Income']">List</a></li>
+                  <li class="arrow">>></li>
+                  <li *ngIf="Type === 'Income'" >{{_InvestmentData?.Income_Type?.Income_Type}}</li>
+                  <li *ngIf="Type !== 'Income'" >{{_LoanData?.Lender_Name}}</li>
+               </ul>
+            </div>
+         </div>
+            <div *ngIf="Type === 'Income'" class="row">
+               <div class="col-sm-6">
+                  <!-- Company details -->
+                  <div class="Company_Details">
+                     <div class="row">
+                        <div class="col-sm-12" style="margin-bottom: 10px">
+                           <button *ngIf="_InvestmentData?.Status === 'Draft'" mat-raised-button color="primary" class="pull-right" (click)="Validate()" > Validate </button>
+                        </div>
+                     </div>
+                     <!-- <div class="row"> -->
+                        <!-- <div class="col-sm-4"> -->
+                     <div class="view_item">
+                        <div class="Static">Income Type</div>
+                        <div class="dots"> : </div>
+                        <div class="Data">{{_InvestmentData?.Income_Type?.Income_Type}}</div>
+                     </div>
+                     <div class="view_item">
+                        <div class="Static">Amount</div>
+                        <div class="dots"> : </div>
+                        <div class="Data"> {{_InvestmentData?.Amount}} </div>
+                     </div>
+                  
+                     <div class="view_item"> 
+                        <div class="Static">Date</div>
+                        <div class="dots"> : </div>
+                        <div class="Data"> {{_InvestmentData?.Date | date: 'dd/MM/yyyy'}} </div>
+                     </div>
+                     <div *ngIf="_InvestmentData?.Description !== null" class="view_item">
+                        <div class=" Static">Description</div>
+                        <div class="dots"> : </div>
+                        <div class=" Data"> {{_InvestmentData?.Description}}</div>
+                     </div>
+                  </div>
+               </div><br>
+               <div class="col-sm-6">
+                  <!-- Company details -->
+                  <div class="Company_Details">
+                     <div *ngIf="_InvestmentData?.Mode_Of_Pay !== null" class="view_item">
+                        <div class="Static">Mode of pay</div>
+                        <div class="dots"> : </div>
+                        <div class="Data">{{_InvestmentData?.Mode_Of_Pay}}</div>
+                     </div>
+                     <div *ngIf="_InvestmentData?.Bank_Method !== null" class="view_item">
+                        <div class="Static">Method</div>
+                        <div class="dots"> : </div>
+                        <div class="Data"> {{_InvestmentData?.Bank_Method}} </div>
+                     </div>
+                  
+                     <div *ngIf="_InvestmentData?.Reference_No !== null" class="view_item"> 
+                        <div class="Static">Reference Number</div>
+                        <div class="dots"> : </div>
+                        <div class="Data"> {{_InvestmentData?.Reference_No}} </div>
+                     </div>
+                     <div *ngIf="_InvestmentData?.Cheque_No !== null" class="view_item">
+                        <div class=" Static">Cheque No</div>
+                        <div class="dots"> : </div>
+                        <div class=" Data"> {{_InvestmentData?.Cheque_No}}</div>
+                     </div>
+                     <div *ngIf="_InvestmentData?.Cheque_No !== null" class="view_item">
+                        <div class=" Static">Issues Bank</div>
+                        <div class="dots"> : </div>
+                        <div class=" Data"> {{_InvestmentData?.Issues_Bank}}</div>
+                     </div>
+                     <div *ngIf="_InvestmentData?.Cheque_No !== null" class="view_item">
+                        <div class=" Static">Issues Branch</div>
+                        <div class="dots"> : </div>
+                        <div class=" Data"> {{_InvestmentData?.Issues_Branch}}</div>
+                     </div>
+                     <div *ngIf="_InvestmentData?.Cheque_No !== null" class="view_item">
+                        <div class=" Static">Expected date of clearing</div>
+                        <div class="dots"> : </div>
+                        <div class=" Data"> {{_InvestmentData?.Expected_Date_Clearing}}</div>
+                     </div>
+                     <div *ngIf="_InvestmentData?.Bank_Method !== null" class="view_item">
+                        <div class=" Static">Deposit Bank</div>
+                        <div class="dots"> : </div>
+                        <div class=" Data"> {{_InvestmentData?.Deposit_Bank?.Bank_Name}}</div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div *ngIf="Type !== 'Income'" class="row">
+            <div class="col-sm-6">
+               <!-- Company details -->
+               <div class="Company_Details">
+                  <div class="row">
+                     <div class="col-sm-12" style="margin-bottom: 10px">
+                        <button *ngIf="_LoanData?.Status === 'Draft'" mat-raised-button color="primary" class="pull-right" (click)="Validate()" > Validate </button>
+                     </div>
+                  </div>
+                  <!-- <div class="row"> -->
+                     <!-- <div class="col-sm-4"> -->
+                  <div class="view_item">
+                     <div class="Static">Lender name</div>
+                     <div class="dots"> : </div>
+                     <div class="Data">{{_LoanData?.Lender_Name}}</div>
+                  </div>
+                  <div class="view_item">
+                     <div class="Static">Lender A/C number</div>
+                     <div class="dots"> : </div>
+                     <div class="Data"> {{_LoanData?.Lender_Account_Number}} </div>
+                  </div>
+                  <div class="view_item">
+                     <div class="Static">Amount</div>
+                     <div class="dots"> : </div>
+                     <div class="Data"> {{_LoanData?.Amount}} </div>
+                  </div>
+                  <div class="view_item"> 
+                     <div class="Static">Date</div>
+                     <div class="dots"> : </div>
+                     <div class="Data"> {{_LoanData?.Date | date: 'dd/MM/yyyy'}} </div>
+                  </div>
+                  <div class="view_item">
+                     <div class=" Static">Interest Rate (%)</div>
+                     <div class="dots"> : </div>
+                     <div class=" Data"> {{_LoanData?.Interest_Rate}}</div>
+                  </div>
+                  <div class="view_item">
+                     <div class=" Static">Cycle Of Prepayment</div>
+                     <div class="dots"> : </div>
+                     <div class=" Data"> {{_LoanData?.Cycle_Of_Prepayment}}</div>
+                  </div>
+               </div>
+               <br>
+               <!-- Company details -->
+               <div class="Company_Details">
+                  <div *ngIf="_LoanData?.Mode_Of_Pay !== null" class="view_item">
+                     <div class="Static">Mode of pay</div>
+                     <div class="dots"> : </div>
+                     <div class="Data">{{_LoanData?.Mode_Of_Pay}}</div>
+                  </div>
+                  <div *ngIf="_LoanData?.Bank_Method !== null" class="view_item">
+                     <div class="Static">Method</div>
+                     <div class="dots"> : </div>
+                     <div class="Data"> {{_LoanData?.Bank_Method}} </div>
+                  </div>
+               
+                  <div *ngIf="_LoanData?.Cheque_No === null" class="view_item"> 
+                     <div class="Static">Reference Number</div>
+                     <div class="dots"> : </div>
+                     <div class="Data"> {{_LoanData?.Reference_No}} </div>
+                  </div>
+                  <div *ngIf="_LoanData?.Cheque_No !== null" class="view_item">
+                     <div class=" Static">Cheque No</div>
+                     <div class="dots"> : </div>
+                     <div class=" Data"> {{_LoanData?.Cheque_No}}</div>
+                  </div>
+                  <div *ngIf="_LoanData?.Cheque_No !== null" class="view_item">
+                     <div class=" Static">Issues Bank</div>
+                     <div class="dots"> : </div>
+                     <div class=" Data"> {{_LoanData?.Issues_Bank}}</div>
+                  </div>
+                  <div *ngIf="_LoanData?.Cheque_No !== null" class="view_item">
+                     <div class=" Static">Issues Branch</div>
+                     <div class="dots"> : </div>
+                     <div class=" Data"> {{_LoanData?.Issues_Branch}}</div>
+                  </div>
+                  <div *ngIf="_LoanData?.Cheque_No !== null" class="view_item">
+                     <div class=" Static">Expected date of clearing</div>
+                     <div class="dots"> : </div>
+                     <div class=" Data"> {{_LoanData?.Expected_Date_Clearing}}</div>
+                  </div>
+                  <div *ngIf="_LoanData?.Bank_Method !== null" class="view_item">
+                     <div class=" Static">Deposit Bank</div>
+                     <div class="dots"> : </div>
+                     <div class=" Data"> {{_LoanData?.Deposit_Bank?.Bank_Name}}</div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-sm-6">
+               <div class="Company_Details">
+                  <!-- <div class="row"> -->
+                     <!-- <div class="col-sm-4"> -->
+                  <div class="Table_Section" style="max-height: 382px; overflow: auto">
+                     <table>
+                        <thead>
+                           <tr>
+                              <th>S.no</th>
+                              <th>Date</th>
+                              <th>Amount</th>
+                              <th>Status</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr *ngFor="let item of _LoanPaymentData; let i = index">
+                              <td>
+                                 <span class="S_no"> {{i + 1}} </span>
+                              </td>
+                              <td>
+                                 <span class="Style_1">{{item?.Table_Date | date: 'dd/MM/yyyy'}}</span>
+                              </td>
+                              <td>
+                                 <span class="Style_1">{{item?.Table_Amount}}</span>
+                              </td>
+                              <td>
+                                 <span class="Style_1">{{item?.Loan_Payment_Status}}</span>
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>

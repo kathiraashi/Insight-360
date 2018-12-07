@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { BsModalRef } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-call-schedule-lead',
@@ -7,10 +7,12 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
   styleUrls: ['./call-schedule-lead.component.css']
 })
 export class CallScheduleLeadComponent implements OnInit {
-Type: string;
-  constructor(public bsModalRef: BsModalRef) { }
 
-  ngOnInit() {
-  }
+   Type: string;
+   Data;
+   constructor(public bsModalRef: BsModalRef) { }
+
+   ngOnInit() {
+   }
 
 }

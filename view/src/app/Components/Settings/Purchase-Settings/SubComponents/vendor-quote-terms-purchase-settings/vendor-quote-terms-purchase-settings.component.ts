@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { BsModalService } from 'ngx-bootstrap/modal';
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { BsModalRef } from 'ngx-bootstrap';
 
 import { ModelVendorquotetermsPurchasesettingsComponent } from '../../../../../models/settings/purchase_settings/model-vendorquoteterms-purchasesettings/model-vendorquoteterms-purchasesettings.component';
 import { DeleteConfirmationComponent } from '../../../../Common-Components/delete-confirmation/delete-confirmation.component';

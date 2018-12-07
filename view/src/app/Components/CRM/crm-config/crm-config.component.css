@@ -160,3 +160,13 @@
     .example-selected-value {
       margin: 15px 0;
     }
+/* Footer */
+.Footer {
+   position: fixed;
+   bottom: 0px;
+   width: 100%;
+   padding: 0px 15px;
+   background-color: rgba(62, 59, 59, 0.13);
+   height: 45px;
+   text-align: right
+}

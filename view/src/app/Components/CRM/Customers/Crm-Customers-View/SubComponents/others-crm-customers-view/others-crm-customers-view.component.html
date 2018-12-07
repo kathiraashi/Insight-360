@@ -1,14 +1,20 @@
+<div [ngClass]="{'Hide': !Loader}" class="DataLoaderStyle_1" style="height: 100%; width: 98%; min-height: 425px; margin-left: 15px">
+   <div class="Loading">
+         <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+            <div class="rect6"></div>
+         </div>
+   </div>
+</div>
 <!-- Header Part -->
 <div class="row header_part">
    <div class="col-sm-6">
       <button class="Create_Button" mat-raised-button (click)="RegistrationType()"> + Create </button>
    </div>
-   <!-- <div class="col-sm-6">
-      <div class="Search_Section">
-         <input type="text" placeholder="Search.." name="search">
-         <i class="material-icons">search</i>
-      </div>
-   </div> -->
 </div>
 <!-- Table Section -->
 <div class="Table_Section">
@@ -18,29 +24,30 @@
             <th>S.no</th>
             <th>Type</th>
             <th>Value </th>
+            <th style="width: 300px">Action</th>
          </tr>
       </thead>
       <tbody>
-         <tr>
+         <tr *ngFor="let item of _OthersList; let i = index">
             <td>
-               <span class="S_no"> 1 </span>
+               <span class="S_no"> {{i+1}} </span>
             </td>
             <td>
-               <span class="Style_1">GST</span>
+               <span class="Style_1">{{item?.Registration_Type['Registration_Type']}}</span>
             </td>
             <td>
-               <span class="Style_1">234 </span>
-            </td>
-         </tr>
-         <tr>
-            <td>
-               <span class="S_no"> 2 </span>
+               <span class="Style_1">{{item?.Number}}</span>
             </td>
             <td>
-               <span class="Style_1">PAN</span>
-            </td>
-            <td>
-               <span class="Style_1">4356547 </span>
+               <button (click)="View(i)" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                  <i class="material-icons">zoom_in</i>
+               </button>
+               <button (click)="Edit(i)" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                  <i class="material-icons">edit</i>
+               </button>
+               <button (click)="Delete(i)" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                  <i class="material-icons">delete_forever</i>
+               </button>
             </td>
          </tr>
       </tbody>

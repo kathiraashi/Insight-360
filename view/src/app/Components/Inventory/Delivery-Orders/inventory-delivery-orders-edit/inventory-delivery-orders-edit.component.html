@@ -1,0 +1,178 @@
+<div [ngClass]="{'Hide': !Loader}" class="DataLoaderStyle_1" style="height: 100%; width: 100%;">
+   <div class="Loading">
+         <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+            <div class="rect6"></div>
+         </div>
+   </div>
+</div>
+<!-- page -->
+<div class="page" style="margin-top:100px;">
+   <div class="container-fluid">
+      <!-- Page Identity -->
+      <div class="Page_Identity">
+         <div class="Page_Track">
+            <ul>
+               <li class="HeaderName">Deliver Order</li>
+               <li class="arrow">>></li>
+               <li class="LinkName"><a [routerLink]="['/Inventory_deliveryorder_list']">List</a></li>
+               <li class="arrow">>></li>
+               <li>{{_DeliverOrder_Details?.DeliverOrder_Ref_Number}}</li>
+            </ul>
+         </div>
+      </div>
+      <form>
+         <div class="row">
+            <div class="col-sm-12">
+               <!-- Company Details -->
+               <div class="Company_Details">
+                  <h5 style="color:#49B660;font-size:20px;font-weight: 600;">Deliver
+                     <span style="color:#516570;font-size:20px;font-weight: 600;">Order</span>
+                  </h5>
+                  <br>
+                  <div class="row">
+                     <div class="col-sm-4">
+                        <div class="view_item">
+                           <div class="Static"> Sale Order No </div>
+                           <div class="dots"> : </div>
+                           <div class="Data"> {{_DeliverOrder_Details?.Reference_Id?.SaleOrder_Ref_Number}} </div>
+                        </div>
+                        <div class="view_item" *ngIf="_DeliverOrder_Details?.Reference_Id?.PO_Number !== null">
+                           <div class="Static"> PO No </div>
+                           <div class="dots"> : </div>
+                           <div class="Data"> {{_DeliverOrder_Details?.Reference_Id?.PO_Number}} </div>
+                        </div>
+                        <div class="view_item">
+                           <div class="Static"> Valid Till </div>
+                           <div class="dots"> : </div>
+                           <div class="Data"> {{_DeliverOrder_Details?.Reference_Id?.Quote_Id?.Valid_Date | date: 'dd/MM/yyyy'}} </div>
+                        </div>
+                     </div>
+                     <div class="col-sm-4">
+                        <div class="view_item" *ngIf="_DeliverOrder_Details?.Reference_Id?.PO_Number === null">
+                           <div class="Static"> Order date </div>
+                           <div class="dots"> : </div>
+                           <div class="Data"> {{_DeliverOrder_Details?.Reference_Id?.Date | date: 'dd/MM/yyyy'}} </div>
+                        </div>
+                        <div class="view_item" *ngIf="_DeliverOrder_Details?.Reference_Id?.PO_Number !== null">
+                           <div class="Static"> PO Date </div>
+                           <div class="dots"> : </div>
+                           <div class="Data">  {{_DeliverOrder_Details?.Reference_Id?.Date | date: 'dd/MM/yyyy'}} </div>
+                        </div>
+                        <div class="view_item">
+                           <div class="Static"> Created By </div>
+                           <div class="dots"> : </div>
+                           <div class="Data">  {{_DeliverOrder_Details?.Created_By['Name']}} </div>
+                        </div>
+                     </div>
+                     <div class="col-sm-4">
+                        <div class="view_item">
+                           <div class="Static"> Customer </div>
+                           <div class="dots"> : </div>
+                           <div class="Data">{{_DeliverOrder_Details?.Reference_Id?.Quote_Id?.Company_Name['Company_Name']}}</div>
+                        </div>
+                        <div class="view_item">
+                           <div class="Static"> Order Confirm By </div>
+                           <div class="dots"> : </div>
+                           <div class="Data">  {{_DeliverOrder_Details?.Reference_Id?.Order_ConfirmBy}} </div>
+                        </div>
+                        <!-- <div class="view_item">
+                           <div class="Static"> PO Details </div>
+                           <div class="dots"> : </div>
+                           <div class="Data"> 243.pdf </div>
+                        </div> -->
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- Tabs -->
+            <div class="row">
+               <form [formGroup]="Form" >
+                  <div class="col-sm-12">
+                     <div class="Company_Details">
+                        <div class="Tabs">
+                           <div class="Tab" [ngClass]="{'active': Active_Tab === 'Product_Details'}" (click)="Active_Tab_Change('Product_Details')">
+                              <span >Product Details</span>
+                           </div>
+                           <div class="Tab" [ngClass]="{'active': Active_Tab === 'quote_Terms'}" (click)="Active_Tab_Change('quote_Terms')">
+                              <span >Terms & Conditions</span>
+                           </div>
+                        </div>
+                        <!-- <span><button class="Add_Product_Button">Add Product</button></span><br> -->
+                        <br>
+                        <!-- Product details -->
+                        <div class="Product_Details" *ngIf="Active_Tab === 'Product_Details'">
+                           <table class="table_section">
+                              <thead class="table_head">
+                                 <tr>
+                                    <th>S.No</th>  
+                                    <th>Product</th>
+                                    <th>Description</th>  
+                                    <th>Quantity</th>
+                                    <th>Approved Quantity</th> 
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <ng-container formArrayName="items" *ngFor="let item of Form.controls['items'].controls; let i = index;" >
+                                    <tr [formGroupName]="i">
+                                       <td style="width: 80px;">
+                                          <span class="S_no">{{ i+1 }}</span>
+                                       </td>
+                                       <td class="Form_Select">
+                                             <ng-select class="NgSelect DisabledHide" 
+                                                [items]="_temProductList" 
+                                                [bindLabel]="'Product_Name_withAttribute'"
+                                                [bindValue]="'_id'"
+                                                formControlName="Product"
+                                                placeholder="Product">
+                                             </ng-select>
+                                          </td>
+                                       <td class="Form_Input">
+                                          <input type="text" formControlName="Description">
+                                       </td>
+                                       <td class="Form_Input">
+                                          <input type="text" formControlName="Quantity">
+                                       </td>
+                                       <td class="Form_Input">
+                                          <input type="text" formControlName="Approved_Quantity">
+                                       </td>
+                                    </tr>
+                                 </ng-container>
+                              </tbody>
+                           </table><br>
+                        </div>
+                        <!-- Quote Terms -->
+                        <div class="Done_Section" *ngIf="Active_Tab === 'quote_Terms'">
+                           <div class="row">
+                              <div class="col-sm-4">
+                                 <div class="view_item">
+                                    <div class="Static"> Quote Terms </div>
+                                    <div class="dots"> : </div>
+                                    <div class="Data"> Term-1 </div>
+                                 </div>
+                              </div>
+                              <div class="col-sm-4">
+                                 <div class="view_item">
+                                    <div class="Static"> Notes </div>
+                                    <div class="dots"> : </div>
+                                    <div class="Data"> Lorem ipsum dolor sit, amet consectetur adipisicing elit. </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </form>
+   </div>
+</div>
+<!-- Footer -->
+<div class="Footer">
+   <button mat-raised-button color="primary" style = "top: 5px;" [disabled]="!Form.valid || !Form.touched" (click)="Submit()"> Submit </button>
+</div>

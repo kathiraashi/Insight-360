@@ -1,0 +1,133 @@
+<!-- If create Activities -->
+<div class="Modal_Content" *ngIf="Type && Type === 'Create'">
+   <div class="Modal_Header">
+      <p>Reminder</p>
+      <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+   </div>
+   <div class="Model_Body">
+      <form [formGroup]="Form">
+         <div class="row">
+            <div class="col-sm-6 Form_Input" style="margin-bottom: 30px" [ngClass]="{'Form_Err': !Form.controls['Date'].pristine && Form.controls['Date'].errors, 'Form_Success': Form.controls['Date'].valid && !Form.controls['Date'].pristine }">
+               <label>Date: </label>
+               <input matInput [matDatepicker]="DatePicker1" [min]="minDate" (click)="DatePicker1.open()" formControlName="Date" style="margin-bottom: 0px">
+               <mat-datepicker #DatePicker1></mat-datepicker>
+               <p class="error"style="margin-bottom: -19px" *ngIf="Form.controls['Date'].errors && !Form.controls['Date'].pristine">
+                  <span *ngIf="Form.controls['Date'].errors.required"> Date is required</span>
+               </p>  
+            </div>
+            <div class="col-sm-6 Form_Select">
+               <label>Contact Person:</label>
+               <ng-select class="NgSelect" 
+                  [items]="_ContactPerson"
+                  [bindValue]="'_id'"
+                  [bindLabel]="'Name'" 
+                  [searchable]="true" 
+                  formControlName="Contact_Person"
+                  placeholder="Contact Person">
+               </ng-select>   
+               <p class="error" style="margin-top: 0px" *ngIf="Form.controls['Contact_Person'].errors && !Form.controls['Contact_Person'].pristine">
+                  <span *ngIf="Form.controls['Contact_Person'].errors.required"> Contact Person is required</span>
+               </p>    
+            </div>
+            <div class="col-sm-6 Form_Input" style="margin-bottom: 30px" [ngClass]="{'Form_Err': !Form.controls['Subject'].pristine && Form.controls['Subject'].errors, 'Form_Success': Form.controls['Subject'].valid && !Form.controls['Subject'].pristine }">
+               <label>Subject:</label>
+               <input type="text" formControlName="Subject" style="margin-bottom: 0px">
+               <p class="error" style="margin-bottom: -19px" *ngIf="Form.controls['Subject'].errors && !Form.controls['Subject'].pristine">
+                  <span *ngIf="Form.controls['Subject'].errors.required"> Subject is required</span>
+               </p>       
+            </div>
+            <div class="col-sm-6 Form_Select">
+               <label>Activity Type:</label>
+               <ng-select class="NgSelect" 
+                  [items]="_ActivityType" 
+                  [bindValue]="'_id'"
+                  [bindLabel]="'Activity_Type'" 
+                  [searchable]="true" 
+                  formControlName="Activity_Type"
+                  placeholder="Activity Type">
+               </ng-select> 
+               <p class="error" style="margin-bottom: 0px" *ngIf="Form.controls['Activity_Type'].errors && !Form.controls['Activity_Type'].pristine">
+                  <span *ngIf="Form.controls['Activity_Type'].errors.required"> Activity Type is required</span>
+               </p>   
+            </div>
+            <div class="col-sm-6 Form_Select">
+               <label>Status:</label>
+               <ng-select class="NgSelect" 
+                  [items]="_Status" 
+                  [bindValue]="'_id'"
+                  [bindLabel]="'Activity_Status'" 
+                  [searchable]="true"
+                  formControlName="Status"
+                  placeholder="Status">
+               </ng-select>  
+               <p class="error" style="margin-bottom: 0px" *ngIf="Form.controls['Status'].errors && !Form.controls['Status'].pristine">
+                  <span *ngIf="Form.controls['Status'].errors.required"> Status is required</span>
+               </p> 
+            </div>
+            <div class="col-sm-6 Form_Select">
+               <label>Priority:</label>
+               <ng-select class="NgSelect" 
+                  [items]="_Priority" 
+                  [searchable]="true" 
+                  formControlName="Priority"
+                  placeholder="Priority">
+               </ng-select>   
+            </div>
+            <div class="col-sm-6 Form_TextArea" style="margin-top: 30px">
+               <label>Description:</label>
+               <textarea formControlName="Description" style="margin-bottom: 0px"></textarea>
+               <p class="error" style="margin-bottom: -19px" *ngIf="Form.controls['Description'].errors && !Form.controls['Description'].pristine">
+                  <span *ngIf="Form.controls['Description'].errors.required"> Description is required</span>
+               </p> 
+            </div>
+         </div>
+      </form>
+   </div>
+   <div class="Model_Footer">
+     <button mat-raised-button color="primary" [disabled]="!Form.valid" (click)="Submit()"> Submit </button>
+   </div>
+ </div>
+ <div class="Modal_Content" *ngIf=" Type && Type === 'View'">
+   <div class="Modal_Header">
+     <p>Schedule Activity</p>
+     <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+   </div>
+   <div class="Model_Body">
+     <div class="view_item">
+       <div class=" Static">Date </div>
+       <div class="dots"> : </div>
+       <div class=" Data"> {{Data?.Date | date: 'short'}}</div>
+     </div>
+     <div class="view_item">
+       <div class=" Static">Contact Person </div>
+       <div class="dots"> : </div>
+       <div class=" Data"> {{Data?.Contact_Person['Name']}}</div>
+     </div>
+     <div class="view_item">
+       <div class=" Static">Subject </div>
+       <div class="dots"> : </div>
+       <div class=" Data"> {{Data?.Subject}}</div>
+     </div>
+     <div class="view_item">
+       <div class=" Static">Activity Type </div>
+       <div class="dots"> : </div>
+       <div class=" Data"> {{Data?.Activity_Type['Activity_Type']}}</div>
+     </div>
+     <div class="view_item">
+       <div class=" Static">Status </div>
+       <div class="dots"> : </div>
+       <div class=" Data">{{Data?.Status['Activity_Status']}}</div>
+     </div>
+     <div class="view_item" *ngIf="Data?.Priority !== null">
+       <div class="Static">Priority </div>
+       <div class="dots"> : </div>
+       <div class="Data">{{Data?.Priority}}</div>
+     </div>
+     <div class="view_item" *ngIf="Data?.Description !== null">
+         <div class="Static">Description </div>
+         <div class="dots"> : </div>
+         <div class="Data"> {{Data?.Description}}</div>
+      </div>
+   </div>
+ </div>
+

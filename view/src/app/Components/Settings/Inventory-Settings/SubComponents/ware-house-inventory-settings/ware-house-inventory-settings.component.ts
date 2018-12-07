@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { BsModalService } from 'ngx-bootstrap/modal';
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { BsModalRef } from 'ngx-bootstrap';
 
 import { ModelWarehouseInventorysettingsComponent } from '../../../../../models/settings/inventory_settings/model-warehouse-inventorysettings/model-warehouse-inventorysettings.component';
 import { DeleteConfirmationComponent } from '../../../../Common-Components/delete-confirmation/delete-confirmation.component';
@@ -9,6 +9,8 @@ import { InventorySettingsService } from '../../../../../services/settings/Inven
 import { ToastrService } from '../../../../../services/common-services/toastr-service/toastr.service';
 import { PermissionsCheckService } from './../../../../../services/PermissionsCheck/permissions-check.service';
 import * as CryptoJS from 'crypto-js';
+import { LoginService } from './../../../../../services/LoginService/login.service';
+
 @Component({
   selector: 'app-ware-house-inventory-settings',
   templateUrl: './ware-house-inventory-settings.component.html',
@@ -23,13 +25,21 @@ export class WareHouseInventorySettingsComponent implements OnInit {
   _Delete: Boolean = false;
   Loader: Boolean = true;
   _List: any[] = [];
-  Company_Id = '5b3c66d01dd3ff14589602fe';
-  User_Id = '5b530ef333fc40064c0db31e';
+  Company_Id;
+  User_Id;
+  User_Info;
 
-  constructor(private modalService: BsModalService,
-    private Service: InventorySettingsService,
-    private Toastr: ToastrService,
-    public PermissionCheck: PermissionsCheckService) {
+   constructor(
+      private modalService: BsModalService,
+      private Service: InventorySettingsService,
+      private Toastr: ToastrService,
+      public PermissionCheck: PermissionsCheckService,
+      private Login_Service: LoginService
+   ) {
+      // get user login info
+      this.User_Info = this.Login_Service.LoggedUserInfo();
+      this.Company_Id = this.User_Info.Company_Id;
+      this.User_Id = this.User_Info._id;
       // SubModule Permissions
       const Permissions = this.PermissionCheck.SubModulePermissionValidate('Settings_Company_Settings');
       if (Permissions['Status']) {

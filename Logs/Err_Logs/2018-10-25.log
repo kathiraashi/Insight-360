@@ -1,0 +1,16 @@
+[2018-10-25T11:21:24.754] [ERROR] Error - {"Error_Name":"","Error_Address":"","Error_Message":"SyntaxError: Unexpected token )"}
+[2018-10-25T11:21:55.015] [ERROR] Error - {"Error_Name":"","Error_Address":"","Error_Message":"SyntaxError: Unexpected token )"}
+[2018-10-25T11:22:16.239] [ERROR] Error - {"Error_Name":"","Error_Address":"","Error_Message":"SyntaxError: Unexpected token )"}
+[2018-10-25T11:31:32.176] [ERROR] Error - {"Error_Name":"","Error_Address":"","Error_Message":"SyntaxError: Missing initializer in const declaration"}
+[2018-10-25T11:47:12.894] [ERROR] Error - {"Error_Name":"","Error_Address":"","Error_Message":"TypeError: Assignment to constant variable."}
+[2018-10-25T11:49:12.828] [ERROR] Error - {"Error_Name":"","Error_Address":"","Error_Message":"TypeError: Assignment to constant variable."}
+[2018-10-25T12:13:02.556] [ERROR] Error - {"Error_Name":"","Error_Address":"","Error_Message":"ReferenceError: ReceivingData is not defined"}
+[2018-10-25T12:13:49.059] [ERROR] Error - {"Error_Name":"","Error_Address":"","Error_Message":"ReferenceError: ReceivingData is not defined"}
+[2018-10-25T12:14:38.189] [ERROR] Error - {"Error_Name":"","Error_Address":"","Error_Message":"ReferenceError: QuoteRefNumber is not defined"}
+[2018-10-25T12:15:45.361] [ERROR] Error - {"Error_Name":"","Error_Address":"","Error_Message":"ReferenceError: QuoteRefNumber is not defined"}
+[2018-10-25T12:16:45.987] [ERROR] Error - {"Error_Name":"","Error_Address":"","Error_Message":"ReferenceError: tempGlobal_Product_Tax is not defined"}
+[2018-10-25T12:17:34.303] [ERROR] Error - {"Error_Name":"","Error_Address":"","Error_Message":"ReferenceError: tempGlobal_Product_Tax is not defined"}
+[2018-10-25T12:17:55.212] [ERROR] Error - {"Error_Name":"","Error_Address":"","Error_Message":"ReferenceError: res is not defined"}
+[2018-10-25T12:17:57.043] [ERROR] Error - {"Error_Name":"","Error_Address":"","Error_Message":"ReferenceError: res is not defined"}
+[2018-10-25T12:19:57.049] [ERROR] Error - {"Error_Name":"","Error_Address":"","Error_Message":"ReferenceError: res is not defined"}
+[2018-10-25T18:13:36.531] [ERROR] Error - {"Error_Name":"","Error_Address":"","Error_Message":"Error: Route.post() requires a callback function but got a [object Undefined]"}

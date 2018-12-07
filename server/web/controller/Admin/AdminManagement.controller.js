@@ -1,6 +1,7 @@
 var CryptoJS = require("crypto-js");
 var jwt = require('jsonwebtoken');
 var AdminModel = require('./../../models/Admin/AdminManagement.model.js');
+var HrModel = require('../../models/HR/Hr.model.js');
 var ErrorManagement = require('./../../../handling/ErrorHandling.js');
 var mongoose = require('mongoose');
 var crypto = require("crypto");
@@ -253,6 +254,8 @@ exports.User_Create = function(req, res) {
          delete Obj.Group_Name;
          return Obj;
       });
+      var tempHrms_Employee_Id = (ReceivingData.Hrms_Employee_Id && ReceivingData.Hrms_Employee_Id !== '') ? mongoose.Types.ObjectId(ReceivingData.Hrms_Employee_Id) : null;
+      var tempIf_Employee_Linked = (tempHrms_Employee_Id !== null) ? true : false;
       
       var CreateUser_Management = new AdminModel.User_Management({
          User_Name : ReceivingData.User_Name,
@@ -265,6 +268,8 @@ exports.User_Create = function(req, res) {
          "User_Type.User_Type": ReceivingData.User_Type.User_Type,
          Reports_To: Reports_To,
          Permission_Groups: ReceivingData.AccessPermissions_Groups,
+         If_Employee_Linked: tempIf_Employee_Linked,
+         Hrms_Employee_Id: tempHrms_Employee_Id,
          Created_By : mongoose.Types.ObjectId(ReceivingData.User_Id),
          Company_Id : mongoose.Types.ObjectId(ReceivingData.Company_Id),
          Last_ModifiedBy : mongoose.Types.ObjectId(ReceivingData.User_Id),
@@ -276,9 +281,24 @@ exports.User_Create = function(req, res) {
             ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'User Creation Query Error', 'AdminManagement.controller.js', err);
             res.status(400).send({Status: false, Message: "Some error occurred while creating the User!."});
          } else {
-            var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result), 'SecretKeyOut@123');
+            if (tempIf_Employee_Linked === true) {
+               HrModel.HrEmployeeSchema
+               .updateMany({Company_Id: mongoose.Types.ObjectId(ReceivingData.Company_Id), _id: mongoose.Types.ObjectId(tempHrms_Employee_Id),If_Deleted: false, Active_Status: true}, {If_UserManagement_Linked: true, UserManagement_Id: mongoose.Types.ObjectId(result._id)}, {})
+               .exec(function(err1, result1) {
+                  if(err1) {
+                     ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Employee update Query Error', 'AdminManagement.controller.js', err);
+                     res.status(400).send({Status: false, Message: "Some error occurred while creating the User!."});
+                  } else {
+                     var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result), 'SecretKeyOut@123');
+                     ReturnData = ReturnData.toString();
+                     res.status(200).send({Status: true, Response: ReturnData });
+                  }
+               });
+            } else {
+               var ReturnData = CryptoJS.AES.encrypt(JSON.stringify(result), 'SecretKeyOut@123');
                ReturnData = ReturnData.toString();
                res.status(200).send({Status: true, Response: ReturnData });
+            }
          }
       });
   }
@@ -708,7 +728,7 @@ exports.Country_List = function(req, res) {
    } else if(!ReceivingData.User_Id || ReceivingData.User_Id === '' ) {
       res.status(400).send({Status: false, Message: "User Details can not be empty!" });
    } else {
-      AdminModel.Global_Country.find({}, {Country_Name: 1}, {}, function(err, result) {
+      AdminModel.Global_Country.find({}, {Country_Name: 1}, { }, function(err, result) {
          if(err) {
             ErrorManagement.ErrorHandling.ErrorLogCreation(req, 'Countries Find Query Error', 'AdminManagement.controller.js', err);
             res.status(417).send({status: false, Message: "Some error occurred while Find the Countries List!."});

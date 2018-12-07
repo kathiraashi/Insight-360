@@ -1,3 +1,15 @@
+<div [ngClass]="{'Hide': !Loader}" class="DataLoaderStyle_1" style="width: 100%; height: 100%; overflow-x: hidden;">
+   <div class="Loading">
+         <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+            <div class="rect6"></div>
+         </div>
+   </div>
+</div>
 <!-- Page Section -->
 <div class="page_section">
    <div class="container-fluid">
@@ -16,70 +28,71 @@
       <!-- Container Content -->
       <div class="container-content">
          <div class="content_gap">
-            <div class="row">
-               <div class="col-sm-4 Left_Date">
-                  <p>Multiple WareHouse</p>
-               </div>
-               <div class="col-sm-6 Right_data">
-                  <mat-radio-group>
-                     <mat-radio-button value="1" checked>Yes</mat-radio-button><br>
-                     <mat-radio-button value="2">No</mat-radio-button>
-                  </mat-radio-group>
-               </div>
-            </div><br><hr>
-            <h5 class="Header">Sales</h5>
-            <div class="row">
-               <div class="col-sm-4 Left_Date">
-                  <p>Update Stock By</p>
-               </div>
-               <div class="col-sm-6 Right_data">
-                  <mat-radio-group>
-                     <mat-radio-button value="1" checked>Sale Order</mat-radio-button><br>
-                     <mat-radio-button value="2">Delivery Order</mat-radio-button>
-                  </mat-radio-group>
-               </div>
-            </div><br><hr>
-            <div class="row">
-               <div class="col-sm-4 Left_Date">
-                  <p>Create Back Order</p>
-               </div>
-               <div class="col-sm-6 Right_data">
-                  <mat-radio-group>
-                     <mat-radio-button value="1" checked>Yes</mat-radio-button><br>
-                     <mat-radio-button value="2">No</mat-radio-button>
-                  </mat-radio-group>
-               </div>
+            <form [formGroup]="Form">
+               <div class="row">
+                  <div class="col-sm-4 Left_Date">
+                     <p>Multiple WareHouse</p>
+                  </div>
+                  <div class="col-sm-6 Right_data">
+                     <mat-radio-group formControlName="Multiple_Warehouse">
+                        <mat-radio-button value="Yes">Yes</mat-radio-button><br>
+                        <mat-radio-button value="No">No</mat-radio-button>
+                     </mat-radio-group>
+                  </div>
                </div><br><hr>
-            <h5 class="Header">Purchase</h5>
-            <div class="row">
-               <div class="col-sm-4 Left_Date">
-                  <p>Update Stock By</p>
-               </div>
-               <div class="col-sm-6 Right_data">
-                  <!-- <form>
-                     <input type="radio" name="radiobutton" checked="true"> Purchase Order<br>
-                     <input type="radio" name="radiobutton"> To Receive<br>
-                  </form> -->
-                  <mat-radio-group>
-                     <mat-radio-button value="1">Purchase Order</mat-radio-button><br>
-                     <mat-radio-button value="2" checked>To Receive</mat-radio-button>
-                  </mat-radio-group>
-               </div>
-            </div><br><hr>
-            <div class="row">
-               <div class="col-sm-4 Left_Date">
-                  <p>Create Back Order</p>
-               </div>
-               <div class="col-sm-6 Right_data">
-                  <mat-radio-group>
-                     <mat-radio-button value="1">Yes</mat-radio-button><br>
-                     <mat-radio-button value="2" checked>No</mat-radio-button>
-                  </mat-radio-group>
-               </div>
-            </div><br><hr>
+               <h5 class="Header">Sales</h5>
+               <div class="row">
+                  <div class="col-sm-4 Left_Date">
+                     <p>Update Stock By</p>
+                  </div>
+                  <div class="col-sm-6 Right_data">
+                     <mat-radio-group formControlName="Sales_Update_Stock_by">
+                        <mat-radio-button value="Sale_Order" >Sale Order</mat-radio-button><br>
+                        <mat-radio-button value="Delivery_Order">Delivery Order</mat-radio-button>
+                     </mat-radio-group>
+                  </div>
+               </div><br><hr>
+               <div class="row">
+                  <div class="col-sm-4 Left_Date">
+                     <p>Create Back Order</p>
+                  </div>
+                  <div class="col-sm-6 Right_data" >
+                     <mat-radio-group formControlName="Sales_Create_Back_Order">
+                        <mat-radio-button value="Yes" >Yes</mat-radio-button><br>
+                        <mat-radio-button value="No">No</mat-radio-button>
+                     </mat-radio-group>
+                  </div>
+                  </div><br><hr>
+               <h5 class="Header">Purchase</h5>
+               <div class="row">
+                  <div class="col-sm-4 Left_Date">
+                     <p>Update Stock By</p>
+                  </div>
+                  <div class="col-sm-6 Right_data" >
+                     <mat-radio-group formControlName="Purchase_Update_Stock_by">
+                        <mat-radio-button value="Purchase_Order">Purchase Order</mat-radio-button><br>
+                        <mat-radio-button value="To_Receive" >To Receive</mat-radio-button>
+                     </mat-radio-group>
+                  </div>
+               </div><br><hr>
+               <div class="row">
+                  <div class="col-sm-4 Left_Date">
+                     <p>Create Back Order</p>
+                  </div>
+                  <div class="col-sm-6 Right_data">
+                     <mat-radio-group formControlName="Purchase_Create_Back_Order">
+                        <mat-radio-button value="Yes">Yes</mat-radio-button><br>
+                        <mat-radio-button value="No">No</mat-radio-button>
+                     </mat-radio-group>
+                  </div>
+               </div><br><hr>
+            </form>
          </div>
       </div>
    </div>
-</div>
+</div>   
+<div class="Footer">
+   <button *ngIf="_Create" mat-raised-button color="primary" style = "top: 5px;" (click)="Submit()" [disabled]="Form.status !== 'VALID'"> Submit </button>
+   <button *ngIf="_Update" mat-raised-button color="primary" style = "top: 5px;" (click)="Update()" [disabled]="!Form.touched || !Form.valid"> Update </button>
+</div> 
    
-

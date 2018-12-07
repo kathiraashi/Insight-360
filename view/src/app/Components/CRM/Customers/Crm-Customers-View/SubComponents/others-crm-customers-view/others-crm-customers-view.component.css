@@ -9,7 +9,7 @@
    color: #4ab65f;
 }
 /* ---------- Search Section ----------- */
-/* .Search_Section{
+.Search_Section{
    position: relative;
    background-color: #ffffff;
    height: 36px;
@@ -37,11 +37,11 @@
    color: #4ab65f;
    font-weight: 600;
    cursor: pointer;
-} */
+}
 /* Table Section */
 .Table_Section table {
    border: 1px solid lightgray;
-   width: 500px;
+   width: 100%;
    box-shadow: 2px 2px 3px rgba(0,0,0,.24), 0 0 2px rgba(0,0,0,.12);
 }
 .Table_Section table thead {

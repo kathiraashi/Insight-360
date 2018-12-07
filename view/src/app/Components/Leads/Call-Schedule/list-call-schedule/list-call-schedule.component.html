@@ -1,3 +1,16 @@
+<!-- Loader -->
+<div [ngClass]="{'Hide': !Loader}" class="DataLoaderStyle_1" style="width: 100%; height: 100%; top: 15%">
+   <div class="Loading">
+         <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+            <div class="rect6"></div>
+         </div>
+   </div>
+</div>
 <!-- page Section -->
 <div class=Page_Section>
    <div class="container-fluid">
@@ -30,102 +43,27 @@
                <tr>
                   <th>S.no</th>
                   <th>Company</th>
-                  <th>Date & Time</th>
+                  <th>Date</th>
                   <th>Contact</th>
                   <th>Action</th>
                </tr>
             </thead>
             <tbody>
-               <tr>
+               <tr *ngFor="let item of _List; let i = index">
                   <td>
-                     <span class="S_no"> 1 </span>
+                     <span class="S_no"> {{ i+1 }} </span>
                   </td>
                   <td>
-                     <span class="Style_1">Company Name1</span>
+                     <span class="Style_1">{{item?.Company_Name['Company_Name']}}</span>
                   </td>
                   <td>
-                     <span class="Style_1"> may 12,2017</span>
+                     <span class="Style_1"> {{item?.Date| date: 'mediumDate'}}</span>
                   </td>
                   <td>
-                     <span class="Style_1">+428765</span>
+                     <span class="Style_1"> {{item?.Contact_Person }} </span>
                   </td>
                   <td>
-                     <a [routerLink]="['/View_Call_Schedule']"><button class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
-                        <i class="material-icons">zoom_in</i>
-                     </button></a>
-                     <a [routerLink]="['/Create_Call_Schedule']"><button class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
-                        <i class="material-icons">edit</i>
-                     </button></a>
-                     <button (click)=" DeleteCallSchedule()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
-                        <i class="material-icons">delete_forever</i>
-                     </button>
-                  </td>
-               </tr>
-               <tr>
-                  <td>
-                     <span class="S_no"> 2 </span>
-                  </td>
-                  <td>
-                     <span class="Style_1">Company Name2</span>
-                  </td>
-                  <td>
-                     <span class="Style_1"> may 12,2017</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">+53435455</span>
-                  </td>
-                  <td>
-                     <a [routerLink]="['/View_Call_Schedule']"><button class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
-                        <i class="material-icons">zoom_in</i>
-                     </button></a>
-                     <a [routerLink]="['/Create_Call_Schedule']"><button class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
-                        <i class="material-icons">edit</i>
-                     </button></a>
-                     <button (click)=" DeleteCallSchedule()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
-                        <i class="material-icons">delete_forever</i>
-                     </button>
-                  </td>
-               </tr>
-               <tr>
-                  <td>
-                     <span class="S_no"> 3 </span>
-                  </td>
-                  <td>
-                     <span class="Style_1">Company Name3</span>
-                  </td>
-                  <td>
-                     <span class="Style_1"> may 12,2017</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">+354545</span>
-                  </td>
-                  <td>
-                     <a [routerLink]="['/View_Call_Schedule']"><button class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
-                        <i class="material-icons">zoom_in</i>
-                     </button></a>
-                     <a [routerLink]="['/Create_Call_Schedule']"><button class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
-                        <i class="material-icons">edit</i>
-                     </button></a>
-                     <button (click)=" DeleteCallSchedule()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
-                        <i class="material-icons">delete_forever</i>
-                     </button>
-                  </td>
-               </tr>
-               <tr>
-                  <td>
-                     <span class="S_no"> 4</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">Company Name4</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">may 12,2017</span>
-                  </td>
-                  <td>
-                     <span class="Style_1">+4365565</span>
-                  </td>
-                  <td>
-                     <a [routerLink]="['/View_Call_Schedule']"><button class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                     <a (click)="View(i)" ><button class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
                         <i class="material-icons">zoom_in</i>
                      </button></a>
                      <a [routerLink]="['/Create_Call_Schedule']"><button class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">

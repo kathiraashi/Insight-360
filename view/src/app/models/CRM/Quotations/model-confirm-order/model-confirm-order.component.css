@@ -115,5 +115,25 @@
    background-color: #c32020;
    color: #fff;
 }
-
-
+/* error */
+.error{
+   margin: 0px;
+   color: rgb(221, 10, 10);
+   font-weight: 500;
+   text-align: left;
+   font-size: 13px;
+   word-spacing: 1px;
+   letter-spacing: 0.4px;
+}
+.Form_Input.Form_Err input{
+  border-color: rgb(221, 10, 10);
+}
+.Form_Input.Form_Success input{
+  border-color: #4ab65f;
+}
+.Form_Select.Form_Err select{
+   border-color: rgb(221, 10, 10);
+}
+.Form_Select.Form_Success select{
+   border-color: #4ab65f;
+}

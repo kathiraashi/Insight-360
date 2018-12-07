@@ -153,3 +153,58 @@
       width: 100%;
       line-height: 35px;
    }
+   /* Content style */
+.Content_Style{
+   padding:0px 20px;
+}
+.Page_Section .Page_Content{
+   margin:15px 0px;
+}
+.Page_Content .Sub_Content{
+   background-color:#fff;
+   width:100%;
+   height:100px;
+   padding:5px;
+   display:flex;
+   align-items: center;
+   position: relative;
+   box-shadow: 2px 2px 3px #6c7379;
+   outline:none;
+   cursor: pointer;
+}
+.Page_Content .Sub_Content .image_section{
+   margin-left:0px;
+   width:85px;
+}
+.Page_Content .Sub_Content .image_section img{
+   width:100%;
+   height:100%;
+}
+.Page_Content .Sub_Content .Content_Section{
+   width:80%;
+   font-weight:400;
+   color:#516570;
+   width:calc(100% - 85px);
+
+}
+.Page_Content .Sub_Content .Content_Section h5{
+   line-height:1;
+   font-size:13px;
+   margin-top: 8px;
+}
+.Page_Content .Sub_Content span{
+   position: absolute;
+   top: 5px;
+   right: 5px;
+}
+.Page_Content .Sub_Content .settings{
+   color: #516570;
+   font-size:15px;
+   cursor:pointer;
+}
+.Page_Content .Sub_Content .View{
+   color: #516570;
+   font-size:15px;
+   cursor:pointer;
+   padding: 0px 5px;
+}

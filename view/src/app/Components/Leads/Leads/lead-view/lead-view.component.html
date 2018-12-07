@@ -1,3 +1,16 @@
+<!-- Loader -->
+<div [ngClass]="{'Hide': !Loader}" class="DataLoaderStyle_1" style="width: 100%; height: 100%; top: 15%">
+   <div class="Loading">
+         <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+            <div class="rect6"></div>
+         </div>
+   </div>
+</div>
 <!-- page -->
 <div class="page" style="margin-top:100px;">
    <div class="container-fluid">
@@ -25,41 +38,50 @@
                <div class="view_item">
                   <div class="Static">Company Name </div>
                   <div class="dots"> : </div>
-                  <div class="Data"> Company Name</div>
+                  <div class="Data"> {{ _Data?.Company_Name }}</div>
                </div>
                <div class="view_item">
                   <div class="Static">Email </div>
                   <div class="dots"> : </div>
-                  <div class="Data"> Email</div>
+                  <div class="Data"> {{_Data?.Email }}</div>
                </div>
                <div class="view_item">
                   <div class="Static">Address </div>
                   <div class="dots"> : </div>
-                  <div class="Data"> Address </div>
+                  <div class="Data">
+                     {{_Data?.Address?.Street}} , {{_Data?.Address?.Area}} <br/>
+                     {{_Data?.Address?.City?.City_Name}},<br/>
+                     {{_Data?.Address?.State?.State_Name}},<br/>
+                     {{_Data?.Address?.Country?.Country_Name}} -  {{_Data?.Address?.ZipCode}} . 
+                  </div>
                </div>
             </div>
             <div class="col-sm-4">
                <div class="view_item">
                   <div class="Static">Phone </div>
                   <div class="dots"> : </div>
-                  <div class="Data"> Phone</div>
+                  <div class="Data"> {{_Data?.Phone}}</div>
                </div>
                <div class="view_item">
                   <div class="Static">Lead source  </div>
                   <div class="dots"> : </div>
-                  <div class="Data"> Lead source </div>
+                  <div class="Data"> {{_Data?.Lead_Source?.Lead_Source}} </div>
                </div>
             </div>
             <div class="col-sm-4">
                <div class="view_item">
                   <div class="Static">Priority </div>
                   <div class="dots"> : </div>
-                  <div class="Data"> Priority </div>
+                  <div class="Data"> {{_Data?.Priority}} </div>
                </div>
                <div class="view_item">
                   <div class="Static">Product </div>
                   <div class="dots"> : </div>
-                  <div class="Data"> Product</div>
+                  <div class="Data"> 
+                     <span *ngFor="let Product_Item of _Data?.Product">
+                        <span>{{Product_Item?.Product_Name_withAttribute}}</span><br>
+                     </span>
+                  </div>
                </div>
             </div>
          </div>
@@ -70,7 +92,7 @@
             <div class="col-sm-12">
                <div class="Tabs">
                   <div class="Tab" [ngClass]="{'active': Active_Tab === 'Log_Phone_Call'}" (click)="Active_Tab_Change('Log_Phone_Call')">
-                     <span >Log Phone Call</span>
+                     <span >Log Call</span>
                   </div>
                   <div class="Tab" [ngClass]="{'active': Active_Tab === 'Call_Schedule'}" (click)="Active_Tab_Change('Call_Schedule')">
                      <span >Call Schedule</span>
@@ -96,13 +118,46 @@
                         <thead>
                            <tr>
                               <th>S.no</th>
-                              <th>Company</th>
-                              <th>Date & Time</th>
+                              <th>Date</th>
                               <th>Product</th>
                               <th>Contact</th>
+                              <th>Description</th>
                               <th>Action</th>
                            </tr>
                         </thead>
+                        <tbody>
+                              <tr *ngFor="let item of _Log_Call_List; let i = index">
+                                 <td>
+                                    <span class="S_no"> {{ i+1 }} </span>
+                                 </td>
+                                 <td>
+                                    <span class="Style_1"> {{item?.Date | date: 'mediumDate' }} </span>
+                                 </td>
+                                 <td>
+                                    <span class="Style_1" > {{ item?.Product[0]['Product_Name_withAttribute'] }}</span>
+                                    <span class="Style_1" *ngIf="item?.Product.length > '1'">, ( {{ (item?.Product.length -1)}} ) more </span>
+                                 </td>
+                                 <td>
+                                    <span class="Style_1"> {{ item?.Contact_Person }} </span>
+                                 </td>
+                                 <td>
+                                    <span class="Style_1"> {{ item?.Description }} </span>
+                                 </td>
+                                 <td>
+                                    <a (click)="ViewLogCall(i)"><button class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                                       <i class="material-icons">zoom_in</i>
+                                       </button>
+                                    </a>
+                                    <a [routerLink]="['/Create_Log_Phone_call']"><button  class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                                       <i class="material-icons">edit</i>
+                                       </button>
+                                    </a>
+                                    <button (click)=" DeleteLogPhoneCall()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                                       <i class="material-icons">delete_forever</i>
+                                    </button>
+                                 </td>
+                              </tr>
+                           </tbody>
                      </table>
                   </div>
                </div>
@@ -126,12 +181,39 @@
                         <thead>
                            <tr>
                               <th>S.no</th>
-                              <th>Company</th>
-                              <th>Date & Time</th>
+                              <th>Date</th>
                               <th>Contact</th>
+                              <td>Description</td>
                               <th>Action</th>
                            </tr>
                         </thead>
+                        <tbody>
+                              <tr *ngFor="let item of _Call_Schedule_List; let i = index">
+                                 <td>
+                                    <span class="S_no"> {{ i+1 }} </span>
+                                 </td>
+                                 <td>
+                                    <span class="Style_1"> {{item?.Date| date: 'mediumDate'}}</span>
+                                 </td>
+                                 <td>
+                                    <span class="Style_1"> {{item?.Contact_Person }} </span>
+                                 </td>
+                                 <td>
+                                    <span class="Style_1"> {{ item?.Description }} </span>
+                                 </td>
+                                 <td>
+                                    <a (click)="ViewCallSchedule(i)" ><button class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+                                       <i class="material-icons">zoom_in</i>
+                                    </button></a>
+                                    <a [routerLink]="['/Create_Call_Schedule']"><button class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+                                       <i class="material-icons">edit</i>
+                                    </button></a>
+                                    <button (click)=" DeleteCallSchedule()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+                                       <i class="material-icons">delete_forever</i>
+                                    </button>
+                                 </td>
+                              </tr>
+                           </tbody>
                      </table>
                   </div>
                </div>

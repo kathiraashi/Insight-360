@@ -157,6 +157,7 @@
       font-size:16px;
       color:#A6A6A6;
       cursor:pointer;
+      text-align:center;
    }
    .table_section tr{
       border:1px solid #e8e2e2;
@@ -173,6 +174,11 @@
       font-size:16px;
       font-weight:400;
       color:#6d6868;
+   }
+   .table_section tbody td .Style_2{
+      font-size: 16px;
+      font-weight: 600;
+      word-spacing: 1.88; 
    }
 /* ************************************ View Style ******************************* */
    .view_item {
@@ -263,7 +269,7 @@
       align-items: center;
    }
    .ResultSection span.Title {
-      width: 35%;
+      width: 55%;
       color: #4E6A7A;
       font-weight: 700;
       font-size: 16px;
@@ -275,7 +281,7 @@
       font-size: 16px;
    }
    .ResultSection span.Value {
-      width: 60%;
+      width: 12%;
       color: #4E6A7A;
       font-weight: 500;
       font-size: 15px;

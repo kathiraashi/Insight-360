@@ -745,7 +745,7 @@ exports.Earnings_AsyncValidate = function(req, res) {
    };
 
 // Earnings Update -----------------------------------------------
-   exports. Earnings_Update = function(req, res) {
+   exports.Earnings_Update = function(req, res) {
       var CryptoBytes  = CryptoJS.AES.decrypt(req.body.Info, 'SecretKeyIn@123');
       var ReceivingData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
 

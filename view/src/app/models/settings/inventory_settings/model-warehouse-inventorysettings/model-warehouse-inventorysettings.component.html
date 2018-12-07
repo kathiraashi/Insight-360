@@ -7,26 +7,26 @@
   <form [formGroup] ="Form" (ngSubmit)="onSubmit()">
   <div class="Model_Body">
     <div class="row">
-      <div class="col-sm-6 Form_Input" [ngClass]="{'Form_Err': Form.controls['Ware_House_Name'].errors && !Form.controls['Ware_House_Name'].pristine, 'Form_Success': Form.controls['Ware_House_Name'].valid && !Form.controls['Ware_House_Name'].pristine}">
+      <div class="col-sm-6 Form_Input" style="margin-bottom: 30px" [ngClass]="{'Form_Err': Form.controls['Ware_House_Name'].errors && !Form.controls['Ware_House_Name'].pristine, 'Form_Success': Form.controls['Ware_House_Name'].valid && !Form.controls['Ware_House_Name'].pristine}">
         <label>WareHouse Name:</label>
-          <input type="text" formControlName="Ware_House_Name">
-          <p class="error" *ngIf="Form.controls['Ware_House_Name'].errors && !Form.controls['Ware_House_Name'].pristine">
-            <span *ngIf="Form.controls['Ware_House_Name'].errors.required">!Ware House Name is Required</span>
+          <input type="text" formControlName="Ware_House_Name" style="margin-bottom: 0px">
+          <p class="error" style="margin-bottom: -19px" *ngIf="Form.controls['Ware_House_Name'].errors && !Form.controls['Ware_House_Name'].pristine">
+            <span *ngIf="Form.controls['Ware_House_Name'].errors.required">Ware House Name is Required</span>
             <span *ngIf="Form.controls['Ware_House_Name'].errors.WareHouse_NotAvailable"> Ware House Name Already Exist </span>
          </p>
       </div>
-      <div class="col-sm-6 Form_Input" [ngClass]="{'Form_Err': Form.controls['Ware_House_Code'].errors && !Form.controls['Ware_House_Code'].pristine, 'Form_Success': Form.controls['Ware_House_Code'].valid && !Form.controls['Ware_House_Code'].pristine}">
+      <div class="col-sm-6 Form_Input" style="margin-bottom: 30px" [ngClass]="{'Form_Err': Form.controls['Ware_House_Code'].errors && !Form.controls['Ware_House_Code'].pristine, 'Form_Success': Form.controls['Ware_House_Code'].valid && !Form.controls['Ware_House_Code'].pristine}">
         <label>WareHouse Code:</label>
-          <input type="text" formControlName="Ware_House_Code">
-          <p class="error" *ngIf="Form.controls['Ware_House_Code'].errors && !Form.controls['Ware_House_Code'].pristine">
-            <span *ngIf="Form.controls['Ware_House_Code'].errors.required">!Ware House Code is Required</span>
+          <input type="text" formControlName="Ware_House_Code" style="margin-bottom: 0px">
+          <p class="error" style="margin-bottom: -19px" *ngIf="Form.controls['Ware_House_Code'].errors && !Form.controls['Ware_House_Code'].pristine">
+            <span *ngIf="Form.controls['Ware_House_Code'].errors.required">Ware House Code is Required</span>
          </p>
       </div>
-      <div class="col-sm-6 Form_Input" [ngClass]="{'Form_Err': Form.controls['Address'].errors && !Form.controls['Address'].pristine, 'Form_Success': Form.controls['Address'].valid && !Form.controls['Address'].pristine}">
+      <div class="col-sm-6 Form_Input" style="margin-bottom: 30px" [ngClass]="{'Form_Err': Form.controls['Address'].errors && !Form.controls['Address'].pristine, 'Form_Success': Form.controls['Address'].valid && !Form.controls['Address'].pristine}">
         <label>Address:</label>
-          <input type="text" formControlName="Address">
-          <p class="error" *ngIf="Form.controls['Address'].errors && !Form.controls['Address'].pristine">
-            <span *ngIf="Form.controls['Address'].errors.required">!Address is Required</span>
+          <input type="text" formControlName="Address" style="margin-bottom: 0px">
+          <p class="error" style="margin-bottom: -19px" *ngIf="Form.controls['Address'].errors && !Form.controls['Address'].pristine">
+            <span *ngIf="Form.controls['Address'].errors.required">Address is Required</span>
          </p>
       </div>
    </div>

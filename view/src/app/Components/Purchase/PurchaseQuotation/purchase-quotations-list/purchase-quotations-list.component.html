@@ -1,3 +1,16 @@
+<div [ngClass]="{'Hide': !Loader}" class="DataLoaderStyle_1" style="width: 100%">
+   <div class="Loading">
+         <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+            <div class="rect6"></div>
+         </div>
+   </div>
+</div>
+<div class="LoadedDataStyle_1" [ngClass]="{'Show': !Loader}"></div>
 <!-- Main Section -->
 <div class="Main_Section">
    <div class="page_section">
@@ -6,9 +19,9 @@
          <div class="Page_Identity">
             <div class="Page_Track">
                <ul>
-                  <li class="HeaderName">Home</li>
+                  <li class="HeaderName">Purchase</li>
                   <li class="arrow">>></li>
-                  <li>Purchase Quotations</li>
+                  <li>Quotations</li>
                </ul>
             </div>
          </div>
@@ -39,100 +52,28 @@
                   </tr>
                </thead>
                <tbody>
-                  <tr>
+                  <tr *ngFor="let item of _List; let i = index">
                      <td>
-                        <span class="S_no"> 1 </span>
+                        <span class="S_no"> {{i+1}} </span>
                      </td>
                      <td>
-                        <h6 class="Style_2">Von_Quote_123</h6>
-                        <span class="Style_3">Valid Till:17/04/17</span>
+                        <h6 class="Style_2">{{item?.Quote_Ref_Number}}</h6>
+                        <span class="Style_3">Valid Till:{{item?.Valid_Date | date: 'dd/MM/yyyy'}}</span>
                      </td>
                      <td>
-                        <span class="Style_3"> Vendor_aashi</span>
+                        <span class="Style_3">{{item?.Vendor_Name?.Vendor_Name}}</span>
                      </td>
                      <td>
-                        <span class="Style_3">Admin</span>
+                        <span class="Style_3">{{item?.Created_By?.Name}}</span>
                      </td>
                      <td>
-                        <span class="Style_3">32300</span>
+                        <span class="Style_3">{{item?.Total}}</span>
                      </td>
                      <td>
-                        <span class="Style_3">Draft</span>
+                        <span class="Style_3">{{item?.Quote_Status}}</span>
                      </td>
                      <td>
-                        <button color="primary" mat-raised-button [matMenuTriggerFor]="Action">Action</button>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <span class="S_no"> 2 </span>
-                     </td>
-                     <td>
-                        <h6 class="Style_2">Von_Quote_123</h6>
-                        <span class="Style_3">Valid Till:17/04/17</span>
-                     </td>
-                     <td>
-                        <span class="Style_3"> Vendor_aashi</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">Admin</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">32300</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">Draft</span>
-                     </td>
-                     <td>
-                        <button color="primary" mat-raised-button [matMenuTriggerFor]="Action">Action</button>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <span class="S_no"> 3 </span>
-                     </td>
-                     <td>
-                        <h6 class="Style_2">Von_Quote_123</h6>
-                        <span class="Style_3">Valid Till:17/04/17</span>
-                     </td>
-                     <td>
-                        <span class="Style_3"> Vendor_aashi</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">Admin</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">32300</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">Draft</span>
-                     </td>
-                     <td>
-                        <button color="primary" mat-raised-button [matMenuTriggerFor]="Action">Action</button>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <span class="S_no"> 4 </span>
-                     </td>
-                     <td>
-                        <h6 class="Style_2">Von_Quote_123</h6>
-                        <span class="Style_3">Valid Till:17/04/17</span>
-                     </td>
-                     <td>
-                        <span class="Style_3"> Vendor_aashi</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">Admin</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">32300</span>
-                     </td>
-                     <td>
-                        <span class="Style_3">Draft</span>
-                     </td>
-                     <td>
-                        <button color="primary" mat-raised-button [matMenuTriggerFor]="Action">Action</button>
+                        <button color="primary" mat-raised-button [matMenuTriggerFor]="Action" (click)="ActionIndex(i)">Action</button>
                      </td>
                   </tr>
                </tbody>
@@ -144,16 +85,16 @@
 
 <!-- Dropdown menus -->
 <mat-menu class="MenuStyleOne" #Action="matMenu" [overlapTrigger]="false" xPosition="after" yPosition="below" class="MenuStyleOne">
-   <a [routerLink]="['/Purchase_Quotation_Create']"><button mat-menu-item>
-      <span>Edit</span>
-   </button></a>
-   <a [routerLink]="['/Purchase_Quotation_View']"><button mat-menu-item>
+   <button mat-menu-item (click)="View()">
       <span>View</span>
-   </button></a>
+   </button>
+   <button mat-menu-item (click)="Edit()">
+      <span>Edit</span>
+   </button>
    <button mat-menu-item>
       <span>Cancel</span>
    </button>
-   <button mat-menu-item>
+   <button (click)="ConfirmOrder()" mat-menu-item>
       <span>Confirm Order</span>
    </button>
 </mat-menu>

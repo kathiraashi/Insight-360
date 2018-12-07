@@ -1,0 +1,45 @@
+<div class="Modal_Content" *ngIf= "Type && Type === 'Create_Order_Number'">
+   <div class="Modal_Header">
+      <p>Order Number</p>
+      <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+   </div>
+   <div class="Model_Body" style="text-align: center">
+     <div [formGroup]="Form">
+         <div class="row">
+            <div class="col-sm-12 Form_Input" [ngClass]="{'Form_Err': !Form.controls['Order_Ref_Number'].pristine && Form.controls['Order_Ref_Number'].errors, 'Form_Success': Form.controls['Order_Ref_Number'].valid && !Form.controls['Order_Ref_Number'].pristine }">
+               <label>Order Number:</label>
+               <input type="text" formControlName="Order_Ref_Number" >
+               <p class="error" style="margin-top: -20px" *ngIf="Form.controls['Order_Ref_Number'].errors && !Form.controls['Order_Ref_Number'].pristine">
+                  <span *ngIf="Form.controls['Order_Ref_Number'].errors.required"> Order Number is required</span>
+                  <span *ngIf="Form.controls['Order_Ref_Number'].errors.OrderNumber_NotAvailable"> Order Number Already Exist!</span>
+               </p>  
+            </div>
+         </div>
+     </div>
+   </div>
+   <div class="Model_Footer">
+      <button mat-raised-button class="cancel" style="float: left" (click)="Cancel()"> Cancel </button>
+      <button mat-raised-button color="primary" style="margin-left: 295px" [disabled]="!Form.valid || !nextButton" (click)="Next()" > Next </button>
+   </div>
+</div>
+<div class="Modal_Content" *ngIf= "Type && Type === 'Confirm_Order'">
+   <div class="Modal_Header">
+      <p>Confirm Order</p>
+      <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+   </div>
+   <div class="Model_Body">
+     <div style="text-align: center; color: #4e6a7a">
+         <p> Are you sure !</p>
+         <p> you want to confirm </p>
+     </div>
+   </div>
+   <div class="Model_Footer">
+      <button mat-raised-button class="cancel" [disabled]="Uploading" (click)="Cancel()" style="float: left"> Cancel </button>
+      <button mat-raised-button color="primary" style="margin-left: 295px" [disabled]="!Form.valid || Uploading" (click)="Confirm()">
+         <span *ngIf="!Uploading">Confirm</span>
+         <span *ngIf="Uploading" class="UploadingBtn"> <i class="fa fa-refresh fa-spin"></i> Loading... </span>
+      </button>
+   </div>
+</div>
+
+

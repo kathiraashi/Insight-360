@@ -110,8 +110,8 @@ var VarItInfo= mongoose.model('Itinfo', ItinfoSchema, 'Company_Itinfo');
 // Branch Schema
    var BranchSchema = mongoose.Schema({
    Branch_Name: { type : String , required : true},
-   Branch_Head: { type : String , required : true},
-   Departments: { type : Schema.Types.ObjectId , ref : 'Departments', required : true},
+   // Branch_Head: { type : String , required : true},
+   Departments: [{ type : Schema.Types.ObjectId , ref : 'Departments', required : true}],
    AllAddress: { Street: { type : String },
                         Area: { type : String },
                         ZipCode: { type : String },

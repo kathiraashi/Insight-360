@@ -1,0 +1,76 @@
+<!-- confirm request -->
+<div class="Modal_Content" *ngIf= "Type && Type === 'Confirm_Request'">
+   <div class="Modal_Header">
+      <p>Send Request</p>
+      <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+   </div>
+   <div class="Model_Body">
+     <div style="text-align: center; color: #4e6a7a">
+         <p> Are you sure !</p>
+         <p> you want to confirm</p>
+     </div>
+   </div>
+   <div class="Model_Footer">
+      <button mat-raised-button class="cancel" [disabled]="Uploading" (click)="Cancel()" style="float: left"> Cancel </button>
+      <button mat-raised-button color="primary" style="margin-left:61.5%" [disabled]="!Form.valid || Uploading" (click)="ConfirmRequest()" > 
+         <span *ngIf="!Uploading"> Confirm </span> 
+         <span *ngIf="Uploading" class="UploadingBtn"> <i class="fa fa-refresh fa-spin"></i> Loading... </span>
+      </button>   </div>
+</div>
+<!-- confirm modify -->
+<div class="Modal_Content" *ngIf= "Type && Type === 'Confirm_Modify'">
+   <div class="Modal_Header">
+      <p>Send To Modify</p>
+      <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+   </div>
+   <div class="Model_Body">
+     <div style="text-align: center; color: #4e6a7a">
+         <p> Are you sure !</p>
+         <p> you want to confirm</p>
+     </div>
+   </div>
+   <div class="Model_Footer">
+      <button mat-raised-button class="cancel" [disabled]="Uploading" (click)="Cancel()" style="float: left"> Cancel </button>
+      <button mat-raised-button color="primary" style="margin-left:61.5%" [disabled]="!Form.valid || Uploading" (click)="ConfirmModify()" > 
+         <span *ngIf="!Uploading"> Confirm </span> 
+         <span *ngIf="Uploading" class="UploadingBtn"> <i class="fa fa-refresh fa-spin"></i> Loading... </span>
+      </button>   </div>
+</div>
+<!-- confirm Approve -->
+<div class="Modal_Content" *ngIf= "Type && Type === 'Confirm_Approve'">
+   <div class="Modal_Header">
+      <p>Approve Advance</p>
+      <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+   </div>
+   <div class="Model_Body">
+     <div style="text-align: center; color: #4e6a7a">
+         <p> Are you sure !</p>
+         <p> you want to confirm</p>
+     </div>
+   </div>
+   <div class="Model_Footer">
+      <button mat-raised-button class="cancel" [disabled]="Uploading" (click)="Cancel()" style="float: left"> Cancel </button>
+      <button mat-raised-button color="primary" style="margin-left:61.5%" [disabled]="!Form.valid || Uploading" (click)="ConfirmApprove()" > 
+         <span *ngIf="!Uploading"> Confirm </span> 
+         <span *ngIf="Uploading" class="UploadingBtn"> <i class="fa fa-refresh fa-spin"></i> Loading... </span>
+      </button>   </div>
+</div>
+<!-- confirm reject -->
+<div class="Modal_Content" *ngIf= "Type && Type === 'Confirm_Reject'">
+   <div class="Modal_Header">
+      <p>Reject Advance</p>
+      <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+   </div>
+   <div class="Model_Body">
+     <div style="text-align: center; color: #4e6a7a">
+         <p> Are you sure !</p>
+         <p> you want to confirm</p>
+     </div>
+   </div>
+   <div class="Model_Footer">
+      <button mat-raised-button class="cancel" [disabled]="Uploading" (click)="Cancel()" style="float: left"> Cancel </button>
+      <button mat-raised-button color="primary" style="margin-left:61.5%" [disabled]="!Form.valid || Uploading" (click)="ConfirmReject()" > 
+         <span *ngIf="!Uploading"> Confirm </span> 
+         <span *ngIf="Uploading" class="UploadingBtn"> <i class="fa fa-refresh fa-spin"></i> Loading... </span>
+      </button>   </div>
+</div>

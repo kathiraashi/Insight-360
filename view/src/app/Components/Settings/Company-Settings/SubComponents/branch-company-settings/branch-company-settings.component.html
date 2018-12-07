@@ -28,7 +28,7 @@
       <tr>
         <th>S.no</th>
         <th>Branch</th>
-        <th>Branch Head</th>
+        <!-- <th>Branch Head</th> -->
         <th>Departments</th>
         <!-- <th>Street</th>
         <th>Area</th> -->
@@ -50,11 +50,14 @@
          <td>
            <span class="Style_1">{{Items.Branch_Name}}</span>
          </td>
-         <td>
+         <!-- <td>
            <span class="Style_1">{{Items.Branch_Head}}</span>
-         </td>
+         </td> -->
          <td>
-           <span class="Style_1">{{Items.Departments?.Department_Name}}</span>
+           <span *ngFor="let item of Items?.Departments; let j = index" class="Style_1">
+              <span *ngIf="j !== Items?.Departments.length -1">{{item?.Department_Name}}, </span>
+              <span *ngIf="j === Items?.Departments.length - 1">{{item?.Department_Name}}. </span>
+           </span>
          </td>
          <!-- <td>
             <span class="Style_1">{{Items.AllStreet}}</span>

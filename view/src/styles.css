@@ -9,6 +9,7 @@
 @import './assets/Over-Write-Css/Primeng-Overwrite.css';
 @import './assets/Over-Write-Css/material-overwrite.css';
 @import './assets/Over-Write-Css/ng-select-overwrite.css';
+@import './assets/Over-Write-Css/ngx-timepicker-overwrite.css';
 
 
 /* You can add global styles to this file, and also import other style files */
@@ -129,3 +130,9 @@
  .LoadedDataStyle_1.Show{
    display: block;
  }
+ .UploadingBtn{
+   color: #5a798c;
+}
+ .UploadingBtn I{
+   color: #2a9e40;
+}

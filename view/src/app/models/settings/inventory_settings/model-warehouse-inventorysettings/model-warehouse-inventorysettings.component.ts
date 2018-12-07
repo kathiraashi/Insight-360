@@ -3,11 +3,12 @@ import { Subject } from 'rxjs';
 import { FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { map } from 'rxjs/operators';
 
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { BsModalRef } from 'ngx-bootstrap';
 
 import * as CryptoJS from 'crypto-js';
 import { InventorySettingsService } from '../../../../services/settings/InventorySettings/inventory-settings.service';
 import { ToastrService } from './../../../../services/common-services/toastr-service/toastr.service';
+import { LoginService } from './../../../../services/LoginService/login.service';
 
 
 
@@ -20,16 +21,24 @@ export class ModelWarehouseInventorysettingsComponent implements OnInit {
 
 
   onClose: Subject<any>;
-  Type: String;
+  Type: string;
   Data;
   Uploading: Boolean = false;
-  Company_Id = '5b3c66d01dd3ff14589602fe';
-  User_Id = '5b530ef333fc40064c0db31e';
+  Company_Id;
+  User_Id;
+  User_Info;
   Form: FormGroup;
-  constructor(  public bsModalRef: BsModalRef,
-    public Service: InventorySettingsService,
-    public Toastr: ToastrService
-  ) {}
+   constructor(
+      public bsModalRef: BsModalRef,
+      public Service: InventorySettingsService,
+      public Toastr: ToastrService,
+      private Login_Service: LoginService
+   ) {
+      // get user login info
+      this.User_Info = this.Login_Service.LoggedUserInfo();
+      this.Company_Id = this.User_Info.Company_Id;
+      this.User_Id = this.User_Info._id;
+   }
 
   ngOnInit() {
     this.onClose = new Subject();

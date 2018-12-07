@@ -1,38 +1,39 @@
-<!-- Model Content -->
-<div class="Modal_Content" *ngIf="Type && Type === 'Create'">
-   <!-- Model Header -->
-   <div class="Modal_Header">
-      <p>Call Schedule</p>
-      <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
-   </div>
-   <!-- Model Body -->
-   <div class="Model_Body">
-      <div class="row">
-         <div class="col-sm-6 Form_Input">
-            <label>Company Name: </label>
-            <input type="text" readonly="true">
+<!-- If View The Employee Category-->
+<div class="Modal_Content" *ngIf=" Type && Type === 'View'">
+      <div class="Modal_Header">
+         <p>View Log Call</p>
+         <span data-dismiss="modal" (click)="bsModalRef.hide()">&times;</span>
+      </div>
+      <div class="Model_Body">
+         <div class="view_item">
+            <div class="Static">Company Name</div>
+            <div class="dots"> : </div>
+            <div class="Data"> {{Data?.Company_Name['Company_Name']}}</div>
          </div>
-         <div class="col-sm-6 Form_Input">
-            <label>Date & Time: </label>
-            <br>
-            <input type="text">
+         <div class="view_item">
+            <div class="Static">Date</div>
+            <div class="dots"> : </div>
+            <div class="Data"> {{Data?.Date | date: 'mediumDate' }}</div>
          </div>
-         <br>
-         <div class="col-sm-6 Form_Input">
-            <label>Contact: </label>
-            <br>
-            <input type="text">
+         <div class="view_item">
+            <div class="Static">Contact Person</div>
+            <div class="dots"> : </div>
+            <div class="Data"> {{Data?.Contact_Person}}</div>
          </div>
-         <div class="col-sm-6 Form_TextArea">
-            <label>Description: </label>
-            <br>
-            <textarea class="Description" rows="3"></textarea>
+         <div class="view_item">
+            <div class="Static">Description</div>
+            <div class="dots"> : </div>
+            <div class="Data">{{Data?.Description}}</div>
          </div>
+         <!-- <div class="view_item">
+            <div class="Static"> Created Date </div>
+            <div class="dots"> : </div>
+            <div class="Data"> {{Data?.createdAt | date:'medium'}}</div>
+         </div>
+         <div class="view_item">
+            <div class="Static">Last Modified Date  </div>
+            <div class="dots"> : </div>
+            <div class="Data"> {{Data?.updatedAt | date:'medium'}}</div>
+         </div> -->
       </div>
    </div>
-   <!-- Model Footer -->
-   <div class="Model_Footer">
-      <button mat-raised-button color="primary" > Submit </button>
-   </div>
-</div>
-

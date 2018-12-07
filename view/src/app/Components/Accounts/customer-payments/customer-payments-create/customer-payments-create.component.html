@@ -13,139 +13,192 @@
             </ul>
          </div>
       </div>
-      <div class="Company_Details">
-         <div class="row">
-            <div class="col-sm-4 Form_Select">
-               <label>Customer:</label>
-               <ng-select class="NgSelect" 
-                  [items]="_Customer" 
-                  [searchable]="true" 
-                  placeholder="Customer">
-               </ng-select>
-            </div>
-            <div class="col-sm-4 Form_Select">
-               <label>Invoice No:</label>
-               <ng-select class="NgSelect" 
-                  [items]="_InvoiceNo" 
-                  [searchable]="true" 
-                  placeholder="Invoice No">
-               </ng-select>
-            </div>
-            <div class="col-sm-4 Form_Input">
-               <label>Payment Amount:</label>
-               <input type="text">
-            </div>
-            <div class="col-sm-4 Form_Input">
-               <label>Total Amount:</label>
-               <input type="text">
+      <form [formGroup]="Form">
+         <div class="Company_Details">
+            <div class="row">
+               <div class="col-sm-4 Form_Select">
+                  <label>Customer:</label>
+                  <ng-select class="NgSelect" 
+                     [items]="_Customer"
+                     [bindValue]="'_id'"
+                     [bindLabel]="'Company_Name'"
+                     [searchable]="true"
+                     formControlName="Customer" 
+                     placeholder="Customer">
+                  </ng-select>
+                  <p class="error" style="margin-top: -20px" *ngIf="Form.controls['Customer'].errors && !Form.controls['Customer'].pristine">
+                     <span *ngIf="Form.controls['Customer'].errors.required"> Customer is required</span>
+                  </p> 
+               </div>
+               <div class="col-sm-4 Form_Select">
+                  <label>Invoice No:</label>
+                  <ng-select class="NgSelect" 
+                     [items]="_InvoiceNo" 
+                     [searchable]="true" 
+                     formControlName="Invoice_No"
+                     placeholder="Invoice No">
+                  </ng-select>
+               </div>
+               <div class="col-sm-4 Form_Input" [ngClass]="{'Form_Err': !Form.controls['Payment_Amount'].pristine && Form.controls['Payment_Amount'].errors, 'Form_Success': Form.controls['Payment_Amount'].valid && !Form.controls['Payment_Amount'].pristine }">
+                  <label>Payment Amount:</label>
+                  <input type="text" placeholder="payment amount" formControlName="Payment_Amount" (change)="setTotalAmount()">
+                  <p class="error" style="margin-top: -20px" *ngIf="Form.controls['Payment_Amount'].errors && !Form.controls['Payment_Amount'].pristine">
+                     <span *ngIf="Form.controls['Payment_Amount'].errors.required"> Amount is required</span>
+                     <span *ngIf="Form.controls['Payment_Amount'].errors.pattern"> Two digits after decimal <span style="color: #808080; font-size: 11px">(sample: 2000.00)</span></span>
+                  </p> 
+               </div>
+               <div class="col-sm-4 Form_Input">
+                  <label>Total Amount:</label>
+                  <input type="text" placeholder="total amount" formControlName="Total_Amount">
+               </div>
+               <div class="col-sm-4 Form_Input" [ngClass]="{'Form_Err': !Form.controls['Date'].pristine && Form.controls['Date'].errors, 'Form_Success': Form.controls['Date'].valid && !Form.controls['Date'].pristine }">
+                  <label>Date:</label>
+                  <input matInput [matDatepicker]="DatePicker1" (click)="DatePicker1.open()" placeholder="Date" (keyup)="KeyUp($event)" formControlName="Date">
+                  <mat-datepicker #DatePicker1></mat-datepicker>
+                  <p class="error" style="margin-top: -20px" *ngIf="Form.controls['Date'].errors && !Form.controls['Date'].pristine">
+                     <span *ngIf="Form.controls['Date'].errors.required"> Amount is required</span>
+                  </p> 
+               </div>
+               <div class="col-sm-4 Form_TextArea">
+                  <label>Description:</label>
+                  <textarea class="Description" rows="3" placeholder="Description" formControlName="Description">
+                  </textarea>
+               </div>
             </div>
          </div>
-      </div>
-      <div class="Company_Details" >
+         <div class="Company_Details" >
          <div class="row">
             <div class="col-sm-12">
                <h5>Mode Of Payments</h5>
                <br>
             </div>
          </div>
-         <mat-radio-group class="example-radio-group" [(ngModel)]="Type">
-            <mat-radio-button class="example-radio-button" [value]="'cheque'">
-               cheque/DD
-            </mat-radio-button>
+         <mat-radio-group class="example-radio-group" (change)="ModeOfPay($event.value)" formControlName="Mode_Of_Pay">
             <mat-radio-button class="example-radio-button" [value]="'cash'">
                cash
-            </mat-radio-button>
-            <mat-radio-button class="example-radio-button" [value]="'online_payment'">
-               Online Payment
-            </mat-radio-button>
-            <mat-radio-button class="example-radio-button" [value]="'NEFT'">
-               NEFT/RTGS
-            </mat-radio-button>
+            </mat-radio-button> &nbsp;
+            <mat-radio-button class="example-radio-button" [value]="'Bank'">
+               Bank
+            </mat-radio-button> &nbsp;
+            <!-- <p class="error" style="margin-top: -20px" *ngIf="Form.controls['Mode_Of_Pay'].errors && !Form.controls['Mode_Of_Pay'].pristine">
+               <span *ngIf="Form.controls['Date'].errors.required"> Mode of Pay is required</span>
+            </p> -->
          </mat-radio-group>
-         <div *ngIf="Type === 'cheque'">
-            <br>
-            <div class="row">
-               <div class="col-sm-4 Form_Input">
-                  <label>Amount:</label>
-                  <input type="text">
+         <div *ngIf="Type === 'Bank' ">
+            <br> 
+            <mat-radio-group class="example-radio-group" (change)="BankMethod($event.value)" formControlName="Bank_Method" >
+               <mat-radio-button class="example-radio-button" [value]="'online_payment'">
+                  Online Payments
+               </mat-radio-button> &nbsp;
+               <mat-radio-button class="example-radio-button" [value]="'Neft'">
+                  NEFT/RTGS
+               </mat-radio-button> &nbsp;
+               <mat-radio-button class="example-radio-button" [value]="'cheque'">
+                  cheque/DD
+               </mat-radio-button> &nbsp;
+               <!-- <p class="error" style="margin-top: -20px" *ngIf="Form.controls['Bank_Method'].errors && !Form.controls['Bank_Method'].pristine">
+                  <span *ngIf="Form.controls['Bank_Method'].errors.required"> Bank Method is required</span>
+               </p> -->
+            </mat-radio-group>
+               <div *ngIf="Type1 === 'online_payment' || Type1 === 'Neft'">
+                  <br>
+                  <div class="row">
+                     <div class="col-sm-4 Form_Input" [ngClass]="{'Form_Err': !Form.controls['Reference_No'].pristine && Form.controls['Reference_No'].errors, 'Form_Success': Form.controls['Reference_No'].valid && !Form.controls['Reference_No'].pristine }">
+                        <label>Reference Number:</label>
+                        <input type="text" placeholder="Reference Number" formControlName="Reference_No">
+                        <p class="error" style="margin-top: -20px" *ngIf="Form.controls['Reference_No'].errors && !Form.controls['Reference_No'].pristine">
+                           <span *ngIf="Form.controls['Reference_No'].errors.required"> Reference Number is required</span>
+                        </p>
+                     </div>
+                     <div class="col-sm-4 Form_Select">
+                        <label>Deposit Bank:</label>
+                        <ng-select class="NgSelect" 
+                           [items]="_BankList"
+                           [bindLabel]="'Bank_Name'"
+                           [bindValue]="'_id'"
+                           [searchable]="true"
+                           formControlName="Deposit_Bank" 
+                           placeholder="Deposit Bank">
+                        </ng-select>
+                        <p class="error" *ngIf="Form.controls['Deposit_Bank'].errors && !Form.controls['Deposit_Bank'].pristine">
+                           <span *ngIf="Form.controls['Deposit_Bank'].errors.required"> Deposit Bank is required</span>
+                        </p>
+                     </div>
+                  </div>
                </div>
-               <div class="col-sm-4 Form_Input">
-                  <label>Cheque No:</label>
-                  <input type="text">
+               <div *ngIf="Type1 === 'cheque'">
+                  <br>
+                  <div class="row">
+                     <div class="col-sm-4 Form_Input" [ngClass]="{'Form_Err': !Form.controls['Cheque_No'].pristine && Form.controls['Cheque_No'].errors, 'Form_Success': Form.controls['Cheque_No'].valid && !Form.controls['Cheque_No'].pristine }">
+                        <label>Cheque No:</label>
+                        <input type="text" placeholder="Cheque Number" formControlName="Cheque_No">
+                        <p class="error" style="margin-top: -20px" *ngIf="Form.controls['Cheque_No'].errors && !Form.controls['Cheque_No'].pristine">
+                           <span *ngIf="Form.controls['Cheque_No'].errors.required"> Cheque Number is required</span>
+                        </p>
+                     </div>
+                     <div class="col-sm-4 Form_Input" [ngClass]="{'Form_Err': !Form.controls['Issues_Bank'].pristine && Form.controls['Issues_Bank'].errors, 'Form_Success': Form.controls['Issues_Bank'].valid && !Form.controls['Issues_Bank'].pristine }">
+                        <label>Issues Bank:</label>
+                        <input type="text" placeholder="Issues bank" formControlName="Issues_Bank">
+                        <p class="error" style="margin-top: -20px" *ngIf="Form.controls['Issues_Bank'].errors && !Form.controls['Issues_Bank'].pristine">
+                           <span *ngIf="Form.controls['Issues_Bank'].errors.required"> Issues Bank is required</span>
+                        </p>
+                     </div>
+                     <div class="col-sm-4 Form_Input" [ngClass]="{'Form_Err': !Form.controls['Issues_Branch'].pristine && Form.controls['Issues_Branch'].errors, 'Form_Success': Form.controls['Issues_Branch'].valid && !Form.controls['Issues_Branch'].pristine }">
+                        <label>Issues Branch:</label>
+                        <input type="text" placeholder="Issues branch" formControlName="Issues_Branch">
+                        <p class="error" style="margin-top: -20px" *ngIf="Form.controls['Issues_Branch'].errors && !Form.controls['Issues_Branch'].pristine">
+                           <span *ngIf="Form.controls['Issues_Branch'].errors.required"> Issues Branch is required</span>
+                        </p>
+                     </div>
+                     <div class="col-sm-4 Form_Input" [ngClass]="{'Form_Err': !Form.controls['Expected_Date_Clearing'].pristine && Form.controls['Expected_Date_Clearing'].errors, 'Form_Success': Form.controls['Expected_Date_Clearing'].valid && !Form.controls['Expected_Date_Clearing'].pristine }">
+                        <label>Expected date of clearing:</label>
+                        <input matInput [matDatepicker]="DatePicker2" (click)="DatePicker2.open()" placeholder="Date" formControlName="Expected_Date_Clearing" (keyup)="KeyUp($event)">
+                        <mat-datepicker #DatePicker2></mat-datepicker>
+                        <p class="error" style="margin-top: -20px" *ngIf="Form.controls['Expected_Date_Clearing'].errors && !Form.controls['Expected_Date_Clearing'].pristine">
+                           <span *ngIf="Form.controls['Expected_Date_Clearing'].errors.required"> Expected Date Clearing is required</span>
+                        </p>
+                     </div>
+                     <div class="col-sm-4 Form_Select">
+                        <label>Deposit Bank:</label>
+                        <ng-select class="NgSelect" 
+                           [items]="_BankList"
+                           [bindLabel]="'Bank_Name'"
+                           [bindValue]="'_id'"
+                           [searchable]="true"
+                           formControlName="Deposit_Bank" 
+                           placeholder="Deposit Bank">
+                        </ng-select>
+                        <p class="error" *ngIf="Form.controls['Deposit_Bank'].errors && !Form.controls['Deposit_Bank'].pristine">
+                           <span *ngIf="Form.controls['Deposit_Bank'].errors.required"> Deposit Bank is required</span>
+                        </p>
+                     </div>
+                  </div>
                </div>
-               <div class="col-sm-4 Form_Input">
-                  <label>Date:</label>
-                  <input matInput [matDatepicker]="picker" (click)="picker.open()" placeholder="Date">
-                  <mat-datepicker #picker></mat-datepicker>
-               </div>
-               <div class="col-sm-4 Form_Input">
-                  <label>Bank:</label>
-                  <input type="text">
-               </div>
-               <div class="col-sm-4 Form_Input">
-                  <label>Branch:</label>
-                  <input type="text">
-               </div>
-               <div class="col-sm-4 Form_Input">
-                  <label>Expected date of clearing:</label>
-                  <input type="text">
-               </div>
+               <!-- <div *ngIf="Type1 === 'online_payment' || Type1 === 'Neft' || Type1 === 'cheque'">
+                  <div class="col-sm-4 Form_Select">
+                     <label>Deposit Bank:</label>
+                     <ng-select class="NgSelect" 
+                        [items]="_BankList"
+                        [bindLabel]="'Bank_Name'"
+                        [bindValue]="'_id'"
+                        [searchable]="true"
+                        formControlName="Deposit_Bank" 
+                        placeholder="Deposit Bank">
+                     </ng-select>
+                     <p class="error" *ngIf="Form.controls['Deposit_Bank'].errors && !Form.controls['Deposit_Bank'].pristine">
+                        <span *ngIf="Form.controls['Deposit_Bank'].errors.required"> Deposit Bank is required</span>
+                     </p>
+                  </div>
+               </div> -->
             </div>
          </div>
-         <div *ngIf="Type === 'cash' ">
-         <br>
-            <div class="row">
-               <div class="col-sm-4 Form_Input">
-                  <label>Amount:</label>
-                  <input type="text">
-               </div>
-               <div class="col-sm-4 Form_Input">
-                  <label>Date:</label>
-                  <input matInput [matDatepicker]="picker" (click)="picker.open()" placeholder="Date">
-                  <mat-datepicker #picker></mat-datepicker>
-               </div>
-            </div>
-         </div>
-         <div *ngIf="Type === 'online_payment' ">
-            <br>
-            <div class="row">
-               <div class="col-sm-4 Form_Input">
-                  <label>Amount:</label>
-                  <input type="text">
-               </div>
-               <div class="col-sm-4 Form_Input">
-                  <label>Reference No:</label>
-                  <input type="text">
-               </div>
-               <div class="col-sm-4 Form_Input">
-                  <label>Date:</label>
-                  <input matInput [matDatepicker]="picker" (click)="picker.open()" placeholder="Date">
-                  <mat-datepicker #picker></mat-datepicker>
-               </div>
-            </div>
-         </div>
-         <div *ngIf="Type === 'NEFT' ">
-            <br>
-            <div class="row">
-               <div class="col-sm-4 Form_Input">
-                  <label>Amount:</label>
-                  <input type="text">
-               </div>
-               <div class="col-sm-4 Form_Input">
-                  <label>Date:</label>
-                  <input matInput [matDatepicker]="picker" (click)="picker.open()" placeholder="Date">
-                  <mat-datepicker #picker></mat-datepicker>
-               </div>
-               <div class="col-sm-4 Form_Input">
-                  <label>Reference No:</label>
-                  <input type="text">
-               </div>
-            </div>
-         </div>
-      </div>
+      </form>
    </div>
 </div>
 <!-- Footer -->
 <div class="Footer">
-   <button mat-raised-button color="primary" style = "top: 5px;"> Submit </button>
+   <button mat-raised-button color="primary" style = "top: 5px;" [disabled]="!Form.valid || Uploading" (click)="Submit()"> 
+      <span *ngIf="!Uploading"> Submit </span>
+      <span *ngIf="Uploading" class="UploadingBtn"> <i class="fa fa-refresh fa-spin"></i> Loading... </span>
+   </button>
 </div>

@@ -15,9 +15,12 @@
 // Future Modules
    import { ModalModule, AccordionModule} from 'ngx-bootstrap';
    import {CalendarModule} from 'primeng/calendar';
+   import { ChipsModule } from 'primeng/chips';
    import {MatButtonModule, MatFormFieldModule, MatSelectModule, MatCheckboxModule, MatMenuModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
    import {MatRadioModule} from '@angular/material/radio';
    import {NgSelectModule } from '@ng-select/ng-select';
+   import {MatSidenavModule} from '@angular/material/sidenav';
+   import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 
 
 // Custom Modules
@@ -88,9 +91,9 @@
             // Sub Components
                import { WareHouseInventorySettingsComponent } from './Components/Settings/Inventory-Settings/SubComponents/ware-house-inventory-settings/ware-house-inventory-settings.component';
          // Product Settings Folder
-            import { MainProductSettingsComponent } from './Components/Settings/Product-Settings/main-product-settings/main-product-settings.component';
+            // import { MainProductSettingsComponent } from './Components/Settings/Product-Settings/main-product-settings/main-product-settings.component';
             // Sub Components
-               import { ConfigurationProductSettingsComponent } from './Components/Settings/Product-Settings/SubComponents/configuration-product-settings/configuration-product-settings.component';
+               // import { ConfigurationProductSettingsComponent } from './Components/Settings/Product-Settings/SubComponents/configuration-product-settings/configuration-product-settings.component';
    // models -----------------------------------------------------------
       // settings
          // company settings
@@ -326,7 +329,38 @@ import { HrConfigComponent } from './Components/HR/HR-Config/hr-config/hr-config
 import { DashboardComponent } from './Components/DashBoard/dashboard/dashboard.component';
 import { AccountsExpensesComponent } from './Components/Accounts/Expenses/accounts-expenses/accounts-expenses.component';
 import { ModelExpenseComponent } from './models/Accounts/Expense/model-expense/model-expense.component';
-
+import { ProductConfigComponent } from './Components/Product/product-config/product-config.component';
+import { MainProductSettingComponent } from './Components/Settings/Product-Settings/main-product-setting/main-product-setting.component';
+import { UomSettingsComponent } from './Components/Settings/Product-Settings/SubComponents/uom-settings/uom-settings.component';
+import { ModalUomProductSettingsComponent } from './models/settings/product_settings/modal-uom-product-settings/modal-uom-product-settings.component';
+import { UpdateProductComponent } from './Components/Product/update-product/update-product.component';
+import { ModelRemindersCustomersViewComponent } from './models/CRM/Customers/model-reminders-customers-view/model-reminders-customers-view.component';
+import { CrmReviseCreateComponent } from './Components/CRM/Revise/crm-revise-create/crm-revise-create.component';
+import { CrmQuatationEditComponent } from './Components/CRM/Quotations/crm-quatation-edit/crm-quatation-edit.component';
+import { ModelConfirmConfigComponent } from './models/CRM/Quotations/model-confirm-config/model-confirm-config.component';
+import { ModelContactVendorViewComponent } from './models/Purchase/Vendor/model-contact-vendor-view/model-contact-vendor-view.component';
+import { PurchaseRequestEditComponent } from './Components/Purchase/PurchaseRequest/purchase-request-edit/purchase-request-edit.component';
+import { PurchaseRequestApproveComponent } from './Components/Purchase/PurchaseRequest/purchase-request-approve/purchase-request-approve.component';
+import { ModelQuoteConfirmComponent } from './models/Purchase/Quote/model-quote-confirm/model-quote-confirm.component';
+import { PurchaseQuotationsEditComponent } from './Components/Purchase/PurchaseQuotation/purchase-quotations-edit/purchase-quotations-edit.component';
+import { ModelConfirmValidateComponent } from './models/CRM/Quotations/model-confirm-validate/model-confirm-validate.component';
+import { ModelReceiveConfirmComponent } from './models/Purchase/Order/model-receive-confirm/model-receive-confirm.component';
+import { ModelConfirmDeliverComponent } from './models/CRM/Quotations/model-confirm-deliver/model-confirm-deliver.component';
+import { ToReceiveEditComponent } from './Components/Inventory/To-Receive/to-receive-edit/to-receive-edit.component';
+import { InventoryDeliveryOrdersEditComponent } from './Components/Inventory/Delivery-Orders/inventory-delivery-orders-edit/inventory-delivery-orders-edit.component';
+import { EditLeavesComponent } from './Components/HRMS/Leaves/edit-leaves/edit-leaves.component';
+import { ModelLeaveConfirmComponent } from './models/HRMS/model-leave-confirm/model-leave-confirm.component';
+import { ModelOndutyConfirmComponent } from './models/HRMS/model-onduty-confirm/model-onduty-confirm.component';
+import { EditOndutyComponent } from './Components/HRMS/On-Duty/edit-onduty/edit-onduty.component';
+import { EditPermissionsComponent } from './Components/HRMS/Permissions/edit-permissions/edit-permissions.component';
+import { ModelPermissionConfirmComponent } from './models/HRMS/model-permission-confirm/model-permission-confirm.component';
+import { ModelAdvanceConfirmComponent } from './models/HRMS/model-advance-confirm/model-advance-confirm.component';
+import { EditAdvanceComponent } from './Components/HRMS/Advance/edit-advance/edit-advance.component';
+import { AccountsIncomeComponent } from './Components/Accounts/Income/accounts-income/accounts-income.component';
+import { AccountsIncomeViewComponent } from './Components/Accounts/Income/accounts-income-view/accounts-income-view.component';
+import { AccountsBankRegisterComponent } from './Components/Accounts/Registers/accounts-bank-register/accounts-bank-register.component';
+import { AccountsCashRegisterComponent } from './Components/Accounts/Registers/accounts-cash-register/accounts-cash-register.component';
+import { ModelRegisterConfirmComponent } from './models/Accounts/model-register-confirm/model-register-confirm.component';
 
 
 @NgModule({
@@ -396,9 +430,9 @@ import { ModelExpenseComponent } from './models/Accounts/Expense/model-expense/m
                   // Sub Components
                      WareHouseInventorySettingsComponent,
                   // Product Settings Folder
-                  MainProductSettingsComponent,
+                  // MainProductSettingsComponent,
                   // Sub Components
-                     ConfigurationProductSettingsComponent,
+                     // ConfigurationProductSettingsComponent,
       // models
       // settings
          // company settings
@@ -603,9 +637,39 @@ import { ModelExpenseComponent } from './models/Accounts/Expense/model-expense/m
                ModelConfirmOrderComponent,
                DashboardComponent,
                AccountsExpensesComponent,
-               ModelExpenseComponent
-
-
+               ModelExpenseComponent,
+               ProductConfigComponent,
+               MainProductSettingComponent,
+               UomSettingsComponent,
+               ModalUomProductSettingsComponent,
+               UpdateProductComponent,
+               ModelRemindersCustomersViewComponent,
+               CrmReviseCreateComponent,
+               CrmQuatationEditComponent,
+               ModelConfirmConfigComponent,
+               ModelContactVendorViewComponent,
+               PurchaseRequestEditComponent,
+               PurchaseRequestApproveComponent,
+               ModelQuoteConfirmComponent,
+               PurchaseQuotationsEditComponent,
+               ModelConfirmValidateComponent,
+               ModelReceiveConfirmComponent,
+               ModelConfirmDeliverComponent,
+               ToReceiveEditComponent,
+               InventoryDeliveryOrdersEditComponent,
+               EditLeavesComponent,
+               ModelLeaveConfirmComponent,
+               ModelOndutyConfirmComponent,
+               EditOndutyComponent,
+               EditPermissionsComponent,
+               ModelPermissionConfirmComponent,
+               ModelAdvanceConfirmComponent,
+               EditAdvanceComponent,
+               AccountsIncomeComponent,
+               AccountsIncomeViewComponent,
+               AccountsBankRegisterComponent,
+               AccountsCashRegisterComponent,
+               ModelRegisterConfirmComponent,
    ],
    imports: [
       // Default Modules
@@ -620,6 +684,7 @@ import { ModelExpenseComponent } from './models/Accounts/Expense/model-expense/m
          ModalModule.forRoot(),
          AccordionModule.forRoot(),
          CalendarModule,
+         ChipsModule,
          NgSelectModule,
          MatButtonModule,
          MatFormFieldModule,
@@ -628,7 +693,9 @@ import { ModelExpenseComponent } from './models/Accounts/Expense/model-expense/m
          MatMenuModule,
          MatRadioModule,
          MatDatepickerModule,
+         NgxMaterialTimepickerModule.forRoot(),
          MatNativeDateModule,
+         MatSidenavModule,
       // Custom Modules
          AppRoutingModule,
    ],
@@ -680,7 +747,20 @@ import { ModelExpenseComponent } from './models/Accounts/Expense/model-expense/m
       ModelOthersCustomerViewComponent,
       ModelIncomeComponent,
       ModelConfirmOrderComponent,
-      ModelExpenseComponent
+      ModelExpenseComponent,
+      ModalUomProductSettingsComponent,
+      ModelRemindersCustomersViewComponent,
+      ModelConfirmConfigComponent,
+      ModelContactVendorViewComponent,
+      ModelQuoteConfirmComponent,
+      ModelConfirmValidateComponent,
+      ModelReceiveConfirmComponent,
+      ModelConfirmDeliverComponent,
+      ModelLeaveConfirmComponent,
+      ModelOndutyConfirmComponent,
+      ModelPermissionConfirmComponent,
+      ModelAdvanceConfirmComponent,
+      ModelRegisterConfirmComponent
     ],
    bootstrap: [AppComponent]
 })

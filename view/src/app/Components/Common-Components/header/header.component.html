@@ -20,7 +20,8 @@
       </span>
       <!-- Notification -->
       <span class="notification">
-         <i class="material-icons notify"> notifications</i>
+         <a><i class="material-icons notify" [matMenuTriggerFor]="notification" (click)="notifyOpen()"> notifications</i></a>
+         <span *ngIf="_NotifyCount > 0" class="badge">{{_NotifyCount}}</span>
       </span>
        <!-- <div class="Logout_Btn"> <span (click)="LogOut()"> Logout </span></div> -->
    </div>
@@ -50,7 +51,8 @@
                      </span>
                   </li>
                   <li *ngIf="SubModulesValidate('Crm_Quotations_List')" [routerLinkActive]="'active'" class="Menu_Tree_List">
-                     <a [routerLink]="['/List_Log_Phone_call']"> Log Phone Call </a>
+                     <!-- Log Calls change to Activities -->
+                     <a [routerLink]="['/List_Log_Phone_call']"> Activities </a>
                      <span class="Hidden_Links"> 
                         <span [routerLink]="['/Create_Log_Phone_call']"></span>
                         <span [routerLink]="['/View_Log_Phone_call']"></span>
@@ -134,6 +136,7 @@
                      <span class="Hidden_Links"> 
                         <span [routerLink]="['/Purchase_Quotation_Create']"></span>
                         <span [routerLink]="['/Purchase_Quotation_View']"></span>
+                        <span [routerLink]="['/Purchase_Quotation_Edit']"></span>
                      </span>
                   </li>
                   <li *ngIf="SubModulesValidate('Purchase_Orders_List')" [routerLinkActive]="'active'" class="Menu_Tree_List">
@@ -277,7 +280,26 @@
                      </ul>
                   </li>
                   <li *ngIf="SubModulesValidate('Accounts_VendorPayments_List')" [routerLinkActive]="'active'" class="Menu_Tree_List">
-                     <a (click)="Income()">Income</a>
+                     <a [routerLink]="['/Accounts_Income']">Income</a>
+                  </li>
+                  <li *ngIf="SubModulesValidate('Accounts_Customers_List')" [routerLinkActive]="'active'" class="Menu_Tree_List" style="position: relative" >
+                     <a>Registers</a>
+                     <ul class="Sub_Menu">
+                        <li class="Sub_Menu_List" [routerLinkActive]="'active'">
+                           <a [routerLink]="['/Accounts_Bank_Register']">Bank</a>
+                           <!-- <span class="Hidden_Links"> 
+                              <span [routerLink]="['/Accounts__Create']"></span>
+                              <span [routerLink]="['/Accounts_vendor_view']"></span>
+                           </span> -->
+                        </li>
+                        <li class="Sub_Menu_List" [routerLinkActive]="'active'">
+                           <a [routerLink]="['/Accounts_Cash_Register']">Cash</a>
+                           <!-- <span class="Hidden_Links"> 
+                              <span [routerLink]="['/Accounts_Purchase_Order_Create']"></span>
+                              <span [routerLink]="['/Accounts_Purchase_Order_View']"></span>
+                           </span> -->
+                        </li>
+                     </ul>
                   </li>
                   <li *ngIf="SubModulesValidate('Accounts_VendorPayments_List')" [routerLinkActive]="'active'" class="Menu_Tree_List">
                      <a [routerLink]="['/Accounts_Expense']">Expenses</a>
@@ -293,17 +315,42 @@
             </span>
          </li>
          <!-- Product -->
-         <li *ngIf="ModulesValidate('Product')" [routerLinkActive]="'active'" class="Menu_List"  style="outline:none;">
-            <a [routerLink]="['/List_Product']">
+         <li *ngIf="ModulesValidate('Product')" [routerLinkActive]="'active'" class="Menu_List">
+            <!-- <a [routerLink]="['/List_Product']">
                <span class="Menu">
                   <i class="material-icons">people</i>
-                  <span > &nbsp; Product </span> 
+                  <span> &nbsp; Product </span> 
                </span>
                <span class="Hidden_Links"> 
                   <span [routerLink]="['/Create_Product']"></span>
                   <span [routerLink]="['/View_Product']"></span>
                </span>
-            </a>
+            </a> -->
+            <span class="Menu_Tree">
+               <span class="Menu">
+                  <i class="material-icons">people</i>
+                  <span> &nbsp; Product </span> 
+               </span>
+               <ul class="Menu_Tree_View">
+                  <li [routerLinkActive]="'active'" class="Menu_Tree_List">
+                     <a [routerLink]="['/List_Product']"> Product </a>
+                     <span class="Hidden_Links"> 
+                        <span [routerLink]="['/Create_Product']"></span>
+                        <span [routerLink]="['/View_Product']"></span>
+                     </span>
+                  </li>
+                  <!-- <li [routerLinkActive]="'active'" class="Menu_Tree_List">
+                     <a [routerLink]="['/List_UOM']"> Unit Of Measure </a>
+                     <span class="Hidden_Links"> 
+                        <span [routerLink]="['/Create_UOM']"></span>
+                        <span [routerLink]="['/View_UOM']"></span>
+                     </span>
+                  </li> -->
+                  <li [routerLinkActive]="'active'" class="Menu_Tree_List">
+                     <a [routerLink]="['/Product_config']"> Configuration </a>
+                  </li>
+               </ul>
+            </span>
          </li>
         <!-- HR -->
          <li *ngIf="ModulesValidate('Hr')" [routerLinkActive]="'active'" class="Menu_List" >
@@ -460,4 +507,16 @@
       <span>LogOut</span>
    </button>      
 </mat-menu>
+
+<!-- side notification content -->
+<!-- <mat-drawer #notification class="sidecontent" mode="over" position="end">
+   <p>Auto-resizing sidenav</p>
+</mat-drawer> -->
+
+<mat-menu class="MenuStyleOne" #notification="matMenu" [overlapTrigger]="false" xPosition="after" yPosition="below" class="MenuStyleOne">
+   <a *ngFor="let item of _NotifyList" mat-menu-item>
+      <span> The {{item?.Notification_Id?.User_Id?.User_Type?.User_Type}} {{item?.Notification_Id?.User_Id?.Name}} {{item?.Notification_Id?.Notification_Key}} {{item?.Notification_Id?.Reference_Id?.Company_Name}} {{item?.Notification_Id?.Reference_Key}}</span>   
+   </a>
+</mat-menu>
+
 

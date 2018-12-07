@@ -1,3 +1,15 @@
+<div [ngClass]="{'Hide': !Loader}" class="DataLoaderStyle_1" style="height: 100%; width: 98%; min-height: 425px; margin-left: 15px">
+      <div class="Loading">
+            <div class="spinner">
+               <div class="rect1"></div>
+               <div class="rect2"></div>
+               <div class="rect3"></div>
+               <div class="rect4"></div>
+               <div class="rect5"></div>
+               <div class="rect6"></div>
+            </div>
+      </div>
+   </div>
 <!-- Header Part -->
 <div class="row header_part">
    <div class="col-sm-6">
@@ -25,157 +37,33 @@
          </tr>
       </thead>
       <tbody>
-         <tr>
+         <tr *ngFor="let item of _ContactList; let i = index">
             <td>
-               <span class="S_no"> 1 </span>
+               <span class="S_no"> {{i+1}} </span>
             </td>
             <td>
-               <span class="Style_1">aashi</span>
+               <span class="Style_1">{{item?.Title}} {{item?.Name}}</span>
             </td>
             <td>
-               <span class="Style_1">Contact Role </span>
+               <span class="Style_1">{{item?.Contact_Role['Contact_Role']}}</span>
             </td>
             <td>
-               <span class="Style_1">sample@gmail.com</span>
+               <span class="Style_1">{{item?.Email}}</span>
             </td>
             <td>
-               <span class="Style_1">+9922222222</span>
+               <span class="Style_1">{{item?.Mobile}}</span>
             </td>
             <td>
-               <span class="Style_1">Job Position</span>
+               <span class="Style_1">{{item?.Job_Position}}</span>
             </td>
             <td>
-               <button (click)="ViewContact()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
+               <button (click)="ViewContact(i)" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
                   <i class="material-icons">zoom_in</i>
                </button>
-               <button (click)="CreateContact()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
+               <button (click)="CreateContact(i)" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
                   <i class="material-icons">edit</i>
                </button>
-               <button (click)="DeleteContact()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
-                  <i class="material-icons">delete_forever</i>
-               </button>
-            </td>
-         </tr>
-         <tr>
-            <td>
-               <span class="S_no"> 2 </span>
-            </td>
-            <td>
-               <span class="Style_1">aashi</span>
-            </td>
-            <td>
-               <span class="Style_1">Contact Role </span>
-            </td>
-            <td>
-               <span class="Style_1">sample@gmail.com</span>
-            </td>
-            <td>
-               <span class="Style_1">+9922222222</span>
-            </td>
-            <td>
-               <span class="Style_1">Job Position</span>
-            </td>
-            <td>
-               <button (click)="ViewContact()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
-                  <i class="material-icons">zoom_in</i>
-               </button>
-               <button (click)="CreateContact()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
-                  <i class="material-icons">edit</i>
-               </button>
-               <button (click)="DeleteContact()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
-                  <i class="material-icons">delete_forever</i>
-               </button>
-            </td>
-         </tr>
-         <tr>
-            <td>
-               <span class="S_no"> 3 </span>
-            </td>
-            <td>
-               <span class="Style_1">aashi</span>
-            </td>
-            <td>
-               <span class="Style_1">Contact Role </span>
-            </td>
-            <td>
-               <span class="Style_1">sample@gmail.com</span>
-            </td>
-            <td>
-               <span class="Style_1">+9922222222</span>
-            </td>
-            <td>
-               <span class="Style_1">Job Position</span>
-            </td>
-            <td>
-               <button (click)="ViewContact()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
-                  <i class="material-icons">zoom_in</i>
-               </button>
-               <button (click)="CreateContact()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
-                  <i class="material-icons">edit</i>
-               </button>
-               <button (click)="DeleteContact()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
-                  <i class="material-icons">delete_forever</i>
-               </button>
-            </td>
-         </tr>
-         <tr>
-            <td>
-               <span class="S_no"> 4 </span>
-            </td>
-            <td>
-               <span class="Style_1">aashi</span>
-            </td>
-            <td>
-               <span class="Style_1">Contact Role </span>
-            </td>
-            <td>
-               <span class="Style_1">sample@gmail.com</span>
-            </td>
-            <td>
-               <span class="Style_1">+9922222222</span>
-            </td>
-            <td>
-               <span class="Style_1">Job Position</span>
-            </td>
-            <td>
-               <button (click)="ViewContact()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
-                  <i class="material-icons">zoom_in</i>
-               </button>
-               <button (click)="CreateContact()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
-                  <i class="material-icons">edit</i>
-               </button>
-               <button (click)="DeleteContact()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
-                  <i class="material-icons">delete_forever</i>
-               </button>
-            </td>
-         </tr>
-         <tr>
-            <td>
-               <span class="S_no"> 5 </span>
-            </td>
-            <td>
-               <span class="Style_1">aashi</span>
-            </td>
-            <td>
-               <span class="Style_1">Contact Role </span>
-            </td>
-            <td>
-               <span class="Style_1">sample@gmail.com</span>
-            </td>
-            <td>
-               <span class="Style_1">+9922222222</span>
-            </td>
-            <td>
-               <span class="Style_1">Job Position</span>
-            </td>
-            <td>
-               <button (click)="ViewContact()" class="Table_Action_mini Bg_Info" mat-mini-fab color="primary">
-                  <i class="material-icons">zoom_in</i>
-               </button>
-               <button (click)="CreateContact()" class="Table_Action_mini Bg_warning" mat-mini-fab color="primary">
-                  <i class="material-icons">edit</i>
-               </button>
-               <button (click)="DeleteContact()" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
+               <button (click)="DeleteContact(i)" class="Table_Action_mini Bg_Danger" mat-mini-fab color="primary">
                   <i class="material-icons">delete_forever</i>
                </button>
             </td>

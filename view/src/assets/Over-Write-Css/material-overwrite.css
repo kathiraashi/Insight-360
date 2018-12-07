@@ -109,3 +109,9 @@
    padding: 0;
    flex-shrink: 0;
 }
+
+/* material */
+.mat-calendar-body-selected {
+   background-color: #49b660;
+   color: #fff;
+}

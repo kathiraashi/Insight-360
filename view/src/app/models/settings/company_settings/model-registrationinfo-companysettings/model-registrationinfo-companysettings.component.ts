@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 import * as CryptoJS from 'crypto-js';
 
 
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { BsModalRef } from 'ngx-bootstrap';
 import { CompanySettingsService } from './../../../../services/settings/CompanySettings/company-settings.service';
 import { ToastrService } from './../../../../services/common-services/toastr-service/toastr.service';
 

@@ -3,7 +3,7 @@ import { Subject } from 'rxjs';
 import { FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { map } from 'rxjs/operators';
 
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { BsModalRef } from 'ngx-bootstrap';
 import * as CryptoJS from 'crypto-js';
 
 import { HrmsSettingsService } from './../../../../services/settings/HrmsSettings/hrms-settings.service';

@@ -1,88 +1,96 @@
+
 <!-- About Section -->
 <div class="about_section">
    <div class="row About_Section">
       <div class="col-sm-6">
-         <div class="row">
-            <div class="col-sm-4">
+         <div class="view_item">
+            <div class="Static">
                <div class="Customer_Details_Title">
                   <h5>Customer Name</h5>
                </div>
             </div>
-            <div class="col-sm-8">
+            <div class="dots"> : </div>
+            <div class="Data">
                <div class="Customer_Details_Value">
-                  <h5>Customer Name</h5>
+                  <h5>{{CustomerData['Company_Name']}}</h5>
                </div>
             </div>
          </div>
-         <div class="row">
-            <div class="col-sm-4">
+         <div class="view_item" *ngIf="CustomerData['Email'] !== null">
+            <div class="Static">
                <div class="Customer_Details_Title">
                   <h5>E-mail</h5>
                </div>
             </div>
-            <div class="col-sm-8">
+            <div class="dots"> : </div>
+            <div class="Data">
                <div class="Customer_Details_Value">
-                  <h5>Customerinfo@gmail.com</h5>
+                  <h5>{{CustomerData['Email']}}</h5>
                </div>
             </div>
          </div>
-         <div class="row">
-            <div class="col-sm-4">
+         <div class="view_item">
+            <div class="Static">
                <div class="Customer_Details_Title">
                   <h5>Phone</h5>
                </div>
             </div>
-            <div class="col-sm-8">
+            <div class="dots"> : </div>
+            <div class="Data">
                <div class="Customer_Details_Value">
-                  <h5>0435678</h5>
+                  <h5>{{CustomerData['Phone_Number']}}</h5>
                </div>
             </div>
          </div>
-         <div class="row">
-            <div class="col-sm-4">
+         <div class="view_item" *ngIf="CustomerData['Website'] !== null">
+            <div class="Static">
                <div class="Customer_Details_Title">
-                  <h5>Mobile</h5>
+                  <h5>Website</h5>
                </div>
             </div>
-            <div class="col-sm-8">
+            <div class="dots"> : </div>
+            <div class="Data">
                <div class="Customer_Details_Value">
-                  <h5>+987654321</h5>
+                  <h5>{{CustomerData['Website']}}</h5>
                </div>
             </div>
          </div>
-         <div class="row">
-            <div class="col-sm-4">
+         <div class="view_item">
+            <div class="Static">
                <div class="Customer_Details_Title">
                   <h5>Industry Type</h5>
                </div>
             </div>
-            <div class="col-sm-8">
+            <div class="dots"> : </div>
+            <div class="Data">
                <div class="Customer_Details_Value">
-                  <h5>Manufacturing</h5>
+                  <h5>{{CustomerData['Industry_Type']?.Industry_Type}}</h5>
                </div>
             </div>
          </div>
-         <div class="row">
-            <div class="col-sm-4">
+         <div class="view_item">
+            <div class="Static">
                <div class="Customer_Details_Title">
                   <h5>No of Employees</h5>
                </div>
             </div>
-            <div class="col-sm-8">
+            <div class="dots"> : </div>
+            <div class="Data">
                <div class="Customer_Details_Value">
-                  <h5>75 Employees</h5>
+                  <h5>{{CustomerData['No_Of_Employee']}}</h5>
                </div>
             </div>
          </div>
-         <div class="row">
-            <div class="col-sm-4">
+         <div class="view_item">
+            <div class="Static">
                <div class="Customer_Details_Title">
                   <h5>Notes</h5>
                </div>
             </div>
-            <div class="col-sm-8">
+            <div class="dots"> : </div>
+            <div class="Data">
                <div class="Customer_Details_Value">
-                  <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate magni dignissimos minima pariatur consequatur debitis quo laudantium nemo, illo eum odit neque.</h5>
+                  <h5>{{CustomerData['Notes']}}</h5>
                </div>
             </div>
          </div>
@@ -92,11 +100,12 @@
             <h5>Shipping Address</h5>
          </div>
          <div class="Customer_Details_Value">
-            <h5>No.32 Shri Lakshmi Nagar,
-               Ganapathy,
-               Coimbatore,
-               Tamil Nadu - 641007,
-               India.
+            <h5>
+               {{CustomerData['ShopFloorAddress']?.Street}}, 
+               {{CustomerData['ShopFloorAddress']?.Area}}, <br/>
+               {{CustomerData['ShopFloorAddress']?.City?.City_Name}}, 
+               {{CustomerData['ShopFloorAddress']?.State?.State_Name}}, <br/>
+               {{CustomerData['ShopFloorAddress']?.Country?.Country_Name}} - {{CustomerData['ShopFloorAddress']?.ZipCode}}.
             </h5>
          </div>  
       </div>
@@ -105,11 +114,12 @@
             <h5>Billing Address</h5>
          </div>
          <div class="Customer_Details_Value">
-            <h5>No.32 Shri Lakshmi Nagar,
-               Ganapathy,
-               Coimbatore,
-               Tamil Nadu - 641007,
-               India.
+            <h5>
+               {{CustomerData['BillingAddress']?.Street}}, 
+               {{CustomerData['BillingAddress']?.Area}}, <br/>
+               {{CustomerData['BillingAddress']?.City?.City_Name}}, 
+               {{CustomerData['BillingAddress']?.State?.State_Name}}, <br/>
+               {{CustomerData['BillingAddress']?.Country?.Country_Name}} - {{CustomerData['BillingAddress']?.ZipCode}}.
             </h5>
          </div>
       </div>

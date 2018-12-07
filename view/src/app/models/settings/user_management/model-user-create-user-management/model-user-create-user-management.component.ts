@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
 
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { BsModalRef } from 'ngx-bootstrap';
 import * as CryptoJS from 'crypto-js';
 import { map } from 'rxjs/operators';
-
+import { LoginService } from './../../../../services/LoginService/login.service';
 import { AdminService } from './../../../../services/Admin/admin.service';
 import { ToastrService } from './../../../../services/common-services/toastr-service/toastr.service';
+import { HrService } from './../../../../services/Hr/hr.service';
 
 @Component({
   selector: 'app-model-user-create-user-management',
@@ -34,15 +35,27 @@ export class ModelUserCreateUserManagementComponent implements OnInit {
    UserNameValidated: Boolean = false;
    User_NameAvailable: Boolean = false;
 
-   Company_Id = '5b3c66d01dd3ff14589602fe';
+   Company_Id;
+   User_Id;
+   User_Info: any;
+   User_Type: any;
 
    Form: FormGroup;
+   _LinkEmployee: any;
 
   constructor(
                public bsModalRef: BsModalRef,
                public Service: AdminService,
-               private Toastr: ToastrService
+               private Toastr: ToastrService,
+               private Hr_Service: HrService,
+               private Login_Service: LoginService,
+
             ) {
+               // get user login info
+               this.User_Info = this.Login_Service.LoggedUserInfo();
+               this.Company_Id = this.User_Info.Company_Id;
+               this.User_Id = this.User_Info._id;
+               this.User_Type = this.User_Info.User_Type['User_Type'];
                const Data = { 'Company_Id' : '1', 'User_Id' : '2', };
                   let Info = CryptoJS.AES.encrypt(JSON.stringify(Data), 'SecretKeyIn@123');
                   Info = Info.toString();
@@ -106,14 +119,33 @@ export class ModelUserCreateUserManagementComponent implements OnInit {
                      );
                   }
                });
+               // get Employee list
+               const Data1 = { 'Company_Id' : this.Company_Id, 'User_Id' : this.User_Id};
+               let Info1 = CryptoJS.AES.encrypt(JSON.stringify(Data1), 'SecretKeyIn@123');
+               Info1 = Info1.toString();
+               this.Hr_Service.HrEmployee_List({'Info': Info1}).subscribe( response => {
+               const ResponseData = JSON.parse(response['_body']);
+               if (response['status'] === 200 && ResponseData['Status'] ) {
+                  const CryptoBytes  = CryptoJS.AES.decrypt(ResponseData['Response'], 'SecretKeyOut@123');
+                  const DecryptedData = JSON.parse(CryptoBytes.toString(CryptoJS.enc.Utf8));
+                  this._LinkEmployee = DecryptedData;
+                  this._LinkEmployee = this._LinkEmployee.filter(x => x.If_UserManagement_Linked === false);
+               } else if (response['status'] === 400 || response['status'] === 417  && !ResponseData['Status']) {
+               this.Toastr.NewToastrMessage({ Type: 'Error', Message: response['Message'] });
+               } else if (response['status'] === 401 && !ResponseData['Status']) {
+               this.Toastr.NewToastrMessage({ Type: 'Error',  Message: ResponseData['Message'] });
+               } else {
+               this.Toastr.NewToastrMessage( { Type: 'Error', Message: 'Some Error Occurred!, But not Identify!' });
+               }
+               } );
             }
 
    ngOnInit() {
       this.onClose = new Subject();
 
       this.Form = new FormGroup({
-         Company_Id: new FormControl('5b3c66d01dd3ff14589602fe'),
-         User_Id: new FormControl('5b3c7268f838b31bc89e7c8c'),
+         Company_Id: new FormControl(this.Company_Id),
+         User_Id: new FormControl(this.User_Id),
          User_Name: new FormControl('', { validators: Validators.required,
                                           asyncValidators: [this.UserNameAsyncValidate.bind(this)],
                                           updateOn: 'blur' }),
@@ -123,6 +155,7 @@ export class ModelUserCreateUserManagementComponent implements OnInit {
          Phone: new FormControl(''),
          User_Type: new FormControl(null, Validators.required),
          Reports_To: new FormControl(null),
+         Hrms_Employee_Id: new FormControl(null),
          AccessPermissions_Groups: new FormControl(null, Validators.required)
       });
    }
